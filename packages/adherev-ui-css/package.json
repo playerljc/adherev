@@ -1,8 +1,8 @@
 {
-  "name": "@baifendian/adherev-util-preferences",
+  "name": "@baifendian/adherev-ui-css",
   "version": "1.0.0",
-  "description": "sessionStore和localStore进行的封装",
-  "main": "lib/index.js",
+  "description": "提供很多公共的样式",
+  "main": "lib/index.less",
   "files": [
     "lib",
     "umd"
@@ -10,7 +10,6 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "buildpackage": "ctbuild buildpackagets",
-    "buildumd": "ctbuild buildumd --packagename AdherevPreferences --define alias=@,evnVars=true",
     "generatorchangelog": "bd changelog/CHANGELOG.html"
   },
   "repository": {
@@ -35,6 +34,6 @@
     "typescript": "^3.8.2"
   },
   "dependencies": {
-    "@baifendian/adhere-util-preferences": "^1.0.5"
+    "@baifendian/adhere-ui-css": "^1.0.5"
   }
 }

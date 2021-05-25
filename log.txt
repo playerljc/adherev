@@ -1,3 +1,1 @@
 .adhere-util-communication-ajax
-.adhere-util-intl
-.adhere-util-resource

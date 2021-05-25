@@ -1,8 +1,7 @@
-// @ts-ignore
 import VueI18n from 'vue-i18n';
-import { I18nOptions, Path, TranslateResult, Locale } from 'vue-i18n/types';
+import { I18nOptions, Path, TranslateResult, Locale, IVueI18n } from 'vue-i18n/types';
 
-// k007组件的国际化文件
+// 组件的国际化文件
 const finallyLocales = {
   en_US: require('./locales/en_US').default,
   zh_CN: require('./locales/zh_CN').default,
@@ -10,6 +9,9 @@ const finallyLocales = {
 };
 
 const intlMap = {};
+
+// @ts-ignore
+let i18n: IVueI18n = null;
 
 /**
  * initIntlMap - 初始化以中文为key,intl.get()为值的Map
@@ -27,6 +29,7 @@ function initIntlMap(zh_CN) {
 /**
  * getLocal
  * @param data
+ * @return object
  */
 export function getLocal(data: Array<string>): object {
   // @ts-ignore
@@ -75,10 +78,11 @@ export function extend(Vue: any): void {
 }
 
 /**
- * vue-i18n Factory
+ * I18nFactory
  * @param config
+ * @constructor
  */
-export default function (config: I18nOptions = {}) {
+const I18nFactory = function (config: I18nOptions = {}) {
   const { messages = {} } = config;
 
   // 整合用户的locales
@@ -88,10 +92,53 @@ export default function (config: I18nOptions = {}) {
     }
   }
 
+  // 反转资源文件
   initIntlMap(finallyLocales.zh_CN);
 
-  return new VueI18n({
+  // i18n实例
+  i18n = new VueI18n({
     ...config,
     ...{ messages: finallyLocales },
   });
-}
+
+  return i18n;
+};
+
+/**
+ * tv
+ * @param zh
+ * @param values
+ */
+I18nFactory.tv = function (zh: Path, ...values: []) {
+  const key = intlMap[zh];
+  // @ts-ignore
+  return i18n.t.apply(i18n, [key, ...values]);
+};
+
+/**
+ * tcv
+ * @param zh
+ * @param values
+ */
+I18nFactory.tcv = function (zh: Path, ...values: []) {
+  const key = intlMap[zh];
+  // @ts-ignore
+  return i18n.tc.apply(i18n, [key, ...values]);
+};
+
+/**
+ * tev
+ * @param zh
+ * @param values
+ */
+I18nFactory.tev = function (zh: Path, ...values: []) {
+  const key = intlMap[zh];
+  // @ts-ignore
+  return i18n.te.apply(i18n, [key, ...values]);
+};
+
+/**
+ * vue-i18n Factory
+ * @param config
+ */
+export default I18nFactory;

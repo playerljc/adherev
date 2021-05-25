@@ -1,7 +1,7 @@
 {
-  "name": "@baifendian/adherev-util-preferences",
+  "name": "@baifendian/adherev-ui-globalindicator",
   "version": "1.0.0",
-  "description": "sessionStore和localStore进行的封装",
+  "description": "全局无侵入的遮罩",
   "main": "lib/index.js",
   "files": [
     "lib",
@@ -10,8 +10,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "buildpackage": "ctbuild buildpackagets",
-    "buildumd": "ctbuild buildumd --packagename AdherevPreferences --define alias=@,evnVars=true",
-    "generatorchangelog": "bd changelog/CHANGELOG.html"
+    "generatorchangelog": "bd changelog/CHANGELOG.html",
+    "buildumd": "ctbuild buildumd --packagename AdherevGlobalIndicator --define alias=@,evnVars=true"
   },
   "repository": {
     "type": "git",
@@ -35,6 +35,7 @@
     "typescript": "^3.8.2"
   },
   "dependencies": {
-    "@baifendian/adhere-util-preferences": "^1.0.5"
+    "@baifendian/adherev-ui-css": "^1.0.0",
+    "@baifendian/adherev-util-resource": "^1.0.0"
   }
 }
