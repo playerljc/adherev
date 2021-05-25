@@ -1,0 +1,1 @@
+{"version":3,"file":"index.js","sources":["index.js"],"sourcesContent":["import Preferences from '@baifendian/adhere-util-preferences';\r\nexport default Preferences;\r\n"],"names":["Preferences"],"mappings":"OAAOA,qEACQA"}

@@ -31,71 +31,93 @@
 
 # 组件列表
 
-- [@baifendian/adherev-ui-searchtable](#@baifendian/adherev-ui-searchtable)
+# 移植
+
+- [@baifendian/adherev-util-drag](#@baifendian/adherev-util-drag)
+- [@baifendian/adherev-util-droppable](#@baifendian/adherev-util-droppable)
+- [@baifendian/adherev-util-resizeable](#@baifendian/adherev-util-resizeable)
+- [@baifendian/adherev-util-selectable](#@baifendian/adherev-util-selectable)
+
+# 自创
+
+# 分配
+
 - [@baifendian/adherev-ui-imageviwer](#@baifendian/adherev-ui-imageviwer)
 - [@baifendian/adherev-ui-form](#@baifendian/adherev-ui-form)
 - [@baifendian/adherev-ui-echarts](#@baifendian/adherev-ui-echarts)
+- [@baifendian/adherev-ui-g6](#@baifendian/adherev-ui-g6)
+- [@baifendian/adherev-util-regex](#@baifendian/adherev-util-regex)
+- [@baifendian/adherev-util-clientdetection](#@baifendian/adherev-util-clientdetection)
+
+# 分配待定
+
 - [@baifendian/adherev-ui-adaptivelayout](#baifendian/adherev-ui-adaptivelayout)
 - [@baifendian/adherev-ui-table](#@baifendian/adherev-ui-table)
 - [@baidendian/adherev-ui-kvinfo](#@baidendian/adherev-ui-kvinfo)
+- [@baifendian/adherev-util-moment](#@baifendian/adherev-util-moment)
 - [@baifendian/adherev-ui-datepicker](#@baifendian/adherev-ui-datepicker)
 - [@baifendian/adherev-ui-tooltip](#@baifendian/adherev-ui-tooltip)
 - [@baifendian/adherev-ui-icon](#@baifendian/adherev-ui-icon)
-- [@baifendian/adherev-ui-imgclip](#@baifendian/adherev-ui-imgclip)
-- [@baifendian/adherev-ui-media](#@baifendian/adherev-ui-media)
-- [@baifendian/adherev-system-lint](#@baifendian/adherev-system-lint)
-- [@baifendian/adherev-ui-globalindicator](#@baifendian/adherev-ui-globalindicator)
-- [@baifendian/adherev-ui-historyback](#@baifendian/adherev-ui-historyback)
-- [@baifendian/adherev-ui-permission](#@baifendian/adherev-ui-permission)
-- [@baifendian/adherev-ui-prompt-successprompt](#@baifendian/adherev-ui-prompt-successprompt)
-- [@baifendian/adherev-ui-prompt-errorprompt](#@baifendian/adherev-ui-prompt-errorprompt)
-- [@baifendian/adherev-ui-prompt-warnprompt](#@baifendian/adherev-ui-prompt-warnprompt)
-- [@baifendian/adherev-ui-space](#baifendian/adherev-ui-space)
-- [@baifendian/adherev-ui-split](#baifendian/adherev-ui-split)
-- [@baifendian/adherev-ui-spin](#baifendian/adherev-ui-spin)
-- [@baifendian/adherev-ui-conditionalrender](#baifendian/adherev-ui-conditionalrender)
-- [@baifendian/adherev-ui-imagelazy](#baifendian/adherev-ui-imagelazy)
-- [@baifendian/adherev-ui-messagedialog](#@baifendian/adherev-ui-messagedialog)
-- [@baifendian/adherev-ui-confirm-delconfirm](#@baifendian/adherev-ui-confirm-delconfirm)
-- [@baifendian/adherev-ui-confirm-importantconfirm](#@baifendian/adherev-ui-confirm-importantconfirm)
-- [@baifendian/adherev-ui-css](#@baifendian/adherev-ui-css)
-- [@baifendian/adherev-ui-suspense](#@baifendian/adherev-ui-suspense)
-- [@baifendian/adherev-ui-tableheadsearch](#@baifendian/adherev-ui-tableheadsearch)
-- [@baifendian/adherev-ui-hooks](#@baifendian/adherev-ui-hooks)
-- [@baifendian/adherev-ui-olmap](#@baifendian/adherev-ui-olmap)
-- [@baifendian/adherev-ui-flexlayout](#@baifendian/adherev-ui-flexlayout)
-- [@baifendian/adherev-ui-splitlayout](#@baifendian/adherev-ui-splitlayout)
-- [@baifendian/adherev-ui-stickuplayout](#@baifendian/adherev-ui-stickuplayout)
-- [@baifendian/adherev-ui-surnames](#@baifendian/adherev-ui-surnames)
-- [@baifendian/adherev-ui-sliderscale](#@baifendian/adherev-ui-sliderscale)
-- [@baifendian/adherev-ui-revolving](#@baifendian/adherev-ui-revolving)
-- [@baifendian/adherev-ui-scrollload](#@baifendian/adherev-ui-scrollload)
-- [@baifendian/adherev-ui-jdcategorytab](#@baifendian/adherev-ui-jdcategorytab)
-- [@baifendian/adherev-ui-cascadecompared](#@baifendian/adherev-ui-cascadecompared)
-- [@baifendian/adherev-ui-slidelayout](#@baifendian/adherev-ui-slidelayout)
-- [@baifendian/adherev-ui-contextmenu](#@baifendian/adherev-ui-contextmenu)
-- [@baifendian/adherev-ui-fontsizesetting](#@baifendian/adherev-ui-fontsizesetting)
-- [@baifendian/adherev-util-memoized](#baifendian/adherev-util-watchmemoized)
-- [@baifendian/adherev-util-communication-ajax](#@baifendian/adherev-util-communication-ajax)
-- [@baidendian/adherev-util-adapterscreen](#@baidendian/adherev-util-adapterscreen)
-- [@baifendian/adherev-util-dict](#@baifendian/adherev-util-dict)
-- [@baifendian/adherev-util-emitter](#@baifendian/adherev-util-emitter)
-- [@baifendian/adherev-util-intl](#@baifendian/adherev-util-intl)
-- [@baifendian/adherev-util-notnull](#@baifendian/adherev-util-notnull)
-- [@baifendian/adherev-util-preferences](#@baifendian/adherev-ui-preferences)
-- [@baifendian/adherev-util-resource](#@baifendian/adherev-util-resource)
-- [@baifendian/adherev-util](#@baifendian/adherev-util)
 - [@baifendian/adherev-util-communication-sse](#@baifendian/adherev-util-communication-sse)
 - [@baifendian/adherev-util-communication-websocket](#@baifendian/adherev-util-communication-websocket)
 - [@baifendian/adherev-util-communication-postmessage](#@baifendian/adherev-util-communication-postmessage)
-- [@baifendian/adherev-util-moment](#@baifendian/adherev-util-moment)
-- [@baifendian/adherev-util-regex](#@baifendian/adherev-util-regex)
-- [@baifendian/adherev-util-clientdetection](#@baifendian/adherev-util-clientdetection)
-- [@baifendian/adherev-util-drag](#@baifendian/adherev-util-drag)
-- [@baifendian/adherev-util-droppable](#@baifendian/adherev-util-droppable)
-- [@baifendian/adherev-util-selectable](#@baifendian/adherev-util-selectable)
-- [@baifendian/adherev-util-resizeable](#@baifendian/adherev-util-resizeable)
-- [@baifendian/adherev-util-decorators](#@baifendian/adherev-util-decorators)
+- [@baifendian/adherev-ui-imgclip](#@baifendian/adherev-ui-imgclip)
+- [@baifendian/adherev-ui-media](#@baifendian/adherev-ui-media)
+- [@baifendian/adherev-system-lint](#@baifendian/adherev-system-lint)
+
+# 完成
+
+- [@baifendian/adherev-ui-globalindicator](#@baifendian/adherev-ui-globalindicator) - ok
+- [@baifendian/adherev-ui-historyback](#@baifendian/adherev-ui-historyback) - ok
+- [@baifendian/adherev-ui-permission](#@baifendian/adherev-ui-permission) - ok
+- [@baifendian/adherev-ui-prompt-successprompt](#@baifendian/adherev-ui-prompt-successprompt) - ok
+- [@baifendian/adherev-ui-prompt-errorprompt](#@baifendian/adherev-ui-prompt-errorprompt) - ok
+- [@baifendian/adherev-ui-prompt-warnprompt](#@baifendian/adherev-ui-prompt-warnprompt) - ok
+- [@baifendian/adherev-ui-space](#baifendian/adherev-ui-space) - ok
+- [@baifendian/adherev-ui-split](#baifendian/adherev-ui-split) - ok
+- [@baifendian/adherev-ui-spin](#baifendian/adherev-ui-spin) - ok
+- [@baifendian/adherev-ui-conditionalrender](#baifendian/adherev-ui-conditionalrender) - ok
+- [@baifendian/adherev-ui-imagelazy](#baifendian/adherev-ui-imagelazy) - ok
+- [@baifendian/adherev-ui-messagedialog](#@baifendian/adherev-ui-messagedialog) - ok
+- [@baifendian/adherev-ui-confirm-delconfirm](#@baifendian/adherev-ui-confirm-delconfirm) - ok
+- [@baifendian/adherev-ui-confirm-importantconfirm](#@baifendian/adherev-ui-confirm-importantconfirm) - ok
+- [@baifendian/adherev-ui-css](#@baifendian/adherev-ui-css) - ok
+- [@baifendian/adherev-ui-suspense](#@baifendian/adherev-ui-suspense) - ok
+- [@baifendian/adherev-ui-tableheadsearch](#@baifendian/adherev-ui-tableheadsearch) - ok
+- [@baifendian/adherev-ui-hooks](#@baifendian/adherev-ui-hooks) - ok
+- [@baifendian/adherev-ui-olmap](#@baifendian/adherev-ui-olmap) - ok
+- [@baifendian/adherev-ui-flexlayout](#@baifendian/adherev-ui-flexlayout) - ok
+- [@baifendian/adherev-ui-splitlayout](#@baifendian/adherev-ui-splitlayout) - ok
+- [@baifendian/adherev-ui-stickuplayout](#@baifendian/adherev-ui-stickuplayout) - ok
+- [@baifendian/adherev-ui-surnames](#@baifendian/adherev-ui-surnames) - ok
+- [@baifendian/adherev-ui-sliderscale](#@baifendian/adherev-ui-sliderscale) - ok
+- [@baifendian/adherev-ui-revolving](#@baifendian/adherev-ui-revolving) - ok
+- [@baifendian/adherev-ui-scrollload](#@baifendian/adherev-ui-scrollload) - ok
+- [@baifendian/adherev-ui-jdcategorytab](#@baifendian/adherev-ui-jdcategorytab) - ok
+- [@baifendian/adherev-ui-cascadecompared](#@baifendian/adherev-ui-cascadecompared) - ok
+- [@baifendian/adherev-ui-slidelayout](#@baifendian/adherev-ui-slidelayout) - ok
+- [@baifendian/adherev-ui-contextmenu](#@baifendian/adherev-ui-contextmenu) - ok
+- [@baifendian/adherev-ui-fontsizesetting](#@baifendian/adherev-ui-fontsizesetting) - ok
+- [@baifendian/adherev-ui-searchtable](#@baifendian/adherev-ui-searchtable) - ok
+- [@baifendian/adherev-ui-formitemcreator](#@baifendian/adherev-ui-formitemcreator) - ok
+- [@baifendian/adherev-ui-tablelist](#@baifendian/adherev-ui-tablelist) - ok
+- [@baifendian/adherev-ui-popup](#@baifendian/adherev-ui-popup) - ok
+- [@baifendian/adherev-ui-backtopanimation](#@baifendian/adherev-ui-backtopanimation) - ok
+- [@baifendian/adherev-ui-pullrefresh](#@baifendian/adherev-ui-pullrefresh) - ok
+- [@baifendian/adherev-ui-notification](#@baifendian/adherev-ui-notification) - ok
+- [@baifendian/adherev-ui-swipeout](#@baifendian/adherev-ui-swipeout) - ok
+  
+- [@baifendian/adherev-util-memoized](#baifendian/adherev-util-watchmemoized)- ok
+- [@baifendian/adherev-util-communication-ajax](#@baifendian/adherev-util-communication-ajax) - ok
+- [@baidendian/adherev-util-adapterscreen](#@baidendian/adherev-util-adapterscreen) - ok
+- [@baifendian/adherev-util-decorators](#@baifendian/adherev-util-decorators) - ok
+- [@baifendian/adherev-util-dict](#@baifendian/adherev-util-dict) - ok
+- [@baifendian/adherev-util-emitter](#@baifendian/adherev-util-emitter) - ok
+- [@baifendian/adherev-util-intl](#@baifendian/adherev-util-intl) - ok
+- [@baifendian/adherev-util-notnull](#@baifendian/adherev-util-notnull) - ok
+- [@baifendian/adherev-util-preferences](#@baifendian/adherev-ui-preferences) - ok
+- [@baifendian/adherev-util-resource](#@baifendian/adherev-util-resource) - ok
+- [@baifendian/adherev-util](#@baifendian/adherev-util) - ok
 
 ## @baifendian/adherev-system-lint
 
@@ -487,3 +509,6 @@ log:
 - 一组中多个元素 resizeable
 - 多组都可以 resizeable
 - 无线扩展
+
+## @baifendian/adherev-ui-g6
+antv-g6的封装
