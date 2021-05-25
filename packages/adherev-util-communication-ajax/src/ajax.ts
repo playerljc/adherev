@@ -1,8 +1,11 @@
+// @ts-ignore
 import { notification } from 'ant-design-vue';
 
 // @ts-ignore
 import Util from '@baifendian/adherev-util';
+// @ts-ignore
 import intl from '@baifendian/adherev-util-intl';
+// @ts-ignore
 import GlobalIndicator from '@baifendian/adherev-ui-globalindicator';
 
 import { IConfig, ISendArg, ISendPrepareArg } from './types';
@@ -598,6 +601,7 @@ class Ajax {
 
     this.systemManagerBaseURL = systemManagerBaseURL || '';
 
+    // @ts-ignore
     this.config = config || {};
   }
 
