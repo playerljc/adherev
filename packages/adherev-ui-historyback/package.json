@@ -1,7 +1,7 @@
 {
-  "name": "@baifendian/adherev-util-communication-ajax",
+  "name": "@baifendian/adherev-ui-historyback",
   "version": "1.0.0",
-  "description": "Ajax通信",
+  "description": "历史记录返回操作",
   "main": "lib/index.js",
   "files": [
     "lib",
@@ -10,8 +10,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "buildpackage": "ctbuild buildpackagets",
-    "buildumd": "ctbuild buildumd --packagename AdherevAjax --define alias=@,evnVars=true",
-    "generatorchangelog": "bd changelog/CHANGELOG.html"
+    "generatorchangelog": "bd changelog/CHANGELOG.html",
+    "buildumd": "ctbuild buildumd --packagename AdherevHistoryBack --define alias=@,evnVars=true"
   },
   "repository": {
     "type": "git",
@@ -35,9 +35,6 @@
     "typescript": "^3.8.2"
   },
   "dependencies": {
-    "@baifendian/adherev-ui-globalindicator": "^1.0.0",
-    "@baifendian/adherev-util": "^1.0.0",
-    "@baifendian/adherev-util-intl": "^1.0.0",
-    "ant-design-vue": "^1.7.5"
+    "@baifendian/adhere-ui-historyback": "^1.0.5"
   }
 }

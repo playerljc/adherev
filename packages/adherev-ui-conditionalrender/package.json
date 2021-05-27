@@ -1,7 +1,7 @@
 {
-  "name": "@baifendian/adherev-util-communication-ajax",
+  "name": "@baifendian/adherev-ui-conditionalrender",
   "version": "1.0.0",
-  "description": "Ajax通信",
+  "description": "条件渲染",
   "main": "lib/index.js",
   "files": [
     "lib",
@@ -9,8 +9,8 @@
   ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "buildpackage": "ctbuild buildpackagets",
-    "buildumd": "ctbuild buildumd --packagename AdherevAjax --define alias=@,evnVars=true",
+    "buildpackage": "ctbuildv buildpackagets",
+    "buildumd": "ctbuildv buildumd --packagename AdherevConditionalRender --define alias=@,evnVars=true",
     "generatorchangelog": "bd changelog/CHANGELOG.html"
   },
   "repository": {
@@ -31,13 +31,10 @@
   },
   "devDependencies": {
     "@babel/runtime": "^7.7.4",
-    "@ctsj/build": "^4.0.11",
+    "@ctsj/buildv": "^2.0.1",
     "typescript": "^3.8.2"
   },
   "dependencies": {
-    "@baifendian/adherev-ui-globalindicator": "^1.0.0",
-    "@baifendian/adherev-util": "^1.0.0",
-    "@baifendian/adherev-util-intl": "^1.0.0",
-    "ant-design-vue": "^1.7.5"
+    "vue": "^2.6.12"
   }
 }

@@ -1,7 +1,7 @@
 {
-  "name": "@baifendian/adherev-util-communication-ajax",
+  "name": "@baifendian/adherev-ui-messagedialog",
   "version": "1.0.0",
-  "description": "Ajax通信",
+  "description": "对ant-design-vue的<Model>进行封装",
   "main": "lib/index.js",
   "files": [
     "lib",
@@ -9,9 +9,9 @@
   ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "buildpackage": "ctbuild buildpackagets",
-    "buildumd": "ctbuild buildumd --packagename AdherevAjax --define alias=@,evnVars=true",
-    "generatorchangelog": "bd changelog/CHANGELOG.html"
+    "buildpackage": "ctbuildv buildpackagets",
+    "generatorchangelog": "bd changelog/CHANGELOG.html",
+    "buildumd": "ctbuildv buildumd --packagename AdherevMessageDialog --define alias=@,evnVars=true"
   },
   "repository": {
     "type": "git",
@@ -31,13 +31,14 @@
   },
   "devDependencies": {
     "@babel/runtime": "^7.7.4",
-    "@ctsj/build": "^4.0.11",
+    "@ctsj/buildv": "^2.0.1",
     "typescript": "^3.8.2"
   },
   "dependencies": {
-    "@baifendian/adherev-ui-globalindicator": "^1.0.0",
-    "@baifendian/adherev-util": "^1.0.0",
     "@baifendian/adherev-util-intl": "^1.0.0",
-    "ant-design-vue": "^1.7.5"
+    "@baifendian/adherev-util-resource": "^1.0.0",
+    "@baifendian/adherev-util": "^1.0.0",
+    "ant-design-vue": "^1.7.5",
+    "vue": "^2.6.12"
   }
 }
