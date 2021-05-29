@@ -1,1 +1,1 @@
-{"version":3,"file":"index.js","sources":["index.js"],"sourcesContent":["import WatchMemoized from '@baifendian/adhere-util-watchmemoized';\r\nexport default WatchMemoized;\r\n"],"names":["WatchMemoized"],"mappings":"OAAOA,yEACQA"}
+{"version":3,"file":"index.js","sources":["index.js"],"sourcesContent":["import WatchMemoized from '@baifendian/adhere-util-watchmemoized';\r\n// @ts-ignore\r\nWatchMemoized.isUse = function () { return false; };\r\nexport default WatchMemoized;\r\n"],"names":["WatchMemoized","isUse"],"mappings":"OAAOA,0DAEPA,cAAcC,MAAQ,WAAc,OAAO,kBAC5BD"}

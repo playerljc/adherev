@@ -5,9 +5,9 @@ module.exports = {
   getConfig({ webpackConfig }) {
     webpackConfig.externals = {
       ...externals,
-      '@baifendian/adherev-util-intl': 'AdherevIntl',
-      '@baifendian/adherev-util-resource': 'AdherevResource',
-      '@baifendian/adherev-util': 'AdherevUtil',
+      '@baifendian/adherev-util-intl': 'commonjs2 @baifendian/adherev-util-intl',
+      '@baifendian/adherev-util-resource': 'commonjs2 @baifendian/adherev-util-resource',
+      '@baifendian/adherev-util': 'commonjs2 @baifendian/adherev-util',
     };
 
     webpackConfig.resolve.modules.unshift(path.join(__dirname, 'node_modules'));

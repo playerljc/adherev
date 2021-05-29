@@ -1,2 +1,2 @@
-import Emitter from"@baifendian/adhere-util-emitter";export default Emitter;
+import Emitter from"@baifendian/adhere-util-emitter";Emitter.isUse=function(){return!1};export default Emitter;
 //# sourceMappingURL=index.js.map

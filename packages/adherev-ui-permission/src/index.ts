@@ -3,9 +3,13 @@ import { Permission, setPermission, checkPermission, getPermission } from './per
 // @ts-ignore
 import { withInstall } from '../../_util';
 
+const Component = withInstall(Permission);
+
 export default {
-  Permission: withInstall(Permission),
+  Permission: Component,
   setPermission,
   checkPermission,
   getPermission,
+  isUse: () => true,
+  use: (Vue) => Vue.use(Component),
 };

@@ -347,11 +347,15 @@ function sendPrepare(
     if (!Util.isEmpty(data) && Util.isRef(data) && method !== ('get' || 'GET')) {
       if (
         !(
-          'form' in data &&
-          'data' in data &&
-          !Util.isEmpty(data.form) &&
-          !Util.isEmpty(data.data) &&
-          data.form instanceof HTMLFormElement
+          // @ts-ignore
+          // @ts-ignore
+          (
+            'form' in data &&
+            'data' in data &&
+            !Util.isEmpty(data.form) &&
+            !Util.isEmpty(data.data) &&
+            data.form instanceof HTMLFormElement
+          )
         )
       ) {
         console.log('默认设置Content-Type', `${Ajax.CONTENT_TYPE_APPLICATION_JSON};charset=utf-8`);
@@ -589,6 +593,8 @@ class Ajax {
   private systemManagerBaseURL: string;
 
   private config: IConfig;
+
+  static isUse: () => boolean;
 
   /**
    * constructor

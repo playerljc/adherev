@@ -1,0 +1,1 @@
+{"version":3,"file":"index.js","sources":["watch-memoized/index.js"],"sourcesContent":["import Model from '@baifendian/adherev-util-watchmemoized';\r\nexport default Model;\r\n"],"names":["Model"],"mappings":"OAAOA,kEACQA"}

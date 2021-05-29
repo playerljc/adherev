@@ -1,3 +1,2 @@
-import Intl, { getLocal } from './intl';
-export { getLocal };
+import Intl from './intl';
 export default Intl;

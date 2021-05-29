@@ -1,1 +1,1 @@
-{"version":3,"file":"index.js","sources":["index.js"],"sourcesContent":["import Util from '@baifendian/adhere-util';\r\nexport default Util;\r\n"],"names":["Util"],"mappings":"OAAOA,kDACQA"}
+{"version":3,"file":"index.js","sources":["index.js"],"sourcesContent":["import Util from '@baifendian/adhere-util';\r\n// @ts-ignore\r\nUtil.isUse = function () { return false; };\r\nexport default Util;\r\n"],"names":["Util","isUse"],"mappings":"OAAOA,mCAEPA,KAAKC,MAAQ,WAAc,OAAO,kBACnBD"}

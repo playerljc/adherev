@@ -1,0 +1,1 @@
+{"version":3,"file":"index.js","sources":["emitter/index.js"],"sourcesContent":["import Model from '@baifendian/adherev-util-emitter';\r\nexport default Model;\r\n"],"names":["Model"],"mappings":"OAAOA,4DACQA"}

@@ -46,6 +46,7 @@ declare class Ajax {
     private baseURL;
     private systemManagerBaseURL;
     private config;
+    static isUse: () => boolean;
     /**
      * constructor
      * @param baseURL

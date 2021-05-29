@@ -33,8 +33,5 @@
     "@babel/runtime": "^7.7.4",
     "@ctsj/buildv": "^2.0.1",
     "typescript": "^3.8.2"
-  },
-  "dependencies": {
-    "vue": "^2.6.12"
   }
 }

@@ -1,1 +1,1 @@
-{"version":3,"file":"index.js","sources":["index.js"],"sourcesContent":["import Dict from '@baifendian/adhere-util-dict';\r\nexport default Dict;\r\n"],"names":["Dict"],"mappings":"OAAOA,uDACQA"}
+{"version":3,"file":"index.js","sources":["index.js"],"sourcesContent":["import Dict from '@baifendian/adhere-util-dict';\r\n// @ts-ignore\r\nDict.isUse = function () { return false; };\r\nexport default Dict;\r\n"],"names":["Dict","isUse"],"mappings":"OAAOA,wCAEPA,KAAKC,MAAQ,WAAc,OAAO,kBACnBD"}
