@@ -1,7 +1,5 @@
 import BasicLayout from '@/lib/BasicLayout';
-
-const App = import(/* webpackChunkName: "app" */ '@/app');
-const Introduction = import(/* webpackChunkName: "introduction" */ '@/introduction');
+import { lazy } from '@/lib/Router';
 
 // const Split = lazy(() => import(/* webpackChunkName: "split" */ '@/components/ui/split'));
 // const Space = lazy(() => import(/* webpackChunkName: "space" */ '@/components/ui/space'));
@@ -126,11 +124,15 @@ const Introduction = import(/* webpackChunkName: "introduction" */ '@/introducti
 //   import(/* webpackChunkName: "echarts" */ '@/components/gallery/gis/maptalks'),
 // );
 
+const App = () => lazy(import(/* webpackChunkName: "app" */ '@/app'));
+const Introduction = () => lazy(import(/* webpackChunkName: "introduction" */ '@/introduction'));
+const ConditionalRender = () => lazy(import('@/components/ui/conditionalrender'));
+
 export default () => [
   {
     path: '/',
     component: App,
-    routes: [
+    children: [
       {
         path: '/',
         redirect: '/adherev',
@@ -138,7 +140,7 @@ export default () => [
       {
         path: '/adherev',
         component: BasicLayout,
-        routes: [
+        children: [
           {
             path: '/',
             redirect: '/adherev/introduction',
@@ -148,210 +150,215 @@ export default () => [
             name: '简介',
             component: Introduction,
           },
-          // {
-          //   path: '/adherev/ui',
-          //   name: 'UI',
-          //   routes: [
-          //     {
-          //       path: '/',
-          //       redirect: '/adherev/ui/split',
-          //     },
-          //     {
-          //       path: '/adherev/ui/split',
-          //       name: 'Split',
-          //       component: Split,
-          //     },
-          //     {
-          //       path: '/adherev/ui/space',
-          //       name: 'Space',
-          //       component: Space,
-          //     },
-          //     {
-          //       path: '/adherev/ui/conditionalrender',
-          //       name: 'ConditionalRender',
-          //       component: ConditionalRender,
-          //     },
-          //     {
-          //       path: '/adherev/ui/delconfirm',
-          //       name: 'DelConfirm',
-          //       component: DelConfirm,
-          //     },
-          //     {
-          //       path: '/adherev/ui/importantconfirm',
-          //       name: 'ImportantConfirm',
-          //       component: ImportantConfirm,
-          //     },
-          //     {
-          //       path: '/adherev/ui/globalindicator',
-          //       name: 'GlobalIndicator',
-          //       component: GlobalIndicator,
-          //     },
-          //     {
-          //       path: '/adherev/ui/spin',
-          //       name: 'Spin',
-          //       component: Spin,
-          //     },
-          //     {
-          //       path: '/adherev/ui/historyback',
-          //       name: 'HistoryBack',
-          //       component: HistoryBack,
-          //     },
-          //     {
-          //       path: '/adherev/ui/successprompt',
-          //       name: 'SuccessPrompt',
-          //       component: SuccessPrompt,
-          //     },
-          //     {
-          //       path: '/adherev/ui/errorprompt',
-          //       name: 'ErrorPrompt',
-          //       component: ErrorPrompt,
-          //     },
-          //     {
-          //       path: '/adherev/ui/warnprompt',
-          //       name: 'WarnPrompt',
-          //       component: WarnPrompt,
-          //     },
-          //     {
-          //       path: '/adherev/ui/imagelazy',
-          //       name: 'ImageLazy',
-          //       component: ImageLazy,
-          //     },
-          //     {
-          //       path: '/adherev/ui/messagedialog',
-          //       name: 'MessageDialog',
-          //       component: MessageDialog,
-          //     },
-          //     {
-          //       path: '/adherev/ui/permission',
-          //       name: 'Permission',
-          //       component: Permission,
-          //     },
-          //     {
-          //       path: '/adherev/ui/suspense',
-          //       name: 'Suspense',
-          //       component: Suspense,
-          //     },
-          //     {
-          //       path: '/adherev/ui/tableheadsearch',
-          //       name: 'TableHeadSearch',
-          //       component: TableHeadSearch,
-          //     },
-          //     {
-          //       path: '/adherev/ui/css',
-          //       name: 'CSS',
-          //       component: CSS,
-          //     },
-          //     {
-          //       path: '/adherev/ui/olmap',
-          //       name: 'OLMap',
-          //       component: OLMap,
-          //     },
-          //     {
-          //       path: '/adherev/ui/flexlayout',
-          //       name: 'FlexLayout',
-          //       component: FlexLayout,
-          //     },
-          //     {
-          //       path: '/adherev/ui/splitlayout',
-          //       name: 'SplitLayout',
-          //       component: SplitLayout,
-          //     },
-          //     {
-          //       path: '/adherev/ui/stickuplayout',
-          //       name: 'StickupLayout',
-          //       component: StickupLayout,
-          //     },
-          //     {
-          //       path: '/adherev/ui/surnames',
-          //       name: 'Surnames',
-          //       component: Surnames,
-          //     },
-          //     {
-          //       path: '/adherev/ui/sliderscale',
-          //       name: 'SliderScale',
-          //       component: SliderScale,
-          //     },
-          //     {
-          //       path: '/adherev/ui/revolving',
-          //       name: 'Revolving',
-          //       component: Revolving,
-          //     },
-          //     {
-          //       path: '/adherev/ui/scrollload',
-          //       name: 'ScrollLoad',
-          //       component: ScrollLoad,
-          //     },
-          //     {
-          //       path: '/adherev/ui/jcategorytab',
-          //       name: 'JCategoryTab',
-          //       component: JCategoryTab,
-          //     },
-          //     {
-          //       path: '/adherev/ui/cascadecompared',
-          //       name: 'CascadeCompared',
-          //       component: CascadeCompared,
-          //     },
-          //     {
-          //       path: '/adherev/ui/slidelayout',
-          //       name: 'SlideLayout',
-          //       component: SlideLayout,
-          //     },
-          //     {
-          //       path: '/adherev/ui/contextmenu',
-          //       name: 'ContextMenu',
-          //       component: ContextMenu,
-          //     },
-          //     {
-          //       path: '/adherev/ui/fontsizesetting',
-          //       name: 'FontSizeSetting',
-          //       component: FontSizeSetting,
-          //     },
-          //     {
-          //       path: '/adherev/ui/searchtable',
-          //       name: 'SearchTable',
-          //       component: SearchTable,
-          //     },
-          //     {
-          //       path: '/adherev/ui/formitemcreator',
-          //       name: 'FormItemCreator',
-          //       component: FormItemCreator,
-          //     },
-          //     {
-          //       path: '/adherev/ui/tablelist',
-          //       name: 'TableList',
-          //       component: TableList,
-          //     },
-          //     {
-          //       path: '/adherev/ui/popup',
-          //       name: 'Popup',
-          //       component: Popup,
-          //     },
-          //     {
-          //       path: '/adherev/ui/backtopanimation',
-          //       name: 'BackTopAnimation',
-          //       component: BackTopAnimation,
-          //     },
-          //     {
-          //       path: '/adherev/ui/pullrefresh',
-          //       name: 'PullRefresh',
-          //       component: PullRefresh,
-          //     },
-          //     {
-          //       path: '/adherev/ui/notification',
-          //       name: 'Notification',
-          //       component: Notification,
-          //     },
-          //     {
-          //       path: '/adherev/ui/swipeout',
-          //       name: 'SwipeOut',
-          //       component: SwipeOut,
-          //     },
-          //   ],
-          // },
+
+          {
+            path: '/adherev/ui',
+            name: 'UI',
+            children: [
+              {
+                path: '/',
+                redirect: '/adherev/ui/conditionalrender',
+              },
+              {
+                path: '/adherev/ui/conditionalrender',
+                name: 'ConditionalRender',
+                component: ConditionalRender,
+              },
+              // {
+              //   path: '/',
+              //   redirect: '/adherev/ui/split',
+              // },
+              // {
+              //   path: '/adherev/ui/split',
+              //   name: 'Split',
+              //   component: Split,
+              // },
+              // {
+              //   path: '/adherev/ui/space',
+              //   name: 'Space',
+              //   component: Space,
+              // },
+              // {
+              //   path: '/adherev/ui/delconfirm',
+              //   name: 'DelConfirm',
+              //   component: DelConfirm,
+              // },
+              // {
+              //   path: '/adherev/ui/importantconfirm',
+              //   name: 'ImportantConfirm',
+              //   component: ImportantConfirm,
+              // },
+              // {
+              //   path: '/adherev/ui/globalindicator',
+              //   name: 'GlobalIndicator',
+              //   component: GlobalIndicator,
+              // },
+              // {
+              //   path: '/adherev/ui/spin',
+              //   name: 'Spin',
+              //   component: Spin,
+              // },
+              // {
+              //   path: '/adherev/ui/historyback',
+              //   name: 'HistoryBack',
+              //   component: HistoryBack,
+              // },
+              // {
+              //   path: '/adherev/ui/successprompt',
+              //   name: 'SuccessPrompt',
+              //   component: SuccessPrompt,
+              // },
+              // {
+              //   path: '/adherev/ui/errorprompt',
+              //   name: 'ErrorPrompt',
+              //   component: ErrorPrompt,
+              // },
+              // {
+              //   path: '/adherev/ui/warnprompt',
+              //   name: 'WarnPrompt',
+              //   component: WarnPrompt,
+              // },
+              // {
+              //   path: '/adherev/ui/imagelazy',
+              //   name: 'ImageLazy',
+              //   component: ImageLazy,
+              // },
+              // {
+              //   path: '/adherev/ui/messagedialog',
+              //   name: 'MessageDialog',
+              //   component: MessageDialog,
+              // },
+              // {
+              //   path: '/adherev/ui/permission',
+              //   name: 'Permission',
+              //   component: Permission,
+              // },
+              // {
+              //   path: '/adherev/ui/suspense',
+              //   name: 'Suspense',
+              //   component: Suspense,
+              // },
+              // {
+              //   path: '/adherev/ui/tableheadsearch',
+              //   name: 'TableHeadSearch',
+              //   component: TableHeadSearch,
+              // },
+              // {
+              //   path: '/adherev/ui/css',
+              //   name: 'CSS',
+              //   component: CSS,
+              // },
+              // {
+              //   path: '/adherev/ui/olmap',
+              //   name: 'OLMap',
+              //   component: OLMap,
+              // },
+              // {
+              //   path: '/adherev/ui/flexlayout',
+              //   name: 'FlexLayout',
+              //   component: FlexLayout,
+              // },
+              // {
+              //   path: '/adherev/ui/splitlayout',
+              //   name: 'SplitLayout',
+              //   component: SplitLayout,
+              // },
+              // {
+              //   path: '/adherev/ui/stickuplayout',
+              //   name: 'StickupLayout',
+              //   component: StickupLayout,
+              // },
+              // {
+              //   path: '/adherev/ui/surnames',
+              //   name: 'Surnames',
+              //   component: Surnames,
+              // },
+              // {
+              //   path: '/adherev/ui/sliderscale',
+              //   name: 'SliderScale',
+              //   component: SliderScale,
+              // },
+              // {
+              //   path: '/adherev/ui/revolving',
+              //   name: 'Revolving',
+              //   component: Revolving,
+              // },
+              // {
+              //   path: '/adherev/ui/scrollload',
+              //   name: 'ScrollLoad',
+              //   component: ScrollLoad,
+              // },
+              // {
+              //   path: '/adherev/ui/jcategorytab',
+              //   name: 'JCategoryTab',
+              //   component: JCategoryTab,
+              // },
+              // {
+              //   path: '/adherev/ui/cascadecompared',
+              //   name: 'CascadeCompared',
+              //   component: CascadeCompared,
+              // },
+              // {
+              //   path: '/adherev/ui/slidelayout',
+              //   name: 'SlideLayout',
+              //   component: SlideLayout,
+              // },
+              // {
+              //   path: '/adherev/ui/contextmenu',
+              //   name: 'ContextMenu',
+              //   component: ContextMenu,
+              // },
+              // {
+              //   path: '/adherev/ui/fontsizesetting',
+              //   name: 'FontSizeSetting',
+              //   component: FontSizeSetting,
+              // },
+              // {
+              //   path: '/adherev/ui/searchtable',
+              //   name: 'SearchTable',
+              //   component: SearchTable,
+              // },
+              // {
+              //   path: '/adherev/ui/formitemcreator',
+              //   name: 'FormItemCreator',
+              //   component: FormItemCreator,
+              // },
+              // {
+              //   path: '/adherev/ui/tablelist',
+              //   name: 'TableList',
+              //   component: TableList,
+              // },
+              // {
+              //   path: '/adherev/ui/popup',
+              //   name: 'Popup',
+              //   component: Popup,
+              // },
+              // {
+              //   path: '/adherev/ui/backtopanimation',
+              //   name: 'BackTopAnimation',
+              //   component: BackTopAnimation,
+              // },
+              // {
+              //   path: '/adherev/ui/pullrefresh',
+              //   name: 'PullRefresh',
+              //   component: PullRefresh,
+              // },
+              // {
+              //   path: '/adherev/ui/notification',
+              //   name: 'Notification',
+              //   component: Notification,
+              // },
+              // {
+              //   path: '/adherev/ui/swipeout',
+              //   name: 'SwipeOut',
+              //   component: SwipeOut,
+              // },
+            ],
+          },
           // {
           //   path: '/adherev/util',
           //   name: 'Util',
-          //   routes: [
+          //   children: [
           //     {
           //       path: '/',
           //       redirect: '/adherev/util/adapterscreen',
@@ -411,7 +418,7 @@ export default () => [
           // {
           //   path: '/adherev/gallery',
           //   name: 'Gallery',
-          //   routes: [
+          //   children: [
           //     {
           //       path: '/',
           //       redirect: '/adherev/gallery/echarts',
@@ -424,7 +431,7 @@ export default () => [
           //     {
           //       path: '/adherev/gallery/gis',
           //       name: 'GIS',
-          //       routes: [
+          //       children: [
           //         {
           //           path: '/',
           //           redirect: '/adherev/gallery/gis/maptalks',

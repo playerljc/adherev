@@ -6,16 +6,12 @@ export default {
       required: true,
       default: true,
     },
-    noMatch: {
-      type: String,
-      required: false,
-    },
   },
   render(h) {
     // @ts-ignore
-    const { conditional, $slots, noMatch } = this;
+    const { conditional, $slots } = this;
 
     // @ts-ignore
-    return conditional ? $slots.default : $slots[noMatch] ? $slots[noMatch] : null;
+    return conditional ? $slots.default : $slots.noMatch ? $slots.noMatch : null;
   },
 };

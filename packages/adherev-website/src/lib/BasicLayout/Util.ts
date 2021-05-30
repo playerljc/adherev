@@ -13,15 +13,15 @@ export default {
       const route = routes[i];
       if (pathname.indexOf(route.path) !== -1) {
         if (
-          route.routes &&
-          route.routes.length &&
-          route.routes.filter((t) => t.hide).length !== route.routes.length
+          route.children &&
+          route.children.length &&
+          route.children.filter((t) => t.hide).length !== route.children.length
         ) {
           defaultOpenKeys.push({
             path: route.path,
             name: route.name,
           });
-          this.loopRoutes({ defaultOpenKeys, defaultSelectedKeys, routes: route.routes });
+          this.loopRoutes({ defaultOpenKeys, defaultSelectedKeys, routes: route.children });
         } else {
           defaultSelectedKeys.push({
             path: route.path,
@@ -31,7 +31,6 @@ export default {
       }
     }
   },
-
   /**
    * fillKey
    * @param key
@@ -50,15 +49,14 @@ export default {
         break;
       }
 
-      if (item.routes) {
-        entry = this.fillKey(key, item.routes);
+      if (item.children) {
+        entry = this.fillKey(key, item.children);
         if (entry) break;
       }
     }
 
     return entry;
   },
-
   /**
    * isAuthority
    * @param authoritys
@@ -80,7 +78,11 @@ export default {
    * @param r
    */
   isSubMenu(r) {
-    return r.routes && r.routes.length && r.routes.filter((t) => t.hide).length !== r.routes.length;
+    return (
+      r.children &&
+      r.children.length &&
+      r.children.filter((t) => t.hide).length !== r.children.length
+    );
   },
   /**
    * getPathBySelectKey
@@ -109,8 +111,8 @@ export default {
         path.push(item);
       }
 
-      if (item.routes) {
-        this.getPathBySelectKey({ path, routes: item.routes, selectKey });
+      if (item.children) {
+        this.getPathBySelectKey({ path, routes: item.children, selectKey });
       }
     }
   },

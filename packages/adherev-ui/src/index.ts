@@ -16,7 +16,7 @@ import Preferences from '@baifendian/adherev-util-preferences';
 import Resource from '@baifendian/adherev-util-resource';
 import WatchMemoized from '@baifendian/adherev-util-watchmemoized';
 
-export { 
+export {
   ConditionalRender,
   DelConfirm,
   ImportantConfirm,
@@ -37,23 +37,57 @@ export {
 };
 
 export default {
-	install:function (Vue){
-	if(ConditionalRender.isUse()){ ConditionalRender.use(Vue); }
-		if(DelConfirm.isUse()){ DelConfirm.use(Vue); }
-		if(ImportantConfirm.isUse()){ ImportantConfirm.use(Vue); }
-		if(GlobalIndicator.isUse()){ GlobalIndicator.use(Vue); }
-		if(HistoryBack.isUse()){ HistoryBack.use(Vue); }
-		if(MessageDialog.isUse()){ MessageDialog.use(Vue); }
-		if(Permission.isUse()){ Permission.use(Vue); }
-		if(Util.isUse()){ Util.use(Vue); }
-		if(AdapterScreen.isUse()){ AdapterScreen.use(Vue); }
-		if(Ajax.isUse()){ Ajax.use(Vue); }
-		if(Dict.isUse()){ Dict.use(Vue); }
-		if(Emitter.isUse()){ Emitter.use(Vue); }
-		if(Intl.isUse()){ Intl.use(Vue); }
-		if(NotNull.isUse()){ NotNull.use(Vue); }
-		if(Preferences.isUse()){ Preferences.use(Vue); }
-		if(Resource.isUse()){ Resource.use(Vue); }
-		if(WatchMemoized.isUse()){ WatchMemoized.use(Vue); }
-		},
+  install: function (Vue) {
+    if (ConditionalRender.isUse()) {
+      ConditionalRender.use(Vue);
+    }
+    if (DelConfirm.isUse()) {
+      DelConfirm.use(Vue);
+    }
+    if (ImportantConfirm.isUse()) {
+      ImportantConfirm.use(Vue);
+    }
+    if (GlobalIndicator.isUse()) {
+      GlobalIndicator.use(Vue);
+    }
+    if (HistoryBack.isUse()) {
+      HistoryBack.use(Vue);
+    }
+    if (MessageDialog.isUse()) {
+      MessageDialog.use(Vue);
+    }
+    if (Permission.isUse()) {
+      Permission.use(Vue);
+    }
+    if (Util.isUse()) {
+      Util.use(Vue);
+    }
+    if (AdapterScreen.isUse()) {
+      AdapterScreen.use(Vue);
+    }
+    if (Ajax.isUse()) {
+      Ajax.use(Vue);
+    }
+    if (Dict.isUse()) {
+      Dict.use(Vue);
+    }
+    if (Emitter.isUse()) {
+      Emitter.use(Vue);
+    }
+    if (Intl.isUse()) {
+      Intl.use(Vue);
+    }
+    if (NotNull.isUse()) {
+      NotNull.use(Vue);
+    }
+    if (Preferences.isUse()) {
+      Preferences.use(Vue);
+    }
+    if (Resource.isUse()) {
+      Resource.use(Vue);
+    }
+    if (WatchMemoized.isUse()) {
+      WatchMemoized.use(Vue);
+    }
+  },
 };

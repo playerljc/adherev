@@ -3,15 +3,16 @@
     <div :class="menuClassName">
       <a-menu
         :class="$style.Menu"
-        :selectedKeys="defaultSelectedKeys.map((t) => t.path)"
-        :openKeys="defaultOpenKeys.map((t) => t.path)"
+        :selected-keys="defaultSelectedKeys.map((t) => t.path)"
+        :open-keys="defaultOpenKeys.map((t) => t.path)"
         mode="inline"
         theme="dark"
         @openChange="openChange"
         @select="onSelect"
       >
-        <template v-for="r in routers">
-          <sub-menu v-if="isSubMenu(r)" :router="r" :authorized="authorized" />
+        <template v-for="r in routes">
+          <sub-menu v-if="isSubMenu(r)" :router="r" :$style="$style" :key="r.path" />
+
           <a-menu-item v-else :key="r.path">
             <router-link :to="r.path">
               <a-tooltip :title="r.name" placement="right">
@@ -23,18 +24,17 @@
         </template>
       </a-menu>
     </div>
+
     <div :class="$style.Auto">
       <div :class="$style.BreadcrumbWrap">
         <a-breadcrumb separator="/">
           <a-breadcrumb-item>{{ name }}</a-breadcrumb-item>
-          <a-breadcrumb-item v-for="(t, index) in breadcrumbPaths">
-            <router-link v-if="index !== breadcrumbPaths.length - 1" :to="t.path"
-              >{{ t.name }}}</router-link
-            >
-            <template>{{ t.name }}</template>
+          <a-breadcrumb-item v-for="t in breadcrumbPaths()">
+            <router-link :key="t.path" :to="t.path">{{ t.name }}</router-link>
           </a-breadcrumb-item>
         </a-breadcrumb>
       </div>
+
       <div :class="$style.Auto">
         <keep-alive>
           <router-view></router-view>
@@ -78,38 +78,9 @@ export default {
     defaultOpenKeys() {
       return this.getDefault().defaultOpenKeys;
     },
-    routers() {
-      const { routes } = this;
-
-      return routes.filter((r) => {
-        if ('hide' in r && r.hide) return false;
-
-        if (!r.redirect) {
-          if (r.authority && r.authority.length) {
-            return Util.isAuthority(r.authority, this.authorized);
-          }
-          return true;
-        }
-        return false;
-      });
-    },
     menuClassName() {
       const { isMenuCollapse, $style } = this;
       return classNames($style.Fixed, $style.Sider, isMenuCollapse ? $style.Collapse : '');
-    },
-    breadcrumbPaths() {
-      const { routes } = this;
-
-      const selectKey = window.location.pathname;
-
-      const path = [];
-      Util.getPathBySelectKey({
-        path,
-        routes,
-        selectKey,
-      });
-
-      return path.filter((t) => !t.redirect);
     },
   },
   methods: {
@@ -157,6 +128,20 @@ export default {
     isSubMenu(r) {
       return Util.isSubMenu(r);
     },
+    breadcrumbPaths() {
+      const { routes } = this;
+
+      const selectKey = window.location.pathname;
+
+      const path = [];
+      Util.getPathBySelectKey({
+        path,
+        routes,
+        selectKey,
+      });
+
+      return path.filter((t) => !t.redirect);
+    },
   },
   components: {
     'sub-menu': SubMenu,
@@ -164,4 +149,62 @@ export default {
 };
 </script>
 
-<style lang="less" module src="./index.less"></style>
+<style lang="less" module>
+  .BasicLayout {
+    display: flex;
+    width: 100%;
+    height: 100%;
+
+    > .Auto {
+      flex-direction: column;
+
+      > .Fixed {
+        padding: 20px;
+      }
+
+      > .Auto {
+        min-height: 0;
+        overflow-y: auto;
+        background: @common-block-background-color;
+      }
+    }
+
+    .Fixed {
+      flex-shrink: 0;
+      width: 300px;
+      .Menu {
+        width: 100%;
+        height: 100%;
+        overflow-y: auto;
+      }
+    }
+
+    .Auto {
+      display: flex;
+      flex-grow: 1;
+      min-width: 0;
+    }
+  }
+
+  .MenuIcon {
+    margin-right: 15px;
+  }
+
+  .MenuIconText {
+    vertical-align: middle;
+  }
+
+  .Sider {
+    transition: all 0.2s;
+  }
+
+  .Collapse {
+    width: 51px;
+    overflow-x: hidden;
+  }
+
+  .BreadcrumbWrap {
+    width: 100%;
+    padding: 10px 20px;
+  }
+</style>
