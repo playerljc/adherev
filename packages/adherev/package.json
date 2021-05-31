@@ -56,6 +56,19 @@
     "@baifendian/adherev-util-notnull": "^1.0.0",
     "@baifendian/adherev-util-preferences": "^1.0.0",
     "@baifendian/adherev-util-resource": "^1.0.0",
-    "@baifendian/adherev-util-watchmemoized": "^1.0.0"
+    "@baifendian/adherev-util-watchmemoized": "^1.0.0",
+    "ant-design-vue": "^1.7.5",
+    "vue": "^2.6.12",
+    "vue-i18n": "^8.24.4",
+    "moment": "^2.29.1",
+    "@baifendian/adhere-ui-css": "^1.0.5",
+    "@baifendian/adhere-ui-historyback": "^1.0.5",
+    "@baifendian/adhere-util": "^1.0.5",
+    "@baifendian/adhere-util-adapterscreen": "^1.0.5",
+    "@baifendian/adhere-util-dict": "^1.0.5",
+    "@baifendian/adhere-util-emitter": "^1.0.5",
+    "@baifendian/adhere-util-notnull": "^1.0.5",
+    "@baifendian/adhere-util-preferences": "^1.0.5",
+    "@baifendian/adhere-util-watchmemoized": "^1.0.5"
   }
 }

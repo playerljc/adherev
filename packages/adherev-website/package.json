@@ -56,6 +56,7 @@
     "ant-design-vue": "^1.7.5",
     "vue": "^2.6.12",
     "vue-router": "^3.5.1",
+    "vue-i18n": "^8.24.4",
     "classnames": "^2.2.6",
     "copy-to-clipboard": "^3.3.1",
     "faker": "^5.4.0",

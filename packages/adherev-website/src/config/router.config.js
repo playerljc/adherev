@@ -12,9 +12,6 @@ import { lazy } from '@/lib/Router';
 // const ImportantConfirm = lazy(() =>
 //   import(/* webpackChunkName: "importantconfirm" */ '@/components/ui/importantconfirm'),
 // );
-// const GlobalIndicator = lazy(() =>
-//   import(/* webpackChunkName: "globalindicator" */ '@/components/ui/globalindicator'),
-// );
 // const Spin = lazy(() => import(/* webpackChunkName: "spin" */ '@/components/ui/spin'));
 // const HistoryBack = lazy(() =>
 //   import(/* webpackChunkName: "historyback" */ '@/components/ui/historyback'),
@@ -127,6 +124,8 @@ import { lazy } from '@/lib/Router';
 const App = () => lazy(import(/* webpackChunkName: "app" */ '@/app'));
 const Introduction = () => lazy(import(/* webpackChunkName: "introduction" */ '@/introduction'));
 const ConditionalRender = () => lazy(import('@/components/ui/conditionalrender'));
+const GlobalIndicator = () =>
+  lazy(import(/* webpackChunkName: "globalindicator" */ '@/components/ui/globalindicator'));
 
 export default () => [
   {
@@ -164,6 +163,7 @@ export default () => [
                 name: 'ConditionalRender',
                 component: ConditionalRender,
               },
+
               // {
               //   path: '/',
               //   redirect: '/adherev/ui/split',
@@ -188,11 +188,11 @@ export default () => [
               //   name: 'ImportantConfirm',
               //   component: ImportantConfirm,
               // },
-              // {
-              //   path: '/adherev/ui/globalindicator',
-              //   name: 'GlobalIndicator',
-              //   component: GlobalIndicator,
-              // },
+              {
+                path: '/adherev/ui/globalindicator',
+                name: 'GlobalIndicator',
+                component: GlobalIndicator,
+              },
               // {
               //   path: '/adherev/ui/spin',
               //   name: 'Spin',
