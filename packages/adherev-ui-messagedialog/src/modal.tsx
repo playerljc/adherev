@@ -1,18 +1,16 @@
+import { CreateElement } from 'vue';
 import { Modal, Button } from 'ant-design-vue';
 
 import Intl from '@baifendian/adherev-util-intl';
 
 import { Fragment } from '../../_util';
-import { CreateElement } from 'vue';
+import Actions from './actions';
+import Emitter from './emitter';
 
 export const selectorPrefix = 'adherev-ui-messagedialog';
 
 export default {
   props: {
-    parent: {
-      type: Object,
-      require: true,
-    },
     config: {
       type: Object,
       require: true,
@@ -23,26 +21,22 @@ export default {
       default: true,
     },
   },
+  mounted() {
+    // @ts-ignore
+    Emitter.on(Actions.close, this.onEmitterClose);
+  },
+  beforeDestroy() {
+    // @ts-ignore
+    Emitter.remove(Actions.close, this.onEmitterClose);
+  },
   methods: {
-    /**
-     * onClose
-     * @param el
-     */
-    onClose(el) {
-      // @ts-ignore
-      const { parent, $parent } = this;
-
-      function close() {
+    onEmitterClose() {
+      const {
         // @ts-ignore
-        $parent.$destroy();
-        parent.parentElement.removeChild(parent);
-      }
+        $listeners: { close },
+      } = this;
 
-      if (el) {
-        if (el === parent) {
-          close();
-        }
-      } else {
+      if (close) {
         close();
       }
     },
@@ -51,26 +45,29 @@ export default {
      * @param h
      */
     renderCloseBtn(h) {
-      // @ts-ignore
-      const { $slots } = this;
-
-      const props = {
-        key: 'close',
-        title: Intl.tv('取消'),
-        type: undefined,
-        onClick: () => {
-          // @ts-ignore
-          this.onClose();
-        },
-      };
-
-      if (($slots.footer || []).length === 0) {
+      const {
         // @ts-ignore
-        props.type = 'primary';
-      }
+        config,
+        // @ts-ignore
+        $listeners: { close },
+      } = this;
 
-      // @ts-ignore
-      return <Button {...props}>{Intl.tv('取消')}</Button>;
+      return (
+        // @ts-ignore
+        <Button
+          // @ts-ignore
+          key="close"
+          type={!config.footerJSX ? 'primary' : ''}
+          title={Intl.tv('取消')}
+          onClick={() => {
+            if (close) {
+              close();
+            }
+          }}
+        >
+          {Intl.tv('取消')}
+        </Button>
+      );
     },
     /**
      * renderDefault
@@ -97,16 +94,36 @@ export default {
      */
     renderFooter(h) {
       // @ts-ignore
-      const { $slots, closeBtn } = this;
-      return $slots.footer ? (
-        // @ts-ignore
-        <Fragment slot="footer">
-          {closeBtn ? [...$slots.footer, this.renderCloseBtn(h)] : $slots.footer}
-        </Fragment>
-      ) : closeBtn ? (
-        // @ts-ignore
-        <Fragment slot="footer">{this.renderCloseBtn(h)}</Fragment>
-      ) : null;
+      const { config, closeBtn } = this;
+
+      let result = null;
+
+      if (config.footerJSX) {
+        if (closeBtn) {
+          result = (
+            // @ts-ignore
+            <Fragment slot="footer">
+              {/* @ts-ignore */}
+              <div>{[...config.footerJSX, this.renderCloseBtn(h)]}</div>
+            </Fragment>
+          );
+        } else {
+          result = (
+            // @ts-ignore
+            <Fragment slot="footer">
+              {/* @ts-ignore */}
+              <div>{config.footerJSX}</div>
+            </Fragment>
+          );
+        }
+      } else {
+        if (closeBtn) {
+          // @ts-ignore
+          result = <Fragment slot="footer">{this.renderCloseBtn(h)}</Fragment>;
+        }
+      }
+
+      return result;
     },
   },
   /**
@@ -114,21 +131,32 @@ export default {
    * @param h
    */
   render(h) {
-    // @ts-ignore
-    const { config } = this;
+    const {
+      // @ts-ignore
+      config,
+      // @ts-ignore
+      $listeners: { close },
+    } = this;
 
     // @ts-ignore
     const { footer = [], centered = true, ...other } = config;
 
+    const data = {
+      props: other,
+    };
+
     return (
       // @ts-ignore
       <Modal
-        {...other}
+        {...data}
+        // @ts-ignore
         centered={centered}
         wrapClassName={selectorPrefix}
         onCancel={() => {
           // @ts-ignore
-          this.onClose();
+          if (close) {
+            close();
+          }
         }}
         visible
       >

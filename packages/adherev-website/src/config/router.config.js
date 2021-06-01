@@ -28,9 +28,6 @@ import { lazy } from '@/lib/Router';
 // const ImageLazy = lazy(() =>
 //   import(/* webpackChunkName: "imagelazy" */ '@/components/ui/imagelazy'),
 // );
-// const MessageDialog = lazy(() =>
-//   import(/* webpackChunkName: "messagedialog" */ '@/components/ui/messagedialog'),
-// );
 // const Permission = lazy(() =>
 //   import(/* webpackChunkName: "permission" */ '@/components/ui/permission'),
 // );
@@ -126,6 +123,8 @@ const Introduction = () => lazy(import(/* webpackChunkName: "introduction" */ '@
 const ConditionalRender = () => lazy(import('@/components/ui/conditionalrender'));
 const GlobalIndicator = () =>
   lazy(import(/* webpackChunkName: "globalindicator" */ '@/components/ui/globalindicator'));
+const MessageDialog = () =>
+  lazy(import(/* webpackChunkName: "messagedialog" */ '@/components/ui/messagedialog'));
 
 export default () => [
   {
@@ -149,7 +148,6 @@ export default () => [
             name: '简介',
             component: Introduction,
           },
-
           {
             path: '/adherev/ui',
             name: 'UI',
@@ -223,11 +221,11 @@ export default () => [
               //   name: 'ImageLazy',
               //   component: ImageLazy,
               // },
-              // {
-              //   path: '/adherev/ui/messagedialog',
-              //   name: 'MessageDialog',
-              //   component: MessageDialog,
-              // },
+              {
+                path: '/adherev/ui/messagedialog',
+                name: 'MessageDialog',
+                component: MessageDialog,
+              },
               // {
               //   path: '/adherev/ui/permission',
               //   name: 'Permission',

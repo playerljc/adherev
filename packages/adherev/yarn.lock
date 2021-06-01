@@ -1136,6 +1136,56 @@
     xml-loader "^1.2.1"
     yaml-loader "^0.5.0"
 
+"@form-create/ant-design-vue@^2.5.6":
+  version "2.5.6"
+  resolved "https://registry.yarnpkg.com/@form-create/ant-design-vue/-/ant-design-vue-2.5.6.tgz#5b1fafdea0ef7c5fa90fe1e9281d6a7830d41ee0"
+  integrity sha512-+Z/Nrpmz2r3B+AfZ0nqeFva2WL1sehjQdOuoYFrSsonTdQyVVfFXAWHQZ4ID+7/GREsl04tFmEa92xT3BoREZA==
+  dependencies:
+    "@form-create/component-antdv-frame" "^2.5.6"
+    "@form-create/component-antdv-group" "^2.5.6"
+    "@form-create/component-antdv-upload" "^2.5.6"
+    "@form-create/component-subform" "^2.5.2"
+    "@form-create/core" "^2.5.6"
+    "@form-create/utils" "^2.5.6"
+
+"@form-create/component-antdv-frame@^2.5.6":
+  version "2.5.6"
+  resolved "https://registry.yarnpkg.com/@form-create/component-antdv-frame/-/component-antdv-frame-2.5.6.tgz#dd98fe8d0ad64698a3dcf1c98fd4da5de30c274f"
+  integrity sha512-gVc6DXwlu4nOxcqUSES6oMnWnQf17O3IicmilVv43ZqZpAtHnI/9v331mm7jhwHEt/miwjfSFTFR46VDRbfPYg==
+  dependencies:
+    "@form-create/utils" "^2.5.6"
+
+"@form-create/component-antdv-group@^2.5.6":
+  version "2.5.6"
+  resolved "https://registry.yarnpkg.com/@form-create/component-antdv-group/-/component-antdv-group-2.5.6.tgz#fd39a7df4b17e3de4b8ea40834504c8a75c11b08"
+  integrity sha512-Kb8DVuUVQxb5VKxIUCcwbuLwGltNWFC5hdii31CuwOVKTYhzLPEMoNCwwNi/8ng73MT3FBKhBbByz6esL09GbQ==
+  dependencies:
+    "@form-create/utils" "^2.5.6"
+
+"@form-create/component-antdv-upload@^2.5.6":
+  version "2.5.6"
+  resolved "https://registry.yarnpkg.com/@form-create/component-antdv-upload/-/component-antdv-upload-2.5.6.tgz#046933efd4705620f32c39592bf3b86284df52a4"
+  integrity sha512-XgnnrJBMbuhBO7K4yZKgX/INKPdnY2U00QfBieUBgHysak1Yb3OsmQJjwwHC2c9IwOeq48YaRlLpFgK6oHsaLQ==
+  dependencies:
+    "@form-create/utils" "^2.5.6"
+
+"@form-create/component-subform@^2.5.2":
+  version "2.5.2"
+  resolved "https://registry.yarnpkg.com/@form-create/component-subform/-/component-subform-2.5.2.tgz#c7609ffabbaf09db1fa977f27fc01e1384b92d45"
+  integrity sha512-xcXbxx96BNh7cdy7LljMTCh28xQJWcyDzmJTocQerM2gt8eiJJm7a5UAnFgi+o6JFr1xuTO0qcux1u26AIjJSw==
+
+"@form-create/core@^2.5.6":
+  version "2.5.6"
+  resolved "https://registry.yarnpkg.com/@form-create/core/-/core-2.5.6.tgz#62e9e2e10acd60ce1b31ff75df1c47fe99b12aa1"
+  integrity sha512-1rN+2V1G+MR2W2qqmuPsMQmZYdpqNAkKAI9fUzNxCoboko7Hhk/nCiUiH06ZC9RAC9DbtsPEzLnJYWgPu7aejw==
+  dependencies:
+    "@form-create/utils" "^2.5.6"
+
+"@form-create/utils@^2.5.6":
+  version "2.5.6"
+  resolved "https://registry.yarnpkg.com/@form-create/utils/-/utils-2.5.6.tgz#50a92e73bf815db93a89a97560ca240d6e61dc9e"
+  integrity sha512-pExZkNBWaogdi8utFvDWR5icEPmbc+roW7FtdyZcW0qQlBIzvh/IpSFF/+9/ojWxnfNlhpcWtb7rfJx1mtDMcw==
+
 "@gulp-sourcemaps/identity-map@1.X":
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/@gulp-sourcemaps/identity-map/-/identity-map-1.0.2.tgz#1e6fe5d8027b1f285dc0d31762f566bccd73d5a9"

@@ -28,3 +28,18 @@ export interface IModalDialogProps {
   parent: HTMLElement | null;
   config: Object;
 }
+
+/**
+ * IPromptConfig
+ */
+export interface IPromptConfig {
+  title?: string | null | Function;
+  width?: number;
+  zIndex?: number;
+  local?: string;
+  onSuccess?: Function;
+  config: {
+    rule: any;
+    option: any;
+  };
+}

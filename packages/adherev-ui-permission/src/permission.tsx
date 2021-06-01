@@ -50,20 +50,15 @@ export const Permission = {
       type: [String, Number],
       require: true,
     },
-    noMatch: {
-      type: String,
-      require: false,
-      default: null,
-    },
   },
   render(h) {
     // @ts-ignore
-    const { allPermission = getPermission(), permissions, noMatch = null, $slots } = this;
+    const { allPermission = getPermission(), permissions, $slots } = this;
 
     return checkPermission(allPermission, permissions)
       ? $slots.default
-      : $slots[noMatch]
-      ? $slots[noMatch]
+      : $slots.noMatch
+      ? $slots.noMatch
       : null;
   },
 };

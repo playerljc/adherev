@@ -39,6 +39,7 @@
     "@baifendian/adherev-util-resource": "^1.0.0",
     "@baifendian/adherev-util": "^1.0.0",
     "ant-design-vue": "^1.7.5",
-    "vue": "^2.6.12"
+    "vue": "^2.6.12",
+    "@form-create/ant-design-vue": "^2.5.6"
   }
 }

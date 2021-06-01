@@ -55,4 +55,15 @@ export default {
   }
 }
 </script>
-<style></style>
+<style>
+.adhere-website-playground > .ant-card > .ant-card-actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.adhere-website-playground > .ant-card > .ant-card-actions > li {
+  float: none;
+  width: auto !important;
+}
+</style>

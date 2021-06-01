@@ -11,6 +11,15 @@ module.exports = {
       vue$: 'vue/dist/vue.esm.js',
       vue: path.join(__dirname, 'node_modules', 'vue'),
       'ant-design-vue': path.join(__dirname, 'node_modules', 'ant-design-vue'),
+      '@form-create/ant-design-vue': path.join(
+        __dirname,
+        'node_modules',
+        '@baifendian',
+        'adherev',
+        'node_modules',
+        '@form-create',
+        'ant-design-vue',
+      ),
     };
 
     webpackConfig.resolve.modules.unshift(path.join(__dirname, 'node_modules'));
