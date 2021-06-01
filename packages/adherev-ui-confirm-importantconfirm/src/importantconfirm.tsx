@@ -62,7 +62,7 @@ export default {
   },
   render(h) {
     // @ts-ignore
-    const { $slots } = this;
+    const { $slots, className } = this;
 
     return (
       // @ts-ignore

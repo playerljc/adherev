@@ -6,12 +6,6 @@ import { lazy } from '@/lib/Router';
 // const ConditionalRender = lazy(() =>
 //   import(/* webpackChunkName: "conditionalrender" */ '@/components/ui/conditionalrender'),
 // );
-// const DelConfirm = lazy(() =>
-//   import(/* webpackChunkName: "delconfirm" */ '@/components/ui/delconfirm'),
-// );
-// const ImportantConfirm = lazy(() =>
-//   import(/* webpackChunkName: "importantconfirm" */ '@/components/ui/importantconfirm'),
-// );
 // const Spin = lazy(() => import(/* webpackChunkName: "spin" */ '@/components/ui/spin'));
 // const HistoryBack = lazy(() =>
 //   import(/* webpackChunkName: "historyback" */ '@/components/ui/historyback'),
@@ -124,6 +118,10 @@ const MessageDialog = () =>
   lazy(import(/* webpackChunkName: "messagedialog" */ '@/components/ui/messagedialog'));
 const Permission = () =>
   lazy(import(/* webpackChunkName: "permission" */ '@/components/ui/permission'));
+const DelConfirm = () =>
+  lazy(import(/* webpackChunkName: "delconfirm" */ '@/components/ui/delconfirm'));
+const ImportantConfirm = () =>
+  lazy(import(/* webpackChunkName: "importantconfirm" */ '@/components/ui/importantconfirm'));
 
 export default () => [
   {
@@ -175,16 +173,16 @@ export default () => [
               //   name: 'Space',
               //   component: Space,
               // },
-              // {
-              //   path: '/adherev/ui/delconfirm',
-              //   name: 'DelConfirm',
-              //   component: DelConfirm,
-              // },
-              // {
-              //   path: '/adherev/ui/importantconfirm',
-              //   name: 'ImportantConfirm',
-              //   component: ImportantConfirm,
-              // },
+              {
+                path: '/adherev/ui/delconfirm',
+                name: 'DelConfirm',
+                component: DelConfirm,
+              },
+              {
+                path: '/adherev/ui/importantconfirm',
+                name: 'ImportantConfirm',
+                component: ImportantConfirm,
+              },
               {
                 path: '/adherev/ui/globalindicator',
                 name: 'GlobalIndicator',

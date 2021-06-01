@@ -13,7 +13,7 @@
       <slot></slot>
     </a-card>
     <a-card v-if="expand">
-      <highlight-code lang="vue">
+      <highlight-code :lang="lang">
         {{codeText}}
       </highlight-code>
     </a-card>
@@ -32,6 +32,10 @@ export default {
     codeText: {
       type: String,
       default: '',
+    },
+    lang: {
+      type: String,
+      default: 'vue'
     }
   },
   data() {

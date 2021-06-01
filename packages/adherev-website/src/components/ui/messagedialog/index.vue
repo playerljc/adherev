@@ -516,42 +516,42 @@
     />
 
     <h2>使用Confirm</h2>
-    <playground>
+    <playground :codeText="confirmCode" lang="javascript">
       <a-button type="primary" @click="onOpenConfirm">Open Confirm</a-button>
     </playground>
 
     <h2>使用Alert</h2>
-    <playground>
+    <playground :codeText="alertCode" lang="javascript">
       <a-button type="primary" @click="onOpenAlert">Open Alert</a-button>
     </playground>
 
     <h2>使用Prompt</h2>
-    <playground>
+    <playground :codeText="promptCode" lang="javascript">
       <a-button type="primary" @click="onOpenPrompt">Open Prompt</a-button>
     </playground>
 
     <h2>使用InputPrompt</h2>
-    <playground>
+    <playground :codeText="inputPromptCode" lang="javascript">
       <a-button type="primary" @click="onOpenInputPrompt">Open InputPrompt</a-button>
     </playground>
 
     <h2>使用TextAreaPrompt</h2>
-    <playground>
+    <playground :codeText="textAreaPromptCode" lang="javascript">
       <a-button type="primary" @click="onOpenTextAreaPrompt">Open TextAreaPrompt</a-button>
     </playground>
 
     <h2>使用PassWordPrompt</h2>
-    <playground>
+    <playground :codeText="passWordPromptCode" lang="javascript">
       <a-button type="primary" @click="onOpenPassWordPrompt">Open PassWordPrompt</a-button>
     </playground>
 
     <h2>使用NumberPrompt</h2>
-    <playground>
+    <playground :codeText="numberPromptCode" lang="javascript">
       <a-button type="primary" @click="onOpenNumberPrompt">Open NumberPrompt</a-button>
     </playground>
 
     <h2>使用Modal</h2>
-    <playground>
+    <playground :codeText="modalCode" lang="javascript">
       <a-button type="primary" @click="onOpenModal">Open Modal</a-button>
     </playground>
   </div>
@@ -559,10 +559,264 @@
 <script>
 import { MessageDialog } from '@baifendian/adherev';
 import icon from './icon.svg';
-import Playground from '@/lib/Playground/Playground';
 
 export default {
-  components: { Playground },
+  computed: {
+    confirmCode() {
+      return `
+          import { MessageDialog } from '@baifendian/adherev';
+
+          MessageDialog.Confirm({
+            title: '提示',
+            text: '确认要进行此操作码？',
+            width: 300,
+            zIndex: 1000,
+            local: 'zh_CN',
+            icon: (h) => <img src={icon} alt="" width={30} />,
+            onSuccess: () => {
+              return new Promise((resolve) => {
+                alert('点击了确认');
+
+                resolve();
+              });
+            },
+          });
+        `;
+    },
+    alertCode() {
+      return `
+          import { MessageDialog } from '@baifendian/adherev';
+
+          MessageDialog.Alert({
+            title: '提示',
+            text: '操作失败！',
+            width: 300,
+            zIndex: 1000,
+            local: 'zh_CN',
+            icon: (h) => <img src={icon} alt="" width={30} />,
+          });
+        `;
+    },
+    promptCode() {
+      return `
+          import { MessageDialog } from '@baifendian/adherev';
+
+          MessageDialog.Prompt({
+            title: '提示',
+            config: {
+              rule: [
+                {
+                  type: 'slider',
+                  field: 'zk81ligvtzlpq',
+                  title: '滑块',
+                  info: '',
+                  _fc_drag_tag: 'slider',
+                  hidden: false,
+                  display: true,
+                  value: 0,
+                  wrap: {
+                    labelCol: { span: 4 },
+                    wrapperCol: { span: 20 },
+                  },
+                },
+              ],
+              option: {
+                labelPosition: 'right',
+                size: 'mini',
+                hideRequiredAsterisk: false,
+                showMessage: true,
+                inlineMessage: false,
+              },
+            },
+            width: 300,
+            zIndex: 1000,
+            local: 'zh_CN',
+            onSuccess: (value) => {
+              return new Promise((resolve) => {
+                alert(value);
+                resolve();
+              });
+            },
+          });
+        `;
+    },
+    inputPromptCode() {
+      return `
+          import { MessageDialog } from '@baifendian/adherev';
+
+          MessageDialog.InputPrompt({
+            title: '提示',
+            config: {
+              rule: [
+                {
+                  value: '张三',
+                  title: '姓名',
+                  field: 'zk81ligvtzlpq',
+                  wrap: {
+                    labelCol: { span: 4 },
+                    wrapperCol: { span: 20 },
+                  },
+                },
+              ],
+              option: {
+                labelPosition: 'right',
+                size: 'medium',
+                hideRequiredAsterisk: false,
+                showMessage: true,
+                inlineMessage: false,
+              },
+            },
+            width: 300,
+            zIndex: 1000,
+            local: 'zh_CN',
+            onSuccess: (value) => {
+              return new Promise((resolve) => {
+                alert(value);
+                resolve();
+              });
+            },
+          });
+        `;
+    },
+    textAreaPromptCode() {
+      return `
+          import { MessageDialog } from '@baifendian/adherev';
+
+          MessageDialog.TextAreaPrompt({
+            title: '提示',
+            config: {
+              rule: [
+                {
+                  title: '地址',
+                  field: 'zk81ligvtzlpq',
+                  wrap: {
+                    labelCol: { span: 4 },
+                    wrapperCol: { span: 20 },
+                  },
+                },
+              ],
+              option: {
+                labelPosition: 'right',
+                size: 'medium',
+                hideRequiredAsterisk: false,
+                showMessage: true,
+                inlineMessage: false,
+              },
+            },
+            width: 300,
+            zIndex: 1000,
+            local: 'zh_CN',
+            onSuccess: (value) => {
+              return new Promise((resolve) => {
+                alert(value);
+                resolve();
+              });
+            },
+          });
+        `;
+    },
+    passWordPromptCode() {
+      return `
+          import { MessageDialog } from '@baifendian/adherev';
+
+          MessageDialog.PassWordPrompt({
+            title: '提示',
+            config: {
+              rule: [
+                {
+                  title: '密码',
+                  field: 'zk81ligvtzlpq',
+                  wrap: {
+                    labelCol: { span: 4 },
+                    wrapperCol: { span: 20 },
+                  },
+                },
+              ],
+              option: {
+                labelPosition: 'right',
+                size: 'medium',
+                hideRequiredAsterisk: false,
+                showMessage: true,
+                inlineMessage: false,
+              },
+            },
+            width: 300,
+            zIndex: 1000,
+            local: 'zh_CN',
+            onSuccess: (value) => {
+              return new Promise((resolve) => {
+                alert(value);
+                resolve();
+              });
+            },
+          });
+        `;
+    },
+    numberPromptCode() {
+      return `
+          import { MessageDialog } from '@baifendian/adherev';
+
+          MessageDialog.NumberPrompt({
+            title: '提示',
+            config: {
+              rule: [
+                {
+                  title: '数字',
+                  field: 'zk81ligvtzlpq',
+                  wrap: {
+                    labelCol: { span: 4 },
+                    wrapperCol: { span: 20 },
+                  },
+                },
+              ],
+              option: {
+                labelPosition: 'right',
+                size: 'medium',
+                hideRequiredAsterisk: false,
+                showMessage: true,
+                inlineMessage: false,
+              },
+            },
+            width: 300,
+            zIndex: 1000,
+            local: 'zh_CN',
+            onSuccess: (value) => {
+              return new Promise((resolve) => {
+                alert(value);
+                resolve();
+              });
+            },
+          });
+        `;
+    },
+    modalCode() {
+      return `
+          import { MessageDialog } from '@baifendian/adherev';
+
+          MessageDialog.Modal({
+            config: {
+              title: {
+                template: \`
+                    <div style="color: red;">提示</div>
+                \`,
+              },
+            },
+            defaultCloneBtn: false,
+            children: {
+              template: \`
+                <a-result title="Your operation has been executed">
+                  <template #extra>
+                    <a-button key="console" type="primary">
+                      Go Console
+                    </a-button>
+                  </template>
+                </a-result>
+              \`,
+            },
+          });
+        `;
+    },
+  },
   methods: {
     onOpenConfirm() {
       MessageDialog.Confirm({
@@ -793,7 +1047,7 @@ export default {
           });
         },
       });
-    }
+    },
   },
 };
 </script>
