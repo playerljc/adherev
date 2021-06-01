@@ -28,9 +28,6 @@ import { lazy } from '@/lib/Router';
 // const ImageLazy = lazy(() =>
 //   import(/* webpackChunkName: "imagelazy" */ '@/components/ui/imagelazy'),
 // );
-// const Permission = lazy(() =>
-//   import(/* webpackChunkName: "permission" */ '@/components/ui/permission'),
-// );
 // const Suspense = lazy(() => import(/* webpackChunkName: "suspense" */ '@/components/ui/suspense'));
 // const TableHeadSearch = lazy(() =>
 //   import(/* webpackChunkName: "tableheadsearch" */ '@/components/ui/tableheadsearch'),
@@ -125,6 +122,8 @@ const GlobalIndicator = () =>
   lazy(import(/* webpackChunkName: "globalindicator" */ '@/components/ui/globalindicator'));
 const MessageDialog = () =>
   lazy(import(/* webpackChunkName: "messagedialog" */ '@/components/ui/messagedialog'));
+const Permission = () =>
+  lazy(import(/* webpackChunkName: "permission" */ '@/components/ui/permission'));
 
 export default () => [
   {
@@ -226,11 +225,11 @@ export default () => [
                 name: 'MessageDialog',
                 component: MessageDialog,
               },
-              // {
-              //   path: '/adherev/ui/permission',
-              //   name: 'Permission',
-              //   component: Permission,
-              // },
+              {
+                path: '/adherev/ui/permission',
+                name: 'Permission',
+                component: Permission,
+              },
               // {
               //   path: '/adherev/ui/suspense',
               //   name: 'Suspense',

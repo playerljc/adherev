@@ -47,7 +47,7 @@ export const Permission = {
       default: [],
     },
     permissions: {
-      type: [String, Number],
+      type: [String, Array],
       require: true,
     },
   },

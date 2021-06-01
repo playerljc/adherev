@@ -135,8 +135,6 @@ const MessageDialogFactory = {
               title={Intl.tv('确定')}
               onClick={() => {
                 if (onSuccess) {
-                  console.log('$refs', vm.$refs);
-
                   // @ts-ignore
                   const fApi = vm.$refs.formRef.fApi;
 
