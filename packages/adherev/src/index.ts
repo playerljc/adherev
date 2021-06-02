@@ -5,6 +5,9 @@ import GlobalIndicator from '@baifendian/adherev-ui-globalindicator';
 import HistoryBack from '@baifendian/adherev-ui-historyback';
 import MessageDialog from '@baifendian/adherev-ui-messagedialog';
 import Permission from '@baifendian/adherev-ui-permission';
+import ErrorPrompt from '@baifendian/adherev-ui-prompt-errorprompt';
+import SuccessPrompt from '@baifendian/adherev-ui-prompt-successprompt';
+import WarnPrompt from '@baifendian/adherev-ui-prompt-warnprompt';
 import Util from '@baifendian/adherev-util';
 import AdapterScreen from '@baifendian/adherev-util-adapterscreen';
 import Ajax from '@baifendian/adherev-util-communication-ajax';
@@ -24,6 +27,9 @@ export {
   HistoryBack,
   MessageDialog,
   Permission,
+  ErrorPrompt,
+  SuccessPrompt,
+  WarnPrompt,
   Util,
   AdapterScreen,
   Ajax,
@@ -58,6 +64,15 @@ export default {
     }
     if (Permission.isUse()) {
       Permission.use(Vue);
+    }
+    if (ErrorPrompt.isUse()) {
+      ErrorPrompt.use(Vue);
+    }
+    if (SuccessPrompt.isUse()) {
+      SuccessPrompt.use(Vue);
+    }
+    if (WarnPrompt.isUse()) {
+      WarnPrompt.use(Vue);
     }
     if (Util.isUse()) {
       Util.use(Vue);

@@ -1,0 +1,1 @@
+{"version":3,"file":"index.js","sources":["index.js"],"sourcesContent":["import WarnPrompt from './warnprompt';\r\nWarnPrompt.isUse = false;\r\nexport default WarnPrompt;\r\n"],"names":["WarnPrompt","isUse"],"mappings":"OAAOA,8BACPA,WAAWC,OAAQ,iBACJD"}

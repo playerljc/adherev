@@ -1,0 +1,1 @@
+{"version":3,"file":"index.js","sources":["index.js"],"sourcesContent":["import SuccessPrompt from './successprompt';\r\nSuccessPrompt.isUse = false;\r\nexport default SuccessPrompt;\r\n"],"names":["SuccessPrompt","isUse"],"mappings":"OAAOA,oCACPA,cAAcC,OAAQ,iBACPD"}

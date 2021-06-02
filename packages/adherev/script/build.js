@@ -22,6 +22,9 @@ const namedMap = new Map([
   ['@baifendian/adherev-ui-historyback', 'HistoryBack'],
   ['@baifendian/adherev-ui-messagedialog', 'MessageDialog'],
   ['@baifendian/adherev-ui-permission', 'Permission'],
+  ['@baifendian/adherev-ui-prompt-errorprompt', 'ErrorPrompt'],
+  ['@baifendian/adherev-ui-prompt-successprompt', 'SuccessPrompt'],
+  ['@baifendian/adherev-ui-prompt-warnprompt', 'WarnPrompt'],
   ['@baifendian/adherev-util', 'Util'],
   ['@baifendian/adherev-util-communication-ajax', 'Ajax'],
   ['@baifendian/adherev-util-dict', 'Dict'],
@@ -49,7 +52,7 @@ function pascalCaseToKebabCase(name) {
 // eslint-disable-next-line guard-for-in,no-restricted-syntax
 for (const packageName in dependencies) {
   // eslint-disable-next-line no-continue
-  if (!packageName.startsWith('@baifendian')) continue;
+  if (!packageName.startsWith('@baifendian/adherev-')) continue;
 
   const packagesPath = path.join(__dirname, '../../');
 

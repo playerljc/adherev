@@ -238,7 +238,7 @@
 
           <div style="margin-bottom: 20px" />
 
-          <input type="file" @change="onCode3F1" />
+          <input type="file" @change="onCode3F1($event)" />
 
           <div style="margin-bottom: 20px" />
 
@@ -313,8 +313,8 @@ export default {
           }
         });
     },
-    onCode3F1($event) {
-      const target = $event.target;
+    onCode3F1(e) {
+      const target = e.target;
       const file = target.files[0];
 
       const { size } = file;

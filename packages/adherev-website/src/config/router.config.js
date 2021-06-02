@@ -10,15 +10,6 @@ import { lazy } from '@/lib/Router';
 // const HistoryBack = lazy(() =>
 //   import(/* webpackChunkName: "historyback" */ '@/components/ui/historyback'),
 // );
-// const SuccessPrompt = lazy(() =>
-//   import(/* webpackChunkName: "successprompt" */ '@/components/ui/successprompt'),
-// );
-// const ErrorPrompt = lazy(() =>
-//   import(/* webpackChunkName: "errorprompt" */ '@/components/ui/errorprompt'),
-// );
-// const WarnPrompt = lazy(() =>
-//   import(/* webpackChunkName: "warnprompt" */ '@/components/ui/warnprompt'),
-// );
 // const ImageLazy = lazy(() =>
 //   import(/* webpackChunkName: "imagelazy" */ '@/components/ui/imagelazy'),
 // );
@@ -119,6 +110,12 @@ const Util = () => lazy(import(/* webpackChunkName: "util" */ '@/components/util
 const NotNull = () => lazy(import(/* webpackChunkName: "notnull" */ '@/components/util/notnull'));
 const Intl = () => lazy(import(/* webpackChunkName: "intl" */ '@/components/util/intl'));
 const Ajax = () => lazy(import(/* webpackChunkName: "ajax" */ '@/components/util/ajax'));
+const SuccessPrompt = () =>
+  lazy(import(/* webpackChunkName: "successprompt" */ '@/components/ui/successprompt'));
+const ErrorPrompt = () =>
+  lazy(import(/* webpackChunkName: "errorprompt" */ '@/components/ui/errorprompt'));
+const WarnPrompt = () =>
+  lazy(import(/* webpackChunkName: "warnprompt" */ '@/components/ui/warnprompt'));
 
 export default () => [
   {
@@ -194,21 +191,21 @@ export default () => [
               //   name: 'HistoryBack',
               //   component: HistoryBack,
               // },
-              // {
-              //   path: '/adherev/ui/successprompt',
-              //   name: 'SuccessPrompt',
-              //   component: SuccessPrompt,
-              // },
-              // {
-              //   path: '/adherev/ui/errorprompt',
-              //   name: 'ErrorPrompt',
-              //   component: ErrorPrompt,
-              // },
-              // {
-              //   path: '/adherev/ui/warnprompt',
-              //   name: 'WarnPrompt',
-              //   component: WarnPrompt,
-              // },
+              {
+                path: '/adherev/ui/successprompt',
+                name: 'SuccessPrompt',
+                component: SuccessPrompt,
+              },
+              {
+                path: '/adherev/ui/errorprompt',
+                name: 'ErrorPrompt',
+                component: ErrorPrompt,
+              },
+              {
+                path: '/adherev/ui/warnprompt',
+                name: 'WarnPrompt',
+                component: WarnPrompt,
+              },
               // {
               //   path: '/adherev/ui/imagelazy',
               //   name: 'ImageLazy',

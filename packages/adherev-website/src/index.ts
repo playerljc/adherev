@@ -19,6 +19,7 @@ import {
   DatePicker,
   Row,
   Col,
+  ConfigProvider,
 } from 'ant-design-vue';
 
 import VueHighlightJS from 'vue-highlight.js';
@@ -61,6 +62,7 @@ Vue.use(Slider);
 Vue.use(DatePicker);
 Vue.use(Row);
 Vue.use(Col);
+Vue.use(ConfigProvider);
 
 Vue.use(VueHighlightJS);
 
@@ -90,10 +92,23 @@ new Vue({
   }),
   // @ts-ignore
   router: Router(),
-  template: `
-    <div id="app">
-      <keep-alive>
-        <router-view />
-      </keep-alive>
-    </div>`,
+  data() {
+    return {
+      local: Resource.Dict.value.LocalsAntd.value[lang],
+    };
+  },
+  render(h) {
+    return h(
+      Vue.compile(
+        `
+        <a-config-provider :local="local">
+          <div id="app">
+            <keep-alive>
+              <router-view />
+            </keep-alive>
+          </div>
+        </a-config-provider>`,
+      ),
+    );
+  },
 });
