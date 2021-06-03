@@ -1,28 +1,25 @@
-const selectorPrefix = 'adherev-ui-space';
+const selectorPrefix = 'adherev-ui-split';
 
 /**
- * Space
+ * Split
  */
-const Space = {
-  name: 'adv-space',
+const Split = {
+  name: 'adv-split',
   props: {
     direction: {
       type: String,
       require: true,
       default: 'vertical',
       validator: function (value) {
-        // 这个值必须匹配下列字符串中的一个
         return ['vertical', 'horizontal'].indexOf(value) !== -1;
       },
     },
     size: {
-      type: [Number, String],
-      require: true,
+      type: [String, Number],
       default: 20,
     },
     className: {
       type: String,
-      require: false,
       default: '',
     },
   },
@@ -34,6 +31,7 @@ const Space = {
       if (direction === 'horizontal') {
         return {
           display: 'inline-block',
+          width: '1px',
           height: '100%',
           margin: `0 ${size}px`,
         };
@@ -41,6 +39,7 @@ const Space = {
 
       return {
         width: '100%',
+        height: '1px',
         margin: `${size}px 0`,
       };
     },
@@ -49,18 +48,16 @@ const Space = {
     // @ts-ignore
     const { className } = this;
 
-    return (
-      // @ts-ignore
-      <div className={`${selectorPrefix} ${className}`} style={this.getStyle()} />
-    );
+    // @ts-ignore
+    return <div class={`${selectorPrefix} ${className}`} style={this.getStyle()} />;
   },
 };
 
 /**
- * SpaceGroup
+ * SplitGroup
  */
-export const SpaceGroup = {
-  name: 'adv-space-group',
+export const SplitGroup = {
+  name: 'adv-split-group',
   props: {
     direction: {
       type: String,
@@ -73,7 +70,7 @@ export const SpaceGroup = {
     },
     size: {
       type: [Number, String],
-      require: true,
+      require: false,
       default: 20,
     },
     className: {
@@ -102,7 +99,7 @@ export const SpaceGroup = {
           };
 
           // @ts-ignore
-          JSXS.push(<Space {...props} key={i} />);
+          JSXS.push(<Split {...props} key={i} />);
         }
 
         // @ts-ignore
@@ -115,4 +112,4 @@ export const SpaceGroup = {
   },
 };
 
-export default Space;
+export default Split;

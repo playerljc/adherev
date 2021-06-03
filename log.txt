@@ -1,7 +1,5 @@
 // 待实现
-adhere-ui-spin
-adhere-ui-split
-adhere-ui-suspense
+adhere-ui-css
 adhere-ui-searchtable
 adhere-ui-olmap
 
@@ -54,3 +52,6 @@ adhere-ui-prompt-errorprompt(demo)
 adhere-ui-prompt-successprompt(demo)
 adhere-ui-prompt-warnprompt(demo)
 adhere-ui-space(demo)
+adhere-ui-spin(demo)
+adhere-ui-split(demo)
+adhere-ui-suspense(demo)

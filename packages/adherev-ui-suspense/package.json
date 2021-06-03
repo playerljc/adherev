@@ -1,0 +1,40 @@
+{
+  "name": "@baifendian/adherev-ui-suspense",
+  "version": "1.0.0",
+  "description": "数据加载单元(如第一次是骷髅骨架，其他是 loading)，有数据加载的单元，第一次是骷髅骨架(或其他)mount，更新是 loading",
+  "main": "lib/index.js",
+  "files": [
+    "lib",
+    "umd"
+  ],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "buildpackage": "ctbuildv buildpackagets",
+    "buildumd": "ctbuildv buildumd --packagename AdherevSuspense --define alias=@,evnVars=true",
+    "generatorchangelog": "bd changelog/CHANGELOG.html"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://gitee.com/playerljc/adherev"
+  },
+  "resolutions": {
+    "graceful-fs": "4.2.2"
+  },
+  "author": "playerljc",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://gitee.com/playerljc/adherev/issues"
+  },
+  "homepage": "https://gitee.com/playerljc/adherev",
+  "publishConfig": {
+    "access": "public"
+  },
+  "devDependencies": {
+    "@babel/runtime": "^7.7.4",
+    "@ctsj/buildv": "^2.0.2",
+    "typescript": "^3.8.2"
+  },
+  "dependencies": {
+    "ant-design-vue": "^1.7.5"
+  }
+}

@@ -52,6 +52,8 @@
     "@baifendian/adherev-ui-prompt-warnprompt": "^1.0.0",
     "@baifendian/adherev-ui-space": "^1.0.0",
     "@baifendian/adherev-ui-spin": "^1.0.0",
+    "@baifendian/adherev-ui-split": "^1.0.0",
+    "@baifendian/adherev-ui-suspense": "^1.0.0",
     "@baifendian/adherev-util": "^1.0.0",
     "@baifendian/adherev-util-adapterscreen": "^1.0.0",
     "@baifendian/adherev-util-communication-ajax": "^1.0.0",

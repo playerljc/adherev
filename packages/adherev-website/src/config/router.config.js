@@ -1,14 +1,12 @@
 import BasicLayout from '@/lib/BasicLayout';
 import { lazy } from '@/lib/Router';
 
-// const Split = lazy(() => import(/* webpackChunkName: "split" */ '@/components/ui/split'));
 // const ConditionalRender = lazy(() =>
 //   import(/* webpackChunkName: "conditionalrender" */ '@/components/ui/conditionalrender'),
 // );
 // const ImageLazy = lazy(() =>
 //   import(/* webpackChunkName: "imagelazy" */ '@/components/ui/imagelazy'),
 // );
-// const Suspense = lazy(() => import(/* webpackChunkName: "suspense" */ '@/components/ui/suspense'));
 // const TableHeadSearch = lazy(() =>
 //   import(/* webpackChunkName: "tableheadsearch" */ '@/components/ui/tableheadsearch'),
 // );
@@ -113,8 +111,10 @@ const WarnPrompt = () =>
   lazy(import(/* webpackChunkName: "warnprompt" */ '@/components/ui/warnprompt'));
 const Space = () => lazy(import(/* webpackChunkName: "space" */ '@/components/ui/space'));
 const Spin = () => lazy(import(/* webpackChunkName: "spin" */ '@/components/ui/spin'));
+const Split = () => lazy(import(/* webpackChunkName: "split" */ '@/components/ui/split'));
 const HistoryBack = () =>
   lazy(import(/* webpackChunkName: "historyback" */ '@/components/ui/historyback'));
+const Suspense = () => lazy(import(/* webpackChunkName: "suspense" */ '@/components/ui/suspense'));
 
 export default () => [
   {
@@ -151,15 +151,11 @@ export default () => [
                 name: 'ConditionalRender',
                 component: ConditionalRender,
               },
-              // {
-              //   path: '/',
-              //   redirect: '/adherev/ui/split',
-              // },
-              // {
-              //   path: '/adherev/ui/split',
-              //   name: 'Split',
-              //   component: Split,
-              // },
+              {
+                path: '/adherev/ui/split',
+                name: 'Split',
+                component: Split,
+              },
               {
                 path: '/adherev/ui/space',
                 name: 'Space',
@@ -220,11 +216,11 @@ export default () => [
                 name: 'Permission',
                 component: Permission,
               },
-              // {
-              //   path: '/adherev/ui/suspense',
-              //   name: 'Suspense',
-              //   component: Suspense,
-              // },
+              {
+                path: '/adherev/ui/suspense',
+                name: 'Suspense',
+                component: Suspense,
+              },
               // {
               //   path: '/adherev/ui/tableheadsearch',
               //   name: 'TableHeadSearch',

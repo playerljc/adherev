@@ -36,6 +36,8 @@ import {
   MessageDialog,
   Space,
   Spin,
+  Split,
+  Suspense,
 } from '@baifendian/adherev';
 
 import Router from './lib/Router';
@@ -77,6 +79,9 @@ Intl.use(Vue);
 MessageDialog.use(Vue);
 Space.use(Vue);
 Spin.use(Vue);
+Split.use(Vue);
+// @ts-ignore
+Suspense.use(Vue);
 
 Vue.use(Playground);
 Vue.use(FunctionProps);

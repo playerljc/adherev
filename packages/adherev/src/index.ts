@@ -10,6 +10,8 @@ import SuccessPrompt from '@baifendian/adherev-ui-prompt-successprompt';
 import WarnPrompt from '@baifendian/adherev-ui-prompt-warnprompt';
 import Space from '@baifendian/adherev-ui-space';
 import Spin from '@baifendian/adherev-ui-spin';
+import Split from '@baifendian/adherev-ui-split';
+import Suspense from '@baifendian/adherev-ui-suspense';
 import Util from '@baifendian/adherev-util';
 import AdapterScreen from '@baifendian/adherev-util-adapterscreen';
 import Ajax from '@baifendian/adherev-util-communication-ajax';
@@ -34,6 +36,8 @@ export {
   WarnPrompt,
   Space,
   Spin,
+  Split,
+  Suspense,
   Util,
   AdapterScreen,
   Ajax,
@@ -60,6 +64,8 @@ export default {
 		if(WarnPrompt.isUse()){ WarnPrompt.use(Vue); }
 		if(Space.isUse()){ Space.use(Vue); }
 		if(Spin.isUse()){ Spin.use(Vue); }
+		if(Split.isUse()){ Split.use(Vue); }
+		if(Suspense.isUse()){ Suspense.use(Vue); }
 		if(Util.isUse()){ Util.use(Vue); }
 		if(AdapterScreen.isUse()){ AdapterScreen.use(Vue); }
 		if(Ajax.isUse()){ Ajax.use(Vue); }
