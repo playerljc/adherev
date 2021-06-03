@@ -34,6 +34,8 @@ import {
   Util,
   Resource,
   MessageDialog,
+  Space,
+  Spin,
 } from '@baifendian/adherev';
 
 import Router from './lib/Router';
@@ -73,6 +75,8 @@ Permission.use(Vue);
 // @ts-ignore
 Intl.use(Vue);
 MessageDialog.use(Vue);
+Space.use(Vue);
+Spin.use(Vue);
 
 Vue.use(Playground);
 Vue.use(FunctionProps);
@@ -97,10 +101,8 @@ new Vue({
       local: Resource.Dict.value.LocalsAntd.value[lang],
     };
   },
-  render(h) {
-    return h(
-      Vue.compile(
-        `
+  render: Vue.compile(
+    `
         <a-config-provider :local="local">
           <div id="app">
             <keep-alive>
@@ -108,7 +110,5 @@ new Vue({
             </keep-alive>
           </div>
         </a-config-provider>`,
-      ),
-    );
-  },
+  ).render,
 });

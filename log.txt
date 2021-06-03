@@ -1,5 +1,4 @@
 // 待实现
-adhere-ui-space
 adhere-ui-spin
 adhere-ui-split
 adhere-ui-suspense
@@ -54,3 +53,4 @@ adherev-util-communication-ajax(demo)
 adhere-ui-prompt-errorprompt(demo)
 adhere-ui-prompt-successprompt(demo)
 adhere-ui-prompt-warnprompt(demo)
+adhere-ui-space(demo)

@@ -8,6 +8,8 @@ import Permission from '@baifendian/adherev-ui-permission';
 import ErrorPrompt from '@baifendian/adherev-ui-prompt-errorprompt';
 import SuccessPrompt from '@baifendian/adherev-ui-prompt-successprompt';
 import WarnPrompt from '@baifendian/adherev-ui-prompt-warnprompt';
+import Space from '@baifendian/adherev-ui-space';
+import Spin from '@baifendian/adherev-ui-spin';
 import Util from '@baifendian/adherev-util';
 import AdapterScreen from '@baifendian/adherev-util-adapterscreen';
 import Ajax from '@baifendian/adherev-util-communication-ajax';
@@ -18,7 +20,7 @@ import NotNull from '@baifendian/adherev-util-notnull';
 import Preferences from '@baifendian/adherev-util-preferences';
 import Resource from '@baifendian/adherev-util-resource';
 import WatchMemoized from '@baifendian/adherev-util-watchmemoized';
-export { ConditionalRender, DelConfirm, ImportantConfirm, GlobalIndicator, HistoryBack, MessageDialog, Permission, ErrorPrompt, SuccessPrompt, WarnPrompt, Util, AdapterScreen, Ajax, Dict, Emitter, Intl, NotNull, Preferences, Resource, WatchMemoized, };
+export { ConditionalRender, DelConfirm, ImportantConfirm, GlobalIndicator, HistoryBack, MessageDialog, Permission, ErrorPrompt, SuccessPrompt, WarnPrompt, Space, Spin, Util, AdapterScreen, Ajax, Dict, Emitter, Intl, NotNull, Preferences, Resource, WatchMemoized, };
 declare const _default: {
     install: (Vue: any) => void;
 };

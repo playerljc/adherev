@@ -2,13 +2,8 @@ import BasicLayout from '@/lib/BasicLayout';
 import { lazy } from '@/lib/Router';
 
 // const Split = lazy(() => import(/* webpackChunkName: "split" */ '@/components/ui/split'));
-// const Space = lazy(() => import(/* webpackChunkName: "space" */ '@/components/ui/space'));
 // const ConditionalRender = lazy(() =>
 //   import(/* webpackChunkName: "conditionalrender" */ '@/components/ui/conditionalrender'),
-// );
-// const Spin = lazy(() => import(/* webpackChunkName: "spin" */ '@/components/ui/spin'));
-// const HistoryBack = lazy(() =>
-//   import(/* webpackChunkName: "historyback" */ '@/components/ui/historyback'),
 // );
 // const ImageLazy = lazy(() =>
 //   import(/* webpackChunkName: "imagelazy" */ '@/components/ui/imagelazy'),
@@ -116,6 +111,10 @@ const ErrorPrompt = () =>
   lazy(import(/* webpackChunkName: "errorprompt" */ '@/components/ui/errorprompt'));
 const WarnPrompt = () =>
   lazy(import(/* webpackChunkName: "warnprompt" */ '@/components/ui/warnprompt'));
+const Space = () => lazy(import(/* webpackChunkName: "space" */ '@/components/ui/space'));
+const Spin = () => lazy(import(/* webpackChunkName: "spin" */ '@/components/ui/spin'));
+const HistoryBack = () =>
+  lazy(import(/* webpackChunkName: "historyback" */ '@/components/ui/historyback'));
 
 export default () => [
   {
@@ -161,11 +160,11 @@ export default () => [
               //   name: 'Split',
               //   component: Split,
               // },
-              // {
-              //   path: '/adherev/ui/space',
-              //   name: 'Space',
-              //   component: Space,
-              // },
+              {
+                path: '/adherev/ui/space',
+                name: 'Space',
+                component: Space,
+              },
               {
                 path: '/adherev/ui/delconfirm',
                 name: 'DelConfirm',
@@ -181,16 +180,16 @@ export default () => [
                 name: 'GlobalIndicator',
                 component: GlobalIndicator,
               },
-              // {
-              //   path: '/adherev/ui/spin',
-              //   name: 'Spin',
-              //   component: Spin,
-              // },
-              // {
-              //   path: '/adherev/ui/historyback',
-              //   name: 'HistoryBack',
-              //   component: HistoryBack,
-              // },
+              {
+                path: '/adherev/ui/spin',
+                name: 'Spin',
+                component: Spin,
+              },
+              {
+                path: '/adherev/ui/historyback',
+                name: 'HistoryBack',
+                component: HistoryBack,
+              },
               {
                 path: '/adherev/ui/successprompt',
                 name: 'SuccessPrompt',

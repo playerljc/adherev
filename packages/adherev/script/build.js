@@ -25,6 +25,8 @@ const namedMap = new Map([
   ['@baifendian/adherev-ui-prompt-errorprompt', 'ErrorPrompt'],
   ['@baifendian/adherev-ui-prompt-successprompt', 'SuccessPrompt'],
   ['@baifendian/adherev-ui-prompt-warnprompt', 'WarnPrompt'],
+  ['@baifendian/adherev-ui-space', 'Space'],
+  ['@baifendian/adherev-ui-spin', 'Spin'],
   ['@baifendian/adherev-util', 'Util'],
   ['@baifendian/adherev-util-communication-ajax', 'Ajax'],
   ['@baifendian/adherev-util-dict', 'Dict'],

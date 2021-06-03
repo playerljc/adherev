@@ -1,0 +1,1 @@
+{"version":3,"file":"index.js","sources":["spin/index.js"],"sourcesContent":["import Model from '@baifendian/adherev-ui-spin';\r\nexport default Model;\r\n"],"names":["Model"],"mappings":"OAAOA,uDACQA"}
