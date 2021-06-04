@@ -12,6 +12,7 @@ import Space from '@baifendian/adherev-ui-space';
 import Spin from '@baifendian/adherev-ui-spin';
 import Split from '@baifendian/adherev-ui-split';
 import Suspense from '@baifendian/adherev-ui-suspense';
+import FlexLayout from '@baifendian/adherev-ui-flexlayout';
 import Util from '@baifendian/adherev-util';
 import AdapterScreen from '@baifendian/adherev-util-adapterscreen';
 import Ajax from '@baifendian/adherev-util-communication-ajax';
@@ -23,7 +24,7 @@ import Preferences from '@baifendian/adherev-util-preferences';
 import Resource from '@baifendian/adherev-util-resource';
 import WatchMemoized from '@baifendian/adherev-util-watchmemoized';
 
-export { 
+export {
   ConditionalRender,
   DelConfirm,
   ImportantConfirm,
@@ -38,6 +39,7 @@ export {
   Spin,
   Split,
   Suspense,
+  FlexLayout,
   Util,
   AdapterScreen,
   Ajax,
@@ -51,30 +53,81 @@ export {
 };
 
 export default {
-	install:function (Vue){
-	if(ConditionalRender.isUse()){ ConditionalRender.use(Vue); }
-		if(DelConfirm.isUse()){ DelConfirm.use(Vue); }
-		if(ImportantConfirm.isUse()){ ImportantConfirm.use(Vue); }
-		if(GlobalIndicator.isUse()){ GlobalIndicator.use(Vue); }
-		if(HistoryBack.isUse()){ HistoryBack.use(Vue); }
-		if(MessageDialog.isUse()){ MessageDialog.use(Vue); }
-		if(Permission.isUse()){ Permission.use(Vue); }
-		if(ErrorPrompt.isUse()){ ErrorPrompt.use(Vue); }
-		if(SuccessPrompt.isUse()){ SuccessPrompt.use(Vue); }
-		if(WarnPrompt.isUse()){ WarnPrompt.use(Vue); }
-		if(Space.isUse()){ Space.use(Vue); }
-		if(Spin.isUse()){ Spin.use(Vue); }
-		if(Split.isUse()){ Split.use(Vue); }
-		if(Suspense.isUse()){ Suspense.use(Vue); }
-		if(Util.isUse()){ Util.use(Vue); }
-		if(AdapterScreen.isUse()){ AdapterScreen.use(Vue); }
-		if(Ajax.isUse()){ Ajax.use(Vue); }
-		if(Dict.isUse()){ Dict.use(Vue); }
-		if(Emitter.isUse()){ Emitter.use(Vue); }
-		if(Intl.isUse()){ Intl.use(Vue); }
-		if(NotNull.isUse()){ NotNull.use(Vue); }
-		if(Preferences.isUse()){ Preferences.use(Vue); }
-		if(Resource.isUse()){ Resource.use(Vue); }
-		if(WatchMemoized.isUse()){ WatchMemoized.use(Vue); }
-		},
+  install: function (Vue) {
+    if (ConditionalRender.isUse()) {
+      ConditionalRender.use(Vue);
+    }
+    if (DelConfirm.isUse()) {
+      DelConfirm.use(Vue);
+    }
+    if (ImportantConfirm.isUse()) {
+      ImportantConfirm.use(Vue);
+    }
+    if (GlobalIndicator.isUse()) {
+      GlobalIndicator.use(Vue);
+    }
+    if (HistoryBack.isUse()) {
+      HistoryBack.use(Vue);
+    }
+    if (MessageDialog.isUse()) {
+      MessageDialog.use(Vue);
+    }
+    if (Permission.isUse()) {
+      Permission.use(Vue);
+    }
+    if (ErrorPrompt.isUse()) {
+      ErrorPrompt.use(Vue);
+    }
+    if (SuccessPrompt.isUse()) {
+      SuccessPrompt.use(Vue);
+    }
+    if (WarnPrompt.isUse()) {
+      WarnPrompt.use(Vue);
+    }
+    if (Space.isUse()) {
+      Space.use(Vue);
+    }
+    if (Spin.isUse()) {
+      Spin.use(Vue);
+    }
+    if (Split.isUse()) {
+      Split.use(Vue);
+    }
+    if (Suspense.isUse()) {
+      Suspense.use(Vue);
+    }
+    if (FlexLayout.isUse()) {
+      FlexLayout.use(Vue);
+    }
+    if (Util.isUse()) {
+      Util.use(Vue);
+    }
+    if (AdapterScreen.isUse()) {
+      AdapterScreen.use(Vue);
+    }
+    if (Ajax.isUse()) {
+      Ajax.use(Vue);
+    }
+    if (Dict.isUse()) {
+      Dict.use(Vue);
+    }
+    if (Emitter.isUse()) {
+      Emitter.use(Vue);
+    }
+    if (Intl.isUse()) {
+      Intl.use(Vue);
+    }
+    if (NotNull.isUse()) {
+      NotNull.use(Vue);
+    }
+    if (Preferences.isUse()) {
+      Preferences.use(Vue);
+    }
+    if (Resource.isUse()) {
+      Resource.use(Vue);
+    }
+    if (WatchMemoized.isUse()) {
+      WatchMemoized.use(Vue);
+    }
+  },
 };

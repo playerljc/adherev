@@ -1,13 +1,12 @@
 // 待实现
-adhere-ui-css
-adhere-ui-searchtable
-adhere-ui-olmap
+adherev-ui-flexlayout
+adherev-ui-searchtable
+adherev-ui-olmap
 
 // 优先级低的
 adhere-ui-backtopanimation
 adhere-ui-cascadecompared
 adhere-ui-contextmenu
-adhere-ui-flexlayout
 adhere-ui-fontsizesetting
 adhere-ui-imagelazy
 adhere-ui-jdcategorytab
@@ -48,10 +47,11 @@ adherev-util-resource(没有demo)
 adherev-util-notnull(demo)
 adherev-util-intl(demo)
 adherev-util-communication-ajax(demo)
-adhere-ui-prompt-errorprompt(demo)
-adhere-ui-prompt-successprompt(demo)
-adhere-ui-prompt-warnprompt(demo)
-adhere-ui-space(demo)
-adhere-ui-spin(demo)
-adhere-ui-split(demo)
-adhere-ui-suspense(demo)
+adherev-ui-prompt-errorprompt(demo)
+adherev-ui-prompt-successprompt(demo)
+adherev-ui-prompt-warnprompt(demo)
+adherev-ui-space(demo)
+adherev-ui-spin(demo)
+adherev-ui-split(demo)
+adherev-ui-suspense(demo)
+adherev-ui-css(demo)

@@ -29,6 +29,7 @@ const namedMap = new Map([
   ['@baifendian/adherev-ui-spin', 'Spin'],
   ['@baifendian/adherev-ui-split', 'Split'],
   ['@baifendian/adherev-ui-suspense', 'Suspense'],
+  ['@baifendian/adherev-ui-flexlayout', 'FlexLayout'],
   ['@baifendian/adherev-util', 'Util'],
   ['@baifendian/adherev-util-communication-ajax', 'Ajax'],
   ['@baifendian/adherev-util-dict', 'Dict'],

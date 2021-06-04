@@ -1,6 +1,9 @@
 import { Table } from 'ant-design-vue';
 import { Suspense } from '@baifendian/adherev';
 
+/**
+ * table - 使用渲染函数 + JSX实现
+ */
 export default {
   mixins: [Suspense],
   data() {
@@ -64,7 +67,11 @@ export default {
       this.pagination = pagination;
       this.fetchData();
     },
-    renderInner(h) {
+    renderInner(
+      // @ts-ignore
+      h,
+    ) {
+      // 使用JSX实现
       return (
         <div style="position: relative;">
           <Table

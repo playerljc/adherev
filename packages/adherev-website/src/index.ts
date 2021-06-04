@@ -38,6 +38,8 @@ import {
   Spin,
   Split,
   Suspense,
+  FlexLayout,
+  // @ts-ignore
 } from '@baifendian/adherev';
 
 import Router from './lib/Router';
@@ -46,6 +48,8 @@ import FunctionProps from './lib/FunctionProps';
 import Props from './lib/Props';
 
 import 'highlight.js/styles/default.css';
+import '@baifendian/adherev/lib/css.less';
+
 import './index.less';
 
 Vue.use(Menu);
@@ -82,6 +86,7 @@ Spin.use(Vue);
 Split.use(Vue);
 // @ts-ignore
 Suspense.use(Vue);
+FlexLayout.use(Vue);
 
 Vue.use(Playground);
 Vue.use(FunctionProps);

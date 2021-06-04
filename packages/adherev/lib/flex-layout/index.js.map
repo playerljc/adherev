@@ -1,0 +1,1 @@
+{"version":3,"file":"index.js","sources":["flex-layout/index.js"],"sourcesContent":["import Model from '@baifendian/adherev-ui-flexlayout';\r\nexport default Model;\r\n"],"names":["Model"],"mappings":"OAAOA,6DACQA"}

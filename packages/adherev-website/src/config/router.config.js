@@ -1,20 +1,13 @@
 import BasicLayout from '@/lib/BasicLayout';
 import { lazy } from '@/lib/Router';
 
-// const ConditionalRender = lazy(() =>
-//   import(/* webpackChunkName: "conditionalrender" */ '@/components/ui/conditionalrender'),
-// );
 // const ImageLazy = lazy(() =>
 //   import(/* webpackChunkName: "imagelazy" */ '@/components/ui/imagelazy'),
 // );
 // const TableHeadSearch = lazy(() =>
 //   import(/* webpackChunkName: "tableheadsearch" */ '@/components/ui/tableheadsearch'),
 // );
-// const CSS = lazy(() => import(/* webpackChunkName: "css" */ '@/components/ui/css'));
 // const OLMap = lazy(() => import(/* webpackChunkName: "olmap" */ '@/components/ui/olmap'));
-// const FlexLayout = lazy(() =>
-//   import(/* webpackChunkName: "flexlayout" */ '@/components/ui/flexlayout'),
-// );
 // const SplitLayout = lazy(() =>
 //   import(/* webpackChunkName: "splitlayout" */ '@/components/ui/splitlayout'),
 // );
@@ -115,6 +108,9 @@ const Split = () => lazy(import(/* webpackChunkName: "split" */ '@/components/ui
 const HistoryBack = () =>
   lazy(import(/* webpackChunkName: "historyback" */ '@/components/ui/historyback'));
 const Suspense = () => lazy(import(/* webpackChunkName: "suspense" */ '@/components/ui/suspense'));
+const CSS = () => lazy(import(/* webpackChunkName: "css" */ '@/components/ui/css'));
+const FlexLayout = () =>
+  lazy(import(/* webpackChunkName: "flexlayout" */ '@/components/ui/flexlayout'));
 
 export default () => [
   {
@@ -226,21 +222,21 @@ export default () => [
               //   name: 'TableHeadSearch',
               //   component: TableHeadSearch,
               // },
-              // {
-              //   path: '/adherev/ui/css',
-              //   name: 'CSS',
-              //   component: CSS,
-              // },
+              {
+                path: '/adherev/ui/css',
+                name: 'CSS',
+                component: CSS,
+              },
               // {
               //   path: '/adherev/ui/olmap',
               //   name: 'OLMap',
               //   component: OLMap,
               // },
-              // {
-              //   path: '/adherev/ui/flexlayout',
-              //   name: 'FlexLayout',
-              //   component: FlexLayout,
-              // },
+              {
+                path: '/adherev/ui/flexlayout',
+                name: 'FlexLayout',
+                component: FlexLayout,
+              },
               // {
               //   path: '/adherev/ui/splitlayout',
               //   name: 'SplitLayout',
