@@ -20,6 +20,14 @@ module.exports = {
         '@form-create',
         'ant-design-vue',
       ),
+      ol: path.join(
+        __dirname,
+        'node_modules/@baifendian/adherev/node_modules/@baifendian/adherev-ui-olmap/node_modules/ol',
+      ),
+      // swiper: path.join(
+      //   __dirname,
+      //   'node_modules/@baifendian/adherev/node_modules/@baifendian/adherev-ui-revolving/node_modules/swiper',
+      // ),
     };
 
     webpackConfig.resolve.modules.unshift(path.join(__dirname, 'node_modules'));
@@ -29,6 +37,8 @@ module.exports = {
       /packages[\\/]adherev[\\/]lib[\\/].*[\\/]style[\\/]index.less/,
       /packages[\\/]adherev[\\/]lib[\\/].*.less/,
     );
+
+    webpackConfig.module.rules[3].include.push(/ol.css/, /swiper.css/);
 
     // babel-plugin-import的配置
     const { use } = webpackConfig.module.rules[1];

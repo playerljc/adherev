@@ -20,6 +20,7 @@ import {
   Row,
   Col,
   ConfigProvider,
+  Radio,
 } from 'ant-design-vue';
 
 import VueHighlightJS from 'vue-highlight.js';
@@ -40,6 +41,7 @@ import {
   Suspense,
   FlexLayout,
   SearchTable,
+  OLMap,
   // @ts-ignore
 } from '@baifendian/adherev';
 
@@ -67,6 +69,7 @@ Vue.use(Result);
 Vue.use(Form);
 Vue.use(FormModel);
 Vue.use(Input);
+Vue.use(Radio);
 Vue.use(InputNumber);
 Vue.use(Slider);
 Vue.use(DatePicker);
@@ -90,6 +93,7 @@ Split.use(Vue);
 Suspense.use(Vue);
 FlexLayout.use(Vue);
 SearchTable.use(Vue);
+OLMap.use(Vue);
 
 Vue.use(Playground);
 Vue.use(PlaygroundMulit);

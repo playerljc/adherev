@@ -7,7 +7,6 @@ import { lazy } from '@/lib/Router';
 // const TableHeadSearch = lazy(() =>
 //   import(/* webpackChunkName: "tableheadsearch" */ '@/components/ui/tableheadsearch'),
 // );
-// const OLMap = lazy(() => import(/* webpackChunkName: "olmap" */ '@/components/ui/olmap'));
 // const SplitLayout = lazy(() =>
 //   import(/* webpackChunkName: "splitlayout" */ '@/components/ui/splitlayout'),
 // );
@@ -110,6 +109,7 @@ const FlexLayout = () =>
   lazy(import(/* webpackChunkName: "flexlayout" */ '@/components/ui/flexlayout'));
 const SearchTable = () =>
   lazy(import(/* webpackChunkName: "searchtable" */ '@/components/ui/searchtable'));
+const OLMap = () => lazy(import(/* webpackChunkName: "olmap" */ '@/components/ui/olmap'));
 
 export default () => [
   {
@@ -226,11 +226,11 @@ export default () => [
                 name: 'CSS',
                 component: CSS,
               },
-              // {
-              //   path: '/adherev/ui/olmap',
-              //   name: 'OLMap',
-              //   component: OLMap,
-              // },
+              {
+                path: '/adherev/ui/olmap',
+                name: 'OLMap',
+                component: OLMap,
+              },
               {
                 path: '/adherev/ui/flexlayout',
                 name: 'FlexLayout',
