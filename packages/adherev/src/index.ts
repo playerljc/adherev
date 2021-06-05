@@ -26,7 +26,7 @@ import Preferences from '@baifendian/adherev-util-preferences';
 import Resource from '@baifendian/adherev-util-resource';
 import WatchMemoized from '@baifendian/adherev-util-watchmemoized';
 
-export { 
+export {
   ConditionalRender,
   DelConfirm,
   ImportantConfirm,
@@ -57,33 +57,195 @@ export {
 };
 
 export default {
-	install:function (Vue){
-	if(ConditionalRender.isUse()){ ConditionalRender.use(Vue); }
-		if(DelConfirm.isUse()){ DelConfirm.use(Vue); }
-		if(ImportantConfirm.isUse()){ ImportantConfirm.use(Vue); }
-		if(GlobalIndicator.isUse()){ GlobalIndicator.use(Vue); }
-		if(HistoryBack.isUse()){ HistoryBack.use(Vue); }
-		if(MessageDialog.isUse()){ MessageDialog.use(Vue); }
-		if(Permission.isUse()){ Permission.use(Vue); }
-		if(ErrorPrompt.isUse()){ ErrorPrompt.use(Vue); }
-		if(SuccessPrompt.isUse()){ SuccessPrompt.use(Vue); }
-		if(WarnPrompt.isUse()){ WarnPrompt.use(Vue); }
-		if(Space.isUse()){ Space.use(Vue); }
-		if(Spin.isUse()){ Spin.use(Vue); }
-		if(Split.isUse()){ Split.use(Vue); }
-		if(Suspense.isUse()){ Suspense.use(Vue); }
-		if(FlexLayout.isUse()){ FlexLayout.use(Vue); }
-		if(SearchTable.isUse()){ SearchTable.use(Vue); }
-		if(OLMap.isUse()){ OLMap.use(Vue); }
-		if(Util.isUse()){ Util.use(Vue); }
-		if(AdapterScreen.isUse()){ AdapterScreen.use(Vue); }
-		if(Ajax.isUse()){ Ajax.use(Vue); }
-		if(Dict.isUse()){ Dict.use(Vue); }
-		if(Emitter.isUse()){ Emitter.use(Vue); }
-		if(Intl.isUse()){ Intl.use(Vue); }
-		if(NotNull.isUse()){ NotNull.use(Vue); }
-		if(Preferences.isUse()){ Preferences.use(Vue); }
-		if(Resource.isUse()){ Resource.use(Vue); }
-		if(WatchMemoized.isUse()){ WatchMemoized.use(Vue); }
-		},
+  install: function (Vue) {
+    if (
+      // @ts-ignore
+      ConditionalRender.isUse()
+    ) {
+      // @ts-ignore
+      ConditionalRender.use(Vue);
+    }
+    if (
+      // @ts-ignore
+      DelConfirm.isUse()
+    ) {
+      // @ts-ignore
+      DelConfirm.use(Vue);
+    }
+    if (
+      // @ts-ignore
+      ImportantConfirm.isUse()
+    ) {
+      // @ts-ignore
+      ImportantConfirm.use(Vue);
+    }
+    if (
+      // @ts-ignore
+      GlobalIndicator.isUse()
+    ) {
+      // @ts-ignore
+      GlobalIndicator.use(Vue);
+    }
+    if (
+      // @ts-ignore
+      HistoryBack.isUse()
+    ) {
+      // @ts-ignore
+      HistoryBack.use(Vue);
+    }
+    if (
+      // @ts-ignore
+      MessageDialog.isUse()
+    ) {
+      // @ts-ignore
+      MessageDialog.use(Vue);
+    }
+    if (
+      // @ts-ignore
+      Permission.isUse()
+    ) {
+      // @ts-ignore
+      Permission.use(Vue);
+    }
+    if (
+      // @ts-ignore
+      ErrorPrompt.isUse()
+    ) {
+      // @ts-ignore
+      ErrorPrompt.use(Vue);
+    }
+    if (
+      // @ts-ignore
+      SuccessPrompt.isUse()
+    ) {
+      // @ts-ignore
+      SuccessPrompt.use(Vue);
+    }
+    if (
+      // @ts-ignore
+      WarnPrompt.isUse()
+    ) {
+      // @ts-ignore
+      WarnPrompt.use(Vue);
+    }
+    if (
+      // @ts-ignore
+      Space.isUse()
+    ) {
+      // @ts-ignore
+      Space.use(Vue);
+    }
+    if (
+      // @ts-ignore
+      Spin.isUse()
+    ) {
+      // @ts-ignore
+      Spin.use(Vue);
+    }
+    if (
+      // @ts-ignore
+      Split.isUse()
+    ) {
+      // @ts-ignore
+      Split.use(Vue);
+    }
+    if (
+      // @ts-ignore
+      Suspense.isUse()
+    ) {
+      // @ts-ignore
+      Suspense.use(Vue);
+    }
+    if (
+      // @ts-ignore
+      FlexLayout.isUse()
+    ) {
+      // @ts-ignore
+      FlexLayout.use(Vue);
+    }
+    if (
+      // @ts-ignore
+      SearchTable.isUse()
+    ) {
+      // @ts-ignore
+      SearchTable.use(Vue);
+    }
+    if (
+      // @ts-ignore
+      OLMap.isUse()
+    ) {
+      // @ts-ignore
+      OLMap.use(Vue);
+    }
+    if (
+      // @ts-ignore
+      Util.isUse()
+    ) {
+      // @ts-ignore
+      Util.use(Vue);
+    }
+    if (
+      // @ts-ignore
+      AdapterScreen.isUse()
+    ) {
+      // @ts-ignore
+      AdapterScreen.use(Vue);
+    }
+    if (
+      // @ts-ignore
+      Ajax.isUse()
+    ) {
+      // @ts-ignore
+      Ajax.use(Vue);
+    }
+    if (
+      // @ts-ignore
+      Dict.isUse()
+    ) {
+      // @ts-ignore
+      Dict.use(Vue);
+    }
+    if (
+      // @ts-ignore
+      Emitter.isUse()
+    ) {
+      // @ts-ignore
+      Emitter.use(Vue);
+    }
+    if (
+      // @ts-ignore
+      Intl.isUse()
+    ) {
+      // @ts-ignore
+      Intl.use(Vue);
+    }
+    if (
+      // @ts-ignore
+      NotNull.isUse()
+    ) {
+      // @ts-ignore
+      NotNull.use(Vue);
+    }
+    if (
+      // @ts-ignore
+      Preferences.isUse()
+    ) {
+      // @ts-ignore
+      Preferences.use(Vue);
+    }
+    if (
+      // @ts-ignore
+      Resource.isUse()
+    ) {
+      // @ts-ignore
+      Resource.use(Vue);
+    }
+    if (
+      // @ts-ignore
+      WatchMemoized.isUse()
+    ) {
+      // @ts-ignore
+      WatchMemoized.use(Vue);
+    }
+  },
 };
