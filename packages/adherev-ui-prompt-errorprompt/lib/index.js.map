@@ -1,1 +1,1 @@
-{"version":3,"file":"index.js","sources":["index.js"],"sourcesContent":["import ErrorPrompt from './errorprompt';\r\nErrorPrompt.isUse = false;\r\nexport default ErrorPrompt;\r\n"],"names":["ErrorPrompt","isUse"],"mappings":"OAAOA,gCACPA,YAAYC,OAAQ,iBACLD"}
+{"version":3,"file":"index.js","sources":["index.js"],"sourcesContent":["import ErrorPrompt from './errorprompt';\r\n// @ts-ignore\r\nErrorPrompt.isUse = false;\r\nexport default ErrorPrompt;\r\n"],"names":["ErrorPrompt","isUse"],"mappings":"OAAOA,gCAEPA,YAAYC,OAAQ,iBACLD"}

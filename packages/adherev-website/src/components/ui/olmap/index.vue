@@ -2003,7 +2003,12 @@
     <h2>使用不同的source</h2>
     <playground :codeText="code3">
       <div style="width: 100%; height: 500px">
-        <a-radio-group size="large" default-value="OSM" @change="onCode2Change1($event)">
+        <a-radio-group
+          style="margin-bottom: 20px"
+          size="large"
+          default-value="OSM"
+          @change="onCode2Change1($event)"
+        >
           <a-radio :value="'OSM'">OSM</a-radio>
           <a-radio :value="'SatGoogleXYZ'">谷歌卫星图</a-radio>
           <a-radio :value="'DixingGoogleXYZ'">谷歌地形</a-radio>
@@ -2016,7 +2021,9 @@
     <h2>热力图(HeatMap)</h2>
     <playground :codeText="code4">
       <div style="width: 100%; height: 500px">
-        <a-button type="primary" @click="onCode3Fun1">添加新北区的GeoJSON数据</a-button>
+        <a-button type="primary" style="margin-bottom: 20px" @click="onCode3Fun1"
+          >添加新北区的GeoJSON数据</a-button
+        >
         <adv-olmap-heatmap :zoom="11.5" ref="heatRef" />
       </div>
     </playground>
@@ -2502,7 +2509,7 @@ export default {
           }
         <\/script>
       `,
-    }
+    };
   },
   methods: {
     onCode1Fun1() {

@@ -5,9 +5,8 @@ module.exports = {
   getConfig({ webpackConfig }) {
     webpackConfig.resolve.modules.unshift(path.join(__dirname, 'node_modules'));
     webpackConfig.externals = {
-      ...externals,
-      '@baifendian/adherev-ui-css': 'commonjs2 @baifendian/adherev-ui-css',
-      '@baifendian/adherev-util-resource': 'commonjs2 @baifendian/adherev-util-resource',
+      ...externals.defaultExternals,
+      ...externals.externals(['@baifendian/adherev-ui-css', '@baifendian/adherev-util-resource']),
     };
   },
 };

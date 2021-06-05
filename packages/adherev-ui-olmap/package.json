@@ -12,7 +12,6 @@
     "buildpackage": "ctbuildv buildpackagets",
     "buildumd": "ctbuildv buildumd --packagename AdherevOLMap --define alias=@,evnVars=true",
     "generatorchangelog": "bd changelog/CHANGELOG.html"
-
   },
   "repository": {
     "type": "git",
