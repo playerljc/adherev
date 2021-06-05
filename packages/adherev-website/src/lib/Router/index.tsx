@@ -1,3 +1,4 @@
+import Vue from 'vue';
 import VueRouter from 'vue-router';
 import { Skeleton } from 'ant-design-vue';
 
@@ -6,11 +7,10 @@ import RouterConfig from '@/config/router.config';
 
 // @ts-ignore
 import BasicLayout from '../BasicLayout';
+import Util from '../BasicLayout/Util';
 
 // @ts-ignore
 import styles from './index.less';
-import Vue from 'vue';
-import Util from '../BasicLayout/Util';
 
 Vue.use(VueRouter);
 
