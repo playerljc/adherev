@@ -20,7 +20,7 @@
         {
           params: 'firstLoading',
           desc: '自定义firstLoading',
-          type: 'React.ReactElement | null',
+          type: 'VNode | null',
           defaultVal: 'null',
         },
       ]"
@@ -42,7 +42,7 @@
           desc: '渲染的UI',
           modifier: 'public',
           params: [],
-          returnType: 'React.ReactElement',
+          returnType: 'VNode',
           returnDesc: '',
         },
         {

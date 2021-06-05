@@ -28,7 +28,7 @@
         {
           params: 'children',
           desc: '子组件',
-          type: 'React.ReactElement',
+          type: 'VNode',
           defaultVal: 'null',
         },
       ]"

@@ -122,7 +122,7 @@
           desc: '渲染查询的UI',
           modifier: 'public',
           params: [],
-          returnType: 'React.ReactElement | null',
+          returnType: 'VNode | null',
           returnDesc: '',
         },
         {
@@ -199,7 +199,7 @@
           desc: '渲染SearchFooter的按钮组',
           modifier: 'public',
           params: [],
-          returnType: 'Array<React.ReactElement> | null',
+          returnType: 'Array<VNode> | null',
           returnDesc: '',
         },
         {

@@ -20,14 +20,14 @@
             {
               name: 'title',
               desc: '标题',
-              type: 'String | React.ReactElement',
+              type: 'String | VNode',
               defaultVal: '',
               required: '',
             },
             {
               name: 'text',
               desc: '显示的内容',
-              type: 'String | React.ReactElement',
+              type: 'String | VNode',
               defaultVal: '',
               required: '',
             },
@@ -55,7 +55,7 @@
             {
               name: 'icon',
               desc: '图标',
-              type: 'string | React.ReactElement',
+              type: 'string | VNode',
               defaultVal: '',
               required: '',
             },
@@ -84,14 +84,14 @@
             {
               name: 'title',
               desc: '标题',
-              type: 'String | React.ReactElement',
+              type: 'String | VNode',
               defaultVal: '',
               required: '',
             },
             {
               name: 'text',
               desc: '显示的内容',
-              type: 'String | React.ReactElement',
+              type: 'String | VNode',
               defaultVal: '',
               required: '',
             },
@@ -119,7 +119,7 @@
             {
               name: 'icon',
               desc: '图标',
-              type: 'string | React.ReactElement',
+              type: 'string | VNode',
               defaultVal: '',
               required: '',
             },
@@ -141,7 +141,7 @@
             {
               name: 'title',
               desc: '标题',
-              type: 'String | React.ReactElement',
+              type: 'String | VNode',
               defaultVal: '',
               required: '',
             },
@@ -183,7 +183,7 @@
             {
               name: 'icon',
               desc: '图标',
-              type: 'string | React.ReactElement',
+              type: 'string | VNode',
               defaultVal: '',
               required: '',
             },
@@ -205,7 +205,7 @@
             {
               name: 'title',
               desc: '标题',
-              type: 'String | React.ReactElement',
+              type: 'String | VNode',
               defaultVal: '',
               required: '',
             },
@@ -247,7 +247,7 @@
             {
               name: 'icon',
               desc: '图标',
-              type: 'string | React.ReactElement',
+              type: 'string | VNode',
               defaultVal: '',
               required: '',
             },
@@ -269,7 +269,7 @@
             {
               name: 'title',
               desc: '标题',
-              type: 'String | React.ReactElement',
+              type: 'String | VNode',
               defaultVal: '',
               required: '',
             },
@@ -311,7 +311,7 @@
             {
               name: 'icon',
               desc: '图标',
-              type: 'string | React.ReactElement',
+              type: 'string | VNode',
               defaultVal: '',
               required: '',
             },
@@ -333,7 +333,7 @@
             {
               name: 'title',
               desc: '标题',
-              type: 'String | React.ReactElement',
+              type: 'String | VNode',
               defaultVal: '',
               required: '',
             },
@@ -375,7 +375,7 @@
             {
               name: 'icon',
               desc: '图标',
-              type: 'string | React.ReactElement',
+              type: 'string | VNode',
               defaultVal: '',
               required: '',
             },
@@ -397,7 +397,7 @@
             {
               name: 'title',
               desc: '标题',
-              type: 'String | React.ReactElement',
+              type: 'String | VNode',
               defaultVal: '',
               required: '',
             },
@@ -439,7 +439,7 @@
             {
               name: 'icon',
               desc: '图标',
-              type: 'string | React.ReactElement',
+              type: 'string | VNode',
               defaultVal: '',
               required: '',
             },
@@ -468,7 +468,7 @@
             {
               name: 'children',
               desc: '显示的内容',
-              type: 'React.ReactElement | null',
+              type: 'VNode | null',
               defaultVal: '',
               required: '',
             },

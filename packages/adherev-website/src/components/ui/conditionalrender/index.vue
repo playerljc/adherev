@@ -16,7 +16,7 @@
         {
           params: 'noMatch',
           desc: '条件部匹配时显示的UI',
-          type: 'React.ReactElement',
+          type: 'VNode',
           defaultVal: 'null',
         },
       ]"

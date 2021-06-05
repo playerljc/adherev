@@ -26,13 +26,13 @@
         {
           params: 'children',
           desc: '有权限时显示的内容',
-          type: 'React.ReactElement | null',
+          type: 'VNode | null',
           defaultVal: '',
         },
         {
           params: 'noMatch',
           desc: '没有权限时显示的内容',
-          type: 'React.ReactElement',
+          type: 'VNode',
           defaultVal: 'null',
         },
       ]"
