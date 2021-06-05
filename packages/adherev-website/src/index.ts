@@ -39,11 +39,13 @@ import {
   Split,
   Suspense,
   FlexLayout,
+  SearchTable,
   // @ts-ignore
 } from '@baifendian/adherev';
 
 import Router from './lib/Router';
 import Playground from './lib/Playground';
+import PlaygroundMulit from './lib/PlaygroundMulit';
 import FunctionProps from './lib/FunctionProps';
 import Props from './lib/Props';
 
@@ -87,8 +89,10 @@ Split.use(Vue);
 // @ts-ignore
 Suspense.use(Vue);
 FlexLayout.use(Vue);
+SearchTable.use(Vue);
 
 Vue.use(Playground);
+Vue.use(PlaygroundMulit);
 Vue.use(FunctionProps);
 Vue.use(Props);
 

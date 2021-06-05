@@ -1,0 +1,55 @@
+@import '~ant-design-vue/es/table/style/index.less';
+@import '~ant-design-vue/es/button/style/index.less';
+@import '~@baifendian/adherev-ui-suspense/lib/index.less';
+@import '~@baifendian/adherev-ui-flexlayout/lib/index.less';
+@import '~@baifendian/adherev-ui-css/lib/iconfont/iconfont.less';
+
+.adherev-ui-searchtable {
+  position: relative;
+  padding: 24px;
+  background-color: #f0f2f5;
+
+  > .adherev-ui-searchtable-SearchWrapper {
+    margin-bottom: 16px;
+    padding: 24px 24px 0;
+    background: #fff;
+
+    .adherev-ui-searchtable-SearchFooterWrapper {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      margin-bottom: 20px;
+
+      > .adherev-ui-searchtable-SearchFooterItem {
+        &:not(:last-child) {
+          margin-right: 10px;
+        }
+      }
+    }
+  }
+
+  > .adherev-ui-searchtable-TableWrapper {
+    position: relative;
+    background: #fff;
+    border-radius: 2px;
+  }
+}
+
+.adherev-ui-searchform {
+  min-width: 100%;
+  table-layout: fixed;
+  border-collapse: separate;
+  border-spacing: 0 20px;
+
+  > tbody {
+    > .adherev-ui-searchform-row {
+      > .adherev-ui-searchform-label {
+        max-width: 60px;
+        padding-right: 10px;
+        white-space: nowrap;
+        text-align: right;
+        word-break: keep-all;
+      }
+    }
+  }
+}

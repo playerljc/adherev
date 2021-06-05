@@ -13,6 +13,7 @@ import Spin from '@baifendian/adherev-ui-spin';
 import Split from '@baifendian/adherev-ui-split';
 import Suspense from '@baifendian/adherev-ui-suspense';
 import FlexLayout from '@baifendian/adherev-ui-flexlayout';
+import SearchTable from '@baifendian/adherev-ui-searchtable';
 import Util from '@baifendian/adherev-util';
 import AdapterScreen from '@baifendian/adherev-util-adapterscreen';
 import Ajax from '@baifendian/adherev-util-communication-ajax';
@@ -23,7 +24,7 @@ import NotNull from '@baifendian/adherev-util-notnull';
 import Preferences from '@baifendian/adherev-util-preferences';
 import Resource from '@baifendian/adherev-util-resource';
 import WatchMemoized from '@baifendian/adherev-util-watchmemoized';
-export { ConditionalRender, DelConfirm, ImportantConfirm, GlobalIndicator, HistoryBack, MessageDialog, Permission, ErrorPrompt, SuccessPrompt, WarnPrompt, Space, Spin, Split, Suspense, FlexLayout, Util, AdapterScreen, Ajax, Dict, Emitter, Intl, NotNull, Preferences, Resource, WatchMemoized, };
+export { ConditionalRender, DelConfirm, ImportantConfirm, GlobalIndicator, HistoryBack, MessageDialog, Permission, ErrorPrompt, SuccessPrompt, WarnPrompt, Space, Spin, Split, Suspense, FlexLayout, SearchTable, Util, AdapterScreen, Ajax, Dict, Emitter, Intl, NotNull, Preferences, Resource, WatchMemoized, };
 declare const _default: {
     install: (Vue: any) => void;
 };

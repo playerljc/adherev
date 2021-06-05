@@ -6,7 +6,6 @@ const selectorPrefix = 'adherev-ui-suspense';
  * renderNormalFirstLoading
  */
 function renderNormalFirstLoading(h) {
-  console.log('renderNormalFirstLoading', h);
   const result = [];
 
   for (let i = 0; i < 7; i++) {
@@ -30,10 +29,6 @@ export default {
       type: Boolean,
       default: false,
     },
-    // firstLoading: {
-    //   type: String,
-    //   default: null,
-    // },
   },
   data() {
     return {
@@ -44,7 +39,7 @@ export default {
     };
   },
   watch: {
-    reset: function (newVal, oldVal) {
+    reset: function (newVal) {
       if (newVal) {
         // 第一次
         // @ts-ignore
@@ -64,8 +59,11 @@ export default {
     this.fetchData();
   },
   methods: {
+    /**
+     * renderFirstLoading
+     * @param h
+     */
     renderFirstLoading(h) {
-      console.log('renderFirstLoading', h);
       // @ts-ignore
       const { $slots } = this;
 
@@ -76,8 +74,11 @@ export default {
       // @ts-ignore
       return renderNormalFirstLoading(h);
     },
+    /**
+     * renderNormal
+     * @param h
+     */
     renderNormal(h) {
-      console.log('renderNormal', h);
       return (
         // @ts-ignore
         <Spin size="large" spinning={this.showLoading()}>
@@ -86,8 +87,11 @@ export default {
         </Spin>
       );
     },
+    /**
+     * renderDispatch
+     * @param h
+     */
     renderDispatch(h) {
-      console.log('renderDispatch', h);
       // @ts-ignore
       const loading = this.showLoading();
 
@@ -113,6 +117,10 @@ export default {
       return this.renderNormal(h);
     },
   },
+  /**
+   * render
+   * @param h
+   */
   render(h) {
     // @ts-ignore
     return <div class={selectorPrefix}>{this.renderDispatch(h)}</div>;

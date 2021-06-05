@@ -39,9 +39,6 @@ import { lazy } from '@/lib/Router';
 // const FontSizeSetting = lazy(() =>
 //   import(/* webpackChunkName: "fontsizesetting" */ '@/components/ui/fontsizesetting'),
 // );
-// const SearchTable = lazy(() =>
-//   import(/* webpackChunkName: "searchtable" */ '@/components/ui/searchtable'),
-// );
 // const FormItemCreator = lazy(() =>
 //   import(/* webpackChunkName: "formitemcreator" */ '@/components/ui/formitemcreator'),
 // );
@@ -111,6 +108,8 @@ const Suspense = () => lazy(import(/* webpackChunkName: "suspense" */ '@/compone
 const CSS = () => lazy(import(/* webpackChunkName: "css" */ '@/components/ui/css'));
 const FlexLayout = () =>
   lazy(import(/* webpackChunkName: "flexlayout" */ '@/components/ui/flexlayout'));
+const SearchTable = () =>
+  lazy(import(/* webpackChunkName: "searchtable" */ '@/components/ui/searchtable'));
 
 export default () => [
   {
@@ -292,11 +291,11 @@ export default () => [
               //   name: 'FontSizeSetting',
               //   component: FontSizeSetting,
               // },
-              // {
-              //   path: '/adherev/ui/searchtable',
-              //   name: 'SearchTable',
-              //   component: SearchTable,
-              // },
+              {
+                path: '/adherev/ui/searchtable',
+                name: 'SearchTable',
+                component: SearchTable,
+              },
               // {
               //   path: '/adherev/ui/formitemcreator',
               //   name: 'FormItemCreator',

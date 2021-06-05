@@ -1,6 +1,4 @@
 // 待实现
-adherev-ui-flexlayout
-adherev-ui-searchtable
 adherev-ui-olmap
 
 // 优先级低的
@@ -55,3 +53,5 @@ adherev-ui-spin(demo)
 adherev-ui-split(demo)
 adherev-ui-suspense(demo)
 adherev-ui-css(demo)
+adherev-ui-flexlayout(demo)
+adherev-ui-searchtable(demo)

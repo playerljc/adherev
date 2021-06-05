@@ -13,6 +13,7 @@ import Spin from '@baifendian/adherev-ui-spin';
 import Split from '@baifendian/adherev-ui-split';
 import Suspense from '@baifendian/adherev-ui-suspense';
 import FlexLayout from '@baifendian/adherev-ui-flexlayout';
+import SearchTable from '@baifendian/adherev-ui-searchtable';
 import Util from '@baifendian/adherev-util';
 import AdapterScreen from '@baifendian/adherev-util-adapterscreen';
 import Ajax from '@baifendian/adherev-util-communication-ajax';
@@ -40,6 +41,7 @@ export {
   Split,
   Suspense,
   FlexLayout,
+  SearchTable,
   Util,
   AdapterScreen,
   Ajax,
@@ -98,6 +100,9 @@ export default {
     }
     if (FlexLayout.isUse()) {
       FlexLayout.use(Vue);
+    }
+    if (SearchTable.isUse()) {
+      SearchTable.use(Vue);
     }
     if (Util.isUse()) {
       Util.use(Vue);

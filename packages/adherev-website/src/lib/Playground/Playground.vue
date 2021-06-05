@@ -45,7 +45,7 @@ export default {
   },
   computed: {
     selectPrefix() {
-      return 'adhere-website-playground';
+      return 'adherev-website-playground';
     }
   },
   methods: {
@@ -60,13 +60,13 @@ export default {
 }
 </script>
 <style>
-.adhere-website-playground > .ant-card > .ant-card-actions {
+.adherev-website-playground > .ant-card > .ant-card-actions {
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.adhere-website-playground > .ant-card > .ant-card-actions > li {
+.adherev-website-playground > .ant-card > .ant-card-actions > li {
   float: none;
   width: auto !important;
 }
