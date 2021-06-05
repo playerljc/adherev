@@ -10,7 +10,7 @@ import {
 import Router from './lib/Router';
 import '@/config/component.register.config.js';
 
-import 'highlight.js/styles/default.css';
+import 'highlight.js/styles/agate.css';
 import '@baifendian/adherev/lib/css.less';
 import './index.less';
 
