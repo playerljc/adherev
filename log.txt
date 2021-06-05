@@ -1,5 +1,4 @@
 // 待实现
-adherev-ui-olmap
 
 // 优先级低的
 adhere-ui-backtopanimation
@@ -55,3 +54,4 @@ adherev-ui-suspense(demo)
 adherev-ui-css(demo)
 adherev-ui-flexlayout(demo)
 adherev-ui-searchtable(demo)
+adherev-ui-olmap(demo)
