@@ -19,6 +19,18 @@ export default {
       default: '',
     },
   },
+  methods: {
+    getDirection(): string {
+      // @ts-ignore
+      return this.direction;
+    },
+  },
+  provide() {
+    return {
+      // @ts-ignore
+      getDirection: this.getDirection,
+    };
+  },
   render(h) {
     // @ts-ignore
     const { $slots, className, direction } = this;

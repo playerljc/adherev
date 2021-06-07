@@ -20,6 +20,8 @@ import {
   Slider,
   Table,
   Tooltip,
+  List,
+  Avatar,
 } from 'ant-design-vue';
 import VueHighlightJS from 'vue-highlight.js';
 import {
@@ -36,6 +38,8 @@ import {
   Spin,
   Split,
   Suspense,
+  BackTopAnimation,
+  SplitLayout,
 } from '@baifendian/adherev';
 import Playground from '@/lib/Playground';
 import PlaygroundMulit from '@/lib/PlaygroundMulit';
@@ -62,6 +66,8 @@ Vue.use(DatePicker);
 Vue.use(Row);
 Vue.use(Col);
 Vue.use(ConfigProvider);
+Vue.use(List);
+Vue.use(Avatar);
 
 Vue.use(VueHighlightJS);
 
@@ -80,6 +86,8 @@ Suspense.use(Vue);
 FlexLayout.use(Vue);
 SearchTable.use(Vue);
 OLMap.use(Vue);
+BackTopAnimation.use(Vue);
+SplitLayout.use(Vue);
 
 Vue.use(Playground);
 Vue.use(PlaygroundMulit);

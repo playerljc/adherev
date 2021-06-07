@@ -3,7 +3,7 @@ import Fixed from './fixed';
 // @ts-ignore
 import Auto from './auto';
 // @ts-ignore
-import FlexLayout from './flexlayout';
+import FlexLayout, { selectorPrefix } from './flexlayout';
 
 // @ts-ignore
 import { withInstall } from '../../_util';
@@ -23,5 +23,6 @@ Component.use = (Vue) => {
 // @ts-ignore
 Component.Fixed = withInstall(Fixed);
 Component.Auto = withInstall(Auto);
+Component.selectorPrefix = selectorPrefix;
 
 export default Component;

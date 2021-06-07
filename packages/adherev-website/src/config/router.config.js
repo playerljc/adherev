@@ -7,9 +7,6 @@ import { lazy } from '@/lib/Router';
 // const TableHeadSearch = lazy(() =>
 //   import(/* webpackChunkName: "tableheadsearch" */ '@/components/ui/tableheadsearch'),
 // );
-// const SplitLayout = lazy(() =>
-//   import(/* webpackChunkName: "splitlayout" */ '@/components/ui/splitlayout'),
-// );
 // const StickupLayout = lazy(() =>
 //   import(/* webpackChunkName: "stickuplayout" */ '@/components/ui/stickuplayout'),
 // );
@@ -45,9 +42,6 @@ import { lazy } from '@/lib/Router';
 //   import(/* webpackChunkName: "tablelist" */ '@/components/ui/tablelist'),
 // );
 // const Popup = lazy(() => import(/* webpackChunkName: "popup" */ '@/components/ui/popup'));
-// const BackTopAnimation = lazy(() =>
-//   import(/* webpackChunkName: "backtopanimation" */ '@/components/ui/backtopanimation'),
-// );
 // const PullRefresh = lazy(() =>
 //   import(/* webpackChunkName: "pullrefresh" */ '@/components/ui/pullrefresh'),
 // );
@@ -110,6 +104,10 @@ const FlexLayout = () =>
 const SearchTable = () =>
   lazy(import(/* webpackChunkName: "searchtable" */ '@/components/ui/searchtable'));
 const OLMap = () => lazy(import(/* webpackChunkName: "olmap" */ '@/components/ui/olmap'));
+const BackTopAnimation = () =>
+  lazy(import(/* webpackChunkName: "backtopanimation" */ '@/components/ui/backtopanimation'));
+const SplitLayout = () =>
+  lazy(import(/* webpackChunkName: "splitlayout" */ '@/components/ui/splitlayout'));
 
 export default () => [
   {
@@ -236,11 +234,11 @@ export default () => [
                 name: 'FlexLayout',
                 component: FlexLayout,
               },
-              // {
-              //   path: '/adherev/ui/splitlayout',
-              //   name: 'SplitLayout',
-              //   component: SplitLayout,
-              // },
+              {
+                path: '/adherev/ui/splitlayout',
+                name: 'SplitLayout',
+                component: SplitLayout,
+              },
               // {
               //   path: '/adherev/ui/stickuplayout',
               //   name: 'StickupLayout',
@@ -311,11 +309,11 @@ export default () => [
               //   name: 'Popup',
               //   component: Popup,
               // },
-              // {
-              //   path: '/adherev/ui/backtopanimation',
-              //   name: 'BackTopAnimation',
-              //   component: BackTopAnimation,
-              // },
+              {
+                path: '/adherev/ui/backtopanimation',
+                name: 'BackTopAnimation',
+                component: BackTopAnimation,
+              },
               // {
               //   path: '/adherev/ui/pullrefresh',
               //   name: 'PullRefresh',

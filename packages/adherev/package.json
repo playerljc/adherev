@@ -57,6 +57,8 @@
     "@baifendian/adherev-ui-flexlayout": "^1.0.0",
     "@baifendian/adherev-ui-searchtable": "^1.0.0",
     "@baifendian/adherev-ui-olmap": "^1.0.0",
+    "@baifendian/adherev-ui-backtopanimation": "^1.0.0",
+    "@baifendian/adherev-ui-splitlayout": "^1.0.0",
     "@baifendian/adherev-util": "^1.0.0",
     "@baifendian/adherev-util-adapterscreen": "^1.0.0",
     "@baifendian/adherev-util-communication-ajax": "^1.0.0",
