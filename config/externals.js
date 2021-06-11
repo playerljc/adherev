@@ -3,6 +3,7 @@ exports.defaultExternals = {
   'ant-design-vue': 'commonjs2 ant-design-vue',
   classnames: 'commonjs2 classnames',
   'omit.js': 'commonjs omit.js',
+  'vue-fragment': 'commonjs2 vue-fragment',
 };
 
 exports.externals = function (externals) {

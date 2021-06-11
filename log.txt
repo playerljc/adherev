@@ -1,23 +1,21 @@
 // 待实现
+adherev-ui-contextmenu
 
 // 优先级低的
-adhere-ui-scrollload
-adhere-ui-slidelayout
-adhere-ui-contextmenu
-adhere-ui-pullrefresh
-adhere-ui-revolving
-adhere-ui-popup
-adhere-ui-sliderscale
-adhere-ui-stickuplayout
-adhere-ui-surnames
-adhere-ui-cascadecompared
-adhere-ui-swipeout
-adhere-ui-tableheadsearch
-adhere-ui-tablelist
-adhere-ui-jdcategorytab
-adhere-ui-notification
-adhere-ui-imagelazy
-adhere-ui-fontsizesetting
+adherev-ui-pullrefresh
+adherev-ui-revolving
+adherev-ui-popup
+adherev-ui-sliderscale
+adherev-ui-stickuplayout
+adherev-ui-surnames
+adherev-ui-cascadecompared
+adherev-ui-swipeout
+adherev-ui-tableheadsearch
+adherev-ui-tablelist
+adherev-ui-jdcategorytab
+adherev-ui-notification
+adherev-ui-imagelazy
+adherev-ui-fontsizesetting
 
 // 移除的
 adhere-ui-formitemcreator
@@ -53,5 +51,7 @@ adherev-ui-css(demo)
 adherev-ui-flexlayout(demo)
 adherev-ui-searchtable(demo)
 adherev-ui-olmap(demo)
-adhere-ui-backtopanimation(demo)
-adhere-ui-splitlayout(demo)
+adherev-ui-backtopanimation(demo)
+adherev-ui-splitlayout(demo)
+adherev-ui-scrollload(demo)
+adherev-ui-slidelayout(demo)

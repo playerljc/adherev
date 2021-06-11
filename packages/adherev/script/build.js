@@ -34,6 +34,8 @@ const namedMap = new Map([
   ['@baifendian/adherev-ui-olmap', 'OLMap'],
   ['@baifendian/adherev-ui-backtopanimation', 'BackTopAnimation'],
   ['@baifendian/adherev-ui-splitlayout', 'SplitLayout'],
+  ['@baifendian/adherev-ui-scrollload', 'ScrollLoad'],
+  ['@baifendian/adherev-ui-slidelayout', 'SlideLayout'],
   ['@baifendian/adherev-util', 'Util'],
   ['@baifendian/adherev-util-communication-ajax', 'Ajax'],
   ['@baifendian/adherev-util-dict', 'Dict'],

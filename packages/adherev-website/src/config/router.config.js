@@ -17,17 +17,11 @@ import { lazy } from '@/lib/Router';
 // const Revolving = lazy(() =>
 //   import(/* webpackChunkName: "revolving" */ '@/components/ui/revolving'),
 // );
-// const ScrollLoad = lazy(() =>
-//   import(/* webpackChunkName: "scrollload" */ '@/components/ui/scrollload'),
-// );
 // const JCategoryTab = lazy(() =>
 //   import(/* webpackChunkName: "jcategorytab" */ '@/components/ui/jdcategorytab'),
 // );
 // const CascadeCompared = lazy(() =>
 //   import(/* webpackChunkName: "cascadecompared" */ '@/components/ui/cascadecompared'),
-// );
-// const SlideLayout = lazy(() =>
-//   import(/* webpackChunkName: "slidelayout" */ '@/components/ui/slidelayout'),
 // );
 // const ContextMenu = lazy(() =>
 //   import(/* webpackChunkName: "contextmenu" */ '@/components/ui/contextmenu'),
@@ -108,6 +102,10 @@ const BackTopAnimation = () =>
   lazy(import(/* webpackChunkName: "backtopanimation" */ '@/components/ui/backtopanimation'));
 const SplitLayout = () =>
   lazy(import(/* webpackChunkName: "splitlayout" */ '@/components/ui/splitlayout'));
+const ScrollLoad = () =>
+  lazy(import(/* webpackChunkName: "scrollload" */ '@/components/ui/scrollload'));
+const SlideLayout = () =>
+  lazy(import(/* webpackChunkName: "slidelayout" */ '@/components/ui/slidelayout'));
 
 export default () => [
   {
@@ -259,11 +257,11 @@ export default () => [
               //   name: 'Revolving',
               //   component: Revolving,
               // },
-              // {
-              //   path: '/adherev/ui/scrollload',
-              //   name: 'ScrollLoad',
-              //   component: ScrollLoad,
-              // },
+              {
+                path: '/adherev/ui/scrollload',
+                name: 'ScrollLoad',
+                component: ScrollLoad,
+              },
               // {
               //   path: '/adherev/ui/jcategorytab',
               //   name: 'JCategoryTab',
@@ -274,11 +272,11 @@ export default () => [
               //   name: 'CascadeCompared',
               //   component: CascadeCompared,
               // },
-              // {
-              //   path: '/adherev/ui/slidelayout',
-              //   name: 'SlideLayout',
-              //   component: SlideLayout,
-              // },
+              {
+                path: '/adherev/ui/slidelayout',
+                name: 'SlideLayout',
+                component: SlideLayout,
+              },
               // {
               //   path: '/adherev/ui/contextmenu',
               //   name: 'ContextMenu',

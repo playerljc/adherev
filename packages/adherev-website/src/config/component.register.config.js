@@ -40,6 +40,8 @@ import {
   Suspense,
   BackTopAnimation,
   SplitLayout,
+  ScrollLoad,
+  SlideLayout,
 } from '@baifendian/adherev';
 import Playground from '@/lib/Playground';
 import PlaygroundMulit from '@/lib/PlaygroundMulit';
@@ -88,6 +90,8 @@ SearchTable.use(Vue);
 OLMap.use(Vue);
 BackTopAnimation.use(Vue);
 SplitLayout.use(Vue);
+ScrollLoad.use(Vue);
+SlideLayout.use(Vue);
 
 Vue.use(Playground);
 Vue.use(PlaygroundMulit);

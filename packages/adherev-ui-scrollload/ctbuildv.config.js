@@ -6,7 +6,7 @@ module.exports = {
     webpackConfig.resolve.modules.unshift(path.join(__dirname, 'node_modules'));
     webpackConfig.externals = {
       ...externals.defaultExternals,
-      ...externals.externals(['@baifendian/adherev-util-resource']),
+      ...externals.externals(['@baifendian/adherev-util-intl']),
     };
   },
 };

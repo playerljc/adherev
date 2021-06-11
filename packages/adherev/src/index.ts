@@ -17,6 +17,8 @@ import SearchTable from '@baifendian/adherev-ui-searchtable';
 import OLMap from '@baifendian/adherev-ui-olmap';
 import BackTopAnimation from '@baifendian/adherev-ui-backtopanimation';
 import SplitLayout from '@baifendian/adherev-ui-splitlayout';
+import ScrollLoad from '@baifendian/adherev-ui-scrollload';
+import SlideLayout from '@baifendian/adherev-ui-slidelayout';
 import Util from '@baifendian/adherev-util';
 import AdapterScreen from '@baifendian/adherev-util-adapterscreen';
 import Ajax from '@baifendian/adherev-util-communication-ajax';
@@ -48,6 +50,8 @@ export {
   OLMap,
   BackTopAnimation,
   SplitLayout,
+  ScrollLoad,
+  SlideLayout,
   Util,
   AdapterScreen,
   Ajax,
@@ -157,6 +161,16 @@ BackTopAnimation.use(Vue); }
 SplitLayout.isUse()){ 
 // @ts-ignore
 SplitLayout.use(Vue); }
+		if(
+// @ts-ignore
+ScrollLoad.isUse()){ 
+// @ts-ignore
+ScrollLoad.use(Vue); }
+		if(
+// @ts-ignore
+SlideLayout.isUse()){ 
+// @ts-ignore
+SlideLayout.use(Vue); }
 		if(
 // @ts-ignore
 Util.isUse()){ 
