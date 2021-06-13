@@ -1,5 +1,4 @@
 // 待实现
-adherev-ui-contextmenu
 
 // 优先级低的
 adherev-ui-pullrefresh
@@ -55,3 +54,4 @@ adherev-ui-backtopanimation(demo)
 adherev-ui-splitlayout(demo)
 adherev-ui-scrollload(demo)
 adherev-ui-slidelayout(demo)
+adherev-ui-contextmenu(demo)

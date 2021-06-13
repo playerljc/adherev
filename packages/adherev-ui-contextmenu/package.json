@@ -1,7 +1,7 @@
 {
-  "name": "@baifendian/adherev-ui-slidelayout",
+  "name": "@baifendian/adherev-ui-contextmenu",
   "version": "1.0.0",
-  "description": "实现抽屉布局",
+  "description": "上下文菜单，可以移动后显示子菜单那种",
   "main": "lib/index.js",
   "files": [
     "lib",
@@ -10,7 +10,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "buildpackage": "ctbuildv buildpackagets",
-    "buildumd": "ctbuildv buildumd --packagename AdherevSlideLayout --define alias=@,evnVars=true",
+    "buildumd": "ctbuildv buildumd --packagename AdherevContextMenu --define alias=@,evnVars=true",
     "generatorchangelog": "bd changelog/CHANGELOG.html"
   },
   "repository": {
@@ -35,7 +35,10 @@
     "typescript": "^3.8.2"
   },
   "dependencies": {
+    "@baifendian/adherev-ui-conditionalrender": "^1.0.0",
+    "@baifendian/adherev-util": "^1.0.0",
+    "@baifendian/adherev-ui-css": "^1.0.0",
     "classnames": "^2.2.6",
-    "vue-fragment": "^1.5.2"
+    "vue": "^2.6.14"
   }
 }

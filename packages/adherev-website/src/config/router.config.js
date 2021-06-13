@@ -23,9 +23,6 @@ import { lazy } from '@/lib/Router';
 // const CascadeCompared = lazy(() =>
 //   import(/* webpackChunkName: "cascadecompared" */ '@/components/ui/cascadecompared'),
 // );
-// const ContextMenu = lazy(() =>
-//   import(/* webpackChunkName: "contextmenu" */ '@/components/ui/contextmenu'),
-// );
 // const FontSizeSetting = lazy(() =>
 //   import(/* webpackChunkName: "fontsizesetting" */ '@/components/ui/fontsizesetting'),
 // );
@@ -106,6 +103,8 @@ const ScrollLoad = () =>
   lazy(import(/* webpackChunkName: "scrollload" */ '@/components/ui/scrollload'));
 const SlideLayout = () =>
   lazy(import(/* webpackChunkName: "slidelayout" */ '@/components/ui/slidelayout'));
+const ContextMenu = () =>
+  lazy(import(/* webpackChunkName: "contextmenu" */ '@/components/ui/contextmenu'));
 
 export default () => [
   {
@@ -277,11 +276,11 @@ export default () => [
                 name: 'SlideLayout',
                 component: SlideLayout,
               },
-              // {
-              //   path: '/adherev/ui/contextmenu',
-              //   name: 'ContextMenu',
-              //   component: ContextMenu,
-              // },
+              {
+                path: '/adherev/ui/contextmenu',
+                name: 'ContextMenu',
+                component: ContextMenu,
+              },
               // {
               //   path: '/adherev/ui/fontsizesetting',
               //   name: 'FontSizeSetting',

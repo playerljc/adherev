@@ -61,6 +61,7 @@
     "@baifendian/adherev-ui-splitlayout": "^1.0.0",
     "@baifendian/adherev-ui-scrollload": "^1.0.0",
     "@baifendian/adherev-ui-slidelayout": "^1.0.0",
+    "@baifendian/adherev-ui-contextmenu": "^1.0.0",
     "@baifendian/adherev-util": "^1.0.0",
     "@baifendian/adherev-util-adapterscreen": "^1.0.0",
     "@baifendian/adherev-util-communication-ajax": "^1.0.0",

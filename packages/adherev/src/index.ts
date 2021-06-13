@@ -19,6 +19,7 @@ import BackTopAnimation from '@baifendian/adherev-ui-backtopanimation';
 import SplitLayout from '@baifendian/adherev-ui-splitlayout';
 import ScrollLoad from '@baifendian/adherev-ui-scrollload';
 import SlideLayout from '@baifendian/adherev-ui-slidelayout';
+import ContextMenu from '@baifendian/adherev-ui-contextmenu';
 import Util from '@baifendian/adherev-util';
 import AdapterScreen from '@baifendian/adherev-util-adapterscreen';
 import Ajax from '@baifendian/adherev-util-communication-ajax';
@@ -52,6 +53,7 @@ export {
   SplitLayout,
   ScrollLoad,
   SlideLayout,
+  ContextMenu,
   Util,
   AdapterScreen,
   Ajax,
@@ -171,6 +173,11 @@ ScrollLoad.use(Vue); }
 SlideLayout.isUse()){ 
 // @ts-ignore
 SlideLayout.use(Vue); }
+		if(
+// @ts-ignore
+ContextMenu.isUse()){ 
+// @ts-ignore
+ContextMenu.use(Vue); }
 		if(
 // @ts-ignore
 Util.isUse()){ 
