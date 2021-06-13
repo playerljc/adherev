@@ -20,6 +20,7 @@ import SplitLayout from '@baifendian/adherev-ui-splitlayout';
 import ScrollLoad from '@baifendian/adherev-ui-scrollload';
 import SlideLayout from '@baifendian/adherev-ui-slidelayout';
 import ContextMenu from '@baifendian/adherev-ui-contextmenu';
+import PullRefresh from '@baifendian/adherev-ui-pullrefresh';
 import Util from '@baifendian/adherev-util';
 import AdapterScreen from '@baifendian/adherev-util-adapterscreen';
 import Ajax from '@baifendian/adherev-util-communication-ajax';
@@ -54,6 +55,7 @@ export {
   ScrollLoad,
   SlideLayout,
   ContextMenu,
+  PullRefresh,
   Util,
   AdapterScreen,
   Ajax,
@@ -178,6 +180,11 @@ SlideLayout.use(Vue); }
 ContextMenu.isUse()){ 
 // @ts-ignore
 ContextMenu.use(Vue); }
+		if(
+// @ts-ignore
+PullRefresh.isUse()){ 
+// @ts-ignore
+PullRefresh.use(Vue); }
 		if(
 // @ts-ignore
 Util.isUse()){ 

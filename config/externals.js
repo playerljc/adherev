@@ -4,6 +4,8 @@ exports.defaultExternals = {
   classnames: 'commonjs2 classnames',
   'omit.js': 'commonjs omit.js',
   'vue-fragment': 'commonjs2 vue-fragment',
+  'load-awesome': 'commonjs2 load-awesome',
+  'moment': 'commonjs moment',
 };
 
 exports.externals = function (externals) {

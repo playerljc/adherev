@@ -42,6 +42,7 @@ import {
   SplitLayout,
   ScrollLoad,
   SlideLayout,
+  PullRefresh,
 } from '@baifendian/adherev';
 import Playground from '@/lib/Playground';
 import PlaygroundMulit from '@/lib/PlaygroundMulit';
@@ -92,6 +93,7 @@ BackTopAnimation.use(Vue);
 SplitLayout.use(Vue);
 ScrollLoad.use(Vue);
 SlideLayout.use(Vue);
+PullRefresh.use(Vue);
 
 Vue.use(Playground);
 Vue.use(PlaygroundMulit);

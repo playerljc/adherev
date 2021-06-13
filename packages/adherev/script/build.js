@@ -37,6 +37,7 @@ const namedMap = new Map([
   ['@baifendian/adherev-ui-scrollload', 'ScrollLoad'],
   ['@baifendian/adherev-ui-slidelayout', 'SlideLayout'],
   ['@baifendian/adherev-ui-contextmenu', 'ContextMenu'],
+  ['@baifendian/adherev-ui-pullrefresh', 'PullRefresh'],
   ['@baifendian/adherev-util', 'Util'],
   ['@baifendian/adherev-util-communication-ajax', 'Ajax'],
   ['@baifendian/adherev-util-dict', 'Dict'],

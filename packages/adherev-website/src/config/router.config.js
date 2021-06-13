@@ -33,9 +33,6 @@ import { lazy } from '@/lib/Router';
 //   import(/* webpackChunkName: "tablelist" */ '@/components/ui/tablelist'),
 // );
 // const Popup = lazy(() => import(/* webpackChunkName: "popup" */ '@/components/ui/popup'));
-// const PullRefresh = lazy(() =>
-//   import(/* webpackChunkName: "pullrefresh" */ '@/components/ui/pullrefresh'),
-// );
 // const Notification = lazy(() =>
 //   import(/* webpackChunkName: "notification" */ '@/components/ui/notification'),
 // );
@@ -105,6 +102,8 @@ const SlideLayout = () =>
   lazy(import(/* webpackChunkName: "slidelayout" */ '@/components/ui/slidelayout'));
 const ContextMenu = () =>
   lazy(import(/* webpackChunkName: "contextmenu" */ '@/components/ui/contextmenu'));
+const PullRefresh = () =>
+  lazy(import(/* webpackChunkName: "pullrefresh" */ '@/components/ui/pullrefresh'));
 
 export default () => [
   {
@@ -311,11 +310,11 @@ export default () => [
                 name: 'BackTopAnimation',
                 component: BackTopAnimation,
               },
-              // {
-              //   path: '/adherev/ui/pullrefresh',
-              //   name: 'PullRefresh',
-              //   component: PullRefresh,
-              // },
+              {
+                path: '/adherev/ui/pullrefresh',
+                name: 'PullRefresh',
+                component: PullRefresh,
+              },
               // {
               //   path: '/adherev/ui/notification',
               //   name: 'Notification',
