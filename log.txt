@@ -1,8 +1,7 @@
 // 待实现
-adherev-ui-revolving
+adherev-ui-popup
 
 // 优先级低的
-adherev-ui-popup
 adherev-ui-sliderscale
 adherev-ui-stickuplayout
 adherev-ui-surnames
@@ -55,3 +54,4 @@ adherev-ui-scrollload(demo)
 adherev-ui-slidelayout(demo)
 adherev-ui-contextmenu(demo)
 adherev-ui-pullrefresh(demo)
+adherev-ui-revolving(demo)

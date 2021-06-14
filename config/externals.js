@@ -5,7 +5,8 @@ exports.defaultExternals = {
   'omit.js': 'commonjs omit.js',
   'vue-fragment': 'commonjs2 vue-fragment',
   'load-awesome': 'commonjs2 load-awesome',
-  'moment': 'commonjs moment',
+  moment: 'commonjs2 moment',
+  swiper: 'commonjs2 swiper',
 };
 
 exports.externals = function (externals) {

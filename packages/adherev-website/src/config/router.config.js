@@ -14,9 +14,6 @@ import { lazy } from '@/lib/Router';
 // const SliderScale = lazy(() =>
 //   import(/* webpackChunkName: "sliderscale" */ '@/components/ui/sliderscale'),
 // );
-// const Revolving = lazy(() =>
-//   import(/* webpackChunkName: "revolving" */ '@/components/ui/revolving'),
-// );
 // const JCategoryTab = lazy(() =>
 //   import(/* webpackChunkName: "jcategorytab" */ '@/components/ui/jdcategorytab'),
 // );
@@ -104,6 +101,8 @@ const ContextMenu = () =>
   lazy(import(/* webpackChunkName: "contextmenu" */ '@/components/ui/contextmenu'));
 const PullRefresh = () =>
   lazy(import(/* webpackChunkName: "pullrefresh" */ '@/components/ui/pullrefresh'));
+const Revolving = () =>
+  lazy(import(/* webpackChunkName: "revolving" */ '@/components/ui/revolving'));
 
 export default () => [
   {
@@ -250,11 +249,11 @@ export default () => [
               //   name: 'SliderScale',
               //   component: SliderScale,
               // },
-              // {
-              //   path: '/adherev/ui/revolving',
-              //   name: 'Revolving',
-              //   component: Revolving,
-              // },
+              {
+                path: '/adherev/ui/revolving',
+                name: 'Revolving',
+                component: Revolving,
+              },
               {
                 path: '/adherev/ui/scrollload',
                 name: 'ScrollLoad',

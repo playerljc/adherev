@@ -43,6 +43,7 @@ import {
   ScrollLoad,
   SlideLayout,
   PullRefresh,
+  Revolving,
 } from '@baifendian/adherev';
 import Playground from '@/lib/Playground';
 import PlaygroundMulit from '@/lib/PlaygroundMulit';
@@ -94,6 +95,7 @@ SplitLayout.use(Vue);
 ScrollLoad.use(Vue);
 SlideLayout.use(Vue);
 PullRefresh.use(Vue);
+Revolving.use(Vue);
 
 Vue.use(Playground);
 Vue.use(PlaygroundMulit);

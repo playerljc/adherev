@@ -55,7 +55,7 @@ export default {
         // @ts-ignore
         <MenuItem key={item.id} data={item} />
       ));
-    }
+    },
   },
   render(h) {
     return (

@@ -32,8 +32,8 @@ const ContextMenuComponent = {
       },
     },
     el: {
-      type: HTMLElement
-    }
+      type: HTMLElement,
+    },
   },
   provide() {
     return {
@@ -41,13 +41,13 @@ const ContextMenuComponent = {
       getContext: this.getContext,
     };
   },
-  computed:{
+  computed: {
     getClass() {
       return classNames(selectorPrefix);
     },
     getStyle() {
       return `z-index: ${9999 * 2}`;
-    }
+    },
   },
   methods: {
     getContext() {
