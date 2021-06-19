@@ -1,4 +1,4 @@
-import pathToRegexp from 'path-to-regexp';
+import pathToRegexp from 'path-to-regexp'
 
 export default {
   /**
@@ -7,10 +7,10 @@ export default {
    * @param defaultSelectedKeys
    * @param routes
    */
-  loopRoutes({ defaultOpenKeys, defaultSelectedKeys, routes }) {
-    const { pathname } = window.location;
+  loopRoutes ({ defaultOpenKeys, defaultSelectedKeys, routes }) {
+    const { pathname } = window.location
     for (let i = 0; i < routes.length; i++) {
-      const route = routes[i];
+      const route = routes[i]
       if (pathname.indexOf(route.path) !== -1) {
         if (
           route.children &&
@@ -19,14 +19,14 @@ export default {
         ) {
           defaultOpenKeys.push({
             path: route.path,
-            name: route.name,
-          });
-          this.loopRoutes({ defaultOpenKeys, defaultSelectedKeys, routes: route.children });
+            name: route.name
+          })
+          this.loopRoutes({ defaultOpenKeys, defaultSelectedKeys, routes: route.children })
         } else {
           defaultSelectedKeys.push({
             path: route.path,
-            name: route.name,
-          });
+            name: route.name
+          })
         }
       }
     }
@@ -37,25 +37,25 @@ export default {
    * @param routes
    * @return {{path: *, name: *}}
    */
-  fillKey(key, routes) {
-    let entry;
+  fillKey (key, routes) {
+    let entry
     for (let i = 0; i < routes.length; i++) {
-      const item = routes[i];
+      const item = routes[i]
       if (item.path === key) {
         entry = {
           name: item.name,
-          path: item.path,
-        };
-        break;
+          path: item.path
+        }
+        break
       }
 
       if (item.children) {
-        entry = this.fillKey(key, item.children);
-        if (entry) break;
+        entry = this.fillKey(key, item.children)
+        if (entry) break
       }
     }
 
-    return entry;
+    return entry
   },
   /**
    * isAuthority
@@ -63,26 +63,26 @@ export default {
    * @param allAuthority
    * @return {boolean}
    */
-  isAuthority(authoritys = [], allAuthority = []) {
-    let flag = true;
+  isAuthority (authoritys = [], allAuthority = []) {
+    let flag = true
     for (let i = 0; i < authoritys.length; i++) {
       if (allAuthority.indexOf(authoritys[i]) === -1) {
-        flag = false;
-        break;
+        flag = false
+        break
       }
     }
-    return flag;
+    return flag
   },
   /**
    * isSubMenu
    * @param r
    */
-  isSubMenu(r) {
+  isSubMenu (r) {
     return (
       r.children &&
       r.children.length &&
       r.children.filter((t) => t.hide).length !== r.children.length
-    );
+    )
   },
   /**
    * getPathBySelectKey
@@ -90,30 +90,30 @@ export default {
    * @param routes
    * @param selectKey
    */
-  getPathBySelectKey({ path, routes, selectKey }) {
+  getPathBySelectKey ({ path, routes, selectKey }) {
     for (let i = 0; i < routes.length; i++) {
-      const item = routes[i];
+      const item = routes[i]
 
       // eslint-disable-next-line no-continue
-      if ('redirect' in item) continue;
+      if ('redirect' in item) continue
 
-      const keys = [];
+      const keys = []
 
       // 通过路由中定义的path生成正则表达式
       const reg = pathToRegexp(item.path, keys, {
         sensitive: false, // When true the route will be case sensitive. (default: false)
         strict: false, // When false the trailing slash is optional. (default: false)
         end: false, // When false the path will match at the beginning. (default: true)
-        delimiter: '/', // Set the default delimiter for repeat parameters. (default: '/')
-      });
+        delimiter: '/' // Set the default delimiter for repeat parameters. (default: '/')
+      })
 
       if (reg.test(selectKey)) {
-        path.push(item);
+        path.push(item)
       }
 
       if (item.children) {
-        this.getPathBySelectKey({ path, routes: item.children, selectKey });
+        this.getPathBySelectKey({ path, routes: item.children, selectKey })
       }
     }
-  },
-};
+  }
+}

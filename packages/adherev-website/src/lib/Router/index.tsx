@@ -1,29 +1,26 @@
-import Vue from 'vue';
-import VueRouter from 'vue-router';
-import { Skeleton } from 'ant-design-vue';
+import Vue from 'vue'
+import VueRouter from 'vue-router'
+import { Skeleton } from 'ant-design-vue'
 
+import RouterConfig from '@/config/router.config'
 
-import RouterConfig from '@/config/router.config';
+import BasicLayout from '../BasicLayout'
+import Util from '../BasicLayout/Util'
 
+import styles from './index.less'
 
-import BasicLayout from '../BasicLayout';
-import Util from '../BasicLayout/Util';
-
-
-import styles from './index.less';
-
-Vue.use(VueRouter);
+Vue.use(VueRouter)
 
 /**
  * WrapperComponent
  * @return {*}
  * @constructor
  */
-function WrapperComponent() {
+function WrapperComponent () {
   return {
     name: 'WrapperComponent',
-    render: (h) => h('router-view'),
-  };
+    render: (h) => h('router-view')
+  }
 }
 
 /**
@@ -31,28 +28,28 @@ function WrapperComponent() {
  * @param routes
  * @param authorized
  */
-function getBasicLayoutRoutes(routes, authorized) {
+function getBasicLayoutRoutes (routes, authorized) {
   return (routes || []).filter((r) => {
-    if ('hide' in r && r.hide) return false;
+    if ('hide' in r && r.hide) return false
 
     if (!r.redirect) {
       if (r.authority && r.authority.length) {
-        const isAuthority = Util.isAuthority(r.authority, authorized);
+        const isAuthority = Util.isAuthority(r.authority, authorized)
 
         if (isAuthority) {
-          r.children = getBasicLayoutRoutes(r.children, authorized);
+          r.children = getBasicLayoutRoutes(r.children, authorized)
         }
 
-        return isAuthority;
+        return isAuthority
       }
 
-      r.children = getBasicLayoutRoutes(r.children, authorized);
+      r.children = getBasicLayoutRoutes(r.children, authorized)
 
-      return true;
+      return true
     }
 
-    return false;
-  });
+    return false
+  })
 }
 
 /**
@@ -62,41 +59,41 @@ function getBasicLayoutRoutes(routes, authorized) {
  * @param route
  * @param authorized
  */
-function renderRoute({ router, parentRoutes, route, authorized }) {
-  const { children = [], ...others } = route;
+function renderRoute ({ router, parentRoutes, route, authorized }) {
+  const { children = [], ...others } = route
 
   const cloneRoute = Object.assign(others, {
-    children: [],
-  });
+    children: []
+  })
 
-  router.push(cloneRoute);
+  router.push(cloneRoute)
 
   if (!cloneRoute.component) {
     if (!('redirect' in cloneRoute)) {
       // 没有component是SubMenu
-      cloneRoute.component = WrapperComponent();
+      cloneRoute.component = WrapperComponent()
     } else {
       // 如果是redirect
       const firstAuthorityRoute = (parentRoutes || [])
         .filter((r) => r.authority)
-        .find((r) => r.authority.some((a) => authorized.includes(a)));
+        .find((r) => r.authority.some((a) => authorized.includes(a)))
       if (firstAuthorityRoute) {
-        cloneRoute.redirect = firstAuthorityRoute.path;
+        cloneRoute.redirect = firstAuthorityRoute.path
       }
     }
   } else if (cloneRoute.component === BasicLayout) {
     // 菜单布局
     cloneRoute.component = {
 
-      render(h) {
-        const routes = getBasicLayoutRoutes(children, authorized);
-        return <BasicLayout routes={routes} name={cloneRoute.name} />;
-      },
-    };
+      render (h) {
+        const routes = getBasicLayoutRoutes(children, authorized)
+        return <BasicLayout routes={routes} name={cloneRoute.name} />
+      }
+    }
   }
 
   if (children && children.length) {
-    renderRouterLoop(cloneRoute.children, children, authorized);
+    renderRouterLoop(cloneRoute.children, children, authorized)
   }
 }
 
@@ -106,16 +103,16 @@ function renderRoute({ router, parentRoutes, route, authorized }) {
  * @param children
  * @param authorized - 所有权限
  */
-function renderRouterLoop(router, children = [], authorized) {
+function renderRouterLoop (router, children = [], authorized) {
   for (let i = 0; i < children.length; i++) {
-    const route = children[i];
+    const route = children[i]
 
     renderRoute({
       router,
       parentRoutes: children,
       route,
-      authorized,
-    });
+      authorized
+    })
   }
 }
 
@@ -125,17 +122,16 @@ function renderRouterLoop(router, children = [], authorized) {
  * @param Component
  * @return {function(...[*]=)}
  */
-export function renderChildren({ path, Component }) {
+export function renderChildren ({ path, Component }) {
   return {
-    render(h) {
+    render (h) {
       if (window.location.pathname === path) {
-        return h(Component);
+        return h(Component)
       }
 
-
-      return this.$slots.default;
-    },
-  };
+      return this.$slots.default
+    }
+  }
 }
 
 /**
@@ -143,17 +139,16 @@ export function renderChildren({ path, Component }) {
  * @param {Object} AsyncView 需要加载的组件，如 import('@/components/home/Home.vue')
  * @return {Object} 返回一个promise对象
  */
-export function lazy(AsyncView) {
+export function lazy (AsyncView) {
   const AsyncHandler = () => ({
     // 需要加载的组件 (应该是一个 `Promise` 对象)
     component: AsyncView,
     // 异步组件加载时使用的组件
     loading: {
 
-      render(h) {
-
-        return <Skeleton avatar paragraph={{ rows: 4 }} />;
-      },
+      render (h) {
+        return <Skeleton avatar paragraph={{ rows: 4 }} />
+      }
     },
     // 加载失败时使用的组件
     // error: require('@/components/public/RouteError.vue').default,
@@ -161,15 +156,15 @@ export function lazy(AsyncView) {
     delay: 200,
     // 如果提供了超时时间且组件加载也超时了，
     // 则使用加载失败时使用的组件。默认值是：`Infinity`
-    timeout: 10000,
-  });
+    timeout: 10000
+  })
 
   return Promise.resolve({
     functional: true,
-    render(h, { data, children }) {
-      return h(AsyncHandler, data, children);
-    },
-  });
+    render (h, { data, children }) {
+      return h(AsyncHandler, data, children)
+    }
+  })
 }
 
 /**
@@ -178,18 +173,18 @@ export function lazy(AsyncView) {
  */
 export default () => {
   // 路由配置
-  const config = RouterConfig();
+  const config = RouterConfig()
 
   // eslint-disable-next-line no-redeclare
-  const authorized = [];
+  const authorized = []
 
-  const router = [];
+  const router = []
 
   // 根据路由配置生成实际的路由
-  renderRouterLoop(router, config, authorized);
+  renderRouterLoop(router, config, authorized)
 
   return new VueRouter({
     mode: 'history',
-    routes: router,
-  });
-};
+    routes: router
+  })
+}

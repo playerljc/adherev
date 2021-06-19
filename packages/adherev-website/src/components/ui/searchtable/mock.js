@@ -1,10 +1,10 @@
-import faker from 'faker';
+import faker from 'faker'
 
-import { Util } from '@baifendian/adherev';
+import { Util } from '@baifendian/adherev'
 
-const data = [];
-data.length = 100;
-data.fill(0);
+const data = []
+data.length = 100
+data.fill(0)
 
 export default {
   total: data.length,
@@ -16,6 +16,6 @@ export default {
     birthday: new Date().getTime(),
     deptName: faker.company.companyName(),
     height: faker.random.number(),
-    width: faker.random.number(),
-  })),
-};
+    width: faker.random.number()
+  }))
+}

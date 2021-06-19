@@ -1,6 +1,6 @@
 
-import PlaygroundMulit from './PlaygroundMulit';
+import PlaygroundMulit from './PlaygroundMulit'
 
-import { withInstall } from '@/_util';
+import { withInstall } from '@/_util'
 
-export default withInstall(PlaygroundMulit);
+export default withInstall(PlaygroundMulit)

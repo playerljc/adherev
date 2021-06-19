@@ -1,6 +1,6 @@
 
-import FunctionProps from './FunctionProps';
+import FunctionProps from './FunctionProps'
 
-import { withInstall } from '@/_util';
+import { withInstall } from '@/_util'
 
-export default withInstall(FunctionProps);
+export default withInstall(FunctionProps)

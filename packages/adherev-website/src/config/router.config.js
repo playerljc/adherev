@@ -1,5 +1,5 @@
-import BasicLayout from '@/lib/BasicLayout';
-import { lazy } from '@/lib/Router';
+import BasicLayout from '@/lib/BasicLayout'
+import { lazy } from '@/lib/Router'
 
 // const ImageLazy = lazy(() =>
 //   import(/* webpackChunkName: "imagelazy" */ '@/components/ui/imagelazy'),
@@ -45,64 +45,64 @@ import { lazy } from '@/lib/Router';
 //   import(/* webpackChunkName: "echarts" */ '@/components/gallery/gis/maptalks'),
 // );
 
-const App = () => lazy(import(/* webpackChunkName: "app" */ '@/app'));
-const Introduction = () => lazy(import(/* webpackChunkName: "introduction" */ '@/introduction'));
-const ConditionalRender = () => lazy(import('@/components/ui/conditionalrender'));
+const App = () => lazy(import(/* webpackChunkName: "app" */ '@/app'))
+const Introduction = () => lazy(import(/* webpackChunkName: "introduction" */ '@/introduction'))
+const ConditionalRender = () => lazy(import('@/components/ui/conditionalrender'))
 const GlobalIndicator = () =>
-  lazy(import(/* webpackChunkName: "globalindicator" */ '@/components/ui/globalindicator'));
+  lazy(import(/* webpackChunkName: "globalindicator" */ '@/components/ui/globalindicator'))
 const MessageDialog = () =>
-  lazy(import(/* webpackChunkName: "messagedialog" */ '@/components/ui/messagedialog'));
+  lazy(import(/* webpackChunkName: "messagedialog" */ '@/components/ui/messagedialog'))
 const Permission = () =>
-  lazy(import(/* webpackChunkName: "permission" */ '@/components/ui/permission'));
+  lazy(import(/* webpackChunkName: "permission" */ '@/components/ui/permission'))
 const DelConfirm = () =>
-  lazy(import(/* webpackChunkName: "delconfirm" */ '@/components/ui/delconfirm'));
+  lazy(import(/* webpackChunkName: "delconfirm" */ '@/components/ui/delconfirm'))
 const ImportantConfirm = () =>
-  lazy(import(/* webpackChunkName: "importantconfirm" */ '@/components/ui/importantconfirm'));
+  lazy(import(/* webpackChunkName: "importantconfirm" */ '@/components/ui/importantconfirm'))
 const AdapterScreen = () =>
-  lazy(import(/* webpackChunkName: "adapterscreen" */ '@/components/util/adapterscreen'));
-const Dict = () => lazy(import(/* webpackChunkName: "dict" */ '@/components/util/dict'));
-const Emitter = () => lazy(import(/* webpackChunkName: "emitter" */ '@/components/util/emitter'));
+  lazy(import(/* webpackChunkName: "adapterscreen" */ '@/components/util/adapterscreen'))
+const Dict = () => lazy(import(/* webpackChunkName: "dict" */ '@/components/util/dict'))
+const Emitter = () => lazy(import(/* webpackChunkName: "emitter" */ '@/components/util/emitter'))
 const Preferences = () =>
-  lazy(import(/* webpackChunkName: "preferences" */ '@/components/util/preferences'));
+  lazy(import(/* webpackChunkName: "preferences" */ '@/components/util/preferences'))
 const WatchMemoized = () =>
-  lazy(import(/* webpackChunkName: "watchmemoized" */ '@/components/util/watchmemoized'));
-const Util = () => lazy(import(/* webpackChunkName: "util" */ '@/components/util/util'));
-const NotNull = () => lazy(import(/* webpackChunkName: "notnull" */ '@/components/util/notnull'));
-const Intl = () => lazy(import(/* webpackChunkName: "intl" */ '@/components/util/intl'));
-const Ajax = () => lazy(import(/* webpackChunkName: "ajax" */ '@/components/util/ajax'));
+  lazy(import(/* webpackChunkName: "watchmemoized" */ '@/components/util/watchmemoized'))
+const Util = () => lazy(import(/* webpackChunkName: "util" */ '@/components/util/util'))
+const NotNull = () => lazy(import(/* webpackChunkName: "notnull" */ '@/components/util/notnull'))
+const Intl = () => lazy(import(/* webpackChunkName: "intl" */ '@/components/util/intl'))
+const Ajax = () => lazy(import(/* webpackChunkName: "ajax" */ '@/components/util/ajax'))
 const SuccessPrompt = () =>
-  lazy(import(/* webpackChunkName: "successprompt" */ '@/components/ui/successprompt'));
+  lazy(import(/* webpackChunkName: "successprompt" */ '@/components/ui/successprompt'))
 const ErrorPrompt = () =>
-  lazy(import(/* webpackChunkName: "errorprompt" */ '@/components/ui/errorprompt'));
+  lazy(import(/* webpackChunkName: "errorprompt" */ '@/components/ui/errorprompt'))
 const WarnPrompt = () =>
-  lazy(import(/* webpackChunkName: "warnprompt" */ '@/components/ui/warnprompt'));
-const Space = () => lazy(import(/* webpackChunkName: "space" */ '@/components/ui/space'));
-const Spin = () => lazy(import(/* webpackChunkName: "spin" */ '@/components/ui/spin'));
-const Split = () => lazy(import(/* webpackChunkName: "split" */ '@/components/ui/split'));
+  lazy(import(/* webpackChunkName: "warnprompt" */ '@/components/ui/warnprompt'))
+const Space = () => lazy(import(/* webpackChunkName: "space" */ '@/components/ui/space'))
+const Spin = () => lazy(import(/* webpackChunkName: "spin" */ '@/components/ui/spin'))
+const Split = () => lazy(import(/* webpackChunkName: "split" */ '@/components/ui/split'))
 const HistoryBack = () =>
-  lazy(import(/* webpackChunkName: "historyback" */ '@/components/ui/historyback'));
-const Suspense = () => lazy(import(/* webpackChunkName: "suspense" */ '@/components/ui/suspense'));
-const CSS = () => lazy(import(/* webpackChunkName: "css" */ '@/components/ui/css'));
+  lazy(import(/* webpackChunkName: "historyback" */ '@/components/ui/historyback'))
+const Suspense = () => lazy(import(/* webpackChunkName: "suspense" */ '@/components/ui/suspense'))
+const CSS = () => lazy(import(/* webpackChunkName: "css" */ '@/components/ui/css'))
 const FlexLayout = () =>
-  lazy(import(/* webpackChunkName: "flexlayout" */ '@/components/ui/flexlayout'));
+  lazy(import(/* webpackChunkName: "flexlayout" */ '@/components/ui/flexlayout'))
 const SearchTable = () =>
-  lazy(import(/* webpackChunkName: "searchtable" */ '@/components/ui/searchtable'));
-const OLMap = () => lazy(import(/* webpackChunkName: "olmap" */ '@/components/ui/olmap'));
+  lazy(import(/* webpackChunkName: "searchtable" */ '@/components/ui/searchtable'))
+const OLMap = () => lazy(import(/* webpackChunkName: "olmap" */ '@/components/ui/olmap'))
 const BackTopAnimation = () =>
-  lazy(import(/* webpackChunkName: "backtopanimation" */ '@/components/ui/backtopanimation'));
+  lazy(import(/* webpackChunkName: "backtopanimation" */ '@/components/ui/backtopanimation'))
 const SplitLayout = () =>
-  lazy(import(/* webpackChunkName: "splitlayout" */ '@/components/ui/splitlayout'));
+  lazy(import(/* webpackChunkName: "splitlayout" */ '@/components/ui/splitlayout'))
 const ScrollLoad = () =>
-  lazy(import(/* webpackChunkName: "scrollload" */ '@/components/ui/scrollload'));
+  lazy(import(/* webpackChunkName: "scrollload" */ '@/components/ui/scrollload'))
 const SlideLayout = () =>
-  lazy(import(/* webpackChunkName: "slidelayout" */ '@/components/ui/slidelayout'));
+  lazy(import(/* webpackChunkName: "slidelayout" */ '@/components/ui/slidelayout'))
 const ContextMenu = () =>
-  lazy(import(/* webpackChunkName: "contextmenu" */ '@/components/ui/contextmenu'));
+  lazy(import(/* webpackChunkName: "contextmenu" */ '@/components/ui/contextmenu'))
 const PullRefresh = () =>
-  lazy(import(/* webpackChunkName: "pullrefresh" */ '@/components/ui/pullrefresh'));
+  lazy(import(/* webpackChunkName: "pullrefresh" */ '@/components/ui/pullrefresh'))
 const Revolving = () =>
-  lazy(import(/* webpackChunkName: "revolving" */ '@/components/ui/revolving'));
-const Popup = () => lazy(import(/* webpackChunkName: "popup" */ '@/components/ui/popup'));
+  lazy(import(/* webpackChunkName: "revolving" */ '@/components/ui/revolving'))
+const Popup = () => lazy(import(/* webpackChunkName: "popup" */ '@/components/ui/popup'))
 
 export default () => [
   {
@@ -111,7 +111,7 @@ export default () => [
     children: [
       {
         path: '/',
-        redirect: '/adherev',
+        redirect: '/adherev'
       },
       {
         path: '/adherev',
@@ -119,12 +119,12 @@ export default () => [
         children: [
           {
             path: '/',
-            redirect: '/adherev/introduction',
+            redirect: '/adherev/introduction'
           },
           {
             path: '/adherev/introduction',
             name: '简介',
-            component: Introduction,
+            component: Introduction
           },
           {
             path: '/adherev/ui',
@@ -132,62 +132,62 @@ export default () => [
             children: [
               {
                 path: '/',
-                redirect: '/adherev/ui/conditionalrender',
+                redirect: '/adherev/ui/conditionalrender'
               },
               {
                 path: '/adherev/ui/conditionalrender',
                 name: 'ConditionalRender',
-                component: ConditionalRender,
+                component: ConditionalRender
               },
               {
                 path: '/adherev/ui/split',
                 name: 'Split',
-                component: Split,
+                component: Split
               },
               {
                 path: '/adherev/ui/space',
                 name: 'Space',
-                component: Space,
+                component: Space
               },
               {
                 path: '/adherev/ui/delconfirm',
                 name: 'DelConfirm',
-                component: DelConfirm,
+                component: DelConfirm
               },
               {
                 path: '/adherev/ui/importantconfirm',
                 name: 'ImportantConfirm',
-                component: ImportantConfirm,
+                component: ImportantConfirm
               },
               {
                 path: '/adherev/ui/globalindicator',
                 name: 'GlobalIndicator',
-                component: GlobalIndicator,
+                component: GlobalIndicator
               },
               {
                 path: '/adherev/ui/spin',
                 name: 'Spin',
-                component: Spin,
+                component: Spin
               },
               {
                 path: '/adherev/ui/historyback',
                 name: 'HistoryBack',
-                component: HistoryBack,
+                component: HistoryBack
               },
               {
                 path: '/adherev/ui/successprompt',
                 name: 'SuccessPrompt',
-                component: SuccessPrompt,
+                component: SuccessPrompt
               },
               {
                 path: '/adherev/ui/errorprompt',
                 name: 'ErrorPrompt',
-                component: ErrorPrompt,
+                component: ErrorPrompt
               },
               {
                 path: '/adherev/ui/warnprompt',
                 name: 'WarnPrompt',
-                component: WarnPrompt,
+                component: WarnPrompt
               },
               // {
               //   path: '/adherev/ui/imagelazy',
@@ -197,17 +197,17 @@ export default () => [
               {
                 path: '/adherev/ui/messagedialog',
                 name: 'MessageDialog',
-                component: MessageDialog,
+                component: MessageDialog
               },
               {
                 path: '/adherev/ui/permission',
                 name: 'Permission',
-                component: Permission,
+                component: Permission
               },
               {
                 path: '/adherev/ui/suspense',
                 name: 'Suspense',
-                component: Suspense,
+                component: Suspense
               },
               // {
               //   path: '/adherev/ui/tableheadsearch',
@@ -217,22 +217,22 @@ export default () => [
               {
                 path: '/adherev/ui/css',
                 name: 'CSS',
-                component: CSS,
+                component: CSS
               },
               {
                 path: '/adherev/ui/olmap',
                 name: 'OLMap',
-                component: OLMap,
+                component: OLMap
               },
               {
                 path: '/adherev/ui/flexlayout',
                 name: 'FlexLayout',
-                component: FlexLayout,
+                component: FlexLayout
               },
               {
                 path: '/adherev/ui/splitlayout',
                 name: 'SplitLayout',
-                component: SplitLayout,
+                component: SplitLayout
               },
               // {
               //   path: '/adherev/ui/stickuplayout',
@@ -252,12 +252,12 @@ export default () => [
               {
                 path: '/adherev/ui/revolving',
                 name: 'Revolving',
-                component: Revolving,
+                component: Revolving
               },
               {
                 path: '/adherev/ui/scrollload',
                 name: 'ScrollLoad',
-                component: ScrollLoad,
+                component: ScrollLoad
               },
               // {
               //   path: '/adherev/ui/jcategorytab',
@@ -272,12 +272,12 @@ export default () => [
               {
                 path: '/adherev/ui/slidelayout',
                 name: 'SlideLayout',
-                component: SlideLayout,
+                component: SlideLayout
               },
               {
                 path: '/adherev/ui/contextmenu',
                 name: 'ContextMenu',
-                component: ContextMenu,
+                component: ContextMenu
               },
               // {
               //   path: '/adherev/ui/fontsizesetting',
@@ -287,7 +287,7 @@ export default () => [
               {
                 path: '/adherev/ui/searchtable',
                 name: 'SearchTable',
-                component: SearchTable,
+                component: SearchTable
               },
               // {
               //   path: '/adherev/ui/formitemcreator',
@@ -302,18 +302,18 @@ export default () => [
               {
                 path: '/adherev/ui/popup',
                 name: 'Popup',
-                component: Popup,
+                component: Popup
               },
               {
                 path: '/adherev/ui/backtopanimation',
                 name: 'BackTopAnimation',
-                component: BackTopAnimation,
+                component: BackTopAnimation
               },
               {
                 path: '/adherev/ui/pullrefresh',
                 name: 'PullRefresh',
-                component: PullRefresh,
-              },
+                component: PullRefresh
+              }
               // {
               //   path: '/adherev/ui/notification',
               //   name: 'Notification',
@@ -324,7 +324,7 @@ export default () => [
               //   name: 'SwipeOut',
               //   component: SwipeOut,
               // },
-            ],
+            ]
           },
           {
             path: '/adherev/util',
@@ -332,12 +332,12 @@ export default () => [
             children: [
               {
                 path: '/',
-                redirect: '/adherev/util/adapterscreen',
+                redirect: '/adherev/util/adapterscreen'
               },
               {
                 path: '/adherev/util/adapterscreen',
                 name: 'AdapterScreen',
-                component: AdapterScreen,
+                component: AdapterScreen
               },
               // {
               //   path: '/adherev/util/decorators',
@@ -347,45 +347,45 @@ export default () => [
               {
                 path: '/adherev/util/dict',
                 name: 'Dict',
-                component: Dict,
+                component: Dict
               },
               {
                 path: '/adherev/util/emitter',
                 name: 'Emitter',
-                component: Emitter,
+                component: Emitter
               },
               {
                 path: '/adherev/util/preferences',
                 name: 'Preferences',
-                component: Preferences,
+                component: Preferences
               },
               {
                 path: '/adherev/util/intl',
                 name: 'Intl',
-                component: Intl,
+                component: Intl
               },
               {
                 path: '/adherev/util/notnull',
                 name: 'NotNull',
-                component: NotNull,
+                component: NotNull
               },
               {
                 path: '/adherev/util/util',
                 name: 'Util',
-                component: Util,
+                component: Util
               },
               {
                 path: '/adherev/util/watchmemoized',
                 name: 'WatchMemoized',
-                component: WatchMemoized,
+                component: WatchMemoized
               },
               {
                 path: '/adherev/util/ajax',
                 name: 'Ajax',
-                component: Ajax,
-              },
-            ],
-          },
+                component: Ajax
+              }
+            ]
+          }
           // {
           //   path: '/adherev/gallery',
           //   name: 'Gallery',
@@ -416,8 +416,8 @@ export default () => [
           //     },
           //   ],
           // },
-        ],
-      },
-    ],
-  },
-];
+        ]
+      }
+    ]
+  }
+]

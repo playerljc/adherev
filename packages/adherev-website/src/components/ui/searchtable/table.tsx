@@ -1,15 +1,15 @@
-import moment from 'moment';
-import { Input, Select, InputNumber, DatePicker } from 'ant-design-vue';
-import { SearchTable, Resource, Ajax } from '@baifendian/adherev';
+import moment from 'moment'
+import { Input, Select, InputNumber, DatePicker } from 'ant-design-vue'
+import { SearchTable, Resource, Ajax } from '@baifendian/adherev'
 
-const request = new Ajax('');
+const request = new Ajax('')
 
-const { Option } = Select;
-const { RangePicker } = DatePicker;
+const { Option } = Select
+const { RangePicker } = DatePicker
 
 export default {
   mixins: [SearchTable],
-  data() {
+  data () {
     return {
       name: '',
       sex: '',
@@ -28,7 +28,7 @@ export default {
       // dataSource
       dataSource: {
         total: 0,
-        list: [],
+        list: []
       },
       // loading
       loading: false,
@@ -42,46 +42,46 @@ export default {
         deptCode: '',
         homeTown: '',
         width: '',
-        height: '',
-      },
-    };
+        height: ''
+      }
+    }
   },
   methods: {
-    isShowNumber() {
-      return true;
+    isShowNumber () {
+      return true
     },
-    getNumberGeneratorRule() {
-      return SearchTable.NUMBER_GENERATOR_RULE_CONTINUITY;
+    getNumberGeneratorRule () {
+      return SearchTable.NUMBER_GENERATOR_RULE_CONTINUITY
     },
-    getTableNumberColumnWidth() {
-      return 80;
+    getTableNumberColumnWidth () {
+      return 80
     },
-    getRowKey() {
-      return 'id';
+    getRowKey () {
+      return 'id'
     },
-    getData() {
-      return this.dataSource.list;
+    getData () {
+      return this.dataSource.list
     },
-    getColumns() {
+    getColumns () {
       return [
         {
           title: '姓名',
           dataIndex: 'name',
           key: 'name',
-          align: 'center',
+          align: 'center'
         },
         {
           title: '性别',
           dataIndex: 'sex',
           key: 'sex',
           align: 'center',
-          scopedSlots: { customRender: 'sex' },
+          scopedSlots: { customRender: 'sex' }
         },
         {
           title: '籍贯',
           dataIndex: 'homeTown',
           key: 'homeTown',
-          align: 'center',
+          align: 'center'
         },
         {
           title: '出生年月',
@@ -91,13 +91,13 @@ export default {
           sorter: true,
 
           sortOrder: this.sortOrder('birthday'),
-          scopedSlots: { customRender: 'birthday' },
+          scopedSlots: { customRender: 'birthday' }
         },
         {
           title: '所在部门',
           dataIndex: 'deptName',
           key: 'deptName',
-          align: 'center',
+          align: 'center'
         },
         {
           title: '身高',
@@ -106,7 +106,7 @@ export default {
           align: 'center',
           sorter: true,
 
-          sortOrder: this.sortOrder('height'),
+          sortOrder: this.sortOrder('height')
         },
         {
           title: '体重',
@@ -115,29 +115,29 @@ export default {
           align: 'center',
           sorter: true,
 
-          sortOrder: this.sortOrder('width'),
-        },
-      ];
+          sortOrder: this.sortOrder('width')
+        }
+      ]
     },
-    getScopedSlots(h) {
+    getScopedSlots (h) {
       return {
         sex: (text) => {
-          return Resource.Dict.value.ResourceNormalSexMap.value.get(text).label;
+          return Resource.Dict.value.ResourceNormalSexMap.value.get(text).label
         },
         birthday: (text) => {
-          return text ? moment(text).format(Resource.Dict.value.ResourceMomentFormat10.value) : '';
-        },
-      };
+          return text ? moment(text).format(Resource.Dict.value.ResourceMomentFormat10.value) : ''
+        }
+      }
     },
-    getRowSelection() {
+    getRowSelection () {
       return {
         selectedRowKeys: this.selectedRowKeys,
         onChange: (selectedRowKeys) => {
-          this.selectedRowKeys = selectedRowKeys;
-        },
-      };
+          this.selectedRowKeys = selectedRowKeys
+        }
+      }
     },
-    renderSearchForm(h) {
+    renderSearchForm (h) {
       return (
         <SearchTable.SearchForm>
           <SearchTable.SearchFormRow>
@@ -148,7 +148,7 @@ export default {
                 placeholder="姓名"
                 value={this.name}
                 onChange={(e) => {
-                  this.name = e.target.value.trim();
+                  this.name = e.target.value.trim()
                 }}
               />
             </SearchTable.SearchFormValue>
@@ -159,7 +159,7 @@ export default {
                 style="width: 270px"
                 value={this.sex}
                 onChange={(v) => {
-                  this.sex = v;
+                  this.sex = v
                 }}
               >
                 {Resource.Dict.value.ResourceNormalSex.value.map((t) => (
@@ -176,9 +176,9 @@ export default {
                 style="width: 270px"
                 value={[this.startTime, this.endTime]}
                 onChange={(moments) => {
-                  this.startTime = moments.length ? moments[0] : null;
+                  this.startTime = moments.length ? moments[0] : null
 
-                  this.endTime = moments.length ? moments[1] : null;
+                  this.endTime = moments.length ? moments[1] : null
                 }}
                 getCalendarContainer={(el) => el.parentElement}
               />
@@ -193,7 +193,7 @@ export default {
                 placeholder="籍贯"
                 value={this.homeTown}
                 onChange={(e) => {
-                  this.homeTown = e.target.value.trim();
+                  this.homeTown = e.target.value.trim()
                 }}
               />
             </SearchTable.SearchFormValue>
@@ -205,7 +205,7 @@ export default {
                 placeholder="身高"
                 value={this.height}
                 onChange={(v) => {
-                  this.height = v;
+                  this.height = v
                 }}
               />
             </SearchTable.SearchFormValue>
@@ -217,7 +217,7 @@ export default {
                 placeholder="体重"
                 value={this.width}
                 onChange={(v) => {
-                  this.width = v;
+                  this.width = v
                 }}
               />
             </SearchTable.SearchFormValue>
@@ -230,7 +230,7 @@ export default {
                 style="width: 270px"
                 value={this.deptCode}
                 onChange={(v) => {
-                  this.deptCode = v;
+                  this.deptCode = v
                 }}
                 getPopupContainer={(el) => el.parentElement}
               >
@@ -245,39 +245,39 @@ export default {
             </SearchTable.SearchFormValue>
           </SearchTable.SearchFormRow>
         </SearchTable.SearchForm>
-      );
+      )
     },
-    getTotal() {
-      return this.dataSource.total;
+    getTotal () {
+      return this.dataSource.total
     },
-    getOrderFieldProp() {
-      return 'orderField';
+    getOrderFieldProp () {
+      return 'orderField'
     },
-    getOrderProp() {
-      return 'order';
+    getOrderProp () {
+      return 'order'
     },
-    clear() {
+    clear () {
       return new Promise((resolve) => {
-        this.name = '';
+        this.name = ''
 
-        this.sex = '';
+        this.sex = ''
 
-        this.startTime = null;
+        this.startTime = null
 
-        this.endTime = null;
+        this.endTime = null
 
-        this.deptCode = '';
+        this.deptCode = ''
 
-        this.homeTown = '';
+        this.homeTown = ''
 
-        this.width = '';
+        this.width = ''
 
-        this.height = '';
-        this[this.getOrderFieldProp()] = 'height';
-        this[this.getOrderProp()] = 'descend';
+        this.height = ''
+        this[this.getOrderFieldProp()] = 'height'
+        this[this.getOrderProp()] = 'descend'
         // selectedRowKeys
 
-        this.selectedRowKeys = [];
+        this.selectedRowKeys = []
 
         // 查询参数
 
@@ -289,31 +289,31 @@ export default {
           deptCode: '',
           homeTown: '',
           width: '',
-          height: '',
-        };
+          height: ''
+        }
 
-        resolve();
-      });
+        resolve()
+      })
     },
-    renderSearchFooterItems() {
-      return null;
+    renderSearchFooterItems () {
+      return null
     },
-    showLoading() {
-      return this.loading;
+    showLoading () {
+      return this.loading
     },
-    onSubTableChange(
+    onSubTableChange (
       pagination,
 
       filters,
 
-      sorter,
+      sorter
     ) {},
-    fetchData() {
-      const { page, limit } = this;
+    fetchData () {
+      const { page, limit } = this
 
-      const { startTime, endTime, ...others } = this.searchParams;
+      const { startTime, endTime, ...others } = this.searchParams
 
-      const order = this[this.getOrderProp()];
+      const order = this[this.getOrderProp()]
 
       const searParams = {
         page,
@@ -326,30 +326,30 @@ export default {
           : null,
         endTime: endTime
           ? endTime.format(Resource.Dict.value.ResourceMomentFormatFull.value)
-          : null,
-      };
+          : null
+      }
 
-      console.log(searParams);
+      console.log(searParams)
 
-      this.loading = true;
+      this.loading = true
 
       request
         .get({
           mock: true,
-          path: require('./mock.js').default,
+          path: require('./mock.js').default
         })
         .then((result) => {
           this.dataSource = {
             total: result.total,
 
-            list: result.list,
-          };
+            list: result.list
+          }
 
-          this.loading = false;
-        });
+          this.loading = false
+        })
     },
-    onSearch() {
-      const { name, sex, startTime, endTime, deptCode, homeTown, width, height } = this;
+    onSearch () {
+      const { name, sex, startTime, endTime, deptCode, homeTown, width, height } = this
 
       this.searchParams = {
         name,
@@ -361,10 +361,10 @@ export default {
         width,
         height,
         [this.getOrderFieldProp()]: this[this.getOrderFieldProp()],
-        [this.getOrderProp()]: this[this.getOrderProp()],
-      };
+        [this.getOrderProp()]: this[this.getOrderProp()]
+      }
 
-      this.fetchData();
-    },
-  },
-};
+      this.fetchData()
+    }
+  }
+}
