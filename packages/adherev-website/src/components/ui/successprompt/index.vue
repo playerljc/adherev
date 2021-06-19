@@ -26,7 +26,7 @@
     />
 
     <h2>基本使用</h2>
-    <playground :codeText="code">
+    <playground :code-text="code">
       <a-button type="primary" @click="onCode1F1">显示成功提示</a-button>
     </playground>
   </div>
@@ -54,7 +54,7 @@ export default {
           }
         <\/script>
       `,
-    }
+    };
   },
   methods: {
     onCode1F1() {

@@ -1,0 +1,32 @@
+@adherev-ui-popup-duration: 0.4s;
+
+.adherev-ui-popup {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: none;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-color: #fff;
+  transform: translate3d(0, 100%, 0);
+  transition: transform @adherev-ui-popup-duration;
+  will-change: transform;
+  &.modal-in {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.adherev-ui-popup-mask {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: none;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0);
+  transition-duration: @adherev-ui-popup-duration;
+  &.modal-in {
+    background-color: rgba(0, 0, 0, 0.4);
+  }
+}

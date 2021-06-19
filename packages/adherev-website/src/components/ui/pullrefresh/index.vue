@@ -164,7 +164,7 @@
 
     <h2>基本使用</h2>
     <playground :code-text="code1">
-      <adv-pullrefresh :className="$style.Wrap" @pull-refresh="onCode1Refresh">
+      <adv-pullrefresh :class-name="$style.Wrap" @pull-refresh="onCode1Refresh">
         <a-list item-layout="horizontal" :data-source="data">
           <a-list-item slot="renderItem" slot-scope="item, index">
             <a-list-item-meta
@@ -185,7 +185,7 @@
 
     <h2>Api触发刷新</h2>
     <playground :code-text="code2">
-      <adv-pullrefresh :className="$style.Wrap" ref="ref" @pull-refresh="onCode2Refresh">
+      <adv-pullrefresh ref="ref" :class-name="$style.Wrap" @pull-refresh="onCode2Refresh">
         <a-list item-layout="horizontal" :data-source="data">
           <a-list-item slot="renderItem" slot-scope="item, index">
             <a-list-item-meta
@@ -209,23 +209,23 @@
     <h2>自定义图标和文本(1)</h2>
     <playground-mulit :config="code3">
       <adv-pullrefresh
-        :className="$style.Wrap"
-        :isShowUpdateTime="false"
-        :loadingAnimation="false"
+        :class-name="$style.Wrap"
+        :is-show-update-time="false"
+        :loading-animation="false"
         @pull-refresh="onCode3Refresh"
       >
-        <template v-slot:icon>
+        <template #icon>
           <div>
             <img :src="refreshIcon" alt="" />
           </div>
         </template>
-        <template v-slot:label>
+        <template #label>
           <span>下拉可刷新</span>
         </template>
-        <template v-slot:canLabel>
+        <template #canLabel>
           <span>释放可刷新</span>
         </template>
-        <template v-slot:loadingAnimation>
+        <template #loadingAnimation>
           <div :class="$style.RefreshCustom1">
             <img :src="refreshIcon" alt="" />
             <div>刷新中...</div>

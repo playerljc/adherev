@@ -1,4 +1,3 @@
-// @ts-ignore
 import PullRefresh from './pullrefresh';
 import { withInstall } from '../../_util/index';
 

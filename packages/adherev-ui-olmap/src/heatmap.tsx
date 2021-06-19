@@ -1,7 +1,5 @@
-// @ts-ignore
 import { Heatmap as HeatmapLayer } from 'ol/layer';
 
-// @ts-ignore
 import OLMap from './olmap';
 import Util from './util';
 
@@ -15,21 +13,18 @@ export default {
   },
   data() {
     return {
-      _vectorSource: null,
+      $vectorSource: null,
     };
   },
   mixins: [OLMap],
   methods: {
     addLayer() {
-      // @ts-ignore
       const { heatMapLayerConfig } = this;
 
-      // @ts-ignore
-      this.$data._vectorSource = Util.addHeatmapLayer(this.$data._map, heatMapLayerConfig);
+      this.$data.$vectorSource = Util.addHeatmapLayer(this.$data.$map, heatMapLayerConfig);
     },
     getHeatmapLayer() {
-      // @ts-ignore
-      const layers = this.$data._map.getLayers();
+      const layers = this.$data.$map.getLayers();
 
       let result = null;
 

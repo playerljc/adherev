@@ -1,4 +1,3 @@
-// @ts-ignore
 import { createMask } from './slidelayout';
 
 export default {
@@ -26,7 +25,7 @@ export default {
     direction: {
       type: String,
       default: 'left',
-      validator: function (val) {
+      validator(val) {
         return ['left', 'right', 'top', 'bottom'].indexOf(val) !== -1;
       },
     },
@@ -37,173 +36,149 @@ export default {
   },
   data() {
     return {
-      _positionConfig: {},
-      _maskEl: null,
-      // @ts-ignore
+      $positionConfig: {},
+      $maskEl: null,
+
       collapse: this.defaultCollapse,
     };
   },
   watch: {
     defaultCollapse(newVal, oldVal) {
       if (newVal !== oldVal) {
-        // @ts-ignore
         this.collapse = newVal;
 
         const {
-          // @ts-ignore
-          $data: { _positionConfig },
-          // @ts-ignore
+          $data: { $positionConfig },
+
           direction,
-          // @ts-ignore
+
           collapse,
         } = this;
 
         if (collapse) {
-          // @ts-ignore
-          _positionConfig['show'][direction]();
+          $positionConfig['show'][direction]();
         } else {
-          // @ts-ignore
-          _positionConfig['close'][direction]();
+          $positionConfig['close'][direction]();
         }
       }
     },
   },
   mounted() {
-    let {
-      // @ts-ignore
+    const {
       $refs: { el },
-      // @ts-ignore
+
       zIndex,
-      // @ts-ignore
+
       mask,
     } = this;
 
     if (mask) {
-      // @ts-ignore
-      this.$data._maskEl = createMask(zIndex, () => {
-        // @ts-ignore
+      this.$data.$maskEl = createMask(zIndex, () => {
         this.close();
       });
 
-      // @ts-ignore
-      el?.parentElement?.insertBefore(this.$data._maskEl, el);
+      el?.parentElement?.insertBefore(this.$data.$maskEl, el);
     }
 
-    // @ts-ignore
     this.initial();
   },
   // updated() {
   //   const {
-  //     // @ts-ignore
-  //     $data: { _preCollapse, _positionConfig },
-  //     // @ts-ignore
+  //
+  //     $data: { _preCollapse, $positionConfig },
+  //
   //     direction,
-  //     // @ts-ignore
+  //
   //     collapse,
   //   } = this;
   //
   //   if (_preCollapse !== collapse) {
   //     if (collapse) {
-  //       // @ts-ignore
-  //       _positionConfig['show'][direction]();
+  //
+  //       $positionConfig['show'][direction]();
   //     } else {
-  //       // @ts-ignore
-  //       _positionConfig['close'][direction]();
+  //
+  //       $positionConfig['close'][direction]();
   //     }
   //   }
   // },
   beforeDestroy() {
     const {
-      // @ts-ignore
-      $data: { _maskEl },
+      $data: { $maskEl },
     } = this;
 
-    if (_maskEl) {
-      // @ts-ignore
-      _maskEl.parentElement.removeChild(_maskEl);
+    if ($maskEl) {
+      $maskEl.parentElement.removeChild($maskEl);
     }
   },
   methods: {
     getDuration(time: undefined | null | string | number) {
-      // @ts-ignore
       return time !== undefined && time !== null ? time : this.time;
     },
     initial() {
       const {
-        // @ts-ignore
         $refs: { el },
-        // @ts-ignore
-        $data: { _positionConfig },
-        // @ts-ignore
+
+        $data: { $positionConfig },
+
         direction,
-        // @ts-ignore
+
         width,
-        // @ts-ignore
+
         height,
-        // @ts-ignore
+
         collapse,
       } = this;
 
       if (direction === 'left' || direction === 'right') {
         // 赋值宽度
-        // @ts-ignore
+
         el?.style.height = '100%';
         width
-          ? // @ts-ignore
-            (el?.style.width = width)
-          : // @ts-ignore
-            (el?.style.width = `${el?.parentElement?.offsetWidth * 0.9}px`);
+          ? (el?.style.width = width)
+          : (el?.style.width = `${el?.parentElement?.offsetWidth * 0.9}px`);
       } else {
         // 赋值高度
-        // @ts-ignore
+
         el?.style.width = '100%';
         height
-          ? // @ts-ignore
-            (el?.style.height = height)
-          : // @ts-ignore
-            (el?.style.height = `${el?.parentElement?.offsetHeight * 0.3}px`);
+          ? (el?.style.height = height)
+          : (el?.style.height = `${el?.parentElement?.offsetHeight * 0.3}px`);
       }
 
       // 赋值默认位置
-      // @ts-ignore
-      _positionConfig['init'][direction]();
+
+      $positionConfig['init'][direction]();
 
       if (collapse) {
-        // @ts-ignore
-        _positionConfig['show'][direction](0);
+        $positionConfig['show'][direction](0);
       }
     },
     show() {
-      // @ts-ignore
       this.$emit('before-show');
 
       const {
-        // @ts-ignore
-        $data: { _positionConfig },
-        // @ts-ignore
+        $data: { $positionConfig },
+
         direction,
       } = this;
 
-      // @ts-ignore
       this.collapse = true;
 
-      _positionConfig['show'][direction]();
+      $positionConfig['show'][direction]();
     },
     close() {
-      // @ts-ignore
       this.$emit('before-close');
 
       const {
-        // @ts-ignore
-        $data: { _positionConfig },
-        // @ts-ignore
+        $data: { $positionConfig },
+
         direction,
       } = this;
 
-      // @ts-ignore
       this.collapse = false;
 
-      _positionConfig['close'][direction]();
+      $positionConfig['close'][direction]();
     },
   },
 };

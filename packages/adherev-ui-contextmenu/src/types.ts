@@ -8,7 +8,7 @@ export interface IMenuItemProps {
   data: IData;
 }
 
-export interface ISubMenuProps extends IMenuProps {}
+export type ISubMenuProps = IMenuProps;
 
 export interface IContextMenuComponentProps {
   data: Array<IData>;

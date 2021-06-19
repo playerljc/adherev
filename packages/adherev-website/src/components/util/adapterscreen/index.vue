@@ -26,12 +26,12 @@
     />
 
     <h2>基本使用</h2>
-    <playground :codeText="code1">
+    <playground :code-text="code1">
       <a-button type="primary" @click="onControlFull">控制整体页面的缩放</a-button>
     </playground>
 
     <h2>传递不同的元素</h2>
-    <playground :codeText="code2">
+    <playground :code-text="code2">
       <div ref="ref">
         <a-button type="primary" @click="onControlElement">控制表格元素的缩放</a-button>
         <a-table :columns="columns" :data-source="data">
@@ -230,8 +230,7 @@ export default {
       `,
       data,
       columns,
-
-    }
+    };
   },
   methods: {
     onControlFull() {

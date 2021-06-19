@@ -1,10 +1,9 @@
-// @ts-ignore
 import classNames from 'classnames';
-// @ts-ignore
+
 import moment from 'moment';
-// @ts-ignore
+
 import Intl from '@baifendian/adherev-util-intl';
-// @ts-ignore
+
 import Resource from '@baifendian/adherev-util-resource';
 
 const selectorPrefix = 'adherev-ui-pullrefresh';
@@ -46,72 +45,57 @@ export default {
   data() {
     return {
       isCan: false,
-      _maskEl: null,
-      _el: null,
-      _iconEl: null,
-      _scrollEl: null,
-      _triggerInnerEl: null,
-      _pullHeight: 200,
-      _refreshHeight: 0,
-      _startPageY: null,
-      _isDownPull: false,
-      _isTop: true,
+      $maskEl: null,
+      $el: null,
+      $iconEl: null,
+      $scrollEl: null,
+      $triggerInnerEl: null,
+      $pullHeight: 200,
+      $refreshHeight: 0,
+      $startPageY: null,
+      $isDownPull: false,
+      $isTop: true,
     };
   },
   computed: {
     getClassName() {
-      // @ts-ignore
       const { className } = this;
 
-      // @ts-ignore
       return classNames(selectorPrefix, ...className.split(' '));
     },
     getScrollClassName() {
-      // @ts-ignore
       const { scrollClassName } = this;
 
-      // @ts-ignore
       return classNames(`${selectorPrefix}-scroll`, ...scrollClassName.split(' '));
     },
   },
   methods: {
     renderIcon(h) {
-      // @ts-ignore
       const { $slots } = this;
 
       return $slots.icon ? (
-        // @ts-ignore
         <div class={`${selectorPrefix}-trigger-icon`}>
-          {/*@ts-ignore*/}
-          <div
-            class={`${selectorPrefix}-trigger-icon-inner`}
-            // @ts-ignore
-            ref="iconElRef"
-          >
+          <div class={`${selectorPrefix}-trigger-icon-inner`} ref="iconElRef">
             {/* @ts-ignore */}
             {$slots.icon}
           </div>
         </div>
       ) : (
-        // @ts-ignore
         <div class={`${selectorPrefix}-trigger-icon`}>
           {/* @ts-ignore */}
           <img
             class={`${selectorPrefix}-trigger-icon-inner`}
             src={defaultImg}
             alt=""
-            // @ts-ignore
             ref="iconElRef"
           />
         </div>
       );
     },
     renderLabel(h) {
-      // @ts-ignore
       const { $slots, isCan } = this;
 
       return (
-        // @ts-ignore
         <p class={`${selectorPrefix}-trigger-label`}>
           {isCan
             ? $slots.canLabel || h({ template: `<span>${Intl.tv('松开刷新')}</span>` })
@@ -123,13 +107,11 @@ export default {
       );
     },
     renderUpdateTime(h) {
-      // @ts-ignore
       const { isShowUpdateTime, updateTimeFormat, preUpdateTime } = this;
 
       return isShowUpdateTime ? (
-        // @ts-ignore
         <p class={`${selectorPrefix}-trigger-update`}>
-          {Intl.tv('更新时间')}：{/*@ts-ignore*/}
+          {Intl.tv('更新时间')}：
           <span class={`${selectorPrefix}-trigger-update-label`}>
             {moment(preUpdateTime).format(updateTimeFormat)}
           </span>
@@ -137,50 +119,40 @@ export default {
       ) : null;
     },
     renderLoadingAnimation(h) {
-      // @ts-ignore
       const { $slots, loadingAnimation } = this;
       return loadingAnimation ? (
-        // @ts-ignore*
         <div
           class={classNames(
             `${selectorPrefix}-trigger-refresh`,
             ...(loadingAnimation || '').split(' '),
           )}
-          // @ts-ignore
           ref="refreshElRef"
         >
-          {/*@ts-ignore*/}
           <div></div>
-          {/*@ts-ignore*/}
+
           <div></div>
-          {/*@ts-ignore*/}
+
           <div></div>
-          {/*@ts-ignore*/}
+
           <div></div>
-          {/*@ts-ignore*/}
+
           <div></div>
         </div>
       ) : (
-        // @ts-ignore*
-        <div
-          class={`${selectorPrefix}-trigger-refresh`}
-          // @ts-ignore
-          ref="refreshElRef"
-        >
+        <div class={`${selectorPrefix}-trigger-refresh`} ref="refreshElRef">
           {$slots.loadingAnimation}
         </div>
       );
     },
     renderMask() {
-      // @ts-ignore
       const { $data } = this;
 
-      $data._maskEl = document.querySelector(`.${selectorPrefix}-mask`);
+      $data.$maskEl = document.querySelector(`.${selectorPrefix}-mask`);
 
-      if (!$data._maskEl) {
-        $data._maskEl = document.createElement('div');
-        $data._maskEl.className = `${selectorPrefix}-mask`;
-        document.body.appendChild($data._maskEl);
+      if (!$data.$maskEl) {
+        $data.$maskEl = document.createElement('div');
+        $data.$maskEl.className = `${selectorPrefix}-mask`;
+        document.body.appendChild($data.$maskEl);
       }
     },
     /**
@@ -189,16 +161,13 @@ export default {
      * @return number
      */
     getPullHeight() {
-      // @ts-ignore
       const { $data, pullHeight } = this;
 
       if (pullHeight <= 0) {
         return 200;
       } else {
-        // @ts-ignore
-        if (pullHeight > $data._scrollEl.clientHeight) {
-          // @ts-ignore
-          return $data._scrollEl.clientHeight;
+        if (pullHeight > $data.$scrollEl.clientHeight) {
+          return $data.$scrollEl.clientHeight;
         } else {
           return pullHeight;
         }
@@ -206,63 +175,54 @@ export default {
     },
     addEvents() {
       const {
-        // @ts-ignore
-        $data: { _scrollEl },
+        $data: { $scrollEl },
       } = this;
 
-      // @ts-ignore
-      _scrollEl.addEventListener('touchstart', this.onTouchStart);
-      // @ts-ignore
-      _scrollEl.addEventListener('mousedown', this.onTouchStart);
-      // @ts-ignore
-      _scrollEl.addEventListener('scroll', this.onScroll);
+      $scrollEl.addEventListener('touchstart', this.onTouchStart);
+
+      $scrollEl.addEventListener('mousedown', this.onTouchStart);
+
+      $scrollEl.addEventListener('scroll', this.onScroll);
     },
     removeEvents() {
       const {
-        // @ts-ignore
-        $data: { _scrollEl },
+        $data: { $scrollEl },
       } = this;
 
-      // @ts-ignore
-      _scrollEl.removeEventListener('mousemove', this.onTouchMove);
-      // @ts-ignore
-      _scrollEl.removeEventListener('mouseup', this.onTouchEnd);
-      // @ts-ignore
-      _scrollEl.removeEventListener('touchmove', this.onTouchMove);
-      // @ts-ignore
-      _scrollEl.removeEventListener('touchend', this.onTouchEnd);
+      $scrollEl.removeEventListener('mousemove', this.onTouchMove);
+
+      $scrollEl.removeEventListener('mouseup', this.onTouchEnd);
+
+      $scrollEl.removeEventListener('touchmove', this.onTouchMove);
+
+      $scrollEl.removeEventListener('touchend', this.onTouchEnd);
     },
     onTouchStart(e) {
-      // @ts-ignore
       const { $data } = this;
 
       this.trigger('pull-start');
 
-      $data._startPageY = e.changedTouches ? e.changedTouches[0].pageY : e.pageY;
+      $data.$startPageY = e.changedTouches ? e.changedTouches[0].pageY : e.pageY;
 
-      const { _scrollEl } = $data;
+      const { $scrollEl } = $data;
 
-      // @ts-ignore
-      _scrollEl.addEventListener('touchmove', this.onTouchMove);
-      // @ts-ignore
-      _scrollEl.addEventListener('mousemove', this.onTouchMove);
-      // @ts-ignore
-      _scrollEl.addEventListener('touchend', this.onTouchEnd);
-      // @ts-ignore
-      _scrollEl.addEventListener('mouseup', this.onTouchEnd);
+      $scrollEl.addEventListener('touchmove', this.onTouchMove);
+
+      $scrollEl.addEventListener('mousemove', this.onTouchMove);
+
+      $scrollEl.addEventListener('touchend', this.onTouchEnd);
+
+      $scrollEl.addEventListener('mouseup', this.onTouchEnd);
     },
     onTouchMove(e) {
-      // @ts-ignore
       const { $data } = this;
-      const { _scrollEl, _el, _startPageY, _refreshHeight, _iconEl, _pullHeight } = $data;
+      const { $scrollEl, $el, $startPageY, $refreshHeight, $iconEl, $pullHeight } = $data;
 
-      // @ts-ignore
-      _scrollEl.style.overflow = 'hidden';
+      $scrollEl.style.overflow = 'hidden';
 
       const targetY = e.changedTouches ? e.changedTouches[0].pageY : e.pageY;
 
-      // @ts-ignore
-      const difference = targetY - _startPageY;
+      const difference = targetY - $startPageY;
 
       const distance = Math.abs(difference);
 
@@ -270,60 +230,56 @@ export default {
       if (difference > 0) {
         e.preventDefault();
 
-        $data._isDownPull = true;
+        $data.$isDownPull = true;
 
         // 正常拉
-        if (distance < $data._pullHeight) {
-          this.translateY(_scrollEl, `${distance}px`, 0);
+        if (distance < $data.$pullHeight) {
+          this.translateY($scrollEl, `${distance}px`, 0);
 
-          this.translateY(_el, `calc(-100% + ${distance}px)`, 0);
+          this.translateY($el, `calc(-100% + ${distance}px)`, 0);
 
           // 具备刷新条件
-          if (distance >= _refreshHeight + 80) {
+          if (distance >= $refreshHeight + 80) {
             console.log('3.具备刷新条件');
-            this.rotateIcon(_iconEl, 0, 150);
+            this.rotateIcon($iconEl, 0, 150);
 
-            // @ts-ignore
             this.isCan = true;
 
             this.trigger('pull-can-refresh');
           }
           // 不具备刷新条件
           else {
-            this.rotateIcon(_iconEl, 180, 150);
+            this.rotateIcon($iconEl, 180, 150);
 
-            // @ts-ignore
             this.isCan = false;
           }
 
-          // @ts-ignore
-          _el.style.display = 'flex';
+          $el.style.display = 'flex';
         }
         // 越界了
         else {
-          this.translateY(_scrollEl, `${_pullHeight}px`, 0);
+          this.translateY($scrollEl, `${$pullHeight}px`, 0);
 
-          this.translateY(_el, `calc(-100% + ${_pullHeight}px)`, 0);
+          this.translateY($el, `calc(-100% + ${$pullHeight}px)`, 0);
 
-          this.rotateIcon(_iconEl, 0, 150);
+          this.rotateIcon($iconEl, 0, 150);
 
           console.log('4.拉动到了底部');
 
-          // @ts-ignore
           this.isCan = true;
 
           this.trigger('pull-bottom');
         }
       }
       // 中线上
-      else if ($data._isDownPull) {
+      else if ($data.$isDownPull) {
         e.preventDefault();
 
-        this.translateY(_scrollEl, '0px', 0);
+        this.translateY($scrollEl, '0px', 0);
 
-        this.translateY(_el, 'calc(-100% + 0px)', 0);
+        this.translateY($el, 'calc(-100% + 0px)', 0);
 
-        this.rotateIcon(_iconEl, 180, 0);
+        this.rotateIcon($iconEl, 180, 0);
       }
       // 其他
       else {
@@ -332,22 +288,20 @@ export default {
     },
     onTouchEnd(e) {
       const {
-        // @ts-ignore
-        $data: { _startPageY, _pullHeight, _refreshHeight },
+        $data: { $startPageY, $pullHeight, $refreshHeight },
       } = this;
 
       const targetY = e.changedTouches ? e.changedTouches[0].pageY : e.pageY;
 
-      // @ts-ignore
-      const difference = targetY - _startPageY;
+      const difference = targetY - $startPageY;
 
       const distance = Math.abs(difference);
 
       // 中线下
       if (difference > 0) {
         // 正常拉
-        if (distance < _pullHeight) {
-          if (distance >= _refreshHeight + 80) {
+        if (distance < $pullHeight) {
+          if (distance >= $refreshHeight + 80) {
             this.refresh();
           } else {
             console.log('2.没有具备刷新条件弹回');
@@ -367,25 +321,20 @@ export default {
       }
     },
     onScroll(e) {
-      // @ts-ignore
       const { $data } = this;
-      const { _scrollEl } = $data;
+      const { $scrollEl } = $data;
 
       if (e.target.scrollTop === 0) {
-        $data._isTop = true;
+        $data.$isTop = true;
 
-        // @ts-ignore
-        _scrollEl.addEventListener('touchstart', this.onTouchStart);
+        $scrollEl.addEventListener('touchstart', this.onTouchStart);
 
-        // @ts-ignore
-        _scrollEl.addEventListener('mousedown', this.onTouchStart);
-      } else if ($data._isTop) {
-        $data._isTop = false;
+        $scrollEl.addEventListener('mousedown', this.onTouchStart);
+      } else if ($data.$isTop) {
+        $data.$isTop = false;
 
-        // @ts-ignore
         self.scrollEl.removeEventListener('touchstart', this.onTouchStart);
 
-        // @ts-ignore
         self.scrollEl.removeEventListener('mousedown', this.onTouchStart);
       }
     },
@@ -399,99 +348,81 @@ export default {
       el.style.transform = el.style.webkitTransform = `rotate(${deg}deg)`;
     },
     trigger(action, params?: any): void {
-      // @ts-ignore
       this.$emit(action, params);
     },
     clear() {
       this.removeEvents();
 
-      // @ts-ignore
       const { $data } = this;
 
-      $data._isDownPull = false;
+      $data.$isDownPull = false;
 
-      $data._isTop = true;
+      $data.$isTop = true;
 
-      // @ts-ignore
-      $data._el.style.display = 'flex';
+      $data.$el.style.display = 'flex';
 
-      // @ts-ignore
       this.$refs.refreshElRef.style.display = 'none';
 
-      // @ts-ignore
-      $data._triggerInnerEl?.style.display = 'flex';
+      $data.$triggerInnerEl?.style.display = 'flex';
 
-      this.rotateIcon($data._iconEl, 180, 0);
+      this.rotateIcon($data.$iconEl, 180, 0);
 
-      // @ts-ignore
-      $data._scrollEl.style.overflowY = 'auto';
+      $data.$scrollEl.style.overflowY = 'auto';
 
-      // @ts-ignore
-      $data._maskEl.style.display = 'none';
+      $data.$maskEl.style.display = 'none';
     },
     refresh() {
       const self = this;
 
       function onTransitionEnd() {
-        // @ts-ignore
-        _triggerInnerEl.style.display = 'none';
+        $triggerInnerEl.style.display = 'none';
 
-        // @ts-ignore
         self.$refs.refreshElRef.style.display = 'block';
 
         self.trigger('pull-refresh', self);
 
-        // @ts-ignore
-        _scrollEl.removeEventListener('transitionend', onTransitionEnd);
+        $scrollEl.removeEventListener('transitionend', onTransitionEnd);
 
-        // @ts-ignore
         self.preUpdateTime = moment().valueOf();
       }
 
       const {
-        // @ts-ignore
-        $data: { _maskEl, _scrollEl, _el, _iconEl, _refreshHeight, _triggerInnerEl },
+        $data: { $maskEl, $scrollEl, $el, $iconEl, $refreshHeight, $triggerInnerEl },
       } = this;
-      // @ts-ignore
-      _maskEl.style.display = 'block';
+
+      $maskEl.style.display = 'block';
 
       this.removeEvents();
 
-      // @ts-ignore
-      _scrollEl.addEventListener('transitionend', onTransitionEnd);
+      $scrollEl.addEventListener('transitionend', onTransitionEnd);
 
-      this.translateY(_scrollEl, `${_refreshHeight}px`, 500);
+      this.translateY($scrollEl, `${$refreshHeight}px`, 500);
 
-      this.translateY(_el, `calc(-100% + ${_refreshHeight}px)`, 500);
+      this.translateY($el, `calc(-100% + ${$refreshHeight}px)`, 500);
 
-      this.rotateIcon(_iconEl, 180, 300);
+      this.rotateIcon($iconEl, 180, 300);
     },
     reset() {
       const {
-        // @ts-ignore
-        $data: { _scrollEl, _triggerInnerEl, _el },
+        $data: { $scrollEl, $triggerInnerEl, $el },
       } = this;
 
       function onTransitionEnd() {
-        // @ts-ignore
-        _scrollEl.removeEventListener('transitionend', onTransitionEnd);
+        $scrollEl.removeEventListener('transitionend', onTransitionEnd);
 
-        // @ts-ignore
-        _triggerInnerEl?.style.display = 'flex';
+        $triggerInnerEl?.style.display = 'flex';
       }
 
       this.clear();
 
-      // @ts-ignore
-      _scrollEl.addEventListener('transitionend', onTransitionEnd);
+      $scrollEl.addEventListener('transitionend', onTransitionEnd);
 
-      this.translateY(_scrollEl, '0px', 200);
+      this.translateY($scrollEl, '0px', 200);
 
-      this.translateY(_el, 'calc(-100% + 0px)', 200);
+      this.translateY($el, 'calc(-100% + 0px)', 200);
     },
     resetUpdateTime(updateTime: number): Promise<null> {
       return new Promise((resolve) => {
-        // @ts-ignore
         this.preUpdateTime = updateTime || moment().valueOf();
         resolve();
       });
@@ -501,57 +432,42 @@ export default {
      * @return number
      */
     getUpdateTime(): number {
-      // @ts-ignore
       return this.preUpdateTime;
     },
   },
   created() {
-    // @ts-ignore
     this.renderMask();
   },
   mounted() {
-    // @ts-ignore
     const { $data, $refs } = this;
-    $data._el = $refs.elRef;
-    $data._iconEl = $refs.iconElRef;
-    $data._scrollEl = $refs.scrollElRef;
-    $data._triggerInnerEl = $refs.triggerInnerElRef;
+    $data.$el = $refs.elRef;
+    $data.$iconEl = $refs.iconElRef;
+    $data.$scrollEl = $refs.scrollElRef;
+    $data.$triggerInnerEl = $refs.triggerInnerElRef;
 
-    // @ts-ignore
-    $data._pullHeight = this.getPullHeight();
-    $data._refreshHeight = $data._el.clientHeight;
+    $data.$pullHeight = this.getPullHeight();
+    $data.$refreshHeight = $data.$el.clientHeight;
 
-    // @ts-ignore
     this.addEvents();
   },
   render(h) {
-    // @ts-ignore
     const { $slots } = this;
 
     return (
-      // @ts-ignore
       <div class={this.getClassName}>
-        {/*@ts-ignore*/}
         <div class={this.getScrollClassName} ref="scrollElRef">
           {$slots.default}
         </div>
 
-        {/*@ts-ignore*/}
         <div class={`${selectorPrefix}-trigger`} ref="elRef">
-          {/*@ts-ignore*/}
-          <div
-            class={`${selectorPrefix}-trigger-inner`}
-            // @ts-ignore
-            ref="triggerInnerElRef"
-          >
-            {/*@ts-ignore*/}
+          <div class={`${selectorPrefix}-trigger-inner`} ref="triggerInnerElRef">
             {this.renderIcon(h)}
-            {/*@ts-ignore*/}
+
             {this.renderLabel(h)}
-            {/*@ts-ignore*/}
+
             {this.renderUpdateTime(h)}
           </div>
-          {/*@ts-ignore*/}
+
           {this.renderLoadingAnimation(h)}
         </div>
       </div>

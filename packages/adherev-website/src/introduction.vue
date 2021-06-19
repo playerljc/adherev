@@ -40,6 +40,7 @@
 
 <script>
 import Playground from '@/lib/Playground/Playground';
+
 export default {
   components: { Playground },
   data() {

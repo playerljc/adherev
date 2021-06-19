@@ -32,7 +32,7 @@
     />
 
     <h2>基本使用</h2>
-    <playground :codeText="code" />
+    <playground :code-text="code" />
   </div>
 </template>
 <script>

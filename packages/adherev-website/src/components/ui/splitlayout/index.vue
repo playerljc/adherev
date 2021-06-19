@@ -66,7 +66,7 @@
     />
 
     <h2>基本使用</h2>
-    <playground :codeText="code1">
+    <playground :code-text="code1">
       <adv-flexlayout direction="horizontal" style="height: 200px; border: 1px solid #ccc">
         <adv-flexlayout-fixed style="width: 30px" />
         <adv-splitlayout />
@@ -99,12 +99,12 @@
     </playground>
 
     <h2>多个分割点</h2>
-    <playground :codeText="code2">
+    <playground :code-text="code2">
       <adv-flexlayout direction="horizontal" style="height: 200px; border: 1px solid #ccc">
         <adv-flexlayout-fixed style="width: 30px" />
-        <adv-splitlayout style="width: auto;"/>
+        <adv-splitlayout style="width: auto" />
         <adv-flexlayout-auto />
-        <adv-splitlayout style="width: auto;"/>
+        <adv-splitlayout style="width: auto" />
         <adv-flexlayout-fixed style="width: 30px" />
       </adv-flexlayout>
 
@@ -112,24 +112,24 @@
 
       <adv-flexlayout style="height: 200px; border: 1px solid #ccc">
         <adv-flexlayout-fixed style="height: 30px" />
-        <adv-splitlayout style="width: auto;"/>
+        <adv-splitlayout style="width: auto" />
         <adv-flexlayout-auto />
-        <adv-splitlayout style="width: auto;"/>
+        <adv-splitlayout style="width: auto" />
         <adv-flexlayout-fixed style="height: 30px" />
       </adv-flexlayout>
     </playground>
 
     <h2>嵌套</h2>
-    <playground :codeText="code3">
+    <playground :code-text="code3">
       <adv-flexlayout direction="horizontal" style="height: 200px; border: 1px solid #ccc">
         <adv-flexlayout-fixed style="width: 30px" />
         <adv-splitlayout />
         <adv-flexlayout-auto>
           <adv-flexlayout>
             <adv-flexlayout-fixed style="height: 30px" />
-            <adv-splitlayout style="width: auto;"/>
+            <adv-splitlayout style="width: auto" />
             <adv-flexlayout-auto />
-            <adv-splitlayout style="width: auto;"/>
+            <adv-splitlayout style="width: auto" />
             <adv-flexlayout-fixed style="height: 30px" />
           </adv-flexlayout>
         </adv-flexlayout-auto>
@@ -141,26 +141,26 @@
 
       <adv-flexlayout style="height: 200px; border: 1px solid #ccc">
         <adv-flexlayout-fixed style="height: 30px" />
-        <adv-splitlayout style="width: auto;"/>
+        <adv-splitlayout style="width: auto" />
         <adv-flexlayout-auto>
           <adv-flexlayout direction="horizontal">
             <adv-flexlayout-fixed style="width: 30px" />
             <adv-splitlayout />
             <adv-flexlayout-auto />
-            <adv-splitlayout/>
+            <adv-splitlayout />
             <adv-flexlayout-fixed style="width: 30px" />
           </adv-flexlayout>
         </adv-flexlayout-auto>
-        <adv-splitlayout style="width: auto;"/>
+        <adv-splitlayout style="width: auto" />
         <adv-flexlayout-fixed style="height: 30px" />
       </adv-flexlayout>
     </playground>
 
     <h2>使用minSize和maxSize控制拖放范围</h2>
-    <playground :codeText="code4">
+    <playground :code-text="code4">
       <adv-flexlayout direction="horizontal" style="height: 200px; border: 1px solid #ccc">
         <adv-flexlayout-fixed style="width: 30px" />
-        <adv-splitlayout minSize="20%" maxSize="50%"/>
+        <adv-splitlayout min-size="20%" max-size="50%" />
         <adv-flexlayout-auto />
       </adv-flexlayout>
 
@@ -168,17 +168,17 @@
 
       <adv-flexlayout style="height: 400px; border: 1px solid #ccc">
         <adv-flexlayout-fixed style="height: 30px" />
-        <adv-splitlayout minSize="20%" maxSize="50%" style="width: auto;"/>
+        <adv-splitlayout min-size="20%" max-size="50%" style="width: auto" />
         <adv-flexlayout-auto />
       </adv-flexlayout>
     </playground>
   </div>
 </template>
 <script>
-  export default {
-    data() {
-      return {
-        code1:`
+export default {
+  data() {
+    return {
+      code1: `
           <template>
             <h2>基本使用</h2>
             <adv-flexlayout direction="horizontal" style="height: 200px; border: 1px solid #ccc">
@@ -212,7 +212,7 @@
             </adv-flexlayout>
           </template>
         `,
-        code2:`
+      code2: `
           <template>
             <h2>多个分割点</h2>
             <adv-flexlayout direction="horizontal" style="height: 200px; border: 1px solid #ccc">
@@ -234,7 +234,7 @@
             </adv-flexlayout>
           </template>
         `,
-        code3:`
+      code3: `
           <template>
             <h2>嵌套</h2>
             <adv-flexlayout direction="horizontal" style="height: 200px; border: 1px solid #ccc">
@@ -272,7 +272,7 @@
             </adv-flexlayout>
           </template>
         `,
-        code4:`
+      code4: `
           <template>
             <h2>使用minSize和maxSize控制拖放范围</h2>
             <adv-flexlayout direction="horizontal" style="height: 200px; border: 1px solid #ccc">
@@ -290,7 +290,7 @@
             </adv-flexlayout>
           </template>
         `,
-      }
-    }
-  }
+    };
+  },
+};
 </script>

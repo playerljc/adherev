@@ -99,7 +99,7 @@ export default {
     },
     onHide() {
       GlobalIndicator.hide(handler);
-    }
+    },
   },
 };
 </script>

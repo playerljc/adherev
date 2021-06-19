@@ -1,4 +1,3 @@
-// @ts-ignore
 import BackTopAnimation from './backtopanimation';
 import { withInstall } from '../../_util/index';
 

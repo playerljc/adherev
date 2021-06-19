@@ -1,11 +1,9 @@
-// @ts-ignore
 import { notification } from 'ant-design-vue';
 
-// @ts-ignore
 import Util from '@baifendian/adherev-util';
-// @ts-ignore
+
 import intl from '@baifendian/adherev-util-intl';
-// @ts-ignore
+
 import GlobalIndicator from '@baifendian/adherev-ui-globalindicator';
 
 import { IConfig, ISendArg, ISendPrepareArg } from './types';
@@ -82,11 +80,9 @@ function getDefaultConfig(): IConfig & {
     interceptor: ({ status }) => {
       switch (status) {
         case 401:
-          // @ts-ignore
           deal401.call(this);
           break;
         case 402:
-          // @ts-ignore
           deal402.call(this);
           break;
       }
@@ -303,12 +299,11 @@ function sendPrepare(
     return { xhr: null, contentType: '' };
   }
 
-  // @ts-ignore
   const { baseURL, config } = this;
 
   const { timeout, withCredentials, interceptor, ...events } = Object.assign(
     // 默认的属性
-    // @ts-ignore
+
     getDefaultConfig.call(this),
     config,
     curConfig,
@@ -347,15 +342,11 @@ function sendPrepare(
     if (!Util.isEmpty(data) && Util.isRef(data) && method !== ('get' || 'GET')) {
       if (
         !(
-          // @ts-ignore
-          // @ts-ignore
-          (
-            'form' in data &&
-            'data' in data &&
-            !Util.isEmpty(data.form) &&
-            !Util.isEmpty(data.data) &&
-            data.form instanceof HTMLFormElement
-          )
+          'form' in data &&
+          'data' in data &&
+          !Util.isEmpty(data.form) &&
+          !Util.isEmpty(data.data) &&
+          data.form instanceof HTMLFormElement
         )
       ) {
         console.log('默认设置Content-Type', `${Ajax.CONTENT_TYPE_APPLICATION_JSON};charset=utf-8`);
@@ -376,7 +367,7 @@ function sendPrepare(
   initXhrEvents(xhr, events);
 
   // onreadystatechange
-  // @ts-ignore
+
   xhr.onreadystatechange = onreadystatechange.bind(this, {
     xhr,
     interceptor,
@@ -465,12 +456,10 @@ function getSendParams({ data, contentType }) {
 function complexRequest(method: string, params: ISendArg) {
   return new Promise((resolve, reject) => {
     const { xhr, contentType } = sendPrepare.call(
-      // @ts-ignore
       this,
       {
-        // @ts-ignore
         ...getDefaultConfig.call(this),
-        // @ts-ignore
+
         method,
         ...params,
       },
@@ -482,7 +471,6 @@ function complexRequest(method: string, params: ISendArg) {
 
     if (xhr) {
       xhr.send(
-        // @ts-ignore
         getSendParams.call(this, {
           data: params.data,
           contentType,
@@ -505,7 +493,6 @@ function deal401() {
   }
 
   window.location.href = Util.casUrl({
-    // @ts-ignore
     baseUrl: this.systemManagerBaseUrl,
     enterUrl: window.location.href,
   });
@@ -523,7 +510,6 @@ function deal402() {
   }
 
   window.location.href = Util.casLogoutUrl({
-    // @ts-ignore
     baseUrl: this.systemManagerBaseUrl,
     enterUrl: window.location.href,
     params: '&code=402',
@@ -607,7 +593,6 @@ class Ajax {
 
     this.systemManagerBaseURL = systemManagerBaseURL || '';
 
-    // @ts-ignore
     this.config = config || {};
   }
 

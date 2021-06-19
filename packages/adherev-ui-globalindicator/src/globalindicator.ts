@@ -1,6 +1,6 @@
 import Resource from '@baifendian/adherev-util-resource';
 
-const selectorPrefix: string = 'adherev-ui-globalindicator';
+const selectorPrefix = 'adherev-ui-globalindicator';
 
 const MAX_ZINDEX = Resource.Dict.value.ResourceNormalMaxZIndex.value;
 
@@ -12,7 +12,7 @@ export default {
    * @param text
    * @param zIndex
    */
-  show(parent: HTMLElement = document.body, text: string = '', zIndex: number = MAX_ZINDEX) {
+  show(parent: HTMLElement = document.body, text = '', zIndex: number = MAX_ZINDEX) {
     const el: HTMLElement = document.createElement('div');
 
     el.innerHTML = `
@@ -27,7 +27,6 @@ export default {
       (indicatorDom as HTMLElement).style.position = 'fixed';
     }
 
-    // @ts-ignore
     parent.appendChild(indicatorDom);
 
     return indicatorDom;
@@ -38,7 +37,6 @@ export default {
    */
   hide(indicatorDom: HTMLElement) {
     if (indicatorDom) {
-      // @ts-ignore
       indicatorDom.parentElement.removeChild(indicatorDom);
     }
   },

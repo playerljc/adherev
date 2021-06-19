@@ -1,9 +1,8 @@
-// @ts-ignore
 import Vue from 'vue';
-// @ts-ignore
+
 import classNames from 'classnames';
 import { IData, IConfig } from './types';
-// @ts-ignore
+
 import Menu from './Menu';
 
 const selectorPrefix = 'adherev-ui-contextmenu';
@@ -16,7 +15,6 @@ const selectorPrefix = 'adherev-ui-contextmenu';
 const ContextMenuComponent = {
   props: {
     data: {
-      // @ts-ignore
       type: Array,
       default: () => [],
       validator(val: Array<IData>): boolean {
@@ -24,7 +22,6 @@ const ContextMenuComponent = {
       },
     },
     config: {
-      // @ts-ignore
       type: Object,
       default: () => {},
       validator(val: IData): boolean {
@@ -37,7 +34,6 @@ const ContextMenuComponent = {
   },
   provide() {
     return {
-      // @ts-ignore
       getContext: this.getContext,
     };
   },
@@ -52,58 +48,43 @@ const ContextMenuComponent = {
   methods: {
     getContext() {
       return {
-        // @ts-ignore
         config: this.config,
-        // @ts-ignore
+
         el: this.el,
       };
     },
     mount() {
-      // @ts-ignore
       this.$refs.menuIns?.mount();
     },
     onClick(e) {
       e.stopPropagation();
 
-      // @ts-ignore
       this.$destroy();
 
-      // @ts-ignore
       const { el } = this;
 
-      // @ts-ignore
       el.parentElement.removeChild(el);
     },
     onContextMenu(e) {
       e.preventDefault();
 
-      // @ts-ignore
       this.$destroy();
 
-      // @ts-ignore
       const { el } = this;
 
-      // @ts-ignore
       el.parentElement.removeChild(el);
     },
   },
   render(h) {
-    // @ts-ignore
     const { data = [], config } = this;
 
     return (
-      // @ts-ignore
       <div
-        // @ts-ignore
         class={this.getClass}
-        // @ts-ignore
         style={this.getStyle}
-        // @ts-ignore
         onClick={this.onClick}
-        // @ts-ignore
         onContextMenu={this.onContextMenu}
       >
-        {/*@ts-ignore*/}
         <Menu data={data} className={config.className} styleName={config.styleName} ref="menuIns" />
       </div>
     );
@@ -134,7 +115,6 @@ const ContextMenu = {
    * @param config
    */
   open(data: IData, config: IConfig) {
-    // @ts-ignore
     config = { width: 200, maskClosable: true, ...config };
 
     const parentEl = document.createElement('div');
@@ -145,7 +125,6 @@ const ContextMenu = {
 
     const vm = new Vue({
       mounted() {
-        // @ts-ignore
         this.$refs.ref.mount();
       },
       render(h) {

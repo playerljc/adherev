@@ -221,18 +221,22 @@
 </template>
 <script>
 import Table from './table';
+
 export default {
+  components: {
+    Table,
+  },
   data() {
     return {
       code1: [
         {
           title: 'table.tsx',
-          codeText:`
+          codeText: `
             import moment from 'moment';
             import { Input, Select, InputNumber, DatePicker } from 'ant-design-vue';
             import { SearchTable, Resource, Ajax } from '@baifendian/adherev';
 
-            // @ts-ignore
+
             const request = new Ajax('');
 
             const { Option } = Select;
@@ -250,9 +254,9 @@ export default {
                   homeTown: '',
                   width: '',
                   height: '',
-                  // @ts-ignore
+
                   [this.getOrderFieldProp()]: 'height',
-                  // @ts-ignore
+
                   [this.getOrderProp()]: 'descend',
                   // selectedRowKeys
                   selectedRowKeys: [],
@@ -291,7 +295,7 @@ export default {
                   return 'id';
                 },
                 getData() {
-                  // @ts-ignore
+
                   return this.dataSource.list;
                 },
                 getColumns() {
@@ -321,7 +325,7 @@ export default {
                       key: 'birthday',
                       align: 'center',
                       sorter: true,
-                      // @ts-ignore
+
                       sortOrder: this.sortOrder('birthday'),
                       scopedSlots: { customRender: 'birthday' },
                     },
@@ -337,7 +341,7 @@ export default {
                       key: 'height',
                       align: 'center',
                       sorter: true,
-                      // @ts-ignore
+
                       sortOrder: this.sortOrder('height'),
                     },
                     {
@@ -346,13 +350,13 @@ export default {
                       key: 'width',
                       align: 'center',
                       sorter: true,
-                      // @ts-ignore
+
                       sortOrder: this.sortOrder('width'),
                     },
                   ];
                 },
                 getScopedSlots(
-                  // @ts-ignore
+
                   h,
                 ) {
                   return {
@@ -366,32 +370,32 @@ export default {
                 },
                 getRowSelection() {
                   return {
-                    // @ts-ignore
+
                     selectedRowKeys: this.selectedRowKeys,
                     onChange: (selectedRowKeys) => {
-                      // @ts-ignore
+
                       this.selectedRowKeys = selectedRowKeys;
                     },
                   };
                 },
                 renderSearchForm(
-                  // @ts-ignore
+
                   h,
                 ) {
-                  // @ts-ignore
+
                   return (
                     <SearchTable.SearchForm>
                       <SearchTable.SearchFormRow>
                         <SearchTable.SearchFormLabel style="width: 100px;">姓名：</SearchTable.SearchFormLabel>
                         <SearchTable.SearchFormValue>
                           <Input
-                            // @ts-ignore
+
                             style="width: 270px"
                             placeholder="姓名"
-                            // @ts-ignore
+
                             value={this.name}
                             onChange={(e) => {
-                              // @ts-ignore
+
                               this.name = e.target.value.trim();
                             }}
                           />
@@ -400,17 +404,17 @@ export default {
                         <SearchTable.SearchFormLabel>性别：</SearchTable.SearchFormLabel>
                         <SearchTable.SearchFormValue>
                           <Select
-                            // @ts-ignore
+
                             style="width: 270px"
-                            // @ts-ignore
+
                             value={this.sex}
                             onChange={(v) => {
-                              // @ts-ignore
+
                               this.sex = v;
                             }}
                           >
                             {Resource.Dict.value.ResourceNormalSex.value.map((t) => (
-                              // @ts-ignore
+
                               <Option key={t.value} value={t.value}>
                                 {t.label}
                               </Option>
@@ -421,14 +425,14 @@ export default {
                         <SearchTable.SearchFormLabel>出生年月：</SearchTable.SearchFormLabel>
                         <SearchTable.SearchFormValue>
                           <RangePicker
-                            // @ts-ignore
+
                             style="width: 270px"
-                            // @ts-ignore
+
                             value={[this.startTime, this.endTime]}
                             onChange={(moments) => {
-                              // @ts-ignore
+
                               this.startTime = moments.length ? moments[0] : null;
-                              // @ts-ignore
+
                               this.endTime = moments.length ? moments[1] : null;
                             }}
                             getCalendarContainer={(el) => el.parentElement}
@@ -440,13 +444,13 @@ export default {
                         <SearchTable.SearchFormLabel>籍贯：</SearchTable.SearchFormLabel>
                         <SearchTable.SearchFormValue>
                           <Input
-                            // @ts-ignore
+
                             style="width: 270px"
                             placeholder="籍贯"
-                            // @ts-ignore
+
                             value={this.homeTown}
                             onChange={(e) => {
-                              // @ts-ignore
+
                               this.homeTown = e.target.value.trim();
                             }}
                           />
@@ -455,13 +459,13 @@ export default {
                         <SearchTable.SearchFormLabel>身高：</SearchTable.SearchFormLabel>
                         <SearchTable.SearchFormValue>
                           <InputNumber
-                            // @ts-ignore
+
                             style="width: 270px"
                             placeholder="身高"
-                            // @ts-ignore
+
                             value={this.height}
                             onChange={(v) => {
-                              // @ts-ignore
+
                               this.height = v;
                             }}
                           />
@@ -470,13 +474,13 @@ export default {
                         <SearchTable.SearchFormLabel>体重：</SearchTable.SearchFormLabel>
                         <SearchTable.SearchFormValue>
                           <InputNumber
-                            // @ts-ignore
+
                             style="width: 270px"
                             placeholder="体重"
-                            // @ts-ignore
+
                             value={this.width}
                             onChange={(v) => {
-                              // @ts-ignore
+
                               this.width = v;
                             }}
                           />
@@ -487,23 +491,23 @@ export default {
                         <SearchTable.SearchFormLabel>所在部门：</SearchTable.SearchFormLabel>
                         <SearchTable.SearchFormValue>
                           <Select
-                            // @ts-ignore
+
                             style="width: 270px"
-                            // @ts-ignore
+
                             value={this.deptCode}
                             onChange={(v) => {
-                              // @ts-ignore
+
                               this.deptCode = v;
                             }}
                             getPopupContainer={(el) => el.parentElement}
                           >
-                            {/*@ts-ignore*/}
+
                             <Option value="">全部</Option>
-                            {/*@ts-ignore*/}
+
                             <Option value="0">产品部</Option>
-                            {/*@ts-ignore*/}
+
                             <Option value="1">开发部</Option>
-                            {/*@ts-ignore*/}
+
                             <Option value="2">工程部</Option>
                           </Select>
                         </SearchTable.SearchFormValue>
@@ -512,7 +516,7 @@ export default {
                   );
                 },
                 getTotal() {
-                  // @ts-ignore
+
                   return this.dataSource.total;
                 },
                 getOrderFieldProp() {
@@ -523,30 +527,30 @@ export default {
                 },
                 clear() {
                   return new Promise((resolve) => {
-                    // @ts-ignore
+
                     this.name = '';
-                    // @ts-ignore
+
                     this.sex = '';
-                    // @ts-ignore
+
                     this.startTime = null;
-                    // @ts-ignore
+
                     this.endTime = null;
-                    // @ts-ignore
+
                     this.deptCode = '';
-                    // @ts-ignore
+
                     this.homeTown = '';
-                    // @ts-ignore
+
                     this.width = '';
-                    // @ts-ignore
+
                     this.height = '';
                     this[this.getOrderFieldProp()] = 'height';
                     this[this.getOrderProp()] = 'descend';
                     // selectedRowKeys
-                    // @ts-ignore
+
                     this.selectedRowKeys = [];
 
                     // 查询参数
-                    // @ts-ignore
+
                     this.searchParams = {
                       name: '',
                       sex: '',
@@ -565,22 +569,22 @@ export default {
                   return null;
                 },
                 showLoading() {
-                  // @ts-ignore
+
                   return this.loading;
                 },
                 onSubTableChange(
-                  // @ts-ignore
+
                   pagination,
-                  // @ts-ignore
+
                   filters,
-                  // @ts-ignore
+
                   sorter,
                 ) {},
                 fetchData() {
-                  // @ts-ignore
+
                   const { page, limit } = this;
 
-                  // @ts-ignore
+
                   const { startTime, endTime, ...others } = this.searchParams;
 
                   const order = this[this.getOrderProp()];
@@ -601,35 +605,35 @@ export default {
 
                   console.log(searParams);
 
-                  // @ts-ignore
+
                   this.loading = true;
 
                   request
                     .get(
-                      // @ts-ignore
+
                       {
                         mock: true,
                         path: require('./mock.js').default,
                       },
                     )
                     .then((result) => {
-                      // @ts-ignore
+
                       this.dataSource = {
-                        // @ts-ignore
+
                         total: result.total,
-                        // @ts-ignore
+
                         list: result.list,
                       };
 
-                      // @ts-ignore
+
                       this.loading = false;
                     });
                 },
                 onSearch() {
-                  // @ts-ignore
+
                   const { name, sex, startTime, endTime, deptCode, homeTown, width, height } = this;
 
-                  // @ts-ignore
+
                   this.searchParams = {
                     name,
                     sex,
@@ -649,11 +653,11 @@ export default {
             };
 
           `,
-          lang: 'javascript'
+          lang: 'javascript',
         },
         {
           title: 'mock.js',
-          codeText:`
+          codeText: `
             import faker from 'faker';
 
             import { Util } from '@baifendian/adherev';
@@ -676,23 +680,20 @@ export default {
               })),
             };
           `,
-          lang: 'javascript'
+          lang: 'javascript',
         },
         {
           title: 'index.vue',
-          codeText:`
+          codeText: `
             <template>
               <h2>基本使用</h2>
               <Table />
             </template>
           `,
           lang: 'vue',
-        }
-      ]
-    }
+        },
+      ],
+    };
   },
-  components: {
-    Table,
-  }
 };
 </script>

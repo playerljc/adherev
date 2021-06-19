@@ -1,4 +1,3 @@
-// @ts-ignore
 import ScrollLoad, { ERROR, EMPTY, NORMAL } from './scrollload';
 import { withInstall } from '../../_util/index';
 

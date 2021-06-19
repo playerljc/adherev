@@ -79,13 +79,13 @@ ConditionalRender.use(Vue);
 DelConfirm.use(Vue);
 ImportantConfirm.use(Vue);
 Permission.use(Vue);
-// @ts-ignore
+
 Intl.use(Vue);
 MessageDialog.use(Vue);
 Space.use(Vue);
 Spin.use(Vue);
 Split.use(Vue);
-// @ts-ignore
+
 Suspense.use(Vue);
 FlexLayout.use(Vue);
 SearchTable.use(Vue);

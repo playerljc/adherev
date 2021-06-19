@@ -107,7 +107,7 @@ class AnimationManager {
               y = startPoint[1] - j * speed;
             }
           }
-          // @ts-ignore
+
           addPoints.push([x, y]);
         }
       } else if (startPoint[0] !== endPoint[0] && startPoint[1] === endPoint[1]) {
@@ -142,7 +142,7 @@ class AnimationManager {
               x = startPoint[0] - j * speed;
             }
           }
-          // @ts-ignore
+
           addPoints.push([x, y]);
         }
       } else {
@@ -213,7 +213,6 @@ class AnimationManager {
             }
           }
 
-          // @ts-ignore
           addPoints.push([x, y]);
         }
       }
@@ -333,7 +332,6 @@ class AnimationManager {
           }
         }
 
-        // @ts-ignore
         const f = Util.drawImagePoint({
           id: v1(),
           pos: point,

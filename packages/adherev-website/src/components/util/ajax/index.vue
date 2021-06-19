@@ -231,7 +231,7 @@
 
     <h2>upload</h2>
     <playground>
-      <form encType="multipart/form-data" method="post" ref="uploadFormFef">
+      <form ref="uploadFormFef" encType="multipart/form-data" method="post">
         <div>
           <a-avatar v-if="!!img" shape="square" size="large" :src="img" />
           <a-avatar v-else shape="square" size="large" icon="user" />
@@ -258,8 +258,8 @@ import { Ajax, GlobalIndicator } from '@baifendian/adherev';
 
 const k007Ajax = new Ajax('http://k007-pe.baifendian.com');
 
-let uploadFormFef = null;
-let uploadRef = null;
+const uploadFormFef = null;
+const uploadRef = null;
 
 export default {
   data() {
@@ -314,7 +314,7 @@ export default {
         });
     },
     onCode3F1(e) {
-      const target = e.target;
+      const { target } = e;
       const file = target.files[0];
 
       const { size } = file;

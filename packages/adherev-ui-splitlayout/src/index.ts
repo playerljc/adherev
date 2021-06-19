@@ -1,4 +1,3 @@
-// @ts-ignore
 import SplitLayout from './splitlayout';
 import { withInstall } from '../../_util/index';
 

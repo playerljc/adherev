@@ -126,29 +126,29 @@
     />
 
     <h2>单值缓存监控</h2>
-    <playground :codeText="code1">
+    <playground :code-text="code1">
       <a-button @click="onCode1F1">light比较</a-button>
       <a-button @click="onCode1F2">deep比较</a-button>
       <a-button @click="onCode1F3">自定义比较</a-button>
     </playground>
 
     <h2>多值缓存监控</h2>
-    <playground :codeText="code2">
+    <playground :code-text="code2">
       <a-button @click="onCode2F1">light比较</a-button>
     </playground>
 
     <h2>watch对象的变化</h2>
-    <playground :codeText="code3">
+    <playground :code-text="code3">
       <a-button @click="onCode3F1">对obj1进行监控</a-button>
     </playground>
 
     <h2>创建一个memoized的普通函数</h2>
-    <playground :codeText="code4">
+    <playground :code-text="code4">
       <a-button @click="onCode4F1">调用memoized函数</a-button>
     </playground>
 
     <h2>创建一个memoized的Promise函数</h2>
-    <playground :codeText="code5">
+    <playground :code-text="code5">
       <a-button @click="onCode5F1">调用memoized函数</a-button>
     </playground>
   </div>

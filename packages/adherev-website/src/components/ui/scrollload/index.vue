@@ -114,7 +114,7 @@
     />
 
     <h2>基本使用</h2>
-    <playground :codeText="code1">
+    <playground :code-text="code1">
       <adv-scrollload style="width: 400px; height: 600px" @scroll-bottom="onCode1ScrollBottom">
         <a-list item-layout="horizontal" :data-source="data">
           <a-list-item slot="renderItem" slot-scope="item, index">
@@ -133,8 +133,12 @@
     </playground>
 
     <h2>没有数据的显示</h2>
-    <playground :codeText="code2">
-      <adv-scrollload style="width: 400px; height: 600px" @scroll-bottom="onCode2ScrollBottom" @empty-click="onCode2EmptyClick">
+    <playground :code-text="code2">
+      <adv-scrollload
+        style="width: 400px; height: 600px"
+        @scroll-bottom="onCode2ScrollBottom"
+        @empty-click="onCode2EmptyClick"
+      >
         <a-list item-layout="horizontal" :data-source="code2Data">
           <a-list-item slot="renderItem" slot-scope="item, index">
             <a-list-item-meta
@@ -152,8 +156,12 @@
     </playground>
 
     <h2>错误的显示</h2>
-    <playground :codeText="code3">
-      <adv-scrollload style="width: 400px; height: 600px" @scroll-bottom="onCode3ScrollBottom" @error-click="onCode3ErrorClick">
+    <playground :code-text="code3">
+      <adv-scrollload
+        style="width: 400px; height: 600px"
+        @scroll-bottom="onCode3ScrollBottom"
+        @error-click="onCode3ErrorClick"
+      >
         <a-list item-layout="horizontal" :data-source="code2Data">
           <a-list-item slot="renderItem" slot-scope="item, index">
             <a-list-item-meta
@@ -171,7 +179,7 @@
     </playground>
 
     <h2>自定义loading和empty</h2>
-    <playground :codeText="code4">
+    <playground :code-text="code4">
       <adv-scrollload style="width: 400px; height: 400px" @scroll-bottom="onCode4ScrollBottom">
         <a-list item-layout="horizontal" :data-source="code2Data">
           <a-list-item slot="renderItem" slot-scope="item, index">
@@ -187,11 +195,11 @@
           </a-list-item>
         </a-list>
 
-        <template v-slot:loading>
+        <template #loading>
           <a-spin tip="loading..." style="width: 100%" />
         </template>
 
-        <template v-slot:empty>
+        <template #empty>
           <a-empty />
         </template>
       </adv-scrollload>
@@ -451,20 +459,20 @@ export default {
       data: getData(),
     };
   },
-  watch: {
-    data: function () {
-      if (callbackHandler) {
-        callbackHandler(ScrollLoad.NORMAL);
-        callbackHandler = null;
-      }
-    }
-  },
   computed: {
     code2Data() {
       return globalData.map((t, index) => ({
         title: `Ant Design Title${index + 1}`,
-      }))
-    }
+      }));
+    },
+  },
+  watch: {
+    data() {
+      if (callbackHandler) {
+        callbackHandler(ScrollLoad.NORMAL);
+        callbackHandler = null;
+      }
+    },
   },
   methods: {
     onCode1ScrollBottom(callback) {
@@ -508,7 +516,7 @@ export default {
         callback(ScrollLoad.EMPTY);
         ref3Status = ScrollLoad.EMPTY;
       }, 2000);
-    }
+    },
   },
 };
 </script>

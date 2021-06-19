@@ -51,10 +51,10 @@
     />
 
     <h2>基本使用</h2>
-    <playground :codeText="code1">
+    <playground :code-text="code1">
       <div style="position: relative; height: 300px; overflow-y: hidden">
-        <div style="height: 100%; overflow-y: auto" ref="ref">
-          <a-list itemLayout="horizontal" :dataSource="data">
+        <div ref="ref" style="height: 100%; overflow-y: auto">
+          <a-list item-layout="horizontal" :data-source="data">
             <a-list-item slot="renderItem" slot-scope="item, index">
               <a-list-item-meta
                 description="Ant Design, a design language for background applications, is refined by Ant UED Team"
@@ -134,17 +134,17 @@ export default {
              }
           }
         <\/script>
-      `
+      `,
     };
   },
   methods: {
-    onTarget: function (callback) {
+    onTarget(callback) {
       callback(this.$refs.ref);
     },
-    onTrigger: function (next) {
+    onTrigger(next) {
       next();
     },
-    onScrollTop: function (val) {
+    onScrollTop(val) {
       console.log(val);
     },
   },

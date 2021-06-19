@@ -9,11 +9,9 @@ function renderNormalFirstLoading(h) {
   const result = [];
 
   for (let i = 0; i < 7; i++) {
-    // @ts-ignore
     result.push(<Skeleton key={i + 1} loading active avatar />);
   }
 
-  // @ts-ignore
   return <div class={`${selectorPrefix}-loading`}>{result}</div>;
 }
 
@@ -39,23 +37,21 @@ export default {
     };
   },
   watch: {
-    reset: function (newVal) {
+    reset(newVal) {
       if (newVal) {
         // 第一次
-        // @ts-ignore
+
         this.isFirst = true;
 
         // 第一次加载
-        // @ts-ignore
+
         this.isFirstLoading = false;
 
-        // @ts-ignore
         this.$forceUpdate();
       }
     },
   },
   mounted() {
-    // @ts-ignore
     this.fetchData();
   },
   methods: {
@@ -64,14 +60,12 @@ export default {
      * @param h
      */
     renderFirstLoading(h) {
-      // @ts-ignore
       const { $slots } = this;
 
       if ($slots.firstLoading) {
         return $slots.firstLoading;
       }
 
-      // @ts-ignore
       return renderNormalFirstLoading(h);
     },
     /**
@@ -80,9 +74,7 @@ export default {
      */
     renderNormal(h) {
       return (
-        // @ts-ignore
         <Spin size="large" spinning={this.showLoading()}>
-          {/*@ts-ignore*/}
           {this.renderInner(h)}
         </Spin>
       );
@@ -92,24 +84,18 @@ export default {
      * @param h
      */
     renderDispatch(h) {
-      // @ts-ignore
       const loading = this.showLoading();
 
-      // @ts-ignore
       if (this.isFirst && !this.isFirstLoading && loading) {
-        // @ts-ignore
         this.isFirstLoading = true;
       }
 
-      // @ts-ignore
       if (this.isFirst && this.isFirstLoading && !loading) {
-        // @ts-ignore
         this.isFirst = false;
-        // @ts-ignore
+
         this.isFirstLoading = false;
       }
 
-      // @ts-ignore
       if (this.isFirst) {
         return this.renderFirstLoading(h);
       }
@@ -122,7 +108,6 @@ export default {
    * @param h
    */
   render(h) {
-    // @ts-ignore
     return <div class={selectorPrefix}>{this.renderDispatch(h)}</div>;
   },
 };

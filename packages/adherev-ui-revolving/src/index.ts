@@ -1,6 +1,5 @@
-// @ts-ignore
 import Revolving from './revolving';
-// @ts-ignore
+
 import RevolvingItem from './item';
 import { withInstall } from '../../_util/index';
 

@@ -23,34 +23,38 @@
     />
 
     <h2>基本使用</h2>
-    <playground :codeText="code1">
+    <playground :code-text="code1">
       <a-card>
-        <template slot="actions" class="ant-card-actions">
-          <a-button type="primary" @click="baseUseShow=!baseUseShow">{{baseUseShow ? '隐藏' : '显示'}}</a-button>
+        <template #actions class="ant-card-actions">
+          <a-button type="primary" @click="baseUseShow = !baseUseShow">{{
+            baseUseShow ? '隐藏' : '显示'
+          }}</a-button>
         </template>
         <adv-conditionalrender :conditional="baseUseShow">
           <p>
-            In the process of internal desktop applications development, many different design
-            specs and implementations would be involved, which might cause designers and
-            developers difficulties and duplication and reduce the efficiency of development.
+            In the process of internal desktop applications development, many different design specs
+            and implementations would be involved, which might cause designers and developers
+            difficulties and duplication and reduce the efficiency of development.
           </p>
         </adv-conditionalrender>
       </a-card>
     </playground>
 
     <h2>自定义不匹配时的UI</h2>
-    <playground :codeText="code2">
+    <playground :code-text="code2">
       <a-card>
-        <template slot="actions" class="ant-card-actions">
-          <a-button type="primary" @click="noMatchUseShow=!noMatchUseShow">{{noMatchUseShow ? '隐藏' : '显示'}}</a-button>
+        <template #actions class="ant-card-actions">
+          <a-button type="primary" @click="noMatchUseShow = !noMatchUseShow">{{
+            noMatchUseShow ? '隐藏' : '显示'
+          }}</a-button>
         </template>
         <adv-conditionalrender :conditional="noMatchUseShow">
           <p>
-            In the process of internal desktop applications development, many different design
-            specs and implementations would be involved, which might cause designers and
-            developers difficulties and duplication and reduce the efficiency of development.
+            In the process of internal desktop applications development, many different design specs
+            and implementations would be involved, which might cause designers and developers
+            difficulties and duplication and reduce the efficiency of development.
           </p>
-          <template v-slot:noMatch>
+          <template #noMatch>
             <a-empty />
           </template>
         </adv-conditionalrender>
@@ -81,7 +85,7 @@ export default {
             </p>
           </adv-conditionalrender>
         </a-card>
-      `
+      `;
     },
     code2() {
       return `
@@ -101,7 +105,7 @@ export default {
           </adv-conditionalrender>
         </a-card>
       `;
-    }
-  }
+    },
+  },
 };
 </script>

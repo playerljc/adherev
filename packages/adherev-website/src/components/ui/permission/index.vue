@@ -104,16 +104,16 @@
     />
 
     <h2>基本使用</h2>
-    <playground :codeText="code">
+    <playground :code-text="code">
       <a-card>
-        <template slot="actions" class="ant-card-actions">
+        <template #actions class="ant-card-actions">
           <a-button type="primary" @click="onSetAllPermission">设置所有权限</a-button>
           <a-button @click="onSetCurPermission">设置当前权限</a-button>
         </template>
 
-        <adv-permission :permissions="curPermission" :allPermission="allPermission">
+        <adv-permission :permissions="curPermission" :all-permission="allPermission">
           <Button>有权限才能看到这个按钮</Button>
-          <template v-slot:noMatch>
+          <template #noMatch>
             <a-empty />
           </template>
         </adv-permission>
@@ -253,7 +253,7 @@ export default {
             },
           }
         <\/script>
-      `
+      `,
     };
   },
   methods: {
@@ -300,7 +300,7 @@ export default {
      * @return {{permission: string}}
      */
     onSetCurPermission() {
-      const curPermission = this.curPermission;
+      const { curPermission } = this;
 
       const { el, vm } = MessageDialog.Modal({
         config: {

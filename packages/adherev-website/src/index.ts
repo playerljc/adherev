@@ -1,11 +1,6 @@
 import Vue from 'vue';
 import 'vue-highlight.js/lib/allLanguages';
-import {
-  Intl,
-  Util,
-  Resource,
-  // @ts-ignore
-} from '@baifendian/adherev';
+import { Intl, Util, Resource } from '@baifendian/adherev';
 
 import Router from './lib/Router';
 import '@/config/component.register.config.js';
@@ -22,11 +17,11 @@ Resource.Dict.value.LocalsMoment.value[lang]();
 
 new Vue({
   el: '#container',
-  // @ts-ignore
+
   i18n: Intl({
     locale: lang,
   }),
-  // @ts-ignore
+
   router: Router(),
   data() {
     return {

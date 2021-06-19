@@ -172,17 +172,17 @@
     <playground :code-text="menuuDataCode" :default-expand="true" lang="javascript" />
 
     <h2>基本使用</h2>
-    <playground :codeText="code1">
+    <playground :code-text="code1">
       <a-button type="primary" @click="onClickCode1($event)">点击弹出</a-button>
     </playground>
 
     <h2>右键弹出</h2>
-    <playground :codeText="code2">
+    <playground :code-text="code2">
       <a-button type="primary" @contextmenu="onContextMenuCode2($event)">右键弹出</a-button>
     </playground>
 
     <h2>多项按钮</h2>
-    <playground :codeText="code3">
+    <playground :code-text="code3">
       <a-radio-group value="large" @change="onChangeCode3($event)">
         <a-radio-button value="file">File</a-radio-button>
         <a-radio-button value="edit">Edit</a-radio-button>
@@ -205,7 +205,7 @@ const contextMenuData = [
     id: 'add',
     icon: {
       template: `<a-icon type="folder-add" />`,
-    }, //<FolderAddOutlined />,
+    }, // <FolderAddOutlined />,
     separation: false,
     attribute: {},
     children: [
@@ -224,7 +224,7 @@ const contextMenuData = [
         id: 'addpageabove',
         icon: {
           template: `<a-icon type="folder-add" />`,
-        }, //<FileAddOutlined />,
+        }, // <FileAddOutlined />,
         separation: false,
         attribute: {},
         children: [],
@@ -234,7 +234,7 @@ const contextMenuData = [
         id: 'addpagebelow',
         icon: {
           template: `<a-icon type="folder-add" />`,
-        }, //<FileAddOutlined />,
+        }, // <FileAddOutlined />,
         separation: false,
         attribute: {},
         children: [],
@@ -244,7 +244,7 @@ const contextMenuData = [
         id: 'subpage',
         icon: {
           template: '<a-icon type="folder-add" />',
-        }, //<FileAddOutlined />,
+        }, // <FileAddOutlined />,
         separation: false,
         attribute: {},
         children: [],
@@ -554,7 +554,7 @@ export default {
              }
           }
         <\/script>
-      `
+      `;
     },
   },
   methods: {

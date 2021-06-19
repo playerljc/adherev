@@ -1984,24 +1984,24 @@
     />
 
     <h2>OLMap使用</h2>
-    <playground :codeText="code1">
+    <playground :code-text="code1">
       <div style="width: 100%; height: 500px">
         <adv-olmap :zoom="11.5" />
       </div>
     </playground>
 
     <h2>添加新北区的GeoJSONLayer</h2>
-    <playground :codeText="code2">
+    <playground :code-text="code2">
       <div style="width: 100%; height: 500px">
         <a-button type="primary" style="margin-bottom: 20px" @click="onCode1Fun1">
           添加新北区的GeoJSONLayer
         </a-button>
-        <adv-olmap :zoom="11.5" ref="xbqRef" />
+        <adv-olmap ref="xbqRef" :zoom="11.5" />
       </div>
     </playground>
 
     <h2>使用不同的source</h2>
-    <playground :codeText="code3">
+    <playground :code-text="code3">
       <div style="width: 100%; height: 500px">
         <a-radio-group
           style="margin-bottom: 20px"
@@ -2014,37 +2014,37 @@
           <a-radio :value="'DixingGoogleXYZ'">谷歌地形</a-radio>
           <a-radio :value="'DianziGaodeXYZ'">高德电子地图</a-radio>
         </a-radio-group>
-        <adv-olmap :zoom="11.5" ref="changeRef" />
+        <adv-olmap ref="changeRef" :zoom="11.5" />
       </div>
     </playground>
 
     <h2>热力图(HeatMap)</h2>
-    <playground :codeText="code4">
+    <playground :code-text="code4">
       <div style="width: 100%; height: 500px">
         <a-button type="primary" style="margin-bottom: 20px" @click="onCode3Fun1"
           >添加新北区的GeoJSON数据</a-button
         >
-        <adv-olmap-heatmap :zoom="11.5" ref="heatRef" />
+        <adv-olmap-heatmap ref="heatRef" :zoom="11.5" />
       </div>
     </playground>
 
     <h2>Features</h2>
-    <playground :codeText="code5">
+    <playground :code-text="code5">
       <div style="width: 100%; height: 500px">
         <a-button type="primary" style="margin-bottom: 20px" @click="onCode4Fun1"
           >显示Features</a-button
         >
-        <adv-olmap :zoom="11.5" ref="fRef" />
+        <adv-olmap ref="fRef" :zoom="11.5" />
       </div>
     </playground>
 
     <h2>轨迹播放</h2>
-    <playground :codeText="code6">
+    <playground :code-text="code6">
       <div style="width: 100%; height: 500px">
         <a-button type="primary" style="margin-bottom: 20px" @click="onCode5Fun1"
           >轨迹播放</a-button
         >
-        <adv-olmap :zoom="11.5" ref="animationRef" />
+        <adv-olmap ref="animationRef" :zoom="11.5" />
       </div>
     </playground>
   </div>

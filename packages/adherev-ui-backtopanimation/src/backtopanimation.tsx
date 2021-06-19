@@ -1,7 +1,5 @@
-// @ts-ignore
 import classNames from 'classnames';
 
-// @ts-ignore
 import Resource from '@baifendian/adherev-util-resource';
 
 const selectorPrefix = 'adherev-ui-backtopanimation';
@@ -34,63 +32,50 @@ export default {
   },
   data() {
     return {
-      _maskEl: null,
-      _scrollEl: null,
-      _key: false,
+      $maskEl: null,
+      $scrollEl: null,
+      $key: false,
     };
   },
   mounted() {
-    // @ts-ignore
     this.initScrollEvent();
 
-    // @ts-ignore
     this.renderMask();
   },
   beforeDestroy() {
-    // @ts-ignore
     const { $data } = this;
 
-    if ($data._maskEl) {
-      // @ts-ignore
-      $data._maskEl.parentElement.removeChild($data._maskEl);
+    if ($data.$maskEl) {
+      $data.$maskEl.parentElement.removeChild($data.$maskEl);
     }
   },
   methods: {
     trigger() {
-      // @ts-ignore
-      if (this.$data._key) return;
+      if (this.$data.$key) return;
 
       const self = this;
 
-      // @ts-ignore
       this.$emit('trigger', () => {
-        // @ts-ignore
         const { $data, duration } = self;
 
-        $data._key = true;
+        $data.$key = true;
 
-        // @ts-ignore
-        $data._maskEl.style.display = 'block';
+        $data.$maskEl.style.display = 'block';
 
-        // @ts-ignore
-        const srcTop = $data._scrollEl.scrollTop;
-        let scrollVal = srcTop;
+        let scrollVal = $data.$scrollEl.scrollTop;
         const targetTop = 0;
 
         // 一次滚动的步进
         const step =
-          // @ts-ignore
-          $data._scrollEl.scrollHeight /
-          // @ts-ignore
+          $data.$scrollEl.scrollHeight /
           (duration / (screen.updateInterval || 16.7) +
-            // @ts-ignore
             (duration % (screen.updateInterval || 16.7) !== 0 ? 1 : 0));
 
         /**
          * 动画的滚动
          */
         function scrollAnimation() {
-          if (srcTop < targetTop) {
+          if ($data.$scrollEl.scrollTop < targetTop) {
             if (scrollVal + step > targetTop) {
               scrollVal = targetTop;
             } else {
@@ -102,13 +87,11 @@ export default {
             scrollVal -= step;
           }
 
-          // @ts-ignore
-          $data._scrollEl.scrollTop = scrollVal;
+          $data.$scrollEl.scrollTop = scrollVal;
 
-          // @ts-ignore
           self.$emit('scrollTop', scrollVal);
 
-          if (srcTop < targetTop) {
+          if ($data.$scrollEl.scrollTop < targetTop) {
             if (scrollVal >= targetTop) {
               clear();
             } else {
@@ -121,10 +104,9 @@ export default {
           }
 
           function clear() {
-            // @ts-ignore
-            $data._maskEl.style.display = 'none';
+            $data.$maskEl.style.display = 'none';
 
-            $data._key = false;
+            $data.$key = false;
           }
         }
 
@@ -134,26 +116,20 @@ export default {
     initScrollEvent() {
       const self = this;
 
-      // @ts-ignore
       this.$emit('target', (target) => {
-        // @ts-ignore
         const { $data, $refs } = self;
 
-        $data._scrollEl = target;
+        $data.$scrollEl = target;
 
-        // @ts-ignore
-        $data._scrollEl.addEventListener(
+        $data.$scrollEl.addEventListener(
           'scroll',
           () => {
-            // @ts-ignore
-            if ($data._scrollEl.scrollTop !== 0) {
+            if ($data.$scrollEl.scrollTop !== 0) {
               window.requestAnimationFrame(() => {
-                // @ts-ignore
                 $refs.ref.style.display = 'block';
               });
             } else {
               window.requestAnimationFrame(() => {
-                // @ts-ignore
                 $refs.ref.style.display = 'none';
               });
             }
@@ -163,34 +139,29 @@ export default {
       });
     },
     renderMask() {
-      // @ts-ignore
       const { $data } = this;
 
-      // @ts-ignore
-      $data._maskEl = document.body.querySelector(`.${selectorPrefix}-mask`);
+      $data.$maskEl = document.body.querySelector(`.${selectorPrefix}-mask`);
 
-      if (!$data._maskEl) {
-        $data._maskEl = document.createElement('div');
-        $data._maskEl.className = `${selectorPrefix}-mask`;
-        document.body.appendChild($data._maskEl);
+      if (!$data.$maskEl) {
+        $data.$maskEl = document.createElement('div');
+        $data.$maskEl.className = `${selectorPrefix}-mask`;
+        document.body.appendChild($data.$maskEl);
       }
     },
   },
   render(h) {
-    // @ts-ignore
     const { className } = this;
 
     return (
-      // @ts-ignore
       <div
         class={classNames(
           selectorPrefix,
-          // @ts-ignore
+
           className.split(' '),
         )}
         ref="ref"
         onClick={() => {
-          // @ts-ignore
           this.trigger();
         }}
       />

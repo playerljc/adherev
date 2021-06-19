@@ -56,22 +56,18 @@ export default {
      * @param h
      */
     renderInner(h: CreateElement) {
-      // @ts-ignore
       const { className, tableClassName, tableStyle, searchStyle, searchClassName } = this;
 
       // 作用域插槽
       const scopedSlots = {
-        // @ts-ignore
         ...(this.getScopedSlots(h) || {}),
       };
 
       return (
-        // @ts-ignore
         <FlexLayout
           direction="vertical"
           className={classNames(selectorPrefix, ...(className || '').split(' '))}
         >
-          {/*@ts-ignore*/}
           <FlexLayout.Fixed
             className={classNames(
               `${selectorPrefix}-SearchWrapper`,
@@ -79,16 +75,13 @@ export default {
             )}
             style={searchStyle}
           >
-            {/*@ts-ignore*/}
             <FlexLayout>
-              {/*@ts-ignore*/}
               <FlexLayout.Fixed>{this.renderSearchForm(h)}</FlexLayout.Fixed>
-              {/*@ts-ignore*/}
+
               <FlexLayout.Fixed>{this.renderSearchFooter(h)}</FlexLayout.Fixed>
             </FlexLayout>
           </FlexLayout.Fixed>
 
-          {/*@ts-ignore*/}
           <FlexLayout.Auto
             className={classNames(
               `${selectorPrefix}-TableWrapper`,
@@ -96,16 +89,12 @@ export default {
             )}
             style={tableStyle}
           >
-            {/*@ts-ignore*/}
             <Table
-              // @ts-ignore
               rowKey={this.getRowKey()}
-              // @ts-ignore
               dataSource={this.getData()}
               columns={this.getTableColumns(h)}
               onChange={this.onTableChange}
               pagination={this.getPagination()}
-              // @ts-ignore
               rowSelection={this.getRowSelection()}
               scopedSlots={scopedSlots}
             />
@@ -118,34 +107,27 @@ export default {
      * @param h
      */
     renderSearchFooter(h: CreateElement) {
-      // @ts-ignore
       const items = this.renderSearchFooterItems(h) || [];
 
       return (
-        // @ts-ignore*
         <div class={`${selectorPrefix}-SearchFooterWrapper`}>
-          {/*@ts-ignore*/}
           <Button
-            // @ts-ignore
             class={`${selectorPrefix}-SearchFooterItem`}
             type="primary"
             onClick={() => {
-              // @ts-ignore
               this.page = 1;
-              // @ts-ignore
+
               this.onSearch();
             }}
           >
-            {/*@ts-ignore*/}
             <i class="iconfont iconsousuo" />
             {Intl.tv('查询')}
           </Button>
-          {/*@ts-ignore*/}
+
           <Button class={`${selectorPrefix}-SearchFooterItem`} onClick={this.onClear}>
             {Intl.tv('重置')}
           </Button>
           {items.map((t) => (
-            // @ts-ignore
             <div class={`${selectorPrefix}-SearchFooterItem`}>{t}</div>
           ))}
         </div>
@@ -155,9 +137,8 @@ export default {
      * onTableChange - 表格change
      */
     getTableColumns(h: CreateElement): Array<any> {
-      // @ts-ignore
       const isShowNumber = this.isShowNumber();
-      // @ts-ignore
+
       const getTableNumberColumnWidth = this.getTableNumberColumnWidth();
 
       if (isShowNumber) {
@@ -171,14 +152,11 @@ export default {
             customRender: (text, row, index) => {
               console.log('number scopeSlot');
               const numberGeneratorRule =
-                // @ts-ignore
                 this.getNumberGeneratorRule() || NUMBER_GENERATOR_RULE_ALONE;
 
-              // @ts-ignore
               const { page, limit } = this;
 
               return (
-                // @ts-ignore
                 <ConditionalRender
                   conditional={numberGeneratorRule === NUMBER_GENERATOR_RULE_ALONE}
                 >
@@ -190,13 +168,9 @@ export default {
               );
             },
           },
-        ].concat(
-          // @ts-ignore
-          this.getColumns(),
-        );
+        ].concat(this.getColumns());
       }
 
-      // @ts-ignore
       return this.getColumns();
     },
     /**
@@ -206,33 +180,27 @@ export default {
      * @param sorter
      */
     onTableChange(pagination, filters, sorter) {
-      // @ts-ignore
       this[this.getOrderFieldProp()] = sorter.field;
-      // @ts-ignore
+
       this[this.getOrderProp()] = sorter.order;
 
       const { order } = sorter;
 
       if (!order) return;
 
-      // @ts-ignore
       this.fetchData();
 
-      // @ts-ignore
       this.onSubTableChange(pagination, filters, sorter);
     },
     /**
      * onClear - 清除操作
      */
     onClear() {
-      // @ts-ignore
       this.page = 1;
-      // @ts-ignore
+
       this.limit = 10;
 
-      // @ts-ignore
       this.clear().then(() => {
-        // @ts-ignore
         this.fetchData();
       });
     },
@@ -241,11 +209,7 @@ export default {
      * @param columnName
      */
     sortOrder(columnName: string): string {
-      // @ts-ignore
-      return this[this.getOrderFieldProp()] === columnName
-        ? // @ts-ignore
-          this[this.getOrderProp()]
-        : '';
+      return this[this.getOrderFieldProp()] === columnName ? this[this.getOrderProp()] : '';
     },
     /**
      * getPagination - 获取分页信息
@@ -253,39 +217,36 @@ export default {
     getPagination() {
       return {
         onChange: (page, limit) => {
-          // @ts-ignore
           this.page = page;
-          // @ts-ignore
+
           this.limit = limit;
-          // @ts-ignore
+
           this.fetchData();
         },
         onShowSizeChange: (page, limit) => {
-          // @ts-ignore
           this.page = page;
-          // @ts-ignore
+
           this.limit = limit;
-          // @ts-ignore
+
           this.fetchData();
         },
         showTotal: (total) => {
           return Intl.tv(
             `当前 {page}-{pageSize}/共 {total}条`,
-            // @ts-ignore
+
             {
-              // @ts-ignore
               page: this.page,
-              // @ts-ignore
+
               pageSize: this.limit,
               total,
             },
           );
         },
-        // @ts-ignore
+
         total: this.getTotal(),
-        // @ts-ignore
+
         current: this.page,
-        // @ts-ignore
+
         pageSize: this.limit,
         showQuickJumper: true,
       };

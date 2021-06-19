@@ -10,7 +10,6 @@ const finallyLocales = {
 
 const intlMap = {};
 
-// @ts-ignore
 let i18n: IVueI18n = null;
 
 /**
@@ -32,7 +31,6 @@ function initIntlMap(zh_CN) {
  * @return object
  */
 export function getLocal(data: Array<string>): object {
-  // @ts-ignore
   const result = [...Array.from(new Set(data))];
 
   const local = {};
@@ -111,7 +109,7 @@ const I18nFactory = function (config: I18nOptions = {}) {
  */
 I18nFactory.tv = function (zh: Path, ...values: []) {
   const key = intlMap[zh];
-  // @ts-ignore
+
   return i18n.t.apply(i18n, [key, ...values]);
 };
 
@@ -122,7 +120,7 @@ I18nFactory.tv = function (zh: Path, ...values: []) {
  */
 I18nFactory.tcv = function (zh: Path, ...values: []) {
   const key = intlMap[zh];
-  // @ts-ignore
+
   return i18n.tc.apply(i18n, [key, ...values]);
 };
 
@@ -133,7 +131,7 @@ I18nFactory.tcv = function (zh: Path, ...values: []) {
  */
 I18nFactory.tev = function (zh: Path, ...values: []) {
   const key = intlMap[zh];
-  // @ts-ignore
+
   return i18n.te.apply(i18n, [key, ...values]);
 };
 

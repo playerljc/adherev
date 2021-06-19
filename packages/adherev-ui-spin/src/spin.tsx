@@ -20,24 +20,20 @@ export default {
     },
   },
   render(h) {
-    // @ts-ignore
     const { spinning, text, zIndex } = this;
 
     return spinning ? (
-      // @ts-ignore
-      <div class={selectorPrefix} style={{ zIndex: zIndex }}>
-        {/*@ts-ignore*/}
+      <div class={selectorPrefix} style={{ zIndex }}>
         <span class={`${selectorPrefix}-dot`}>
-          {/*@ts-ignore*/}
           <i></i>
-          {/*@ts-ignore*/}
+
           <i></i>
-          {/*@ts-ignore*/}
+
           <i></i>
-          {/*@ts-ignore*/}
+
           <i></i>
         </span>
-        {/*@ts-ignore*/}
+
         <div class={`${selectorPrefix}-text`}>{text}</div>
       </div>
     ) : null;

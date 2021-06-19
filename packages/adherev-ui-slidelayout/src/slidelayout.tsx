@@ -1,8 +1,7 @@
-// @ts-ignore
 import Overlay from './overlay';
-// @ts-ignore
+
 import Push from './push';
-// @ts-ignore
+
 import Revolving from './reveal';
 
 export const selectorPrefix = 'adherev-ui-slidelayout';
@@ -28,9 +27,8 @@ export function slider(
     callback(el);
   }
 
-  // @ts-ignore
   el.style.transform = el.style.webkitTransform = `translate3d(${x},${y},${z})`;
-  // @ts-ignore
+
   el.style.transition = el.style.webkitTransition = `all ${time} ease`;
 }
 
@@ -46,10 +44,8 @@ export function createMask(zIndex: number | string, closeCallback: Function): HT
 
   const maskEl = el.firstElementChild;
 
-  // @ts-ignore
   maskEl.style.zIndex = zIndex - 1;
 
-  // @ts-ignore
   maskEl.addEventListener('click', () => {
     closeCallback();
   });

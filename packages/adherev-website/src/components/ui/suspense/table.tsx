@@ -48,39 +48,30 @@ export default {
     },
   },
   watch: {
-    reset: function (newVal) {
+    reset(newVal) {
       if (newVal) {
-        // @ts-ignore
         this.pagination = {
           current: 1,
           pageSize: 2,
         };
 
-        // @ts-ignore
         this.fetchData();
       }
     },
   },
   methods: {
     handleTableChange(pagination) {
-      // @ts-ignore
       this.pagination = pagination;
       this.fetchData();
     },
-    renderInner(
-      // @ts-ignore
-      h,
-    ) {
+    renderInner(h) {
       // 使用JSX实现
       return (
         <div style="position: relative;">
           <Table
-            // @ts-ignore
             columns={this.columns}
-            // @ts-ignore
             data-source={this.dataSource}
             loading={this.showLoading()}
-            // @ts-ignore
             pagination={this.pagination}
             onChange={this.handleTableChange}
           />
@@ -88,7 +79,6 @@ export default {
       );
     },
     showLoading() {
-      // @ts-ignore
       return this.loading;
     },
     fetchData() {
@@ -96,11 +86,9 @@ export default {
       list.length = 10;
       list.fill(0);
 
-      // @ts-ignore
       this.loading = true;
 
       setTimeout(() => {
-        // @ts-ignore
         this.dataSource = list.map((t, index) => ({
           id: index + 1,
           name: `人${index + 1}`,
@@ -111,7 +99,6 @@ export default {
         }));
 
         setTimeout(() => {
-          // @ts-ignore
           this.loading = false;
         }, 200);
       }, 2000);

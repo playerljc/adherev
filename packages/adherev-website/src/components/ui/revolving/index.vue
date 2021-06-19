@@ -102,12 +102,12 @@
           desc: '附加的样式表',
           type: 'string',
           defaultVal: '',
-        }
+        },
       ]"
     />
 
     <h2>direction - left</h2>
-    <playground :codeText="code1">
+    <playground :code-text="code1">
       <adv-revolving direction="left">
         <adv-revolving-item>Slide 1</adv-revolving-item>
         <adv-revolving-item>Slide 2</adv-revolving-item>
@@ -123,7 +123,7 @@
     </playground>
 
     <h2>direction - right</h2>
-    <playground :codeText="code2">
+    <playground :code-text="code2">
       <adv-revolving direction="right">
         <adv-revolving-item>Slide 1</adv-revolving-item>
         <adv-revolving-item>Slide 2</adv-revolving-item>
@@ -139,7 +139,7 @@
     </playground>
 
     <h2>direction - top</h2>
-    <playground :codeText="code3">
+    <playground :code-text="code3">
       <adv-revolving direction="top" style="height: 50px">
         <adv-revolving-item>Slide 1</adv-revolving-item>
         <adv-revolving-item>Slide 2</adv-revolving-item>
@@ -155,7 +155,7 @@
     </playground>
 
     <h2>direction - bottom</h2>
-    <playground :codeText="code4">
+    <playground :code-text="code4">
       <adv-revolving direction="bottom" style="height: 50px">
         <adv-revolving-item>Slide 1</adv-revolving-item>
         <adv-revolving-item>Slide 2</adv-revolving-item>
@@ -171,7 +171,7 @@
     </playground>
 
     <h2>speed - 过度时间</h2>
-    <playground :codeText="code5">
+    <playground :code-text="code5">
       <adv-revolving direction="bottom" :speed="1000 * 3" style="height: 50px">
         <adv-revolving-item>Slide 1</adv-revolving-item>
         <adv-revolving-item>Slide 2</adv-revolving-item>
@@ -187,7 +187,7 @@
     </playground>
 
     <h2>delay - 转换时间</h2>
-    <playground :codeText="code6">
+    <playground :code-text="code6">
       <adv-revolving direction="bottom" :delay="1000 * 3" style="height: 50px">
         <adv-revolving-item>Slide 1</adv-revolving-item>
         <adv-revolving-item>Slide 2</adv-revolving-item>
@@ -203,7 +203,7 @@
     </playground>
 
     <h2>api控制</h2>
-    <playground :codeText="code7">
+    <playground :code-text="code7">
       <div style="display: flex; align-items: center">
         <adv-space-group direction="horizontal">
           <a-button type="primary" @click="onCodeApiStart">start</a-button>
@@ -213,7 +213,7 @@
 
       <adv-space />
 
-      <adv-revolving direction="bottom" :delay="1000 * 3" style="height: 50px" ref="ref">
+      <adv-revolving ref="ref" direction="bottom" :delay="1000 * 3" style="height: 50px">
         <adv-revolving-item>Slide 1</adv-revolving-item>
         <adv-revolving-item>Slide 2</adv-revolving-item>
         <adv-revolving-item>Slide 3</adv-revolving-item>

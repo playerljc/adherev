@@ -1,1 +1,1 @@
-{"version":3,"file":"index.js","sources":["index.js"],"sourcesContent":["import Resource from './resource';\r\n// @ts-ignore\r\nResource.isUse = function () { return false; };\r\nexport default Resource;\r\n"],"names":["Resource","isUse"],"mappings":"OAAOA,0BAEPA,SAASC,MAAQ,WAAc,OAAO,kBACvBD"}
+{"version":3,"file":"index.js","sources":["index.js"],"sourcesContent":["import Resource from './resource';\r\nResource.isUse = function () { return false; };\r\nexport default Resource;\r\n"],"names":["Resource","isUse"],"mappings":"OAAOA,0BACPA,SAASC,MAAQ,WAAc,OAAO,kBACvBD"}

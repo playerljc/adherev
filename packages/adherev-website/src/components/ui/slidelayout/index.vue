@@ -328,7 +328,7 @@
     />
 
     <h2>Overlay</h2>
-    <playground :codeText="code1">
+    <playground :code-text="code1">
       <adv-flexlayout direction="horizontal">
         <adv-flexlayout-auto>
           <div>
@@ -343,7 +343,7 @@
 
             <div :style="horizontalCSS">
               <adv-slidelayout-overlay
-                :defaultCollapse="collapse1"
+                :default-collapse="collapse1"
                 @after-close="collapse1 = false"
               >
                 left
@@ -366,8 +366,8 @@
             <div :style="horizontalCSS">
               <adv-slidelayout-overlay
                 direction="right"
+                :default-collapse="collapse2"
                 @after-close="collapse2 = false"
-                :defaultCollapse="collapse2"
               >
                 right
               </adv-slidelayout-overlay>
@@ -391,7 +391,7 @@
             <div :style="verticalCSS">
               <adv-slidelayout-overlay
                 direction="top"
-                :defaultCollapse="collapse3"
+                :default-collapse="collapse3"
                 @after-close="collapse3 = false"
               >
                 top
@@ -414,7 +414,7 @@
             <div :style="verticalCSS">
               <adv-slidelayout-overlay
                 direction="bottom"
-                :defaultCollapse="collapse4"
+                :default-collapse="collapse4"
                 @after-close="collapse4 = false"
               >
                 bottom
@@ -426,7 +426,7 @@
     </playground>
 
     <h2>Push</h2>
-    <playground :codeText="code2">
+    <playground :code-text="code2">
       <adv-flexlayout direction="horizontal">
         <adv-flexlayout-auto>
           <div>
@@ -438,11 +438,11 @@
             </div>
             <adv-space direction="vertical" />
             <div :style="horizontalCSS">
-              <adv-slidelayout-push :defaultCollapse="collapse5" @after-close="collapse5 = false">
-                <template v-slot:slide>
+              <adv-slidelayout-push :default-collapse="collapse5" @after-close="collapse5 = false">
+                <template #slide>
                   <div>left</div>
                 </template>
-                <template v-slot:master>
+                <template #master>
                   <div>master</div>
                 </template>
               </adv-slidelayout-push>
@@ -462,13 +462,13 @@
             <div :style="horizontalCSS">
               <adv-slidelayout-push
                 direction="right"
-                :defaultCollapse="collapse6"
+                :default-collapse="collapse6"
                 @after-close="collapse6 = false"
               >
-                <template v-slot:slide>
+                <template #slide>
                   <div>right</div>
                 </template>
-                <template v-slot:master>
+                <template #master>
                   <div>Master</div>
                 </template>
               </adv-slidelayout-push>
@@ -479,7 +479,7 @@
     </playground>
 
     <h2>Revolving</h2>
-    <playground :codeText="code3">
+    <playground :code-text="code3">
       <adv-flexlayout direction="horizontal">
         <adv-flexlayout-auto>
           <div>
@@ -493,11 +493,14 @@
             <adv-space direction="vertical" />
 
             <div :style="horizontalCSS">
-              <adv-slidelayout-reveal :defaultCollapse="collapse7" @after-close="collapse7 = false">
-                <template v-slot:slide>
+              <adv-slidelayout-reveal
+                :default-collapse="collapse7"
+                @after-close="collapse7 = false"
+              >
+                <template #slide>
                   <div>left</div>
                 </template>
-                <template v-slot:master>
+                <template #master>
                   <div>Master</div>
                 </template>
               </adv-slidelayout-reveal>
@@ -517,13 +520,13 @@
             <div :style="horizontalCSS">
               <adv-slidelayout-reveal
                 direction="right"
-                :defaultCollapse="collapse8"
+                :default-collapse="collapse8"
                 @after-close="collapse8 = false"
               >
-                <template v-slot:slide>
+                <template #slide>
                   <div>right</div>
                 </template>
-                <template v-slot:master>
+                <template #master>
                   <div>Master</div>
                 </template>
               </adv-slidelayout-reveal>
@@ -538,7 +541,7 @@
 export default {
   data() {
     return {
-      code1:`
+      code1: `
         <template>
           <h2>Overlay</h2>
           <adv-flexlayout direction="horizontal">
@@ -650,7 +653,7 @@ export default {
           }
         <\/script>
       `,
-      code2:`
+      code2: `
         <template>
           <h2>Push</h2>
           <adv-flexlayout direction="horizontal">
@@ -715,7 +718,7 @@ export default {
           }
         <\/script>
       `,
-      code3:`
+      code3: `
         <template>
           <h2>Revolving</h2>
           <adv-flexlayout direction="horizontal">

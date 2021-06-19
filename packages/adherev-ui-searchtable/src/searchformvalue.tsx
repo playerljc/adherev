@@ -11,11 +11,9 @@ export default {
     },
   },
   render(h) {
-    // @ts-ignore
     const { $slots, className } = this;
 
     return (
-      // @ts-ignore
       <td class={classNames(selectorPrefix, ...(className || '').split(' '))}>{$slots.default}</td>
     );
   },

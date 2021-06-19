@@ -38,7 +38,8 @@ const namedMap = new Map([
   ['@baifendian/adherev-ui-slidelayout', 'SlideLayout'],
   ['@baifendian/adherev-ui-contextmenu', 'ContextMenu'],
   ['@baifendian/adherev-ui-pullrefresh', 'PullRefresh'],
-  ['@baifendian/adherev-ui-revolving','Revolving'],
+  ['@baifendian/adherev-ui-revolving', 'Revolving'],
+  ['@baifendian/adherev-ui-popup', 'Popup'],
   ['@baifendian/adherev-util', 'Util'],
   ['@baifendian/adherev-util-communication-ajax', 'Ajax'],
   ['@baifendian/adherev-util-dict', 'Dict'],
@@ -114,7 +115,7 @@ for (const packageName in dependencies) {
     indexJsContent.push(`import ${exportName} from '${packageName}';\r\n`);
     indexJsExportContent.push(`  ${exportName},\r\n`);
     indexJsExportDefaultContent.push(
-      `if(\r\n// @ts-ignore\r\n${exportName}.isUse()){ \r\n// @ts-ignore\r\n${exportName}.use(Vue); }\r\n\t\t`,
+      `if(\r\n\r\n${exportName}.isUse()){ \r\n\r\n${exportName}.use(Vue); }\r\n\t\t`,
     );
     // 查看packages中是否存在antd.less
     // if (fs.existsSync(path.join(packagesPath, name, 'src', 'antd.less'))) {
