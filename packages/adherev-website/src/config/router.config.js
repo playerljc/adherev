@@ -29,7 +29,6 @@ import { lazy } from '@/lib/Router';
 // const TableList = lazy(() =>
 //   import(/* webpackChunkName: "tablelist" */ '@/components/ui/tablelist'),
 // );
-// const Popup = lazy(() => import(/* webpackChunkName: "popup" */ '@/components/ui/popup'));
 // const Notification = lazy(() =>
 //   import(/* webpackChunkName: "notification" */ '@/components/ui/notification'),
 // );
@@ -103,6 +102,7 @@ const PullRefresh = () =>
   lazy(import(/* webpackChunkName: "pullrefresh" */ '@/components/ui/pullrefresh'));
 const Revolving = () =>
   lazy(import(/* webpackChunkName: "revolving" */ '@/components/ui/revolving'));
+const Popup = () => lazy(import(/* webpackChunkName: "popup" */ '@/components/ui/popup'));
 
 export default () => [
   {
@@ -299,11 +299,11 @@ export default () => [
               //   name: 'TableList',
               //   component: TableList,
               // },
-              // {
-              //   path: '/adherev/ui/popup',
-              //   name: 'Popup',
-              //   component: Popup,
-              // },
+              {
+                path: '/adherev/ui/popup',
+                name: 'Popup',
+                component: Popup,
+              },
               {
                 path: '/adherev/ui/backtopanimation',
                 name: 'BackTopAnimation',
