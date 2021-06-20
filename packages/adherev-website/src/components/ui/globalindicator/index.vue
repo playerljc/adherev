@@ -2,6 +2,7 @@
   <div class="Page">
     <h1>GlobalIndicator</h1>
     <p>全局无侵入的遮罩</p>
+
     <h2>方法</h2>
     <function-props
       :data="[
@@ -55,12 +56,12 @@
     />
 
     <h2>基本使用</h2>
-    <playground>
+    <playground :codeText="code1">
       <a-button @click="onShowIndicator">显示遮罩</a-button>
     </playground>
 
     <h2>使用parent属性遮罩局部元素</h2>
-    <playground>
+    <playground :codeText="code2">
       <div>
         <div
           ref="ref"
@@ -80,12 +81,67 @@
 </template>
 <script>
 import { GlobalIndicator } from '@baifendian/adherev';
-import Playground from '@/lib/Playground/Playground';
 
 let handler;
 
 export default {
-  components: { Playground },
+  data() {
+    return {
+      code1: `
+        <template>
+          <a-button @click="onShowIndicator">显示遮罩</a-button>
+        </template>
+        <script>
+          import { GlobalIndicator } from '@baifendian/adherev';
+
+          export default {
+            methods: {
+              onShowIndicator() {
+                setTimeout(() => {
+                  GlobalIndicator.hide(el);
+                }, 2000);
+
+                const el = GlobalIndicator.show(document.body, '全局的遮罩');
+              },
+            }
+          }
+        <\/script>
+      `,
+      code2: `
+        <template>
+          <h2>使用parent属性遮罩局部元素</h2>
+          <div>
+            <div
+              ref="ref"
+              style="position: relative; width: 200px; height: 200px; word-break: break-all"
+            >
+              In the process of internal desktop applications development, many different design specs
+              and implementations would be involved, which might cause designers and developers
+              difficulties and duplication and reduce the efficiency of development.
+            </div>
+            <div>
+              <a-button type="primary" @click="onShow">显示</a-button>
+              <a-button @click="onHide">取消</a-button>
+            </div>
+          </div>
+        </template>
+        <script>
+          import { GlobalIndicator } from '@baifendian/adherev';
+
+          let handler;
+
+          export default {
+            onShow() {
+              handler = GlobalIndicator.show(this.$refs.ref, '处理中...');
+            },
+            onHide() {
+              GlobalIndicator.hide(handler);
+            },
+          }
+        <\/script>
+      `,
+    };
+  },
   methods: {
     onShowIndicator() {
       setTimeout(() => {

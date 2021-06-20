@@ -1996,7 +1996,7 @@
         <a-button type="primary" style="margin-bottom: 20px" @click="onCode1Fun1">
           添加新北区的GeoJSONLayer
         </a-button>
-        <adv-olmap ref="xbqRef" :zoom="11.5" />
+        <adv-olmap ref="xbqRef" :zoom="11.5" style="height: calc(100% - 50px)" />
       </div>
     </playground>
 
@@ -2014,7 +2014,7 @@
           <a-radio :value="'DixingGoogleXYZ'">谷歌地形</a-radio>
           <a-radio :value="'DianziGaodeXYZ'">高德电子地图</a-radio>
         </a-radio-group>
-        <adv-olmap ref="changeRef" :zoom="11.5" />
+        <adv-olmap ref="changeRef" :zoom="11.5" style="height: calc(100% - 50px)" />
       </div>
     </playground>
 
@@ -2024,7 +2024,7 @@
         <a-button type="primary" style="margin-bottom: 20px" @click="onCode3Fun1"
           >添加新北区的GeoJSON数据</a-button
         >
-        <adv-olmap-heatmap ref="heatRef" :zoom="11.5" />
+        <adv-olmap-heatmap ref="heatRef" :zoom="11.5" style="height: calc(100% - 50px)" />
       </div>
     </playground>
 
@@ -2034,7 +2034,7 @@
         <a-button type="primary" style="margin-bottom: 20px" @click="onCode4Fun1"
           >显示Features</a-button
         >
-        <adv-olmap ref="fRef" :zoom="11.5" />
+        <adv-olmap ref="fRef" :zoom="11.5" style="height: calc(100% - 50px)" />
       </div>
     </playground>
 
@@ -2044,7 +2044,7 @@
         <a-button type="primary" style="margin-bottom: 20px" @click="onCode5Fun1"
           >轨迹播放</a-button
         >
-        <adv-olmap ref="animationRef" :zoom="11.5" />
+        <adv-olmap ref="animationRef" :zoom="11.5" style="height: calc(100% - 50px)" />
       </div>
     </playground>
   </div>

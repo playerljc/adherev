@@ -220,17 +220,17 @@
     />
 
     <h2>get</h2>
-    <playground>
+    <playground :codeText="code1">
       <a-button type="primary" @click="onCode1F1">call</a-button>
     </playground>
 
     <h2>post</h2>
-    <playground>
+    <playground :codeText="code2">
       <a-button type="primary" @click="onCode2F1">call</a-button>
     </playground>
 
     <h2>upload</h2>
-    <playground>
+    <playground :codeText="code3">
       <form ref="uploadFormFef" encType="multipart/form-data" method="post">
         <div>
           <a-avatar v-if="!!img" shape="square" size="large" :src="img" />
@@ -248,7 +248,7 @@
     </playground>
 
     <h2>PromiseAll</h2>
-    <playground>
+    <playground :codeText="code4">
       <a-button type="primary" @click="onCode4F1">call</a-button>
     </playground>
   </div>
@@ -267,6 +267,212 @@ export default {
       img: null,
       percent: 0,
     };
+  },
+  computed: {
+    code1() {
+      return `
+        <template>
+          <h2>get</h2>
+          <a-button type="primary" @click="onCode1F1">call</a-button>
+        </template>
+        <script>
+          import { Ajax } from '@baifendian/adherev';
+
+          const k007Ajax = new Ajax('http://k007-pe.baifendian.com');
+
+          export default {
+            onCode1F1() {
+              k007Ajax
+                .get({
+                  path: '/api/securitypolice/frontend/config/namespace?kw=k007.service_address@@resource@@gis@@application',
+                  loading: {
+                    show: true,
+                  },
+                })
+                .then((res) => {
+                  if (res) {
+                    if (res.data.code === 200) {
+                      alert(JSON.stringify(res.data.data));
+                    }
+
+                    res.hideIndicator();
+                  }
+                });
+            },
+          }
+        <\/script>
+      `;
+    },
+    code2() {
+      return `
+        <template>
+         <h2>post</h2>
+         <a-button type="primary" @click="onCode2F1">call</a-button>
+        </template>
+        <script>
+          import { Ajax } from '@baifendian/adherev';
+
+          const k007Ajax = new Ajax('http://k007-pe.baifendian.com');
+
+          export default {
+             methods: {
+               onCode2F1() {
+                k007Ajax
+                  .post({
+                    path: '/api/controlledObject/facade/fq/queryList',
+                    data: [
+                      {
+                        resource: '12345678',
+                        type: '101',
+                        uuid: '7419d8b2-76f8-11eb-ada5-b76f62efdb0c',
+                      },
+                      { resource: '', type: '103', uuid: '562096255732281344' },
+                    ],
+                    loading: {
+                      show: true,
+                    },
+                  })
+                  .then((res) => {
+                    if (res) {
+                      if (res.data.code === 200) {
+                        alert(JSON.stringify(res.data.data));
+                      }
+
+                      res.hideIndicator();
+                    }
+                  });
+              },
+             }
+          }
+        <\/script>
+      `;
+    },
+    code3() {
+      return `
+        <template>
+          <h2>upload</h2>
+          <form ref="uploadFormFef" encType="multipart/form-data" method="post">
+            <div>
+              <a-avatar v-if="!!img" shape="square" size="large" :src="img" />
+              <a-avatar v-else shape="square" size="large" icon="user" />
+
+              <div style="margin-bottom: 20px" />
+
+              <input type="file" @change="onCode3F1($event)" />
+
+              <div style="margin-bottom: 20px" />
+
+              <a-progress :percent="percent" />
+            </div>
+          </form>
+        </template>
+        <script>
+          import { Ajax } from '@baifendian/adherev';
+
+          const k007Ajax = new Ajax('http://k007-pe.baifendian.com');
+
+          const uploadFormFef = null;
+          const uploadRef = null;
+
+          export default {
+            methods: {
+              onCode3F1(e) {
+                const { target } = e;
+                const file = target.files[0];
+
+                const { size } = file;
+
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                  this.img = e.target.result;
+                };
+
+                reader.readAsDataURL(file);
+
+                k007Ajax
+                  .post({
+                    path: '/api/personControl/monitorPerson/image/upload',
+                    data: {
+                      form: this.$refs.uploadFormFef,
+                      data: {
+                        file,
+                      },
+                    },
+                    loading: {
+                      show: true,
+                    },
+                    onProgress: (e) => {
+                      this.percent((e.loaded / size) * 100);
+                    },
+                    onLoadend: () => {
+                      this.percent = 100;
+                    },
+                  })
+                  .then((res) => {
+                    this.percent = 100;
+
+                    if (res) {
+                      if (res.data.code === 200) {
+                        alert(JSON.stringify(res.data.data));
+                      }
+
+                      res.hideIndicator();
+                    }
+                  });
+              },
+            }
+          }
+        <\/script>
+      `;
+    },
+    code4() {
+      return `
+        <template>
+          <h2>PromiseAll</h2>
+          <a-button type="primary" @click="onCode4F1">call</a-button>
+        </template>
+        <script>
+          import { Ajax, GlobalIndicator } from '@baifendian/adherev';
+
+          const k007Ajax = new Ajax('http://k007-pe.baifendian.com');
+
+          export default {
+            methods: {
+              onCode4F1() {
+                const globalIndicator = GlobalIndicator.show();
+
+                Promise.all([
+                  k007Ajax.get({
+                    path: '/api/securitypolice/frontend/config/namespace?kw=k007.service_address@@resource@@gis@@application',
+                  }),
+                  k007Ajax.get({
+                    path: '/api/SystemManager/system/role/login/list?state=&kw=&pageNum=1&pageSize=10',
+                  }),
+                  k007Ajax.post({
+                    path: '/api/controlledObject/facade/fq/queryList',
+                    data: [
+                      {
+                        resource: '12345678',
+                        type: '101',
+                        uuid: '7419d8b2-76f8-11eb-ada5-b76f62efdb0c',
+                      },
+                      { resource: '', type: '103', uuid: '562096255732281344' },
+                    ],
+                  }),
+                ])
+                  .then((res) => {
+                    GlobalIndicator.hide(globalIndicator);
+                    alert(JSON.stringify(res));
+                  })
+                  .catch(() => {
+                    GlobalIndicator.hide(globalIndicator);
+                  });
+              },
+            }
+          }
+        <\/script>
+      `;
+    },
   },
   methods: {
     onCode1F1() {
