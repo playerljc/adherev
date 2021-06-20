@@ -40,11 +40,11 @@ export default {
   methods: {
     onOpen() {
       this.$emit('open-popup');
-		},
-		onClose() {
+    },
+    onClose() {
       this.$emit('close-popup');
-		}
-	}
+    },
+  },
 };
 </script>
 <style lang="less" module src="./index.less" />

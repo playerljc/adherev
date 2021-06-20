@@ -1,15 +1,15 @@
 export const withInstall = <T>(comp: T) => {
-  const c = comp as any
+  const c = comp as any;
 
   c.install = function (Vue) {
-    Vue.component(c.displayName || c.name, comp)
-  }
+    Vue.component(c.displayName || c.name, comp);
+  };
 
-  return comp as T & Plugin
-}
+  return comp as T & Plugin;
+};
 
 export const Fragment = {
-  render (h) {
-    return this.$slots.default
-  }
-}
+  render(h) {
+    return this.$slots.default;
+  },
+};

@@ -40,6 +40,8 @@ const namedMap = new Map([
   ['@baifendian/adherev-ui-pullrefresh', 'PullRefresh'],
   ['@baifendian/adherev-ui-revolving', 'Revolving'],
   ['@baifendian/adherev-ui-popup', 'Popup'],
+  ['@baifendian/adherev-ui-sliderscale', 'SliderScale'],
+  ['@baifendian/adherev-ui-stickuplayout', 'StickupLayout'],
   ['@baifendian/adherev-util', 'Util'],
   ['@baifendian/adherev-util-communication-ajax', 'Ajax'],
   ['@baifendian/adherev-util-dict', 'Dict'],

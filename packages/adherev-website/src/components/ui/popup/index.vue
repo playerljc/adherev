@@ -1,20 +1,20 @@
 <template>
-	<div class="Page">
-		<h1>Popup</h1>
-		<p>Popup</p>
-		<ul>
-			<li>- 支持使用 show 方式打开</li>
-			<li>- 不与变量进行绑定，开箱即用的功能</li>
-		</ul>
+  <div class="Page">
+    <h1>Popup</h1>
+    <p>Popup</p>
+    <ul>
+      <li>- 支持使用 show 方式打开</li>
+      <li>- 不与变量进行绑定，开箱即用的功能</li>
+    </ul>
 
-		<dl>
-			<dt>
-				<h2>PopupFactory</h2>
-			</dt>
-			<dd>
-				<h3>PopupFactory.create方法</h3>
-				<function-props
-								:data="[
+    <dl>
+      <dt>
+        <h2>PopupFactory</h2>
+      </dt>
+      <dd>
+        <h3>PopupFactory.create方法</h3>
+        <function-props
+          :data="[
             {
               name: 'PopupFactory.create',
               desc: '创建Popup',
@@ -32,11 +32,11 @@
               returnDesc: '',
             },
           ]"
-				/>
+        />
 
-				<h3>PopupFactory.show方法</h3>
-				<function-props
-								:data="[
+        <h3>PopupFactory.show方法</h3>
+        <function-props
+          :data="[
             {
               name: 'PopupFactory.show',
               desc: '打开Popup',
@@ -54,11 +54,11 @@
               returnDesc: '',
             },
           ]"
-				/>
+        />
 
-				<h3>PopupFactory.close方法</h3>
-				<function-props
-								:data="[
+        <h3>PopupFactory.close方法</h3>
+        <function-props
+          :data="[
             {
               name: 'PopupFactory.close',
               desc: '关闭一个Popup',
@@ -76,11 +76,11 @@
               returnDesc: '',
             },
           ]"
-				/>
+        />
 
-				<h3>PopupFactory.closeAll方法</h3>
-				<function-props
-								:data="[
+        <h3>PopupFactory.closeAll方法</h3>
+        <function-props
+          :data="[
             {
               name: 'PopupFactory.closeAll',
               desc: '关闭所有的popup',
@@ -90,11 +90,11 @@
               returnDesc: '',
             },
           ]"
-				/>
+        />
 
-				<h3>PopupFactory.destroy方法</h3>
-				<function-props
-								:data="[
+        <h3>PopupFactory.destroy方法</h3>
+        <function-props
+          :data="[
             {
               name: 'PopupFactory.destroy',
               desc: '销毁Popup',
@@ -112,19 +112,19 @@
               returnDesc: '',
             },
           ]"
-				/>
-			</dd>
-		</dl>
+        />
+      </dd>
+    </dl>
 
-		<dl>
-			<dt>
-				<h2>Popup</h2>
-			</dt>
+    <dl>
+      <dt>
+        <h2>Popup</h2>
+      </dt>
 
-			<dd>
-				<h3>show方法</h3>
-				<function-props
-								:data="[
+      <dd>
+        <h3>show方法</h3>
+        <function-props
+          :data="[
             {
               name: 'Popup.show',
               desc: '打开Popup',
@@ -142,11 +142,11 @@
               returnDesc: '',
             },
           ]"
-				/>
+        />
 
-				<h3>close方法</h3>
-				<function-props
-								:data="[
+        <h3>close方法</h3>
+        <function-props
+          :data="[
             {
               name: 'Popup.close',
               desc: '关闭一个Popup',
@@ -164,11 +164,11 @@
               returnDesc: '',
             },
           ]"
-				/>
+        />
 
-				<h3>closeAll方法</h3>
-				<function-props
-								:data="[
+        <h3>closeAll方法</h3>
+        <function-props
+          :data="[
             {
               name: 'Popup.closeAll',
               desc: '关闭所有的popup',
@@ -178,11 +178,11 @@
               returnDesc: '',
             },
           ]"
-				/>
+        />
 
-				<h3>destroy方法</h3>
-				<function-props
-								:data="[
+        <h3>destroy方法</h3>
+        <function-props
+          :data="[
             {
               name: 'Popup.destroy',
               desc: '销毁Popup',
@@ -200,11 +200,11 @@
               returnDesc: '',
             },
           ]"
-				/>
+        />
 
-				<h3>isDestroy方法</h3>
-				<function-props
-								:data="[
+        <h3>isDestroy方法</h3>
+        <function-props
+          :data="[
             {
               name: 'Popup.isDestroy方法',
               desc: '是否销毁Popup',
@@ -214,11 +214,11 @@
               returnDesc: '',
             },
           ]"
-				/>
+        />
 
-				<h3>getId</h3>
-				<function-props
-								:data="[
+        <h3>getId</h3>
+        <function-props
+          :data="[
             {
               name: 'Popup.isDestroy方法',
               desc: '获取popup的id',
@@ -228,13 +228,13 @@
               returnDesc: '',
             },
           ]"
-				/>
-			</dd>
-		</dl>
+        />
+      </dd>
+    </dl>
 
-		<h3>IConfig</h3>
-		<props
-						:data="[
+    <h3>IConfig</h3>
+    <props
+      :data="[
         {
           params: 'onCreate',
           desc: '挂载的hook',
@@ -284,27 +284,27 @@
           defaultVal: '11000',
         },
       ]"
-		/>
+    />
 
-		<h2>打开</h2>
-		<playground-mulit :config="code1">
-			<a-button type="primary" @click="onOpen">Open Popup</a-button>
-		</playground-mulit>
-	</div>
+    <h2>打开</h2>
+    <playground-mulit :config="code1">
+      <a-button type="primary" @click="onOpen">Open Popup</a-button>
+    </playground-mulit>
+  </div>
 </template>
 
 <script>
-  import {Popup} from '@baifendian/adherev';
-  import PopupInner from './popup';
+import { Popup } from '@baifendian/adherev';
+import PopupInner from './popup';
 
-  export default {
-    computed: {
-      code1() {
-        return [
-          {
-            title: 'index.vue',
-            lang: 'vue',
-            codeText: `
+export default {
+  computed: {
+    code1() {
+      return [
+        {
+          title: 'index.vue',
+          lang: 'vue',
+          codeText: `
 						<template>
 							<h2>打开</h2>
 							<a-button type="primary" @click="onOpen">Open Popup</a-button>
@@ -362,11 +362,11 @@
 							}
 						<\/script>
 					`,
-          },
-          {
-            title: 'popup.vue',
-            lang: 'vue',
-            codeText: `
+        },
+        {
+          title: 'popup.vue',
+          lang: 'vue',
+          codeText: `
           	<template>
 							<div :class="$style.Wrap">
 								<div :class="$style.Fixed">
@@ -418,11 +418,11 @@
 						<\/script>
 						<style lang="less" module src="./index.less"/>
 					`,
-          },
-          {
-            title: 'index.less',
-            lang: 'less',
-            codeText: `
+        },
+        {
+          title: 'index.less',
+          lang: 'less',
+          codeText: `
           	.Wrap {
 							display: flex;
 							flex-direction: column;
@@ -446,57 +446,57 @@
 							}
 						}
           `,
-          },
-        ];
-      },
+        },
+      ];
     },
-    methods: {
-      openPopup() {
-        const self = this;
+  },
+  methods: {
+    openPopup() {
+      const self = this;
 
-        const popup = Popup.create({
-          onCreate: () => {
-            console.log('onCreate');
+      const popup = Popup.create({
+        onCreate: () => {
+          console.log('onCreate');
+        },
+        onBeforeShow: () => {
+          console.log('onBeforeShow');
+        },
+        onAfterShow: () => {
+          console.log('onAfterShow');
+        },
+        onBeforeClose: () => {
+          return new Promise((resolve) => {
+            resolve();
+          });
+        },
+        onAfterClose: () => {
+          Popup.destroy(popup);
+        },
+        onDestroy: () => {
+          console.log('onDestroy');
+        },
+        children: {
+          template: `<PopupInner ref="ref" @open-popup="onOpenPopup" @close-popup="onClosePopup"/>`,
+          components: {
+            PopupInner,
           },
-          onBeforeShow: () => {
-            console.log('onBeforeShow');
-          },
-          onAfterShow: () => {
-            console.log('onAfterShow');
-          },
-          onBeforeClose: () => {
-            return new Promise((resolve) => {
-              resolve();
-            });
-          },
-          onAfterClose: () => {
-            Popup.destroy(popup);
-          },
-          onDestroy: () => {
-            console.log('onDestroy');
-          },
-          children: {
-            template: `<PopupInner ref="ref" @open-popup="onOpenPopup" @close-popup="onClosePopup"/>`,
-            components: {
-              PopupInner,
+          methods: {
+            onOpenPopup() {
+              self.openPopup();
             },
-            methods: {
-              onOpenPopup() {
-                self.openPopup();
-              },
-              onClosePopup() {
-                Popup.close(popup);
-              },
+            onClosePopup() {
+              Popup.close(popup);
             },
           },
-          zIndex: 9999,
-        });
+        },
+        zIndex: 9999,
+      });
 
-        popup.show();
-      },
-      onOpen() {
-        this.openPopup();
-      },
+      popup.show();
     },
-  };
+    onOpen() {
+      this.openPopup();
+    },
+  },
+};
 </script>

@@ -25,12 +25,12 @@ module.exports = {
     'vue/max-attributes-per-line': [
       2,
       {
-        'singleline': 5,
-        'multiline': {
-          'max': 1,
-          'allowFirstLine': false
-        }
-      }
+        singleline: 5,
+        multiline: {
+          max: 1,
+          allowFirstLine: false,
+        },
+      },
     ],
     'vue/attribute-hyphenation': 0,
     'vue/html-self-closing': 0,

@@ -23,6 +23,8 @@ import ContextMenu from '@baifendian/adherev-ui-contextmenu';
 import PullRefresh from '@baifendian/adherev-ui-pullrefresh';
 import Revolving from '@baifendian/adherev-ui-revolving';
 import Popup from '@baifendian/adherev-ui-popup';
+import SliderScale from '@baifendian/adherev-ui-sliderscale';
+import StickupLayout from '@baifendian/adherev-ui-stickuplayout';
 import Util from '@baifendian/adherev-util';
 import AdapterScreen from '@baifendian/adherev-util-adapterscreen';
 import Ajax from '@baifendian/adherev-util-communication-ajax';
@@ -60,6 +62,8 @@ export {
   PullRefresh,
   Revolving,
   Popup,
+  SliderScale,
+  StickupLayout,
   Util,
   AdapterScreen,
   Ajax,
@@ -199,6 +203,16 @@ Revolving.use(Vue); }
 Popup.isUse()){ 
 
 Popup.use(Vue); }
+		if(
+
+SliderScale.isUse()){ 
+
+SliderScale.use(Vue); }
+		if(
+
+StickupLayout.isUse()){ 
+
+StickupLayout.use(Vue); }
 		if(
 
 Util.isUse()){ 

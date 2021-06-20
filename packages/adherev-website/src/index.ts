@@ -1,32 +1,32 @@
-import Vue from 'vue'
-import 'vue-highlight.js/lib/allLanguages'
-import { Intl, Util, Resource } from '@baifendian/adherev'
+import Vue from 'vue';
+import 'vue-highlight.js/lib/allLanguages';
+import { Intl, Util, Resource } from '@baifendian/adherev';
 
-import Router from './lib/Router'
-import '@/config/component.register.config.js'
+import Router from './lib/Router';
+import '@/config/component.register.config.js';
 
-import 'highlight.js/styles/agate.css'
-import '@baifendian/adherev/lib/css.less'
-import './index.less'
+import 'highlight.js/styles/agate.css';
+import '@baifendian/adherev/lib/css.less';
+import './index.less';
 
 // 获取当前语言
-const lang = Util.getLang()
+const lang = Util.getLang();
 
 // moment的国际化
-Resource.Dict.value.LocalsMoment.value[lang]()
+Resource.Dict.value.LocalsMoment.value[lang]();
 
 new Vue({
   el: '#container',
 
   i18n: Intl({
-    locale: lang
+    locale: lang,
   }),
 
   router: Router(),
-  data () {
+  data() {
     return {
-      local: Resource.Dict.value.LocalsAntd.value[lang]
-    }
+      local: Resource.Dict.value.LocalsAntd.value[lang],
+    };
   },
   render: Vue.compile(
     `
@@ -36,6 +36,6 @@ new Vue({
               <router-view />
             </keep-alive>
           </div>
-        </a-config-provider>`
-  ).render
-})
+        </a-config-provider>`,
+  ).render,
+});
