@@ -46,6 +46,7 @@ import {
   Revolving,
   SliderScale,
   StickupLayout,
+  Surnames,
 } from '@baifendian/adherev';
 import Playground from '@/lib/Playground';
 import PlaygroundMulit from '@/lib/PlaygroundMulit';
@@ -98,6 +99,7 @@ PullRefresh.use(Vue);
 Revolving.use(Vue);
 SliderScale.use(Vue);
 StickupLayout.use(Vue);
+Surnames.use(Vue);
 
 Vue.use(Playground);
 Vue.use(PlaygroundMulit);

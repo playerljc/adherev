@@ -7,8 +7,6 @@ import RouterConfig from '@/config/router.config'
 import BasicLayout from '../BasicLayout'
 import Util from '../BasicLayout/Util'
 
-import styles from './index.less'
-
 Vue.use(VueRouter)
 
 /**

@@ -67,6 +67,7 @@
     "@baifendian/adherev-ui-popup": "^1.0.0",
     "@baifendian/adherev-ui-sliderscale": "^1.0.0",
     "@baifendian/adherev-ui-stickuplayout": "^1.0.0",
+    "@baifendian/adherev-ui-surnames": "^1.0.0",
     "@baifendian/adherev-util": "^1.0.0",
     "@baifendian/adherev-util-adapterscreen": "^1.0.0",
     "@baifendian/adherev-util-communication-ajax": "^1.0.0",

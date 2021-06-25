@@ -7,7 +7,6 @@ import { lazy } from '@/lib/Router';
 // const TableHeadSearch = lazy(() =>
 //   import(/* webpackChunkName: "tableheadsearch" */ '@/components/ui/tableheadsearch'),
 // );
-// const Surnames = lazy(() => import(/* webpackChunkName: "surnames" */ '@/components/ui/surnames'));
 // const JCategoryTab = lazy(() =>
 //   import(/* webpackChunkName: "jcategorytab" */ '@/components/ui/jdcategorytab'),
 // );
@@ -101,6 +100,7 @@ const SliderScale = () =>
   lazy(import(/* webpackChunkName: "sliderscale" */ '@/components/ui/sliderscale'));
 const StickupLayout = () =>
   lazy(import(/* webpackChunkName: "stickuplayout" */ '@/components/ui/stickuplayout'));
+const Surnames = () => lazy(import(/* webpackChunkName: "surnames" */ '@/components/ui/surnames'));
 
 export default () => [
   {
@@ -237,11 +237,11 @@ export default () => [
                 name: 'StickupLayout',
                 component: StickupLayout,
               },
-              // {
-              //   path: '/adherev/ui/surnames',
-              //   name: 'Surnames',
-              //   component: Surnames,
-              // },
+              {
+                path: '/adherev/ui/surnames',
+                name: 'Surnames',
+                component: Surnames,
+              },
               {
                 path: '/adherev/ui/sliderscale',
                 name: 'SliderScale',
