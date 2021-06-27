@@ -43,6 +43,8 @@ const namedMap = new Map([
   ['@baifendian/adherev-ui-sliderscale', 'SliderScale'],
   ['@baifendian/adherev-ui-stickuplayout', 'StickupLayout'],
   ['@baifendian/adherev-ui-surnames','Surnames'],
+  ['@baifendian/adherev-ui-cascadecompared','CascadeCompared'],
+  ['@baifendian/adherev-ui-swipeout','SwipeOut'],
   ['@baifendian/adherev-util', 'Util'],
   ['@baifendian/adherev-util-communication-ajax', 'Ajax'],
   ['@baifendian/adherev-util-dict', 'Dict'],

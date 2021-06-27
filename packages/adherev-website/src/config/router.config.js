@@ -10,9 +10,6 @@ import { lazy } from '@/lib/Router';
 // const JCategoryTab = lazy(() =>
 //   import(/* webpackChunkName: "jcategorytab" */ '@/components/ui/jdcategorytab'),
 // );
-// const CascadeCompared = lazy(() =>
-//   import(/* webpackChunkName: "cascadecompared" */ '@/components/ui/cascadecompared'),
-// );
 // const FontSizeSetting = lazy(() =>
 //   import(/* webpackChunkName: "fontsizesetting" */ '@/components/ui/fontsizesetting'),
 // );
@@ -25,8 +22,6 @@ import { lazy } from '@/lib/Router';
 // const Notification = lazy(() =>
 //   import(/* webpackChunkName: "notification" */ '@/components/ui/notification'),
 // );
-// const SwipeOut = lazy(() => import(/* webpackChunkName: "swipeout" */ '@/components/ui/swipeout'));
-//
 // const Decorators = lazy(() =>
 //   import(/* webpackChunkName: "decorators" */ '@/components/util/decorators'),
 // );
@@ -101,6 +96,9 @@ const SliderScale = () =>
 const StickupLayout = () =>
   lazy(import(/* webpackChunkName: "stickuplayout" */ '@/components/ui/stickuplayout'));
 const Surnames = () => lazy(import(/* webpackChunkName: "surnames" */ '@/components/ui/surnames'));
+const CascadeCompared = () =>
+  lazy(import(/* webpackChunkName: "cascadecompared" */ '@/components/ui/cascadecompared'));
+const SwipeOut = () => lazy(import(/* webpackChunkName: "swipeout" */ '@/components/ui/swipeout'));
 
 export default () => [
   {
@@ -262,11 +260,11 @@ export default () => [
               //   name: 'JCategoryTab',
               //   component: JCategoryTab,
               // },
-              // {
-              //   path: '/adherev/ui/cascadecompared',
-              //   name: 'CascadeCompared',
-              //   component: CascadeCompared,
-              // },
+              {
+                path: '/adherev/ui/cascadecompared',
+                name: 'CascadeCompared',
+                component: CascadeCompared,
+              },
               {
                 path: '/adherev/ui/slidelayout',
                 name: 'SlideLayout',
@@ -317,11 +315,11 @@ export default () => [
               //   name: 'Notification',
               //   component: Notification,
               // },
-              // {
-              //   path: '/adherev/ui/swipeout',
-              //   name: 'SwipeOut',
-              //   component: SwipeOut,
-              // },
+              {
+                path: '/adherev/ui/swipeout',
+                name: 'SwipeOut',
+                component: SwipeOut,
+              },
             ],
           },
           {

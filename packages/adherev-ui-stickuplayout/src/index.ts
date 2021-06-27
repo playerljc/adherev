@@ -11,4 +11,6 @@ StickupLayout.use = (Vue) => {
   Vue.use(StickupLayoutItem);
 };
 
+StickupLayout.Item = StickupLayoutItem;
+
 export default StickupLayout;

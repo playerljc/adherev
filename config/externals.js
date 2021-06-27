@@ -7,6 +7,7 @@ exports.defaultExternals = {
   'load-awesome': 'commonjs2 load-awesome',
   moment: 'commonjs2 moment',
   swiper: 'commonjs2 swiper',
+  iscroll: 'commonjs2 iscroll',
 };
 
 exports.externals = function (externals) {

@@ -47,6 +47,8 @@ import {
   SliderScale,
   StickupLayout,
   Surnames,
+  CascadeCompared,
+  SwipeOut,
 } from '@baifendian/adherev';
 import Playground from '@/lib/Playground';
 import PlaygroundMulit from '@/lib/PlaygroundMulit';
@@ -100,6 +102,8 @@ Revolving.use(Vue);
 SliderScale.use(Vue);
 StickupLayout.use(Vue);
 Surnames.use(Vue);
+CascadeCompared.use(Vue);
+SwipeOut.use(Vue);
 
 Vue.use(Playground);
 Vue.use(PlaygroundMulit);

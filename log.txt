@@ -1,15 +1,12 @@
 // 待实现
-adherev-ui-surnames
+adherev-ui-notification
 
 // 优先级低的
-adherev-ui-cascadecompared
-adherev-ui-swipeout
+adherev-ui-fontsizesetting
+adherev-ui-jdcategorytab
 adherev-ui-tableheadsearch
 adherev-ui-tablelist
-adherev-ui-jdcategorytab
-adherev-ui-notification
 adherev-ui-imagelazy
-adherev-ui-fontsizesetting
 
 // 移除的
 adhere-ui-formitemcreator
@@ -55,3 +52,6 @@ adherev-ui-revolving(demo)
 adherev-ui-popup(demo)
 adherev-ui-sliderscale(demo)
 adherev-ui-stickuplayout(demo)
+adherev-ui-surnames(demo)
+adherev-ui-cascadecompared(demo)
+adherev-ui-swipeout(demo)

@@ -26,6 +26,8 @@ import Popup from '@baifendian/adherev-ui-popup';
 import SliderScale from '@baifendian/adherev-ui-sliderscale';
 import StickupLayout from '@baifendian/adherev-ui-stickuplayout';
 import Surnames from '@baifendian/adherev-ui-surnames';
+import CascadeCompared from '@baifendian/adherev-ui-cascadecompared';
+import SwipeOut from '@baifendian/adherev-ui-swipeout';
 import Util from '@baifendian/adherev-util';
 import AdapterScreen from '@baifendian/adherev-util-adapterscreen';
 import Ajax from '@baifendian/adherev-util-communication-ajax';
@@ -66,6 +68,8 @@ export {
   SliderScale,
   StickupLayout,
   Surnames,
+  CascadeCompared,
+  SwipeOut,
   Util,
   AdapterScreen,
   Ajax,
@@ -163,6 +167,12 @@ export default {
     }
     if (Surnames.isUse()) {
       Surnames.use(Vue);
+    }
+    if (CascadeCompared.isUse()) {
+      CascadeCompared.use(Vue);
+    }
+    if (SwipeOut.isUse()) {
+      SwipeOut.use(Vue);
     }
     if (Util.isUse()) {
       Util.use(Vue);
