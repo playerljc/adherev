@@ -18,7 +18,7 @@
         {
           params: 'style',
           desc: '附加的样式',
-          type: 'React.CSSProperties',
+          type: 'String',
           defaultVal: '',
         },
         {
@@ -30,7 +30,7 @@
         {
           params: 'scrollStyle',
           desc: '附加的样式',
-          type: 'React.CSSProperties',
+          type: 'String',
           defaultVal: '',
         },
         {
@@ -40,27 +40,27 @@
           defaultVal: 'target返回的元素高度',
         },
         {
-          params: 'renderIcon',
+          params: 'icon',
           desc: '图标的渲染',
-          type: '() => React.ReactElement',
+          type: 'slot',
           defaultVal: '',
         },
         {
-          params: 'renderLabel',
+          params: 'label',
           desc: '默认文字的渲染',
-          type: '() => React.ReactElement',
+          type: 'slot',
           defaultVal: '',
         },
         {
-          params: 'renderCanLabel',
+          params: 'canLabel',
           desc: '可以刷新文本的渲染',
-          type: '() => React.ReactElement',
+          type: 'slot',
           defaultVal: '',
         },
         {
-          params: 'renderLoadingAnimation',
+          params: 'loadingAnimation',
           desc: '拉取后的loading效果，如果是string可选的值可以参考load-awesome库',
-          type: '() => React.ReactElement | string',
+          type: 'slot',
           defaultVal: '',
         },
         {

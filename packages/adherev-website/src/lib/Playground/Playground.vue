@@ -6,15 +6,15 @@
           <a-icon type="copy" />
         </div>
         <div @click="onExpand">
-          <a-icon type="up-square" v-if="expand"/>
-          <a-icon type="down-square" v-else/>
+          <a-icon type="up-square" v-if="expand" />
+          <a-icon type="down-square" v-else />
         </div>
       </template>
       <slot></slot>
     </a-card>
     <a-card v-if="expand">
       <highlight-code :lang="lang">
-        {{codeText}}
+        {{ codeText }}
       </highlight-code>
     </a-card>
   </div>
@@ -27,7 +27,7 @@ export default {
   props: {
     defaultExpand: {
       type: Boolean,
-      default: false
+      default: false,
     },
     codeText: {
       type: String,
@@ -35,18 +35,18 @@ export default {
     },
     lang: {
       type: String,
-      default: 'vue'
-    }
+      default: 'vue',
+    },
   },
   data() {
     return {
       expand: this.defaultExpand,
-    }
+    };
   },
   computed: {
     selectPrefix() {
       return 'adherev-website-playground';
-    }
+    },
   },
   methods: {
     onCopy() {
@@ -55,9 +55,9 @@ export default {
     },
     onExpand() {
       this.expand = !this.expand;
-    }
-  }
-}
+    },
+  },
+};
 </script>
 <style>
 .adherev-website-playground > .ant-card > .ant-card-actions {

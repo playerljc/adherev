@@ -183,7 +183,7 @@ export default {
 
         function clear() {
           $data.$key = false;
-          $refs.maskEl.style.display = 'none';
+          $data.$maskEl.style.display = 'none';
         }
       }
 

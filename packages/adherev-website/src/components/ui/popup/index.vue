@@ -274,7 +274,7 @@
         {
           params: 'children',
           desc: '显示的内容',
-          type: 'React.ReactElement',
+          type: 'String | Object | Function',
           defaultVal: '',
         },
         {

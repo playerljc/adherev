@@ -15,7 +15,7 @@
         {
           params: 'style',
           desc: '附加的样式',
-          type: 'React.CSSProperties',
+          type: 'String',
           defaultVal: '',
         },
         {
@@ -27,7 +27,7 @@
         {
           params: 'loadStyle',
           desc: 'load附加的样式',
-          type: 'React.CSSProperties',
+          type: 'String',
           defaultVal: '',
         },
         {
@@ -39,7 +39,7 @@
         {
           params: 'emptyStyle',
           desc: 'empty附加的样式',
-          type: 'React.CSSProperties',
+          type: 'String',
           defaultVal: '',
         },
         {
@@ -51,7 +51,7 @@
         {
           params: 'errorStyle',
           desc: 'error附加的样式',
-          type: 'React.CSSProperties',
+          type: 'String',
           defaultVal: '',
         },
         {

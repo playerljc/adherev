@@ -1,15 +1,10 @@
 <template>
-  <a-table
-      :columns="columns"
-      :data-source="data"
-      :pagination="false"
-      size="small"
-      rowKey="params">
+  <a-table :columns="columns" :data-source="data" :pagination="false" size="small" rowKey="params">
   </a-table>
 </template>
 <script>
 export default {
-  name:'props',
+  name: 'props',
   props: {
     data: {
       type: Array,

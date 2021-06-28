@@ -15,7 +15,7 @@
         {
           params: 'style',
           desc: '附加的样式',
-          type: 'React.CSSProperties',
+          type: 'String',
           defaultVal: '',
         },
         {
@@ -27,7 +27,7 @@
         {
           params: 'indicatorStyle',
           desc: 'indicator的样式',
-          type: 'React.CSSProperties',
+          type: 'String',
           defaultVal: '',
         },
         {
@@ -39,7 +39,7 @@
         {
           params: 'indicatorFixedWrapStyle',
           desc: 'indicatorFixedWrap附加的样式',
-          type: 'React.CSSProperties',
+          type: 'String',
           defaultVal: '',
         },
         {
@@ -51,7 +51,7 @@
         {
           params: 'indicatorAutoWrapStyle',
           desc: 'indicatorAutoWrap附加的样式',
-          type: 'React.CSSProperties',
+          type: 'String',
           defaultVal: '',
         },
         {
@@ -63,7 +63,7 @@
         {
           params: 'masterStyle',
           desc: 'master附加的样式',
-          type: 'React.CSSProperties',
+          type: 'String',
           defaultVal: '',
         },
         {
@@ -75,7 +75,7 @@
         {
           params: 'masterInnerStyle',
           desc: 'masterInner附加的样式',
-          type: 'React.CSSProperties',
+          type: 'String',
           defaultVal: '',
         },
         {
@@ -87,7 +87,7 @@
         {
           params: 'masterStickFixedStyle',
           desc: 'masterStickFixed附加的样式',
-          type: 'React.CSSProperties',
+          type: 'String',
           defaultVal: '',
         },
         {
@@ -99,7 +99,7 @@
         {
           params: 'masterStickInnerStyle',
           desc: 'masterStickInner附加的样式',
-          type: 'React.CSSProperties',
+          type: 'String',
           defaultVal: '',
         },
         {
@@ -183,7 +183,7 @@
         {
           params: 'style',
           desc: '附加的样式',
-          type: 'React.CSSProperties',
+          type: 'String',
           defaultVal: '',
         },
       ]"
@@ -207,7 +207,7 @@
         {
           params: 'title',
           desc: 'header',
-          type: 'React.ReactElement',
+          type: 'string | Object | Function',
           defaultVal: '',
         },
         {
@@ -219,7 +219,7 @@
         {
           params: 'style',
           desc: '附加的样式',
-          type: 'React.CSSProperties',
+          type: 'String',
           defaultVal: '{}',
         },
         {
@@ -231,7 +231,7 @@
         {
           params: 'fixedWrapStyle',
           desc: '附加的样式',
-          type: 'React.CSSProperties',
+          type: 'String',
           defaultVal: '{}',
         },
         {
@@ -243,7 +243,7 @@
         {
           params: 'autoWrapStyle',
           desc: '附加的样式',
-          type: 'React.CSSProperties',
+          type: 'String',
           defaultVal: '{}',
         },
         {
@@ -255,7 +255,7 @@
         {
           params: 'autoInnerStyle',
           desc: '附加的样式',
-          type: 'React.CSSProperties',
+          type: 'String',
           defaultVal: '{}',
         },
       ]"
@@ -450,11 +450,6 @@ export default {
     return {
       data1: getMaster(),
     };
-  },
-  watch: {
-    data1(val, oldValue) {
-      this.$refs.ref1.scrollToByIndex(oldValue.length - 1);
-    },
   },
   computed: {
     code1() {
@@ -1042,6 +1037,10 @@ export default {
           ],
         },
       ];
+
+      this.$nextTick(function () {
+        this.$refs.ref1.scrollToByIndex(this.data1.length - 1);
+      });
     },
   },
 };

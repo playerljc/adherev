@@ -15,7 +15,7 @@
         {
           params: 'style',
           desc: '附加的样式',
-          type: 'React.CSSProperties',
+          type: 'String',
           defaultVal: '',
         },
         {
@@ -150,7 +150,7 @@ export default {
           }
         <\/script>
       `;
-    }
+    },
   },
   methods: {
     onSliderChange(value) {

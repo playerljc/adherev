@@ -15,7 +15,7 @@
         {
           params: 'style',
           desc: '附加的样式',
-          type: 'React.CSSProperties',
+          type: 'String',
           defaultVal: '',
         },
         {
@@ -99,7 +99,7 @@
         {
           params: 'masterStyle',
           desc: '附加的样式',
-          type: 'React.CSSProperties',
+          type: 'String',
           defaultVal: '',
         },
         {
@@ -111,7 +111,7 @@
         {
           params: 'style',
           desc: '附加的样式',
-          type: 'React.CSSProperties',
+          type: 'String',
           defaultVal: '',
         },
         {
@@ -123,7 +123,7 @@
         {
           params: 'slaveStyle',
           desc: '附加的样式',
-          type: 'React.CSSProperties',
+          type: 'String',
           defaultVal: '',
         },
         {
@@ -195,13 +195,13 @@
         {
           params: 'slide',
           desc: '抽屉面板JSX',
-          type: 'React.ReactElement',
+          type: 'String | Object | Function',
           defaultVal: '',
         },
         {
           params: 'master',
           desc: '抽屉主面板JSX',
-          type: 'React.ReactElement',
+          type: 'String | Object | Function',
           defaultVal: '',
         },
       ]"
@@ -219,7 +219,7 @@
         {
           params: 'masterStyle',
           desc: '附加的样式',
-          type: 'React.CSSProperties',
+          type: 'String',
           defaultVal: '',
         },
         {
@@ -231,7 +231,7 @@
         {
           params: 'style',
           desc: '附加的样式',
-          type: 'React.CSSProperties',
+          type: 'String',
           defaultVal: '',
         },
         {
@@ -243,7 +243,7 @@
         {
           params: 'slaveStyle',
           desc: '附加的样式',
-          type: 'React.CSSProperties',
+          type: 'String',
           defaultVal: '',
         },
         {
@@ -315,13 +315,13 @@
         {
           params: 'slide',
           desc: '抽屉面板JSX',
-          type: 'React.ReactElement',
+          type: 'String | Object | Function',
           defaultVal: '',
         },
         {
           params: 'master',
           desc: '抽屉主面板JSX',
-          type: 'React.ReactElement',
+          type: 'String | Object | Function',
           defaultVal: '',
         },
       ]"

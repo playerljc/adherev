@@ -1,6 +1,5 @@
+import Playground from './Playground';
 
-import Playground from './Playground'
+import { withInstall } from '@/_util';
 
-import { withInstall } from '@/_util'
-
-export default withInstall(Playground)
+export default withInstall(Playground);

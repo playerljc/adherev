@@ -15,7 +15,7 @@
         {
           params: 'style',
           desc: '附加的样式',
-          type: 'React.CSSProperties',
+          type: 'String',
           defaultVal: '',
         },
         {
@@ -27,7 +27,7 @@
         {
           params: 'beforeStyle',
           desc: '附加的样式',
-          type: 'React.CSSProperties',
+          type: 'String',
           defaultVal: '',
         },
         {
@@ -39,7 +39,7 @@
         {
           params: 'afterStyle',
           desc: '附加的样式',
-          type: 'React.CSSProperties',
+          type: 'String',
           defaultVal: '',
         },
         {
@@ -51,7 +51,7 @@
         {
           params: 'contentStyle',
           desc: '附加的样式',
-          type: 'React.CSSProperties',
+          type: 'String',
           defaultVal: '',
         },
         {
@@ -75,13 +75,13 @@
         {
           params: 'before',
           desc: '内容之前的UI',
-          type: '() => React.ReactElement',
+          type: 'slot',
           defaultVal: '',
         },
         {
           params: 'after',
           desc: '内容之后的UI',
-          type: '() => React.ReactElement',
+          type: 'slot',
           defaultVal: '',
         },
         {
@@ -284,7 +284,7 @@ export default {
           }
         <\/script>
       `;
-    }
+    },
   },
   methods: {
     onShowBefore() {
@@ -295,7 +295,7 @@ export default {
     },
     onShowCloseAll() {
       this.data = this.data.map((t) => ({ ...t, beforeShow: false, afterShow: false }));
-    }
-  }
+    },
+  },
 };
 </script>

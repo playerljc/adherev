@@ -8,6 +8,7 @@ exports.defaultExternals = {
   moment: 'commonjs2 moment',
   swiper: 'commonjs2 swiper',
   iscroll: 'commonjs2 iscroll',
+  uuid: 'commonjs2 uuid',
 };
 
 exports.externals = function (externals) {

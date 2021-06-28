@@ -19,6 +19,7 @@ import {
   Row,
   Slider,
   Table,
+  Tabs,
   Tooltip,
   List,
   Avatar,
@@ -59,6 +60,7 @@ Vue.use(Menu);
 Vue.use(Button);
 Vue.use(Card);
 Vue.use(Table);
+Vue.use(Tabs);
 Vue.use(Breadcrumb);
 Vue.use(Empty);
 Vue.use(Tooltip);

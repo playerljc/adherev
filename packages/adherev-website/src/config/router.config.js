@@ -19,9 +19,6 @@ import { lazy } from '@/lib/Router';
 // const TableList = lazy(() =>
 //   import(/* webpackChunkName: "tablelist" */ '@/components/ui/tablelist'),
 // );
-// const Notification = lazy(() =>
-//   import(/* webpackChunkName: "notification" */ '@/components/ui/notification'),
-// );
 // const Decorators = lazy(() =>
 //   import(/* webpackChunkName: "decorators" */ '@/components/util/decorators'),
 // );
@@ -99,6 +96,8 @@ const Surnames = () => lazy(import(/* webpackChunkName: "surnames" */ '@/compone
 const CascadeCompared = () =>
   lazy(import(/* webpackChunkName: "cascadecompared" */ '@/components/ui/cascadecompared'));
 const SwipeOut = () => lazy(import(/* webpackChunkName: "swipeout" */ '@/components/ui/swipeout'));
+const Notification = () =>
+  lazy(import(/* webpackChunkName: "notification" */ '@/components/ui/notification'));
 
 export default () => [
   {
@@ -310,11 +309,11 @@ export default () => [
                 name: 'PullRefresh',
                 component: PullRefresh,
               },
-              // {
-              //   path: '/adherev/ui/notification',
-              //   name: 'Notification',
-              //   component: Notification,
-              // },
+              {
+                path: '/adherev/ui/notification',
+                name: 'Notification',
+                component: Notification,
+              },
               {
                 path: '/adherev/ui/swipeout',
                 name: 'SwipeOut',

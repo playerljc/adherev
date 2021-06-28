@@ -16,7 +16,7 @@
         {
           params: 'style',
           desc: '附加的样式',
-          type: 'React.CSSProperties',
+          type: 'String',
           defaultVal: '',
         },
         {
@@ -28,7 +28,7 @@
         {
           params: 'fixedStyle',
           desc: '固定头的样式',
-          type: 'React.CSSProperties',
+          type: 'String',
           defaultVal: '',
         },
         {
@@ -40,7 +40,7 @@
         {
           params: 'innerStyle',
           desc: '内部附加的样式',
-          type: 'React.CSSProperties',
+          type: 'String',
           defaultVal: '',
         },
         {
@@ -116,7 +116,7 @@
         {
           params: 'style',
           desc: '附加的样式',
-          type: 'React.CSSProperties',
+          type: 'String',
           defaultVal: '',
         },
       ]"
@@ -796,9 +796,9 @@ export default {
     code1() {
       return [
         {
-          title:'index.vue',
+          title: 'index.vue',
           lang: 'vue',
-          codeText:`
+          codeText: `
             <template>
               <h2>基本使用</h2>
               <div style="height: 500px; overflow: hidden">
@@ -1129,7 +1129,7 @@ export default {
         {
           title: 'index.less',
           lang: 'less',
-          codeText:`
+          codeText: `
             :global {
               .StickupLayout {
                 .adherev-ui-stickuplayout-fixed {
@@ -1190,7 +1190,7 @@ export default {
               }
             }
           `,
-        }
+        },
       ];
     },
     code2() {
@@ -1537,8 +1537,8 @@ export default {
         </template>
         <style lang="less" module src="./index.less" />
       `;
-    }
-  }
+    },
+  },
 };
 </script>
 

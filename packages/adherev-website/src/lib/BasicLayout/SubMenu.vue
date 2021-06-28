@@ -2,10 +2,14 @@
   <a-sub-menu :title="props.router.name" :key="props.router.path">
     <template v-for="r in props.router.children">
       <sub-menu
-          v-if="r.children && r.children.length && r.children.filter((t) => t.hide).length !== r.children.length"
-          :router="r"
-          :$style="props.$style"
-          :key="r.path"
+        v-if="
+          r.children &&
+          r.children.length &&
+          r.children.filter((t) => t.hide).length !== r.children.length
+        "
+        :router="r"
+        :$style="props.$style"
+        :key="r.path"
       />
 
       <a-menu-item v-else :key="r.path">
