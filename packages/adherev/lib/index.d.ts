@@ -29,6 +29,7 @@ import Surnames from '@baifendian/adherev-ui-surnames';
 import CascadeCompared from '@baifendian/adherev-ui-cascadecompared';
 import SwipeOut from '@baifendian/adherev-ui-swipeout';
 import Notification from '@baifendian/adherev-ui-notification';
+import FontSizeSetting from '@baifendian/adherev-ui-fontsizesetting';
 import Util from '@baifendian/adherev-util';
 import AdapterScreen from '@baifendian/adherev-util-adapterscreen';
 import Ajax from '@baifendian/adherev-util-communication-ajax';
@@ -39,7 +40,7 @@ import NotNull from '@baifendian/adherev-util-notnull';
 import Preferences from '@baifendian/adherev-util-preferences';
 import Resource from '@baifendian/adherev-util-resource';
 import WatchMemoized from '@baifendian/adherev-util-watchmemoized';
-export { ConditionalRender, DelConfirm, ImportantConfirm, GlobalIndicator, HistoryBack, MessageDialog, Permission, ErrorPrompt, SuccessPrompt, WarnPrompt, Space, Spin, Split, Suspense, FlexLayout, SearchTable, OLMap, BackTopAnimation, SplitLayout, ScrollLoad, SlideLayout, ContextMenu, PullRefresh, Revolving, Popup, SliderScale, StickupLayout, Surnames, CascadeCompared, SwipeOut, Notification, Util, AdapterScreen, Ajax, Dict, Emitter, Intl, NotNull, Preferences, Resource, WatchMemoized, };
+export { ConditionalRender, DelConfirm, ImportantConfirm, GlobalIndicator, HistoryBack, MessageDialog, Permission, ErrorPrompt, SuccessPrompt, WarnPrompt, Space, Spin, Split, Suspense, FlexLayout, SearchTable, OLMap, BackTopAnimation, SplitLayout, ScrollLoad, SlideLayout, ContextMenu, PullRefresh, Revolving, Popup, SliderScale, StickupLayout, Surnames, CascadeCompared, SwipeOut, Notification, FontSizeSetting, Util, AdapterScreen, Ajax, Dict, Emitter, Intl, NotNull, Preferences, Resource, WatchMemoized, };
 declare const _default: {
     install: (Vue: any) => void;
 };

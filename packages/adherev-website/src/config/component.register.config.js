@@ -50,6 +50,7 @@ import {
   Surnames,
   CascadeCompared,
   SwipeOut,
+  FontSizeSetting,
 } from '@baifendian/adherev';
 import Playground from '@/lib/Playground';
 import PlaygroundMulit from '@/lib/PlaygroundMulit';
@@ -106,6 +107,7 @@ StickupLayout.use(Vue);
 Surnames.use(Vue);
 CascadeCompared.use(Vue);
 SwipeOut.use(Vue);
+FontSizeSetting.use(Vue);
 
 Vue.use(Playground);
 Vue.use(PlaygroundMulit);

@@ -10,9 +10,6 @@ import { lazy } from '@/lib/Router';
 // const JCategoryTab = lazy(() =>
 //   import(/* webpackChunkName: "jcategorytab" */ '@/components/ui/jdcategorytab'),
 // );
-// const FontSizeSetting = lazy(() =>
-//   import(/* webpackChunkName: "fontsizesetting" */ '@/components/ui/fontsizesetting'),
-// );
 // const FormItemCreator = lazy(() =>
 //   import(/* webpackChunkName: "formitemcreator" */ '@/components/ui/formitemcreator'),
 // );
@@ -98,6 +95,8 @@ const CascadeCompared = () =>
 const SwipeOut = () => lazy(import(/* webpackChunkName: "swipeout" */ '@/components/ui/swipeout'));
 const Notification = () =>
   lazy(import(/* webpackChunkName: "notification" */ '@/components/ui/notification'));
+const FontSizeSetting = () => lazy(import(/* webpackChunkName: "fontsizesetting" */ '@/components/ui/fontsizesetting'),
+);
 
 export default () => [
   {
@@ -274,11 +273,11 @@ export default () => [
                 name: 'ContextMenu',
                 component: ContextMenu,
               },
-              // {
-              //   path: '/adherev/ui/fontsizesetting',
-              //   name: 'FontSizeSetting',
-              //   component: FontSizeSetting,
-              // },
+              {
+                path: '/adherev/ui/fontsizesetting',
+                name: 'FontSizeSetting',
+                component: FontSizeSetting,
+              },
               {
                 path: '/adherev/ui/searchtable',
                 name: 'SearchTable',

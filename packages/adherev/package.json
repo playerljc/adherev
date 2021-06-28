@@ -71,6 +71,7 @@
     "@baifendian/adherev-ui-cascadecompared": "^1.0.0",
     "@baifendian/adherev-ui-swipeout": "^1.0.0",
     "@baifendian/adherev-ui-notification": "^1.0.0",
+    "@baifendian/adherev-ui-fontsizesetting": "^1.0.0",
     "@baifendian/adherev-util": "^1.0.0",
     "@baifendian/adherev-util-adapterscreen": "^1.0.0",
     "@baifendian/adherev-util-communication-ajax": "^1.0.0",

@@ -1,12 +1,15 @@
 // 待实现
-adherev-ui-notification
+adherev-util-mixins
 
 // 优先级低的
-adherev-ui-fontsizesetting
 adherev-ui-jdcategorytab
 adherev-ui-tableheadsearch
 adherev-ui-tablelist
 adherev-ui-imagelazy
+
+// 新增的
+adherev-util-mixins
+ .加入updatedEx(增加类似于React的componentDidUpdate的hook,这个hook有preState,preProps参数),增加pre参数
 
 // 移除的
 adhere-ui-formitemcreator
@@ -55,3 +58,5 @@ adherev-ui-stickuplayout(demo)
 adherev-ui-surnames(demo)
 adherev-ui-cascadecompared(demo)
 adherev-ui-swipeout(demo)
+adherev-ui-notification(demo)
+adherev-ui-fontsizesetting(demo)
