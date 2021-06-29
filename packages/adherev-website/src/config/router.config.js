@@ -7,9 +7,6 @@ import { lazy } from '@/lib/Router';
 // const TableHeadSearch = lazy(() =>
 //   import(/* webpackChunkName: "tableheadsearch" */ '@/components/ui/tableheadsearch'),
 // );
-// const JCategoryTab = lazy(() =>
-//   import(/* webpackChunkName: "jcategorytab" */ '@/components/ui/jdcategorytab'),
-// );
 // const FormItemCreator = lazy(() =>
 //   import(/* webpackChunkName: "formitemcreator" */ '@/components/ui/formitemcreator'),
 // );
@@ -96,6 +93,10 @@ const SwipeOut = () => lazy(import(/* webpackChunkName: "swipeout" */ '@/compone
 const Notification = () =>
   lazy(import(/* webpackChunkName: "notification" */ '@/components/ui/notification'));
 const FontSizeSetting = () => lazy(import(/* webpackChunkName: "fontsizesetting" */ '@/components/ui/fontsizesetting'),
+);
+const Mixins = () => lazy(import(/* webpackChunkName: "mixins" */ '@/components/util/mixins'),
+);
+const JCategoryTab = () => lazy(import(/* webpackChunkName: "jcategorytab" */ '@/components/ui/jdcategorytab'),
 );
 
 export default () => [
@@ -253,11 +254,11 @@ export default () => [
                 name: 'ScrollLoad',
                 component: ScrollLoad,
               },
-              // {
-              //   path: '/adherev/ui/jcategorytab',
-              //   name: 'JCategoryTab',
-              //   component: JCategoryTab,
-              // },
+              {
+                path: '/adherev/ui/jcategorytab',
+                name: 'JCategoryTab',
+                component: JCategoryTab,
+              },
               {
                 path: '/adherev/ui/cascadecompared',
                 name: 'CascadeCompared',
@@ -378,6 +379,11 @@ export default () => [
                 name: 'Ajax',
                 component: Ajax,
               },
+              {
+                path: '/adhere/util/mixins',
+                name: 'Mixins',
+                component: Mixins,
+              }
             ],
           },
           // {

@@ -23,6 +23,8 @@ import {
   Tooltip,
   List,
   Avatar,
+  Tag,
+  Divider,
 } from 'ant-design-vue';
 import VueHighlightJS from 'vue-highlight.js';
 import {
@@ -51,6 +53,7 @@ import {
   CascadeCompared,
   SwipeOut,
   FontSizeSetting,
+  JdCategoryTab,
 } from '@baifendian/adherev';
 import Playground from '@/lib/Playground';
 import PlaygroundMulit from '@/lib/PlaygroundMulit';
@@ -80,6 +83,8 @@ Vue.use(Col);
 Vue.use(ConfigProvider);
 Vue.use(List);
 Vue.use(Avatar);
+Vue.use(Tag);
+Vue.use(Divider);
 
 Vue.use(VueHighlightJS);
 
@@ -108,6 +113,7 @@ Surnames.use(Vue);
 CascadeCompared.use(Vue);
 SwipeOut.use(Vue);
 FontSizeSetting.use(Vue);
+JdCategoryTab.use(Vue);
 
 Vue.use(Playground);
 Vue.use(PlaygroundMulit);

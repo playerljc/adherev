@@ -1,0 +1,41 @@
+{
+  "name": "@baifendian/adherev-ui-jdcategorytab",
+  "version": "1.0.0",
+  "description": "京东的面板",
+  "main": "lib/index.js",
+  "files": [
+    "lib",
+    "umd"
+  ],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "buildpackage": "ctbuildv buildpackagets",
+    "generatorchangelog": "bd changelog/CHANGELOG.html",
+    "buildumd": "ctbuildv buildumd --packagename AdherevJdCategoryTab --define alias=@,evnVars=true"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://gitee.com/playerljc/adherev"
+  },
+  "resolutions": {
+    "graceful-fs": "4.2.2"
+  },
+  "author": "playerljc",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://gitee.com/playerljc/adherev/issues"
+  },
+  "homepage": "https://gitee.com/playerljc/adherev",
+  "publishConfig": {
+    "access": "public"
+  },
+  "devDependencies": {
+    "@babel/runtime": "^7.7.4",
+    "@ctsj/buildv": "^2.0.2",
+    "typescript": "^3.8.2"
+  },
+  "dependencies": {
+    "classnames": "^2.2.6",
+    "iscroll": "^5.2.0"
+  }
+}

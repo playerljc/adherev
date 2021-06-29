@@ -47,6 +47,7 @@ const namedMap = new Map([
   ['@baifendian/adherev-ui-fontsizesetting','FontSizeSetting'],
   ['@baifendian/adherev-ui-cascadecompared','CascadeCompared'],
   ['@baifendian/adherev-ui-swipeout','SwipeOut'],
+  ['@baifendian/adherev-ui-jdcategorytab','JdCategoryTab'],
   ['@baifendian/adherev-util', 'Util'],
   ['@baifendian/adherev-util-communication-ajax', 'Ajax'],
   ['@baifendian/adherev-util-dict', 'Dict'],
@@ -57,6 +58,7 @@ const namedMap = new Map([
   ['@baifendian/adherev-util-resource', 'Resource'],
   ['@baifendian/adherev-util-adapterscreen', 'AdapterScreen'],
   ['@baifendian/adherev-util-watchmemoized', 'WatchMemoized'],
+  ['@baifendian/adherev-util-mixins','Mixins'],
 ]);
 
 /**

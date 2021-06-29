@@ -1,11 +1,9 @@
 // 待实现
-adherev-util-mixins
+adherev-ui-imagelazy
 
 // 优先级低的
-adherev-ui-jdcategorytab
 adherev-ui-tableheadsearch
 adherev-ui-tablelist
-adherev-ui-imagelazy
 
 // 新增的
 adherev-util-mixins
@@ -60,3 +58,5 @@ adherev-ui-cascadecompared(demo)
 adherev-ui-swipeout(demo)
 adherev-ui-notification(demo)
 adherev-ui-fontsizesetting(demo)
+adherev-util-mixins(demo)
+adherev-ui-jdcategorytab(demo)
