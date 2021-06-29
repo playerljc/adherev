@@ -293,14 +293,14 @@ export default {
   },
 
   /**
-   * addHeatmapLayer - 添加一个热力层
+   * createHeatMapLayer - 添加一个热力层
    * @param map
    * @param layoutConfig
    */
-  addHeatmapLayer(map, layoutConfig) {
+  createHeatMapLayer(layoutConfig) {
     const vectorSource = new VectorSource();
 
-    const heatmapLayer = new HeatmapLayer({
+    const layer = new HeatmapLayer({
       source: vectorSource,
       gradient: ['#00005c', '#020288', '#0202c0', '#0ff', '#0f0', '#ff0', '#f00'],
       weight: () => 1,
@@ -310,9 +310,11 @@ export default {
       ...layoutConfig,
     });
 
-    map.addLayer(heatmapLayer);
-
-    return vectorSource;
+    // map.addLayer(heatmapLayer);
+    return {
+      layer,
+      vectorSource
+    };
   },
 
   /**

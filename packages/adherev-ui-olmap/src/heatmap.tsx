@@ -1,42 +1,28 @@
-import { Heatmap as HeatmapLayer } from 'ol/layer';
-
 import OLMap from './olmap';
 import Util from './util';
 
 export default {
   name: 'adv-olmap-heatmap',
-  props: {
-    heatMapLayerConfig: {
-      type: Object,
-      default: () => {},
-    },
-  },
   data() {
     return {
       $vectorSource: null,
+      $layer: null,
     };
   },
   mixins: [OLMap],
   methods: {
-    addLayer() {
-      const { heatMapLayerConfig } = this;
+    addLayer(heatMapLayerConfig = {}) {
+      const { layer, vectorSource } = Util.createHeatMapLayer(heatMapLayerConfig || {});
 
-      this.$data.$vectorSource = Util.addHeatmapLayer(this.$data.$map, heatMapLayerConfig);
+      const { $data } = this;
+
+      $data.$layer = layer;
+      $data.$vectorSource = vectorSource;
+
+      $data.$map.addLayer(layer);
     },
-    getHeatmapLayer() {
-      const layers = this.$data.$map.getLayers();
-
-      let result = null;
-
-      for (let i = 1; i < layers.getLength(); i++) {
-        const layer = layers.item(i);
-        if (layer instanceof HeatmapLayer) {
-          result = layer;
-          break;
-        }
-      }
-
-      return result;
+    getHeatMapLayer() {
+      return this.$data.$layer;
     },
   },
 };

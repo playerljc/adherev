@@ -2609,7 +2609,7 @@ export default {
 
       this.$refs.heatRef.addLayer();
 
-      const layer = this.$refs.heatRef.getHeatmapLayer();
+      const layer = this.$refs.heatRef.getHeatMapLayer();
       layer.setSource(vectorSource);
     },
     onCode4Fun1() {
