@@ -17,11 +17,9 @@ Resource.Dict.value.LocalsMoment.value[lang]();
 
 new Vue({
   el: '#container',
-
   i18n: Intl({
     locale: lang,
   }),
-
   router: Router(),
   data() {
     return {
