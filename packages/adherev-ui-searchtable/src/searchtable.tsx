@@ -107,26 +107,29 @@ export default {
      * @param h
      */
     renderSearchFooter(h: CreateElement) {
-      const items = this.renderSearchFooterItems(h) || [];
+      const defaultItems = [
+        <Button
+          class={`${selectorPrefix}-SearchFooterItem`}
+          type="primary"
+          onClick={() => {
+            this.page = 1;
+
+            this.onSearch();
+          }}
+        >
+          <i class="iconfont iconsousuo" />
+          {Intl.tv('查询')}
+        </Button>,
+        <Button class={`${selectorPrefix}-SearchFooterItem`} onClick={this.onClear}>
+          {Intl.tv('重置')}
+        </Button>,
+      ];
+
+      // 返回的是VNodes数组
+      const items = this.renderSearchFooterItems(h, defaultItems) || [...defaultItems];
 
       return (
         <div class={`${selectorPrefix}-SearchFooterWrapper`}>
-          <Button
-            class={`${selectorPrefix}-SearchFooterItem`}
-            type="primary"
-            onClick={() => {
-              this.page = 1;
-
-              this.onSearch();
-            }}
-          >
-            <i class="iconfont iconsousuo" />
-            {Intl.tv('查询')}
-          </Button>
-
-          <Button class={`${selectorPrefix}-SearchFooterItem`} onClick={this.onClear}>
-            {Intl.tv('重置')}
-          </Button>
           {items.map((t) => (
             <div class={`${selectorPrefix}-SearchFooterItem`}>{t}</div>
           ))}
