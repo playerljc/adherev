@@ -5,7 +5,7 @@ const { spawn } = require('child_process');
 
 const contextPath = path.join(__dirname, '../packages');
 
-const excludes = ['adhere-ui-css', 'adhere-website'];
+const excludes = ['adherev-ui-css', 'adherev-website'];
 
 let index = 0;
 
