@@ -31,6 +31,7 @@ import SwipeOut from '@baifendian/adherev-ui-swipeout';
 import Notification from '@baifendian/adherev-ui-notification';
 import FontSizeSetting from '@baifendian/adherev-ui-fontsizesetting';
 import JdCategoryTab from '@baifendian/adherev-ui-jdcategorytab';
+import ImageLazy from '@baifendian/adherev-ui-imagelazy';
 import Util from '@baifendian/adherev-util';
 import AdapterScreen from '@baifendian/adherev-util-adapterscreen';
 import Ajax from '@baifendian/adherev-util-communication-ajax';
@@ -77,6 +78,7 @@ export {
   Notification,
   FontSizeSetting,
   JdCategoryTab,
+  ImageLazy,
   Util,
   AdapterScreen,
   Ajax,
@@ -190,6 +192,9 @@ export default {
     }
     if (JdCategoryTab.isUse()) {
       JdCategoryTab.use(Vue);
+    }
+    if (ImageLazy.isUse()) {
+      ImageLazy.use(Vue);
     }
     if (Util.isUse()) {
       Util.use(Vue);

@@ -1,9 +1,6 @@
 import BasicLayout from '@/lib/BasicLayout';
 import { lazy } from '@/lib/Router';
 
-// const ImageLazy = lazy(() =>
-//   import(/* webpackChunkName: "imagelazy" */ '@/components/ui/imagelazy'),
-// );
 // const TableHeadSearch = lazy(() =>
 //   import(/* webpackChunkName: "tableheadsearch" */ '@/components/ui/tableheadsearch'),
 // );
@@ -98,6 +95,8 @@ const Mixins = () => lazy(import(/* webpackChunkName: "mixins" */ '@/components/
 );
 const JCategoryTab = () => lazy(import(/* webpackChunkName: "jcategorytab" */ '@/components/ui/jdcategorytab'),
 );
+const ImageLazy = () => lazy(import(/* webpackChunkName: "imagelazy" */ '@/components/ui/imagelazy'),
+);
 
 export default () => [
   {
@@ -184,11 +183,11 @@ export default () => [
                 name: 'WarnPrompt',
                 component: WarnPrompt,
               },
-              // {
-              //   path: '/adherev/ui/imagelazy',
-              //   name: 'ImageLazy',
-              //   component: ImageLazy,
-              // },
+              {
+                path: '/adherev/ui/imagelazy',
+                name: 'ImageLazy',
+                component: ImageLazy,
+              },
               {
                 path: '/adherev/ui/messagedialog',
                 name: 'MessageDialog',

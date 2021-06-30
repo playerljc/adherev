@@ -31,6 +31,7 @@ import SwipeOut from '@baifendian/adherev-ui-swipeout';
 import Notification from '@baifendian/adherev-ui-notification';
 import FontSizeSetting from '@baifendian/adherev-ui-fontsizesetting';
 import JdCategoryTab from '@baifendian/adherev-ui-jdcategorytab';
+import ImageLazy from '@baifendian/adherev-ui-imagelazy';
 import Util from '@baifendian/adherev-util';
 import AdapterScreen from '@baifendian/adherev-util-adapterscreen';
 import Ajax from '@baifendian/adherev-util-communication-ajax';
@@ -42,7 +43,7 @@ import Preferences from '@baifendian/adherev-util-preferences';
 import Resource from '@baifendian/adherev-util-resource';
 import WatchMemoized from '@baifendian/adherev-util-watchmemoized';
 import Mixins from '@baifendian/adherev-util-mixins';
-export { ConditionalRender, DelConfirm, ImportantConfirm, GlobalIndicator, HistoryBack, MessageDialog, Permission, ErrorPrompt, SuccessPrompt, WarnPrompt, Space, Spin, Split, Suspense, FlexLayout, SearchTable, OLMap, BackTopAnimation, SplitLayout, ScrollLoad, SlideLayout, ContextMenu, PullRefresh, Revolving, Popup, SliderScale, StickupLayout, Surnames, CascadeCompared, SwipeOut, Notification, FontSizeSetting, JdCategoryTab, Util, AdapterScreen, Ajax, Dict, Emitter, Intl, NotNull, Preferences, Resource, WatchMemoized, Mixins, };
+export { ConditionalRender, DelConfirm, ImportantConfirm, GlobalIndicator, HistoryBack, MessageDialog, Permission, ErrorPrompt, SuccessPrompt, WarnPrompt, Space, Spin, Split, Suspense, FlexLayout, SearchTable, OLMap, BackTopAnimation, SplitLayout, ScrollLoad, SlideLayout, ContextMenu, PullRefresh, Revolving, Popup, SliderScale, StickupLayout, Surnames, CascadeCompared, SwipeOut, Notification, FontSizeSetting, JdCategoryTab, ImageLazy, Util, AdapterScreen, Ajax, Dict, Emitter, Intl, NotNull, Preferences, Resource, WatchMemoized, Mixins, };
 declare const _default: {
     install: (Vue: any) => void;
 };

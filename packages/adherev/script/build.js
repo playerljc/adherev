@@ -48,6 +48,7 @@ const namedMap = new Map([
   ['@baifendian/adherev-ui-cascadecompared','CascadeCompared'],
   ['@baifendian/adherev-ui-swipeout','SwipeOut'],
   ['@baifendian/adherev-ui-jdcategorytab','JdCategoryTab'],
+  ['@baifendian/adherev-ui-imagelazy','ImageLazy'],
   ['@baifendian/adherev-util', 'Util'],
   ['@baifendian/adherev-util-communication-ajax', 'Ajax'],
   ['@baifendian/adherev-util-dict', 'Dict'],

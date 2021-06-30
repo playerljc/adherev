@@ -54,6 +54,7 @@ import {
   SwipeOut,
   FontSizeSetting,
   JdCategoryTab,
+  ImageLazy,
 } from '@baifendian/adherev';
 import Playground from '@/lib/Playground';
 import PlaygroundMulit from '@/lib/PlaygroundMulit';
@@ -114,6 +115,7 @@ CascadeCompared.use(Vue);
 SwipeOut.use(Vue);
 FontSizeSetting.use(Vue);
 JdCategoryTab.use(Vue);
+ImageLazy.use(Vue);
 
 Vue.use(Playground);
 Vue.use(PlaygroundMulit);

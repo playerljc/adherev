@@ -1,9 +1,7 @@
 // 待实现
-adherev-ui-imagelazy
+adherev-ui-tablelist
 
 // 优先级低的
-adherev-ui-tableheadsearch
-adherev-ui-tablelist
 
 // 新增的
 adherev-util-mixins
@@ -13,6 +11,7 @@ adherev-util-mixins
 adhere-ui-formitemcreator
 adhere-ui-hooks
 adhere-util-decorators
+adherev-ui-tableheadsearch(看上去不需要)
 
 // 完成的
 adherev-ui-conditionalrender(demo)
@@ -60,3 +59,4 @@ adherev-ui-notification(demo)
 adherev-ui-fontsizesetting(demo)
 adherev-util-mixins(demo)
 adherev-ui-jdcategorytab(demo)
+adherev-ui-imagelazy(demo)
