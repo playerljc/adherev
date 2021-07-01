@@ -3,6 +3,8 @@ const externals = require('../../config/externals');
 
 module.exports = {
   getConfig({ webpackConfig }) {
+    delete webpackConfig.module.rules[2].include;
+
     webpackConfig.externals = {
       ...externals.defaultExternals,
       ...externals.externals([

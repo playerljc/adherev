@@ -10,7 +10,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "buildpackage": "ctbuildv buildpackagets",
-    "buildumd": "ctbuildv buildumd --packagename AdherevSliderScale --define alias=@,evnVars=true",
+    "buildumd": "ctbuildv buildumd --config ctbuildv.config.umd.js --packagename AdherevSliderScale --define alias=@,evnVars=true",
     "generatorchangelog": "bd changelog/CHANGELOG.html"
   },
   "repository": {

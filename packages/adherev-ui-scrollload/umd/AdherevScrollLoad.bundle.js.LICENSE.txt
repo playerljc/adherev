@@ -1,0 +1,11 @@
+/*!
+  Copyright (c) 2018 Jed Watson.
+  Licensed under the MIT License (MIT), see
+  http://jedwatson.github.io/classnames
+*/
+
+/*!
+ * vue-i18n v8.24.4 
+ * (c) 2021 kazuya kawaguchi
+ * Released under the MIT License.
+ */

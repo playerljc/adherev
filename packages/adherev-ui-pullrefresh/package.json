@@ -11,7 +11,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "prebuildpackage": "node ./script/build-load-awesome.js",
     "buildpackage": "ctbuildv buildpackagets",
-    "buildumd": "ctbuildv buildumd --packagename AdherevPullRefresh --define alias=@,evnVars=true",
+    "buildumd": "ctbuildv buildumd --config ctbuildv.config.umd.js --packagename AdherevPullRefresh --define alias=@,evnVars=true",
     "generatorchangelog": "bd changelog/CHANGELOG.html"
   },
   "repository": {

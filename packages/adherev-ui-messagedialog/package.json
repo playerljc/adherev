@@ -11,7 +11,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "buildpackage": "ctbuildv buildpackagets",
     "generatorchangelog": "bd changelog/CHANGELOG.html",
-    "buildumd": "ctbuildv buildumd --packagename AdherevMessageDialog --define alias=@,evnVars=true"
+    "buildumd": "ctbuildv buildumd --config ctbuildv.config.umd.js --packagename AdherevMessageDialog --define alias=@,evnVars=true"
   },
   "repository": {
     "type": "git",
