@@ -6,6 +6,7 @@ import Router from './lib/Router';
 import '@/config/component.register.config.js';
 
 import 'highlight.js/styles/agate.css';
+// TODO:umd umd需要注释掉
 import '@baifendian/adherev/lib/css.less';
 import './index.less';
 

@@ -60,3 +60,9 @@ adherev-ui-fontsizesetting(demo)
 adherev-util-mixins(demo)
 adherev-ui-jdcategorytab(demo)
 adherev-ui-imagelazy(demo)
+
+
+
+.下拉刷新出错
+.抽屉初始化不是打开
+.Mixins出错

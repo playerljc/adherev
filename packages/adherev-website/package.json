@@ -64,7 +64,8 @@
     "moment": "^2.29.1",
     "core-js": "^3.6.5",
     "highlight.js": "^9.11.0",
-    "vue-highlight.js": "^3.1.0"
+    "vue-highlight.js": "^3.1.0",
+    "ol": "^6.5.0"
   },
   "devDependencies": {
     "@babel/runtime": "^7.9.2",

@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import { Fragment } from 'vue-fragment';
-import v1 from 'uuid';
+import { v1 } from 'uuid';
 import Util from '@baifendian/adherev-util';
 
 import { IConfig, IShowConfig, IShowStandardConfig } from './types';

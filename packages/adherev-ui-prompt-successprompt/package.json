@@ -36,6 +36,7 @@
   },
   "dependencies": {
     "@baifendian/adherev-util-intl": "^1.0.0",
+    "vue": "^2.6.14",
     "ant-design-vue": "^1.7.5"
   }
 }

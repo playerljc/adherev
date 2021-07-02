@@ -639,7 +639,6 @@ export default {
             </adv-flexlayout-auto>
           </adv-flexlayout>
         </template>
-
         <script>
           export default {
             data() {
@@ -706,7 +705,6 @@ export default {
             </adv-flexlayout-auto>
           </adv-flexlayout>
         </template>
-
         <script>
           export default {
             data() {
@@ -798,14 +796,14 @@ export default {
 				border: 1px solid rgba(0,0,0,.1);
         overflow: hidden;
       `,
-      collapse1: false,
-      collapse2: false,
-      collapse3: false,
-      collapse4: false,
-      collapse5: false,
-      collapse6: false,
-      collapse7: false,
-      collapse8: false,
+      collapse1: true,
+      collapse2: true,
+      collapse3: true,
+      collapse4: true,
+      collapse5: true,
+      collapse6: true,
+      collapse7: true,
+      collapse8: true,
     };
   },
 };

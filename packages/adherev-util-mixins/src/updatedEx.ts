@@ -4,7 +4,7 @@
  */
 export default {
   created() {
-    const { $watch, $data, $props } = this;
+    const { $data, $props } = this;
 
     // 在$data中创建$preProps属性用来存放pre的值
     if (!('$preProps' in $data)) {
@@ -14,7 +14,7 @@ export default {
     // 枚举data中的属性，用watch进行监控
     for (const p in $data) {
       if (!p.startsWith('$') && !p.startsWith('_')) {
-        $watch(p, function (newVal, oldVal) {
+        this.$watch(p, function (newVal, oldVal) {
           $data.$preProps[p] = oldVal;
         });
       }
@@ -23,7 +23,7 @@ export default {
     // 枚举props中的属性，用watch进行监控
     for (const p in $props) {
       if (!p.startsWith('$') && !p.startsWith('_')) {
-        $watch(p, function (newVal, oldVal) {
+        this.$watch(p, function (newVal, oldVal) {
           $data.$preProps[p] = oldVal;
         });
       }

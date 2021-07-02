@@ -1,4 +1,4 @@
-import './index.less'; import BackTopAnimation from './backtopanimation';
+import BackTopAnimation from './backtopanimation';
 import { withInstall } from '../../_util/index';
 
 const Component = withInstall(BackTopAnimation);

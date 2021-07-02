@@ -333,9 +333,9 @@ export default {
       } else if ($data.$isTop) {
         $data.$isTop = false;
 
-        self.scrollEl.removeEventListener('touchstart', this.onTouchStart);
+        $scrollEl.removeEventListener('touchstart', this.onTouchStart);
 
-        self.scrollEl.removeEventListener('mousedown', this.onTouchStart);
+        $scrollEl.removeEventListener('mousedown', this.onTouchStart);
       }
     },
     translateY(el, y: string, duration = 0) {

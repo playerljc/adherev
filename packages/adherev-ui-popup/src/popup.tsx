@@ -8,7 +8,7 @@ const selectorPrefix = 'adherev-ui-popup';
 
 let prePopup: this;
 let maskEl;
-let el = document.body;
+let el = null;
 
 /**
  * Popup
@@ -31,7 +31,7 @@ class Popup {
    */
   constructor(config: IConfig) {
     this.isShow = false;
-    this.el = el;
+    this.el = PopupFactory.getEl();
     this.id = v1();
     this.config = config;
 
@@ -53,7 +53,7 @@ class Popup {
 
     maskEl.style.zIndex = String((zIndex || 11000) - 1500);
 
-    el.appendChild(maskEl);
+    this.el.appendChild(maskEl);
 
     maskEl.addEventListener('transitionend', this.onMaskElTransitionend);
   }
@@ -289,7 +289,7 @@ const PopupFactory = {
    * @return {HTMLElement}
    */
   getEl() {
-    return el;
+    return el || document.body;
   },
   /**
    * setEl
