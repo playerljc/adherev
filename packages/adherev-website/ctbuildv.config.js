@@ -7,13 +7,13 @@ module.exports = {
   },
   getConfig({ webpackConfig, webpack, plugins }) {
     // TODO:umd  umd时候需要打开
-    webpackConfig.externals = {
-      '@baifendian/adherev': 'adherev',
-      'ant-design-vue': 'antd',
-      vue: 'Vue',
-      moment: 'moment',
-      '@form-create/ant-design-vue': 'formCreate',
-    };
+    // webpackConfig.externals = {
+    //   '@baifendian/adherev': 'adherev',
+    //   'ant-design-vue': 'antd',
+    //   vue: 'Vue',
+    //   moment: 'moment',
+    //   '@form-create/ant-design-vue': 'formCreate',
+    // };
 
     webpackConfig.resolve.alias = {
       ...webpackConfig.resolve.alias,
