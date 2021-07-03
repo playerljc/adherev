@@ -36,8 +36,8 @@
   },
   "dependencies": {
     "@baifendian/adherev-ui-conditionalrender": "^1.0.0",
-    "@baifendian/adherev-util": "^1.0.0",
     "@baifendian/adherev-ui-css": "^1.0.0",
+    "@baifendian/adherev-util": "^1.0.0",
     "classnames": "^2.2.6",
     "vue": "^2.6.14"
   }

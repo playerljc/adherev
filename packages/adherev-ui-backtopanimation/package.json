@@ -35,8 +35,8 @@
     "typescript": "^3.8.2"
   },
   "dependencies": {
+    "@baifendian/adherev-util-resource": "^1.0.0",
     "classnames": "^2.2.6",
-    "omit.js": "^2.0.2",
-    "@baifendian/adherev-util-resource": "^1.0.0"
+    "omit.js": "^2.0.2"
   }
 }

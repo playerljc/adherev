@@ -35,7 +35,7 @@
     "typescript": "^3.8.2"
   },
   "dependencies": {
-    "vue": "^2.6.14",
-    "ant-design-vue": "^1.7.5"
+    "ant-design-vue": "^1.7.5",
+    "vue": "^2.6.14"
   }
 }

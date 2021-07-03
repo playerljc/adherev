@@ -36,12 +36,12 @@
     "typescript": "^3.8.2"
   },
   "dependencies": {
-    "classnames": "^2.2.6",
-    "load-awesome": "^1.1.0",
-    "omit.js": "^2.0.2",
-    "moment": "^2.29.1",
     "@baifendian/adherev-ui-css": "^1.0.0",
     "@baifendian/adherev-util-intl": "^1.0.0",
-    "@baifendian/adherev-util-resource": "^1.0.0"
+    "@baifendian/adherev-util-resource": "^1.0.0",
+    "classnames": "^2.2.6",
+    "load-awesome": "^1.1.0",
+    "moment": "^2.29.1",
+    "omit.js": "^2.0.2"
   }
 }
