@@ -1,0 +1,261 @@
+@adherev-ui-notification-transitionduration: 600ms;
+@adherev-ui-notification-standard-header-icon-width: 50px;
+@adherev-ui-notification-standard-header-icon-height: 50px;
+@adherev-ui-notification-ios-closebtn-width: 30px;
+@adherev-ui-notification-ios-closebtn-height: 30px;
+@adherev-ui-notification-material-closebtn-width: 30px;
+@adherev-ui-notification-material-closebtn-height: 30px;
+@adherev-ui-notification-border-color: rgba(0, 0, 0, 0.1);
+@adherev-ui-notification-standard-content-color: #8e8e93;
+@adherev-ui-notification-material-ul-backgroundcolor: #323232;
+
+.adherev-ui-notification {
+  &-top,
+  &-bottom {
+    &-material,
+    &-ios {
+      position: absolute;
+      left: 0;
+      z-index: 1999;
+      width: 100%;
+      overflow: hidden;
+      background: transparent;
+
+      > ul {
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+
+        > li {
+          position: relative;
+          height: 0;
+          padding: 0 20px;
+          transition: height @adherev-ui-notification-transitionduration 0ms;
+
+          > .info {
+            flex-grow: 1;
+            min-width: 0;
+            padding: 10px 10px 10px 0;
+            font-size: 14px;
+            word-break: break-all;
+            opacity: 0;
+            transition: opacity @adherev-ui-notification-transitionduration 0ms;
+
+            > .adherev-ui-notification-standard-header {
+              display: flex;
+              align-items: center;
+              justify-content: flex-start;
+              padding: 10px;
+
+              > .adherev-ui-notification-standard-header-icon {
+                > img {
+                  width: @adherev-ui-notification-standard-header-icon-width;
+                  height: @adherev-ui-notification-standard-header-icon-height;
+                  margin-right: 10px;
+                  border-radius: 50%;
+                }
+              }
+
+              > .adherev-ui-notification-standard-header-label {
+                overflow: hidden;
+                font-size: 14px;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+              }
+            }
+
+            > .adherev-ui-notification-standard-content {
+              display: flex;
+              align-items: center;
+              justify-content: space-between;
+
+              > .adherev-ui-notification-standard-content-media-l,
+              .adherev-ui-notification-standard-content-media-r {
+                flex-shrink: 0;
+              }
+
+              > .adherev-ui-notification-standard-content-media-l {
+                > img {
+                  width: @adherev-ui-notification-standard-header-icon-width;
+                  height: @adherev-ui-notification-standard-header-icon-height;
+                  margin: 10px;
+                  border-radius: 50%;
+                }
+              }
+
+              > .adherev-ui-notification-standard-content-media-r {
+                align-self: flex-start;
+                width: @adherev-ui-notification-standard-header-icon-width;
+                margin: 10px;
+                overflow: hidden;
+                font-size: 14px;
+                word-break: break-all;
+              }
+
+              > .adherev-ui-notification-standard-content-row {
+                flex-grow: 1;
+                min-width: 0;
+
+                > .adherev-ui-notification-standard-content-row-title {
+                  margin-bottom: 10px;
+                  overflow: hidden;
+                  font-size: 16px;
+                  white-space: nowrap;
+                  text-overflow: ellipsis;
+                }
+
+                > .adherev-ui-notification-standard-content-row-text {
+                  font-size: 14px;
+                  line-height: 21px;
+                  word-break: break-all;
+                }
+              }
+            }
+          }
+
+          > .closeBtn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            z-index: 999;
+
+            &:hover {
+              cursor: pointer;
+            }
+          }
+        }
+      }
+    }
+
+    &-ios {
+      > ul {
+        > li {
+          margin: 10px;
+          border-radius: 5px;
+
+          > .closeBtn {
+            width: @adherev-ui-notification-ios-closebtn-width;
+            height: @adherev-ui-notification-ios-closebtn-height;
+            margin-top: 10px;
+          }
+        }
+      }
+    }
+
+    &-material {
+      > ul {
+        > li {
+          border-radius: 5px;
+
+          > .closeBtn {
+            width: @adherev-ui-notification-material-closebtn-width;
+            height: @adherev-ui-notification-material-closebtn-height;
+          }
+        }
+      }
+    }
+  }
+
+  &-top {
+    &-material,
+    &-ios {
+      top: 0;
+    }
+  }
+
+  &-bottom {
+    &-material,
+    &-ios {
+      bottom: 0;
+    }
+  }
+}
+
+.adherev-ui-notification {
+  &-top,
+  &-bottom {
+    &-material {
+      > ul {
+        > li {
+          border-bottom: 1px solid @adherev-ui-notification-border-color;
+
+          > .info {
+            > .adherev-ui-notification-standard-header {
+              border-bottom: 1px solid @adherev-ui-notification-border-color;
+            }
+
+            > .adherev-ui-notification-standard-content {
+              > .adherev-ui-notification-standard-content-media-r {
+                color: @adherev-ui-notification-standard-content-color;
+              }
+
+              > .adherev-ui-notification-standard-content-row {
+                > .adherev-ui-notification-standard-content-row-text {
+                  color: @adherev-ui-notification-standard-content-color;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  &-top,
+  &-bottom {
+    &-material {
+      > ul {
+        background-color: @adherev-ui-notification-material-ul-backgroundcolor;
+
+        > li {
+          > .info {
+            color: #fff;
+
+            > .adherev-ui-notification-standard-content {
+              > .adherev-ui-notification-standard-content-row {
+                > .adherev-ui-notification-standard-content-row-title {
+                  color: #fff;
+                }
+              }
+            }
+          }
+
+          > .closeBtn {
+            background: url('./images/materialcha.png') no-repeat;
+            background-size: 100% 100%;
+          }
+        }
+      }
+    }
+  }
+
+  &-top,
+  &-bottom {
+    &-ios {
+      > ul {
+        background-color: transparent;
+        > li {
+          background-color: rgba(255, 255, 255, 0.7);
+          box-shadow: rgba(0, 0, 0, 0.7) 0 5px 25px -10px;
+
+          > .info {
+            color: #000;
+            > .adherev-ui-notification-standard-content {
+              > .adherev-ui-notification-standard-content-row {
+                > .adherev-ui-notification-standard-content-row-title {
+                  color: #000;
+                }
+              }
+            }
+          }
+
+          > .closeBtn {
+            background: url('./images/ioscha.svg') no-repeat;
+            background-size: 100% 100%;
+          }
+        }
+      }
+    }
+  }
+}

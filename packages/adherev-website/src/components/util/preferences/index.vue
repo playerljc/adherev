@@ -201,7 +201,7 @@
     />
 
     <h2>基本的使用</h2>
-    <playground :codeText="code">
+    <playground :code-text="code">
       <a-button type="primary" @click="onTrigger">放入和拿出</a-button>
       <p id="PreferencesConsole" />
     </playground>

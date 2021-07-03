@@ -1,4 +1,3 @@
-// @ts-ignore
 import ImportantConfirm, { open } from './importantconfirm';
 import { withInstall } from '../../_util';
 

@@ -6,9 +6,19 @@ module.exports = {
     return modifyVars;
   },
   getConfig({ webpackConfig, webpack, plugins }) {
+    // TODO:umd  umd时候需要打开
+    // webpackConfig.externals = {
+    //   '@baifendian/adherev': 'adherev',
+    //   'ant-design-vue': 'antd',
+    //   vue: 'Vue',
+    //   moment: 'moment',
+    //   '@form-create/ant-design-vue': 'formCreate',
+    // };
+
     webpackConfig.resolve.alias = {
       ...webpackConfig.resolve.alias,
       vue$: 'vue/dist/vue.esm.js',
+      // TODO:umd umd的时候需要注释掉
       vue: path.join(__dirname, 'node_modules', 'vue'),
       'ant-design-vue': path.join(__dirname, 'node_modules', 'ant-design-vue'),
       '@form-create/ant-design-vue': path.join(
@@ -24,12 +34,14 @@ module.exports = {
         __dirname,
         'node_modules/@baifendian/adherev/node_modules/@baifendian/adherev-ui-olmap/node_modules/ol',
       ),
+
       // swiper: path.join(
       //   __dirname,
       //   'node_modules/@baifendian/adherev/node_modules/@baifendian/adherev-ui-revolving/node_modules/swiper',
       // ),
     };
 
+    // 第三方库的引用是从文件当前目录开始搜索
     webpackConfig.resolve.modules.unshift(path.join(__dirname, 'node_modules'));
 
     // 这个文件不在src里也不在node_modules里，只在link的时候才会遇到这个问题(原因是node_modules里的包是link过来的)
@@ -40,6 +52,7 @@ module.exports = {
 
     webpackConfig.module.rules[3].include.push(/ol.css/, /swiper.css/);
 
+    // TODO:umd umd的时候需要注释掉
     // babel-plugin-import的配置
     const { use } = webpackConfig.module.rules[1];
     const babelLoaderConfig = use.find((loaderConfig) => {

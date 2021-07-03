@@ -1,4 +1,3 @@
-// @ts-ignore
 import DelConform, { open } from './delconfirm';
 import { withInstall } from '../../_util';
 

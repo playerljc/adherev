@@ -150,61 +150,61 @@ export default {
 </script>
 
 <style lang="less" module>
-  .BasicLayout {
-    display: flex;
-    width: 100%;
-    height: 100%;
+.BasicLayout {
+  display: flex;
+  width: 100%;
+  height: 100%;
+
+  > .Auto {
+    flex-direction: column;
+
+    > .Fixed {
+      padding: 20px;
+    }
 
     > .Auto {
-      flex-direction: column;
-
-      > .Fixed {
-        padding: 20px;
-      }
-
-      > .Auto {
-        min-height: 0;
-        overflow-y: auto;
-        background: @common-block-background-color;
-      }
-    }
-
-    .Fixed {
-      flex-shrink: 0;
-      width: 300px;
-      .Menu {
-        width: 100%;
-        height: 100%;
-        overflow-y: auto;
-      }
-    }
-
-    .Auto {
-      display: flex;
-      flex-grow: 1;
-      min-width: 0;
+      min-height: 0;
+      overflow-y: auto;
+      background: @common-block-background-color;
     }
   }
 
-  .MenuIcon {
-    margin-right: 15px;
+  .Fixed {
+    flex-shrink: 0;
+    width: 300px;
+    .Menu {
+      width: 100%;
+      height: 100%;
+      overflow-y: auto;
+    }
   }
 
-  .MenuIconText {
-    vertical-align: middle;
+  .Auto {
+    display: flex;
+    flex-grow: 1;
+    min-width: 0;
   }
+}
 
-  .Sider {
-    transition: all 0.2s;
-  }
+.MenuIcon {
+  margin-right: 15px;
+}
 
-  .Collapse {
-    width: 51px;
-    overflow-x: hidden;
-  }
+.MenuIconText {
+  vertical-align: middle;
+}
 
-  .BreadcrumbWrap {
-    width: 100%;
-    padding: 10px 20px;
-  }
+.Sider {
+  transition: all 0.2s;
+}
+
+.Collapse {
+  width: 51px;
+  overflow-x: hidden;
+}
+
+.BreadcrumbWrap {
+  width: 100%;
+  padding: 10px 20px;
+}
 </style>

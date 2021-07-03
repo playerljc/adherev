@@ -1,7 +1,7 @@
 {
-  "name": "@baifendian/adherev-util-preferences",
+  "name": "@baifendian/adherev-ui-slidelayout",
   "version": "1.0.0",
-  "description": "sessionStore和localStore进行的封装",
+  "description": "实现抽屉布局",
   "main": "lib/index.js",
   "files": [
     "lib",
@@ -9,8 +9,8 @@
   ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "buildpackage": "ctbuild buildpackagets",
-    "buildumd": "ctbuild buildumd --packagename AdherevPreferences --define alias=@,evnVars=true",
+    "buildpackage": "ctbuildv buildpackagets",
+    "buildumd": "ctbuildv buildumd --packagename AdherevSlideLayout --define alias=@,evnVars=true",
     "generatorchangelog": "bd changelog/CHANGELOG.html"
   },
   "repository": {
@@ -31,10 +31,11 @@
   },
   "devDependencies": {
     "@babel/runtime": "^7.7.4",
-    "@ctsj/build": "^4.0.11",
+    "@ctsj/buildv": "^2.0.2",
     "typescript": "^3.8.2"
   },
   "dependencies": {
-    "@baifendian/adhere-util-preferences": "^1.0.5"
+    "classnames": "^2.2.6",
+    "vue-fragment": "^1.5.2"
   }
 }

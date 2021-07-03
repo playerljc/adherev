@@ -10,7 +10,7 @@ const Split = {
       type: String,
       require: true,
       default: 'vertical',
-      validator: function (value) {
+      validator(value) {
         return ['vertical', 'horizontal'].indexOf(value) !== -1;
       },
     },
@@ -25,7 +25,6 @@ const Split = {
   },
   methods: {
     getStyle() {
-      // @ts-ignore
       const { direction, size } = this;
 
       if (direction === 'horizontal') {
@@ -45,10 +44,8 @@ const Split = {
     },
   },
   render(h) {
-    // @ts-ignore
     const { className } = this;
 
-    // @ts-ignore
     return <div class={`${selectorPrefix} ${className}`} style={this.getStyle()} />;
   },
 };
@@ -63,7 +60,7 @@ export const SplitGroup = {
       type: String,
       require: true,
       default: 'vertical',
-      validator: function (value) {
+      validator(value) {
         // 这个值必须匹配下列字符串中的一个
         return ['vertical', 'horizontal'].indexOf(value) !== -1;
       },
@@ -80,7 +77,6 @@ export const SplitGroup = {
     },
   },
   render(h) {
-    // @ts-ignore
     const { $slots, direction, size, className } = this;
 
     const JSXS = [];
@@ -98,16 +94,13 @@ export const SplitGroup = {
             },
           };
 
-          // @ts-ignore
           JSXS.push(<Split {...props} key={i} />);
         }
 
-        // @ts-ignore
         JSXS.push($slots.default[i]);
       }
     }
 
-    // @ts-ignore
     return <div class={`${selectorPrefix}-group ${direction}`}>{JSXS}</div>;
   },
 };

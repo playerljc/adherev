@@ -9,9 +9,7 @@ export const withInstall = <T>(comp: T) => {
 };
 
 export const Fragment = {
-  // @ts-ignore
   render(h) {
-    // @ts-ignore
     return this.$slots.default;
   },
 };

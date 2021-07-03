@@ -516,42 +516,42 @@
     />
 
     <h2>使用Confirm</h2>
-    <playground :codeText="confirmCode" lang="javascript">
+    <playground :code-text="confirmCode" lang="javascript">
       <a-button type="primary" @click="onOpenConfirm">Open Confirm</a-button>
     </playground>
 
     <h2>使用Alert</h2>
-    <playground :codeText="alertCode" lang="javascript">
+    <playground :code-text="alertCode" lang="javascript">
       <a-button type="primary" @click="onOpenAlert">Open Alert</a-button>
     </playground>
 
     <h2>使用Prompt</h2>
-    <playground :codeText="promptCode" lang="javascript">
+    <playground :code-text="promptCode" lang="javascript">
       <a-button type="primary" @click="onOpenPrompt">Open Prompt</a-button>
     </playground>
 
     <h2>使用InputPrompt</h2>
-    <playground :codeText="inputPromptCode" lang="javascript">
+    <playground :code-text="inputPromptCode" lang="javascript">
       <a-button type="primary" @click="onOpenInputPrompt">Open InputPrompt</a-button>
     </playground>
 
     <h2>使用TextAreaPrompt</h2>
-    <playground :codeText="textAreaPromptCode" lang="javascript">
+    <playground :code-text="textAreaPromptCode" lang="javascript">
       <a-button type="primary" @click="onOpenTextAreaPrompt">Open TextAreaPrompt</a-button>
     </playground>
 
     <h2>使用PassWordPrompt</h2>
-    <playground :codeText="passWordPromptCode" lang="javascript">
+    <playground :code-text="passWordPromptCode" lang="javascript">
       <a-button type="primary" @click="onOpenPassWordPrompt">Open PassWordPrompt</a-button>
     </playground>
 
     <h2>使用NumberPrompt</h2>
-    <playground :codeText="numberPromptCode" lang="javascript">
+    <playground :code-text="numberPromptCode" lang="javascript">
       <a-button type="primary" @click="onOpenNumberPrompt">Open NumberPrompt</a-button>
     </playground>
 
     <h2>使用Modal</h2>
-    <playground :codeText="modalCode" lang="javascript">
+    <playground :code-text="modalCode" lang="javascript">
       <a-button type="primary" @click="onOpenModal">Open Modal</a-button>
     </playground>
   </div>

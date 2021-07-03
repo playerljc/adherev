@@ -1,10 +1,9 @@
-// @ts-ignore
 import { Vector as VectorLayer } from 'ol/layer';
-// @ts-ignore
+
 import { Vector as VectorSource } from 'ol/source';
-// @ts-ignore
+
 import GeoJSON from 'ol/format/GeoJSON';
-// @ts-ignore
+
 import Resource from '@baifendian/adherev-util-resource';
 
 /**

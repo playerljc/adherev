@@ -19,7 +19,12 @@ import {
   Row,
   Slider,
   Table,
+  Tabs,
   Tooltip,
+  List,
+  Avatar,
+  Tag,
+  Divider,
 } from 'ant-design-vue';
 import VueHighlightJS from 'vue-highlight.js';
 import {
@@ -36,6 +41,20 @@ import {
   Spin,
   Split,
   Suspense,
+  BackTopAnimation,
+  SplitLayout,
+  ScrollLoad,
+  SlideLayout,
+  PullRefresh,
+  Revolving,
+  SliderScale,
+  StickupLayout,
+  Surnames,
+  CascadeCompared,
+  SwipeOut,
+  FontSizeSetting,
+  JdCategoryTab,
+  ImageLazy,
 } from '@baifendian/adherev';
 import Playground from '@/lib/Playground';
 import PlaygroundMulit from '@/lib/PlaygroundMulit';
@@ -46,6 +65,7 @@ Vue.use(Menu);
 Vue.use(Button);
 Vue.use(Card);
 Vue.use(Table);
+Vue.use(Tabs);
 Vue.use(Breadcrumb);
 Vue.use(Empty);
 Vue.use(Tooltip);
@@ -62,6 +82,10 @@ Vue.use(DatePicker);
 Vue.use(Row);
 Vue.use(Col);
 Vue.use(ConfigProvider);
+Vue.use(List);
+Vue.use(Avatar);
+Vue.use(Tag);
+Vue.use(Divider);
 
 Vue.use(VueHighlightJS);
 
@@ -69,17 +93,29 @@ ConditionalRender.use(Vue);
 DelConfirm.use(Vue);
 ImportantConfirm.use(Vue);
 Permission.use(Vue);
-// @ts-ignore
 Intl.use(Vue);
 MessageDialog.use(Vue);
 Space.use(Vue);
 Spin.use(Vue);
 Split.use(Vue);
-// @ts-ignore
 Suspense.use(Vue);
 FlexLayout.use(Vue);
 SearchTable.use(Vue);
 OLMap.use(Vue);
+BackTopAnimation.use(Vue);
+SplitLayout.use(Vue);
+ScrollLoad.use(Vue);
+SlideLayout.use(Vue);
+PullRefresh.use(Vue);
+Revolving.use(Vue);
+SliderScale.use(Vue);
+StickupLayout.use(Vue);
+Surnames.use(Vue);
+CascadeCompared.use(Vue);
+SwipeOut.use(Vue);
+FontSizeSetting.use(Vue);
+JdCategoryTab.use(Vue);
+ImageLazy.use(Vue);
 
 Vue.use(Playground);
 Vue.use(PlaygroundMulit);

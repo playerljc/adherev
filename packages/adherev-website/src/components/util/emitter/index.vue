@@ -259,43 +259,43 @@
     />
 
     <h2>基本的使用</h2>
-    <playground :codeText="code1">
+    <playground :code-text="code1">
       <a-button style="margin-right: 20px" @click="onCase1F1"> 注册通知 </a-button>
       <a-button @click="onCase1F2"> 发出通知 </a-button>
     </playground>
 
     <h2>注册多次，并且传递参数</h2>
-    <playground :codeText="code2">
+    <playground :code-text="code2">
       <a-button style="margin-right: 20px" @click="onCase2F1">注册通知</a-button>
       <a-button @click="onCase2F2">发出通知</a-button>
     </playground>
 
     <h2>触发HtmlElement的自定义事件</h2>
-    <playground :codeText="code3">
+    <playground :code-text="code3">
       <a-button style="margin-right: 20px" @click="onCase3F1">注册通知</a-button>
       <a-button @click="onCase3F2">发出通知</a-button>
     </playground>
 
     <h2>只执行一次</h2>
-    <playground :codeText="code4">
+    <playground :code-text="code4">
       <a-button style="margin-right: 20px" @click="onCase4F1">注册通知</a-button>
       <a-button @click="onCase4F2">发出通知</a-button>
     </playground>
 
     <h2>all</h2>
-    <playground :codeText="code5">
+    <playground :code-text="code5">
       <a-button style="margin-right: 20px" @click="onCase5F1">注册通知</a-button>
       <a-button @click="onCase5F2">发出通知并监控</a-button>
     </playground>
 
     <h2>race</h2>
-    <playground :codeText="code6">
+    <playground :code-text="code6">
       <a-button style="margin-right: 20px" @click="onCase6F1">注册通知</a-button>
       <a-button @click="onCase6F2">发出通知并监控</a-button>
     </playground>
 
     <h2>count</h2>
-    <playground :codeText="code7">
+    <playground :code-text="code7">
       <a-button style="margin-right: 20px" @click="onCase7F1">注册通知</a-button>
       <a-button @click="onCase7F2">发出通知并监控</a-button>
     </playground>

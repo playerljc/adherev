@@ -1,42 +1,8 @@
 import BasicLayout from '@/lib/BasicLayout';
 import { lazy } from '@/lib/Router';
 
-// const ImageLazy = lazy(() =>
-//   import(/* webpackChunkName: "imagelazy" */ '@/components/ui/imagelazy'),
-// );
 // const TableHeadSearch = lazy(() =>
 //   import(/* webpackChunkName: "tableheadsearch" */ '@/components/ui/tableheadsearch'),
-// );
-// const SplitLayout = lazy(() =>
-//   import(/* webpackChunkName: "splitlayout" */ '@/components/ui/splitlayout'),
-// );
-// const StickupLayout = lazy(() =>
-//   import(/* webpackChunkName: "stickuplayout" */ '@/components/ui/stickuplayout'),
-// );
-// const Surnames = lazy(() => import(/* webpackChunkName: "surnames" */ '@/components/ui/surnames'));
-// const SliderScale = lazy(() =>
-//   import(/* webpackChunkName: "sliderscale" */ '@/components/ui/sliderscale'),
-// );
-// const Revolving = lazy(() =>
-//   import(/* webpackChunkName: "revolving" */ '@/components/ui/revolving'),
-// );
-// const ScrollLoad = lazy(() =>
-//   import(/* webpackChunkName: "scrollload" */ '@/components/ui/scrollload'),
-// );
-// const JCategoryTab = lazy(() =>
-//   import(/* webpackChunkName: "jcategorytab" */ '@/components/ui/jdcategorytab'),
-// );
-// const CascadeCompared = lazy(() =>
-//   import(/* webpackChunkName: "cascadecompared" */ '@/components/ui/cascadecompared'),
-// );
-// const SlideLayout = lazy(() =>
-//   import(/* webpackChunkName: "slidelayout" */ '@/components/ui/slidelayout'),
-// );
-// const ContextMenu = lazy(() =>
-//   import(/* webpackChunkName: "contextmenu" */ '@/components/ui/contextmenu'),
-// );
-// const FontSizeSetting = lazy(() =>
-//   import(/* webpackChunkName: "fontsizesetting" */ '@/components/ui/fontsizesetting'),
 // );
 // const FormItemCreator = lazy(() =>
 //   import(/* webpackChunkName: "formitemcreator" */ '@/components/ui/formitemcreator'),
@@ -44,18 +10,6 @@ import { lazy } from '@/lib/Router';
 // const TableList = lazy(() =>
 //   import(/* webpackChunkName: "tablelist" */ '@/components/ui/tablelist'),
 // );
-// const Popup = lazy(() => import(/* webpackChunkName: "popup" */ '@/components/ui/popup'));
-// const BackTopAnimation = lazy(() =>
-//   import(/* webpackChunkName: "backtopanimation" */ '@/components/ui/backtopanimation'),
-// );
-// const PullRefresh = lazy(() =>
-//   import(/* webpackChunkName: "pullrefresh" */ '@/components/ui/pullrefresh'),
-// );
-// const Notification = lazy(() =>
-//   import(/* webpackChunkName: "notification" */ '@/components/ui/notification'),
-// );
-// const SwipeOut = lazy(() => import(/* webpackChunkName: "swipeout" */ '@/components/ui/swipeout'));
-//
 // const Decorators = lazy(() =>
 //   import(/* webpackChunkName: "decorators" */ '@/components/util/decorators'),
 // );
@@ -110,6 +64,39 @@ const FlexLayout = () =>
 const SearchTable = () =>
   lazy(import(/* webpackChunkName: "searchtable" */ '@/components/ui/searchtable'));
 const OLMap = () => lazy(import(/* webpackChunkName: "olmap" */ '@/components/ui/olmap'));
+const BackTopAnimation = () =>
+  lazy(import(/* webpackChunkName: "backtopanimation" */ '@/components/ui/backtopanimation'));
+const SplitLayout = () =>
+  lazy(import(/* webpackChunkName: "splitlayout" */ '@/components/ui/splitlayout'));
+const ScrollLoad = () =>
+  lazy(import(/* webpackChunkName: "scrollload" */ '@/components/ui/scrollload'));
+const SlideLayout = () =>
+  lazy(import(/* webpackChunkName: "slidelayout" */ '@/components/ui/slidelayout'));
+const ContextMenu = () =>
+  lazy(import(/* webpackChunkName: "contextmenu" */ '@/components/ui/contextmenu'));
+const PullRefresh = () =>
+  lazy(import(/* webpackChunkName: "pullrefresh" */ '@/components/ui/pullrefresh'));
+const Revolving = () =>
+  lazy(import(/* webpackChunkName: "revolving" */ '@/components/ui/revolving'));
+const Popup = () => lazy(import(/* webpackChunkName: "popup" */ '@/components/ui/popup'));
+const SliderScale = () =>
+  lazy(import(/* webpackChunkName: "sliderscale" */ '@/components/ui/sliderscale'));
+const StickupLayout = () =>
+  lazy(import(/* webpackChunkName: "stickuplayout" */ '@/components/ui/stickuplayout'));
+const Surnames = () => lazy(import(/* webpackChunkName: "surnames" */ '@/components/ui/surnames'));
+const CascadeCompared = () =>
+  lazy(import(/* webpackChunkName: "cascadecompared" */ '@/components/ui/cascadecompared'));
+const SwipeOut = () => lazy(import(/* webpackChunkName: "swipeout" */ '@/components/ui/swipeout'));
+const Notification = () =>
+  lazy(import(/* webpackChunkName: "notification" */ '@/components/ui/notification'));
+const FontSizeSetting = () => lazy(import(/* webpackChunkName: "fontsizesetting" */ '@/components/ui/fontsizesetting'),
+);
+const Mixins = () => lazy(import(/* webpackChunkName: "mixins" */ '@/components/util/mixins'),
+);
+const JCategoryTab = () => lazy(import(/* webpackChunkName: "jcategorytab" */ '@/components/ui/jdcategorytab'),
+);
+const ImageLazy = () => lazy(import(/* webpackChunkName: "imagelazy" */ '@/components/ui/imagelazy'),
+);
 
 export default () => [
   {
@@ -196,11 +183,11 @@ export default () => [
                 name: 'WarnPrompt',
                 component: WarnPrompt,
               },
-              // {
-              //   path: '/adherev/ui/imagelazy',
-              //   name: 'ImageLazy',
-              //   component: ImageLazy,
-              // },
+              {
+                path: '/adherev/ui/imagelazy',
+                name: 'ImageLazy',
+                component: ImageLazy,
+              },
               {
                 path: '/adherev/ui/messagedialog',
                 name: 'MessageDialog',
@@ -236,61 +223,61 @@ export default () => [
                 name: 'FlexLayout',
                 component: FlexLayout,
               },
-              // {
-              //   path: '/adherev/ui/splitlayout',
-              //   name: 'SplitLayout',
-              //   component: SplitLayout,
-              // },
-              // {
-              //   path: '/adherev/ui/stickuplayout',
-              //   name: 'StickupLayout',
-              //   component: StickupLayout,
-              // },
-              // {
-              //   path: '/adherev/ui/surnames',
-              //   name: 'Surnames',
-              //   component: Surnames,
-              // },
-              // {
-              //   path: '/adherev/ui/sliderscale',
-              //   name: 'SliderScale',
-              //   component: SliderScale,
-              // },
-              // {
-              //   path: '/adherev/ui/revolving',
-              //   name: 'Revolving',
-              //   component: Revolving,
-              // },
-              // {
-              //   path: '/adherev/ui/scrollload',
-              //   name: 'ScrollLoad',
-              //   component: ScrollLoad,
-              // },
-              // {
-              //   path: '/adherev/ui/jcategorytab',
-              //   name: 'JCategoryTab',
-              //   component: JCategoryTab,
-              // },
-              // {
-              //   path: '/adherev/ui/cascadecompared',
-              //   name: 'CascadeCompared',
-              //   component: CascadeCompared,
-              // },
-              // {
-              //   path: '/adherev/ui/slidelayout',
-              //   name: 'SlideLayout',
-              //   component: SlideLayout,
-              // },
-              // {
-              //   path: '/adherev/ui/contextmenu',
-              //   name: 'ContextMenu',
-              //   component: ContextMenu,
-              // },
-              // {
-              //   path: '/adherev/ui/fontsizesetting',
-              //   name: 'FontSizeSetting',
-              //   component: FontSizeSetting,
-              // },
+              {
+                path: '/adherev/ui/splitlayout',
+                name: 'SplitLayout',
+                component: SplitLayout,
+              },
+              {
+                path: '/adherev/ui/stickuplayout',
+                name: 'StickupLayout',
+                component: StickupLayout,
+              },
+              {
+                path: '/adherev/ui/surnames',
+                name: 'Surnames',
+                component: Surnames,
+              },
+              {
+                path: '/adherev/ui/sliderscale',
+                name: 'SliderScale',
+                component: SliderScale,
+              },
+              {
+                path: '/adherev/ui/revolving',
+                name: 'Revolving',
+                component: Revolving,
+              },
+              {
+                path: '/adherev/ui/scrollload',
+                name: 'ScrollLoad',
+                component: ScrollLoad,
+              },
+              {
+                path: '/adherev/ui/jcategorytab',
+                name: 'JCategoryTab',
+                component: JCategoryTab,
+              },
+              {
+                path: '/adherev/ui/cascadecompared',
+                name: 'CascadeCompared',
+                component: CascadeCompared,
+              },
+              {
+                path: '/adherev/ui/slidelayout',
+                name: 'SlideLayout',
+                component: SlideLayout,
+              },
+              {
+                path: '/adherev/ui/contextmenu',
+                name: 'ContextMenu',
+                component: ContextMenu,
+              },
+              {
+                path: '/adherev/ui/fontsizesetting',
+                name: 'FontSizeSetting',
+                component: FontSizeSetting,
+              },
               {
                 path: '/adherev/ui/searchtable',
                 name: 'SearchTable',
@@ -306,31 +293,31 @@ export default () => [
               //   name: 'TableList',
               //   component: TableList,
               // },
-              // {
-              //   path: '/adherev/ui/popup',
-              //   name: 'Popup',
-              //   component: Popup,
-              // },
-              // {
-              //   path: '/adherev/ui/backtopanimation',
-              //   name: 'BackTopAnimation',
-              //   component: BackTopAnimation,
-              // },
-              // {
-              //   path: '/adherev/ui/pullrefresh',
-              //   name: 'PullRefresh',
-              //   component: PullRefresh,
-              // },
-              // {
-              //   path: '/adherev/ui/notification',
-              //   name: 'Notification',
-              //   component: Notification,
-              // },
-              // {
-              //   path: '/adherev/ui/swipeout',
-              //   name: 'SwipeOut',
-              //   component: SwipeOut,
-              // },
+              {
+                path: '/adherev/ui/popup',
+                name: 'Popup',
+                component: Popup,
+              },
+              {
+                path: '/adherev/ui/backtopanimation',
+                name: 'BackTopAnimation',
+                component: BackTopAnimation,
+              },
+              {
+                path: '/adherev/ui/pullrefresh',
+                name: 'PullRefresh',
+                component: PullRefresh,
+              },
+              {
+                path: '/adherev/ui/notification',
+                name: 'Notification',
+                component: Notification,
+              },
+              {
+                path: '/adherev/ui/swipeout',
+                name: 'SwipeOut',
+                component: SwipeOut,
+              },
             ],
           },
           {
@@ -391,6 +378,11 @@ export default () => [
                 name: 'Ajax',
                 component: Ajax,
               },
+              {
+                path: '/adhere/util/mixins',
+                name: 'Mixins',
+                component: Mixins,
+              }
             ],
           },
           // {

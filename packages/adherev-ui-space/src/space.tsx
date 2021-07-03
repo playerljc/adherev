@@ -10,7 +10,7 @@ const Space = {
       type: String,
       require: true,
       default: 'vertical',
-      validator: function (value) {
+      validator(value) {
         // 这个值必须匹配下列字符串中的一个
         return ['vertical', 'horizontal'].indexOf(value) !== -1;
       },
@@ -28,7 +28,6 @@ const Space = {
   },
   methods: {
     getStyle() {
-      // @ts-ignore
       const { direction, size } = this;
 
       if (direction === 'horizontal') {
@@ -46,13 +45,9 @@ const Space = {
     },
   },
   render(h) {
-    // @ts-ignore
     const { className } = this;
 
-    return (
-      // @ts-ignore
-      <div className={`${selectorPrefix} ${className}`} style={this.getStyle()} />
-    );
+    return <div className={`${selectorPrefix} ${className}`} style={this.getStyle()} />;
   },
 };
 
@@ -66,7 +61,7 @@ export const SpaceGroup = {
       type: String,
       require: true,
       default: 'vertical',
-      validator: function (value) {
+      validator(value) {
         // 这个值必须匹配下列字符串中的一个
         return ['vertical', 'horizontal'].indexOf(value) !== -1;
       },
@@ -83,7 +78,6 @@ export const SpaceGroup = {
     },
   },
   render(h) {
-    // @ts-ignore
     const { $slots, direction, size, className } = this;
 
     const JSXS = [];
@@ -101,16 +95,13 @@ export const SpaceGroup = {
             },
           };
 
-          // @ts-ignore
           JSXS.push(<Space {...props} key={i} />);
         }
 
-        // @ts-ignore
         JSXS.push($slots.default[i]);
       }
     }
 
-    // @ts-ignore
     return <div class={`${selectorPrefix}-group ${direction}`}>{JSXS}</div>;
   },
 };

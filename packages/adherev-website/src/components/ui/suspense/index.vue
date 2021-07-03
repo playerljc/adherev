@@ -63,10 +63,10 @@
     </playground-mulit>
 
     <h2>自定义firstLoading的UI</h2>
-    <playground :codeText="code2">
+    <playground :code-text="code2">
       <a-button type="primary" @click="onCode2F1">重置</a-button>
       <suspense-table :reset="reser1">
-        <template v-slot:firstLoading>
+        <template #firstLoading>
           <div style="position: relative">
             <adv-spin :spinning="true" />
           </div>
@@ -79,12 +79,15 @@
 import Table from './table';
 
 export default {
+  components: {
+    'suspense-table': Table,
+  },
   data() {
     return {
-      code1:[
+      code1: [
         {
-          title:`table.tsx`,
-          codeText:`
+          title: `table.tsx`,
+          codeText: `
             import { Table } from 'ant-design-vue';
             import { Suspense } from '@baifendian/adherev';
 
@@ -137,37 +140,37 @@ export default {
               watch: {
                 reset: function (newVal) {
                   if (newVal) {
-                    // @ts-ignore
+
                     this.pagination = {
                       current: 1,
                       pageSize: 2,
                     };
 
-                    // @ts-ignore
+
                     this.fetchData();
                   }
                 },
               },
               methods: {
                 handleTableChange(pagination) {
-                  // @ts-ignore
+
                   this.pagination = pagination;
                   this.fetchData();
                 },
                 renderInner(
-                  // @ts-ignore
+
                   h,
                 ) {
                   // 使用JSX实现
                   return (
                     <div style="position: relative;">
                       <Table
-                        // @ts-ignore
+
                         columns={this.columns}
-                        // @ts-ignore
+
                         data-source={this.dataSource}
                         loading={this.showLoading()}
-                        // @ts-ignore
+
                         pagination={this.pagination}
                         onChange={this.handleTableChange}
                       />
@@ -175,7 +178,7 @@ export default {
                   );
                 },
                 showLoading() {
-                  // @ts-ignore
+
                   return this.loading;
                 },
                 fetchData() {
@@ -183,11 +186,11 @@ export default {
                   list.length = 10;
                   list.fill(0);
 
-                  // @ts-ignore
+
                   this.loading = true;
 
                   setTimeout(() => {
-                    // @ts-ignore
+
                     this.dataSource = list.map((t, index) => ({
                       id: index + 1,
                       name: "人" + (index + 1),
@@ -198,7 +201,7 @@ export default {
                     }));
 
                     setTimeout(() => {
-                      // @ts-ignore
+
                       this.loading = false;
                     }, 200);
                   }, 2000);
@@ -206,11 +209,11 @@ export default {
               },
             };
                       `,
-          lang: 'javascript'
+          lang: 'javascript',
         },
         {
-          title:`index.vue`,
-          codeText:`
+          title: `index.vue`,
+          codeText: `
             <template>
               <h2>基本使用</h2>
                 <a-button type="primary" @click="onCode1F1">重置</a-button>
@@ -232,9 +235,9 @@ export default {
             <\/script>
           `,
           lang: 'vue',
-        }
+        },
       ],
-      code2:`
+      code2: `
         <template>
           <h2>自定义firstLoading的UI</h2>
             <a-button type="primary" @click="onCode2F1">重置</a-button>
@@ -264,9 +267,6 @@ export default {
       reset: false,
       reser1: false,
     };
-  },
-  components: {
-    'suspense-table': Table,
   },
   methods: {
     onCode1F1() {

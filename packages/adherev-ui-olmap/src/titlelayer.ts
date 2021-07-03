@@ -1,6 +1,5 @@
-// @ts-ignore
 import Tile from 'ol/layer/Tile';
-// @ts-ignore
+
 import { XYZ, OSM, TileWMS, WMTS } from 'ol/source.js';
 
 /**

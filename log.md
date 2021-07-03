@@ -106,7 +106,6 @@
 - [@baifendian/adherev-ui-pullrefresh](#@baifendian/adherev-ui-pullrefresh) - ok
 - [@baifendian/adherev-ui-notification](#@baifendian/adherev-ui-notification) - ok
 - [@baifendian/adherev-ui-swipeout](#@baifendian/adherev-ui-swipeout) - ok
-  
 - [@baifendian/adherev-util-memoized](#baifendian/adherev-util-watchmemoized)- ok
 - [@baifendian/adherev-util-communication-ajax](#@baifendian/adherev-util-communication-ajax) - ok
 - [@baidendian/adherev-util-adapterscreen](#@baidendian/adherev-util-adapterscreen) - ok
@@ -511,4 +510,5 @@ log:
 - 无线扩展
 
 ## @baifendian/adherev-ui-g6
-antv-g6的封装
+
+antv-g6 的封装

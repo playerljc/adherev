@@ -5,7 +5,7 @@ const { spawn } = require('child_process');
 
 const contextPath = path.join(__dirname, '../packages');
 
-const excludes = ['adhere-ui-css', 'adhere-website'];
+const excludes = ['adherev-ui-css', 'adherev-website', '_util'];
 
 let index = 0;
 
@@ -142,6 +142,7 @@ function loopTask() {
 fs.readdir(contextPath, function (err, dirNames) {
   packagesNames = dirNames.filter((dirName) => !excludes.includes(dirName));
 
+  // console.log(packagesNames);
   loopTask()
     .then(() => {
       console.log('finish');

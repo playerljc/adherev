@@ -52,7 +52,7 @@
     />
 
     <h2>横向</h2>
-    <playground :codeText="code1">
+    <playground :code-text="code1">
       <div style="display: flex; align-items: center; height: 15px">
         <a>编辑</a>
         <adv-space direction="horizontal" />
@@ -63,7 +63,7 @@
     </playground>
 
     <h2>纵向</h2>
-    <playground :codeText="code2">
+    <playground :code-text="code2">
       <div>
         <p>段落1段落1段落1段落1段落1段落1段落1段落1</p>
         <adv-space direction="vertical" />
@@ -72,7 +72,7 @@
     </playground>
 
     <h2>间距</h2>
-    <playground :codeText="code3">
+    <playground :code-text="code3">
       <div>
         <div style="display: flex; align-items: center; height: 15px">
           <a>编辑</a>
@@ -89,7 +89,7 @@
     </playground>
 
     <h2>SpaceGroup</h2>
-    <playground :codeText="code4">
+    <playground :code-text="code4">
       <div>
         <adv-space-group direction="horizontal">
           <a>编辑</a>

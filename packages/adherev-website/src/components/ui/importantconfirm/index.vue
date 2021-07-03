@@ -64,14 +64,14 @@
     />
 
     <h2>基本使用</h2>
-    <playground :codeText="code1">
+    <playground :code-text="code1">
       <adv-importantconfirm :success="onSuccess">
         <a>删除</a>
       </adv-importantconfirm>
     </playground>
 
     <h2>ImportantConfirm.open</h2>
-    <playground :codeText="code2">
+    <playground :code-text="code2">
       <a @click="onDelete">删除</a>
     </playground>
   </div>

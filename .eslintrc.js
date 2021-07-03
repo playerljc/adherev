@@ -1,20 +1,75 @@
-module.exports = {
-  extends: [require.resolve('@umijs/fabric/dist/eslint')],
-  globals: {
-    page: true,
-    APP_ENV: true,
-    NO_MOCK: true,
-    Constent: true,
-    CustomEvnVars: true,
-    EmitterExternal: true,
-  },
-  rules: {
-    'class-methods-use-this': 0,
-    'import/no-extraneous-dependencies': 0,
-    'import/no-unresolved': 0,
-    'no-plusplus': ['error', { allowForLoopAfterthoughts: true }],
-    'no-unused-expressions': 0,
+const path = require('path');
 
-    'react/no-children-prop': 0,
+module.exports = {
+  root: true,
+  env: {
+    browser: true,
+    node: true,
+    jasmine: true,
+    jest: true,
+    es6: true,
+  },
+  parserOptions: {
+    parser: '@typescript-eslint/parser',
+    project: path.join(__dirname, 'tsconfig.json'),
+  },
+  extends: ['plugin:vue/vue3-recommended', 'prettier'],
+  plugins: ['markdown'],
+  overrides: [
+    {
+      files: ['**/demo/*.md'],
+      processor: 'markdown/markdown',
+      rules: {
+        'no-console': 'off',
+      },
+    },
+    {
+      files: ['*.ts', '*.tsx'],
+      extends: ['@vue/typescript/recommended', '@vue/prettier', '@vue/prettier/@typescript-eslint'],
+      rules: {
+        '@typescript-eslint/no-explicit-any': 0,
+        '@typescript-eslint/ban-types': 0,
+        '@typescript-eslint/explicit-module-boundary-types': 0,
+        '@typescript-eslint/no-empty-function': 0,
+        '@typescript-eslint/no-non-null-assertion': 0,
+        '@typescript-eslint/no-unused-vars': [
+          'error',
+          { vars: 'all', args: 'after-used', ignoreRestSiblings: true },
+        ],
+      },
+    },
+  ],
+  rules: {
+    '@typescript-eslint/ban-ts-ignore': 'off',
+    'comma-dangle': [2, 'always-multiline'],
+    'no-var': 'error',
+    'no-console': [2, { allow: ['warn', 'error'] }],
+    'object-shorthand': 2,
+    'no-unused-vars': [2, { ignoreRestSiblings: true, argsIgnorePattern: '^h$' }],
+    'no-undef': 2,
+    camelcase: 'off',
+    'no-extra-boolean-cast': 'off',
+    semi: ['error', 'always'],
+    'vue/require-explicit-emits': 'off',
+    'vue/require-prop-types': 'off',
+    'vue/require-default-prop': 'off',
+    'vue/no-reserved-keys': 'off',
+    'vue/comment-directive': 'off',
+    'vue/prop-name-casing': 'off',
+    'vue/one-component-per-file': 'off',
+    'vue/custom-event-name-casing': 'off',
+    'vue/max-attributes-per-line': [
+      2,
+      {
+        singleline: 20,
+        multiline: {
+          max: 1,
+          allowFirstLine: false,
+        },
+      },
+    ],
+  },
+  globals: {
+    h: true,
   },
 };

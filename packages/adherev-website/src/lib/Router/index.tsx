@@ -2,15 +2,10 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 import { Skeleton } from 'ant-design-vue';
 
-// @ts-ignore
 import RouterConfig from '@/config/router.config';
 
-// @ts-ignore
 import BasicLayout from '../BasicLayout';
 import Util from '../BasicLayout/Util';
-
-// @ts-ignore
-import styles from './index.less';
 
 Vue.use(VueRouter);
 
@@ -87,7 +82,6 @@ function renderRoute({ router, parentRoutes, route, authorized }) {
   } else if (cloneRoute.component === BasicLayout) {
     // 菜单布局
     cloneRoute.component = {
-      // @ts-ignore
       render(h) {
         const routes = getBasicLayoutRoutes(children, authorized);
         return <BasicLayout routes={routes} name={cloneRoute.name} />;
@@ -132,7 +126,6 @@ export function renderChildren({ path, Component }) {
         return h(Component);
       }
 
-      // @ts-ignore
       return this.$slots.default;
     },
   };
@@ -149,9 +142,7 @@ export function lazy(AsyncView) {
     component: AsyncView,
     // 异步组件加载时使用的组件
     loading: {
-      // @ts-ignore
       render(h) {
-        // @ts-ignore
         return <Skeleton avatar paragraph={{ rows: 4 }} />;
       },
     },

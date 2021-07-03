@@ -1,0 +1,28 @@
+/*!
+  Copyright (c) 2018 Jed Watson.
+  Licensed under the MIT License (MIT), see
+  http://jedwatson.github.io/classnames
+*/
+
+/*!
+ * The buffer module from node.js, for the browser.
+ *
+ * @author   Feross Aboukhadijeh <http://feross.org>
+ * @license  MIT
+ */
+
+/*!
+ * vue-i18n v8.24.5 
+ * (c) 2021 kazuya kawaguchi
+ * Released under the MIT License.
+ */
+
+/*! https://mths.be/punycode v1.3.2 by @mathias */
+
+/*! iScroll v5.2.0 ~ (c) 2008-2016 Matteo Spinelli ~ http://cubiq.org/license */
+
+/*! ieee754. BSD-3-Clause License. Feross Aboukhadijeh <https://feross.org/opensource> */
+
+//! moment.js
+
+//! moment.js locale configuration

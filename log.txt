@@ -1,30 +1,17 @@
 // 待实现
+adherev-ui-tablelist
 
 // 优先级低的
-adhere-ui-backtopanimation
-adhere-ui-cascadecompared
-adhere-ui-contextmenu
-adhere-ui-fontsizesetting
-adhere-ui-imagelazy
-adhere-ui-jdcategorytab
-adhere-ui-notification
-adhere-ui-popup
-adhere-ui-pullrefresh
-adhere-ui-revolving
-adhere-ui-scrollload
-adhere-ui-slidelayout
-adhere-ui-sliderscale
-adhere-ui-splitlayout
-adhere-ui-stickuplayout
-adhere-ui-surnames
-adhere-ui-swipeout
-adhere-ui-tableheadsearch
-adhere-ui-tablelist
+
+// 新增的
+adherev-util-mixins
+ .加入updatedEx(增加类似于React的componentDidUpdate的hook,这个hook有preState,preProps参数),增加pre参数
 
 // 移除的
 adhere-ui-formitemcreator
 adhere-ui-hooks
 adhere-util-decorators
+adherev-ui-tableheadsearch(看上去不需要)
 
 // 完成的
 adherev-ui-conditionalrender(demo)
@@ -55,3 +42,27 @@ adherev-ui-css(demo)
 adherev-ui-flexlayout(demo)
 adherev-ui-searchtable(demo)
 adherev-ui-olmap(demo)
+adherev-ui-backtopanimation(demo)
+adherev-ui-splitlayout(demo)
+adherev-ui-scrollload(demo)
+adherev-ui-slidelayout(demo)
+adherev-ui-contextmenu(demo)
+adherev-ui-pullrefresh(demo)
+adherev-ui-revolving(demo)
+adherev-ui-popup(demo)
+adherev-ui-sliderscale(demo)
+adherev-ui-stickuplayout(demo)
+adherev-ui-surnames(demo)
+adherev-ui-cascadecompared(demo)
+adherev-ui-swipeout(demo)
+adherev-ui-notification(demo)
+adherev-ui-fontsizesetting(demo)
+adherev-util-mixins(demo)
+adherev-ui-jdcategorytab(demo)
+adherev-ui-imagelazy(demo)
+
+
+
+.下拉刷新出错
+.抽屉初始化不是打开
+.Mixins出错

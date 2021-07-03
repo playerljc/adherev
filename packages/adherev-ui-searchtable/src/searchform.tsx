@@ -11,13 +11,11 @@ export default {
     },
   },
   render(h) {
-    // @ts-ignore
     const { $slots, className } = this;
 
     return (
       //  @ts-ignore
       <table class={classNames(selectorPrefix, ...(className || '').split(' '))}>
-        {/*@ts-ignore*/}
         <tbody>{$slots.default}</tbody>
       </table>
     );

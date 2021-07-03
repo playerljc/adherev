@@ -1,0 +1,43 @@
+{
+  "name": "@baifendian/adherev-ui-popup",
+  "version": "1.0.0",
+  "description": "popup",
+  "main": "lib/index.js",
+  "files": [
+    "lib",
+    "umd"
+  ],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "buildpackage": "ctbuildv buildpackagets",
+    "buildumd": "ctbuildv buildumd --config ctbuildv.config.umd.js --packagename AdherevPopup --define alias=@,evnVars=true",
+    "generatorchangelog": "bd changelog/CHANGELOG.html"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://gitee.com/playerljc/adherev"
+  },
+  "resolutions": {
+    "graceful-fs": "4.2.2"
+  },
+  "author": "playerljc",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://gitee.com/playerljc/adherev/issues"
+  },
+  "homepage": "https://gitee.com/playerljc/adherev",
+  "publishConfig": {
+    "access": "public"
+  },
+  "devDependencies": {
+    "@babel/runtime": "^7.7.4",
+    "@ctsj/buildv": "^2.0.2",
+    "typescript": "^3.8.2"
+  },
+  "dependencies": {
+    "classnames": "^2.2.6",
+    "omit.js": "^2.0.2",
+    "uuid": "^8.3.2",
+    "vue": "^2.6.14"
+  }
+}

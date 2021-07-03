@@ -1,3 +1,9 @@
-// import Preferences from '@baifendian/adhere-util-preferences';
+// @ts-ignore
+import BackTopAnimation from './backtopanimation';
+import { withInstall } from '../../_util/index';
 
-// export default Preferences;
+const Component = withInstall(BackTopAnimation);
+Component.isUse = () => true;
+Component.use = (Vue) => Vue.use(Component);
+
+export default Component;

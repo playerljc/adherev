@@ -11,7 +11,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "buildpackage": "ctbuildv buildpackagets",
     "generatorchangelog": "bd changelog/CHANGELOG.html",
-    "buildumd": "ctbuildv buildumd --packagename AdherevMessageDialog --define alias=@,evnVars=true"
+    "buildumd": "ctbuildv buildumd --config ctbuildv.config.umd.js --packagename AdherevMessageDialog --define alias=@,evnVars=true"
   },
   "repository": {
     "type": "git",
@@ -35,11 +35,11 @@
     "typescript": "^3.8.2"
   },
   "dependencies": {
+    "@baifendian/adherev-util": "^1.0.0",
     "@baifendian/adherev-util-intl": "^1.0.0",
     "@baifendian/adherev-util-resource": "^1.0.0",
-    "@baifendian/adherev-util": "^1.0.0",
+    "@form-create/ant-design-vue": "^2.5.6",
     "ant-design-vue": "^1.7.5",
-    "vue": "^2.6.12",
-    "@form-create/ant-design-vue": "^2.5.6"
+    "vue": "^2.6.12"
   }
 }

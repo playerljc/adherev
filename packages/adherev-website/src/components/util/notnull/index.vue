@@ -26,12 +26,12 @@
     />
 
     <h2>对一个null值进行监控</h2>
-    <playground :codeText="code1">
+    <playground :code-text="code1">
       <a-button type="primary" @click="onCode1F1">监控并访问</a-button>
     </playground>
 
     <h2>对一个Array值进行监控</h2>
-    <playground :codeText="code2">
+    <playground :code-text="code2">
       <a-button type="primary" @click="onCode2F1">监控并访问</a-button>
     </playground>
   </div>

@@ -12,7 +12,7 @@ export const selectorPrefix = 'adherev-ui-messagedialog';
 
 import Actions from './actions';
 import Emitter from './emitter';
-// @ts-ignore
+
 import ModalDialog from './modal';
 
 const DEFAULT_LOCAL = 'zh_CN';
@@ -28,7 +28,6 @@ const LOCAL = Resource.Dict.value.LocalsAntd;
  */
 function renderByIcon({ h, icon, text }) {
   return (
-    // @ts-ignore
     <div class={`${selectorPrefix}-renderByIcon`}>
       {/* @ts-ignore */}
       <div class={`${selectorPrefix}-renderByIcon-fixed`}>
@@ -72,9 +71,7 @@ const MessageDialogFactory = {
         zIndex,
         footer: (h) => {
           return [
-            // @ts-ignore
             <Button
-              // @ts-ignore
               key="submit"
               type="primary"
               title={Intl.tv('确定')}
@@ -94,11 +91,10 @@ const MessageDialogFactory = {
         },
       },
       local,
-      // @ts-ignore
+
       children: icon
         ? (h) => renderByIcon({ h, icon, text })
-        : // @ts-ignore
-          (h) => (Util.isFunction(text) ? text(h) : <Fragment>{text}</Fragment>),
+        : (h) => (Util.isFunction(text) ? text(h) : <Fragment>{text}</Fragment>),
     });
   },
   /**
@@ -127,18 +123,14 @@ const MessageDialogFactory = {
         zIndex,
         footer: (h) => {
           return [
-            // @ts-ignore
             <Button
-              // @ts-ignore
               key="submit"
               type="primary"
               title={Intl.tv('确定')}
               onClick={() => {
                 if (onSuccess) {
-                  // @ts-ignore
                   const fApi = vm.$refs.formRef.fApi;
 
-                  // @ts-ignore
                   fApi.validate((valid) => {
                     if (valid) {
                       onSuccess(fApi.getValue(config.rule[0].field)).then(() => {
@@ -158,7 +150,6 @@ const MessageDialogFactory = {
       },
       local,
       children: {
-        // @ts-ignore
         template: `
           <form-create
             v-model="fApi"
@@ -213,7 +204,6 @@ const MessageDialogFactory = {
     config.rule[0]._fc_drag_tag = 'input';
     config.rule[0].field = 'prompt';
 
-    // @ts-ignore
     MessageDialogFactory.Prompt({
       ...params,
       config: {
@@ -235,7 +225,6 @@ const MessageDialogFactory = {
       type: 'textarea',
     };
 
-    // @ts-ignore
     MessageDialogFactory.Prompt({
       ...params,
       config: {
@@ -257,7 +246,6 @@ const MessageDialogFactory = {
       type: 'password',
     };
 
-    // @ts-ignore
     MessageDialogFactory.Prompt({
       ...params,
       config: {
@@ -279,7 +267,6 @@ const MessageDialogFactory = {
       type: 'number',
     };
 
-    // @ts-ignore
     MessageDialogFactory.Prompt({
       ...params,
       config: {
@@ -306,11 +293,10 @@ const MessageDialogFactory = {
         zIndex,
       },
       local,
-      // @ts-ignore
+
       children: icon
         ? (h) => renderByIcon({ h, icon, text })
-        : // @ts-ignore
-          (h) => (Util.isFunction(text) ? text(h) : <Fragment>{text}</Fragment>),
+        : (h) => (Util.isFunction(text) ? text(h) : <Fragment>{text}</Fragment>),
     });
   },
   /**
@@ -359,7 +345,6 @@ const MessageDialogFactory = {
       if (!Util.isEmpty(title)) {
         // 如果是jsx
         if (Util.isFunction(title)) {
-          // @ts-ignore
           return <Fragment slot="title">{title(h)}</Fragment>;
         }
 
@@ -396,11 +381,10 @@ const MessageDialogFactory = {
      */
     function close() {
       _vm.$destroy();
-      // @ts-ignore
+
       el.parentElement.removeChild(el);
     }
 
-    // @ts-ignore
     const { title, ...others } = config;
 
     const modalConfig = {
@@ -409,7 +393,6 @@ const MessageDialogFactory = {
     };
 
     if (Util.isString(title)) {
-      // @ts-ignore
       modalConfig.title = title;
     }
 
@@ -417,16 +400,13 @@ const MessageDialogFactory = {
 
     const _vm = new Vue({
       render(h) {
-        // @ts-ignore
         const footerJSX = renderFooter({ config, h });
 
         if (footerJSX) {
-          // @ts-ignore
           modalConfig.footerJSX = footerJSX;
         }
 
         return (
-          // @ts-ignore
           <ConfigProvider locale={LOCAL[local || DEFAULT_LOCAL]}>
             {/* @ts-ignore */}
             <ModalDialog

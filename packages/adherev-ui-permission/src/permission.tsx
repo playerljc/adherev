@@ -52,7 +52,6 @@ export const Permission = {
     },
   },
   render(h) {
-    // @ts-ignore
     const { allPermission = getPermission(), permissions, $slots } = this;
 
     return checkPermission(allPermission, permissions)

@@ -10,28 +10,28 @@
     </ul>
 
     <h2 id="gridlayout">gridlayout.css - 一个多列的布局实现,可以实现最多11列的布局</h2>
-    <playground :codeText="code1">
+    <playground :code-text="code1">
       <ul class="g-grid-list column4">
-        <li v-for="t in gridData" class="g-grid-list-item" :key="t.name">
+        <li v-for="t in gridData" :key="t.name" class="g-grid-list-item">
           {{ t.name }}
         </li>
       </ul>
     </playground>
 
     <h2 id="normalize-antd">normalize-antd.less - 对antd样式的重写</h2>
-    <playground :codeText="code2" lang="javascript" />
+    <playground :code-text="code2" lang="less" />
 
     <h2 id="normalize-default">normalize-default.less - 对缺省样式的重写</h2>
-    <playground :codeText="code3" lang="javascript" />
+    <playground :code-text="code3" lang="less" />
 
     <h2 id="vars">vars.less - less全局变量的定义</h2>
-    <playground :codeText="code4" lang="javascript" />
+    <playground :code-text="code4" lang="less" />
 
     <h2 id="mixin">mixin.less - less全局的函数和混入</h2>
-    <playground :codeText="code5" lang="javascript" />
+    <playground :code-text="code5" lang="less" />
 
     <h2 id="index">css.less - 对上述文件的一个整合引用</h2>
-    <playground :codeText="code6" lang="javascript" />
+    <playground :code-text="code6" lang="less" />
   </div>
 </template>
 <script>

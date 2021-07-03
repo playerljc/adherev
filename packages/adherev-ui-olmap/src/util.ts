@@ -1,50 +1,47 @@
-// @ts-ignore
 import { v4 } from 'uuid';
 
-// @ts-ignore
 import Map from 'ol/Map';
-// @ts-ignore
+
 import Circle from 'ol/geom/Circle';
-// @ts-ignore
+
 import Polygon from 'ol/geom/Polygon';
-// @ts-ignore
+
 import LinearRing from 'ol/geom/LinearRing';
-// @ts-ignore
+
 import { LineString, Point } from 'ol/geom';
-// @ts-ignore
+
 import View from 'ol/View';
-// @ts-ignore
+
 import Feature from 'ol/Feature.js';
-// @ts-ignore
+
 import Text from 'ol/style/Text';
-// @ts-ignore
+
 import Overlay from 'ol/Overlay.js';
-// @ts-ignore
+
 import { fromLonLat, transform, toLonLat, transformExtent } from 'ol/proj.js';
-// @ts-ignore
+
 import { getBottomLeft, getTopRight, boundingExtent } from 'ol/extent.js';
-// @ts-ignore
+
 import { createStringXY } from 'ol/coordinate';
-// @ts-ignore
+
 import { Heatmap as HeatmapLayer, Vector as VectorLayer } from 'ol/layer.js';
-// @ts-ignore
+
 import { Vector as VectorSource } from 'ol/source.js';
-// @ts-ignore
+
 import { Fill, Stroke, Style, Icon, RegularShape, Circle as CircleStyle } from 'ol/style.js';
-// @ts-ignore
+
 import Draw, { createBox } from 'ol/interaction/Draw.js';
-// @ts-ignore
+
 import Modify from 'ol/interaction/Modify';
-// @ts-ignore
+
 import { defaults as defaultControls } from 'ol/control.js';
-// @ts-ignore
+
 import Zoom from 'ol/control/Zoom.js';
-// @ts-ignore
+
 import MousePosition from 'ol/control/MousePosition.js';
-// @ts-ignore
+
 import ScaleLine from 'ol/control/ScaleLine.js';
 
-// @ts-ignore
 import Resource from '@baifendian/adherev-util-resource';
 
 import * as TitleLayer from './titlelayer';
@@ -95,7 +92,7 @@ export default {
 
     console.log(center);
     console.log(fromLonLat(center), zoom, extent, layers, fitZoom);
-    // @ts-ignore
+
     const map = new Map({
       ...config,
       controls: defaultControls({
@@ -125,7 +122,7 @@ export default {
         // projection : 'EPSG:3857',
         // projection: 'EPSG:4326',
       }),
-      layers: layers,
+      layers,
     });
 
     setTimeout(() => {
@@ -296,14 +293,14 @@ export default {
   },
 
   /**
-   * addHeatmapLayer - 添加一个热力层
+   * createHeatMapLayer - 添加一个热力层
    * @param map
    * @param layoutConfig
    */
-  addHeatmapLayer(map, layoutConfig) {
+  createHeatMapLayer(layoutConfig) {
     const vectorSource = new VectorSource();
 
-    const heatmapLayer = new HeatmapLayer({
+    const layer = new HeatmapLayer({
       source: vectorSource,
       gradient: ['#00005c', '#020288', '#0202c0', '#0ff', '#0f0', '#ff0', '#f00'],
       weight: () => 1,
@@ -313,9 +310,11 @@ export default {
       ...layoutConfig,
     });
 
-    map.addLayer(heatmapLayer);
-
-    return vectorSource;
+    // map.addLayer(heatmapLayer);
+    return {
+      layer,
+      vectorSource
+    };
   },
 
   /**
@@ -622,11 +621,10 @@ export default {
       rotatedAngle = angle + (an * 2 * Math.PI) / sides;
       x = origin[0] + radius * Math.cos(rotatedAngle);
       y = origin[1] + radius * Math.sin(rotatedAngle);
-      // @ts-ignore
+
       points.push([x, y]);
     }
     if (rotation !== 0) {
-      // @ts-ignore
       points.push(origin);
     }
     const ring = new LinearRing(points);
@@ -736,7 +734,6 @@ export default {
       const geometry = e.feature.getGeometry();
       const lonlats = [];
       const coordinates = geometry.getCoordinates()[0].map((v) => {
-        // @ts-ignore
         lonlats.push(transformLonLat(v));
         return v;
       });
@@ -849,7 +846,6 @@ export default {
       const geometry = e.feature.getGeometry();
       const lonlats = [];
       const coordinates = geometry.getCoordinates().map((v) => {
-        // @ts-ignore
         lonlats.push(transformLonLat(v));
         return v;
       });
@@ -974,7 +970,6 @@ export default {
         }),
       );
 
-      // @ts-ignore
       arrows.push(arrow);
     }
     return arrows;
@@ -1042,9 +1037,9 @@ export default {
     const lats = [];
     for (let i = 0; i < coordinates.length; i++) {
       const point = coordinates[i];
-      // @ts-ignore
+
       lons.push(point[0]);
-      // @ts-ignore
+
       lats.push(point[1]);
     }
 
@@ -1089,13 +1084,13 @@ export default {
         const geometry = f.getGeometry();
         if (type === 'Circle') {
           const extent = geometry.getExtent();
-          // @ts-ignore
+
           points.push([extent[0], extent[1]]);
-          // @ts-ignore
+
           points.push([extent[2], extent[3]]);
         } else if (type === 'Point') {
           const coordinates = geometry.getCoordinates();
-          // @ts-ignore
+
           points.push(coordinates);
         } else {
           const coordinates = geometry.getCoordinates();
@@ -1123,13 +1118,13 @@ export default {
         const geometry = f.getGeometry();
         if (type === 'Circle') {
           const extent = geometry.getExtent();
-          // @ts-ignore
+
           points.push([extent[0], extent[1]]);
-          // @ts-ignore
+
           points.push([extent[2], extent[3]]);
         } else if (type === 'Point') {
           const coordinates = geometry.getCoordinates();
-          // @ts-ignore
+
           points.push(coordinates);
         } else {
           const coordinates = geometry.getCoordinates();
@@ -1153,9 +1148,9 @@ export default {
         Resource.Dict.value.ResourceGisEpsg3857.value,
         Resource.Dict.value.ResourceGisEpsg4326.value,
       );
-      // @ts-ignore
+
       lons.push(lonlat[0]);
-      // @ts-ignore
+
       lats.push(lonlat[1]);
     }
 
@@ -1178,9 +1173,9 @@ export default {
         Resource.Dict.value.ResourceGisEpsg4326.value,
         Resource.Dict.value.ResourceGisEpsg3857.value,
       );
-      // @ts-ignore
+
       lons.push(lonlat[0]);
-      // @ts-ignore
+
       lats.push(lonlat[1]);
     }
 

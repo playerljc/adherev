@@ -1,4 +1,3 @@
-// @ts-ignore
 import classNames from 'classnames';
 
 export const selectorPrefix = 'adherev-ui-flexlayout';
@@ -10,7 +9,7 @@ export default {
       type: String,
       require: true,
       default: 'vertical',
-      validator: function (val) {
+      validator(val) {
         return ['vertical', 'horizontal'].indexOf(val) !== -1;
       },
     },
@@ -19,12 +18,20 @@ export default {
       default: '',
     },
   },
+  methods: {
+    getDirection(): string {
+      return this.direction;
+    },
+  },
+  provide() {
+    return {
+      getDirection: this.getDirection,
+    };
+  },
   render(h) {
-    // @ts-ignore
     const { $slots, className, direction } = this;
 
     return (
-      // @ts-ignore
       <div
         class={classNames(
           selectorPrefix,

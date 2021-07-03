@@ -22,7 +22,7 @@
         {
           params: 'style',
           desc: '附加的样式',
-          type: 'React.CSSProperties',
+          type: 'String',
           defaultVal: '',
         },
       ]"
@@ -46,7 +46,7 @@
         {
           params: 'style',
           desc: '附加的样式',
-          type: 'React.CSSProperties',
+          type: 'String',
           defaultVal: '',
         },
       ]"
@@ -76,7 +76,7 @@
         {
           params: 'style',
           desc: '附加的样式',
-          type: 'React.CSSProperties',
+          type: 'String',
           defaultVal: '',
         },
       ]"
@@ -221,7 +221,7 @@
     <playground :code-text="code3">
       <adv-flexlayout style="height: 100px; border: 1px solid #ccc">
         <adv-flexlayout-fixed>Top</adv-flexlayout-fixed>
-        <adv-flexlayout-auto :fit="false" :autoFixed="false" style="overflow-y: auto">
+        <adv-flexlayout-auto :fit="false" :auto-fixed="false" style="overflow-y: auto">
           <p>今天是个好日子</p>
           <p>今天是个好日子</p>
           <p>今天是个好日子</p>
@@ -242,7 +242,7 @@
         style="overflow: auto; height: 100px; border: 1px solid #ccc"
       >
         <adv-flexlayout-fixed>Left</adv-flexlayout-fixed>
-        <adv-flexlayout-auto :fit="false" :autoFixed="false">
+        <adv-flexlayout-auto :fit="false" :auto-fixed="false">
           111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
         </adv-flexlayout-auto>
       </adv-flexlayout>
@@ -422,7 +422,7 @@ export default {
           </adv-flexlayout>
         </template>
       `,
-    }
-  }
+    };
+  },
 };
 </script>

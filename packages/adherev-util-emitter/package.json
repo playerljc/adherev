@@ -35,6 +35,6 @@
     "typescript": "^3.8.2"
   },
   "dependencies": {
-    "@baifendian/adhere-util-emitter": "^1.0.5"
+    "@baifendian/adhere-util-emitter": "^1.0.6"
   }
 }

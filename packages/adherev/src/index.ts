@@ -15,6 +15,23 @@ import Suspense from '@baifendian/adherev-ui-suspense';
 import FlexLayout from '@baifendian/adherev-ui-flexlayout';
 import SearchTable from '@baifendian/adherev-ui-searchtable';
 import OLMap from '@baifendian/adherev-ui-olmap';
+import BackTopAnimation from '@baifendian/adherev-ui-backtopanimation';
+import SplitLayout from '@baifendian/adherev-ui-splitlayout';
+import ScrollLoad from '@baifendian/adherev-ui-scrollload';
+import SlideLayout from '@baifendian/adherev-ui-slidelayout';
+import ContextMenu from '@baifendian/adherev-ui-contextmenu';
+import PullRefresh from '@baifendian/adherev-ui-pullrefresh';
+import Revolving from '@baifendian/adherev-ui-revolving';
+import Popup from '@baifendian/adherev-ui-popup';
+import SliderScale from '@baifendian/adherev-ui-sliderscale';
+import StickupLayout from '@baifendian/adherev-ui-stickuplayout';
+import Surnames from '@baifendian/adherev-ui-surnames';
+import CascadeCompared from '@baifendian/adherev-ui-cascadecompared';
+import SwipeOut from '@baifendian/adherev-ui-swipeout';
+import Notification from '@baifendian/adherev-ui-notification';
+import FontSizeSetting from '@baifendian/adherev-ui-fontsizesetting';
+import JdCategoryTab from '@baifendian/adherev-ui-jdcategorytab';
+import ImageLazy from '@baifendian/adherev-ui-imagelazy';
 import Util from '@baifendian/adherev-util';
 import AdapterScreen from '@baifendian/adherev-util-adapterscreen';
 import Ajax from '@baifendian/adherev-util-communication-ajax';
@@ -25,6 +42,7 @@ import NotNull from '@baifendian/adherev-util-notnull';
 import Preferences from '@baifendian/adherev-util-preferences';
 import Resource from '@baifendian/adherev-util-resource';
 import WatchMemoized from '@baifendian/adherev-util-watchmemoized';
+import Mixins from '@baifendian/adherev-util-mixins';
 
 export { 
   ConditionalRender,
@@ -44,6 +62,23 @@ export {
   FlexLayout,
   SearchTable,
   OLMap,
+  BackTopAnimation,
+  SplitLayout,
+  ScrollLoad,
+  SlideLayout,
+  ContextMenu,
+  PullRefresh,
+  Revolving,
+  Popup,
+  SliderScale,
+  StickupLayout,
+  Surnames,
+  CascadeCompared,
+  SwipeOut,
+  Notification,
+  FontSizeSetting,
+  JdCategoryTab,
+  ImageLazy,
   Util,
   AdapterScreen,
   Ajax,
@@ -54,144 +89,235 @@ export {
   Preferences,
   Resource,
   WatchMemoized,
+  Mixins,
 };
 
 export default {
 	install:function (Vue){
 	if(
-// @ts-ignore
+
 ConditionalRender.isUse()){ 
-// @ts-ignore
+
 ConditionalRender.use(Vue); }
 		if(
-// @ts-ignore
+
 DelConfirm.isUse()){ 
-// @ts-ignore
+
 DelConfirm.use(Vue); }
 		if(
-// @ts-ignore
+
 ImportantConfirm.isUse()){ 
-// @ts-ignore
+
 ImportantConfirm.use(Vue); }
 		if(
-// @ts-ignore
+
 GlobalIndicator.isUse()){ 
-// @ts-ignore
+
 GlobalIndicator.use(Vue); }
 		if(
-// @ts-ignore
+
 HistoryBack.isUse()){ 
-// @ts-ignore
+
 HistoryBack.use(Vue); }
 		if(
-// @ts-ignore
+
 MessageDialog.isUse()){ 
-// @ts-ignore
+
 MessageDialog.use(Vue); }
 		if(
-// @ts-ignore
+
 Permission.isUse()){ 
-// @ts-ignore
+
 Permission.use(Vue); }
 		if(
-// @ts-ignore
+
 ErrorPrompt.isUse()){ 
-// @ts-ignore
+
 ErrorPrompt.use(Vue); }
 		if(
-// @ts-ignore
+
 SuccessPrompt.isUse()){ 
-// @ts-ignore
+
 SuccessPrompt.use(Vue); }
 		if(
-// @ts-ignore
+
 WarnPrompt.isUse()){ 
-// @ts-ignore
+
 WarnPrompt.use(Vue); }
 		if(
-// @ts-ignore
+
 Space.isUse()){ 
-// @ts-ignore
+
 Space.use(Vue); }
 		if(
-// @ts-ignore
+
 Spin.isUse()){ 
-// @ts-ignore
+
 Spin.use(Vue); }
 		if(
-// @ts-ignore
+
 Split.isUse()){ 
-// @ts-ignore
+
 Split.use(Vue); }
 		if(
-// @ts-ignore
+
 Suspense.isUse()){ 
-// @ts-ignore
+
 Suspense.use(Vue); }
 		if(
-// @ts-ignore
+
 FlexLayout.isUse()){ 
-// @ts-ignore
+
 FlexLayout.use(Vue); }
 		if(
-// @ts-ignore
+
 SearchTable.isUse()){ 
-// @ts-ignore
+
 SearchTable.use(Vue); }
 		if(
-// @ts-ignore
+
 OLMap.isUse()){ 
-// @ts-ignore
+
 OLMap.use(Vue); }
 		if(
-// @ts-ignore
+
+BackTopAnimation.isUse()){ 
+
+BackTopAnimation.use(Vue); }
+		if(
+
+SplitLayout.isUse()){ 
+
+SplitLayout.use(Vue); }
+		if(
+
+ScrollLoad.isUse()){ 
+
+ScrollLoad.use(Vue); }
+		if(
+
+SlideLayout.isUse()){ 
+
+SlideLayout.use(Vue); }
+		if(
+
+ContextMenu.isUse()){ 
+
+ContextMenu.use(Vue); }
+		if(
+
+PullRefresh.isUse()){ 
+
+PullRefresh.use(Vue); }
+		if(
+
+Revolving.isUse()){ 
+
+Revolving.use(Vue); }
+		if(
+
+Popup.isUse()){ 
+
+Popup.use(Vue); }
+		if(
+
+SliderScale.isUse()){ 
+
+SliderScale.use(Vue); }
+		if(
+
+StickupLayout.isUse()){ 
+
+StickupLayout.use(Vue); }
+		if(
+
+Surnames.isUse()){ 
+
+Surnames.use(Vue); }
+		if(
+
+CascadeCompared.isUse()){ 
+
+CascadeCompared.use(Vue); }
+		if(
+
+SwipeOut.isUse()){ 
+
+SwipeOut.use(Vue); }
+		if(
+
+Notification.isUse()){ 
+
+Notification.use(Vue); }
+		if(
+
+FontSizeSetting.isUse()){ 
+
+FontSizeSetting.use(Vue); }
+		if(
+
+JdCategoryTab.isUse()){ 
+
+JdCategoryTab.use(Vue); }
+		if(
+
+ImageLazy.isUse()){ 
+
+ImageLazy.use(Vue); }
+		if(
+
 Util.isUse()){ 
-// @ts-ignore
+
 Util.use(Vue); }
 		if(
-// @ts-ignore
+
 AdapterScreen.isUse()){ 
-// @ts-ignore
+
 AdapterScreen.use(Vue); }
 		if(
-// @ts-ignore
+
 Ajax.isUse()){ 
-// @ts-ignore
+
 Ajax.use(Vue); }
 		if(
-// @ts-ignore
+
 Dict.isUse()){ 
-// @ts-ignore
+
 Dict.use(Vue); }
 		if(
-// @ts-ignore
+
 Emitter.isUse()){ 
-// @ts-ignore
+
 Emitter.use(Vue); }
 		if(
-// @ts-ignore
+
 Intl.isUse()){ 
-// @ts-ignore
+
 Intl.use(Vue); }
 		if(
-// @ts-ignore
+
 NotNull.isUse()){ 
-// @ts-ignore
+
 NotNull.use(Vue); }
 		if(
-// @ts-ignore
+
 Preferences.isUse()){ 
-// @ts-ignore
+
 Preferences.use(Vue); }
 		if(
-// @ts-ignore
+
 Resource.isUse()){ 
-// @ts-ignore
+
 Resource.use(Vue); }
 		if(
-// @ts-ignore
+
 WatchMemoized.isUse()){ 
-// @ts-ignore
+
 WatchMemoized.use(Vue); }
+		if(
+
+Mixins.isUse()){ 
+
+Mixins.use(Vue); }
 		},
 };

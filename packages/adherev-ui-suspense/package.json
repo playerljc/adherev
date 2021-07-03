@@ -10,7 +10,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "buildpackage": "ctbuildv buildpackagets",
-    "buildumd": "ctbuildv buildumd --packagename AdherevSuspense --define alias=@,evnVars=true",
+    "buildumd": "ctbuildv buildumd --config ctbuildv.config.umd.js --packagename AdherevSuspense --define alias=@,evnVars=true",
     "generatorchangelog": "bd changelog/CHANGELOG.html"
   },
   "repository": {
@@ -35,6 +35,7 @@
     "typescript": "^3.8.2"
   },
   "dependencies": {
-    "ant-design-vue": "^1.7.5"
+    "ant-design-vue": "^1.7.5",
+    "vue": "^2.6.14"
   }
 }

@@ -84,7 +84,7 @@
 
     <h2>Vue实例方法</h2>
     <function-props
-        :data="[
+      :data="[
         {
           name: '$tv',
           desc: '',
@@ -210,8 +210,8 @@ export default {
         ]);
 
         export default { ...local };
-      `
-    }
-  }
+      `,
+    };
+  },
 };
 </script>

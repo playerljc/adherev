@@ -22,7 +22,9 @@
     </playground>
 
     <h2>字典的使用</h2>
-    <playground :code-text="useCode" lang="javascript"> 字典的使用分为静态字典的使用和异步字典的使用 </playground>
+    <playground :code-text="useCode" lang="javascript">
+      字典的使用分为静态字典的使用和异步字典的使用
+    </playground>
 
     <h2>字典返回函数值的memoized操作</h2>
     <playground :code-text="memoizedCode" lang="javascript">
