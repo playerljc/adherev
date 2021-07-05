@@ -20,3 +20,10 @@ exports.externals = function (externals) {
 
   return result;
 };
+
+exports.umdExternals = {
+  'ant-design-vue': 'antd',
+  vue: 'Vue',
+  moment: 'moment',
+  '@form-create/ant-design-vue': 'formCreate',
+};

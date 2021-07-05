@@ -1,4 +1,5 @@
 const path = require('path');
+const externals = require('../../config/externals');
 
 module.exports = {
   getConfig({ webpackConfig }) {

@@ -450,8 +450,7 @@ function getSendParams({ data, contentType }) {
 /**
  * complexRequest - 复杂的请求
  * @param method
- * @param data
- * @param arg
+ * @param params
  */
 function complexRequest(method: string, params: ISendArg) {
   return new Promise((resolve, reject) => {
