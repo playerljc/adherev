@@ -16,11 +16,17 @@ export default {
       default: true,
     },
   },
+  methods: {
+    getEl () {
+      return this.$refs.ref
+    }
+  },
   render(h) {
     const { $slots, className, fit } = this;
 
     return (
       <div
+        ref="ref"
         class={classNames(
           selectorPrefix,
           `${fit ? selectorPrefix + '-fit' : ''}`,

@@ -20,6 +20,7 @@
   </div>
 </template>
 <script>
+import { message } from 'ant-design-vue';
 import copy from 'copy-to-clipboard';
 
 export default {
@@ -51,7 +52,7 @@ export default {
   methods: {
     onCopy() {
       copy(this.codeText);
-      this.$message.success('复制成功');
+      message.success('复制成功');
     },
     onExpand() {
       this.expand = !this.expand;

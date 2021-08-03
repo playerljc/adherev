@@ -1,4 +1,4 @@
-import './index.less'; import { Slider } from 'ant-design-vue';
+import { Slider } from 'ant-design-vue';
 import FontSizeSetting from './fontsizesetting';
 import { withInstall } from '../../_util/index';
 
