@@ -35,6 +35,6 @@
     "typescript": "^3.8.2"
   },
   "dependencies": {
-    "@baifendian/adhere-util-watchmemoized": "^1.0.6"
+    "@baifendian/adhere-util-watchmemoized": "^1.0.7"
   }
 }

@@ -5,10 +5,6 @@ const selectorPrefix = 'adherev-ui-surnames';
 
 const DURATION = 100;
 
-function isTouch() {
-  return 'ontouchend' in document;
-}
-
 export default {
   name: 'adv-surnames',
   props: {
@@ -224,7 +220,7 @@ export default {
         $refs: { indexInnerEl },
       } = this;
 
-      if (isTouch()) {
+      if (Util.isTouch()) {
         indexInnerEl.addEventListener('click', this.onClick);
 
         // 索引touchmove和mousemove

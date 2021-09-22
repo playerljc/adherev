@@ -106,6 +106,16 @@ export default {
     },
 
     /**
+     * addWindLayer - 添加风场层
+     * @param data
+     * @param config
+     * @param zIndex
+     */
+    addWindLayer(data, config, zIndex = 0) {
+      return Util.addWindLayer(this.$data.map, data, config, zIndex);
+    },
+
+    /**
      * 添加数据层
      * @return {*|{vectorLayer, vectorSource}}
      */

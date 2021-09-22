@@ -1,7 +1,7 @@
 {
-  "name": "@baifendian/adherev-ui-olmap",
-  "version": "1.0.0",
-  "description": "对openlayers的封装",
+  "name": "@baifendian/adherev-util-domain",
+  "version": "1.0.1",
+  "description": "domain模块的浏览器端实现",
   "main": "lib/index.js",
   "files": [
     "lib",
@@ -9,8 +9,8 @@
   ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "buildpackage": "ctbuildv buildpackagets",
-    "buildumd": "ctbuildv buildumd --config ctbuildv.config.umd.js --packagename AdherevOLMap --define alias=@,evnVars=true",
+    "buildpackage": "ctbuild buildpackagets",
+    "buildumd": "ctbuild buildumd --packagename AdherevDomain --define alias=@,evnVars=true",
     "generatorchangelog": "bd changelog/CHANGELOG.html"
   },
   "repository": {
@@ -31,14 +31,10 @@
   },
   "devDependencies": {
     "@babel/runtime": "^7.7.4",
-    "@ctsj/buildv": "^2.0.2",
+    "@ctsj/build": "^4.0.11",
     "typescript": "^3.8.2"
   },
   "dependencies": {
-    "@baifendian/adherev-util-resource": "^1.0.0",
-    "algebra.js": "^0.2.6",
-    "ol": "^6.5.0",
-    "ol-wind": "^1.1.1-alpha.2",
-    "uuid": "^8.3.2"
+    "@baifendian/adhere-util-domain": "^1.0.7"
   }
 }

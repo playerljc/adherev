@@ -1,7 +1,7 @@
 {
-  "name": "@baifendian/adherev-ui-olmap",
-  "version": "1.0.0",
-  "description": "对openlayers的封装",
+  "name": "@baifendian/adherev-ui-bmap",
+  "version": "1.0.1",
+  "description": "百度地图3.0的封装",
   "main": "lib/index.js",
   "files": [
     "lib",
@@ -10,7 +10,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "buildpackage": "ctbuildv buildpackagets",
-    "buildumd": "ctbuildv buildumd --config ctbuildv.config.umd.js --packagename AdherevOLMap --define alias=@,evnVars=true",
+    "buildumd": "ctbuildv buildumd --packagename AdhereBMap --define alias=@,evnVars=true",
     "generatorchangelog": "bd changelog/CHANGELOG.html"
   },
   "repository": {
@@ -35,10 +35,7 @@
     "typescript": "^3.8.2"
   },
   "dependencies": {
-    "@baifendian/adherev-util-resource": "^1.0.0",
-    "algebra.js": "^0.2.6",
-    "ol": "^6.5.0",
-    "ol-wind": "^1.1.1-alpha.2",
-    "uuid": "^8.3.2"
+    "@baifendian/adhere-ui-bmap": "^1.0.7",
+    "@baifendian/adherev-ui-conditionalrender": "^1.0.0"
   }
 }

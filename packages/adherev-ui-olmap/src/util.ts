@@ -46,6 +46,7 @@ import Resource from '@baifendian/adherev-util-resource';
 
 import * as TitleLayer from './titlelayer';
 import GeoLayer from './geolayer';
+import WindLayer from './windlayer';
 
 const EARTH_RADIUS = Resource.Dict.value.ResourceGisEarthRadius.value; // 单位M
 
@@ -272,6 +273,20 @@ export default {
   },
 
   /**
+   * addWindLayer - 添加风场层
+   * @param mapInstance
+   * @param data
+   * @param config
+   * @param zIndex
+   * @return WindLayer
+   */
+  addWindLayer: (mapInstance, data, config, zIndex = 0) => {
+    const windLayer = new WindLayer(data, config);
+    mapInstance.addLayer(windLayer);
+    return windLayer;
+  },
+
+  /**
    * addVectorLayer - 添加一个向量层
    * @param map
    * @param zIndex
@@ -313,7 +328,7 @@ export default {
     // map.addLayer(heatmapLayer);
     return {
       layer,
-      vectorSource
+      vectorSource,
     };
   },
 
