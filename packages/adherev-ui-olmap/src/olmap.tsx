@@ -41,6 +41,10 @@ export default {
       type: Array,
       default: () => Resource.Dict.value.ResourceGisXinbeiquCenterPoint.value,
     },
+    extent: {
+      type: Array,
+      default: () => [] /*Resource.Dict.value.ResourceGisXinbeiquMapExtent.value*/,
+    },
     layers: {
       type: Array,
       default: () => undefined,
@@ -112,7 +116,7 @@ export default {
      * @param zIndex
      */
     addWindLayer(data, config, zIndex = 0) {
-      return Util.addWindLayer(this.$data.map, data, config, zIndex);
+      return Util.addWindLayer(this.$data.$map, data, config, zIndex);
     },
 
     /**

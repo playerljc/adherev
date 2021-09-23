@@ -89,14 +89,17 @@ const CascadeCompared = () =>
 const SwipeOut = () => lazy(import(/* webpackChunkName: "swipeout" */ '@/components/ui/swipeout'));
 const Notification = () =>
   lazy(import(/* webpackChunkName: "notification" */ '@/components/ui/notification'));
-const FontSizeSetting = () => lazy(import(/* webpackChunkName: "fontsizesetting" */ '@/components/ui/fontsizesetting'),
-);
-const Mixins = () => lazy(import(/* webpackChunkName: "mixins" */ '@/components/util/mixins'),
-);
-const JCategoryTab = () => lazy(import(/* webpackChunkName: "jcategorytab" */ '@/components/ui/jdcategorytab'),
-);
-const ImageLazy = () => lazy(import(/* webpackChunkName: "imagelazy" */ '@/components/ui/imagelazy'),
-);
+const FontSizeSetting = () =>
+  lazy(import(/* webpackChunkName: "fontsizesetting" */ '@/components/ui/fontsizesetting'));
+const Mixins = () => lazy(import(/* webpackChunkName: "mixins" */ '@/components/util/mixins'));
+const JCategoryTab = () =>
+  lazy(import(/* webpackChunkName: "jcategorytab" */ '@/components/ui/jdcategorytab'));
+const ImageLazy = () =>
+  lazy(import(/* webpackChunkName: "imagelazy" */ '@/components/ui/imagelazy'));
+const BMap = () => lazy(import(/* webpackChunkName: "bmap" */ '@/components/ui/bmap'));
+const PolygonSelection = () =>
+  lazy(import(/* webpackChunkName: "polygonselection" */ '@/components/ui/polygonselection'));
+const Domain = () => lazy(import(/* webpackChunkName: "domain" */ '@/components/util/domain'));
 
 export default () => [
   {
@@ -318,6 +321,16 @@ export default () => [
                 name: 'SwipeOut',
                 component: SwipeOut,
               },
+              {
+                path: '/adherev/ui/polygonselection',
+                name: 'PolygonSelection',
+                component: PolygonSelection,
+              },
+              {
+                path: '/adherev/ui/bmap',
+                name: 'BMap',
+                component: BMap,
+              },
             ],
           },
           {
@@ -382,7 +395,12 @@ export default () => [
                 path: '/adhere/util/mixins',
                 name: 'Mixins',
                 component: Mixins,
-              }
+              },
+              {
+                path: '/adhere/util/domain',
+                name: 'Domain',
+                component: Domain,
+              },
             ],
           },
           // {

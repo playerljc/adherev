@@ -46,6 +46,35 @@
       ]"
     />
 
+    <h3>WindLayer - 继承WindLayer</h3>
+    <function-props
+      :data="[
+        {
+          name: 'constructor',
+          desc: '构造方法',
+          modifier: 'private',
+          params: [
+            {
+              name: 'data',
+              desc: '风场的数据',
+              type: 'Object',
+              defaultVal: '',
+              required: '',
+            },
+            {
+              name: 'config',
+              desc: '风场的配置',
+              type: 'IWindLayerConfig',
+              defaultVal: '',
+              required: '',
+            },
+          ],
+          returnType: 'void',
+          returnDesc: '',
+        },
+      ]"
+    />
+
     <h3>TitleLayer - 提供各种瓦片层的source和TileLayer实现</h3>
     <function-props
       :data="[
@@ -2047,6 +2076,14 @@
         <adv-olmap ref="animationRef" :zoom="11.5" style="height: calc(100% - 50px)" />
       </div>
     </playground>
+
+    <h2>风场</h2>
+    <playground :code-text="code7">
+      <div style="width: 100%; height: 500px">
+        <a-button type="primary" style="margin-bottom: 20px" @click="onCode7Fun1">添加风场Layer</a-button>
+        <adv-olmap ref="windRef" :minZoom="4" :maxZoom="12" :center="[119.20,39.56]" :zoom="4" style="height: calc(100% - 50px)" />
+      </div>
+    </playground>
   </div>
 </template>
 <script>
@@ -2865,6 +2902,9 @@ export default {
       // 播放
       animationManager.run(lineData, []);
     },
+    onCode7Fun1() {
+      this.$refs.windRef.addWindLayer();
+    }
   },
 };
 </script>

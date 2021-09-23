@@ -87,12 +87,24 @@ export default {
       minZoom = getMinZoom(config.target) || 3,
       maxZoom = Resource.Dict.value.ResourceGisMapMaxZoom.value,
       center = Resource.Dict.value.ResourceGisXinbeiquCenterPoint.value,
-      extent = Resource.Dict.value.ResourceGisXinbeiquMapExtent.value,
+      extent = [] /*Resource.Dict.value.ResourceGisXinbeiquMapExtent.value*/,
       layers = [TitleLayer.getOSMTileLayer()],
     } = Config;
 
-    console.log(center);
-    console.log(fromLonLat(center), zoom, extent, layers, fitZoom);
+    const viewConfig = {
+      center: fromLonLat(center),
+      minZoom,
+      maxZoom,
+      zoom,
+    };
+
+    if (extent && extent.length) {
+      viewConfig.extent = transformExtent(
+        boundingExtent(extent),
+        Resource.Dict.value.ResourceGisEpsg4326.value,
+        Resource.Dict.value.ResourceGisEpsg3857.value,
+      );
+    }
 
     const map = new Map({
       ...config,
@@ -109,37 +121,36 @@ export default {
         }),
       ]),
       pixelRatio: 1,
-      view: new View({
-        center: fromLonLat(center),
-        minZoom,
-        maxZoom,
-        zoom,
-        extent: transformExtent(
-          boundingExtent(extent),
-          Resource.Dict.value.ResourceGisEpsg4326.value,
-          Resource.Dict.value.ResourceGisEpsg3857.value,
-        ),
+      view: new View(
+        viewConfig,
+        // {
         // zoom: 13,
         // projection : 'EPSG:3857',
         // projection: 'EPSG:4326',
-      }),
+        // }
+      ),
       layers,
     });
 
-    setTimeout(() => {
-      let zoom;
+    console.log('viewConfig', viewConfig);
 
-      if (fitZoom) {
-        zoom = fitZoom;
-      } else {
-        const mapExtentTransform = [].concat(fromLonLat(extent[0])).concat(fromLonLat(extent[1]));
-        const resolution = map.getView().getResolutionForExtent(mapExtentTransform);
-        zoom = map.getView().getZoomForResolution(resolution);
-        // zoom = 11.5;
-      }
+    if (extent && extent.length) {
+      console.log('setTimeout');
+      setTimeout(() => {
+        let zoom;
 
-      map.getView().setZoom(zoom);
-    }, 100);
+        if (fitZoom) {
+          zoom = fitZoom;
+        } else {
+          const mapExtentTransform = [].concat(fromLonLat(extent[0])).concat(fromLonLat(extent[1]));
+          const resolution = map.getView().getResolutionForExtent(mapExtentTransform);
+          zoom = map.getView().getZoomForResolution(resolution);
+          // zoom = 11.5;
+        }
+
+        map.getView().setZoom(zoom);
+      }, 100);
+    }
 
     return map;
   },
