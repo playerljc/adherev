@@ -25,6 +25,7 @@ import {
   Avatar,
   Tag,
   Divider,
+  Select,
 } from 'ant-design-vue';
 import VueHighlightJS from 'vue-highlight.js';
 import {
@@ -87,6 +88,7 @@ Vue.use(List);
 Vue.use(Avatar);
 Vue.use(Tag);
 Vue.use(Divider);
+Vue.use(Select);
 
 Vue.use(VueHighlightJS);
 

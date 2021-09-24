@@ -4,4 +4,4 @@
 
 2021-09-21
 
-* 加入@baifendian/adherev-util-domain
+* 加入@baifendian/adherev-ui-bmap

@@ -1,6 +1,6 @@
 import ConditionalRender from '@baifendian/adherev-ui-conditionalrender';
 
-const selectorPrefix = 'adherev-ui-bmap';
+const selectorPrefix = 'adhere-ui-bmap';
 
 const loadGridIcon =
   'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAYAAADDPmHLAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAUdJREFUeNrs2sENwyAQRcE4ckf0RBv04Z7ck30wFXBi/4wU5bScXhQk9hhj9B+xzu/7WjijvZ/b/Jbz/e83kE0AAkAACAABIAAEgAAQAAJAAAgAAVDYfA5ui+eY33R+BuA9PXO++QtwB0AACAABIAAEgAAQAAJAAAgAASAAqrIPED5vH8A+AO4ACAABIAAEgAAQAAJAAAgAASAABEBJ9gHC5+0D2AfAHQABIAAEgAAQAAJAAAgAASAABIAAKMk+QPi8fQD7ALgDIAAEgAAQAAJAAAgAASAABIAAEAAl2QcIn7cPYB8AdwAEgAAQAAJAAAgAASAABIAAEAACoCT7AOHz9gHsA+AOgAAQAAJAAAgAASAABIAAEAACQACUZB8gfN4+gH0A3AEQAAJAAAgAASAABIAAEAACQABUNV8D++I5nmM3nX8EGADa0U/2xPbBVwAAAABJRU5ErkJggg==';
@@ -91,18 +91,18 @@ export default {
       });
     },
     initMap() {
-      const { BMap } = this;
+      const { $BMap } = this.$data;
 
       const { config, zoom, center } = this;
 
-      this.$data.$map = new BMap.Map(this.$refs.ref, {
+      this.$data.$map = new $BMap.Map(this.$refs.ref, {
         enableMapClick: false,
         ...config,
       });
 
       this.initMapControl();
 
-      this.$data.$map.centerAndZoom(new BMap.Point(center?.lon, center?.lat), zoom);
+      this.$data.$map.centerAndZoom(new $BMap.Point(center?.lon, center?.lat), zoom);
 
       this.$data.$map.addEventListener('tilesloaded', () => {
         if (this.$data.$isLoad) return;

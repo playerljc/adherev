@@ -9,11 +9,20 @@ module.exports = {
     jest: true,
     es6: true,
   },
+  parser: 'vue-eslint-parser',
   parserOptions: {
     parser: '@typescript-eslint/parser',
     project: path.join(__dirname, 'tsconfig.json'),
   },
-  extends: ['plugin:vue/vue3-recommended', 'prettier'],
+  extends: [
+    // 'plugin:vue/vue3-recommended',
+    'plugin:vue/base',
+    'plugin:vue/essential',
+    'plugin:vue/strongly-recommended',
+    'plugin:vue/recommended',
+    // '@vue/standard',
+    'prettier',
+  ],
   plugins: ['markdown'],
   overrides: [
     {

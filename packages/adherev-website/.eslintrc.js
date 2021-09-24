@@ -2,15 +2,18 @@ const path = require('path');
 
 module.exports = {
   root: true,
+  parser: 'vue-eslint-parser',
   parserOptions: {
     parser: '@typescript-eslint/parser',
     project: path.join(__dirname, 'tsconfig.json'),
   },
   extends: [
     require.resolve('@umijs/fabric/dist/eslint'),
+    'plugin:vue/base',
     'plugin:vue/essential',
     'plugin:vue/strongly-recommended',
-    '@vue/standard',
+    'plugin:vue/recommended',
+    // '@vue/standard',
   ],
   globals: {
     page: true,
