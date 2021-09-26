@@ -280,7 +280,7 @@ export default {
 
           export default {
             data() {
-              data: getData(),
+              getData(),
             },
             watch: {
               data: function () {
