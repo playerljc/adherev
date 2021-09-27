@@ -74,6 +74,7 @@ adherev-ui-imagelazy(demo)
   adhere-util-domain - 引用
   adhere-ui-polygonselection - 引用
   adhere-ui-bmap - 引用
+   .存在引用的国际化问题
   adhere-ui-playground - 研发
 
  修改的功能

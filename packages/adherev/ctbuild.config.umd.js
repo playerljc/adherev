@@ -19,5 +19,16 @@ module.exports = {
       '@babel/plugin-transform-modules-commonjs',
       { strictMode: false },
     ]);
+
+    // if (!webpackConfig.resolve.alias) {
+    //   webpackConfig.resolve.alias = {};
+    // }
+    //
+    // webpackConfig.resolve.alias['@baifendian/adhere-util-intl'] = path.join(
+    //   __dirname,
+    //   'node_modules',
+    //   '@baifendian',
+    //   'adherev-util-intl',
+    // );
   },
 };

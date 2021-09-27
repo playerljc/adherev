@@ -4,6 +4,7 @@
 
 2021-09-21
 
+* 加入兼容@baifendian/adhere-util-intl的v方法
 * 加入新的国际化词条
 
 # 1.0.0

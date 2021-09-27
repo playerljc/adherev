@@ -107,7 +107,7 @@ const I18nFactory = function (config: I18nOptions = {}) {
  * @param zh
  * @param values
  */
-I18nFactory.tv = function (zh: Path, ...values: []) {
+I18nFactory.tv = I18nFactory.v = function (zh: Path, ...values: []) {
   const key = intlMap[zh];
 
   return i18n.t.apply(i18n, [key, ...values]);

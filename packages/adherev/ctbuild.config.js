@@ -24,7 +24,17 @@ module.exports = {
     //     'adhere',
     //   ]);
     // }
-
-    webpackConfig.resolve.modules.unshift(path.join(__dirname, 'node_modules'));
+    // webpackConfig.resolve.modules.unshift(path.join(__dirname, 'node_modules'));
+    //
+    // if (!webpackConfig.resolve.alias) {
+    //   webpackConfig.resolve.alias = {};
+    // }
+    //
+    // webpackConfig.resolve.alias['@baifendian/adhere-util-intl'] = path.join(
+    //   __dirname,
+    //   'node_modules',
+    //   '@baifendian',
+    //   'adherev-util-intl',
+    // );
   },
 };

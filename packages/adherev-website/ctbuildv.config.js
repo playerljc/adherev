@@ -17,9 +17,11 @@ module.exports = {
 
     webpackConfig.resolve.alias = {
       ...webpackConfig.resolve.alias,
+      // TODO: 能编译template部分模板
       vue$: 'vue/dist/vue.esm.js',
       // TODO:umd umd的时候需要注释掉
       vue: path.join(__dirname, 'node_modules', 'vue'),
+      // TODO: 因为是link的操作所以需要进行目录的精确定义
       'ant-design-vue': path.join(__dirname, 'node_modules', 'ant-design-vue'),
       '@form-create/ant-design-vue': path.join(
         __dirname,
@@ -33,6 +35,16 @@ module.exports = {
       ol: path.join(
         __dirname,
         'node_modules/@baifendian/adherev/node_modules/@baifendian/adherev-ui-olmap/node_modules/ol',
+      ),
+      // TODO: 因为有些组件依赖于@baifendian/adhere库，而adhere中的国际化是adhere-util-intl，所以要指向adherev-util-intl组件
+      ['@baifendian/adhere-util-intl']: path.join(
+        __dirname,
+        'node_modules',
+        '@baifendian',
+        'adherev',
+        'node_modules',
+        '@baifendian',
+        'adherev-util-intl',
       ),
 
       // swiper: path.join(

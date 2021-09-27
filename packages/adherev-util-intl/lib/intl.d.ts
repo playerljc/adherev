@@ -23,7 +23,8 @@ declare const I18nFactory: {
      * @param zh
      * @param values
      */
-    tv(zh: Path): VueI18n.TranslateResult;
+    tv: (zh: Path) => VueI18n.TranslateResult;
+    v(zh: Path): VueI18n.TranslateResult;
     /**
      * tcv
      * @param zh
