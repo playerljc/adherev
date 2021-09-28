@@ -1,7 +1,7 @@
 {
-  "extends": "./node_modules/@ctsj/build/buildpackagetsconfig-base",
+  "extends": "./node_modules/@ctsj/buildv/appconfig-base.json",
   "compilerOptions": {
-    "declarationDir": "./lib",
+    "experimentalDecorators": true,
     "outDir": "./lib",
     "baseUrl": "./",
     "module": "esnext"
