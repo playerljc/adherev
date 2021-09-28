@@ -57,6 +57,7 @@ import {
   JdCategoryTab,
   ImageLazy,
   BMap,
+  PlayGround,
 } from '@baifendian/adherev';
 import Playground from '@/lib/Playground';
 import PlaygroundMulit from '@/lib/PlaygroundMulit';
@@ -120,6 +121,7 @@ FontSizeSetting.use(Vue);
 JdCategoryTab.use(Vue);
 ImageLazy.use(Vue);
 BMap.use(Vue);
+PlayGround.use(Vue);
 
 Vue.use(Playground);
 Vue.use(PlaygroundMulit);

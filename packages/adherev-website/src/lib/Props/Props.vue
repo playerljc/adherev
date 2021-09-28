@@ -1,3 +1,4 @@
+<!--
 <template>
   <a-table :columns="columns" :data-source="data" :pagination="false" size="small" rowKey="params">
   </a-table>
@@ -37,6 +38,27 @@ export default {
         },
       ];
     },
+  },
+};
+</script>
+-->
+
+<template>
+  <adv-playground-props :data="data" />
+</template>
+<script>
+export default {
+  name: 'props',
+  props: {
+    data: {
+      type: Array,
+      require: true,
+      default: [],
+    },
+  },
+  mounted() {
+    debugger;
+    console.log(this.data);
   },
 };
 </script>

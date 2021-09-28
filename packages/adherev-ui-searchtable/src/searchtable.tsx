@@ -234,14 +234,11 @@ export default {
           this.fetchData();
         },
         showTotal: (total) => {
-          return Intl.tv(
-            `当前 {page}-{pageSize}/共 {total}条`,
-            {
-              page: this.page,
-              pageSize: this.limit,
-              total,
-            },
-          );
+          return Intl.tv(`当前 {page}-{pageSize}/共 {total}条`, {
+            page: this.page,
+            pageSize: this.limit,
+            total,
+          });
         },
         total: this.getTotal(),
         current: this.page,

@@ -2283,11 +2283,11 @@
 </template>
 
 <script>
-import ImageSelect from "./ImageSelect";
+import ImageSelect from './ImageSelect';
 
 export default {
   components: {
-    ImageSelect
+    ImageSelect,
   },
   props: {},
   data() {
@@ -2693,8 +2693,7 @@ export default {
 }
 </style>
 `;
-    }
+    },
   },
 };
 </script>
-

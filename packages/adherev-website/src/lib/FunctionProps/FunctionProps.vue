@@ -1,3 +1,4 @@
+<!--
 <template>
   <a-table :columns="columns" :data-source="data" :pagination="false" size="small">
     <a-table
@@ -87,6 +88,22 @@ export default {
           dataIndex: 'required',
         },
       ];
+    },
+  },
+};
+</script>
+-->
+<template>
+  <adv-playground-functionprops :data="data" />
+</template>
+<script>
+export default {
+  name: 'function-props',
+  props: {
+    data: {
+      type: Array,
+      require: true,
+      default: [],
     },
   },
 };

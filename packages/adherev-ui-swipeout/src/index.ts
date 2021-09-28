@@ -7,5 +7,4 @@ Component.use = (Vue) => {
   Vue.use(Component);
 };
 
-
 export default Component;

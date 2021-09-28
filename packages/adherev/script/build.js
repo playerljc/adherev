@@ -51,6 +51,7 @@ const namedMap = new Map([
   ['@baifendian/adherev-ui-imagelazy', 'ImageLazy'],
   ['@baifendian/adherev-ui-polygonselection', 'PolygonSelection'],
   ['@baifendian/adherev-ui-bmap', 'BMap'],
+  ['@baifendian/adherev-ui-playground', 'PlayGround'],
   ['@baifendian/adherev-util', 'Util'],
   ['@baifendian/adherev-util-communication-ajax', 'Ajax'],
   ['@baifendian/adherev-util-dict', 'Dict'],

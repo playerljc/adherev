@@ -10,7 +10,7 @@
         {
           params: 'direction',
           desc: '方向',
-          type: ['vertical' | 'horizontal'],
+          type: `['vertical' | 'horizontal']`,
           defaultVal: 'vertical',
         },
         {
@@ -34,7 +34,7 @@
         {
           params: 'direction',
           desc: '方向',
-          type: ['vertical' | 'horizontal'],
+          type: `['vertical' | 'horizontal']`,
           defaultVal: 'vertical',
         },
         {

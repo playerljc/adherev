@@ -34,6 +34,7 @@ import Suspense from '@baifendian/adherev-ui-suspense';
 import SwipeOut from '@baifendian/adherev-ui-swipeout';
 import PolygonSelection from '@baifendian/adherev-ui-polygonselection';
 import BMap from '@baifendian/adherev-ui-bmap';
+import PlayGround from '@baifendian/adherev-ui-playground';
 import Util from '@baifendian/adherev-util';
 import AdapterScreen from '@baifendian/adherev-util-adapterscreen';
 import Ajax from '@baifendian/adherev-util-communication-ajax';
@@ -46,7 +47,7 @@ import Preferences from '@baifendian/adherev-util-preferences';
 import Resource from '@baifendian/adherev-util-resource';
 import WatchMemoized from '@baifendian/adherev-util-watchmemoized';
 import Domain from '@baifendian/adherev-util-domain';
-export { BackTopAnimation, CascadeCompared, ConditionalRender, DelConfirm, ImportantConfirm, ContextMenu, FlexLayout, FontSizeSetting, GlobalIndicator, HistoryBack, ImageLazy, JdCategoryTab, MessageDialog, Notification, OLMap, Permission, Popup, ErrorPrompt, SuccessPrompt, WarnPrompt, PullRefresh, Revolving, ScrollLoad, SearchTable, SlideLayout, SliderScale, Space, Spin, Split, SplitLayout, StickupLayout, Surnames, Suspense, SwipeOut, PolygonSelection, BMap, Util, AdapterScreen, Ajax, Dict, Emitter, Intl, Mixins, NotNull, Preferences, Resource, WatchMemoized, Domain, };
+export { BackTopAnimation, CascadeCompared, ConditionalRender, DelConfirm, ImportantConfirm, ContextMenu, FlexLayout, FontSizeSetting, GlobalIndicator, HistoryBack, ImageLazy, JdCategoryTab, MessageDialog, Notification, OLMap, Permission, Popup, ErrorPrompt, SuccessPrompt, WarnPrompt, PullRefresh, Revolving, ScrollLoad, SearchTable, SlideLayout, SliderScale, Space, Spin, Split, SplitLayout, StickupLayout, Surnames, Suspense, SwipeOut, PolygonSelection, BMap, PlayGround, Util, AdapterScreen, Ajax, Dict, Emitter, Intl, Mixins, NotNull, Preferences, Resource, WatchMemoized, Domain, };
 declare const _default: {
     install: (Vue: any) => void;
 };

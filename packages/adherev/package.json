@@ -88,6 +88,7 @@
     "@baifendian/adherev-ui-swipeout": "^1.0.0",
     "@baifendian/adherev-ui-polygonselection": "^1.0.1",
     "@baifendian/adherev-ui-bmap": "^1.0.1",
+    "@baifendian/adherev-ui-playground": "^1.0.1",
     "@baifendian/adherev-util": "^1.0.1",
     "@baifendian/adherev-util-adapterscreen": "^1.0.0",
     "@baifendian/adherev-util-communication-ajax": "^1.0.0",

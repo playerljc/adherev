@@ -1,3 +1,4 @@
+<!--
 <template>
   <div :class="selectPrefix">
     <a-card>
@@ -72,3 +73,29 @@ export default {
   width: auto !important;
 }
 </style>
+-->
+
+<template>
+  <adv-playground :defaultExpand="defaultExpand" :codeText="codeText" :lang="lang">
+    <slot></slot>
+  </adv-playground>
+</template>
+<script>
+export default {
+  name: 'playground',
+  props: {
+    defaultExpand: {
+      type: Boolean,
+      default: false,
+    },
+    codeText: {
+      type: String,
+      default: '',
+    },
+    lang: {
+      type: String,
+      default: 'vue',
+    },
+  },
+};
+</script>

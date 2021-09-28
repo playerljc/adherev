@@ -343,7 +343,7 @@ export default {
           }
         <\/script>
       `;
-    }
+    },
   },
   mounted() {
     const record = this.getRecord(this.activeKey);

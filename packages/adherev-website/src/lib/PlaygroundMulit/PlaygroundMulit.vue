@@ -1,3 +1,4 @@
+<!--
 <template>
   <div :class="selectPrefix">
     <a-card>
@@ -85,3 +86,24 @@ export default {
   font-size: 20px;
 }
 </style>
+-->
+<template>
+  <adv-playground-mulit :defaultExpand="defaultExpand" :config="config">
+    <slot></slot>
+  </adv-playground-mulit>
+</template>
+<script>
+export default {
+  name: 'playground-mulit',
+  props: {
+    defaultExpand: {
+      type: Boolean,
+      default: false,
+    },
+    config: {
+      type: Array,
+      default: [],
+    },
+  },
+};
+</script>

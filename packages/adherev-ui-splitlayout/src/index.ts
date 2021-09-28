@@ -7,6 +7,6 @@ Component.isUse = () => true;
 Component.use = (Vue) => {
   FlexLayout.use(Vue);
   Vue.use(Component);
-}
+};
 
 export default Component;

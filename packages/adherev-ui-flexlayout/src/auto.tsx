@@ -21,9 +21,9 @@ export default {
     },
   },
   methods: {
-    getEl () {
-      return this.$refs.ref
-    }
+    getEl() {
+      return this.$refs.ref;
+    },
   },
   render(h) {
     const { $slots, autoFixed, className, fit } = this;

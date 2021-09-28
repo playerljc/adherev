@@ -2080,8 +2080,17 @@
     <h2>风场</h2>
     <playground :code-text="code7">
       <div style="width: 100%; height: 500px">
-        <a-button type="primary" style="margin-bottom: 20px" @click="onCode7Fun1">添加风场Layer</a-button>
-        <adv-olmap ref="windRef" :minZoom="4" :maxZoom="12" :center="[119.20,39.56]" :zoom="4" style="height: calc(100% - 50px)" />
+        <a-button type="primary" style="margin-bottom: 20px" @click="onCode7Fun1"
+          >添加风场Layer</a-button
+        >
+        <adv-olmap
+          ref="windRef"
+          :minZoom="4"
+          :maxZoom="12"
+          :center="[119.2, 39.56]"
+          :zoom="4"
+          style="height: calc(100% - 50px)"
+        />
       </div>
     </playground>
   </div>
@@ -2904,7 +2913,7 @@ export default {
     },
     onCode7Fun1() {
       this.$refs.windRef.addWindLayer();
-    }
+    },
   },
 };
 </script>

@@ -1,11 +1,11 @@
 <template>
-	<div class="Page">
-		<h1>FontSizeSetting</h1>
-		<p>字体设置</p>
+  <div class="Page">
+    <h1>FontSizeSetting</h1>
+    <p>字体设置</p>
 
-		<h2>属性</h2>
-		<props
-						:data="[
+    <h2>属性</h2>
+    <props
+      :data="[
         {
           params: 'className',
           desc: '附加的样式',
@@ -37,32 +37,32 @@
           defaultVal: '',
         },
       ]"
-		/>
+    />
 
-		<h2>基本使用</h2>
-		<playground :codeText="code1">
-			<adv-fontsizesetting :min="12" :max="40" :step="1" @change="onChange" />
+    <h2>基本使用</h2>
+    <playground :codeText="code1">
+      <adv-fontsizesetting :min="12" :max="40" :step="1" @change="onChange" />
 
-			<adv-space />
+      <adv-space />
 
-			<p :style="getFontSize">我是一个粉刷匠</p>
-		</playground>
-	</div>
+      <p :style="getFontSize">我是一个粉刷匠</p>
+    </playground>
+  </div>
 </template>
 
 <script>
-  export default {
-    data() {
-      return {
-        fontSize: 12,
-      };
+export default {
+  data() {
+    return {
+      fontSize: 12,
+    };
+  },
+  computed: {
+    getFontSize() {
+      return `font-size:${this.fontSize}px;`;
     },
-    computed: {
-      getFontSize() {
-        return `font-size:${this.fontSize}px;`;
-      },
-      code1() {
-        return `
+    code1() {
+      return `
         <template>
           <h2>基本使用</h2>
           <adv-fontsizesetting :min="12" :max="40" :step="1" @change="onChange" />
@@ -92,12 +92,12 @@
           }
         <\/script>
       `;
-      },
     },
-    methods: {
-      onChange(size) {
-        this.fontSize = size;
-      },
+  },
+  methods: {
+    onChange(size) {
+      this.fontSize = size;
     },
-  };
+  },
+};
 </script>
