@@ -13,7 +13,7 @@
 * **adherev-ui-olmap**
   - 加入windLayer(风场)
 * **adherev-ui-playground**
-  - adherev-ui-playground组件
+  - 加入@baifendian/adherev-ui-playground组件
 * **adherev-ui-polygonselection**
   - 加入@baifendian/adhere-ui-polygonselection
 * **adherev-ui-splitlayout**
@@ -29,14 +29,6 @@
 * **adherev-util-intl**
   - 加入兼容@baifendian/adhere-util-intl的v方法
   - 加入新的国际化词条
-
-# 1.0.1
-
-***
-
-2021-09-27
-
-* 加入适配@baifendian/adhere-util-intl
 
 # 1.0.0
 

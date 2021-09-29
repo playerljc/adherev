@@ -4,4 +4,4 @@
 
 2021-09-27
 
-* adherev-ui-playground组件
+* 加入@baifendian/adherev-ui-playground组件
