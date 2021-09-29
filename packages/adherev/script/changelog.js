@@ -4,7 +4,7 @@ const path = require('path');
 const cheerio = require('cheerio');
 const lerna = require('../../../lerna.json');
 
-const excludePackageNames = ['adhere', 'adhere-website'];
+const excludePackageNames = ['adherev', 'adherev-website', '_util'];
 
 // packages目录路径
 const packagesDirPath = path.join(__dirname, '../../');
