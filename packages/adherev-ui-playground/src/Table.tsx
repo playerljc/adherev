@@ -1,5 +1,4 @@
 import classNames from 'classnames';
-
 import ConditionalRender from '@baifendian/adherev-ui-conditionalrender';
 
 const selectorPrefix = 'adherev-ui-playground-table';
@@ -62,7 +61,6 @@ export default {
     renderBody(h) {
       const { columns, dataSource, rowKey, $scopedSlots } = this;
 
-      debugger;
       return (
         <tbody>
           {dataSource.map((record, rowIndex: number) => {

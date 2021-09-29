@@ -98,12 +98,12 @@ export default {
 </template>
 <script>
 export default {
-  name: 'function-props',
+  name: 'FunctionProps',
   props: {
     data: {
       type: Array,
       require: true,
-      default: [],
+      default: () => [],
     },
   },
 };

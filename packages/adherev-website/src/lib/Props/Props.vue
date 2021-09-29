@@ -48,17 +48,13 @@ export default {
 </template>
 <script>
 export default {
-  name: 'props',
+  name: 'Props',
   props: {
     data: {
       type: Array,
       require: true,
-      default: [],
+      default: () => [],
     },
-  },
-  mounted() {
-    debugger;
-    console.log(this.data);
   },
 };
 </script>
