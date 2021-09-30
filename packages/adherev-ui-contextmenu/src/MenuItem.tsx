@@ -14,7 +14,7 @@ export default {
   props: {
     data: {
       type: Object,
-      default: {},
+      default: () => ({}),
       validator(val: IMenuItemProps): boolean {
         return val instanceof Object;
       },

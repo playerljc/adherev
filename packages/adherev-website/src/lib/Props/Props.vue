@@ -9,8 +9,8 @@ export default {
   props: {
     data: {
       type: Array,
-      require: true,
-      default: [],
+      required: true,
+      default: () => [],
     },
   },
   computed: {
@@ -52,7 +52,7 @@ export default {
   props: {
     data: {
       type: Array,
-      require: true,
+      required: true,
       default: () => [],
     },
   },

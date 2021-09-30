@@ -10,7 +10,7 @@ export default {
   props: {
     data: {
       type: Array,
-      default: [],
+      default: () => [],
       validator(val: Array<IData>): boolean {
         return val instanceof Array;
       },

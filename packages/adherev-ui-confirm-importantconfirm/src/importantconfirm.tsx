@@ -36,17 +36,17 @@ export default {
   props: {
     zIndex: {
       type: Number,
-      require: false,
+      required: false,
       default: Resource.Dict.value.ResourceNormalMaxZIndex.value,
     },
     className: {
       type: String,
-      require: false,
+      required: false,
       default: '',
     },
     success: {
       type: Function,
-      require: false,
+      required: false,
       default: () => {},
     },
   },

@@ -62,12 +62,12 @@ export default {
   props: {
     routes: {
       type: Array,
-      require: true,
-      default: [],
+      required: true,
+      default: () => [],
     },
     name: {
       type: String,
-      require: true,
+      required: true,
       default: '',
     },
   },

@@ -8,7 +8,7 @@ const Space = {
   props: {
     direction: {
       type: String,
-      require: true,
+      required: true,
       default: 'vertical',
       validator(value) {
         // 这个值必须匹配下列字符串中的一个
@@ -17,12 +17,12 @@ const Space = {
     },
     size: {
       type: [Number, String],
-      require: true,
+      required: true,
       default: 20,
     },
     className: {
       type: String,
-      require: false,
+      required: false,
       default: '',
     },
   },
@@ -59,7 +59,7 @@ export const SpaceGroup = {
   props: {
     direction: {
       type: String,
-      require: true,
+      required: true,
       default: 'vertical',
       validator(value) {
         // 这个值必须匹配下列字符串中的一个
@@ -68,12 +68,12 @@ export const SpaceGroup = {
     },
     size: {
       type: [Number, String],
-      require: true,
+      required: true,
       default: 20,
     },
     className: {
       type: String,
-      require: false,
+      required: false,
       default: '',
     },
   },

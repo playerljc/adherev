@@ -8,7 +8,7 @@ const Split = {
   props: {
     direction: {
       type: String,
-      require: true,
+      required: true,
       default: 'vertical',
       validator(value) {
         return ['vertical', 'horizontal'].indexOf(value) !== -1;
@@ -58,7 +58,7 @@ export const SplitGroup = {
   props: {
     direction: {
       type: String,
-      require: true,
+      required: true,
       default: 'vertical',
       validator(value) {
         // 这个值必须匹配下列字符串中的一个
@@ -67,12 +67,12 @@ export const SplitGroup = {
     },
     size: {
       type: [Number, String],
-      require: false,
+      required: false,
       default: 20,
     },
     className: {
       type: String,
-      require: false,
+      required: false,
       default: '',
     },
   },

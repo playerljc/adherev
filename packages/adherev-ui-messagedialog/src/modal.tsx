@@ -13,11 +13,11 @@ export default {
   props: {
     config: {
       type: Object,
-      require: true,
+      required: true,
     },
     closeBtn: {
       type: Boolean,
-      require: false,
+      required: false,
       default: true,
     },
   },

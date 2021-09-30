@@ -38,7 +38,7 @@ export default {
     },
     config: {
       type: Array,
-      default: [],
+      default: () => [],
     },
   },
   data() {
@@ -102,7 +102,7 @@ export default {
     },
     config: {
       type: Array,
-      default: [],
+      default: () => [],
     },
   },
 };
