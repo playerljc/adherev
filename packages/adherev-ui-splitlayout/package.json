@@ -1,6 +1,6 @@
 {
   "name": "@baifendian/adherev-ui-splitlayout",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "实现分割窗体的布局，可以拉动调整大小",
   "main": "lib/index.js",
   "files": [
@@ -35,7 +35,7 @@
     "typescript": "^3.8.2"
   },
   "dependencies": {
-    "@baifendian/adherev-ui-flexlayout": "^1.0.0",
+    "@baifendian/adherev-ui-flexlayout": "^1.0.1",
     "classnames": "^2.2.6"
   }
 }

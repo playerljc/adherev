@@ -1,6 +1,6 @@
 {
   "name": "@baifendian/adherev-ui-surnames",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "姓名面板",
   "main": "lib/index.js",
   "files": [
@@ -35,7 +35,7 @@
     "typescript": "^3.8.2"
   },
   "dependencies": {
-    "@baifendian/adherev-util": "^1.0.0",
+    "@baifendian/adherev-util": "^1.0.1",
     "classnames": "^2.2.6"
   }
 }

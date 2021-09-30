@@ -37,13 +37,13 @@
     "typescript": "^3.8.2"
   },
   "dependencies": {
+    "@baifendian/adherev-ui-conditionalrender": "^1.0.0",
+    "@baifendian/adherev-util-intl": "^1.0.1",
+    "classnames": "^2.3.1",
+    "copy-to-clipboard": "^3.3.1",
     "highlight.js": "^9.11.0",
     "vue": "^2.6.14",
-    "vue-highlight.js": "^3.1.0",
-    "classnames": "^2.3.1",
     "vue-fragment": "^1.5.2",
-    "copy-to-clipboard": "^3.3.1",
-    "@baifendian/adherev-ui-conditionalrender": "^1.0.0",
-    "@baifendian/adherev-util-intl": "^1.0.0"
+    "vue-highlight.js": "^3.1.0"
   }
 }

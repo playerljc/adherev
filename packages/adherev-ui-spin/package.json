@@ -1,6 +1,6 @@
 {
   "name": "@baifendian/adherev-ui-spin",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "无侵入的loading",
   "main": "lib/index.js",
   "files": [
@@ -35,7 +35,7 @@
     "typescript": "^3.8.2"
   },
   "dependencies": {
-    "@baifendian/adherev-ui-css": "^1.0.0",
-    "@baifendian/adherev-util-resource": "^1.0.0"
+    "@baifendian/adherev-ui-css": "^1.0.1",
+    "@baifendian/adherev-util-resource": "^1.0.1"
   }
 }

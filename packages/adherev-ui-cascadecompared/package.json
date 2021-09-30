@@ -1,6 +1,6 @@
 {
   "name": "@baifendian/adherev-ui-cascadecompared",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "级联比较",
   "main": "lib/index.js",
   "files": [
@@ -36,7 +36,7 @@
   },
   "dependencies": {
     "@baifendian/adherev-ui-stickuplayout": "^1.0.0",
-    "@baifendian/adherev-util": "^1.0.0",
+    "@baifendian/adherev-util": "^1.0.1",
     "classnames": "^2.2.6",
     "iscroll": "^5.2.0",
     "vue-fragment": "^1.5.2"
