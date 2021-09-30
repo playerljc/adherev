@@ -11,7 +11,7 @@
         @select="onSelect"
       >
         <template v-for="r in routes">
-          <sub-menu v-if="isSubMenu(r)" :router="r" :$style="$style" :key="r.path" />
+          <sub-menu v-if="isSubMenu(r)" :key="r.path" :router="r" :$style="$style" />
 
           <a-menu-item v-else :key="r.path">
             <router-link :to="r.path">
@@ -35,10 +35,14 @@
         </a-breadcrumb>
       </div>
 
-      <div :class="$style.Auto">
+      <div>
         <keep-alive>
           <router-view></router-view>
         </keep-alive>
+      </div>
+
+      <div :class="$style.FooterWrap">
+        <Footer />
       </div>
     </div>
   </div>
@@ -47,9 +51,14 @@
 <script>
 import classNames from 'classnames';
 import SubMenu from './SubMenu';
+import Footer from '@/lib/Footer';
 import Util from './Util';
 
 export default {
+  components: {
+    'sub-menu': SubMenu,
+    Footer: Footer,
+  },
   props: {
     routes: {
       type: Array,
@@ -143,9 +152,6 @@ export default {
       return path.filter((t) => !t.redirect);
     },
   },
-  components: {
-    'sub-menu': SubMenu,
-  },
 };
 </script>
 
@@ -162,11 +168,11 @@ export default {
       padding: 20px;
     }
 
-    > .Auto {
-      min-height: 0;
-      overflow-y: auto;
-      background: @common-block-background-color;
-    }
+    //> .Auto {
+    //  //min-height: 0;
+    //  overflow-y: auto;
+    //  background: @common-block-background-color;
+    //}
   }
 
   .Fixed {
@@ -183,6 +189,7 @@ export default {
     display: flex;
     flex-grow: 1;
     min-width: 0;
+    overflow-y: auto;
   }
 }
 

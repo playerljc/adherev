@@ -23,6 +23,7 @@ import { lazy } from '@/lib/Router';
 
 const App = () => lazy(import(/* webpackChunkName: "app" */ '@/app'));
 const Introduction = () => lazy(import(/* webpackChunkName: "introduction" */ '@/introduction'));
+const Changelog = () => lazy(import(/* webpackChunkName: "changelog" */ '@/changelog'));
 const ConditionalRender = () => lazy(import('@/components/ui/conditionalrender'));
 const GlobalIndicator = () =>
   lazy(import(/* webpackChunkName: "globalindicator" */ '@/components/ui/globalindicator'));
@@ -122,6 +123,11 @@ export default () => [
             path: '/adherev/introduction',
             name: '简介',
             component: Introduction,
+          },
+          {
+            path: '/adherev/changelog',
+            name: '更新日志',
+            component: Changelog,
           },
           {
             path: '/adherev/ui',

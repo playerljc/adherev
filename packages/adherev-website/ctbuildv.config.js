@@ -64,6 +64,12 @@ module.exports = {
 
     webpackConfig.module.rules[3].include.push(/ol.css/, /swiper.css/);
 
+    // 加入markdown的解析
+    webpackConfig.module.rules.push({
+      test: /\.md$/,
+      use: 'raw-loader',
+    });
+
     // TODO:umd umd的时候需要注释掉
     // babel-plugin-import的配置
     const { use } = webpackConfig.module.rules[1];
