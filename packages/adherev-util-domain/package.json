@@ -1,6 +1,6 @@
 {
   "name": "@baifendian/adherev-util-domain",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "domain模块的浏览器端实现",
   "main": "lib/index.js",
   "files": [

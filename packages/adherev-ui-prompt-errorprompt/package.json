@@ -1,6 +1,6 @@
 {
   "name": "@baifendian/adherev-ui-prompt-errorprompt",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "错误的提示(就是为了全局统一)",
   "main": "lib/index.js",
   "files": [
@@ -35,7 +35,7 @@
     "typescript": "^3.8.2"
   },
   "dependencies": {
-    "@baifendian/adherev-util-intl": "^1.0.1",
+    "@baifendian/adherev-util-intl": "^1.0.2",
     "ant-design-vue": "^1.7.5",
     "vue": "^2.6.14"
   }

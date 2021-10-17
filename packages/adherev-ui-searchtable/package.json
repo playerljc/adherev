@@ -1,6 +1,6 @@
 {
   "name": "@baifendian/adherev-ui-searchtable",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "一种查询表格的通用模式(如果 UI 没有明确给出查询表格的 UI，就可以用这个默认模式)",
   "main": "lib/index.js",
   "files": [
@@ -36,10 +36,10 @@
   },
   "dependencies": {
     "@baifendian/adherev-ui-conditionalrender": "^1.0.0",
-    "@baifendian/adherev-ui-css": "^1.0.1",
+    "@baifendian/adherev-ui-css": "^1.0.2",
     "@baifendian/adherev-ui-flexlayout": "^1.0.1",
     "@baifendian/adherev-ui-suspense": "^1.0.1",
-    "@baifendian/adherev-util-intl": "^1.0.1",
+    "@baifendian/adherev-util-intl": "^1.0.2",
     "ant-design-vue": "^1.7.5",
     "classnames": "^2.2.6",
     "omit.js": "^2.0.2",
