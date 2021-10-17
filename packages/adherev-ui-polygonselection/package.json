@@ -35,6 +35,6 @@
     "typescript": "^3.8.2"
   },
   "dependencies": {
-    "@baifendian/adhere-ui-polygonselection": "^1.0.7"
+    "@baifendian/adhere-ui-polygonselection": "^1.0.8"
   }
 }
