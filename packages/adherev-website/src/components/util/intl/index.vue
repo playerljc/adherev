@@ -174,42 +174,33 @@ export default {
         new Vue({
           el: '#container',
           i18n: Intl({
+            Ii8nOptions:{
             locale: 'zh_CN',
-            messages:{
-              zh_CN: require('./zh_CN.js').default,
-              pt_PT: require('./pt_PT.js').default,
-              en_US: require('./en_US.js').default
-            }
+              messages:{
+                zh_CN: require('./zh_CN.js').default,
+                pt_PT: require('./pt_PT.js').default,
+                en_US: require('./en_US.js').default
+              }
+            },
+            prefix: 'local',
           }),
         });
 
 
         // zh_CN.js文件
-        import { Intl } from '@baifendian/adherev';
-
-        const local = Intl.getLocal([
+        export default [
           'XXX系统',
-        ]);
-
-        export default { ...local };
+        ];
 
         // pt_PT.js文件
-        import { Intl } from '@baifendian/adherev';
-
-        const local = Intl.getLocal([
+        export default [
           'XXX系统',
-        ]);
-
-        export default { ...local };
+        ];
 
         // en_US.js文件
-        import { Intl } from '@baifendian/adherev';
-
-        const local = Intl.getLocal([
+        export default [
           'XXX系统',
-        ]);
-
-        export default { ...local };
+        ];
       `,
     };
   },

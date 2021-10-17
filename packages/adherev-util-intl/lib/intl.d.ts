@@ -1,11 +1,12 @@
 import VueI18n from 'vue-i18n';
-import { I18nOptions, Path, IVueI18n } from 'vue-i18n/types';
+import { Path, IVueI18n } from 'vue-i18n/types';
 /**
  * getLocal
+ * @param prefix
  * @param data
  * @return object
  */
-export declare function getLocal(data: Array<string>): object;
+export declare function getLocal(prefix: string | undefined, data: Array<string>): object;
 /**
  * extend
  * @param Vue
@@ -17,26 +18,29 @@ export declare function extend(Vue: any): void;
  * @constructor
  */
 declare const I18nFactory: {
-    (config?: I18nOptions): IVueI18n;
+    (config: {
+        I18nOptions: VueI18n.I18nOptions;
+        prefix: any;
+    }): IVueI18n;
     /**
      * tv
      * @param zh
      * @param values
      */
-    tv: (zh: Path) => VueI18n.TranslateResult;
-    v(zh: Path): VueI18n.TranslateResult;
+    tv: (zh: Path) => string | VueI18n.LocaleMessages | undefined;
+    v(zh: Path): string | VueI18n.LocaleMessages | undefined;
     /**
      * tcv
      * @param zh
      * @param values
      */
-    tcv(zh: Path): string;
+    tcv(zh: Path): string | undefined;
     /**
      * tev
      * @param zh
      * @param values
      */
-    tev(zh: Path): boolean;
+    tev(zh: Path): boolean | undefined;
 };
 /**
  * vue-i18n Factory

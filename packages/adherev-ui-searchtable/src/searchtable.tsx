@@ -42,6 +42,10 @@ export default {
       type: Boolean,
       default: true,
     },
+    tableProps: {
+      type: Object,
+      default: () => ({}),
+    },
   },
   data() {
     return {
@@ -51,6 +55,14 @@ export default {
     };
   },
   methods: {
+    /**
+     * renderTableNumberColumn
+     * @description - 渲染序号列
+     * @param number
+     */
+    renderTableNumberColumn(h: CreateElement, number: string = '') {
+      return <span>{number}</span>;
+    },
     /**
      * renderInner
      * @param h
@@ -76,7 +88,11 @@ export default {
             style={searchStyle}
           >
             <FlexLayout>
-              <FlexLayout.Fixed>{this.renderSearchForm(h)}</FlexLayout.Fixed>
+              <FlexLayout.Fixed>
+                <ConditionalRender conditional={this.expand}>
+                  {this.renderSearchForm(h)}
+                </ConditionalRender>
+              </FlexLayout.Fixed>
 
               <FlexLayout.Fixed>{this.renderSearchFooter(h)}</FlexLayout.Fixed>
             </FlexLayout>
@@ -97,6 +113,7 @@ export default {
               pagination={this.getPagination()}
               rowSelection={this.getRowSelection()}
               scopedSlots={scopedSlots}
+              props={{ ...this.tableProps }}
             />
           </FlexLayout.Auto>
         </FlexLayout>
@@ -123,6 +140,36 @@ export default {
         <Button class={`${selectorPrefix}-SearchFooterItem`} onClick={this.onClear}>
           {Intl.tv('重置')}
         </Button>,
+        <ConditionalRender conditional={this.expand}>
+          <a
+            slot="noMatch"
+            style="display: flex; align-items: center"
+            onClick={() => {
+              this.expand = true;
+            }}
+          >
+            <span style="margin-right: 5px;">{Intl.tv('展开')}</span>
+            <img
+              style="width: 16px;"
+              src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBzdGFuZGFsb25lPSJubyI/PjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+PHN2ZyB0PSIxNjMzODYzMjYyMTM1IiBjbGFzcz0iaWNvbiIgdmlld0JveD0iMCAwIDEwMjQgMTAyNCIgdmVyc2lvbj0iMS4xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHAtaWQ9IjE1MjQ0IiB3aWR0aD0iMzIiIGhlaWdodD0iMzIiIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIj48ZGVmcz48c3R5bGUgdHlwZT0idGV4dC9jc3MiPjwvc3R5bGU+PC9kZWZzPjxwYXRoIGQ9Ik0xOTkuMzYgNTcyLjc2OGEzMS45MDQgMzEuOTA0IDAgMCAwIDIyLjYyNC05LjM3NmwyOTQuMTQ0LTI5NC4xNDQgMjg1LjcyOCAyODUuNzI4YTMxLjk2OCAzMS45NjggMCAxIDAgNDUuMjQ4LTQ1LjI0OEw1MzguNzUyIDIwMS4zNzZhMzIgMzIgMCAwIDAtNDUuMjggMEwxNzYuNzA0IDUxOC4xNDRhMzEuOTY4IDMxLjk2OCAwIDAgMCAyMi42NTYgNTQuNjI0eiBtMzM5LjQyNC0xMTUuMzkyYTMyIDMyIDAgMCAwLTQ1LjI4IDBMMTc2LjczNiA3NzQuMTQ0YTMxLjk2OCAzMS45NjggMCAxIDAgNDUuMjQ4IDQ1LjI0OGwyOTQuMTQ0LTI5NC4xNDQgMjg1LjcyOCAyODUuNzI4YTMxLjk2OCAzMS45NjggMCAxIDAgNDUuMjQ4LTQ1LjI0OGwtMzA4LjMyLTMwOC4zNTJ6IiBwLWlkPSIxNTI0NSIgZmlsbD0iIzE4OTBmZiI+PC9wYXRoPjwvc3ZnPg=="
+              alt="up"
+            />
+          </a>
+
+          <a
+            style="display: flex; align-items: center"
+            onClick={() => {
+              this.expand = false;
+            }}
+          >
+            <span style="margin-right: 5px;">{Intl.tv('关闭')}</span>
+            <img
+              style="width: 16px;"
+              src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBzdGFuZGFsb25lPSJubyI/PjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+PHN2ZyB0PSIxNjMzODYzMTc4MzI5IiBjbGFzcz0iaWNvbiIgdmlld0JveD0iMCAwIDEwMjQgMTAyNCIgdmVyc2lvbj0iMS4xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHAtaWQ9IjE0ODY3IiB3aWR0aD0iMzIiIGhlaWdodD0iMzIiIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIj48ZGVmcz48c3R5bGUgdHlwZT0idGV4dC9jc3MiPjwvc3R5bGU+PC9kZWZzPjxwYXRoIGQ9Ik00OTMuNTA0IDU1OC4xNDRhMzEuOTA0IDMxLjkwNCAwIDAgMCA0NS4yOCAwbDMwOC4zNTItMzA4LjM1MmEzMS45NjggMzEuOTY4IDAgMSAwLTQ1LjI0OC00NS4yNDhMNTE2LjE2IDQ5MC4yNzIgMjIxLjk4NCAxOTYuMTI4YTMxLjk2OCAzMS45NjggMCAxIDAtNDUuMjQ4IDQ1LjI0OGwzMTYuNzY4IDMxNi43Njh6IiBwLWlkPSIxNDg2OCIgZmlsbD0iIzE4OTBmZiI+PC9wYXRoPjxwYXRoIGQ9Ik04MDEuODg4IDQ2MC41NzZMNTE2LjE2IDc0Ni4zMDQgMjIyLjAxNiA0NTIuMTZhMzEuOTY4IDMxLjk2OCAwIDEgMC00NS4yNDggNDUuMjQ4bDMxNi43NjggMzE2Ljc2OGEzMS45MDQgMzEuOTA0IDAgMCAwIDQ1LjI4IDBsMzA4LjM1Mi0zMDguMzUyYTMyIDMyIDAgMSAwLTQ1LjI4LTQ1LjI0OHoiIHAtaWQ9IjE0ODY5IiBmaWxsPSIjMTg5MGZmIj48L3BhdGg+PC9zdmc+"
+              alt="down"
+            />
+          </a>
+        </ConditionalRender>,
       ];
 
       // 返回的是VNodes数组
@@ -153,7 +200,6 @@ export default {
             align: 'center',
             width: getTableNumberColumnWidth || 80,
             customRender: (text, row, index) => {
-              console.log('number scopeSlot');
               const numberGeneratorRule =
                 this.getNumberGeneratorRule() || NUMBER_GENERATOR_RULE_ALONE;
 
@@ -164,9 +210,11 @@ export default {
                   conditional={numberGeneratorRule === NUMBER_GENERATOR_RULE_ALONE}
                 >
                   {/* @ts-ignore */}
-                  <span>{index + 1}</span>
+                  <span>{this.renderTableNumberColumn(h, index + 1)}</span>
                   {/* @ts-ignore */}
-                  <span slot="noMatch">{(page - 1) * limit + (index + 1)}</span>
+                  <span slot="noMatch">
+                    {this.renderTableNumberColumn(h, (page - 1) * limit + (index + 1))}
+                  </span>
                 </ConditionalRender>
               );
             },

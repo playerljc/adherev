@@ -492,7 +492,7 @@ function deal401() {
   }
 
   window.location.href = Util.casUrl({
-    baseUrl: this.systemManagerBaseUrl,
+    baseUrl: this.systemManagerBaseURL,
     enterUrl: window.location.href,
   });
 }
