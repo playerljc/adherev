@@ -101,6 +101,8 @@ const BMap = () => lazy(import(/* webpackChunkName: "bmap" */ '@/components/ui/b
 const PolygonSelection = () =>
   lazy(import(/* webpackChunkName: "polygonselection" */ '@/components/ui/polygonselection'));
 const Domain = () => lazy(import(/* webpackChunkName: "domain" */ '@/components/util/domain'));
+const Resource = () =>
+  lazy(import(/* webpackChunkName: "resource" */ '@/components/util/resource'));
 
 export default () => [
   {
@@ -406,6 +408,11 @@ export default () => [
                 path: '/adhere/util/domain',
                 name: 'Domain',
                 component: Domain,
+              },
+              {
+                path: '/adhere/util/resource',
+                name: 'Resource',
+                component: Resource,
               },
             ],
           },
