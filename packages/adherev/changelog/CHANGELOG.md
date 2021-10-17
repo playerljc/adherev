@@ -1,3 +1,23 @@
+# 1.0.2
+
+***
+
+2021-10-17
+
+* **adherev-ui-historyback**
+  - 加入火狐下不支持document.referrer
+* **adherev-ui-searchtable**
+  - 加入自定义序号列的渲染
+  - 搜索栏加入展开和关闭功能
+  - 加入Table的缺省传递props功能
+* **adherev-util**
+  - 加入url库
+* **adherev-util-communication-ajax**
+  - BUG的修改
+* **adherev-util-intl**
+  - 修改系统词条和用户词条的冲突
+  - 加入新词条
+
 # 1.0.1
 
 ***
