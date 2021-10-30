@@ -1,6 +1,6 @@
 {
   "name": "@baifendian/adherev-util-validator",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "一个验证的库",
   "main": "lib/index.js",
   "files": [

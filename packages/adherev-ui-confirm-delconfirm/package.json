@@ -1,6 +1,6 @@
 {
   "name": "@baifendian/adherev-ui-confirm-delconfirm",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "删除确认提示",
   "main": "lib/index.js",
   "files": [
@@ -35,7 +35,7 @@
     "typescript": "^3.8.2"
   },
   "dependencies": {
-    "@baifendian/adherev-ui-messagedialog": "^1.0.2",
+    "@baifendian/adherev-ui-messagedialog": "^1.0.3",
     "@baifendian/adherev-util-intl": "^1.0.2",
     "@baifendian/adherev-util-resource": "^1.0.2"
   }
