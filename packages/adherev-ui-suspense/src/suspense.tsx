@@ -1,19 +1,7 @@
+import Vue from 'vue';
 import { Spin, Skeleton } from 'ant-design-vue';
 
 const selectorPrefix = 'adherev-ui-suspense';
-
-/**
- * renderNormalFirstLoading
- */
-function renderNormalFirstLoading(h) {
-  const result = [];
-
-  for (let i = 0; i < 7; i++) {
-    result.push(<Skeleton key={i + 1} loading active avatar />);
-  }
-
-  return <div class={`${selectorPrefix}-loading`}>{result}</div>;
-}
 
 /**
  * Suspense
@@ -21,7 +9,7 @@ function renderNormalFirstLoading(h) {
  * @overview renderInner: VNode | null
  * @overview fetchData(): void
  */
-export default {
+export default Vue.extend({
   props: {
     reset: {
       type: Boolean,
@@ -56,6 +44,18 @@ export default {
   },
   methods: {
     /**
+     * renderNormalFirstLoading
+     */
+    renderNormalFirstLoading(h) {
+      const result = [];
+
+      for (let i = 0; i < 7; i++) {
+        result.push(<Skeleton key={i + 1} loading active avatar />);
+      }
+
+      return <div class={`${selectorPrefix}-loading`}>{result}</div>;
+    },
+    /**
      * renderFirstLoading
      * @param h
      */
@@ -66,7 +66,7 @@ export default {
         return $slots.firstLoading;
       }
 
-      return renderNormalFirstLoading(h);
+      return this.renderNormalFirstLoading(h);
     },
     /**
      * renderNormal
@@ -110,4 +110,4 @@ export default {
   render(h) {
     return <div class={selectorPrefix}>{this.renderDispatch(h)}</div>;
   },
-};
+});

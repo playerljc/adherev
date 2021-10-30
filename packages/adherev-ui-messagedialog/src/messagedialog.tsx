@@ -17,7 +17,7 @@ import ModalDialog from './modal';
 
 const DEFAULT_LOCAL = 'zh_CN';
 
-const LOCAL = Resource.Dict.value.LocalsAntd;
+const LOCAL = Resource.Dict.value.LocalsAntd.value;
 
 /**
  * renderByIcon

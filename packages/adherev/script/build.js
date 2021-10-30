@@ -64,6 +64,8 @@ const namedMap = new Map([
   ['@baifendian/adherev-util-watchmemoized', 'WatchMemoized'],
   ['@baifendian/adherev-util-mixins', 'Mixins'],
   ['@baifendian/adherev-util-domain', 'Domain'],
+  ['@baifendian/adherev-util-browsersniff', 'Browsersniff'],
+  ['@baifendian/adherev-util-validator', 'Validator'],
 ]);
 
 /**

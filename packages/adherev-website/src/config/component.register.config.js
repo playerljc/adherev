@@ -27,7 +27,9 @@ import {
   Divider,
   Select,
 } from 'ant-design-vue';
+
 import VueHighlightJS from 'vue-highlight.js';
+
 import {
   ConditionalRender,
   DelConfirm,
@@ -59,6 +61,7 @@ import {
   BMap,
   PlayGround,
 } from '@baifendian/adherev';
+
 import Playground from '@/lib/Playground';
 import PlaygroundMulit from '@/lib/PlaygroundMulit';
 import FunctionProps from '@/lib/FunctionProps';

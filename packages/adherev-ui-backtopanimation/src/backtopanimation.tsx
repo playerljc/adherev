@@ -150,7 +150,7 @@ export default {
       }
     },
   },
-  render(h) {
+  render() {
     const { className } = this;
 
     return (

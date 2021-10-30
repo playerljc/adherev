@@ -1,3 +1,27 @@
+# 1.0.3
+
+***
+
+2021-10-29
+
+* **adherev-ui-css**
+  - normalize-antd.less修改
+* **adherev-ui-messagedialog**
+  - BUG的修改
+* **adherev-ui-searchtable**
+  - 修改searchtableimplement.tsx的fetchData方法的传值BUG
+  - 样式大写修改为小写
+  - 加入getDataKey和getTotalKey方法
+  - 把max-width的限制去掉
+  - 关闭和展开查询条件加入默认状态和是否显示
+  - 加入表格体fit和滚动
+  - 加入表格固定列头，表格体滚动
+  - 加入searchtableimplement.tsx的默认实现
+* **adherev-util-browsersniff**
+  - 加入@baifendian/adherev-util-browsersniff
+* **adherev-util-validator**
+  - 加入@baifendian/adherev-util-validator
+
 # 1.0.2
 
 ***

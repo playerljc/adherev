@@ -7,13 +7,13 @@
     <props
       :data="[
         {
-          params: 'className',
+          params: 'wrapStyle',
           desc: '附加样式',
           type: 'string',
           defaultVal: '',
         },
         {
-          params: 'style',
+          params: 'className',
           desc: '附加样式',
           type: 'object',
           defaultVal: '{}',
@@ -54,6 +54,48 @@
           type: 'boolean',
           defaultVal: 'false',
         },
+        {
+          params: 'antdTableProps',
+          desc: 'Table的antd配置',
+          type: 'object',
+          defaultVal: '{}',
+        },
+        {
+          params: 'isShowExpandSearch',
+          desc: '是否有展开和收缩的功能',
+          type: 'boolean',
+          defaultVal: 'true',
+        },
+        {
+          params: 'defaultExpandSearchCollapse',
+          desc: '展开和收缩的默认状态',
+          type: 'boolean',
+          defaultVal: 'true',
+        },
+        {
+          params: 'fitSearch',
+          desc: '撑开search',
+          type: 'boolean',
+          defaultVal: 'true',
+        },
+        {
+          params: 'fitTable',
+          desc: '撑开表格',
+          type: 'boolean',
+          defaultVal: 'true',
+        },
+        {
+          params: 'autoFixed',
+          desc: '是否是查询固定，表格自适应',
+          type: 'boolean',
+          defaultVal: 'true',
+        },
+        {
+          params: 'fixedHeaderAutoTable',
+          desc: '锁定列头，表格滚动',
+          type: 'boolean',
+          defaultVal: 'false',
+        },
       ]"
     />
 
@@ -84,6 +126,29 @@
           returnType: 'string',
           returnDesc:
             'NUMBER_GENERATOR_RULE_ALONE(单独模式),NUMBER_GENERATOR_RULE_CONTINUITY(连续模式)',
+        },
+        {
+          name: 'renderTableNumberColumn',
+          desc: '渲染序号列',
+          modifier: 'public',
+          params: [
+            {
+              name: 'number',
+              desc: '',
+              type: 'string',
+              defaultVal: '',
+              required: '',
+            },
+            {
+              name: 'params',
+              desc: '',
+              type: '{ record: object; index: number }',
+              defaultVal: '',
+              required: '',
+            },
+          ],
+          returnType: 'React.ReactElement',
+          returnDesc: '',
         },
         {
           name: 'getRowKey',
@@ -122,7 +187,7 @@
           desc: '渲染查询的UI',
           modifier: 'public',
           params: [],
-          returnType: 'VNode | null',
+          returnType: 'React.ReactElement | null',
           returnDesc: '',
         },
         {
@@ -138,7 +203,7 @@
               required: '',
             },
           ],
-          returnType: '',
+          returnType: 'React.ReactElement',
           returnDesc: '',
         },
         {
@@ -215,7 +280,7 @@
           desc: '渲染SearchFooter的按钮组',
           modifier: 'public',
           params: [],
-          returnType: 'Array<VNode> | null',
+          returnType: 'Array<React.ReactElement> | null',
           returnDesc: '',
         },
         {
@@ -229,10 +294,329 @@
       ]"
     />
 
+    <h3>searchtableimplement重写的方法</h3>
+    <function-props
+      :data="[
+        {
+          name: 'getFetchListPropName',
+          desc: '获取调用列表接口的函数名',
+          modifier: 'public',
+          params: [],
+          returnType: 'string',
+          returnDesc: '',
+        },
+        {
+          name: 'getFetchListPropNameToFirstUpper',
+          desc: '获取调用列表接口的函数名首字母大写',
+          modifier: 'public',
+          params: [],
+          returnType: 'string',
+          returnDesc: '',
+        },
+        {
+          name: 'onSelectChange',
+          desc: '',
+          modifier: 'public',
+          params: [
+            {
+              name: 'property',
+              desc: '',
+              type: 'string',
+              defaultVal: '',
+              required: '',
+            },
+            {
+              name: 'value',
+              desc: '',
+              type: 'string',
+              defaultVal: '',
+              required: '',
+            },
+          ],
+          returnType: '',
+          returnDesc: '',
+        },
+        {
+          name: 'onInputChange',
+          desc: '',
+          modifier: 'public',
+          params: [
+            {
+              name: 'property',
+              desc: '',
+              type: 'string',
+              defaultVal: '',
+              required: '',
+            },
+            {
+              name: 'e',
+              desc: '',
+              type: 'object',
+              defaultVal: '',
+              required: '',
+            },
+          ],
+          returnType: '',
+          returnDesc: '',
+        },
+        {
+          name: 'onDateTimeRangeChange',
+          desc: '',
+          modifier: 'public',
+          params: [
+            {
+              name: 'propertys',
+              desc: '',
+              type: 'Array<string>',
+              defaultVal: '',
+              required: '',
+            },
+            {
+              name: 'moments',
+              desc: '',
+              type: 'Array<moment>',
+              defaultVal: '',
+              required: '',
+            },
+          ],
+          returnType: '',
+          returnDesc: '',
+        },
+        {
+          name: 'getParams',
+          desc: '获取查询参数对象',
+          modifier: 'public',
+          params: [],
+          returnType: 'Object',
+          returnDesc: '',
+        },
+        {
+          name: 'getServiceName',
+          desc: '获取接口服务的model名称',
+          modifier: 'public',
+          params: [],
+          returnType: 'string',
+          returnDesc: '',
+        },
+        {
+          name: 'getFetchDataParams',
+          desc: '获取调用数据接口的参数',
+          modifier: 'public',
+          params: [],
+          returnType: 'object',
+          returnDesc: '',
+        },
+        {
+          name: 'isShowNumber',
+          desc: '是否线上序号列',
+          modifier: 'public',
+          params: [],
+          returnType: 'boolean',
+          returnDesc: '',
+        },
+        {
+          name: 'getNumberGeneratorRule',
+          desc: '表格序号列的生成规则',
+          modifier: 'public',
+          params: [],
+          returnType: 'Symbol',
+          returnDesc: '',
+        },
+        {
+          name: 'getTableNumberColumnWidth',
+          desc: '表格序号列的宽度',
+          modifier: 'public',
+          params: [],
+          returnType: 'number',
+          returnDesc: '',
+        },
+        {
+          name: 'getRowKey',
+          desc: '数据的主键',
+          modifier: 'public',
+          params: [],
+          returnType: 'string',
+          returnDesc: '',
+        },
+        {
+          name: 'getData',
+          desc: 'Table的数据(Table的dataSource字段)',
+          modifier: 'public',
+          params: [],
+          returnType: 'Array<object>',
+          returnDesc: '',
+        },
+        {
+          name: 'getColumns',
+          desc: 'Table的列',
+          modifier: 'public',
+          params: [],
+          returnType: 'Array<ColumnType<object>>',
+          returnDesc: '',
+        },
+        {
+          name: 'getRowSelection',
+          desc: '获取表格行选择对象',
+          modifier: 'public',
+          params: [],
+          returnType: 'TableRowSelection<object>',
+          returnDesc: '',
+        },
+        {
+          name: 'renderSearchForm',
+          desc: '渲染Table查询的表单',
+          modifier: 'public',
+          params: [],
+          returnType: 'React.ReactElement | null',
+          returnDesc: '',
+        },
+        {
+          name: 'renderInner',
+          desc: '渲染主体',
+          modifier: 'public',
+          params: [],
+          returnType: 'React.ReactElement | null',
+          returnDesc: '',
+        },
+
+        {
+          name: 'getTotal',
+          desc: 'Table数据的总条数',
+          modifier: 'public',
+          params: [],
+          returnType: 'number',
+          returnDesc: '',
+        },
+        {
+          name: 'getOrderFieldProp',
+          desc: '获取排序字段',
+          modifier: 'public',
+          params: [],
+          returnType: 'string',
+          returnDesc: '',
+        },
+        {
+          name: 'getOrderFieldValue',
+          desc: '获取默认排序字段的值',
+          modifier: 'public',
+          params: [],
+          returnType: 'string',
+          returnDesc: '',
+        },
+        {
+          name: 'getOrderProp',
+          desc: '获取排序方式',
+          modifier: 'public',
+          params: [],
+          returnType: 'string',
+          returnDesc: '',
+        },
+        {
+          name: 'getOrderPropValue',
+          desc: '获取默认排序方式',
+          modifier: 'public',
+          params: [],
+          returnType: 'descend' | 'ascend',
+          returnDesc: '',
+        },
+        {
+          name: 'clear',
+          desc: '清空查询条件',
+          modifier: 'public',
+          params: [],
+          returnType: 'Promise<any>',
+          returnDesc: '',
+        },
+        {
+          name: 'renderSearchFooterItems',
+          desc: '渲染表格的工具栏',
+          modifier: 'public',
+          params: [],
+          returnType: 'Array<any>',
+          returnDesc: '',
+        },
+        {
+          name: 'showLoading',
+          desc: '是否显示遮罩',
+          modifier: 'public',
+          params: [],
+          returnType: 'boolean',
+          returnDesc: '',
+        },
+        {
+          name: 'fetchData',
+          desc: '加载数据',
+          modifier: 'public',
+          params: [],
+          returnType: 'Promise<any>',
+          returnDesc: '',
+        },
+        {
+          name: 'fetchDataExecute',
+          desc: '真正的执行获取列表数据的接口',
+          modifier: 'public',
+          params: [
+            {
+              name: 'searchParams',
+              desc: '',
+              type: 'object',
+              defaultVal: '',
+              required: '',
+            },
+          ],
+          returnType: 'Promise<any>',
+          returnDesc: '',
+        },
+        {
+          name: 'onSearch',
+          desc: '点击查询',
+          modifier: 'public',
+          params: [],
+          returnType: 'Promise<any>',
+          returnDesc: '',
+        },
+        {
+          name: 'onSearch',
+          desc: '点击查询',
+          modifier: 'public',
+          params: [],
+          returnType: 'Promise<any>',
+          returnDesc: '',
+        },
+      ]"
+    />
+
     <h2>基本使用</h2>
-    <playground-mulit :config="code1">
-      <Table />
-    </playground-mulit>
+    <playground :code-text="code1">
+      <Table :isShowExpandSearch="true" :defaultExpandSearchCollapse="false" />
+    </playground>
+
+    <h2>表格体可以滚动</h2>
+    <playground :code-text="code2">
+      <div style="display: flex; height: 400px">
+        <Table
+          :wrapStyle="'height: 100%;'"
+          :isShowExpandSearch="true"
+          :defaultExpandSearchCollapse="false"
+          :autoFixed="true"
+        />
+      </div>
+    </playground>
+
+    <h2>固定列头</h2>
+    <playground :code-text="code3">
+      <div style="display: flex; height: 500px">
+        <Table
+          :wrapStyle="'height: 100%;'"
+          :isShowExpandSearch="true"
+          :defaultExpandSearchCollapse="false"
+          :fixedHeaderAutoTable="true"
+        />
+      </div>
+    </playground>
+
+    <h3>table.tsx</h3>
+    <playground-mulit :defaultExpand="true" :config="code4" />
   </div>
 </template>
 <script>
@@ -242,474 +626,311 @@ export default {
   components: {
     Table,
   },
-  data() {
-    return {
-      code1: [
+  computed: {
+    code1() {
+      return `
+  <template>
+    <Table :isShowExpandSearch="true" :defaultExpandSearchCollapse="false" />
+  </template>
+      `;
+    },
+    code2() {
+      return `
+  <template>
+    <div style="display: flex; height: 400px">
+      <Table
+        :wrapStyle="'height: 100%;'"
+        :isShowExpandSearch="true"
+        :defaultExpandSearchCollapse="false"
+        :autoFixed="true"
+      />
+    </div>
+  </template>
+      `;
+    },
+    code3() {
+      return `
+  <template>
+    <div style="display: flex; height: 500px">
+      <Table
+        :wrapStyle="'height: 100%;'"
+        :isShowExpandSearch="true"
+        :defaultExpandSearchCollapse="false"
+        :fixedHeaderAutoTable="true"
+      />
+    </div>
+  </template>
+      `;
+    },
+    code4() {
+      return [
         {
           title: 'table.tsx',
+          lang: 'javascript',
           codeText: `
-            import moment from 'moment';
-            import { Input, Select, InputNumber, DatePicker } from 'ant-design-vue';
-            import { SearchTable, Resource, Ajax } from '@baifendian/adherev';
-
-
-            const request = new Ajax('');
-
-            const { Option } = Select;
-            const { RangePicker } = DatePicker;
-
-            export default {
-              mixins: [SearchTable],
-              data() {
-                return {
-                  name: '',
-                  sex: '',
-                  startTime: null,
-                  endTime: null,
-                  deptCode: '',
-                  homeTown: '',
-                  width: '',
-                  height: '',
-
-                  [this.getOrderFieldProp()]: 'height',
-
-                  [this.getOrderProp()]: 'descend',
-                  // selectedRowKeys
-                  selectedRowKeys: [],
-                  // dataSource
-                  dataSource: {
-                    total: 0,
-                    list: [],
-                  },
-                  // loading
-                  loading: false,
-
-                  // 查询参数
-                  searchParams: {
-                    name: '',
-                    sex: '',
-                    startTime: null,
-                    endTime: null,
-                    deptCode: '',
-                    homeTown: '',
-                    width: '',
-                    height: '',
-                  },
-                };
-              },
-              methods: {
-                isShowNumber() {
-                  return true;
-                },
-                getNumberGeneratorRule() {
-                  return SearchTable.NUMBER_GENERATOR_RULE_CONTINUITY;
-                },
-                getTableNumberColumnWidth() {
-                  return 80;
-                },
-                getRowKey() {
-                  return 'id';
-                },
-                getData() {
-
-                  return this.dataSource.list;
-                },
-                getColumns() {
-                  return [
-                    {
-                      title: '姓名',
-                      dataIndex: 'name',
-                      key: 'name',
-                      align: 'center',
-                    },
-                    {
-                      title: '性别',
-                      dataIndex: 'sex',
-                      key: 'sex',
-                      align: 'center',
-                      scopedSlots: { customRender: 'sex' },
-                    },
-                    {
-                      title: '籍贯',
-                      dataIndex: 'homeTown',
-                      key: 'homeTown',
-                      align: 'center',
-                    },
-                    {
-                      title: '出生年月',
-                      dataIndex: 'birthday',
-                      key: 'birthday',
-                      align: 'center',
-                      sorter: true,
-
-                      sortOrder: this.sortOrder('birthday'),
-                      scopedSlots: { customRender: 'birthday' },
-                    },
-                    {
-                      title: '所在部门',
-                      dataIndex: 'deptName',
-                      key: 'deptName',
-                      align: 'center',
-                    },
-                    {
-                      title: '身高',
-                      dataIndex: 'height',
-                      key: 'height',
-                      align: 'center',
-                      sorter: true,
-
-                      sortOrder: this.sortOrder('height'),
-                    },
-                    {
-                      title: '体重',
-                      dataIndex: 'width',
-                      key: 'width',
-                      align: 'center',
-                      sorter: true,
-
-                      sortOrder: this.sortOrder('width'),
-                    },
-                  ];
-                },
-                getScopedSlots(
-
-                  h,
-                ) {
-                  return {
-                    sex: (text) => {
-                      return Resource.Dict.value.ResourceNormalSexMap.value.get(text).label;
-                    },
-                    birthday: (text) => {
-                      return text ? moment(text).format(Resource.Dict.value.ResourceMomentFormat10.value) : '';
-                    },
-                  };
-                },
-                getRowSelection() {
-                  return {
-
-                    selectedRowKeys: this.selectedRowKeys,
-                    onChange: (selectedRowKeys) => {
-
-                      this.selectedRowKeys = selectedRowKeys;
-                    },
-                  };
-                },
-                renderSearchForm(
-
-                  h,
-                ) {
-
-                  return (
-                    <SearchTable.SearchForm>
-                      <SearchTable.SearchFormRow>
-                        <SearchTable.SearchFormLabel style="width: 100px;">姓名：</SearchTable.SearchFormLabel>
-                        <SearchTable.SearchFormValue>
-                          <Input
-
-                            style="width: 270px"
-                            placeholder="姓名"
-
-                            value={this.name}
-                            onChange={(e) => {
-
-                              this.name = e.target.value.trim();
-                            }}
-                          />
-                        </SearchTable.SearchFormValue>
-
-                        <SearchTable.SearchFormLabel>性别：</SearchTable.SearchFormLabel>
-                        <SearchTable.SearchFormValue>
-                          <Select
-
-                            style="width: 270px"
-
-                            value={this.sex}
-                            onChange={(v) => {
-
-                              this.sex = v;
-                            }}
-                          >
-                            {Resource.Dict.value.ResourceNormalSex.value.map((t) => (
-
-                              <Option key={t.value} value={t.value}>
-                                {t.label}
-                              </Option>
-                            ))}
-                          </Select>
-                        </SearchTable.SearchFormValue>
-
-                        <SearchTable.SearchFormLabel>出生年月：</SearchTable.SearchFormLabel>
-                        <SearchTable.SearchFormValue>
-                          <RangePicker
-
-                            style="width: 270px"
-
-                            value={[this.startTime, this.endTime]}
-                            onChange={(moments) => {
-
-                              this.startTime = moments.length ? moments[0] : null;
-
-                              this.endTime = moments.length ? moments[1] : null;
-                            }}
-                            getCalendarContainer={(el) => el.parentElement}
-                          />
-                        </SearchTable.SearchFormValue>
-                      </SearchTable.SearchFormRow>
-
-                      <SearchTable.SearchFormRow>
-                        <SearchTable.SearchFormLabel>籍贯：</SearchTable.SearchFormLabel>
-                        <SearchTable.SearchFormValue>
-                          <Input
-
-                            style="width: 270px"
-                            placeholder="籍贯"
-
-                            value={this.homeTown}
-                            onChange={(e) => {
-
-                              this.homeTown = e.target.value.trim();
-                            }}
-                          />
-                        </SearchTable.SearchFormValue>
-
-                        <SearchTable.SearchFormLabel>身高：</SearchTable.SearchFormLabel>
-                        <SearchTable.SearchFormValue>
-                          <InputNumber
-
-                            style="width: 270px"
-                            placeholder="身高"
-
-                            value={this.height}
-                            onChange={(v) => {
-
-                              this.height = v;
-                            }}
-                          />
-                        </SearchTable.SearchFormValue>
-
-                        <SearchTable.SearchFormLabel>体重：</SearchTable.SearchFormLabel>
-                        <SearchTable.SearchFormValue>
-                          <InputNumber
-
-                            style="width: 270px"
-                            placeholder="体重"
-
-                            value={this.width}
-                            onChange={(v) => {
-
-                              this.width = v;
-                            }}
-                          />
-                        </SearchTable.SearchFormValue>
-                      </SearchTable.SearchFormRow>
-
-                      <SearchTable.SearchFormRow>
-                        <SearchTable.SearchFormLabel>所在部门：</SearchTable.SearchFormLabel>
-                        <SearchTable.SearchFormValue>
-                          <Select
-
-                            style="width: 270px"
-
-                            value={this.deptCode}
-                            onChange={(v) => {
-
-                              this.deptCode = v;
-                            }}
-                            getPopupContainer={(el) => el.parentElement}
-                          >
-
-                            <Option value="">全部</Option>
-
-                            <Option value="0">产品部</Option>
-
-                            <Option value="1">开发部</Option>
-
-                            <Option value="2">工程部</Option>
-                          </Select>
-                        </SearchTable.SearchFormValue>
-                      </SearchTable.SearchFormRow>
-                    </SearchTable.SearchForm>
-                  );
-                },
-                getTotal() {
-
-                  return this.dataSource.total;
-                },
-                getOrderFieldProp() {
-                  return 'orderField';
-                },
-                getOrderProp() {
-                  return 'order';
-                },
-                clear() {
-                  return new Promise((resolve) => {
-
-                    this.name = '';
-
-                    this.sex = '';
-
-                    this.startTime = null;
-
-                    this.endTime = null;
-
-                    this.deptCode = '';
-
-                    this.homeTown = '';
-
-                    this.width = '';
-
-                    this.height = '';
-                    this[this.getOrderFieldProp()] = 'height';
-                    this[this.getOrderProp()] = 'descend';
-                    // selectedRowKeys
-
-                    this.selectedRowKeys = [];
-
-                    // 查询参数
-
-                    this.searchParams = {
-                      name: '',
-                      sex: '',
-                      startTime: null,
-                      endTime: null,
-                      deptCode: '',
-                      homeTown: '',
-                      width: '',
-                      height: '',
-                    };
-
-                    resolve();
-                  });
-                },
-                renderSearchFooterItems() {
-                  return null;
-                },
-                showLoading() {
-
-                  return this.loading;
-                },
-                onSubTableChange(
-
-                  pagination,
-
-                  filters,
-
-                  sorter,
-                ) {},
-                fetchData() {
-
-                  const { page, limit } = this;
-
-
-                  const { startTime, endTime, ...others } = this.searchParams;
-
-                  const order = this[this.getOrderProp()];
-
-                  const searParams = {
-                    page,
-                    limit,
-                    ...others,
-                    [this.getOrderProp()]: order === 'descend' ? 'desc' : 'asc',
-                    [this.getOrderFieldProp()]: this[this.getOrderFieldProp()],
-                    startTime: startTime
-                      ? startTime.format(Resource.Dict.value.ResourceMomentFormatFull.value)
-                      : null,
-                    endTime: endTime
-                      ? endTime.format(Resource.Dict.value.ResourceMomentFormatFull.value)
-                      : null,
-                  };
-
-                  console.log(searParams);
-
-
-                  this.loading = true;
-
-                  request
-                    .get(
-
-                      {
-                        mock: true,
-                        path: require('./mock.js').default,
-                      },
-                    )
-                    .then((result) => {
-
-                      this.dataSource = {
-
-                        total: result.total,
-
-                        list: result.list,
-                      };
-
-
-                      this.loading = false;
-                    });
-                },
-                onSearch() {
-
-                  const { name, sex, startTime, endTime, deptCode, homeTown, width, height } = this;
-
-
-                  this.searchParams = {
-                    name,
-                    sex,
-                    startTime,
-                    endTime,
-                    deptCode,
-                    homeTown,
-                    width,
-                    height,
-                    [this.getOrderFieldProp()]: this[this.getOrderFieldProp()],
-                    [this.getOrderProp()]: this[this.getOrderProp()],
-                  };
-
-                  this.fetchData();
-                },
-              },
+  import moment from 'moment';
+  import { Input, Select, InputNumber, DatePicker } from 'ant-design-vue';
+  import { SearchTable, Resource, Ajax } from '@baifendian/adherev';
+
+  const request = new Ajax('');
+
+  const { Option } = Select;
+  const { RangePicker } = DatePicker;
+  const { SearchTableImplement, SearchForm, SearchFormRow, SearchFormLabel, SearchFormValue } =
+    SearchTable;
+
+  const SearchTableImplementMixins = SearchTableImplement();
+
+  export default {
+    mixins: [SearchTableImplementMixins],
+    data() {
+      return {
+        loading: false,
+        dataSource: {
+          total: 0,
+          list: [],
+        },
+      };
+    },
+    methods: {
+      getParams() {
+        return {
+          name: '',
+          sex: '',
+          startTime: null,
+          endTime: null,
+          deptCode: '',
+          homeTown: '',
+          width: '',
+          height: '',
+        };
+      },
+      getFetchDataParams() {
+        const { startTime, endTime } = this.searchParams;
+
+        return {
+          startTime: startTime
+            ? startTime.format(Resource.Dict.value.ResourceMomentFormatFull.value)
+            : null,
+          endTime: endTime
+            ? endTime.format(Resource.Dict.value.ResourceMomentFormatFull.value)
+            : null,
+        };
+      },
+      getData() {
+        return this.dataSource.list;
+      },
+      getTotal() {
+        return this.dataSource.total;
+      },
+      getColumns() {
+        return [
+          {
+            title: '姓名',
+            dataIndex: 'name',
+            key: 'name',
+            align: 'center',
+          },
+          {
+            title: '性别',
+            dataIndex: 'sex',
+            key: 'sex',
+            align: 'center',
+            scopedSlots: { customRender: 'sex' },
+          },
+          {
+            title: '籍贯',
+            dataIndex: 'homeTown',
+            key: 'homeTown',
+            align: 'center',
+          },
+          {
+            title: '出生年月',
+            dataIndex: 'birthday',
+            key: 'birthday',
+            align: 'center',
+            sorter: true,
+            sortOrder: this.sortOrder('birthday'),
+            scopedSlots: { customRender: 'birthday' },
+          },
+          {
+            title: '所在部门',
+            dataIndex: 'deptName',
+            key: 'deptName',
+            align: 'center',
+          },
+          {
+            title: '身高',
+            dataIndex: 'height',
+            key: 'height',
+            align: 'center',
+            sorter: true,
+            sortOrder: this.sortOrder('height'),
+          },
+          {
+            title: '体重',
+            dataIndex: 'width',
+            key: 'width',
+            align: 'center',
+            sorter: true,
+            sortOrder: this.sortOrder('width'),
+          },
+        ];
+      },
+      getScopedSlots() {
+        return {
+          sex: (text) => {
+            return Resource.Dict.value.ResourceNormalSexMap.value.get(text).label;
+          },
+          birthday: (text) => {
+            return text ? moment(text).format(Resource.Dict.value.ResourceMomentFormat10.value) : '';
+          },
+        };
+      },
+      renderSearchForm(h) {
+        return (
+          <SearchForm>
+            <SearchFormRow>
+              <SearchFormLabel style="width: 120px;">姓名：</SearchFormLabel>
+              <SearchFormValue>
+                <Input
+                  style="width: 90%"
+                  placeholder="姓名"
+                  value={this.name}
+                  onChange={(e) => {
+                    this.name = e.target.value.trim();
+                  }}
+                />
+              </SearchFormValue>
+
+              <SearchFormLabel style="width: 120px;">性别：</SearchFormLabel>
+              <SearchFormValue>
+                <Select
+                  style="width: 90%"
+                  value={this.sex}
+                  getPopupContainer={Resource.Dict.value.FormPopupContainer.value}
+                  onChange={(v) => {
+                    this.sex = v;
+                  }}
+                >
+                  {Resource.Dict.value.ResourceNormalSex.value.map((t) => (
+                    <Option key={t.value} value={t.value}>
+                      {t.label}
+                    </Option>
+                  ))}
+                </Select>
+              </SearchFormValue>
+
+              <SearchFormLabel style="width: 120px;">出生年月：</SearchFormLabel>
+              <SearchFormValue>
+                <RangePicker
+                  style="width: 90%"
+                  value={[this.startTime, this.endTime]}
+                  getPopupContainer={Resource.Dict.value.FormPopupContainer.value}
+                  onChange={(moments) => {
+                    this.startTime = moments.length ? moments[0] : null;
+
+                    this.endTime = moments.length ? moments[1] : null;
+                  }}
+                  getCalendarContainer={(el) => el.parentElement}
+                />
+              </SearchFormValue>
+            </SearchFormRow>
+
+            <SearchFormRow>
+              <SearchFormLabel style="width: 120px;">籍贯：</SearchFormLabel>
+              <SearchFormValue>
+                <Input
+                  style="width: 90%"
+                  placeholder="籍贯"
+                  value={this.homeTown}
+                  onChange={(e) => {
+                    this.homeTown = e.target.value.trim();
+                  }}
+                />
+              </SearchFormValue>
+
+              <SearchFormLabel style="width: 120px;">身高：</SearchFormLabel>
+              <SearchFormValue>
+                <InputNumber
+                  style="width: 90%"
+                  placeholder="身高"
+                  value={this.height}
+                  onChange={(v) => {
+                    this.height = v;
+                  }}
+                />
+              </SearchFormValue>
+
+              <SearchFormLabel style="width: 120px;">体重：</SearchFormLabel>
+              <SearchFormValue>
+                <InputNumber
+                  style="width: 90%"
+                  placeholder="体重"
+                  value={this.width}
+                  onChange={(v) => {
+                    this.width = v;
+                  }}
+                />
+              </SearchFormValue>
+            </SearchFormRow>
+
+            <SearchFormRow>
+              <SearchFormLabel style="width: 120px;">所在部门：</SearchFormLabel>
+              <SearchFormValue>
+                <Select
+                  style="width: 90%"
+                  value={this.deptCode}
+                  onChange={(v) => {
+                    this.deptCode = v;
+                  }}
+                  getPopupContainer={Resource.Dict.value.FormPopupContainer.value}
+                >
+                  <Option value="">全部</Option>
+
+                  <Option value="0">产品部</Option>
+
+                  <Option value="1">开发部</Option>
+
+                  <Option value="2">工程部</Option>
+                </Select>
+              </SearchFormValue>
+            </SearchFormRow>
+          </SearchForm>
+        );
+      },
+      renderSearchFooterItems() {
+        return null;
+      },
+      showLoading() {
+        return this.loading;
+      },
+      getOrderFieldValue() {
+        return 'height';
+      },
+      fetchDataExecute(searchParams) {
+        this.loading = true;
+
+        return request
+          .get({
+            mock: true,
+            path: require('./mock.js').default,
+          })
+          .then((result) => {
+            this.dataSource = {
+              total: result.total,
+              list: result.list,
             };
 
-          `,
-          lang: 'javascript',
+            this.loading = false;
+          });
+      },
+    },
+  };
+        `,
         },
-        {
-          title: 'mock.js',
-          codeText: `
-            import faker from 'faker';
-
-            import { Util } from '@baifendian/adherev';
-
-            const data = [];
-            data.length = 100;
-            data.fill(0);
-
-            export default {
-              total: data.length,
-              list: data.map(() => ({
-                id: faker.random.uuid(),
-                name: faker.internet.userName(),
-                sex: '' + Util.generatorRandom(0, 1),
-                homeTown: faker.address.city(),
-                birthday: new Date().getTime(),
-                deptName: faker.company.companyName(),
-                height: faker.random.number(),
-                width: faker.random.number(),
-              })),
-            };
-          `,
-          lang: 'javascript',
-        },
-        {
-          title: 'index.vue',
-          codeText: `
-            <template>
-              <h2>基本使用</h2>
-              <Table />
-            </template>
-          `,
-          lang: 'vue',
-        },
-      ],
-    };
+      ];
+    },
   },
 };
 </script>

@@ -103,6 +103,10 @@ const PolygonSelection = () =>
 const Domain = () => lazy(import(/* webpackChunkName: "domain" */ '@/components/util/domain'));
 const Resource = () =>
   lazy(import(/* webpackChunkName: "resource" */ '@/components/util/resource'));
+const Browsersniff = () =>
+  lazy(import(/* webpackChunkName: "browsersniff" */ '@/components/util/browsersniff'));
+const Validator = () =>
+  lazy(import(/* webpackChunkName: "validator" */ '@/components/util/validator'));
 
 export default () => [
   {
@@ -413,6 +417,16 @@ export default () => [
                 path: '/adhere/util/resource',
                 name: 'Resource',
                 component: Resource,
+              },
+              {
+                path: '/adhere/util/browsersniff',
+                name: 'Browsersniff',
+                component: Browsersniff,
+              },
+              {
+                path: '/adhere/util/validator',
+                name: 'Validator',
+                component: Validator,
               },
             ],
           },

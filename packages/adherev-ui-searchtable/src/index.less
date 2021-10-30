@@ -10,29 +10,44 @@
   padding: 24px;
   background-color: #f0f2f5;
 
-  > .adherev-ui-searchtable-SearchWrapper {
+  > .adherev-ui-searchtable-searchwrapper {
     margin-bottom: 16px;
     padding: 24px 24px 0;
     background: #fff;
 
-    .adherev-ui-searchtable-SearchFooterWrapper {
+    .adherev-ui-searchtable-searchfooterwrapper {
       display: flex;
       align-items: center;
       justify-content: flex-end;
       margin-bottom: 20px;
 
-      > .adherev-ui-searchtable-SearchFooterItem {
+      > .adherev-ui-searchtable-searchfooteritem {
+        display: flex;
+        align-items: center;
+
         &:not(:last-child) {
           margin-right: 10px;
+        }
+
+        &.ant-btn {
+          display: flex;
         }
       }
     }
   }
 
-  > .adherev-ui-searchtable-TableWrapper {
+  > .adherev-ui-searchtable-autowrapper {
     position: relative;
     background: #fff;
     border-radius: 2px;
+
+    &.autofixed {
+      overflow-y: auto;
+    }
+
+    > .adherev-ui-searchtable-tablewrapper {
+      width: 100%;
+    }
   }
 }
 
@@ -45,7 +60,7 @@
   > tbody {
     > .adherev-ui-searchform-row {
       > .adherev-ui-searchform-label {
-        max-width: 60px;
+        //max-width: 60px;
         padding-right: 10px;
         white-space: nowrap;
         text-align: right;
@@ -53,4 +68,8 @@
       }
     }
   }
+}
+
+.adherev-ui-searchtableimplement-tablewrapper {
+  height: 100%;
 }

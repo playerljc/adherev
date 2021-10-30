@@ -42,7 +42,7 @@
     "typescript": "^3.8.2"
   },
   "dependencies": {
-    "@baifendian/adhere-ui-css": "^1.0.8",
+    "@baifendian/adhere-ui-css": "^1.0.9",
     "@baifendian/adhere-ui-historyback": "^1.0.8",
     "@baifendian/adhere-util": "^1.0.8",
     "@baifendian/adhere-util-adapterscreen": "^1.0.6",
@@ -101,6 +101,8 @@
     "@baifendian/adherev-util-preferences": "^1.0.0",
     "@baifendian/adherev-util-resource": "^1.0.2",
     "@baifendian/adherev-util-watchmemoized": "^1.0.2",
+    "@baifendian/adherev-util-browsersniff": "^1.0.2",
+    "@baifendian/adherev-util-validator": "^1.0.2",
     "@form-create/ant-design-vue": "^2.5.6",
     "algebra.js": "^0.2.6",
     "ant-design-vue": "^1.7.5",
