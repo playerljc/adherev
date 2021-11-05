@@ -394,9 +394,9 @@ export default Vue.extend({
 
       const { order } = sorter;
 
-      console.log('this.getOrderFieldProp()', this.getOrderFieldProp());
-      console.log('this.getOrderProp()', this.getOrderProp());
-      console.log('sorter', sorter);
+      // console.log('this.getOrderFieldProp()', this.getOrderFieldProp());
+      // console.log('this.getOrderProp()', this.getOrderProp());
+      // console.log('sorter', sorter);
 
       if (!order) return;
 

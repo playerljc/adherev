@@ -5,6 +5,7 @@ import { Intl, Util, Resource } from '@baifendian/adherev';
 import Router from './lib/Router';
 import '@/config/component.register.config.js';
 
+import 'font-awesome/less/font-awesome.less';
 import 'highlight.js/styles/agate.css';
 // TODO:umd umd需要注释掉
 import '@baifendian/adherev/lib/css.less';
