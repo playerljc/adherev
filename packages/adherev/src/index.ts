@@ -37,6 +37,7 @@ import Suspense from '@baifendian/adherev-ui-suspense';
 import SwipeOut from '@baifendian/adherev-ui-swipeout';
 import Util from '@baifendian/adherev-util';
 import AdapterScreen from '@baifendian/adherev-util-adapterscreen';
+import Browsersniff from '@baifendian/adherev-util-browsersniff';
 import Ajax from '@baifendian/adherev-util-communication-ajax';
 import Dict from '@baifendian/adherev-util-dict';
 import Domain from '@baifendian/adherev-util-domain';
@@ -46,9 +47,8 @@ import Mixins from '@baifendian/adherev-util-mixins';
 import NotNull from '@baifendian/adherev-util-notnull';
 import Preferences from '@baifendian/adherev-util-preferences';
 import Resource from '@baifendian/adherev-util-resource';
-import WatchMemoized from '@baifendian/adherev-util-watchmemoized';
-import Browsersniff from '@baifendian/adherev-util-browsersniff';
 import Validator from '@baifendian/adherev-util-validator';
+import WatchMemoized from '@baifendian/adherev-util-watchmemoized';
 
 export { 
   BackTopAnimation,
@@ -90,6 +90,7 @@ export {
   SwipeOut,
   Util,
   AdapterScreen,
+  Browsersniff,
   Ajax,
   Dict,
   Domain,
@@ -99,9 +100,8 @@ export {
   NotNull,
   Preferences,
   Resource,
-  WatchMemoized,
-  Browsersniff,
   Validator,
+  WatchMemoized,
 };
 
 export default {
@@ -303,6 +303,11 @@ AdapterScreen.isUse()){
 AdapterScreen.use(Vue); }
 		if(
 
+Browsersniff.isUse()){ 
+
+Browsersniff.use(Vue); }
+		if(
+
 Ajax.isUse()){ 
 
 Ajax.use(Vue); }
@@ -348,18 +353,13 @@ Resource.isUse()){
 Resource.use(Vue); }
 		if(
 
-WatchMemoized.isUse()){ 
-
-WatchMemoized.use(Vue); }
-		if(
-
-Browsersniff.isUse()){ 
-
-Browsersniff.use(Vue); }
-		if(
-
 Validator.isUse()){ 
 
 Validator.use(Vue); }
+		if(
+
+WatchMemoized.isUse()){ 
+
+WatchMemoized.use(Vue); }
 		},
 };

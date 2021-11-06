@@ -588,7 +588,7 @@
 
     <h2>基本使用</h2>
     <playground :code-text="code1">
-      <Table :isShowExpandSearch="true" :defaultExpandSearchCollapse="false" />
+      <Table :isShowExpandSearch="true" :defaultExpandSearchCollapse="false" :fixedTableSpaceBetween="true" />
     </playground>
 
     <h2>表格体可以滚动</h2>
@@ -611,20 +611,61 @@
           :isShowExpandSearch="true"
           :defaultExpandSearchCollapse="false"
           :fixedHeaderAutoTable="true"
+          :fixedTableSpaceBetween="true"
         />
       </div>
     </playground>
 
-    <h3>table.tsx</h3>
+    <h2>列表两端的渲染</h2>
+    <playground :code-text="code5">
+      <div style="display: flex; height: 800px">
+        <Table
+          :wrapStyle="'height: 100%'"
+          :isShowExpandSearch="true"
+          :defaultExpandSearchCollapse="false"
+          :fixedHeaderAutoTable="true"
+          :fixedTableSpaceBetween="true"
+        >
+          <template v-slot:tableHeader>
+            <div :class="$style.Header">
+              <h3>查询表格</h3>
+              <div>
+                <a-button type="primary">新建</a-button>
+              </div>
+            </div>
+          </template>
+          <template v-slot:tableFooter>
+            <div :class="$style.Footer">renderTableFooter</div>
+          </template>
+        </Table>
+      </div>
+    </playground>
+
+    <h2>分页始终居底</h2>
+    <playground-mulit :config="code6">
+      <div style="display: flex; height: 700px">
+        <FewTable
+          :wrapStyle="'height: 100%'"
+          :isShowExpandSearch="true"
+          :defaultExpandSearchCollapse="false"
+          :fixedHeaderAutoTable="true"
+          :fixedTableSpaceBetween="true"
+        />
+      </div>
+    </playground-mulit>
+
+    <h2>table.tsx</h2>
     <playground-mulit :defaultExpand="true" :config="code4" />
   </div>
 </template>
 <script>
 import Table from './table';
+import FewTable from './fewTable';
 
 export default {
   components: {
     Table,
+    FewTable,
   },
   computed: {
     code1() {
@@ -931,6 +972,112 @@ export default {
         },
       ];
     },
+    code5() {
+      return `
+  <div style="display: flex; height: 800px">
+    <Table
+      :wrapStyle="'height: 100%'"
+      :isShowExpandSearch="true"
+      :defaultExpandSearchCollapse="false"
+      :fixedHeaderAutoTable="true"
+      :fixedTableSpaceBetween="true"
+    >
+      <template v-slot:tableHeader>
+        <div :class="$style.Header">
+          <h3>查询表格</h3>
+          <div>
+            <a-button type="primary">新建</a-button>
+          </div>
+        </div>
+      </template>
+      <template v-slot:tableFooter>
+        <div :class="$style.Footer">renderTableFooter</div>
+      </template>
+    </Table>
+  </div>
+      `;
+    },
+    code6() {
+      return [
+        {
+          title: 'fewTable.tsx',
+          lang: 'javascript',
+          codeText: `
+  import Table from './table';
+  import { oneFew } from './mock';
+  import { Ajax } from '@baifendian/adherev';
+
+  const request = new Ajax('');
+
+  export default {
+    mixins: [Table],
+    methods: {
+      fetchDataExecute(searchParams) {
+        this.loading = true;
+
+        return request
+          .get({
+            mock: true,
+            path: oneFew,
+          })
+          .then((result) => {
+            this.dataSource = {
+              total: result.total,
+              list: result.list,
+            };
+
+            this.loading = false;
+          });
+      },
+    },
+  };
+        `,
+        },
+        {
+          title: 'index.vue',
+          lang: 'vue',
+          codeText: `
+  <template>
+    <div style="display: flex; height: 700px">
+      <FewTable
+        :wrapStyle="'height: 100%'"
+        :isShowExpandSearch="true"
+        :defaultExpandSearchCollapse="false"
+        :fixedHeaderAutoTable="true"
+        :fixedTableSpaceBetween="true"
+      />
+    </div>
+  </template>
+  <script>
+    import FewTable from './fewTable';
+
+    export default {
+      components: {
+        FewTable
+      }
+    }
+  <\/script>
+          `
+        }
+      ];
+    }
   },
 };
 </script>
+
+<style lang="less" module>
+.Header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  background-color: #fff;
+}
+
+.Footer {
+  padding: 0 20px 20px 20px;
+  font-size: 16px;
+  text-align: center;
+  background-color: #fff;
+}
+</style>

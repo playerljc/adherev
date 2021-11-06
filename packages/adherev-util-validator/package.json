@@ -35,6 +35,6 @@
     "typescript": "^3.9.4"
   },
   "dependencies": {
-    "@baifendian/adhere-util-validator": "^1.0.9"
+    "@baifendian/adhere-util-validator": "^1.0.10"
   }
 }

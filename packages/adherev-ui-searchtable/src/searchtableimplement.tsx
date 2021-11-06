@@ -285,14 +285,14 @@ export default (serviceName) =>
           return this.loading[`${serviceName}/${this.getFetchListPropName()}`];
         },
         /**
-         * fetchData
-         * @description - 加载数据
-         * @override
+         * getSearchParams
+         * @description - 获取查询参数
+         * @protected
          */
-        fetchData(): Promise<any> {
+        getSearchParams(): any {
           const { page, limit, searchParams } = this;
 
-          return this.fetchDataExecute({
+          return {
             ...{
               page,
               limit,
@@ -301,7 +301,15 @@ export default (serviceName) =>
               [this.getOrderProp()]: this.getOrderPropValue() || 'descend',
               ...this.getFetchDataParams(),
             },
-          });
+          };
+        },
+        /**
+         * fetchData
+         * @description - 加载数据
+         * @override
+         */
+        fetchData(): Promise<any> {
+          return this.fetchDataExecute(this.getSearchParams());
         },
         /**
          * fetchDataExecute
@@ -340,6 +348,14 @@ export default (serviceName) =>
             });
           });
         },
+        /**
+         * renderSearchTableImplement
+         * @description - renderSearchTableImplement
+         * @param h
+         */
+        renderSearchTableImplement(h) {
+          return this.renderSearchTable(h);
+        },
       },
       serviceName
         ? {
@@ -348,4 +364,7 @@ export default (serviceName) =>
           }
         : {},
     ),
+    render(h) {
+      return this.renderSearchTableImplement(h);
+    },
   });

@@ -35,7 +35,7 @@
     "typescript": "^3.8.2"
   },
   "dependencies": {
-    "@baifendian/adhere-ui-bmap": "^1.0.8",
+    "@baifendian/adhere-ui-bmap": "^1.0.10",
     "@baifendian/adherev-ui-conditionalrender": "^1.0.0"
   }
 }

@@ -85,6 +85,11 @@ export default Vue.extend({
       type: Boolean,
       default: false,
     },
+    // 两端固定(表格的头始终在上方，分页始终在下方)
+    fixedTableSpaceBetween: {
+      type: Boolean,
+      default: false,
+    },
   },
   data() {
     return {
@@ -147,13 +152,18 @@ export default Vue.extend({
         fitSearch,
         fitTable,
         autoFixed,
+        fixedTableSpaceBetween,
       } = this;
 
       return (
         <FlexLayout
           direction="vertical"
           style={wrapStyle || ''}
-          className={classNames(selectorPrefix, ...(className || '').split(' '))}
+          className={classNames(
+            selectorPrefix,
+            fixedTableSpaceBetween ? 'fixedtablespacebetween' : '',
+            ...(className || '').split(' '),
+          )}
         >
           <Fixed
             style={searchStyle || ''}
@@ -174,6 +184,10 @@ export default Vue.extend({
             </FlexLayout>
           </Fixed>
 
+          <ConditionalRender conditional={!!this.$slots.tableHeader}>
+            <Fixed>{this.$slots.tableHeader}</Fixed>
+          </ConditionalRender>
+
           <Auto
             style={tableStyle || ''}
             className={classNames(
@@ -188,6 +202,10 @@ export default Vue.extend({
               {this.renderTable(h)}
             </div>
           </Auto>
+
+          <ConditionalRender conditional={!!this.$slots.tableFooter}>
+            <Fixed>{this.$slots.tableFooter}</Fixed>
+          </ConditionalRender>
         </FlexLayout>
       );
     },
@@ -325,7 +343,6 @@ export default Vue.extend({
         }
       }
 
-      console.log('111111111111', fixedHeaderAutoTable, this.scrollY, tableProps);
       return <Table {...tableProps} />;
     },
     /**
@@ -340,6 +357,15 @@ export default Vue.extend({
       const isShowNumber = this.isShowNumber();
 
       const getTableNumberColumnWidth = this.getTableNumberColumnWidth();
+
+      // 对权限进行过滤
+      const columns = this.getColumns().filter((column) => {
+        if ('authorized' in column) {
+          return column.authorized();
+        }
+
+        return true;
+      });
 
       if (isShowNumber) {
         return [
@@ -370,10 +396,10 @@ export default Vue.extend({
               );
             },
           },
-        ].concat(this.getColumns());
+        ].concat(columns);
       }
 
-      return this.getColumns();
+      return columns;
     },
     /**
      * onTableChange - 表格change
@@ -455,5 +481,16 @@ export default Vue.extend({
         showQuickJumper: true,
       };
     },
+    /**
+     * renderSearchTable
+     * @description - renderSearchTable
+     * @param h
+     */
+    renderSearchTable(h) {
+      return <div class={`${selectorPrefix}-wrap`}>{this.renderSuspense(h)}</div>;
+    },
+  },
+  render(h) {
+    return this.renderSearchTable(h);
   },
 });

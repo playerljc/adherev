@@ -1,4 +1,4 @@
-import Vue from 'vue';
+import Vue, { VNode } from 'vue';
 import { Spin, Skeleton } from 'ant-design-vue';
 
 const selectorPrefix = 'adherev-ui-suspense';
@@ -46,7 +46,7 @@ export default Vue.extend({
     /**
      * renderNormalFirstLoading
      */
-    renderNormalFirstLoading(h) {
+    renderNormalFirstLoading(h): VNode | null {
       const result = [];
 
       for (let i = 0; i < 7; i++) {
@@ -59,7 +59,7 @@ export default Vue.extend({
      * renderFirstLoading
      * @param h
      */
-    renderFirstLoading(h) {
+    renderFirstLoading(h): VNode | null {
       const { $slots } = this;
 
       if ($slots.firstLoading) {
@@ -72,7 +72,7 @@ export default Vue.extend({
      * renderNormal
      * @param h
      */
-    renderNormal(h) {
+    renderNormal(h: VNode | null) {
       return (
         <Spin size="large" spinning={this.showLoading()}>
           {this.renderInner(h)}
@@ -102,12 +102,20 @@ export default Vue.extend({
 
       return this.renderNormal(h);
     },
+    /**
+     * renderSuspense
+     * @description - renderSuspense
+     * @param h
+     */
+    renderSuspense(h) {
+      return <div class={selectorPrefix}>{this.renderDispatch(h)}</div>;
+    },
   },
   /**
    * render
    * @param h
    */
   render(h) {
-    return <div class={selectorPrefix}>{this.renderDispatch(h)}</div>;
+    return this.renderSuspense(h);
   },
 });
