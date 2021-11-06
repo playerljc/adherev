@@ -1,6 +1,6 @@
 {
   "name": "@baifendian/adherev-ui-confirm-importantconfirm",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "重要操作确认提示",
   "main": "lib/index.js",
   "files": [
@@ -35,8 +35,8 @@
     "typescript": "^3.8.2"
   },
   "dependencies": {
-    "@baifendian/adherev-ui-messagedialog": "^1.0.3",
-    "@baifendian/adherev-util-intl": "^1.0.2",
-    "@baifendian/adherev-util-resource": "^1.0.2"
+    "@baifendian/adherev-ui-messagedialog": "^1.0.4",
+    "@baifendian/adherev-util-intl": "^1.0.4",
+    "@baifendian/adherev-util-resource": "^1.0.4"
   }
 }

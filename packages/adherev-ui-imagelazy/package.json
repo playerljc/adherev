@@ -1,6 +1,6 @@
 {
   "name": "@baifendian/adherev-ui-imagelazy",
-  "version": "1.0.0",
+  "version": "1.0.4",
   "description": "图片懒加载",
   "main": "lib/index.js",
   "files": [

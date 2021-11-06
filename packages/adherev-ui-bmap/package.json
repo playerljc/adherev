@@ -1,6 +1,6 @@
 {
   "name": "@baifendian/adherev-ui-bmap",
-  "version": "1.0.2",
+  "version": "1.0.4",
   "description": "百度地图3.0的封装",
   "main": "lib/index.js",
   "files": [
@@ -36,6 +36,6 @@
   },
   "dependencies": {
     "@baifendian/adhere-ui-bmap": "^1.0.10",
-    "@baifendian/adherev-ui-conditionalrender": "^1.0.0"
+    "@baifendian/adherev-ui-conditionalrender": "^1.0.4"
   }
 }

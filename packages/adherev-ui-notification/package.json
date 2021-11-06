@@ -1,6 +1,6 @@
 {
   "name": "@baifendian/adherev-ui-notification",
-  "version": "1.0.2",
+  "version": "1.0.4",
   "description": "通知",
   "main": "lib/index.js",
   "files": [
@@ -35,7 +35,7 @@
     "typescript": "^3.8.2"
   },
   "dependencies": {
-    "@baifendian/adherev-util": "^1.0.2",
+    "@baifendian/adherev-util": "^1.0.4",
     "classnames": "^2.2.6",
     "omit.js": "^2.0.2",
     "uuid": "^8.3.2",

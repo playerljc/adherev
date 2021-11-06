@@ -1,6 +1,6 @@
 {
   "name": "@baifendian/adherev-ui-revolving",
-  "version": "1.0.0",
+  "version": "1.0.4",
   "description": "走马灯",
   "main": "lib/index.js",
   "files": [
