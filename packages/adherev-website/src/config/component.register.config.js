@@ -48,6 +48,9 @@ import {
   SplitLayout,
   ScrollLoad,
   SlideLayout,
+  SuccessPrompt,
+  ErrorPrompt,
+  WarnPrompt,
   PullRefresh,
   Revolving,
   SliderScale,
@@ -60,12 +63,34 @@ import {
   ImageLazy,
   BMap,
   PlayGround,
+  ContextMenu,
+  GlobalIndicator,
+  HistoryBack,
+  Notification,
+  PolygonSelection,
+  Popup,
+  AdapterScreen,
+  Browsersniff,
+  Ajax,
+  Dict,
+  Domain,
+  Emitter,
+  NotNull,
+  Preferences,
+  Resource,
+  Validator,
+  WatchMemoized,
+  Util,
 } from '@baifendian/adherev';
 
 import Playground from '@/lib/Playground';
 import PlaygroundMulit from '@/lib/PlaygroundMulit';
 import FunctionProps from '@/lib/FunctionProps';
 import Props from '@/lib/Props';
+
+import en_US from '@/locales/en_US';
+import zh_CN from '@/locales/zh_CN';
+import pt_PT from '@/locales/pt_PT';
 
 Vue.use(Menu);
 Vue.use(Button);
@@ -101,7 +126,13 @@ DelConfirm.use(Vue);
 ImportantConfirm.use(Vue);
 Permission.use(Vue);
 Intl.use(Vue);
-MessageDialog.use(Vue);
+MessageDialog.use(Vue, {
+  messages: {
+    en_US,
+    zh_CN,
+    pt_PT,
+  },
+});
 Space.use(Vue);
 Spin.use(Vue);
 Split.use(Vue);
@@ -115,6 +146,9 @@ ScrollLoad.use(Vue);
 SlideLayout.use(Vue);
 PullRefresh.use(Vue);
 Revolving.use(Vue);
+SuccessPrompt.use(Vue);
+ErrorPrompt.use(Vue);
+WarnPrompt.use(Vue);
 SliderScale.use(Vue);
 StickupLayout.use(Vue);
 Surnames.use(Vue);
@@ -125,6 +159,24 @@ JdCategoryTab.use(Vue);
 ImageLazy.use(Vue);
 BMap.use(Vue);
 PlayGround.use(Vue);
+ContextMenu.use(Vue);
+GlobalIndicator.use(Vue);
+HistoryBack.use(Vue);
+Notification.use(Vue);
+PolygonSelection.use(Vue);
+Popup.use(Vue);
+AdapterScreen.use(Vue);
+Browsersniff.use(Vue);
+Ajax.use(Vue);
+Dict.use(Vue);
+Domain.use(Vue);
+Emitter.use(Vue);
+NotNull.use(Vue);
+Preferences.use(Vue);
+Resource.use(Vue);
+Validator.use(Vue);
+WatchMemoized.use(Vue);
+Util.use(Vue);
 
 Vue.use(Playground);
 Vue.use(PlaygroundMulit);

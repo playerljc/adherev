@@ -5,7 +5,10 @@ import PlayGroundMulit from './PlayGroundMulit';
 import Props from './Props';
 import FunctionProps from './FunctionProps';
 
-import { withInstall } from '../../_util';
+import BfdUtil from '@baifendian/adherev-util';
+const {
+  _util: { withInstall, withVue },
+} = BfdUtil;
 
 const Component = withInstall(PlayGround);
 
@@ -21,6 +24,8 @@ Component.use = (Vue) => {
   Vue.use(Component.FunctionProps);
   Vue.use(Component.Props);
   Vue.use(VueHighlightJS);
+
+  withVue(Vue, 'PlayGround', Component);
 };
 
 export default Component;

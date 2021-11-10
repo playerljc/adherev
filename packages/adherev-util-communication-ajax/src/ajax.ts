@@ -330,7 +330,7 @@ function sendPrepare(
     if (!('Content-type' in headers) && method !== ('get' || 'GET')) {
       headers['Content-Type'] = `${Ajax.CONTENT_TYPE_APPLICATION_JSON};charset=utf-8`;
       contentType = headers['Content-Type'];
-      console.log('设置了header，但是没有设置Content-Type', Ajax.CONTENT_TYPE_MULTIPART_FORM_DATA);
+      // console.log('设置了header，但是没有设置Content-Type', Ajax.CONTENT_TYPE_MULTIPART_FORM_DATA);
     }
 
     for (const header in headers) {
@@ -349,11 +349,11 @@ function sendPrepare(
           data.form instanceof HTMLFormElement
         )
       ) {
-        console.log('默认设置Content-Type', `${Ajax.CONTENT_TYPE_APPLICATION_JSON};charset=utf-8`);
+        // console.log('默认设置Content-Type', `${Ajax.CONTENT_TYPE_APPLICATION_JSON};charset=utf-8`);
         contentType = `${Ajax.CONTENT_TYPE_APPLICATION_JSON};charset=utf-8`;
         xhr.setRequestHeader('Content-Type', `${Ajax.CONTENT_TYPE_APPLICATION_JSON};charset=utf-8`);
       } else {
-        console.log('有formData不需要设置Content-Type');
+        // console.log('有formData不需要设置Content-Type');
         contentType = Ajax.CONTENT_TYPE_MULTIPART_FORM_DATA;
       }
     }
@@ -412,11 +412,11 @@ function getSendParams({ data, contentType }) {
   // multipart/form-data
   // FormData
 
-  console.log('getSendParams', data, contentType);
+  // console.log('getSendParams', data, contentType);
 
   // application/json
   if (contentType.indexOf(Ajax.CONTENT_TYPE_APPLICATION_JSON) === 0 && Util.isRef(data)) {
-    console.log('数据需要被转换成JSON字符串', JSON.stringify(data));
+    // console.log('数据需要被转换成JSON字符串', JSON.stringify(data));
     return JSON.stringify(data);
   }
 
@@ -425,7 +425,7 @@ function getSendParams({ data, contentType }) {
     contentType.indexOf(Ajax.CONTENT_TYPE_APPLICATION_X_WWW_FORM_URLENCODED) === 0 &&
     Util.isObject(data)
   ) {
-    console.log('application/x-www-form-urlencoded转换', JSON.stringify(data));
+    // console.log('application/x-www-form-urlencoded转换', JSON.stringify(data));
     return Array.from(Object.keys(data))
       .map((k) => encodeURIComponent(`${k}=${data[k]}`))
       .join('&');
@@ -433,14 +433,14 @@ function getSendParams({ data, contentType }) {
 
   // multipart/form-data
   if (contentType.indexOf(Ajax.CONTENT_TYPE_MULTIPART_FORM_DATA) === 0 && Util.isObject(data)) {
-    console.log('multipart/form-data转换');
-    console.log('form', data.form);
+    // console.log('multipart/form-data转换');
+    // console.log('form', data.form);
 
     const formData = new FormData(data.form);
 
     Array.from(Object.keys(data.data)).forEach(function (k) {
       formData.append(k, data.data[k]);
-      console.log(k, data.data[k]);
+      // console.log(k, data.data[k]);
     });
 
     return formData;

@@ -4,12 +4,14 @@
     "declarationDir": "./lib",
     "outDir": "./lib",
     "baseUrl": "./",
-    "module": "esnext"
+    "module": "esnext",
+    "jsx": "preserve"
   },
   "exclude": [
     "node_modules"
   ],
   "include": [
+    "../_util/index.ts",
     "src/**/*"
   ]
 }

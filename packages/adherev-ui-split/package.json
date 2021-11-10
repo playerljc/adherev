@@ -29,6 +29,9 @@
   "publishConfig": {
     "access": "public"
   },
+  "dependencies": {
+    "@baifendian/adherev-util": "^1.0.4"
+  },
   "devDependencies": {
     "@babel/runtime": "^7.7.4",
     "@ctsj/buildv": "^2.0.2",

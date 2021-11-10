@@ -5,7 +5,10 @@ import * as TitleLayer from './titlelayer';
 import Util from './util';
 import AnimationManager from './animationmanager';
 
-import { withInstall } from '../../_util';
+import BfdUtil from '@baifendian/adherev-util';
+const {
+  _util: { withInstall, withVue },
+} = BfdUtil;
 
 const Component = {
   AnimationManager,
@@ -22,6 +25,8 @@ Component.use = (Vue) => {
   Vue.use(Component.OLMap);
 
   Vue.use(Component.HeatMap);
+
+  withVue(Vue, 'OLMap', Component);
 };
 
 Component.OLMap = withInstall(Component.OLMap);

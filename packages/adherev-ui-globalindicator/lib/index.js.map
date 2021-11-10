@@ -1,1 +1,0 @@
-{"version":3,"file":"index.js","sources":["index.js"],"sourcesContent":["import GlobalIndicator from './globalindicator';\r\nGlobalIndicator.isUse = function () { return false; };\r\nexport default GlobalIndicator;\r\n"],"names":["GlobalIndicator","isUse"],"mappings":"OAAOA,wCACPA,gBAAgBC,MAAQ,WAAc,OAAO,kBAC9BD"}

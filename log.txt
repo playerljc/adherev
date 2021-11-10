@@ -84,3 +84,25 @@ adherev-ui-imagelazy(demo)
  demo
   1.风场
   2.util
+
+
+.需要在Vue.prototype中进行注册的组件
+ .adherev-ui-contextmenu
+ .adherev-ui-globalindicator
+ .adherev-ui-historyback
+ .adherev-ui-notification
+ .adherev-ui-polygonselection
+ .adherev-ui-popup
+ .adherev-util-adapterscreen
+ .adherev-util-browsersniff
+ .adherev-util-communication-ajax
+ .adherev-util-dict
+ .adherev-util-domain
+ .adherev-util-emitter
+ .adherev-util-notnull
+ .adherev-util-preferences
+ .adherev-util-resource
+ .adherev-util-validator
+ .adherev-util-watchmemoized
+ .adherev-util
+

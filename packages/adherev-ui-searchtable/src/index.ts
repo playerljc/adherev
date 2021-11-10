@@ -15,7 +15,10 @@ import SearchTable, {
 
 import SearchTableImplement from './searchtableimplement';
 
-import { withInstall } from '../../_util';
+import BfdUtil from '@baifendian/adherev-util';
+const {
+  _util: { withInstall, withVue },
+} = BfdUtil;
 
 SearchTable.isUse = () => true;
 
@@ -31,6 +34,8 @@ SearchTable.use = (Vue) => {
   Vue.use(Table);
 
   Vue.use(Button);
+
+  withVue(Vue, 'SearchTable', SearchTable);
 };
 
 SearchTable.SearchForm = withInstall(SearchForm);

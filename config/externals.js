@@ -9,6 +9,7 @@ exports.defaultExternals = {
   swiper: 'commonjs2 swiper',
   iscroll: 'commonjs2 iscroll',
   uuid: 'commonjs2 uuid',
+  '@baifendian/adherev-util': 'commonjs2 @baifendian/adherev-util',
 };
 
 exports.externals = function (externals) {

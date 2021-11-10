@@ -41,20 +41,20 @@ export default {
       const clientWidth = document.body.clientWidth || document.documentElement.clientWidth;
       const clientHeight = document.body.clientHeight || document.documentElement.clientHeight;
 
-      console.log(
-        'x',
-        x,
-        'y',
-        y,
-        'menuWidth',
-        menuWidth,
-        'menuHeight',
-        menuHeight,
-        'clientWidth',
-        clientWidth,
-        'clientHeight',
-        clientHeight,
-      );
+      // console.log(
+      //   'x',
+      //   x,
+      //   'y',
+      //   y,
+      //   'menuWidth',
+      //   menuWidth,
+      //   'menuHeight',
+      //   menuHeight,
+      //   'clientWidth',
+      //   clientWidth,
+      //   'clientHeight',
+      //   clientHeight,
+      // );
 
       if (clientWidth - x < menuWidth) {
         x = clientWidth - menuWidth;

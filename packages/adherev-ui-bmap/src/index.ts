@@ -1,6 +1,9 @@
 import OriginBMap from '@baifendian/adhere-ui-bmap';
 import BMapComponent from './bmap';
-import { withInstall } from '../../_util';
+import Util from '@baifendian/adherev-util';
+const {
+  _util: { withInstall, withVue },
+} = Util;
 
 const BMap = {
   ...OriginBMap,
@@ -11,6 +14,7 @@ BMap.isUse = () => true;
 
 BMap.use = (Vue) => {
   Vue.use(BMapComponent);
+  withVue(Vue, 'BMap', BMap);
 };
 
 withInstall(BMapComponent);

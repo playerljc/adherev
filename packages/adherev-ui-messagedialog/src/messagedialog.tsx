@@ -5,19 +5,25 @@ import Intl from '@baifendian/adherev-util-intl';
 import Resource from '@baifendian/adherev-util-resource';
 import Util from '@baifendian/adherev-util';
 
-import { IAlertArgv, IConfirmArgv, IPromptConfig } from './types';
-import { Fragment } from '../../_util';
-
-export const selectorPrefix = 'adherev-ui-messagedialog';
+import { IAlertArgv, IConfig, IConfirmArgv, IPromptConfig } from './types';
 
 import Actions from './actions';
 import Emitter from './emitter';
 
 import ModalDialog from './modal';
 
+export const selectorPrefix = 'adherev-ui-messagedialog';
+
 const DEFAULT_LOCAL = 'zh_CN';
 
 const LOCAL = Resource.Dict.value.LocalsAntd.value;
+
+const {
+  _util: { Fragment },
+} = Util;
+
+// MessageDialog的配置
+let globalConfig: IConfig | null = null;
 
 /**
  * renderByIcon
@@ -399,6 +405,13 @@ const MessageDialogFactory = {
     const el = document.createElement('div');
 
     const _vm = new Vue({
+      i18n: Intl({
+        I18nOptions: {
+          messages: (globalConfig || {}).messages,
+          locale: local || DEFAULT_LOCAL,
+        },
+        prefix: 'local',
+      }),
       render(h) {
         const footerJSX = renderFooter({ config, h });
 
@@ -439,5 +452,9 @@ const MessageDialogFactory = {
     Emitter.trigger(Actions.close, el);
   },
 };
+
+export function setConfig(gc: IConfig) {
+  globalConfig = gc;
+}
 
 export default MessageDialogFactory;

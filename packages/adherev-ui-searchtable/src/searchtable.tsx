@@ -103,12 +103,22 @@ export default Vue.extend({
     if (!this.$refs.tableWrapRef) return;
 
     if (this.fixedHeaderAutoTable) {
+      const data = this.getData();
+
       if (
-        (prevState.scrollY === 0 && this.scrollY === 0) ||
-        (prevState.scrollY !== 0 && this.scrollY !== 0 && prevState.scrollY !== this.scrollY) ||
-        prevState.expand !== this.expand
+        data &&
+        data.length &&
+        ((prevState.scrollY === 0 && this.scrollY === 0) ||
+          (prevState.scrollY !== 0 && this.scrollY !== 0 && prevState.scrollY !== this.scrollY) ||
+          prevState.expand !== this.expand)
       ) {
         const tableWrapRef = this.$refs.tableWrapRef as HTMLElement;
+
+        const scrollBodyEl = this.getScrollBodyEl();
+        if (scrollBodyEl) {
+          scrollBodyEl.removeEventListener('scroll', this.onScrollBodyScroll);
+          scrollBodyEl.addEventListener('scroll', this.onScrollBodyScroll);
+        }
 
         const tableHeaderHeight = (tableWrapRef.querySelector('.ant-table-thead') as HTMLElement)
           ?.offsetHeight;
@@ -126,7 +136,34 @@ export default Vue.extend({
       }
     }
   },
+  beforeDestroy() {
+    const { fixedHeaderAutoTable } = this;
+
+    if (fixedHeaderAutoTable) {
+      this.getScrollBodyEl()?.removeEventListener('scroll', this.onScrollBodyScroll);
+    }
+  },
   methods: {
+    onScrollBodyScroll() {
+      const scrollBodyEl = this.getScrollBodyEl();
+      const scrollHeaderEl = this.getScrollHeaderEl();
+
+      scrollHeaderEl?.scrollLeft = scrollBodyEl?.scrollLeft;
+    },
+    getScrollHeaderEl(): HTMLElement | null {
+      const tableWrapRef: HTMLElement = this.$refs.tableWrapRef as HTMLElement;
+
+      return tableWrapRef?.querySelector(
+        '.ant-table-wrapper > .ant-spin-nested-loading > .ant-spin-container > .ant-table > .ant-table-content > .ant-table-scroll > .ant-table-header',
+      );
+    },
+    getScrollBodyEl(): HTMLElement | null {
+      const tableWrapRef: HTMLElement = this.$refs.tableWrapRef as HTMLElement;
+
+      return tableWrapRef?.querySelector(
+        '.ant-table-wrapper > .ant-spin-nested-loading > .ant-spin-container > .ant-table > .ant-table-content > .ant-table-scroll > .ant-table-body',
+      );
+    },
     /**
      * renderTableNumberColumn
      * @description - 渲染序号列

@@ -5,6 +5,10 @@ import { Intl, Util, Resource } from '@baifendian/adherev';
 import Router from './lib/Router';
 import '@/config/component.register.config.js';
 
+import en_US from './locales/en_US';
+import zh_CN from './locales/zh_CN';
+import pt_PT from './locales/pt_PT';
+
 import 'font-awesome/less/font-awesome.less';
 import 'highlight.js/styles/agate.css';
 // TODO:umd umd需要注释掉
@@ -21,7 +25,13 @@ Resource.Dict.value.LocalsMoment.value[lang]();
 new Vue({
   el: '#container',
   i18n: Intl({
+    // @ts-ignore
     I18nOptions: {
+      messages: {
+        en_US,
+        zh_CN,
+        pt_PT,
+      },
       locale: lang,
     },
     prefix: 'local',

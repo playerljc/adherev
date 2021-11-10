@@ -72,6 +72,14 @@ module.exports = {
       use: 'raw-loader',
     });
 
+    // 在使用babel-plugin-import的时候让adherev也执行
+    // 但是现在adherev-util|util编译完的都是require并不是import所以没有被作用
+    delete webpackConfig.module.rules[1].exclude;
+    webpackConfig.module.rules[0].include = [
+      path.join(__dirname, 'src'),
+      /@baifendian[\\/]adherev?-?/,
+    ];
+
     // TODO:umd umd的时候需要注释掉
     // babel-plugin-import的配置
     const { use } = webpackConfig.module.rules[1];

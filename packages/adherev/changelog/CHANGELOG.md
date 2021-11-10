@@ -1,3 +1,17 @@
+# 1.0.5
+
+***
+
+2021-11-10
+
+* **adherev**
+  - 加入$adv快速访问
+* **adherev-ui-messagedialog**
+  - Vue实例加入i18n国际化
+* **adherev-ui-searchtable**
+  - 表格体横向滚动，头并没有一起跟着滚动
+  - updateExt的修改
+
 # 1.0.4
 
 ***

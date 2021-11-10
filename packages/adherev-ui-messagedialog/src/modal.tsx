@@ -2,10 +2,14 @@ import { CreateElement } from 'vue';
 import { Modal, Button } from 'ant-design-vue';
 
 import Intl from '@baifendian/adherev-util-intl';
+import Util from '@baifendian/adherev-util';
 
-import { Fragment } from '../../_util';
 import Actions from './actions';
 import Emitter from './emitter';
+
+const {
+  _util: { Fragment },
+} = Util;
 
 export const selectorPrefix = 'adherev-ui-messagedialog';
 

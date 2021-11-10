@@ -115,8 +115,6 @@ const I18nFactory = function (config: { I18nOptions: I18nOptions; prefix }) {
     );
   }
 
-  console.log('mainLocales', mainLocales);
-
   // 反转资源文件
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore

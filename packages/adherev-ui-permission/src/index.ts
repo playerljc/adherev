@@ -1,6 +1,9 @@
 import { Permission, setPermission, checkPermission, getPermission } from './permission';
 
-import { withInstall } from '../../_util';
+import BfdUtil from '@baifendian/adherev-util';
+const {
+  _util: { withInstall, withVue },
+} = BfdUtil;
 
 const Component = withInstall(Permission);
 
@@ -10,5 +13,8 @@ export default {
   checkPermission,
   getPermission,
   isUse: () => true,
-  use: (Vue) => Vue.use(Component),
+  use: (Vue) => {
+    Vue.use(Component);
+    withVue(Vue, 'Permission', Component);
+  },
 };

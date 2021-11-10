@@ -60,12 +60,14 @@ export default {
           dataIndex: 'name',
           key: 'name',
           align: 'center',
+          width: 200,
         },
         {
           title: '性别',
           dataIndex: 'sex',
           key: 'sex',
           align: 'center',
+          width: 200,
           scopedSlots: { customRender: 'sex' },
         },
         {
@@ -73,6 +75,7 @@ export default {
           dataIndex: 'homeTown',
           key: 'homeTown',
           align: 'center',
+          width: 200,
         },
         {
           title: '出生年月',
@@ -80,6 +83,7 @@ export default {
           key: 'birthday',
           align: 'center',
           sorter: true,
+          width: 200,
           sortOrder: this.sortOrder('birthday'),
           scopedSlots: { customRender: 'birthday' },
         },
@@ -88,6 +92,7 @@ export default {
           dataIndex: 'deptName',
           key: 'deptName',
           align: 'center',
+          width: 200,
         },
         {
           title: '身高',
@@ -96,6 +101,7 @@ export default {
           align: 'center',
           sorter: true,
           sortOrder: this.sortOrder('height'),
+          width: 300,
         },
         {
           title: '体重',
@@ -104,6 +110,7 @@ export default {
           align: 'center',
           sorter: true,
           sortOrder: this.sortOrder('width'),
+          width: 300,
         },
       ];
     },

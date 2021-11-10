@@ -36,6 +36,7 @@
   },
   "dependencies": {
     "@baifendian/adherev-ui-flexlayout": "^1.0.4",
+    "@baifendian/adherev-util": "^1.0.4",
     "classnames": "^2.2.6"
   }
 }

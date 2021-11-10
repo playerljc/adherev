@@ -132,10 +132,10 @@ export default {
       layers,
     });
 
-    console.log('viewConfig', viewConfig);
+    // console.log('viewConfig', viewConfig);
 
     if (extent && extent.length) {
-      console.log('setTimeout');
+      // console.log('setTimeout');
       setTimeout(() => {
         let zoom;
 

@@ -48,7 +48,7 @@ export default {
 
     const { expand, codeText, lang, $slots } = this;
 
-    console.log('Card', Card);
+    // console.log('Card', Card);
 
     return (
       <div class={selectPrefix}>

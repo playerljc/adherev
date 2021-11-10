@@ -850,7 +850,7 @@ export default {
         config: {
           title: {
             template: `
-                <div style="color: red;">提示</div>
+                <div style="color: red;">{{$tv('点击上传')}}</div>
             `,
           },
           // title: '提示 '
@@ -868,7 +868,7 @@ export default {
             <a-result title="Your operation has been executed">
               <template #extra>
                 <a-button key="console" type="primary">
-                  Go Console
+                  {{$tv('点击上传')}}
                 </a-button>
               </template>
             </a-result>

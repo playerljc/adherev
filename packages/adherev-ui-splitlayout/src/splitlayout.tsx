@@ -274,7 +274,7 @@ export default {
       return resultVal < elSize ? elSize : resultVal;
     },
     onMouseenter(e) {
-      console.log('mouseenter');
+      // console.log('mouseenter');
 
       const {
         $data,
@@ -291,7 +291,7 @@ export default {
       this.$emit('canDrag', e);
     },
     onMousedown(e) {
-      console.log('mousedown');
+      // console.log('mousedown');
 
       const {
         $refs: { ref: splitEl },
@@ -314,7 +314,7 @@ export default {
       }
     },
     onMouseup(e) {
-      console.log('mouseup');
+      // console.log('mouseup');
 
       const {
         $data,
@@ -339,7 +339,7 @@ export default {
       }
     },
     onMouseleave(e) {
-      console.log('onMouseleave');
+      // console.log('onMouseleave');
 
       const { $data } = this;
 
@@ -400,7 +400,7 @@ export default {
       }
     },
     onMouseout(e) {
-      console.log('onMouseout');
+      // console.log('onMouseout');
 
       const { $data } = this;
 
