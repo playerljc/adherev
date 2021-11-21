@@ -11,6 +11,10 @@
   - 分页没有时候的处理
 * **adherev-util**
   - url库修改加入是否忽略空值、加入缓存
+* **adherev-util-intl**
+  - 加入新词条
+* **adherev-util-resource**
+  - dict.form.config.js资源的修改
 
 # 1.0.5
 
