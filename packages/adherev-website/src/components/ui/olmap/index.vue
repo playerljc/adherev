@@ -10,8 +10,9 @@
       <li>- 提供Util工具</li>
     </ul>
 
-    <h3>GeoLayer - 继承ol/layer/Vector</h3>
     <function-props
+      :border="true"
+      :title="'GeoLayer - 继承ol/layer/Vector'"
       :data="[
         {
           name: 'constructor',
@@ -46,8 +47,11 @@
       ]"
     />
 
-    <h3>WindLayer - 继承WindLayer</h3>
+    <adv-space />
+
     <function-props
+      :border="true"
+      :title="'WindLayer - 继承WindLayer'"
       :data="[
         {
           name: 'constructor',
@@ -75,8 +79,11 @@
       ]"
     />
 
-    <h3>TitleLayer - 提供各种瓦片层的source和TileLayer实现</h3>
+    <adv-space />
+
     <function-props
+      :border="true"
+      :title="'TitleLayer - 提供各种瓦片层的source和TileLayer实现'"
       :data="[
         {
           name: 'getOSM',
@@ -238,8 +245,11 @@
       ]"
     />
 
-    <h3>OLMap</h3>
+    <adv-space />
+
     <props
+      :border="true"
+      :title="'OLMap'"
       :data="[
         {
           params: 'type',
@@ -292,8 +302,11 @@
       ]"
     />
 
-    <h3>OLMap的方法</h3>
+    <adv-space />
+
     <function-props
+      :border="true"
+      :title="'OLMap的方法'"
       :data="[
         {
           name: 'addMainGeoJSONLayer',
@@ -470,8 +483,11 @@
       ]"
     />
 
-    <h3>HeatMap</h3>
+    <adv-space />
+
     <props
+      :border="true"
+      :title="'HeatMap'"
       :data="[
         {
           params: 'heatMapLayerConfig',
@@ -482,8 +498,11 @@
       ]"
     />
 
-    <h3>HeatMap的方法</h3>
+    <adv-space />
+
     <function-props
+      :border="true"
+      :title="'HeatMap的方法'"
       :data="[
         {
           name: 'addLayer',
@@ -519,8 +538,11 @@
       ]"
     />
 
-    <h3>Util</h3>
+    <adv-space />
+
     <function-props
+      :border="true"
+      :title="'Util'"
       :data="[
         {
           name: 'createMap',

@@ -103,13 +103,13 @@ export default Vue.extend({
     if (!this.$refs.tableWrapRef) return;
 
     if (this.fixedHeaderAutoTable) {
-      const data = this.getData();
+      const dataSource = this.getData();
 
       if (
-        data &&
-        data.length &&
+        dataSource &&
+        dataSource.length &&
         ((prevState.scrollY === 0 && this.scrollY === 0) ||
-          (prevState.scrollY !== 0 && this.scrollY !== 0 && prevState.scrollY !== this.scrollY) ||
+          prevState.scrollY !== this.scrollY ||
           prevState.expand !== this.expand)
       ) {
         const tableWrapRef = this.$refs.tableWrapRef as HTMLElement;
@@ -120,19 +120,15 @@ export default Vue.extend({
           scrollBodyEl.addEventListener('scroll', this.onScrollBodyScroll);
         }
 
-        const tableHeaderHeight = (tableWrapRef.querySelector('.ant-table-thead') as HTMLElement)
-          ?.offsetHeight;
+        const tableHeaderHeight =
+          (tableWrapRef.querySelector('.ant-table-thead') as HTMLElement)?.offsetHeight || 0;
 
-        const tablePaginationHeight = (
-          tableWrapRef.querySelector('.ant-table-pagination') as HTMLElement
-        )?.offsetHeight;
-
-        // console.log('updatedEx1', tableHeaderHeight);
-        // console.log('updatedEx2', tablePaginationHeight);
-        // console.log('updatedEx3', tableWrapRef.clientHeight);
+        const tablePaginationHeight =
+          (tableWrapRef.querySelector('.ant-table-pagination') as HTMLElement)?.offsetHeight || 0;
 
         this.scrollY =
-          tableWrapRef.clientHeight - (tableHeaderHeight + tablePaginationHeight + 16 * 2);
+          tableWrapRef.clientHeight -
+          (tableHeaderHeight + (tablePaginationHeight ? tablePaginationHeight + 16 * 2 : 0));
       }
     }
   },
@@ -457,10 +453,6 @@ export default Vue.extend({
 
       const { order } = sorter;
 
-      // console.log('this.getOrderFieldProp()', this.getOrderFieldProp());
-      // console.log('this.getOrderProp()', this.getOrderProp());
-      // console.log('sorter', sorter);
-
       if (!order) return;
 
       this.fetchData();
@@ -487,9 +479,9 @@ export default Vue.extend({
       return this[this.getOrderFieldProp()] === columnName ? this[this.getOrderProp()] : '';
     },
     /**
-     * getPagination - 获取分页信息
+     * getSearchTablePagination
      */
-    getPagination() {
+    getSearchTablePagination() {
       return {
         onChange: (page, limit) => {
           this.page = page;
@@ -517,6 +509,12 @@ export default Vue.extend({
         pageSize: this.limit,
         showQuickJumper: true,
       };
+    },
+    /**
+     * getPagination - 获取分页信息
+     */
+    getPagination() {
+      return this.getSearchTablePagination();
     },
     /**
      * renderSearchTable

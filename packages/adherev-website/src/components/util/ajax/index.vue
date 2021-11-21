@@ -3,6 +3,8 @@
     <h1>Ajax</h1>
 
     <function-props
+      :border="true"
+      :title="'方法'"
       :data="[
         {
           name: 'get',
@@ -87,8 +89,11 @@
       ]"
     />
 
-    <h2>ISendArg</h2>
+    <adv-space />
+
     <props
+      :border="true"
+      :title="'ISendArg'"
       :data="[
         {
           params: 'path',

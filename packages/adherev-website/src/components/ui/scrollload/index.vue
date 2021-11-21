@@ -3,8 +3,9 @@
     <h1>ScrollLoad</h1>
     <p>滚动加载</p>
 
-    <h3>ScrollLoad</h3>
     <props
+      :border="true"
+      :title="'ScrollLoad'"
       :data="[
         {
           params: 'className',
@@ -99,8 +100,11 @@
       ]"
     />
 
-    <h3>方法</h3>
+    <adv-space />
+
     <function-props
+      :border="true"
+      :title="'方法'"
       :data="[
         {
           name: 'hideAll',

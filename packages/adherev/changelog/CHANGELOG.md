@@ -1,3 +1,17 @@
+# 1.0.6
+
+***
+
+2021-11-21
+
+* **adherev-ui-playground**
+  - 加入collapse折叠操作
+* **adherev-ui-searchtable**
+  - updatedEx的修改
+  - 分页没有时候的处理
+* **adherev-util**
+  - url库修改加入是否忽略空值、加入缓存
+
 # 1.0.5
 
 ***

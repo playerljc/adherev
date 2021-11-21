@@ -43,12 +43,10 @@ export const Permission = {
   props: {
     allPermission: {
       type: Array,
-      required: true,
       default: () => [],
     },
     permissions: {
       type: [String, Array],
-      required: true,
     },
   },
   render(h) {

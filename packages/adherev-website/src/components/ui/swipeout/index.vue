@@ -3,8 +3,9 @@
     <h1>SwipeOut</h1>
     <p>滑动操作</p>
 
-    <h2>属性</h2>
     <props
+      :border="true"
+      :title="'属性'"
       :data="[
         {
           params: 'className',

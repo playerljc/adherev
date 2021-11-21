@@ -2,8 +2,9 @@
   <div class="Page">
     <h1>工具类</h1>
 
-    <h2>dom相关</h2>
     <function-props
+      :border="true"
+      :title="'dom相关'"
       :data="[
         {
           name: 'isTextNode',
@@ -463,8 +464,11 @@
       ]"
     />
 
-    <h2>基本操作</h2>
+    <adv-space />
+
     <function-props
+      :border="true"
+      :title="'基本操作'"
       :data="[
         {
           name: 'isEmpty',
@@ -877,8 +881,11 @@
       ]"
     />
 
-    <h2>数学操作</h2>
+    <adv-space />
+
     <function-props
+      :border="true"
+      :title="'数学操作'"
       :data="[
         {
           name: 'toPoint',
@@ -1332,8 +1339,11 @@
       ]"
     />
 
-    <h2>Url操作</h2>
+    <adv-space />
+
     <function-props
+      :border="true"
+      :title="'Url操作'"
       :data="[
         {
           name: 'parse',
@@ -1370,8 +1380,11 @@
       ]"
     />
 
-    <h2>颜色操作</h2>
+    <adv-space />
+
     <function-props
+      :border="true"
+      :title="'颜色操作'"
       :data="[
         {
           name: 'rgb',
@@ -1392,8 +1405,11 @@
       ]"
     />
 
-    <h2>客户端监测</h2>
+    <adv-space />
+
     <function-props
+      :border="true"
+      :title="'客户端监测'"
       :data="[
         {
           name: 'isTouch',
@@ -1406,8 +1422,11 @@
       ]"
     />
 
-    <h2>系统管理相关</h2>
+    <adv-space />
+
     <function-props
+      :border="true"
+      :title="'系统管理相关'"
       :data="[
         {
           name: 'getLang',

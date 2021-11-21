@@ -4,8 +4,9 @@
     <p>删除确认提示(使用的是antd的Modal)</p>
     <p>删除的时候弹出提示，确认后在执行操作</p>
 
-    <h2>属性</h2>
     <props
+      :border="true"
+      :title="'属性'"
       :data="[
         {
           params: 'zIndex',
@@ -34,8 +35,11 @@
       ]"
     />
 
-    <h2>方法</h2>
+    <adv-space />
+
     <function-props
+      :border="true"
+      :title="'方法'"
       :data="[
         {
           name: 'open',

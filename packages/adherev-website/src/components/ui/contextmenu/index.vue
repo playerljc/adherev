@@ -3,8 +3,9 @@
     <h1>ContextMenu</h1>
     <p>上下文菜单</p>
 
-    <h2>ContextMenu方法</h2>
     <function-props
+      :border="true"
+      :title="'ContextMenu方法'"
       :data="[
         {
           name: 'open',
@@ -48,8 +49,11 @@
       ]"
     />
 
-    <h3>IData</h3>
+    <adv-space />
+
     <props
+      :border="true"
+      :title="'IData'"
       :data="[
         {
           params: 'name',
@@ -120,8 +124,11 @@
       ]"
     />
 
-    <h3>IConfig</h3>
+    <adv-space />
+
     <props
+      :border="true"
+      :title="'IConfig'"
       :data="[
         {
           params: 'x',

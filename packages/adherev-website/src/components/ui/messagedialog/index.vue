@@ -9,8 +9,9 @@
       <li>- 不与变量进行绑定，开箱即用的功能</li>
     </ul>
 
-    <h3>Confirm方法</h3>
     <function-props
+      :border="true"
+      :title="'Confirm方法'"
       :data="[
         {
           name: 'MessageDialog.Confirm',
@@ -73,8 +74,11 @@
       ]"
     />
 
-    <h3>Alert方法</h3>
+    <adv-space />
+
     <function-props
+      :border="true"
+      :title="'Alert方法'"
       :data="[
         {
           name: 'MessageDialog.Alert',
@@ -130,8 +134,11 @@
       ]"
     />
 
-    <h3>Prompt方法</h3>
+    <adv-space />
+
     <function-props
+      :border="true"
+      :title="'Prompt方法'"
       :data="[
         {
           name: 'MessageDialog.Prompt',
@@ -194,8 +201,11 @@
       ]"
     />
 
-    <h3>InputPrompt方法</h3>
+    <adv-space />
+
     <function-props
+      :border="true"
+      :title="'InputPrompt方法'"
       :data="[
         {
           name: 'MessageDialog.InputPrompt方法',
@@ -258,8 +268,11 @@
       ]"
     />
 
-    <h3>TextAreaPrompt方法</h3>
+    <adv-space />
+
     <function-props
+      :border="true"
+      :title="'TextAreaPrompt方法'"
       :data="[
         {
           name: 'MessageDialog.TextAreaPrompt方法',
@@ -322,8 +335,11 @@
       ]"
     />
 
-    <h3>PassWordPrompt方法</h3>
+    <adv-space />
+
     <function-props
+      :border="true"
+      :title="'PassWordPrompt方法'"
       :data="[
         {
           name: 'MessageDialog.PassWordPrompt方法',
@@ -386,8 +402,11 @@
       ]"
     />
 
-    <h3>NumberPromptPrompt方法</h3>
+    <adv-space />
+
     <function-props
+      :border="true"
+      :title="'NumberPromptPrompt方法'"
       :data="[
         {
           name: 'MessageDialog.NumberPrompt方法',
@@ -450,8 +469,11 @@
       ]"
     />
 
-    <h3>Modal方法</h3>
+    <adv-space />
+
     <function-props
+      :border="true"
+      :title="'Modal方法'"
       :data="[
         {
           name: 'MessageDialog.Modal',
@@ -493,8 +515,11 @@
       ]"
     />
 
-    <h3>Close方法</h3>
+    <adv-space />
+
     <function-props
+      :border="true"
+      :title="'Close方法'"
       :data="[
         {
           name: 'MessageDialog.close',

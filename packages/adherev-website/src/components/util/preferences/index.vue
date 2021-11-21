@@ -6,8 +6,9 @@
       <li>- 支持对象的写入和拿出</li>
     </ul>
 
-    <h2>方法</h2>
     <function-props
+      :border="true"
+      :title="'方法'"
       :data="[
         {
           name: 'putStringByLocal',

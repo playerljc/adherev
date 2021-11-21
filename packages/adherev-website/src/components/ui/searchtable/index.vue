@@ -3,8 +3,9 @@
     <h1>SearchTable</h1>
     <p>一种查询表格的通用模式(如果 UI 没有明确给出查询表格的 UI，就可以用这个默认模式)</p>
 
-    <h2>属性</h2>
     <props
+      :border="true"
+      :title="'属性'"
       :data="[
         {
           params: 'wrapStyle',
@@ -99,8 +100,11 @@
       ]"
     />
 
-    <h3>重写的方法</h3>
+    <adv-space />
+
     <function-props
+      :border="true"
+      :title="'重写的方法'"
       :data="[
         {
           name: 'isShowNumber',
@@ -294,8 +298,11 @@
       ]"
     />
 
-    <h3>searchtableimplement重写的方法</h3>
+    <adv-space />
+
     <function-props
+      :border="true"
+      :title="'searchtableimplement重写的方法'"
       :data="[
         {
           name: 'getFetchListPropName',
@@ -588,23 +595,44 @@
 
     <h2>基本使用</h2>
     <playground :code-text="code1">
-      <Table :isShowExpandSearch="true" :defaultExpandSearchCollapse="false" :fixedTableSpaceBetween="true" />
+      <Table
+        :isShowExpandSearch="true"
+        :defaultExpandSearchCollapse="false"
+        :fixedTableSpaceBetween="true"
+      />
     </playground>
 
     <h2>表格体可以滚动</h2>
     <playground :code-text="code2">
+      <a-switch
+        checked-children="分页"
+        :checked="pagination1"
+        @change="pagination1 = !pagination1"
+      />
+
+      <adv-space />
+
       <div style="display: flex; height: 400px">
         <Table
           :wrapStyle="'height: 100%;'"
           :isShowExpandSearch="true"
           :defaultExpandSearchCollapse="false"
           :autoFixed="true"
+          :pagination="pagination1"
         />
       </div>
     </playground>
 
     <h2>固定列头</h2>
     <playground :code-text="code3">
+      <a-switch
+        checked-children="分页"
+        :checked="pagination2"
+        @change="pagination2 = !pagination2"
+      />
+
+      <adv-space />
+
       <div style="display: flex; height: 500px">
         <Table
           :wrapStyle="'height: 100%;'"
@@ -612,12 +640,21 @@
           :defaultExpandSearchCollapse="false"
           :fixedHeaderAutoTable="true"
           :fixedTableSpaceBetween="true"
+          :pagination="pagination2"
         />
       </div>
     </playground>
 
     <h2>列表两端的渲染</h2>
     <playground :code-text="code5">
+      <a-switch
+        checked-children="分页"
+        :checked="pagination3"
+        @change="pagination3 = !pagination3"
+      />
+
+      <adv-space />
+
       <div style="display: flex; height: 800px">
         <Table
           :wrapStyle="'height: 100%'"
@@ -625,6 +662,7 @@
           :defaultExpandSearchCollapse="false"
           :fixedHeaderAutoTable="true"
           :fixedTableSpaceBetween="true"
+          :pagination="pagination3"
         >
           <template v-slot:tableHeader>
             <div :class="$style.Header">
@@ -643,6 +681,14 @@
 
     <h2>分页始终居底</h2>
     <playground-mulit :config="code6">
+      <a-switch
+        checked-children="分页"
+        :checked="pagination4"
+        @change="pagination4 = !pagination4"
+      />
+
+      <adv-space />
+
       <div style="display: flex; height: 700px">
         <FewTable
           :wrapStyle="'height: 100%'"
@@ -650,6 +696,7 @@
           :defaultExpandSearchCollapse="false"
           :fixedHeaderAutoTable="true"
           :fixedTableSpaceBetween="true"
+          :pagination="pagination4"
         />
       </div>
     </playground-mulit>
@@ -1057,10 +1104,18 @@ export default {
       }
     }
   <\/script>
-          `
-        }
+          `,
+        },
       ];
-    }
+    },
+  },
+  data() {
+    return {
+      pagination1: false,
+      pagination2: false,
+      pagination3: false,
+      pagination4: false,
+    };
   },
 };
 </script>

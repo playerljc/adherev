@@ -7,8 +7,9 @@
       <li>- 解除订阅</li>
     </ul>
 
-    <h2>方法</h2>
     <function-props
+      :border="true"
+      :title="'方法'"
       :data="[
         {
           name: 'on',

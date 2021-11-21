@@ -4,8 +4,10 @@
     <p>无侵入性的竖线和横线分割</p>
 
     <h2>属性</h2>
-    <h3>Split</h3>
+
     <props
+      :border="true"
+      :title="'Split'"
       :data="[
         {
           params: 'direction',
@@ -28,8 +30,11 @@
       ]"
     />
 
-    <h3>Split.Group</h3>
+    <adv-space />
+
     <props
+      :border="true"
+      :title="'Split.Group'"
       :data="[
         {
           params: 'direction',

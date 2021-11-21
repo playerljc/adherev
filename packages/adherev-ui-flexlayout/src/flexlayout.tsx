@@ -7,7 +7,6 @@ export default {
   props: {
     direction: {
       type: String,
-      required: true,
       default: 'vertical',
       validator(val) {
         return ['vertical', 'horizontal'].indexOf(val) !== -1;

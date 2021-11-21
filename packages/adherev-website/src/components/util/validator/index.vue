@@ -17,13 +17,14 @@
       )作为核心库
     </h3>
 
-    <h2>相关方法</h2>
     <div style="margin: 20px 0">
       validator库的方法请参见
       <a href="https://www.npmjs.com/package/validator" target="_blank"> Validator库 </a>
     </div>
 
     <function-props
+      :border="true"
+      :title="'相关方法'"
       :data="[
         {
           name: 'isAllChinaPhoneNumber',
@@ -371,6 +372,5 @@
 </template>
 
 <script>
-export default {
-};
+export default {};
 </script>

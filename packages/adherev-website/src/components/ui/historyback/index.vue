@@ -2,8 +2,10 @@
   <div class="Page">
     <h1>历史记录返回操作</h1>
     <p>- 如果历史栈中没有记录则返回主页，或者可以自定义 - 如果可以返回则进行返回</p>
-    <h2>方法</h2>
+
     <function-props
+      :border="true"
+      :title="'方法'"
       :data="[
         {
           name: '默认导出方法',

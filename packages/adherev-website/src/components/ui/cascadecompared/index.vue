@@ -3,8 +3,9 @@
     <h1>CascadeCompared</h1>
     <p>级联比较</p>
 
-    <h3>CascadeCompared</h3>
     <props
+      :border="true"
+      :title="'CascadeCompared'"
       :data="[
         {
           params: 'className',
@@ -129,8 +130,11 @@
       ]"
     />
 
-    <h3>IIndicatorTableConfig</h3>
+    <adv-space />
+
     <props
+      :border="true"
+      :title="'IIndicatorTableConfig'"
       :data="[
         {
           params: 'columns',
@@ -147,8 +151,11 @@
       ]"
     />
 
-    <h3>IColumnConfig</h3>
+    <adv-space />
+
     <props
+      :border="true"
+      :title="'IColumnConfig'"
       :data="[
         {
           params: 'dataIndex',
@@ -189,8 +196,11 @@
       ]"
     />
 
-    <h3>IMasterItem</h3>
+    <adv-space />
+
     <props
+      :border="true"
+      :title="'IMasterItem'"
       :data="[
         {
           params: 'columns',
@@ -261,8 +271,11 @@
       ]"
     />
 
-    <h2>方法</h2>
+    <adv-space />
+
     <function-props
+      :border="true"
+      :title="'方法'"
       :data="[
         {
           name: 'scrollToByIndex',

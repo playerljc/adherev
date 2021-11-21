@@ -3,8 +3,9 @@
     <h1>SlideLayout</h1>
     <p>抽屉布局</p>
 
-    <h3>Overlay</h3>
     <props
+      :border="true"
+      :title="'Overlay'"
       :data="[
         {
           params: 'className',
@@ -87,8 +88,11 @@
       ]"
     />
 
-    <h3>Push</h3>
+    <adv-space />
+
     <props
+      :border="true"
+      :title="'Push'"
       :data="[
         {
           params: 'masterClassName',
@@ -207,8 +211,11 @@
       ]"
     />
 
-    <h3>Reveal</h3>
+    <adv-space />
+
     <props
+      :border="true"
+      :title="'Reveal'"
       :data="[
         {
           params: 'masterClassName',

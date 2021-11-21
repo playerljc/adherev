@@ -9,8 +9,9 @@
       库来实现 - 用来嗅探用户浏览器的型号，版本，内核等信息
     </p>
 
-    <h2>主方法</h2>
     <function-props
+      :border="true"
+      :title="'主方法'"
       :data="[
         {
           name: 'browser',
@@ -71,8 +72,11 @@
       ]"
     />
 
-    <h2>浏览器嗅探</h2>
+    <adv-space />
+
     <function-props
+      :border="true"
+      :title="'浏览器嗅探'"
       :data="[
         {
           name: 'isBrowserSafari',
@@ -453,8 +457,11 @@
       ]"
     />
 
-    <h2>设备嗅探</h2>
+    <adv-space />
+
     <function-props
+      :border="true"
+      :title="'设备嗅探'"
       :data="[
         {
           name: 'isDevicePC',
@@ -483,8 +490,11 @@
       ]"
     />
 
-    <h2>内核嗅探</h2>
+    <adv-space />
+
     <function-props
+      :border="true"
+      :title="'内核嗅探'"
       :data="[
         {
           name: 'isEngineWebKit',
@@ -545,8 +555,11 @@
       ]"
     />
 
-    <h2>操作系统嗅探</h2>
+    <adv-space />
+
     <function-props
+      :border="true"
+      :title="'操作系统嗅探'"
       :data="[
         {
           name: 'iSOSWindows',
@@ -788,7 +801,7 @@ export default {
     }
   <\/script>
       `;
-    }
+    },
   },
 };
 </script>

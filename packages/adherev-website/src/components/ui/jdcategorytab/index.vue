@@ -4,8 +4,9 @@
     <p>京东的面板</p>
     <p>本组件基于iscroll开发</p>
 
-    <h3>JdCategoryTab</h3>
     <props
+      :border="true"
+      :title="'JdCategoryTab'"
       :data="[
         {
           params: 'className',
@@ -94,8 +95,11 @@
       ]"
     />
 
-    <h3>JdCategoryTab.Item</h3>
+    <adv-space />
+
     <props
+      :border="true"
+      :title="'JdCategoryTab.Item'"
       :data="[
         {
           params: 'className',
@@ -112,8 +116,11 @@
       ]"
     />
 
-    <h3>方法</h3>
+    <adv-space />
+
     <function-props
+      :border="true"
+      :title="'方法'"
       :data="[
         {
           name: 'scrollTo',

@@ -7,8 +7,9 @@
       <li>- 支持top和bottom方向</li>
     </ul>
 
-    <h3>NotificationFactory</h3>
     <function-props
+      :border="true"
+      :title="'NotificationFactory'"
       :data="[
         {
           name: 'build',
@@ -38,8 +39,9 @@
 
     <adv-space />
 
-    <h3>Notification</h3>
     <function-props
+      :border="true"
+      :title="'Notification'"
       :data="[
         {
           name: 'show',
@@ -94,8 +96,9 @@
 
     <adv-space />
 
-    <h3>IConfig</h3>
     <props
+      :border="true"
+      :title="'IConfig'"
       :data="[
         {
           params: 'style',
@@ -138,8 +141,9 @@
 
     <adv-space />
 
-    <h3>IShowConfig</h3>
     <props
+      :border="true"
+      :title="'IShowConfig'"
       :data="[
         {
           params: 'closed',
@@ -158,8 +162,9 @@
 
     <adv-space />
 
-    <h3>IShowStandardConfig</h3>
     <props
+      :border="true"
+      :title="'IShowStandardConfig'"
       :data="[
         {
           params: 'closed',

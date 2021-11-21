@@ -2,9 +2,12 @@
   <div class="Page">
     <h1>Space</h1>
     <p>无侵入性的上下留白和左右留白</p>
+
     <h2>属性</h2>
-    <h3>Space</h3>
+
     <props
+      :border="true"
+      :title="'Space'"
       :data="[
         {
           params: 'direction',
@@ -27,8 +30,11 @@
       ]"
     />
 
-    <h3>Space.Group</h3>
+    <adv-space />
+
     <props
+      :border="true"
+      :title="'Space.Group'"
       :data="[
         {
           params: 'direction',

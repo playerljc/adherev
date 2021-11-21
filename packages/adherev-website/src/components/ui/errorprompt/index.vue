@@ -3,8 +3,9 @@
     <h1>ErrorPrompt</h1>
     <p>错误的提示(就是为了全局统一)</p>
 
-    <h2>方法</h2>
     <function-props
+      :border="true"
+      :title="'方法'"
       :data="[
         {
           name: 'ErrorPrompt',

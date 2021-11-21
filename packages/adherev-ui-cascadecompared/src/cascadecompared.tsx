@@ -112,7 +112,6 @@ export default {
     },
     indicator: {
       type: TableConfig,
-      required: true,
       default: () => ({
         columns: [],
         dataSource: [],
@@ -120,7 +119,6 @@ export default {
     },
     master: {
       type: Array,
-      required: true,
       default: () => [],
       validator(val) {
         if (!Array.isArray(val)) return false;

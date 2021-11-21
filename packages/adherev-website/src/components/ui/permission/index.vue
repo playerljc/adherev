@@ -8,8 +8,9 @@
       <li>- 可以自定义无权限的 UI</li>
     </ul>
 
-    <h3>Permission</h3>
     <props
+      :border="true"
+      :title="'Permission'"
       :data="[
         {
           params: 'allPermission',
@@ -38,8 +39,11 @@
       ]"
     />
 
-    <h3>setPermission</h3>
+    <adv-space />
+
     <function-props
+      :border="true"
+      :title="'setPermission'"
       :data="[
         {
           name: 'setPermission',
@@ -60,8 +64,11 @@
       ]"
     />
 
-    <h3>getPermission</h3>
+    <adv-space />
+
     <function-props
+      :border="true"
+      :title="'getPermission'"
       :data="[
         {
           name: 'getPermission',
@@ -74,8 +81,11 @@
       ]"
     />
 
-    <h3>checkPermission</h3>
+    <adv-space />
+
     <function-props
+      :border="true"
+      :title="'checkPermission'"
       :data="[
         {
           name: 'checkPermission',

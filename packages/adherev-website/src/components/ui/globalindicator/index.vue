@@ -3,8 +3,9 @@
     <h1>GlobalIndicator</h1>
     <p>全局无侵入的遮罩</p>
 
-    <h2>方法</h2>
     <function-props
+      :border="true"
+      :title="'方法'"
       :data="[
         {
           name: 'show',

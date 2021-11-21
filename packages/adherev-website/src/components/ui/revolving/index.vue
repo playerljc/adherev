@@ -4,8 +4,9 @@
     <p>走马灯</p>
     <p>此组件是基于Swiper编写的</p>
 
-    <h3>Revolving</h3>
     <props
+      :border="true"
+      :title="'Revolving'"
       :data="[
         {
           params: 'className',
@@ -64,8 +65,11 @@
       ]"
     />
 
-    <h3>方法</h3>
+    <adv-space />
+
     <function-props
+      :border="true"
+      :title="'方法'"
       :data="[
         {
           name: 'start',
@@ -94,8 +98,11 @@
       ]"
     />
 
-    <h3>Revolving.Item</h3>
+    <adv-space />
+
     <props
+      :border="true"
+      :title="'Revolving.Item'"
       :data="[
         {
           params: 'className',

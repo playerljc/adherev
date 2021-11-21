@@ -3,7 +3,6 @@ export default {
   props: {
     conditional: {
       type: Boolean,
-      required: true,
       default: true,
     },
   },

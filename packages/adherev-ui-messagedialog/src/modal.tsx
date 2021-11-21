@@ -17,7 +17,6 @@ export default {
   props: {
     config: {
       type: Object,
-      required: true,
     },
     closeBtn: {
       type: Boolean,

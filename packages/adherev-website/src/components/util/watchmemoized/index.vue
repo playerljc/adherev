@@ -11,8 +11,9 @@
     <h2>监控</h2>
     <p>支持类似与Vue的watch监控</p>
 
-    <h2>方法</h2>
     <function-props
+      :border="true"
+      :title="'方法'"
       :data="[
         {
           name: 'createRef',

@@ -4,8 +4,9 @@
     <p>滚动固定头额布局</p>
     <p>父元素需要固定高度</p>
 
-    <h3>SplitLayout</h3>
     <props
+      :border="true"
+      :title="'SplitLayout'"
       :data="[
         {
           params: 'className',
@@ -52,8 +53,11 @@
       ]"
     />
 
-    <h2>方法</h2>
+    <adv-space />
+
     <function-props
+      :border="true"
+      :title="'方法'"
       :data="[
         {
           name: 'scrollToByIndex',
@@ -104,8 +108,11 @@
       ]"
     />
 
-    <h3>SplitLayout.Item</h3>
+    <adv-space />
+
     <props
+      :border="true"
+      :title="'SplitLayout.Item'"
       :data="[
         {
           params: 'className',

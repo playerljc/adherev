@@ -2,10 +2,11 @@
   <div class="Page">
     <h1>ConditionalRender</h1>
     <p>条件渲染</p>
-    <p>适用于自定义显示条件的情况下是否显示组件</p>
-    <h2>属性</h2>
+    <h2></h2>
 
     <props
+      :border="true"
+      :title="'属性'"
       :data="[
         {
           params: 'conditional',

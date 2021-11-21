@@ -3,8 +3,9 @@
     <h1>Domain</h1>
     <h2>Domain的浏览器端实现</h2>
 
-    <h2>Domain</h2>
     <function-props
+      :border="true"
+      :title="'Domain'"
       :data="[
         {
           name: 'createDomain',
@@ -25,8 +26,11 @@
       ]"
     />
 
-    <h2>IDomain</h2>
+    <adv-space />
+
     <function-props
+      :border="true"
+      :title="'IDomain'"
       :data="[
         {
           name: 'add',

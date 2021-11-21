@@ -4,8 +4,10 @@
     <p>实现flex布局的组件</p>
 
     <h2>属性</h2>
-    <h3>FlexLayout</h3>
+
     <props
+      :border="true"
+      :title="'FlexLayout'"
       :data="[
         {
           params: 'direction',
@@ -28,8 +30,11 @@
       ]"
     />
 
-    <h3>FlexLayout.Fixed</h3>
+    <adv-space />
+
     <props
+      :border="true"
+      :title="'FlexLayout.Fixed'"
       :data="[
         {
           params: 'fit',
@@ -52,8 +57,11 @@
       ]"
     />
 
-    <h3>FlexLayout.Auto</h3>
+    <adv-space />
+
     <props
+      :border="true"
+      :title="'FlexLayout.Auto'"
       :data="[
         {
           params: 'autoFixed',

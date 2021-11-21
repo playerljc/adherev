@@ -3,8 +3,9 @@
     <h1>ImageLazy</h1>
     <p>图片懒加载</p>
 
-    <h2>属性</h2>
     <props
+      :border="true"
+      :title="'属性'"
       :data="[
         {
           params: 'className',
@@ -21,8 +22,11 @@
       ]"
     />
 
-    <h2>imgArgs</h2>
+    <adv-space />
+    
     <props
+      :border="true"
+      :title="'imgArgs'"
       :data="[
         {
           params: 'originSrc',

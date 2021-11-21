@@ -1,58 +1,64 @@
-<!--
 <template>
-  <a-table :columns="columns" :data-source="data" :pagination="false" size="small" rowKey="params">
-  </a-table>
-</template>
-<script>
-export default {
-  name: 'props',
-  props: {
-    data: {
-      type: Array,
-      required: true,
-      default: () => [],
-    },
-  },
-  computed: {
-    columns() {
-      return [
-        {
-          title: '参数',
-          key: 'params',
-          dataIndex: 'params',
-        },
-        {
-          title: '描述',
-          key: 'desc',
-          dataIndex: 'desc',
-        },
-        {
-          title: '类型',
-          key: 'type',
-          dataIndex: 'type',
-        },
-        {
-          title: '默认值',
-          key: 'defaultVal',
-          dataIndex: 'defaultVal',
-        },
-      ];
-    },
-  },
-};
-</script>
--->
-
-<template>
-  <adv-playground-props :data="data" />
+  <adv-playground-props
+    :data="data"
+    :headerClassName="headerClassName"
+    :headerStyle="headerStyle"
+    :bodyClassName="bodyClassName"
+    :bodyStyle="bodyStyle"
+    :title="title"
+    :extra="extra"
+    :defaultCollapse="defaultCollapse"
+    :border="border"
+    :scrollY="scrollY"
+    :fixedHeaderScrollBody="fixedHeaderScrollBody"
+  />
 </template>
 <script>
 export default {
   name: 'Props',
   props: {
+    headerClassName: {
+      type: String,
+      default: '',
+    },
+    headerStyle: {
+      type: String,
+      default: '',
+    },
+    bodyClassName: {
+      type: String,
+      default: '',
+    },
+    bodyStyle: {
+      type: String,
+      default: '',
+    },
+    title: {
+      type: [String, Object],
+      default: '',
+    },
+    extra: {
+      type: Object,
+      default: () => null,
+    },
+    defaultCollapse: {
+      type: Boolean,
+      default: () => false,
+    },
+    border: {
+      type: Boolean,
+      default: () => false,
+    },
+    scrollY: {
+      type: Boolean,
+      default: () => false,
+    },
+    fixedHeaderScrollBody: {
+      type: Boolean,
+      default: () => false,
+    },
     data: {
       type: Array,
-      required: true,
       default: () => [],
     },
   },

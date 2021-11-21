@@ -6,8 +6,9 @@
       <li>- 支持mobile和pc</li>
     </ul>
 
-    <h3>PullRefresh</h3>
     <props
+      :border="true"
+      :title="'PullRefresh'"
       :data="[
         {
           params: 'className',
@@ -114,8 +115,11 @@
       ]"
     />
 
-    <h3>方法</h3>
+    <adv-space />
+
     <function-props
+      :border="true"
+      :title="'方法'"
       :data="[
         {
           name: 'refresh',

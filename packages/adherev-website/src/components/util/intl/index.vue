@@ -7,8 +7,9 @@
       <li>- 支持自动生成词条的key</li>
     </ul>
 
-    <h2>方法</h2>
     <function-props
+      :border="true"
+      :title="'方法'"
       :data="[
         {
           name: 'tv',
@@ -82,8 +83,11 @@
       ]"
     />
 
-    <h2>Vue实例方法</h2>
+    <adv-space />
+
     <function-props
+      :border="true"
+      :title="'Vue实例方法'"
       :data="[
         {
           name: '$tv',

@@ -12,8 +12,9 @@
         <h2>PopupFactory</h2>
       </dt>
       <dd>
-        <h3>PopupFactory.create方法</h3>
         <function-props
+          :border="true"
+          :title="'PopupFactory.create方法'"
           :data="[
             {
               name: 'PopupFactory.create',
@@ -34,8 +35,11 @@
           ]"
         />
 
-        <h3>PopupFactory.show方法</h3>
+        <adv-space />
+
         <function-props
+          :border="true"
+          :title="'PopupFactory.show方法'"
           :data="[
             {
               name: 'PopupFactory.show',
@@ -56,8 +60,11 @@
           ]"
         />
 
-        <h3>PopupFactory.close方法</h3>
+        <adv-space />
+
         <function-props
+          :border="true"
+          :title="'PopupFactory.close方法'"
           :data="[
             {
               name: 'PopupFactory.close',
@@ -78,8 +85,11 @@
           ]"
         />
 
-        <h3>PopupFactory.closeAll方法</h3>
+        <adv-space />
+
         <function-props
+          :border="true"
+          :title="'PopupFactory.closeAll方法'"
           :data="[
             {
               name: 'PopupFactory.closeAll',
@@ -92,8 +102,11 @@
           ]"
         />
 
-        <h3>PopupFactory.destroy方法</h3>
+        <adv-space />
+
         <function-props
+          :border="true"
+          :title="'PopupFactory.destroy方法'"
           :data="[
             {
               name: 'PopupFactory.destroy',
@@ -122,8 +135,9 @@
       </dt>
 
       <dd>
-        <h3>show方法</h3>
         <function-props
+          :border="true"
+          :title="'show方法'"
           :data="[
             {
               name: 'Popup.show',
@@ -144,8 +158,11 @@
           ]"
         />
 
-        <h3>close方法</h3>
+        <adv-space />
+
         <function-props
+          :border="true"
+          :title="'close方法'"
           :data="[
             {
               name: 'Popup.close',
@@ -166,8 +183,11 @@
           ]"
         />
 
-        <h3>closeAll方法</h3>
+        <adv-space />
+
         <function-props
+          :border="true"
+          :title="'closeAll方法'"
           :data="[
             {
               name: 'Popup.closeAll',
@@ -180,8 +200,11 @@
           ]"
         />
 
-        <h3>destroy方法</h3>
+        <adv-space />
+
         <function-props
+          :border="true"
+          :title="'destroy方法'"
           :data="[
             {
               name: 'Popup.destroy',
@@ -202,8 +225,11 @@
           ]"
         />
 
-        <h3>isDestroy方法</h3>
+        <adv-space />
+
         <function-props
+          :border="true"
+          :title="'isDestroy方法'"
           :data="[
             {
               name: 'Popup.isDestroy方法',
@@ -216,8 +242,11 @@
           ]"
         />
 
-        <h3>getId</h3>
+        <adv-space />
+
         <function-props
+          :border="true"
+          :title="'getId'"
           :data="[
             {
               name: 'Popup.isDestroy方法',
@@ -232,8 +261,9 @@
       </dd>
     </dl>
 
-    <h3>IConfig</h3>
     <props
+      :border="true"
+      :title="'IConfig'"
       :data="[
         {
           params: 'onCreate',

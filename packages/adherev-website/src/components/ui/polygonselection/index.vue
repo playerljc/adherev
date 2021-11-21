@@ -12,8 +12,9 @@
       <li>- 自由绘制区域</li>
     </ul>
 
-    <h2>PolygonSelection</h2>
     <function-props
+      :border="true"
+      :title="'PolygonSelection'"
       :data="[
         {
           name: 'getCtx',
@@ -250,8 +251,11 @@
       ]"
     />
 
-    <h2>CircleDrawAction</h2>
+    <adv-space />
+
     <function-props
+      :border="true"
+      :title="'CircleDrawAction'"
       :data="[
         {
           name: 'booleanPointInData',
@@ -394,8 +398,11 @@
       ]"
     />
 
-    <h2>DiamondDrawAction</h2>
+    <adv-space />
+
     <function-props
+      :border="true"
+      :title="'DiamondDrawAction'"
       :data="[
         {
           name: 'booleanPointInData',
@@ -539,8 +546,11 @@
       ]"
     />
 
-    <h2>FreeDrawAction</h2>
+    <adv-space />
+
     <function-props
+      :border="true"
+      :title="'FreeDrawAction'"
       :data="[
         {
           name: 'draw',
@@ -659,8 +669,11 @@
       ]"
     />
 
-    <h2>PolygonDrawAction</h2>
+    <adv-space />
+
     <function-props
+      :border="true"
+      :title="'PolygonDrawAction'"
       :data="[
         {
           name: 'booleanPointInData',
@@ -798,8 +811,11 @@
       ]"
     />
 
-    <h2>RectangleDrawAction</h2>
+    <adv-space />
+
     <function-props
+      :border="true"
+      :title="'RectangleDrawAction'"
       :data="[
         {
           name: 'booleanPointInData',
@@ -943,8 +959,11 @@
       ]"
     />
 
-    <h2>StartDrawAction</h2>
+    <adv-space />
+
     <function-props
+      :border="true"
+      :title="'StartDrawAction'"
       :data="[
         {
           name: 'booleanPointInData',
@@ -1088,8 +1107,11 @@
       ]"
     />
 
-    <h2>TriangleDrawAction</h2>
+    <adv-space />
+
     <function-props
+      :border="true"
+      :title="'TriangleDrawAction'"
       :data="[
         {
           name: 'booleanPointInData',
@@ -1231,8 +1253,11 @@
       ]"
     />
 
-    <h2>CircleModifyAction</h2>
+    <adv-space />
+
     <function-props
+      :border="true"
+      :title="'CircleModifyAction'"
       :data="[
         {
           name: 'isCanMove',
@@ -1405,8 +1430,11 @@
       ]"
     />
 
-    <h2>DiamondModifyAction</h2>
+    <adv-space />
+
     <function-props
+      :border="true"
+      :title="'DiamondModifyAction'"
       :data="[
         {
           name: 'isCanMove',
@@ -1579,8 +1607,11 @@
       ]"
     />
 
-    <h2>PolygonModifyAction</h2>
+    <adv-space />
+
     <function-props
+      :border="true"
+      :title="'PolygonModifyAction'"
       :data="[
         {
           name: 'isCanMove',
@@ -1753,8 +1784,11 @@
       ]"
     />
 
-    <h2>RectangleModifyAction</h2>
+    <adv-space />
+
     <function-props
+      :border="true"
+      :title="'RectangleModifyAction'"
       :data="[
         {
           name: 'isCanMove',
@@ -1927,8 +1961,11 @@
       ]"
     />
 
-    <h2>StartModifyAction</h2>
+    <adv-space />
+
     <function-props
+      :border="true"
+      :title="'StartModifyAction'"
       :data="[
         {
           name: 'isCanMove',
@@ -2101,8 +2138,11 @@
       ]"
     />
 
-    <h2>TriangleModifyAction</h2>
+    <adv-space />
+
     <function-props
+      :border="true"
+      :title="'TriangleModifyAction'"
       :data="[
         {
           name: 'isCanMove',

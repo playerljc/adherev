@@ -3,8 +3,9 @@
     <h1>Surnames</h1>
     <p>姓名面板</p>
 
-    <h3>Surnames</h3>
     <props
+      :border="true"
+      :title="'Surnames'"
       :data="[
         {
           params: 'className',
@@ -51,8 +52,11 @@
       ]"
     />
 
-    <h2>indexes</h2>
+    <adv-space />
+
     <props
+      :border="true"
+      :title="'indexes'"
       :data="[
         {
           params: 'index',
@@ -63,8 +67,11 @@
       ]"
     />
 
-    <h2>dataSource</h2>
+    <adv-space />
+
     <props
+      :border="true"
+      :title="'dataSource'"
       :data="[
         {
           params: 'index',
@@ -81,8 +88,11 @@
       ]"
     />
 
-    <h2>方法</h2>
+    <adv-space />
+
     <function-props
+      :border="true"
+      :title="'方法'"
       :data="[
         {
           name: 'scrollToAnimation',

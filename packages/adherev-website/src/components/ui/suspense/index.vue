@@ -8,8 +8,9 @@
       此组件是一个父类，使用的时候需要写一个子类，人后重写fetchData、renderInner和showLoading三个方法，所以只能使用class的方式，不能使用hooks
     </p>
 
-    <h2>属性</h2>
     <props
+      :border="true"
+      :title="'属性'"
       :data="[
         {
           params: 'reset',
@@ -26,8 +27,11 @@
       ]"
     />
 
-    <h2>重写的方法</h2>
+    <adv-space />
+
     <function-props
+      :border="true"
+      :title="'重写的方法'"
       :data="[
         {
           name: 'fetchData',

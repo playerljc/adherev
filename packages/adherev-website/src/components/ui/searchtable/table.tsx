@@ -22,6 +22,19 @@ export default {
       },
     };
   },
+  props: {
+    pagination: {
+      type: Boolean,
+      default: true,
+    },
+  },
+  watch: {
+    pagination(oldValue, newValue) {
+      if (oldValue !== newValue) {
+        this.scrollY = 0;
+      }
+    },
+  },
   methods: {
     getParams() {
       return {
@@ -261,6 +274,15 @@ export default {
 
           this.loading = false;
         });
+    },
+    getPagination() {
+      const { pagination } = this;
+
+      if (pagination) {
+        return this.getSearchTablePagination();
+      }
+
+      return false;
     },
   },
 };
