@@ -1,6 +1,6 @@
 {
   "name": "@baifendian/adherev-ui-olmap",
-  "version": "1.0.4",
+  "version": "1.0.6",
   "description": "对openlayers的封装",
   "main": "lib/index.js",
   "files": [
@@ -35,8 +35,8 @@
     "typescript": "^3.8.2"
   },
   "dependencies": {
-    "@baifendian/adherev-util-resource": "^1.0.4",
-    "@baifendian/adherev-util": "^1.0.4",
+    "@baifendian/adherev-util": "^1.0.6",
+    "@baifendian/adherev-util-resource": "^1.0.6",
     "algebra.js": "^0.2.6",
     "ol": "6.5.0",
     "ol-wind": "^1.1.1-alpha.2",

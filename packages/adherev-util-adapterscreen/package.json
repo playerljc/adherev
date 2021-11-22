@@ -1,6 +1,6 @@
 {
   "name": "@baifendian/adherev-util-adapterscreen",
-  "version": "1.0.4",
+  "version": "1.0.6",
   "description": "对屏幕的缩放进行适配的操作",
   "main": "lib/index.js",
   "files": [
@@ -36,6 +36,6 @@
   },
   "dependencies": {
     "@baifendian/adhere-util-adapterscreen": "^1.0.10",
-    "@baifendian/adherev-util": "^1.0.4"
+    "@baifendian/adherev-util": "^1.0.6"
   }
 }

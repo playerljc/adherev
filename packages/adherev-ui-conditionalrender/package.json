@@ -1,6 +1,6 @@
 {
   "name": "@baifendian/adherev-ui-conditionalrender",
-  "version": "1.0.4",
+  "version": "1.0.6",
   "description": "条件渲染",
   "main": "lib/index.js",
   "files": [
@@ -30,7 +30,7 @@
     "access": "public"
   },
   "dependencies": {
-    "@baifendian/adherev-util": "^1.0.4"
+    "@baifendian/adherev-util": "^1.0.6"
   },
   "devDependencies": {
     "@babel/runtime": "^7.7.4",

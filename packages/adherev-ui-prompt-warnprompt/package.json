@@ -1,6 +1,6 @@
 {
   "name": "@baifendian/adherev-ui-prompt-warnprompt",
-  "version": "1.0.4",
+  "version": "1.0.6",
   "description": "警告的提示(就是为了全局统一)",
   "main": "lib/index.js",
   "files": [
@@ -35,8 +35,8 @@
     "typescript": "^3.8.2"
   },
   "dependencies": {
+    "@baifendian/adherev-util": "^1.0.6",
     "ant-design-vue": "^1.7.5",
-    "vue": "^2.6.14",
-    "@baifendian/adherev-util": "^1.0.4"
+    "vue": "^2.6.14"
   }
 }

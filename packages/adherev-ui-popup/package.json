@@ -1,6 +1,6 @@
 {
   "name": "@baifendian/adherev-ui-popup",
-  "version": "1.0.4",
+  "version": "1.0.6",
   "description": "popup",
   "main": "lib/index.js",
   "files": [
@@ -35,10 +35,10 @@
     "typescript": "^3.8.2"
   },
   "dependencies": {
+    "@baifendian/adherev-util": "^1.0.6",
     "classnames": "^2.2.6",
     "omit.js": "^2.0.2",
     "uuid": "^8.3.2",
-    "vue": "^2.6.14",
-    "@baifendian/adherev-util": "^1.0.4"
+    "vue": "^2.6.14"
   }
 }
