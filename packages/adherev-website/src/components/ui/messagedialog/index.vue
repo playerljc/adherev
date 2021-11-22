@@ -9,6 +9,8 @@
       <li>- 不与变量进行绑定，开箱即用的功能</li>
     </ul>
 
+    <adv-space />
+
     <function-props
       :border="true"
       :title="'Confirm方法'"

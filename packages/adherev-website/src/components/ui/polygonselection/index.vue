@@ -12,6 +12,8 @@
       <li>- 自由绘制区域</li>
     </ul>
 
+    <adv-space />
+
     <function-props
       :border="true"
       :title="'PolygonSelection'"

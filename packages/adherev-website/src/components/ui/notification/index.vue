@@ -7,6 +7,8 @@
       <li>- 支持top和bottom方向</li>
     </ul>
 
+    <adv-space />
+
     <function-props
       :border="true"
       :title="'NotificationFactory'"

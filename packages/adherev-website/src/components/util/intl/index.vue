@@ -7,6 +7,8 @@
       <li>- 支持自动生成词条的key</li>
     </ul>
 
+    <adv-space />
+
     <function-props
       :border="true"
       :title="'方法'"

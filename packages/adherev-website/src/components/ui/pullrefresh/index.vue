@@ -6,6 +6,8 @@
       <li>- 支持mobile和pc</li>
     </ul>
 
+    <adv-space />
+
     <props
       :border="true"
       :title="'PullRefresh'"

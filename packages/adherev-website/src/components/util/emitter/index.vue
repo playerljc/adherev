@@ -7,6 +7,8 @@
       <li>- 解除订阅</li>
     </ul>
 
+    <adv-space />
+
     <function-props
       :border="true"
       :title="'方法'"

@@ -8,6 +8,8 @@
       <li>- 可以自定义无权限的 UI</li>
     </ul>
 
+    <adv-space />
+
     <props
       :border="true"
       :title="'Permission'"

@@ -6,6 +6,8 @@
       <li>- 支持对象的写入和拿出</li>
     </ul>
 
+    <adv-space />
+
     <function-props
       :border="true"
       :title="'方法'"
