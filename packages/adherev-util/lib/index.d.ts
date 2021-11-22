@@ -6,8 +6,6 @@ declare const _default: {
             render(h: any): any;
         };
     };
-    parse(path?: string | undefined): object;
-    stringify(record: object): string;
     arrayToAntdTree(arr: any[], { keyAttr, titleAttr, rootParentId, parentIdAttr }: import("@baifendian/adhere-util/lib/types").IFlatTreeArrNode): import("@baifendian/adhere-util/lib/types").IAntdTreeNode[];
     arrayToAntdTreeSelect(arr: any[], { keyAttr, titleAttr, rootParentId, parentIdAttr }: import("@baifendian/adhere-util/lib/types").IFlatTreeArrNode): import("@baifendian/adhere-util/lib/types").IAntdTreeSelectNode[];
     getAncestor(data: any[], node: any, config: {
