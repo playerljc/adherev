@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import 'vue-highlight.js/lib/allLanguages';
-import { Intl, Util, Resource } from '@baifendian/adherev';
+import { Intl, Util, Resource, MessageDialog } from '@baifendian/adherev';
 
 import Router from './lib/Router';
 import '@/config/component.register.config.js';
@@ -21,6 +21,14 @@ const lang = Util.getLang();
 
 // moment的国际化
 Resource.Dict.value.LocalsMoment.value[lang]();
+
+MessageDialog.setConfig({
+  messages: {
+    en_US,
+    zh_CN,
+    pt_PT,
+  },
+});
 
 new Vue({
   el: '#container',

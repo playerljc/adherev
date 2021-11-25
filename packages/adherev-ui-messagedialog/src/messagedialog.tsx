@@ -453,8 +453,8 @@ const MessageDialogFactory = {
   },
 };
 
-export function setConfig(gc: IConfig) {
+MessageDialogFactory.setConfig = (gc: IConfig) => {
   globalConfig = gc;
-}
+};
 
 export default MessageDialogFactory;
