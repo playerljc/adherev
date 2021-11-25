@@ -1,6 +1,6 @@
 {
   "name": "@baifendian/adherev-ui-messagedialog",
-  "version": "1.0.6",
+  "version": "1.0.6-fix.0",
   "description": "对ant-design-vue的<Model>进行封装",
   "main": "lib/index.js",
   "files": [

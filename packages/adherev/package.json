@@ -1,6 +1,6 @@
 {
   "name": "@baifendian/adherev",
-  "version": "1.0.6",
+  "version": "1.0.6-fix.0",
   "description": "adherev",
   "main": "lib/index.js",
   "files": [
@@ -55,8 +55,8 @@
     "@baifendian/adherev-ui-bmap": "^1.0.6",
     "@baifendian/adherev-ui-cascadecompared": "^1.0.6",
     "@baifendian/adherev-ui-conditionalrender": "^1.0.6",
-    "@baifendian/adherev-ui-confirm-delconfirm": "^1.0.6",
-    "@baifendian/adherev-ui-confirm-importantconfirm": "^1.0.6",
+    "@baifendian/adherev-ui-confirm-delconfirm": "^1.0.6-fix.0",
+    "@baifendian/adherev-ui-confirm-importantconfirm": "^1.0.6-fix.0",
     "@baifendian/adherev-ui-contextmenu": "^1.0.6",
     "@baifendian/adherev-ui-css": "^1.0.4",
     "@baifendian/adherev-ui-flexlayout": "^1.0.6",
@@ -65,7 +65,7 @@
     "@baifendian/adherev-ui-historyback": "^1.0.6",
     "@baifendian/adherev-ui-imagelazy": "^1.0.6",
     "@baifendian/adherev-ui-jdcategorytab": "^1.0.6",
-    "@baifendian/adherev-ui-messagedialog": "^1.0.6",
+    "@baifendian/adherev-ui-messagedialog": "^1.0.6-fix.0",
     "@baifendian/adherev-ui-notification": "^1.0.6",
     "@baifendian/adherev-ui-olmap": "^1.0.6",
     "@baifendian/adherev-ui-permission": "^1.0.6",
