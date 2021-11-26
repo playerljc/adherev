@@ -6,6 +6,7 @@ module.exports = {
   parserOptions: {
     parser: '@typescript-eslint/parser',
     project: path.join(__dirname, 'tsconfig.json'),
+    extraFileExtensions: ['.vue'],
   },
   extends: [
     require.resolve('@umijs/fabric/dist/eslint'),
