@@ -1,0 +1,81 @@
+@adherev-ui-playground-table-color: #f0f0f0;
+@adherev-ui-playground-table-font-color: #595959;
+@adherev-ui-playground-table-highlight-color: #f2f4f5;
+
+.adherev-ui-playground-table {
+  > .adherev-ui-playground-table-inner {
+    width: 100%;
+    margin: 2em 0;
+    overflow-y: hidden;
+    overflow-x: auto;
+    font-size: 13px;
+    direction: ltr;
+    empty-cells: show;
+    border: 1px solid @adherev-ui-playground-table-color;
+    border-collapse: collapse;
+    border-spacing: 0;
+    line-height: 1.5715;
+
+    > thead {
+      > .adherev-ui-playground-table-header {
+        > .adherev-ui-playground-table-header-column {
+          padding: 12px;
+          color: #5c6b77;
+          font-weight: 500;
+          text-align: left;
+          border: 1px solid @adherev-ui-playground-table-color;
+          white-space: nowrap;
+          background: rgba(0, 0, 0, 0.02);
+
+          &:first-child {
+            border-left: 1px solid @adherev-ui-playground-table-color;
+          }
+
+          &:last-child {
+            border-right: 1px solid @adherev-ui-playground-table-color;
+          }
+        }
+      }
+    }
+
+    > tbody {
+      > .adherev-ui-playground-table-row {
+        transition: all 0.3s;
+
+        &:hover {
+          background: rgba(60, 90, 100, 0.04);
+        }
+
+        > .adherev-ui-playground-table-cell {
+          padding: 12px;
+          color: @adherev-ui-playground-table-font-color;
+          text-align: left;
+          border: 1px solid @adherev-ui-playground-table-color;
+          white-space: normal;
+          word-wrap: break-word;
+          word-break: break-word;
+
+          &:first-child {
+            width: 18%;
+            font-weight: 600;
+            white-space: nowrap;
+            border-left: 1px solid @adherev-ui-playground-table-color;
+          }
+
+          &:last-child {
+            border-right: 1px solid @adherev-ui-playground-table-color;
+          }
+
+          code {
+            margin: 0 1px;
+            padding: 0.2em 0.4em;
+            font-size: 0.9em;
+            background: @adherev-ui-playground-table-highlight-color;
+            border: 1px solid @adherev-ui-playground-table-color;
+            border-radius: 3px;
+          }
+        }
+      }
+    }
+  }
+}
