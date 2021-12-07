@@ -11,16 +11,29 @@ import { IConfig, ISendArg, ISendPrepareArg } from './types';
 // 是否触发过402
 let trigger402 = false;
 
+// notification的节流时间(毫秒)
+const notificationThrottlingTime = 2000;
+
+let errorInfoHandler;
+let warnInfoHandler;
+
 /**
  * errorInfo - 错误的提示
  * @param title
  * @param message
  */
 function errorInfo(title, message) {
-  notification.error({
-    message: title,
-    description: message,
-  });
+  if (errorInfoHandler) {
+    clearTimeout(errorInfoHandler);
+    errorInfoHandler = null;
+  }
+
+  errorInfoHandler = setTimeout(() => {
+    notification.error({
+      message: title,
+      description: message,
+    });
+  }, notificationThrottlingTime);
 }
 
 /**
@@ -29,10 +42,17 @@ function errorInfo(title, message) {
  * @param message
  */
 function warnInfo(title, message) {
-  notification.warn({
-    message: title,
-    description: message,
-  });
+  if (warnInfoHandler) {
+    clearTimeout(warnInfoHandler);
+    warnInfoHandler = null;
+  }
+
+  warnInfoHandler = setTimeout(() => {
+    notification.warn({
+      message: title,
+      description: message,
+    });
+  }, notificationThrottlingTime);
 }
 
 /**
@@ -84,6 +104,9 @@ function getDefaultConfig(): IConfig & {
           break;
         case 402:
           deal402.call(this);
+          break;
+        default:
+          errorInfo(intl.tv('提示'), intl.tv('已提出请求，但未收到任何回复'));
           break;
       }
     },
@@ -210,8 +233,6 @@ function onreadystatechange({
       // 3xx
       // 4xx
       // 5xx
-
-      errorInfo(intl.tv('提示'), intl.tv('已提出请求，但未收到任何回复'));
 
       // 拦截器
       interceptor({
@@ -458,7 +479,7 @@ function complexRequest(method: string, params: ISendArg) {
       this,
       {
         ...getDefaultConfig.call(this),
-
+        ...this.config,
         method,
         ...params,
       },
@@ -606,6 +627,7 @@ class Ajax {
         this,
         {
           ...getDefaultConfig.call(this),
+          ...this.config,
           method: 'get',
           ...arg,
         },
