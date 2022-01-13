@@ -1,6 +1,6 @@
 {
   "name": "@baifendian/adherev-ui-playground",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "一个代码展示的组件",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -39,9 +39,9 @@
     "typescript": "^3.8.2"
   },
   "dependencies": {
-    "@baifendian/adherev-ui-conditionalrender": "^1.0.6",
-    "@baifendian/adherev-util": "^1.0.6",
-    "@baifendian/adherev-util-intl": "^1.0.6",
+    "@baifendian/adherev-ui-conditionalrender": "^1.0.7",
+    "@baifendian/adherev-util": "^1.0.7",
+    "@baifendian/adherev-util-intl": "^1.0.7",
     "classnames": "^2.3.1",
     "copy-to-clipboard": "^3.3.1",
     "highlight.js": "^9.11.0",
