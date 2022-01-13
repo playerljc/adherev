@@ -1,2 +1,185 @@
-var __assign=this&&this.__assign||function(){return(__assign=Object.assign||function(n){for(var t,r=1,e=arguments.length;r<e;r++)for(var a in t=arguments[r])Object.prototype.hasOwnProperty.call(t,a)&&(n[a]=t[a]);return n}).apply(this,arguments)},__spreadArrays=this&&this.__spreadArrays||function(){for(var n=0,t=0,r=arguments.length;t<r;t++)n+=arguments[t].length;for(var e=Array(n),a=0,t=0;t<r;t++)for(var o=arguments[t],i=0,l=o.length;i<l;i++,a++)e[a]=o[i];return e};import VueI18n from"vue-i18n";import en_US from"./locales/en_US";import zh_CN from"./locales/zh_CN";import pt_PT from"./locales/pt_PT";var finallyLocales={en_US:en_US,zh_CN:zh_CN,pt_PT:pt_PT},intlMap={},mainLocales={},i18n=null;function initIntlMap(t){Object.getOwnPropertyNames(t).forEach(function(n){intlMap[t[n]]=n})}function getLocal(n,t){void 0===n&&(n="local");for(var r=__spreadArrays(Array.from(new Set(t))),e={},a=0;a<r.length;a++)e[""+n+(a+1)]=r[a];return e}function extend(n){n.prototype.hasOwnProperty("$i18n")||Object.defineProperty(n.prototype,"$i18n",{get:function(){return this._i18n}}),n.prototype.$tv=function(n){for(var t=[],r=1;r<arguments.length;r++)t[r-1]=arguments[r];var e=this.$i18n,a=intlMap[n];return e.t.apply(e,__spreadArrays([a,e.locale,e._getMessages(),this],t))},n.prototype.$tcv=function(n,t){for(var r=[],e=2;e<arguments.length;e++)r[e-2]=arguments[e];var a=this.$i18n,o=intlMap[n];return a._tc.apply(a,__spreadArrays([o,a.locale,a._getMessages(),this,t],r))},n.prototype.$tev=function(n,t){var r=this.$i18n,n=intlMap[n];return r._te(n,r.locale,r._getMessages(),t)}}var I18nFactory=function(n){var t,r,e,a=n.I18nOptions,o=n.prefix,i=void 0===o?"local":o,l=a.messages,n=void 0===l?{}:l,o=Object.keys(finallyLocales),l=Object.keys(n||{});for(e in o.length>l.length?(t=finallyLocales,r=n||{}):o.length<=l.length&&(t=n||{},r=finallyLocales),t)mainLocales[e]=getLocal(i,Array.from(new Set(__spreadArrays(t[e],r[e]||[]))));return initIntlMap(mainLocales.zh_CN),i18n=new VueI18n(__assign(__assign({},a),{messages:mainLocales}))};I18nFactory.tv=I18nFactory.v=function(n){for(var t=[],r=1;r<arguments.length;r++)t[r-1]=arguments[r];var e=intlMap[n];return null==i18n?void 0:i18n.t.apply(i18n,__spreadArrays([e],t||[]))},I18nFactory.tcv=function(n){for(var t=[],r=1;r<arguments.length;r++)t[r-1]=arguments[r];var e=intlMap[n];return null==i18n?void 0:i18n.tc.apply(i18n,__spreadArrays([e],t||[]))},I18nFactory.tev=function(n){for(var t=[],r=1;r<arguments.length;r++)t[r-1]=arguments[r];var e=intlMap[n];return null==i18n?void 0:i18n.te.apply(i18n,__spreadArrays([e],t))};export default I18nFactory;export{getLocal,extend};
-//# sourceMappingURL=intl.js.map
+"use strict";
+var __assign = (this && this.__assign) || function () {
+    __assign = Object.assign || function(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+                t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
+};
+var __spreadArrays = (this && this.__spreadArrays) || function () {
+    for (var s = 0, i = 0, il = arguments.length; i < il; i++) s += arguments[i].length;
+    for (var r = Array(s), k = 0, i = 0; i < il; i++)
+        for (var a = arguments[i], j = 0, jl = a.length; j < jl; j++, k++)
+            r[k] = a[j];
+    return r;
+};
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.extend = exports.getLocal = void 0;
+var vue_i18n_1 = __importDefault(require("vue-i18n"));
+var en_US_1 = __importDefault(require("./locales/en_US"));
+var zh_CN_1 = __importDefault(require("./locales/zh_CN"));
+var pt_PT_1 = __importDefault(require("./locales/pt_PT"));
+// 组件的国际化文件
+var finallyLocales = {
+    en_US: en_US_1.default,
+    zh_CN: zh_CN_1.default,
+    pt_PT: pt_PT_1.default,
+};
+var intlMap = {};
+var mainLocales = {};
+var i18n = null;
+/**
+ * initIntlMap - 初始化以中文为key,intl.get()为值的Map
+ * @param zh_CN
+ */
+function initIntlMap(zh_CN) {
+    var propertys = Object.getOwnPropertyNames(zh_CN);
+    propertys.forEach(function (p) {
+        // 中文key 国际化值为值
+        intlMap[zh_CN[p]] = p;
+    });
+}
+/**
+ * getLocal
+ * @param prefix
+ * @param data
+ * @return object
+ */
+function getLocal(prefix, data) {
+    if (prefix === void 0) { prefix = 'local'; }
+    var result = __spreadArrays(Array.from(new Set(data)));
+    var local = {};
+    for (var i = 0; i < result.length; i++) {
+        local["" + prefix + (i + 1)] = result[i];
+    }
+    return local;
+}
+exports.getLocal = getLocal;
+/**
+ * extend
+ * @param Vue
+ */
+function extend(Vue) {
+    if (!Vue.prototype.hasOwnProperty('$i18n')) {
+        // $FlowFixMe
+        Object.defineProperty(Vue.prototype, '$i18n', {
+            get: function () {
+                return this._i18n;
+            },
+        });
+    }
+    Vue.prototype.$tv = function (zh) {
+        var values = [];
+        for (var _i = 1; _i < arguments.length; _i++) {
+            values[_i - 1] = arguments[_i];
+        }
+        var i18n = this.$i18n;
+        var key = intlMap[zh];
+        return i18n.t.apply(i18n, __spreadArrays([key, i18n.locale, i18n._getMessages(), this], values));
+    };
+    Vue.prototype.$tcv = function (zh, choice) {
+        var values = [];
+        for (var _i = 2; _i < arguments.length; _i++) {
+            values[_i - 2] = arguments[_i];
+        }
+        var i18n = this.$i18n;
+        var key = intlMap[zh];
+        return i18n._tc.apply(i18n, __spreadArrays([key, i18n.locale, i18n._getMessages(), this, choice], values));
+    };
+    Vue.prototype.$tev = function (zh, locale) {
+        var i18n = this.$i18n;
+        var key = intlMap[zh];
+        return i18n._te(key, i18n.locale, i18n._getMessages(), locale);
+    };
+}
+exports.extend = extend;
+/**
+ * I18nFactory
+ * @param config
+ * @constructor
+ */
+var I18nFactory = function (config) {
+    var I18nOptions = config.I18nOptions, _a = config.prefix, prefix = _a === void 0 ? 'local' : _a;
+    var _b = I18nOptions.messages, locales = _b === void 0 ? {} : _b;
+    var finallyLocalesKeys = Object.keys(finallyLocales);
+    var localesKeys = Object.keys(locales || {});
+    var masterLocales;
+    var slaveLocales;
+    if (finallyLocalesKeys.length > localesKeys.length) {
+        masterLocales = finallyLocales;
+        slaveLocales = locales || {};
+    }
+    else if (finallyLocalesKeys.length <= localesKeys.length) {
+        masterLocales = locales || {};
+        slaveLocales = finallyLocales;
+    }
+    // 整合用户的locales
+    for (var p in masterLocales) {
+        mainLocales[p] = getLocal(prefix, 
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
+        Array.from(new Set(__spreadArrays(masterLocales[p], (slaveLocales[p] || [])))));
+    }
+    // 反转资源文件
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    initIntlMap(mainLocales.zh_CN);
+    // i18n实例
+    i18n = new vue_i18n_1.default(__assign(__assign({}, I18nOptions), { messages: mainLocales }));
+    return i18n;
+};
+/**
+ * tv
+ * @param zh
+ * @param values
+ */
+I18nFactory.tv = I18nFactory.v = function (zh) {
+    var values = [];
+    for (var _i = 1; _i < arguments.length; _i++) {
+        values[_i - 1] = arguments[_i];
+    }
+    var key = intlMap[zh];
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    return i18n === null || i18n === void 0 ? void 0 : i18n.t.apply(i18n, __spreadArrays([key], (values || [])));
+};
+/**
+ * tcv
+ * @param zh
+ * @param values
+ */
+I18nFactory.tcv = function (zh) {
+    var values = [];
+    for (var _i = 1; _i < arguments.length; _i++) {
+        values[_i - 1] = arguments[_i];
+    }
+    var key = intlMap[zh];
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    return i18n === null || i18n === void 0 ? void 0 : i18n.tc.apply(i18n, __spreadArrays([key], (values || [])));
+};
+/**
+ * tev
+ * @param zh
+ * @param values
+ */
+I18nFactory.tev = function (zh) {
+    var values = [];
+    for (var _i = 1; _i < arguments.length; _i++) {
+        values[_i - 1] = arguments[_i];
+    }
+    var key = intlMap[zh];
+    return i18n === null || i18n === void 0 ? void 0 : i18n.te.apply(i18n, __spreadArrays([key], values));
+};
+/**
+ * vue-i18n Factory
+ * @param config
+ */
+exports.default = I18nFactory;

@@ -1,2 +1,7 @@
-import Model from"@baifendian/adherev-ui-split";export default Model;
-//# sourceMappingURL=index.js.map
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+var es_1 = __importDefault(require("@baifendian/adherev-ui-split/es"));
+exports.default = es_1.default;

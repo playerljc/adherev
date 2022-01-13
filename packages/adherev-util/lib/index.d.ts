@@ -6,25 +6,32 @@ declare const _default: {
             render(h: any): any;
         };
     };
+    treeToArray(treeData: import("@baifendian/adhere-util/lib/types").IAntdTreeNode[], config: {
+        parentIdAttr: string;
+        rootParentId: string | number;
+    }): any[];
     arrayToAntdTree(arr: any[], { keyAttr, titleAttr, rootParentId, parentIdAttr }: import("@baifendian/adhere-util/lib/types").IFlatTreeArrNode): import("@baifendian/adhere-util/lib/types").IAntdTreeNode[];
     arrayToAntdTreeSelect(arr: any[], { keyAttr, titleAttr, rootParentId, parentIdAttr }: import("@baifendian/adhere-util/lib/types").IFlatTreeArrNode): import("@baifendian/adhere-util/lib/types").IAntdTreeSelectNode[];
     getAncestor(data: any[], node: any, config: {
         keyAttr: string;
         parentIdAttr: string;
-        rootParentId: string;
+        rootParentId: string | number;
     }): any[];
     getDescendants(data: any[], node: any, config: {
         keyAttr: string;
         parentIdAttr: string;
-        rootParentId: string;
+        rootParentId: string | number;
     }): any[];
     filterTree(data: any[], kw: string, config: {
         filterAttr: string;
         keyAttr: string;
         parentIdAttr: string;
-        rootParentId: string;
+        rootParentId: string | number;
         titleAttr: string;
     }): import("@baifendian/adhere-util/lib/types").IAntdTreeNode[];
+    findNodeByKey(treeData: import("@baifendian/adhere-util/lib/types").IAntdTreeNode[], val: any, config: {
+        keyAttr: string;
+    }): import("@baifendian/adhere-util/lib/types").IAntdTreeNode | null;
     getLang(): string;
     setLang(lang?: string | undefined): void;
     getDatePickerFormat(): string;
@@ -161,6 +168,7 @@ declare const _default: {
     generatorRandom(lowerValue: any, upperValue: any): number;
     uuid(): string;
     getPropertyVisitPathStr(target: any, key: any): string;
-    convertBase64UrlToBlob(data: string): Blob;
+    convertBase64UrlToBlob(data: string): Blob | null;
+    omitObject(obj: object): object;
 };
 export default _default;

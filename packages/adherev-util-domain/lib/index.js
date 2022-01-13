@@ -1,2 +1,13 @@
-import Domain from"@baifendian/adhere-util-domain";import BfdUtil from"@baifendian/adherev-util";var withVue=BfdUtil._util.withVue;Domain.isUse=function(){return!0},Domain.use=function(i){withVue(i,"Domain",Domain)};export default Domain;
-//# sourceMappingURL=index.js.map
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+var adhere_util_domain_1 = __importDefault(require("@baifendian/adhere-util-domain"));
+var adherev_util_1 = __importDefault(require("@baifendian/adherev-util"));
+var withVue = adherev_util_1.default._util.withVue;
+adhere_util_domain_1.default.isUse = function () { return true; };
+adhere_util_domain_1.default.use = function (Vue) {
+    withVue(Vue, 'Domain', adhere_util_domain_1.default);
+};
+exports.default = adhere_util_domain_1.default;

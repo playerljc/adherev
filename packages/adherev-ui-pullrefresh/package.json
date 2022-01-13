@@ -3,14 +3,18 @@
   "version": "1.0.6",
   "description": "下拉刷新",
   "main": "lib/index.js",
+  "module": "es/index.js",
   "files": [
     "lib",
+    "es",
     "umd"
   ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "prebuildpackage": "node ./script/build-load-awesome.js",
-    "buildpackage": "ctbuildv buildpackagets",
+    "buildpackage:cjs": "ctbuildv buildpackagets -c ctbuildv.package.ts.cjs.config.js -o lib",
+    "buildpackage:es": "ctbuildv buildpackagets -c ctbuildv.package.ts.esm.config.js -o es",
+    "buildpackage": "npm-run-all --parallel buildpackage:cjs buildpackage:es",
     "buildumd": "ctbuildv buildumd --config ctbuildv.config.umd.js --packagename AdherevPullRefresh --define alias=@,evnVars=true",
     "generatorchangelog": "bd changelog/CHANGELOG.html"
   },
@@ -18,9 +22,7 @@
     "type": "git",
     "url": "https://gitee.com/playerljc/adherev"
   },
-  "resolutions": {
-    "graceful-fs": "4.2.2"
-  },
+  "resolutions": {},
   "author": "playerljc",
   "license": "ISC",
   "bugs": {
@@ -32,7 +34,7 @@
   },
   "devDependencies": {
     "@babel/runtime": "^7.7.4",
-    "@ctsj/buildv": "^2.0.2",
+    "@ctsj/buildv": "^2.0.8",
     "typescript": "^3.8.2"
   },
   "dependencies": {
@@ -43,6 +45,7 @@
     "classnames": "^2.2.6",
     "load-awesome": "^1.1.0",
     "moment": "^2.29.1",
+    "npm-run-all": "^4.1.5",
     "omit.js": "^2.0.2"
   }
 }

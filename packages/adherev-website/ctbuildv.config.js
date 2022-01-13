@@ -62,6 +62,9 @@ module.exports = {
     webpackConfig.module.rules[webpackConfig.module.rules.length - 1].include.push(
       /packages[\\/]adherev[\\/]lib[\\/].*[\\/]style[\\/]index.less/,
       /packages[\\/]adherev[\\/]lib[\\/].*.less/,
+
+      /packages[\\/]adherev[\\/]es[\\/].*[\\/]style[\\/]index.less/,
+      /packages[\\/]adherev[\\/]es[\\/].*.less/,
     );
 
     webpackConfig.module.rules[3].include.push(/ol.css/, /swiper.css/);
@@ -74,8 +77,8 @@ module.exports = {
 
     // 在使用babel-plugin-import的时候让adherev也执行
     // 但是现在adherev-util|util编译完的都是require并不是import所以没有被作用
-    delete webpackConfig.module.rules[1].exclude;
-    webpackConfig.module.rules[0].include = [
+    // delete webpackConfig.module.rules[1].exclude;
+    webpackConfig.module.rules[1].include = [
       path.join(__dirname, 'src'),
       /@baifendian[\\/]adherev?-?/,
     ];
@@ -99,6 +102,7 @@ module.exports = {
           {
             libraryName: '@baifendian/adherev',
             transformToDefaultImport: true,
+            libraryDirectory: 'es',
             style: true,
           },
           'adherev',
@@ -107,6 +111,7 @@ module.exports = {
           'import',
           {
             libraryName: 'ant-design-vue',
+            libraryDirectory: 'es',
             style: true,
           },
           'ant-design-vue',

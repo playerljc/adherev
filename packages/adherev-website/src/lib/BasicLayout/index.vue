@@ -29,7 +29,7 @@
       <div :class="$style.BreadcrumbWrap">
         <a-breadcrumb separator="/">
           <a-breadcrumb-item>{{ name }}</a-breadcrumb-item>
-          <a-breadcrumb-item v-for="t in breadcrumbPaths()">
+          <a-breadcrumb-item v-for="t in breadcrumbPaths()" :key="t.path">
             <router-link :key="t.path" :to="t.path">{{ t.name }}</router-link>
           </a-breadcrumb-item>
         </a-breadcrumb>
@@ -57,7 +57,7 @@ import Util from './Util';
 export default {
   components: {
     'sub-menu': SubMenu,
-    Footer: Footer,
+    Footer,
   },
   props: {
     routes: {

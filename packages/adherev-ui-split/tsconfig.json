@@ -4,7 +4,6 @@
     "declarationDir": "./lib",
     "outDir": "./lib",
     "baseUrl": "./",
-    "module": "esnext",
     "jsx": "preserve"
   },
   "exclude": [

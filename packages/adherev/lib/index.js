@@ -1,2 +1,265 @@
-import BackTopAnimation from"@baifendian/adherev-ui-backtopanimation";import BMap from"@baifendian/adherev-ui-bmap";import CascadeCompared from"@baifendian/adherev-ui-cascadecompared";import ConditionalRender from"@baifendian/adherev-ui-conditionalrender";import DelConfirm from"@baifendian/adherev-ui-confirm-delconfirm";import ImportantConfirm from"@baifendian/adherev-ui-confirm-importantconfirm";import ContextMenu from"@baifendian/adherev-ui-contextmenu";import FlexLayout from"@baifendian/adherev-ui-flexlayout";import FontSizeSetting from"@baifendian/adherev-ui-fontsizesetting";import GlobalIndicator from"@baifendian/adherev-ui-globalindicator";import HistoryBack from"@baifendian/adherev-ui-historyback";import ImageLazy from"@baifendian/adherev-ui-imagelazy";import JdCategoryTab from"@baifendian/adherev-ui-jdcategorytab";import MessageDialog from"@baifendian/adherev-ui-messagedialog";import Notification from"@baifendian/adherev-ui-notification";import OLMap from"@baifendian/adherev-ui-olmap";import Permission from"@baifendian/adherev-ui-permission";import PlayGround from"@baifendian/adherev-ui-playground";import PolygonSelection from"@baifendian/adherev-ui-polygonselection";import Popup from"@baifendian/adherev-ui-popup";import ErrorPrompt from"@baifendian/adherev-ui-prompt-errorprompt";import SuccessPrompt from"@baifendian/adherev-ui-prompt-successprompt";import WarnPrompt from"@baifendian/adherev-ui-prompt-warnprompt";import PullRefresh from"@baifendian/adherev-ui-pullrefresh";import Revolving from"@baifendian/adherev-ui-revolving";import ScrollLoad from"@baifendian/adherev-ui-scrollload";import SearchTable from"@baifendian/adherev-ui-searchtable";import SlideLayout from"@baifendian/adherev-ui-slidelayout";import SliderScale from"@baifendian/adherev-ui-sliderscale";import Space from"@baifendian/adherev-ui-space";import Spin from"@baifendian/adherev-ui-spin";import Split from"@baifendian/adherev-ui-split";import SplitLayout from"@baifendian/adherev-ui-splitlayout";import StickupLayout from"@baifendian/adherev-ui-stickuplayout";import Surnames from"@baifendian/adherev-ui-surnames";import Suspense from"@baifendian/adherev-ui-suspense";import SwipeOut from"@baifendian/adherev-ui-swipeout";import Util from"@baifendian/adherev-util";import AdapterScreen from"@baifendian/adherev-util-adapterscreen";import Browsersniff from"@baifendian/adherev-util-browsersniff";import Ajax from"@baifendian/adherev-util-communication-ajax";import Dict from"@baifendian/adherev-util-dict";import Domain from"@baifendian/adherev-util-domain";import Emitter from"@baifendian/adherev-util-emitter";import Intl from"@baifendian/adherev-util-intl";import Mixins from"@baifendian/adherev-util-mixins";import NotNull from"@baifendian/adherev-util-notnull";import Preferences from"@baifendian/adherev-util-preferences";import Resource from"@baifendian/adherev-util-resource";import Validator from"@baifendian/adherev-util-validator";import WatchMemoized from"@baifendian/adherev-util-watchmemoized";export default{install:function(e){BackTopAnimation.isUse()&&BackTopAnimation.use(e),BMap.isUse()&&BMap.use(e),CascadeCompared.isUse()&&CascadeCompared.use(e),ConditionalRender.isUse()&&ConditionalRender.use(e),DelConfirm.isUse()&&DelConfirm.use(e),ImportantConfirm.isUse()&&ImportantConfirm.use(e),ContextMenu.isUse()&&ContextMenu.use(e),FlexLayout.isUse()&&FlexLayout.use(e),FontSizeSetting.isUse()&&FontSizeSetting.use(e),GlobalIndicator.isUse()&&GlobalIndicator.use(e),HistoryBack.isUse()&&HistoryBack.use(e),ImageLazy.isUse()&&ImageLazy.use(e),JdCategoryTab.isUse()&&JdCategoryTab.use(e),MessageDialog.isUse()&&MessageDialog.use(e),Notification.isUse()&&Notification.use(e),OLMap.isUse()&&OLMap.use(e),Permission.isUse()&&Permission.use(e),PlayGround.isUse()&&PlayGround.use(e),PolygonSelection.isUse()&&PolygonSelection.use(e),Popup.isUse()&&Popup.use(e),ErrorPrompt.isUse()&&ErrorPrompt.use(e),SuccessPrompt.isUse()&&SuccessPrompt.use(e),WarnPrompt.isUse()&&WarnPrompt.use(e),PullRefresh.isUse()&&PullRefresh.use(e),Revolving.isUse()&&Revolving.use(e),ScrollLoad.isUse()&&ScrollLoad.use(e),SearchTable.isUse()&&SearchTable.use(e),SlideLayout.isUse()&&SlideLayout.use(e),SliderScale.isUse()&&SliderScale.use(e),Space.isUse()&&Space.use(e),Spin.isUse()&&Spin.use(e),Split.isUse()&&Split.use(e),SplitLayout.isUse()&&SplitLayout.use(e),StickupLayout.isUse()&&StickupLayout.use(e),Surnames.isUse()&&Surnames.use(e),Suspense.isUse()&&Suspense.use(e),SwipeOut.isUse()&&SwipeOut.use(e),Util.isUse()&&Util.use(e),AdapterScreen.isUse()&&AdapterScreen.use(e),Browsersniff.isUse()&&Browsersniff.use(e),Ajax.isUse()&&Ajax.use(e),Dict.isUse()&&Dict.use(e),Domain.isUse()&&Domain.use(e),Emitter.isUse()&&Emitter.use(e),Intl.isUse()&&Intl.use(e),Mixins.isUse()&&Mixins.use(e),NotNull.isUse()&&NotNull.use(e),Preferences.isUse()&&Preferences.use(e),Resource.isUse()&&Resource.use(e),Validator.isUse()&&Validator.use(e),WatchMemoized.isUse()&&WatchMemoized.use(e)}};export{BackTopAnimation,BMap,CascadeCompared,ConditionalRender,DelConfirm,ImportantConfirm,ContextMenu,FlexLayout,FontSizeSetting,GlobalIndicator,HistoryBack,ImageLazy,JdCategoryTab,MessageDialog,Notification,OLMap,Permission,PlayGround,PolygonSelection,Popup,ErrorPrompt,SuccessPrompt,WarnPrompt,PullRefresh,Revolving,ScrollLoad,SearchTable,SlideLayout,SliderScale,Space,Spin,Split,SplitLayout,StickupLayout,Surnames,Suspense,SwipeOut,Util,AdapterScreen,Browsersniff,Ajax,Dict,Domain,Emitter,Intl,Mixins,NotNull,Preferences,Resource,Validator,WatchMemoized};
-//# sourceMappingURL=index.js.map
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.WatchMemoized = exports.Validator = exports.Resource = exports.Preferences = exports.NotNull = exports.Mixins = exports.Intl = exports.Emitter = exports.Domain = exports.Dict = exports.Ajax = exports.Browsersniff = exports.AdapterScreen = exports.Util = exports.SwipeOut = exports.Suspense = exports.Surnames = exports.StickupLayout = exports.SplitLayout = exports.Split = exports.Spin = exports.Space = exports.SliderScale = exports.SlideLayout = exports.SearchTable = exports.ScrollLoad = exports.Revolving = exports.PullRefresh = exports.WarnPrompt = exports.SuccessPrompt = exports.ErrorPrompt = exports.Popup = exports.PolygonSelection = exports.PlayGround = exports.Permission = exports.OLMap = exports.Notification = exports.MessageDialog = exports.JdCategoryTab = exports.ImageLazy = exports.HistoryBack = exports.GlobalIndicator = exports.FontSizeSetting = exports.FlexLayout = exports.ContextMenu = exports.ImportantConfirm = exports.DelConfirm = exports.ConditionalRender = exports.CascadeCompared = exports.BMap = exports.BackTopAnimation = void 0;
+var adherev_ui_backtopanimation_1 = __importDefault(require("@baifendian/adherev-ui-backtopanimation"));
+exports.BackTopAnimation = adherev_ui_backtopanimation_1.default;
+var adherev_ui_bmap_1 = __importDefault(require("@baifendian/adherev-ui-bmap"));
+exports.BMap = adherev_ui_bmap_1.default;
+var adherev_ui_cascadecompared_1 = __importDefault(require("@baifendian/adherev-ui-cascadecompared"));
+exports.CascadeCompared = adherev_ui_cascadecompared_1.default;
+var adherev_ui_conditionalrender_1 = __importDefault(require("@baifendian/adherev-ui-conditionalrender"));
+exports.ConditionalRender = adherev_ui_conditionalrender_1.default;
+var adherev_ui_confirm_delconfirm_1 = __importDefault(require("@baifendian/adherev-ui-confirm-delconfirm"));
+exports.DelConfirm = adherev_ui_confirm_delconfirm_1.default;
+var adherev_ui_confirm_importantconfirm_1 = __importDefault(require("@baifendian/adherev-ui-confirm-importantconfirm"));
+exports.ImportantConfirm = adherev_ui_confirm_importantconfirm_1.default;
+var adherev_ui_contextmenu_1 = __importDefault(require("@baifendian/adherev-ui-contextmenu"));
+exports.ContextMenu = adherev_ui_contextmenu_1.default;
+var adherev_ui_flexlayout_1 = __importDefault(require("@baifendian/adherev-ui-flexlayout"));
+exports.FlexLayout = adherev_ui_flexlayout_1.default;
+var adherev_ui_fontsizesetting_1 = __importDefault(require("@baifendian/adherev-ui-fontsizesetting"));
+exports.FontSizeSetting = adherev_ui_fontsizesetting_1.default;
+var adherev_ui_globalindicator_1 = __importDefault(require("@baifendian/adherev-ui-globalindicator"));
+exports.GlobalIndicator = adherev_ui_globalindicator_1.default;
+var adherev_ui_historyback_1 = __importDefault(require("@baifendian/adherev-ui-historyback"));
+exports.HistoryBack = adherev_ui_historyback_1.default;
+var adherev_ui_imagelazy_1 = __importDefault(require("@baifendian/adherev-ui-imagelazy"));
+exports.ImageLazy = adherev_ui_imagelazy_1.default;
+var adherev_ui_jdcategorytab_1 = __importDefault(require("@baifendian/adherev-ui-jdcategorytab"));
+exports.JdCategoryTab = adherev_ui_jdcategorytab_1.default;
+var adherev_ui_messagedialog_1 = __importDefault(require("@baifendian/adherev-ui-messagedialog"));
+exports.MessageDialog = adherev_ui_messagedialog_1.default;
+var adherev_ui_notification_1 = __importDefault(require("@baifendian/adherev-ui-notification"));
+exports.Notification = adherev_ui_notification_1.default;
+var adherev_ui_olmap_1 = __importDefault(require("@baifendian/adherev-ui-olmap"));
+exports.OLMap = adherev_ui_olmap_1.default;
+var adherev_ui_permission_1 = __importDefault(require("@baifendian/adherev-ui-permission"));
+exports.Permission = adherev_ui_permission_1.default;
+var adherev_ui_playground_1 = __importDefault(require("@baifendian/adherev-ui-playground"));
+exports.PlayGround = adherev_ui_playground_1.default;
+var adherev_ui_polygonselection_1 = __importDefault(require("@baifendian/adherev-ui-polygonselection"));
+exports.PolygonSelection = adherev_ui_polygonselection_1.default;
+var adherev_ui_popup_1 = __importDefault(require("@baifendian/adherev-ui-popup"));
+exports.Popup = adherev_ui_popup_1.default;
+var adherev_ui_prompt_errorprompt_1 = __importDefault(require("@baifendian/adherev-ui-prompt-errorprompt"));
+exports.ErrorPrompt = adherev_ui_prompt_errorprompt_1.default;
+var adherev_ui_prompt_successprompt_1 = __importDefault(require("@baifendian/adherev-ui-prompt-successprompt"));
+exports.SuccessPrompt = adherev_ui_prompt_successprompt_1.default;
+var adherev_ui_prompt_warnprompt_1 = __importDefault(require("@baifendian/adherev-ui-prompt-warnprompt"));
+exports.WarnPrompt = adherev_ui_prompt_warnprompt_1.default;
+var adherev_ui_pullrefresh_1 = __importDefault(require("@baifendian/adherev-ui-pullrefresh"));
+exports.PullRefresh = adherev_ui_pullrefresh_1.default;
+var adherev_ui_revolving_1 = __importDefault(require("@baifendian/adherev-ui-revolving"));
+exports.Revolving = adherev_ui_revolving_1.default;
+var adherev_ui_scrollload_1 = __importDefault(require("@baifendian/adherev-ui-scrollload"));
+exports.ScrollLoad = adherev_ui_scrollload_1.default;
+var adherev_ui_searchtable_1 = __importDefault(require("@baifendian/adherev-ui-searchtable"));
+exports.SearchTable = adherev_ui_searchtable_1.default;
+var adherev_ui_slidelayout_1 = __importDefault(require("@baifendian/adherev-ui-slidelayout"));
+exports.SlideLayout = adherev_ui_slidelayout_1.default;
+var adherev_ui_sliderscale_1 = __importDefault(require("@baifendian/adherev-ui-sliderscale"));
+exports.SliderScale = adherev_ui_sliderscale_1.default;
+var adherev_ui_space_1 = __importDefault(require("@baifendian/adherev-ui-space"));
+exports.Space = adherev_ui_space_1.default;
+var adherev_ui_spin_1 = __importDefault(require("@baifendian/adherev-ui-spin"));
+exports.Spin = adherev_ui_spin_1.default;
+var adherev_ui_split_1 = __importDefault(require("@baifendian/adherev-ui-split"));
+exports.Split = adherev_ui_split_1.default;
+var adherev_ui_splitlayout_1 = __importDefault(require("@baifendian/adherev-ui-splitlayout"));
+exports.SplitLayout = adherev_ui_splitlayout_1.default;
+var adherev_ui_stickuplayout_1 = __importDefault(require("@baifendian/adherev-ui-stickuplayout"));
+exports.StickupLayout = adherev_ui_stickuplayout_1.default;
+var adherev_ui_surnames_1 = __importDefault(require("@baifendian/adherev-ui-surnames"));
+exports.Surnames = adherev_ui_surnames_1.default;
+var adherev_ui_suspense_1 = __importDefault(require("@baifendian/adherev-ui-suspense"));
+exports.Suspense = adherev_ui_suspense_1.default;
+var adherev_ui_swipeout_1 = __importDefault(require("@baifendian/adherev-ui-swipeout"));
+exports.SwipeOut = adherev_ui_swipeout_1.default;
+var adherev_util_1 = __importDefault(require("@baifendian/adherev-util"));
+exports.Util = adherev_util_1.default;
+var adherev_util_adapterscreen_1 = __importDefault(require("@baifendian/adherev-util-adapterscreen"));
+exports.AdapterScreen = adherev_util_adapterscreen_1.default;
+var adherev_util_browsersniff_1 = __importDefault(require("@baifendian/adherev-util-browsersniff"));
+exports.Browsersniff = adherev_util_browsersniff_1.default;
+var adherev_util_communication_ajax_1 = __importDefault(require("@baifendian/adherev-util-communication-ajax"));
+exports.Ajax = adherev_util_communication_ajax_1.default;
+var adherev_util_dict_1 = __importDefault(require("@baifendian/adherev-util-dict"));
+exports.Dict = adherev_util_dict_1.default;
+var adherev_util_domain_1 = __importDefault(require("@baifendian/adherev-util-domain"));
+exports.Domain = adherev_util_domain_1.default;
+var adherev_util_emitter_1 = __importDefault(require("@baifendian/adherev-util-emitter"));
+exports.Emitter = adherev_util_emitter_1.default;
+var adherev_util_intl_1 = __importDefault(require("@baifendian/adherev-util-intl"));
+exports.Intl = adherev_util_intl_1.default;
+var adherev_util_mixins_1 = __importDefault(require("@baifendian/adherev-util-mixins"));
+exports.Mixins = adherev_util_mixins_1.default;
+var adherev_util_notnull_1 = __importDefault(require("@baifendian/adherev-util-notnull"));
+exports.NotNull = adherev_util_notnull_1.default;
+var adherev_util_preferences_1 = __importDefault(require("@baifendian/adherev-util-preferences"));
+exports.Preferences = adherev_util_preferences_1.default;
+var adherev_util_resource_1 = __importDefault(require("@baifendian/adherev-util-resource"));
+exports.Resource = adherev_util_resource_1.default;
+var adherev_util_validator_1 = __importDefault(require("@baifendian/adherev-util-validator"));
+exports.Validator = adherev_util_validator_1.default;
+var adherev_util_watchmemoized_1 = __importDefault(require("@baifendian/adherev-util-watchmemoized"));
+exports.WatchMemoized = adherev_util_watchmemoized_1.default;
+exports.default = {
+    install: function (Vue) {
+        if (adherev_ui_backtopanimation_1.default.isUse()) {
+            adherev_ui_backtopanimation_1.default.use(Vue);
+        }
+        if (adherev_ui_bmap_1.default.isUse()) {
+            adherev_ui_bmap_1.default.use(Vue);
+        }
+        if (adherev_ui_cascadecompared_1.default.isUse()) {
+            adherev_ui_cascadecompared_1.default.use(Vue);
+        }
+        if (adherev_ui_conditionalrender_1.default.isUse()) {
+            adherev_ui_conditionalrender_1.default.use(Vue);
+        }
+        if (adherev_ui_confirm_delconfirm_1.default.isUse()) {
+            adherev_ui_confirm_delconfirm_1.default.use(Vue);
+        }
+        if (adherev_ui_confirm_importantconfirm_1.default.isUse()) {
+            adherev_ui_confirm_importantconfirm_1.default.use(Vue);
+        }
+        if (adherev_ui_contextmenu_1.default.isUse()) {
+            adherev_ui_contextmenu_1.default.use(Vue);
+        }
+        if (adherev_ui_flexlayout_1.default.isUse()) {
+            adherev_ui_flexlayout_1.default.use(Vue);
+        }
+        if (adherev_ui_fontsizesetting_1.default.isUse()) {
+            adherev_ui_fontsizesetting_1.default.use(Vue);
+        }
+        if (adherev_ui_globalindicator_1.default.isUse()) {
+            adherev_ui_globalindicator_1.default.use(Vue);
+        }
+        if (adherev_ui_historyback_1.default.isUse()) {
+            adherev_ui_historyback_1.default.use(Vue);
+        }
+        if (adherev_ui_imagelazy_1.default.isUse()) {
+            adherev_ui_imagelazy_1.default.use(Vue);
+        }
+        if (adherev_ui_jdcategorytab_1.default.isUse()) {
+            adherev_ui_jdcategorytab_1.default.use(Vue);
+        }
+        if (adherev_ui_messagedialog_1.default.isUse()) {
+            adherev_ui_messagedialog_1.default.use(Vue);
+        }
+        if (adherev_ui_notification_1.default.isUse()) {
+            adherev_ui_notification_1.default.use(Vue);
+        }
+        if (adherev_ui_olmap_1.default.isUse()) {
+            adherev_ui_olmap_1.default.use(Vue);
+        }
+        if (adherev_ui_permission_1.default.isUse()) {
+            adherev_ui_permission_1.default.use(Vue);
+        }
+        if (adherev_ui_playground_1.default.isUse()) {
+            adherev_ui_playground_1.default.use(Vue);
+        }
+        if (adherev_ui_polygonselection_1.default.isUse()) {
+            adherev_ui_polygonselection_1.default.use(Vue);
+        }
+        if (adherev_ui_popup_1.default.isUse()) {
+            adherev_ui_popup_1.default.use(Vue);
+        }
+        if (adherev_ui_prompt_errorprompt_1.default.isUse()) {
+            adherev_ui_prompt_errorprompt_1.default.use(Vue);
+        }
+        if (adherev_ui_prompt_successprompt_1.default.isUse()) {
+            adherev_ui_prompt_successprompt_1.default.use(Vue);
+        }
+        if (adherev_ui_prompt_warnprompt_1.default.isUse()) {
+            adherev_ui_prompt_warnprompt_1.default.use(Vue);
+        }
+        if (adherev_ui_pullrefresh_1.default.isUse()) {
+            adherev_ui_pullrefresh_1.default.use(Vue);
+        }
+        if (adherev_ui_revolving_1.default.isUse()) {
+            adherev_ui_revolving_1.default.use(Vue);
+        }
+        if (adherev_ui_scrollload_1.default.isUse()) {
+            adherev_ui_scrollload_1.default.use(Vue);
+        }
+        if (adherev_ui_searchtable_1.default.isUse()) {
+            adherev_ui_searchtable_1.default.use(Vue);
+        }
+        if (adherev_ui_slidelayout_1.default.isUse()) {
+            adherev_ui_slidelayout_1.default.use(Vue);
+        }
+        if (adherev_ui_sliderscale_1.default.isUse()) {
+            adherev_ui_sliderscale_1.default.use(Vue);
+        }
+        if (adherev_ui_space_1.default.isUse()) {
+            adherev_ui_space_1.default.use(Vue);
+        }
+        if (adherev_ui_spin_1.default.isUse()) {
+            adherev_ui_spin_1.default.use(Vue);
+        }
+        if (adherev_ui_split_1.default.isUse()) {
+            adherev_ui_split_1.default.use(Vue);
+        }
+        if (adherev_ui_splitlayout_1.default.isUse()) {
+            adherev_ui_splitlayout_1.default.use(Vue);
+        }
+        if (adherev_ui_stickuplayout_1.default.isUse()) {
+            adherev_ui_stickuplayout_1.default.use(Vue);
+        }
+        if (adherev_ui_surnames_1.default.isUse()) {
+            adherev_ui_surnames_1.default.use(Vue);
+        }
+        if (adherev_ui_suspense_1.default.isUse()) {
+            adherev_ui_suspense_1.default.use(Vue);
+        }
+        if (adherev_ui_swipeout_1.default.isUse()) {
+            adherev_ui_swipeout_1.default.use(Vue);
+        }
+        if (adherev_util_1.default.isUse()) {
+            adherev_util_1.default.use(Vue);
+        }
+        if (adherev_util_adapterscreen_1.default.isUse()) {
+            adherev_util_adapterscreen_1.default.use(Vue);
+        }
+        if (adherev_util_browsersniff_1.default.isUse()) {
+            adherev_util_browsersniff_1.default.use(Vue);
+        }
+        if (adherev_util_communication_ajax_1.default.isUse()) {
+            adherev_util_communication_ajax_1.default.use(Vue);
+        }
+        if (adherev_util_dict_1.default.isUse()) {
+            adherev_util_dict_1.default.use(Vue);
+        }
+        if (adherev_util_domain_1.default.isUse()) {
+            adherev_util_domain_1.default.use(Vue);
+        }
+        if (adherev_util_emitter_1.default.isUse()) {
+            adherev_util_emitter_1.default.use(Vue);
+        }
+        if (adherev_util_intl_1.default.isUse()) {
+            adherev_util_intl_1.default.use(Vue);
+        }
+        if (adherev_util_mixins_1.default.isUse()) {
+            adherev_util_mixins_1.default.use(Vue);
+        }
+        if (adherev_util_notnull_1.default.isUse()) {
+            adherev_util_notnull_1.default.use(Vue);
+        }
+        if (adherev_util_preferences_1.default.isUse()) {
+            adherev_util_preferences_1.default.use(Vue);
+        }
+        if (adherev_util_resource_1.default.isUse()) {
+            adherev_util_resource_1.default.use(Vue);
+        }
+        if (adherev_util_validator_1.default.isUse()) {
+            adherev_util_validator_1.default.use(Vue);
+        }
+        if (adherev_util_watchmemoized_1.default.isUse()) {
+            adherev_util_watchmemoized_1.default.use(Vue);
+        }
+    },
+};

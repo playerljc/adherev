@@ -1,2 +1,42 @@
-var __assign=this&&this.__assign||function(){return(__assign=Object.assign||function(i){for(var t,n=1,s=arguments.length;n<s;n++)for(var r in t=arguments[n])Object.prototype.hasOwnProperty.call(t,r)&&(i[r]=t[r]);return i}).apply(this,arguments)};import Util from"@baifendian/adhere-util";import*as _util from"./_util";Util.isUse=function(){return!0},Util.use=function(i){_util.withVue(i,"Util",Util)};export default __assign(__assign({},Util),{_util:__assign({},_util)});
-//# sourceMappingURL=index.js.map
+"use strict";
+var __assign = (this && this.__assign) || function () {
+    __assign = Object.assign || function(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+                t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
+};
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
+};
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+var adhere_util_1 = __importDefault(require("@baifendian/adhere-util"));
+var _util = __importStar(require("./_util"));
+adhere_util_1.default.isUse = function () { return true; };
+adhere_util_1.default.use = function (Vue) {
+    _util.withVue(Vue, 'Util', adhere_util_1.default);
+};
+exports.default = __assign(__assign({}, adhere_util_1.default), { _util: __assign({}, _util) });

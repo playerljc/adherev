@@ -9,11 +9,7 @@
               自主研发
               <ul>
                 <li>
-                  <a
-                    href="http://49.232.163.126:8083/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
+                  <a href="http://49.232.163.126:8083/" target="_blank" rel="noopener noreferrer">
                     adhere
                   </a>
                 </li>
@@ -176,9 +172,9 @@ export default {
   computed: {
     repositoryUrl() {
       return packageJSON.repository.url;
-    }
-  }
-}
+    },
+  },
+};
 </script>
 
 <style lang="less" module>

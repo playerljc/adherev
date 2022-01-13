@@ -3,15 +3,19 @@
   "version": "1.0.6",
   "description": "一个代码展示的组件",
   "main": "lib/index.js",
+  "module": "es/index.js",
   "files": [
     "lib",
+    "es",
     "umd"
   ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "startapp": "cross-env environment=dev mode=development ctbuildv startapp -c ctbuildv.test.config.js --define alias=@,evnVars=true,static=assets,runtimeCompiler=true",
     "buildapp": "cross-env environment=dev mode=production ctbuildv buildapp -c ctbuildv.test.config.js --define alias=@,evnVars=true,static=assets",
-    "buildpackage": "ctbuildv buildpackagets",
+    "buildpackage:cjs": "ctbuildv buildpackagets -c ctbuildv.package.ts.cjs.config.js -o lib",
+    "buildpackage:es": "ctbuildv buildpackagets -c ctbuildv.package.ts.esm.config.js -o es",
+    "buildpackage": "npm-run-all --parallel buildpackage:cjs buildpackage:es",
     "buildumd": "ctbuildv buildumd --packagename AdherePlayground --define alias=@,evnVars=true",
     "generatorchangelog": "bd changelog/CHANGELOG.html"
   },
@@ -19,9 +23,7 @@
     "type": "git",
     "url": "https://gitee.com/playerljc/adhere"
   },
-  "resolutions": {
-    "graceful-fs": "4.2.2"
-  },
+  "resolutions": {},
   "author": "playerljc",
   "license": "ISC",
   "bugs": {
@@ -33,7 +35,7 @@
   },
   "devDependencies": {
     "@babel/runtime": "^7.7.4",
-    "@ctsj/buildv": "^2.0.2",
+    "@ctsj/buildv": "^2.0.8",
     "typescript": "^3.8.2"
   },
   "dependencies": {
@@ -43,6 +45,7 @@
     "classnames": "^2.3.1",
     "copy-to-clipboard": "^3.3.1",
     "highlight.js": "^9.11.0",
+    "npm-run-all": "^4.1.5",
     "vue": "^2.6.14",
     "vue-fragment": "^1.5.2",
     "vue-highlight.js": "^3.1.0"
