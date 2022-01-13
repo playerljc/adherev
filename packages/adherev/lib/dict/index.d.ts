@@ -1,2 +1,2 @@
 export default Model;
-import Model from "@baifendian/adherev-util-dict/es";
+import Model from "@baifendian/adherev-util-dict";

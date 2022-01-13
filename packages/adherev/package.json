@@ -15,7 +15,7 @@
     "prebuildpackage:es": "node script/build.js module=es",
     "buildpackage:cjs": "ctbuild buildpackagets",
     "buildpackage:es": "ctbuild buildpackagets -p tsconfig.module.json -o es",
-    "buildpackage": "npm-run-all --parallel buildpackage:cjs buildpackage:es",
+    "buildpackage": "npm-run-all --serial buildpackage:cjs buildpackage:es",
     "buildumd": "node script/buildumd.js",
     "buildumd:core": "ctbuild buildumd --packagename adherev --define alias=@,evnVars=true",
     "generatorchangelog": "bd changelog/CHANGELOG.html",
@@ -38,7 +38,7 @@
   "devDependencies": {
     "@babel/plugin-transform-modules-commonjs": "^7.14.5",
     "@babel/runtime": "^7.7.4",
-    "@ctsj/build": "^4.0.18",
+    "@ctsj/build": "^4.0.19",
     "babel-plugin-import": "^1.13.3",
     "cheerio": "^1.0.0-rc.10",
     "rimraf": "^3.0.2",

@@ -33,7 +33,7 @@
   },
   "devDependencies": {
     "@babel/runtime": "^7.15.4",
-    "@ctsj/build": "^4.0.18",
+    "@ctsj/build": "^4.0.19",
     "typescript": "^3.9.4"
   },
   "dependencies": {

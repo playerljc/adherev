@@ -1,2 +1,2 @@
 export default Model;
-import Model from "@baifendian/adherev-ui-globalindicator/es";
+import Model from "@baifendian/adherev-ui-globalindicator";

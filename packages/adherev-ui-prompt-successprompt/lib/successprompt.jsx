@@ -1,14 +1,1 @@
-"use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-var ant_design_vue_1 = require("ant-design-vue");
-var adherev_util_intl_1 = __importDefault(require("@baifendian/adherev-util-intl"));
-/**
- * 成功的提示
- * @param content - {string| VNode |(h) => VNode}
- */
-exports.default = (function (content) {
-    return ant_design_vue_1.message.success(content ? content : adherev_util_intl_1.default.tv('操作成功'));
-});
+"use strict";var __importDefault=this&&this.__importDefault||function(e){return e&&e.__esModule?e:{default:e}};Object.defineProperty(exports,"__esModule",{value:!0});var ant_design_vue_1=require("ant-design-vue"),adherev_util_intl_1=__importDefault(require("@baifendian/adherev-util-intl"));exports.default=function(e){return ant_design_vue_1.message.success(e||adherev_util_intl_1.default.tv("操作成功"))};
