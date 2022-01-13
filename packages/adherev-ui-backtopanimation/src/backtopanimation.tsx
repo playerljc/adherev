@@ -21,7 +21,7 @@ export default {
     },
     onTarget: {
       type: Function,
-      default: () => window,
+      default: () => typeof window !== 'undefined' ? window : null,
     },
     onTrigger: {
       type: Function,

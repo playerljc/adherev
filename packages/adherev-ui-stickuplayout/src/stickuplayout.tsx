@@ -173,12 +173,12 @@ export default {
           if (scrollVal >= targetTop) {
             clear();
           } else {
-            window.requestAnimationFrame(scrollAnimation);
+            if (typeof window !== 'undefined') window.requestAnimationFrame(scrollAnimation);
           }
         } else if (scrollVal <= targetTop) {
           clear();
         } else {
-          window.requestAnimationFrame(scrollAnimation);
+          if (typeof window !== 'undefined') window.requestAnimationFrame(scrollAnimation);
         }
 
         function clear() {
