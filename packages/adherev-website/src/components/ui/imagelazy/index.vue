@@ -23,7 +23,7 @@
     />
 
     <adv-space />
-    
+
     <props
       :border="true"
       :title="'imgArgs'"

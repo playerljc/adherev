@@ -100,12 +100,41 @@ module.exports = {
         [
           'import',
           {
+            libraryName: '@baifendian/adhere',
+            transformToDefaultImport: true,
+            libraryDirectory: 'es',
+            style: true,
+          },
+          'adhere',
+        ],
+        [
+          'import',
+          {
             libraryName: '@baifendian/adherev',
             transformToDefaultImport: true,
             libraryDirectory: 'es',
             style: true,
           },
           'adherev',
+        ],
+        [
+          'import',
+          {
+            libraryName: 'antd',
+            libraryDirectory: 'es',
+            // styleLibraryDirectory: 'es',
+            style: true,
+          },
+          'ant',
+        ],
+        [
+          'import',
+          {
+            libraryName: '@ant-design/icons',
+            libraryDirectory: 'es/icons',
+            camel2DashComponentName: false,
+          },
+          'ant-design-icons',
         ],
         [
           'import',
@@ -139,6 +168,11 @@ module.exports = {
         automaticNameDelimiter: '~',
         enforceSizeThreshold: 50000,
         cacheGroups: {
+          ['@baifendian']: {
+            test: /[\\/]node_modules[\\/](@baifendian)/,
+            priority: 1,
+            enforce: true,
+          },
           antdesigncompatible: {
             test: /[\\/]node_modules[\\/](@ant-design[\\/]compatible|_@ant-design_compatible)/,
             priority: 1,
@@ -164,8 +198,13 @@ module.exports = {
             priority: 1,
             enforce: true,
           },
-          react: {
-            test: /[\\/]node_modules[\\/](react-intl-universal|_react-intl-universal|react|_react|react-dom|_react-dom|react-router|_react-router|prop-types|_prop-types|history|_history)/,
+          antd: {
+            test: /[\\/]node_modules[\\/](antd|_antd|rc|_rc)/,
+            priority: 1,
+            enforce: true,
+          },
+          vue: {
+            test: /[\\/]node_modules[\\/](vue|vue-i18n|vue-loader|vue-router|vuex)/,
             priority: 1,
             enforce: true,
           },
@@ -174,8 +213,8 @@ module.exports = {
             priority: 1,
             enforce: true,
           },
-          antd: {
-            test: /[\\/]node_modules[\\/](antd|_antd|rc|_rc)/,
+          ['ant-design-vue']: {
+            test: /[\\/]node_modules[\\/](ant-design-vue|rc|_rc)/,
             priority: 1,
             enforce: true,
           },

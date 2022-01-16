@@ -131,7 +131,7 @@ export default {
   margin-top: 10px;
   padding: 0 10px 10px 10px;
   overflow-y: auto;
-  border: 1px solid #ccc;
   color: red;
+  border: 1px solid #ccc;
 }
 </style>

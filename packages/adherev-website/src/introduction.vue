@@ -1,6 +1,6 @@
 <template>
   <div :class="$style.Wrap">
-    {{$adv.Browsersniff.browser()}}
+    {{ $adv.Browsersniff.browser() }}
     <article class="ant-typography">
       <h2 class="ant-typography">概述</h2>
       <div class="ant-typography">
@@ -122,7 +122,7 @@ export default {
   },
   mounted() {
     console.log(this.$adv);
-  }
+  },
 };
 </script>
 
