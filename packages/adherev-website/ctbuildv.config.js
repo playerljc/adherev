@@ -15,7 +15,7 @@ module.exports = {
     //   '@form-create/ant-design-vue': 'formCreate',
     // };
 
-    webpackConfig.devtool = 'cheap-module-eval-source-map';
+    // webpackConfig.devtool = 'cheap-module-eval-source-map';
 
     webpackConfig.resolve.alias = {
       ...webpackConfig.resolve.alias,
