@@ -38,6 +38,7 @@ const Space = {
 
       return {
         width: '100%',
+        height: '0.1px',
         margin: `${size}px 0`,
       };
     },
@@ -45,7 +46,7 @@ const Space = {
   render(h) {
     const { className } = this;
 
-    return <div className={`${selectorPrefix} ${className}`} style={this.getStyle()} />;
+    return <div class={`${selectorPrefix} ${className}`} style={this.getStyle()} />;
   },
 };
 
