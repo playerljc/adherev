@@ -15,9 +15,9 @@ export default {
     };
   },
   watch: {
-    defaultCollapse(newValue, oldValue) {
-      if (newValue !== oldValue) {
-        this.collapse = newValue;
+    defaultCollapse(collapse, preCollapse) {
+      if (collapse !== preCollapse) {
+        this.collapse = collapse;
       }
     },
   },

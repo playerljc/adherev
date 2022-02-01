@@ -6,15 +6,15 @@
   > .adherev-ui-playground-table-inner {
     width: 100%;
     margin: 2em 0;
-    overflow-y: hidden;
     overflow-x: auto;
+    overflow-y: hidden;
     font-size: 13px;
+    line-height: 1.5715;
     direction: ltr;
     empty-cells: show;
     border: 1px solid @adherev-ui-playground-table-color;
     border-collapse: collapse;
     border-spacing: 0;
-    line-height: 1.5715;
 
     > thead {
       > .adherev-ui-playground-table-header {
@@ -22,10 +22,10 @@
           padding: 12px;
           color: #5c6b77;
           font-weight: 500;
-          text-align: left;
-          border: 1px solid @adherev-ui-playground-table-color;
           white-space: nowrap;
+          text-align: left;
           background: rgba(0, 0, 0, 0.02);
+          border: 1px solid @adherev-ui-playground-table-color;
 
           &:first-child {
             border-left: 1px solid @adherev-ui-playground-table-color;
@@ -49,11 +49,11 @@
         > .adherev-ui-playground-table-cell {
           padding: 12px;
           color: @adherev-ui-playground-table-font-color;
-          text-align: left;
-          border: 1px solid @adherev-ui-playground-table-color;
           white-space: normal;
+          text-align: left;
           word-wrap: break-word;
           word-break: break-word;
+          border: 1px solid @adherev-ui-playground-table-color;
 
           &:first-child {
             width: 18%;

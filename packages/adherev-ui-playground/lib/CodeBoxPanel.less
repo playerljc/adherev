@@ -1,0 +1,39 @@
+.adherev-ui-playground-code-box {
+  position: relative;
+
+  > .adherev-ui-playground-code-box-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 20px;
+
+    > .adherev-ui-playground-code-box-header-title {
+      font-weight: 500;
+      font-size: 24px;
+    }
+
+    > .adherev-ui-playground-code-box-header-extra {
+      .adherev-ui-playground-code-box-expand-code {
+        &:hover {
+          cursor: pointer;
+        }
+      }
+    }
+  }
+
+  > .adherev-ui-playground-code-box-main {
+    display: flex;
+
+    > .adherev-ui-playground-code-box-column {
+      flex-grow: 1;
+      width: 100%;
+      margin: 0 14px;
+
+      > .adherev-ui-playground-code-box-item {
+        &:not(:last-child) {
+          margin-bottom: 14px;
+        }
+      }
+    }
+  }
+}

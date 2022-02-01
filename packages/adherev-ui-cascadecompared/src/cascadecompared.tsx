@@ -17,6 +17,7 @@ function initTouch() {
   function isPassive() {
     let supportsPassiveOption = false;
     try {
+      // @ts-ignore
       addEventListener(
         'test',
         null,
@@ -138,11 +139,13 @@ export default {
   },
   computed: {
     getClassName() {
+      // @ts-ignore
       const { className = '' } = this;
 
       return classNames(selectorPrefix, (className || '').split(' '));
     },
     getIndicatorClassName() {
+      // @ts-ignore
       const { indicatorClassName = '' } = this;
 
       return classNames(`${selectorPrefix}-indicator`, (indicatorClassName || '').split(' '));
@@ -163,21 +166,25 @@ export default {
       return (className) => classNames(`${selectorPrefix}-autoInner`, (className || '').split(' '));
     },
     getMasterClassName() {
+      // @ts-ignore
       const { masterClassName = '' } = this;
 
       return classNames(`${selectorPrefix}-master`, (masterClassName || '').split(' '));
     },
     getMasterInnerClassName() {
+      // @ts-ignore
       const { masterInnerClassName = '' } = this;
 
       return classNames(`${selectorPrefix}-master-inner`, (masterInnerClassName || '').split(' '));
     },
     getFixedClassName() {
+      // @ts-ignore
       const { masterStickFixedClassName = '' } = this;
 
       return classNames((masterStickFixedClassName || '').split(' '));
     },
     getInnerClassName() {
+      // @ts-ignore
       const { masterStickInnerClassName = '' } = this;
 
       return classNames((masterStickInnerClassName || '').split(' '));

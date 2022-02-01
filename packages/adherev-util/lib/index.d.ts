@@ -32,6 +32,7 @@ declare const _default: {
     findNodeByKey(treeData: import("@baifendian/adhere-util/lib/types").IAntdTreeNode[], val: any, config: {
         keyAttr: string;
     }): import("@baifendian/adhere-util/lib/types").IAntdTreeNode | null;
+    transformTreeData(treeData: any[], onCallback: (node: any) => import("@baifendian/adhere-util/lib/types").IAntdTreeNode): import("@baifendian/adhere-util/lib/types").IAntdTreeNode[];
     getLang(): string;
     setLang(lang?: string | undefined): void;
     getDatePickerFormat(): string;
@@ -126,14 +127,31 @@ declare const _default: {
     getParentElementByTag(el: any, tag: string): HTMLElement | null;
     children(el: any, selector: string): any[];
     objectToDataSet(obj: object, dom: HTMLElement): void;
-    dataSetToObject(dom: HTMLElement): {};
-    getPageLeft(el: any): any;
-    getPageTop(el: any): any;
-    getPageRect(el: any): {
-        top: any;
-        bottom: any;
-        left: any;
-        right: any;
+    dataSetToObject(dom: HTMLElement): object;
+    getPageLeft(el: HTMLElement): number;
+    getPageTop(el: HTMLElement): number;
+    getPageRect(el: HTMLElement): {
+        top: number;
+        bottom: number;
+        left: number;
+        right: number;
+    };
+    getLeftUntil({ el, untilEl }: {
+        el: HTMLElement;
+        untilEl: HTMLElement;
+    }): number;
+    getTopUntil({ el, untilEl }: {
+        el: HTMLElement;
+        untilEl: HTMLElement;
+    }): number;
+    getRectUntil({ el, untilEl }: {
+        el: HTMLElement;
+        untilEl: HTMLElement;
+    }): {
+        top: number;
+        left: number;
+        right: number;
+        bottom: number;
     };
     isIframeEmbed(): boolean;
     addClickListener: (el: HTMLElement, handler: (e: any) => {}, capture?: boolean | undefined) => Function;

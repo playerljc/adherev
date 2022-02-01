@@ -184,6 +184,7 @@ export default {
   }
 
   .Auto {
+    position: relative;
     display: flex;
     flex-grow: 1;
     min-width: 0;

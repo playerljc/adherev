@@ -1,0 +1,2 @@
+"use strict";require("core-js/modules/es.object.define-property.js");var __importDefault=function(e){return e&&e.__esModule?e:{default:e}};Object.defineProperty(exports,"__esModule",{value:!0});var vue_1=__importDefault(require("vue"));exports.default={name:"adv-playground-code-panel",props:{lang:{type:String,default:"vue"}},render:function(e){var t=this.lang,r=this.$slots;return e(vue_1.default.component("highlight-code"),{attrs:{lang:t}},[r.default])}};
+//# sourceMappingURL=CodePanel.js.map

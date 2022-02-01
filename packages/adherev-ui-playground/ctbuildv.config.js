@@ -10,8 +10,13 @@ module.exports = {
         'highlight.js',
         'vue-highlight.js',
         'copy-to-clipboard',
+        'vue-hoc',
+        'vue-fragment',
+        'classnames',
         '@baifendian/adherev-util-intl',
+        '@baifendian/adherev-util',
         '@baifendian/adherev-ui-conditionalrender',
+        '@baifendian/adherev-ui-contextmenu',
       ]),
     };
 

@@ -56,7 +56,7 @@
         </p>
       </div>
     </article>
-    <playground-mulit :config="code3" :default-expand="true" lang="javascript" />
+    <playground-mulit :defaultConfig="code3" :default-expand="true" lang="javascript" />
   </div>
 </template>
 
@@ -92,6 +92,7 @@ export default {
       `,
       code3: [
         {
+          type: 'CodePanel',
           title: '模板HTML文件',
           codeText: `
   <link href="https://cdn.jsdelivr.net/npm/ant-design-vue@1.7.6/dist/antd.min.css" rel="stylesheet">
@@ -105,6 +106,7 @@ export default {
           lang: 'html',
         },
         {
+          type: 'CodePanel',
           title: 'webpack配置',
           codeText: `
   webpackConfig.externals = {

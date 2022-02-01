@@ -1,98 +1,127 @@
-import Vue from 'vue';
-import copy from 'copy-to-clipboard';
-
 import ConditionalRender from '@baifendian/adherev-ui-conditionalrender';
-import Intl from '@baifendian/adherev-util-intl';
+import ContextMenu from '@baifendian/adherev-ui-contextmenu';
 
 import Card from './Card';
-import Message from './Message';
-import Constant from './constant';
+
+import PlayGroundMixins, { PlaygroundMixinsProps } from './PlayGroundMixins';
+import CodePanel from './CodePanel';
+import CodeTabPanel from './CodeTabPanel';
 
 const selectPrefix = 'adherev-ui-playground-mulit';
 
+export const PlayGroundMulitPropTypes = {
+  ...PlaygroundMixinsProps,
+  defaultConfig: {
+    type: Array,
+    default: () => [],
+  },
+};
+
 export default {
   name: 'adv-playground-mulit',
-  components: {
-    Card,
-  },
+  mixins: [PlayGroundMixins],
   props: {
-    defaultExpand: {
-      type: Boolean,
-      default: false,
-    },
-    config: {
-      type: Array,
-      default: () => [],
-    },
+    ...PlayGroundMulitPropTypes,
   },
   data() {
     return {
-      expand: this.defaultExpand,
+      $configMap: new Map<
+        string,
+        {
+          render: (h: any, config: any, index: number) => Object;
+          getCodeText: (config: any) => string;
+        }
+      >([
+        [
+          'CodePanel',
+          {
+            render: (h, { type, codeText, title, ...config }) => (
+              <CodePanel {...{ props: config }}>{codeText}</CodePanel>
+            ),
+            getCodeText: (config) => config.codeText,
+          },
+        ],
+        [
+          'CodeTabPanel',
+          {
+            render: (h, { type, ...props }, index: number) => {
+              return (
+                <CodeTabPanel
+                  {...{ props }}
+                  onChange={(key) => {
+                    const config = [...this.config];
+
+                    config[index].active = key;
+
+                    this.config = config;
+                  }}
+                />
+              );
+            },
+            getCodeText: (item) => item.config.find((c) => c.key === item.active)?.codeText,
+          },
+        ],
+      ]),
+      config: this.defaultConfig,
     };
   },
+  watch: {
+    defaultConfig(defaultConfig) {
+      this.config = defaultConfig;
+    },
+  },
   methods: {
-    renderCodeView(h, c, index) {
-      const VueHighlightJS = Vue.component('highlight-code');
+    getClipboardText(e) {
+      const { config, $data } = this;
+
+      return new Promise((resolve) => {
+        ContextMenu.open(
+          config.map((c, index) => ({
+            name: c.title,
+            id: `${index}`,
+            separation: false,
+            attribute: {
+              config: c,
+            },
+            children: [],
+          })),
+          {
+            width: 200,
+            x: e.clientX,
+            y: e.clientY,
+            maskClosable: true,
+            handler: (id, attribute) => {
+              // @ts-ignore
+              resolve(
+                $data.$configMap
+                  .get(attribute.config.type || 'CodePanel')
+                  ?.getCodeText(attribute.config),
+              );
+            },
+          },
+        );
+      });
+    },
+    renderCodePanelView(h, c, index) {
+      const { $data } = this;
 
       return (
         <div key={`${index}`} class={`${selectPrefix}-codeviewwrap`}>
           <div class={`${selectPrefix}-codeviewwrap-title`}>{c.title}</div>
           <div class={`${selectPrefix}-codeviewwrap-inner`}>
-            <VueHighlightJS lang={c.lang}>{c.codeText}</VueHighlightJS>
+            {$data.$configMap.get(c.type || 'CodePanel').render(h, c, index)}
           </div>
         </div>
       );
     },
-    copy() {
-      copy(this.codeText);
-      Message.success(Intl.tv('复制成功'));
-    },
-    onCollapse(expand) {
-      this.expand = expand;
-    },
-  },
-  render(h) {
-    const { expand, config, $slots } = this;
+    renderCodeView(h) {
+      const { expand, config } = this;
 
-    return (
-      <div class={selectPrefix}>
-        <Card actions={['copy', 'expand']}>
-          <img
-            class={`${selectPrefix}-action-btn`}
-            src={Constant.CopyOutlined}
-            slot="copy"
-            alt="复制"
-            onClick={() => {
-              this.copy();
-            }}
-          />
-          {expand ? (
-            <img
-              class={`${selectPrefix}-action-btn`}
-              src={Constant.DownSquareOutlined}
-              slot="expand"
-              alt="收起"
-              onClick={() => {
-                this.onCollapse(false);
-              }}
-            />
-          ) : (
-            <img
-              class={`${selectPrefix}-action-btn`}
-              src={Constant.UpSquareOutlined}
-              slot="expand"
-              alt="展开"
-              onClick={() => {
-                this.onCollapse(true);
-              }}
-            />
-          )}
-          {$slots.default}
-        </Card>
-        <ConditionalRender conditional={expand}>
-          <Card>{(config || []).map((c, index) => this.renderCodeView(h, c, index))}</Card>
-        </ConditionalRender>
-      </div>
-    );
+      return (
+        <ConditionalRender.Show conditional={expand}>
+          <Card>{(config || []).map((c, index) => this.renderCodePanelView(h, c, index))}</Card>
+        </ConditionalRender.Show>
+      );
+    },
   },
 };

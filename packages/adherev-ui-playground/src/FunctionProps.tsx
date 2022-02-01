@@ -7,14 +7,18 @@ import { propTypes } from './types';
 
 const selectorPrefix = 'adherev-ui-playground-functionprops';
 
+export const FunctionPropsPropTypes = {
+  ...propTypes,
+  data: {
+    type: Array,
+    default: () => [],
+  },
+};
+
 export default {
   name: 'adv-playground-functionprops',
   props: {
-    ...propTypes,
-    data: {
-      type: Array,
-      default: () => [],
-    },
+    ...FunctionPropsPropTypes,
   },
   components: {
     Collapse,
@@ -28,7 +32,7 @@ export default {
     }
 
     return (
-      <Collapse props={{ ...props }}>
+      <Collapse {...{ props }}>
         <div class={selectorPrefix}>
           <table class={`${selectorPrefix}-inner`}>
             {data.map(({ name, desc, modifier, params, returnType, returnDesc }, index) => (

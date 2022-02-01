@@ -6,14 +6,18 @@ import { propTypes } from './types';
 
 const selectPrefix = 'adherev-ui-playground-props';
 
+export const PropsPropTypes = {
+  ...propTypes,
+  data: {
+    type: Array,
+    default: () => [],
+  },
+};
+
 export default {
   name: 'adv-playground-props',
   props: {
-    ...propTypes,
-    data: {
-      type: Array,
-      default: () => [],
-    },
+    ...PropsPropTypes,
   },
   computed: {
     columns() {
@@ -63,7 +67,7 @@ export default {
     }
 
     return (
-      <Collapse props={{ ...props }}>
+      <Collapse {...{ props }}>
         <div class={selectPrefix}>
           <Table
             scopedSlots={scopedSlots}

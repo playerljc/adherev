@@ -3,45 +3,49 @@ import ConditionalRender from '@baifendian/adherev-ui-conditionalrender';
 
 const selectorPrefix = 'adherev-ui-playground-card';
 
+export const cardPropTypes = {
+  headerClassName: {
+    type: String,
+    default: '',
+  },
+  headerStyle: {
+    type: String,
+    default: '',
+  },
+  bodyClassName: {
+    type: String,
+    default: '',
+  },
+  bodyStyle: {
+    type: String,
+    default: '',
+  },
+  actionClassName: {
+    type: String,
+    default: '',
+  },
+  actionStyle: {
+    type: String,
+    default: '',
+  },
+  title: {
+    type: [String, Object],
+    default: '',
+  },
+  extra: {
+    type: Object,
+    default: () => null,
+  },
+  actions: {
+    type: Array,
+    default: () => [],
+  },
+};
+
 export default {
   name: 'adv-playground-card',
   props: {
-    headerClassName: {
-      type: String,
-      default: '',
-    },
-    headerStyle: {
-      type: String,
-      default: '',
-    },
-    bodyClassName: {
-      type: String,
-      default: '',
-    },
-    bodyStyle: {
-      type: String,
-      default: '',
-    },
-    actionClassName: {
-      type: String,
-      default: '',
-    },
-    actionStyle: {
-      type: String,
-      default: '',
-    },
-    title: {
-      type: [String, Object],
-      default: '',
-    },
-    extra: {
-      type: Object,
-      default: () => null,
-    },
-    actions: {
-      type: Array,
-      default: () => [],
-    },
+    ...cardPropTypes,
   },
   render(h) {
     const {

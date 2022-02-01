@@ -1518,7 +1518,7 @@
   </div>
 </template>
 <script>
-import FunctionProps from '@/lib/FunctionProps/FunctionProps';
+import FunctionProps from '@/lib/FunctionProps';
 export default {
   components: { FunctionProps },
 };

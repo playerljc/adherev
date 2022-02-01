@@ -35,7 +35,8 @@
   "devDependencies": {
     "@babel/runtime": "^7.7.4",
     "@ctsj/buildv": "^2.0.8",
-    "typescript": "^3.8.2"
+    "typescript": "^3.8.2",
+    "npm-run-all": "^4.1.5"
   },
   "dependencies": {
     "@baifendian/adherev-ui-css": "^1.0.7",
@@ -45,7 +46,6 @@
     "classnames": "^2.2.6",
     "load-awesome": "^1.1.0",
     "moment": "^2.29.1",
-    "npm-run-all": "^4.1.5",
     "omit.js": "^2.0.2"
   }
 }

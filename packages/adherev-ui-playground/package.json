@@ -36,18 +36,20 @@
   "devDependencies": {
     "@babel/runtime": "^7.7.4",
     "@ctsj/buildv": "^2.0.8",
-    "typescript": "^3.8.2"
+    "typescript": "^3.8.2",
+    "npm-run-all": "^4.1.5"
   },
   "dependencies": {
     "@baifendian/adherev-ui-conditionalrender": "^1.0.7",
     "@baifendian/adherev-util": "^1.0.7",
     "@baifendian/adherev-util-intl": "^1.0.7",
+    "@baifendian/adherev-ui-contextmenu": "^1.0.7",
     "classnames": "^2.3.1",
     "copy-to-clipboard": "^3.3.1",
     "highlight.js": "^9.11.0",
-    "npm-run-all": "^4.1.5",
     "vue": "^2.6.14",
     "vue-fragment": "^1.5.2",
-    "vue-highlight.js": "^3.1.0"
+    "vue-highlight.js": "^3.1.0",
+    "vue-hoc": "^0.4.7"
   }
 }

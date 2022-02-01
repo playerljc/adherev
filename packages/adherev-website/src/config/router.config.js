@@ -108,6 +108,9 @@ const Browsersniff = () =>
 const Validator = () =>
   lazy(import(/* webpackChunkName: "validator" */ '@/components/util/validator'));
 
+const Demo = () =>
+  lazy(import(/* webpackChunkName: "demo" */ '@/components/ui/demo'));
+
 export default () => [
   {
     path: '/',
@@ -142,6 +145,11 @@ export default () => [
               {
                 path: '/',
                 redirect: '/adherev/ui/conditionalrender',
+              },
+              {
+                path: '/adherev/ui/demo',
+                name: 'Demo',
+                component: Demo,
               },
               {
                 path: '/adherev/ui/conditionalrender',

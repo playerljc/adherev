@@ -104,7 +104,12 @@ export default {
       } = this;
 
       if ($data.$swiper) {
-        $data.$swiper.destory();
+        // $data.$swiper.destory();
+        if ('destory' in $data.$swiper && $data.$swiper.destory instanceof Function) {
+          $data.$swiper.destory();
+        }
+
+        $data.$swiper = null;
       }
 
       $data.$swiper = new Swiper(el, {

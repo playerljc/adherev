@@ -43,7 +43,7 @@ export default {
 
               return (
                 <th
-                  props={{ ...props }}
+                  {...{ props }}
                   class={classNames(
                     `${selectorPrefix}-header-column`,
                     (className || '').split(' '),

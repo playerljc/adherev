@@ -50,15 +50,18 @@ export default {
     onClick(e) {
       e.stopPropagation();
 
+      // @ts-ignore
       const { success, zIndex = Resource.Dict.value.ResourceNormalMaxZIndex.value } = this;
 
       open(success, zIndex || Resource.Dict.value.ResourceNormalMaxZIndex.value);
     },
   },
   render(h) {
+    // @ts-ignore
     const { $slots, className } = this;
 
     return (
+      // @ts-ignore
       <div class={`${selectorPrefix} ${className}`} onClick={this.onClick}>
         {$slots.default}
       </div>
