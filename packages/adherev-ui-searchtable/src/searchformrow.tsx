@@ -15,7 +15,7 @@ export default Vue.extend({
     const { $slots, className } = this;
 
     return (
-      <tr class={classNames(selectorPrefix, ...(className || '').split(' '))}>{$slots.default}</tr>
+      <tr class={classNames(selectorPrefix, ...(className || '').split(/\s+/))}>{$slots.default}</tr>
     );
   },
 });

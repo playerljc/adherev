@@ -18,7 +18,7 @@ export default {
         selectorPrefix,
         'swiper-slide',
 
-        className.split(' '),
+        className.split(/\s+/),
       );
     },
   },

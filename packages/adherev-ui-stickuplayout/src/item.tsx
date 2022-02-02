@@ -14,7 +14,7 @@ export default {
     const { $slots, className } = this;
 
     return (
-      <div class={classNames(selectorPrefix, className.split(' '))}>
+      <div class={classNames(selectorPrefix, className.split(/\s+/))}>
         <div class={`${selectorPrefix}-header`}>{$slots.title}</div>
         <div class={`${selectorPrefix}-content`}>{$slots.default}</div>
       </div>

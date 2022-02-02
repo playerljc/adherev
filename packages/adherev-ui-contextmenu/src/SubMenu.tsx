@@ -30,7 +30,7 @@ export default {
       return classNames(
         selectorPrefix,
 
-        (className || '').split(' '),
+        (className || '').split(/\s+/),
       );
     },
     getStyle(): string {

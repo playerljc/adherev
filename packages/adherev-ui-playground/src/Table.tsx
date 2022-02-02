@@ -46,7 +46,7 @@ export default {
                   {...{ props }}
                   class={classNames(
                     `${selectorPrefix}-header-column`,
-                    (className || '').split(' '),
+                    (className || '').split(/\s+/),
                   )}
                   style={`text-align:${align || 'left'};${style}`}
                 >
@@ -103,7 +103,7 @@ export default {
     return (
       <div class={selectorPrefix}>
         <table
-          class={classNames(`${selectorPrefix}-inner`, tableClassName.split(' '))}
+          class={classNames(`${selectorPrefix}-inner`, tableClassName.split(/\s+/))}
           style={tableStyle}
         >
           {this.renderHeader(h)}

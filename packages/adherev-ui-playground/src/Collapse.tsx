@@ -52,7 +52,7 @@ export default {
           class={classNames(
             `${selectorPrefix}-header`,
             border ? `${selectorPrefix}-header-border` : '',
-            headerClassName.split(' '),
+            headerClassName.split(/\s+/),
           )}
           style={headerStyle}
           onClick={this.onClickHeader}
@@ -79,7 +79,7 @@ export default {
             class={classNames(
               `${selectorPrefix}-body`,
               border ? `${selectorPrefix}-body-border` : '',
-              bodyClassName.split(' '),
+              bodyClassName.split(/\s+/),
               !!title || !!extra ? `${selectorPrefix}-body-exists-header` : '',
             )}
             style={bodyStyle}

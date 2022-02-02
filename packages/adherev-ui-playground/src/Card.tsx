@@ -65,7 +65,7 @@ export default {
       <div class={selectorPrefix}>
         <ConditionalRender conditional={!!title || !!extra}>
           <div
-            class={classNames(`${selectorPrefix}-header`, headerClassName.split(' '))}
+            class={classNames(`${selectorPrefix}-header`, headerClassName.split(/\s+/))}
             style={headerStyle}
           >
             <ConditionalRender conditional={!!title}>
@@ -80,7 +80,7 @@ export default {
 
         <ConditionalRender conditional={!!$slots.default}>
           <div
-            class={classNames(`${selectorPrefix}-body`, bodyClassName.split(' '))}
+            class={classNames(`${selectorPrefix}-body`, bodyClassName.split(/\s+/))}
             style={bodyStyle}
           >
             {$slots.default}
@@ -89,7 +89,7 @@ export default {
 
         <ConditionalRender conditional={!!(actions && actions.length)}>
           <ul
-            class={classNames(`${selectorPrefix}-action`, actionClassName.split(' '))}
+            class={classNames(`${selectorPrefix}-action`, actionClassName.split(/\s+/))}
             style={actionStyle}
           >
             {actions.map((action, index) => (

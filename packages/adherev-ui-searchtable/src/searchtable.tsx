@@ -195,14 +195,14 @@ export default Vue.extend({
           className={classNames(
             selectorPrefix,
             fixedTableSpaceBetween ? 'fixedtablespacebetween' : '',
-            ...(className || '').split(' '),
+            ...(className || '').split(/\s+/),
           )}
         >
           <Fixed
             style={searchStyle || ''}
             className={classNames(
               `${selectorPrefix}-searchwrapper`,
-              ...(searchClassName || '').split(' '),
+              ...(searchClassName || '').split(/\s+/),
             )}
             fit={fitSearch}
           >
@@ -225,7 +225,7 @@ export default Vue.extend({
             style={tableStyle || ''}
             className={classNames(
               `${selectorPrefix}-autowrapper`,
-              ...(tableClassName || '').split(' '),
+              ...(tableClassName || '').split(/\s+/),
               autoFixed ? 'autofixed' : '',
             )}
             fit={fitTable}
