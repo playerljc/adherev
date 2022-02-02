@@ -1,6 +1,8 @@
 import OriginBMap from '@baifendian/adhere-ui-bmap';
-import BMapComponent from './bmap';
 import Util from '@baifendian/adherev-util';
+
+import BMapComponent from './bmap';
+
 const {
   _util: { withInstall, withVue },
 } = Util;
