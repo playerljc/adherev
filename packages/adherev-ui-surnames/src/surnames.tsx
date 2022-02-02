@@ -47,7 +47,7 @@ export default {
       return classNames(
         selectorPrefix,
         `${selectorPrefix}-config-position-${position}`,
-        className.split(' '),
+        className.split(/\s+/),
       );
     },
   },

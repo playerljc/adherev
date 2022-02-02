@@ -1,8 +1,6 @@
-import Vue from 'vue';
+import Vue, { VNode, PropType } from 'vue';
 
-import classNames from 'classnames';
 import { IData, IConfig } from './types';
-
 import Menu from './Menu';
 
 const selectorPrefix = 'adherev-ui-contextmenu';
@@ -15,21 +13,16 @@ const selectorPrefix = 'adherev-ui-contextmenu';
 const ContextMenuComponent = {
   props: {
     data: {
-      type: Array,
+      type: Array as PropType<IData[]>,
       default: () => [],
-      validator(val: Array<IData>): boolean {
-        return val instanceof Array;
-      },
     },
     config: {
-      type: Object,
+      type: Object as PropType<IData>,
       default: () => {},
-      validator(val: IData): boolean {
-        return val instanceof Object;
-      },
     },
     el: {
       type: HTMLElement,
+      default: () => null,
     },
   },
   provide() {
@@ -38,9 +31,6 @@ const ContextMenuComponent = {
     };
   },
   computed: {
-    getClass() {
-      return classNames(selectorPrefix);
-    },
     getStyle() {
       return `z-index: ${9999 * 2}`;
     },
@@ -49,7 +39,6 @@ const ContextMenuComponent = {
     getContext() {
       return {
         config: this.config,
-
         el: this.el,
       };
     },
@@ -75,12 +64,13 @@ const ContextMenuComponent = {
       el.parentElement.removeChild(el);
     },
   },
-  render(h) {
+  render(h): VNode {
     const { data = [], config } = this;
 
+    // @ts-ignore
     return (
       <div
-        class={this.getClass}
+        class={selectorPrefix}
         style={this.getStyle}
         onClick={this.onClick}
         onContextMenu={this.onContextMenu}
@@ -120,6 +110,7 @@ const ContextMenu = {
     const parentEl = document.createElement('div');
 
     const replaceEl = document.createElement('div');
+
     parentEl.appendChild(replaceEl);
     document.body.appendChild(parentEl);
 

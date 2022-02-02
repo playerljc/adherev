@@ -1,7 +1,6 @@
 import classNames from 'classnames';
 
 import { slider } from './slidelayout';
-
 import SlideLayout from './slide';
 
 const selectorPrefix = 'adherev-ui-slidelayout-push';
@@ -134,8 +133,7 @@ export default {
       <div
         class={classNames(
           `${selectorPrefix}-master`,
-
-          masterClassName.split(' '),
+          masterClassName.split(/\s+/),
         )}
         ref="pMasterEl"
       >
@@ -144,8 +142,7 @@ export default {
           class={classNames(
             selectorPrefix,
             direction,
-
-            className.split(' '),
+            className.split(/\s+/),
           )}
           ref="el"
         >
@@ -155,8 +152,7 @@ export default {
         <div
           class={classNames(
             `${selectorPrefix}-slave`,
-
-            slaveClassName.split(' '),
+            slaveClassName.split(/\s+/),
           )}
           ref="pSlaveEl"
         >

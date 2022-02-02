@@ -5,10 +5,6 @@ const selectorPrefix = 'adherev-ui-jdcategorytab';
 export default {
   name: 'adv-jdcategorytab-item',
   props: {
-    className: {
-      type: String,
-      default: '',
-    },
     id: {
       type: String,
       default: '',
@@ -16,15 +12,11 @@ export default {
   },
   computed: {
     getClassName() {
-      const { className, id, getActiveKey } = this;
+      const { id, getActiveKey } = this;
 
       const activeKey = getActiveKey();
 
-      return classNames(
-        `${selectorPrefix}-tab-item`,
-        activeKey === id ? 'active' : null,
-        className.split(' '),
-      );
+      return classNames(`${selectorPrefix}-tab-item`, activeKey === id ? 'active' : null);
     },
   },
   inject: ['getActiveKey'],

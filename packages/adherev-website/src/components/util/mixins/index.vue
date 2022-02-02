@@ -6,7 +6,7 @@
     <h2>updatedEx</h2>
     <p>提供pre参数的updated的hook</p>
     <p>updated生命周期函数没有提供data和props的pre参数</p>
-    <playground-mulit :config="code1">
+    <playground-mulit :defaultConfig="code1">
       <Person @display="onDisplay" />
       <div v-html="display" :class="$style.console" ref="ref1" />
     </playground-mulit>
@@ -27,6 +27,7 @@ export default {
     code1() {
       return [
         {
+          type: 'CodePanel',
           title: 'index.vue',
           codeText: `
             <template>
@@ -58,6 +59,7 @@ export default {
 					`,
         },
         {
+          type: 'CodePanel',
           title: 'person.vue',
           codeText: `
           	<template>

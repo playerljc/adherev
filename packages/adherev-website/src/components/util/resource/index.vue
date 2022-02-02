@@ -6,8 +6,9 @@
     <h2>Normal</h2>
     <playground-mulit
       :defaultExpand="true"
-      :config="[
+      :defaultConfig="[
         {
+          type: 'CodePanel',
           title: 'static资源',
           lang: 'javascript',
           codeText: `
@@ -165,8 +166,9 @@
     <h2>Form(表单)相关</h2>
     <playground-mulit
       :defaultExpand="true"
-      :config="[
+      :defaultConfig="[
         {
+          type: 'CodePanel',
           title: '静态资源',
           lang: 'javascript',
           codeText: `
@@ -195,8 +197,9 @@
     <h2>Gis相关</h2>
     <playground-mulit
       :defaultExpand="true"
-      :config="[
+      :defaultConfig="[
         {
+          type: 'CodePanel',
           title: '静态资源',
           lang: 'javascript',
           codeText: `
@@ -1265,8 +1268,9 @@
     <h2>Locals相关</h2>
     <playground-mulit
       :defaultExpand="true"
-      :config="[
+      :defaultConfig="[
         {
+          type: 'CodePanel',
           title: '静态资源',
           lang: 'javascript',
           codeText: `
@@ -1313,8 +1317,9 @@
     <h2>Mime相关</h2>
     <playground-mulit
       :defaultExpand="true"
-      :config="[
+      :defaultConfig="[
         {
+          type: 'CodePanel',
           title: '静态资源',
           lang: 'javascript',
           codeText: `
@@ -3357,8 +3362,9 @@
     <h2>Moment相关</h2>
     <playground-mulit
       :defaultExpand="true"
-      :config="[
+      :defaultConfig="[
         {
+          type: 'CodePanel',
           title: '静态资源',
           lang: 'javascript',
           codeText: `

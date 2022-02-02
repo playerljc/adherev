@@ -319,7 +319,7 @@
     />
 
     <h2>打开</h2>
-    <playground-mulit :config="code1">
+    <playground-mulit :defaultConfig="code1">
       <a-button type="primary" @click="onOpen">Open Popup</a-button>
     </playground-mulit>
   </div>
@@ -334,6 +334,7 @@ export default {
     code1() {
       return [
         {
+          type: 'CodePanel',
           title: 'index.vue',
           lang: 'vue',
           codeText: `
@@ -396,6 +397,7 @@ export default {
 					`,
         },
         {
+          type: 'CodePanel',
           title: 'popup.vue',
           lang: 'vue',
           codeText: `
@@ -452,6 +454,7 @@ export default {
 					`,
         },
         {
+          type: 'CodePanel',
           title: 'index.less',
           lang: 'less',
           codeText: `

@@ -1,3 +1,4 @@
+import { VNode } from 'vue';
 import classNames from 'classnames';
 
 export const selectorPrefix = 'adherev-ui-flexlayout';
@@ -12,10 +13,6 @@ export default {
         return ['vertical', 'horizontal'].indexOf(val) !== -1;
       },
     },
-    className: {
-      type: String,
-      default: '',
-    },
   },
   methods: {
     getDirection(): string {
@@ -27,17 +24,12 @@ export default {
       getDirection: this.getDirection,
     };
   },
-  render(h) {
-    const { $slots, className, direction } = this;
+  render(h): VNode {
+    const { $slots, direction } = this;
 
+    // @ts-ignore
     return (
-      <div
-        class={classNames(
-          selectorPrefix,
-          `${selectorPrefix}-${direction}`,
-          ...className.split(' '),
-        )}
-      >
+      <div class={classNames(selectorPrefix, `${selectorPrefix}-${direction}`)}>
         {$slots.default}
       </div>
     );

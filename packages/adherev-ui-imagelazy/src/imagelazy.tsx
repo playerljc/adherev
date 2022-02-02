@@ -1,3 +1,5 @@
+import { VNode, PropType } from 'vue';
+
 const selectorPrefix = 'adherev-ui-imagelazy';
 
 const placeholder =
@@ -14,7 +16,11 @@ export default {
       default: '',
     },
     imgArgs: {
-      type: Object,
+      type: Object as PropType<{
+        originSrc: string;
+        errorSrc: string;
+        targetSrc: string;
+      }>,
       default: () => ({
         originSrc: placeholder,
         errorSrc: error,
@@ -74,12 +80,13 @@ export default {
       img.src = targetSrc;
     },
   },
-  render(h) {
+  render(h):VNode {
     const {
       imgArgs: { originSrc },
       className,
     } = this;
 
+    // @ts-ignore
     return (
       <div class={`${selectorPrefix} ${className}`} ref="el">
         <img src={originSrc || placeholder} />

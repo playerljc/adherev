@@ -12,7 +12,7 @@ export default {
    * @param text
    * @param zIndex
    */
-  show(parent: HTMLElement = document.body, text = '', zIndex: number = MAX_ZINDEX) {
+  show(parent: HTMLElement = document.body, text = '', zIndex: number = MAX_ZINDEX): HTMLElement {
     const el: HTMLElement = document.createElement('div');
 
     el.innerHTML = `
@@ -21,7 +21,7 @@ export default {
        <div class="${selectorPrefix}-text">${text}</div>
       </div>`;
 
-    const indicatorDom: Element | null = el.firstElementChild;
+    const indicatorDom: HTMLElement | null = el.firstElementChild;
 
     if (parent === document.body) {
       (indicatorDom as HTMLElement).style.position = 'fixed';
@@ -29,7 +29,7 @@ export default {
 
     parent.appendChild(indicatorDom);
 
-    return indicatorDom;
+    return indicatorDom as HTMLElement;
   },
   /**
    * hide

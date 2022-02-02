@@ -1,3 +1,4 @@
+import { VNode } from 'vue';
 import classNames from 'classnames';
 
 import { selectorPrefix as parentSelectorPrefix } from './flexlayout';
@@ -7,10 +8,6 @@ const selectorPrefix = `${parentSelectorPrefix}-auto`;
 export default {
   name: 'adv-flexlayout-auto',
   props: {
-    className: {
-      type: String,
-      default: '',
-    },
     autoFixed: {
       type: Boolean,
       default: true,
@@ -25,9 +22,10 @@ export default {
       return this.$refs.ref;
     },
   },
-  render(h) {
-    const { $slots, autoFixed, className, fit } = this;
+  render(h): VNode {
+    const { $slots, autoFixed, fit } = this;
 
+    // @ts-ignore
     return (
       <div
         ref="ref"
@@ -35,7 +33,6 @@ export default {
           selectorPrefix,
           `${autoFixed ? selectorPrefix + '-autoFixed' : ''}`,
           `${fit ? selectorPrefix + '-fit' : ''}`,
-          className.split(' '),
         )}
       >
         {$slots.default}

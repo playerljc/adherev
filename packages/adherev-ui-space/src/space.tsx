@@ -1,3 +1,5 @@
+import { VNode } from 'vue';
+
 const selectorPrefix = 'adherev-ui-space';
 
 /**
@@ -18,13 +20,8 @@ const Space = {
       type: [Number, String],
       default: 20,
     },
-    className: {
-      type: String,
-      required: false,
-      default: '',
-    },
   },
-  methods: {
+  computed: {
     getStyle() {
       const { direction, size } = this;
 
@@ -43,10 +40,9 @@ const Space = {
       };
     },
   },
-  render(h) {
-    const { className } = this;
-
-    return <div class={`${selectorPrefix} ${className}`} style={this.getStyle()} />;
+  render(h): VNode {
+    // @ts-ignore
+    return <div class={selectorPrefix} style={this.getStyle} />;
   },
 };
 
@@ -74,7 +70,7 @@ export const SpaceGroup = {
       default: '',
     },
   },
-  render(h) {
+  render(h): VNode {
     const { $slots, direction, size, className } = this;
 
     const JSXS = [];
@@ -99,6 +95,7 @@ export const SpaceGroup = {
       }
     }
 
+    // @ts-ignore
     return <div class={`${selectorPrefix}-group ${direction}`}>{JSXS}</div>;
   },
 };

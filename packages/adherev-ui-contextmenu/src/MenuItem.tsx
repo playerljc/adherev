@@ -1,7 +1,6 @@
+import { VNode, PropType } from 'vue';
 import classNames from 'classnames';
-
 import ConditionalRender from '@baifendian/adherev-ui-conditionalrender';
-
 import Util from '@baifendian/adherev-util';
 
 import { IMenuItemProps } from './types';
@@ -13,13 +12,11 @@ const selectorPrefix = 'adherev-ui-contextmenu-menuitem';
 export default {
   props: {
     data: {
-      type: Object,
+      type: Object as PropType<IMenuItemProps>,
       default: () => ({}),
-      validator(val: IMenuItemProps): boolean {
-        return val instanceof Object;
-      },
     },
   },
+  inject: ['getContext'],
   computed: {
     getClass() {
       const {
@@ -29,19 +26,17 @@ export default {
       return classNames(
         selectorPrefix,
         disabled ? 'disabled' : '',
-
-        (className || '').split(' '),
+        (className || '').split(/\s+/),
       );
     },
   },
   methods: {
-    renderIcon(h) {
-      // console.log('data', this.data, Util.isString(this.data.icon),Util.isObject(this.data.icon));
-
+    renderIcon(h): VNode {
       const {
         data: { icon },
       } = this;
 
+      // @ts-ignore
       return (
         <ConditionalRender conditional={Util.isString(icon)}>
           <span class={classNames(`${selectorPrefix}-icon`, icon)} />
@@ -58,11 +53,12 @@ export default {
         </ConditionalRender>
       );
     },
-    renderName(h) {
+    renderName(h):VNode {
       const {
         data: { name },
       } = this;
 
+      // @ts-ignore
       return (
         <ConditionalRender conditional={Util.isString(name)}>
           <span class={classNames(`${selectorPrefix}-name`)}>{name}</span>
@@ -79,22 +75,24 @@ export default {
         </ConditionalRender>
       );
     },
-    renderMore(h) {
+    renderMore(h):VNode {
       const {
         data: { children },
       } = this;
 
+      // @ts-ignore
       return (
         <ConditionalRender conditional={children.length !== 0}>
           <span class={`${selectorPrefix}-more fa fa-caret-right`} />
         </ConditionalRender>
       );
     },
-    renderSubMenu(h) {
+    renderSubMenu(h):VNode {
       const {
         data: { children, subMenuClassName, subMenuStyle },
       } = this;
 
+      // @ts-ignore
       return (
         <ConditionalRender conditional={children.length !== 0}>
           <SubMenu data={children} className={subMenuClassName} styleName={subMenuStyle} />
@@ -123,12 +121,12 @@ export default {
       }
     },
   },
-  inject: ['getContext'],
-  render(h) {
+  render(h):VNode {
     const {
       data: { separation, styleName },
     } = this;
 
+    // @ts-ignore
     return (
       <ConditionalRender conditional={!separation}>
         <li class={this.getClass} style={styleName} onClick={this.onClick}>

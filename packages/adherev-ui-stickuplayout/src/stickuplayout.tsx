@@ -270,14 +270,14 @@ export default {
     const { $slots, className, fixedClassName, fixedStyle, innerClassName, innerStyle } = this;
 
     return (
-      <div class={classNames(selectorPrefix, className.split(' '))} ref="el">
+      <div class={classNames(selectorPrefix, className.split(/\s+/))} ref="el">
         <div
-          class={classNames(`${selectorPrefix}-fixed`, fixedClassName.split(' '))}
+          class={classNames(`${selectorPrefix}-fixed`, fixedClassName.split(/\s+/))}
           style={fixedStyle}
           ref="fixedEl"
         />
         <div
-          class={classNames(`${selectorPrefix}-inner`, innerClassName.split(' '))}
+          class={classNames(`${selectorPrefix}-inner`, innerClassName.split(/\s+/))}
           style={innerStyle}
           ref="innerEl"
         >

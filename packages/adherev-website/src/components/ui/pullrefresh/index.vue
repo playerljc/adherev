@@ -213,7 +213,7 @@
     <adv-space />
 
     <h2>自定义图标和文本(1)</h2>
-    <playground-mulit :config="code3">
+    <playground-mulit :defaultConfig="code3">
       <adv-pullrefresh
         :class-name="$style.Wrap"
         :is-show-update-time="false"
@@ -366,6 +366,7 @@ export default {
     code3() {
       return [
         {
+          type: 'CodePanel',
           title: `index.vue`,
           lang: 'vue',
           codeText: `
@@ -436,6 +437,7 @@ export default {
           `,
         },
         {
+          type: 'CodePanel',
           title: 'index.less',
           lang: 'less',
           codeText: `

@@ -1,7 +1,6 @@
 import classNames from 'classnames';
 
 import { slider } from './slidelayout';
-
 import SlideLayout from './slide';
 
 const selectorPrefix = 'adherev-ui-slidelayout-overlay';
@@ -102,7 +101,6 @@ export default {
         right: (time) => {
           slider(
             this.$refs.el,
-
             `${this.$refs.el?.parentElement?.offsetWidth}px`,
             '0',
             '0',
@@ -161,8 +159,7 @@ export default {
         class={classNames(
           selectorPrefix,
           direction,
-
-          className.split(' '),
+          className.split(/\s+/),
         )}
         ref="el"
       >

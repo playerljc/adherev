@@ -1,5 +1,5 @@
+import { VNode } from 'vue';
 import classNames from 'classnames';
-
 import Swiper from 'swiper';
 
 const selectorPrefix = 'adherev-ui-revolving';
@@ -7,10 +7,6 @@ const selectorPrefix = 'adherev-ui-revolving';
 export default {
   name: 'adv-revolving',
   props: {
-    className: {
-      type: String,
-      default: '',
-    },
     classNameWrapper: {
       type: String,
       default: '',
@@ -54,14 +50,7 @@ export default {
   },
   computed: {
     getClass() {
-      const { className } = this;
-
-      return classNames(
-        selectorPrefix,
-        'swiper-container',
-
-        className.split(' '),
-      );
+      return classNames(selectorPrefix, 'swiper-container');
     },
     getWrapperClass() {
       const { classNameWrapper } = this;
@@ -69,8 +58,7 @@ export default {
       return classNames(
         `${selectorPrefix}-wrapper`,
         'swiper-wrapper',
-
-        classNameWrapper.split(' '),
+        classNameWrapper.split(/\s+/),
       );
     },
     getWrapperStyle() {
@@ -87,19 +75,12 @@ export default {
     initial() {
       const {
         $refs: { el },
-
         $data,
-
         speed,
-
         delay,
-
         loop,
-
         direction,
-
         stopOnLastSlide,
-
         listeners,
       } = this;
 
@@ -148,9 +129,10 @@ export default {
       return this.$data.$swiper.autoplay.running;
     },
   },
-  render(h) {
+  render(h): VNode {
     const { $slots } = this;
 
+    // @ts-ignore
     return (
       <div class={this.getClass} ref="el">
         <div class={this.getWrapperClass} style={this.getWrapperStyle} ref="wrapperEl">

@@ -1,10 +1,11 @@
+import { PropType, VNode } from 'vue';
 import classNames from 'classnames';
 import IScroll from 'iscroll/build/iscroll-probe';
 import { Fragment } from 'vue-fragment';
 import StickupLayout from '@baifendian/adherev-ui-stickuplayout';
 import Util from '@baifendian/adherev-util';
 
-import { IColumnConfig, IMasterItem, TableConfig, MasterItem } from './types';
+import { IColumnConfig, IMasterItem, ITableConfig } from './types';
 
 const selectorPrefix = 'adherev-ui-cascadecompared';
 
@@ -112,19 +113,17 @@ export default {
       default: '',
     },
     indicator: {
-      type: TableConfig,
+      type: Object as PropType<ITableConfig>,
       default: () => ({
         columns: [],
         dataSource: [],
       }),
     },
     master: {
-      type: Array,
+      type: Array as PropType<IMasterItem[]>,
       default: () => [],
       validator(val) {
-        if (!Array.isArray(val)) return false;
-
-        return val.every((t) => t instanceof MasterItem);
+        return Array.isArray(val);
       },
     },
     defaultCellWidth: {
@@ -138,56 +137,57 @@ export default {
     };
   },
   computed: {
-    getClassName() {
-      // @ts-ignore
-      const { className = '' } = this;
-
-      return classNames(selectorPrefix, (className || '').split(' '));
-    },
     getIndicatorClassName() {
       // @ts-ignore
       const { indicatorClassName = '' } = this;
 
-      return classNames(`${selectorPrefix}-indicator`, (indicatorClassName || '').split(' '));
+      return classNames(`${selectorPrefix}-indicator`, (indicatorClassName || '').split(/\s+/));
     },
     getFixedWrapClassName() {
-      return (className) => classNames(`${selectorPrefix}-fixedWrap`, (className || '').split(' '));
+      return (className) =>
+        classNames(`${selectorPrefix}-fixedWrap`, (className || '').split(/\s+/));
     },
     getFixedWrapStyle() {
       return (style, width) => `${style};width:${width || defaultCellWidth}px`;
     },
     getCellClassName() {
-      return (column) => classNames(`${selectorPrefix}-cell`, (column.className || '').split(' '));
+      return (column) =>
+        classNames(`${selectorPrefix}-cell`, (column.className || '').split(/\s+/));
     },
     getAutoWrapClassName() {
-      return (className) => classNames(`${selectorPrefix}-autoWrap`, (className || '').split(' '));
+      return (className) =>
+        classNames(`${selectorPrefix}-autoWrap`, (className || '').split(/\s+/));
     },
     getAutoInnerClassName() {
-      return (className) => classNames(`${selectorPrefix}-autoInner`, (className || '').split(' '));
+      return (className) =>
+        classNames(`${selectorPrefix}-autoInner`, (className || '').split(/\s+/));
     },
     getMasterClassName() {
       // @ts-ignore
       const { masterClassName = '' } = this;
 
-      return classNames(`${selectorPrefix}-master`, (masterClassName || '').split(' '));
+      return classNames(`${selectorPrefix}-master`, (masterClassName || '').split(/\s+/));
     },
     getMasterInnerClassName() {
       // @ts-ignore
       const { masterInnerClassName = '' } = this;
 
-      return classNames(`${selectorPrefix}-master-inner`, (masterInnerClassName || '').split(' '));
+      return classNames(
+        `${selectorPrefix}-master-inner`,
+        (masterInnerClassName || '').split(/\s+/),
+      );
     },
     getFixedClassName() {
       // @ts-ignore
       const { masterStickFixedClassName = '' } = this;
 
-      return classNames((masterStickFixedClassName || '').split(' '));
+      return classNames((masterStickFixedClassName || '').split(/\s+/));
     },
     getInnerClassName() {
       // @ts-ignore
       const { masterStickInnerClassName = '' } = this;
 
-      return classNames((masterStickInnerClassName || '').split(' '));
+      return classNames((masterStickInnerClassName || '').split(/\s+/));
     },
   },
   methods: {
@@ -232,14 +232,15 @@ export default {
 
       return columns.length ? columns[0] : null;
     },
-    renderCell(h, config: IColumnConfig, dataSource: object) {
+    renderCell(h, config: IColumnConfig, dataSource: object): VNode {
       if (config.render) {
         return config.render(h, dataSource[config.dataIndex], dataSource);
       }
 
       return dataSource[config.dataIndex];
     },
-    renderMasterGroupTitle(h, title) {
+    renderMasterGroupTitle(h, title): VNode {
+      // @ts-ignore
       return Util.isObject(title) ? (
         <div slot="title">{h(title)}</div>
       ) : Util.isFunction(title) ? (
@@ -248,7 +249,7 @@ export default {
         <span slot="title">{title}</span>
       );
     },
-    renderMasterGroupContent(h, masterItem: IMasterItem) {
+    renderMasterGroupContent(h, masterItem: IMasterItem): VNode {
       const {
         dataSource = [],
         columns = [],
@@ -272,6 +273,7 @@ export default {
 
       const fixedColumnConfig = getFixedColumnConfig(columns);
 
+      // @ts-ignore
       return (
         <Fragment>
           <div
@@ -308,15 +310,16 @@ export default {
         </Fragment>
       );
     },
-    renderMasterGroup(h, config: IMasterItem, index) {
+    renderMasterGroup(h, config: IMasterItem, index): VNode {
       const { title = null, className = '', style = '' } = config;
 
       const { renderMasterGroupTitle, renderMasterGroupContent } = this;
 
+      // @ts-ignore
       return (
         <StickupLayout.Item
           key={index}
-          class={classNames((className || '').split(' '))}
+          class={classNames((className || '').split(/\s+/))}
           style={style}
         >
           {renderMasterGroupTitle(h, title)}
@@ -324,7 +327,7 @@ export default {
         </StickupLayout.Item>
       );
     },
-    renderIndicator(h) {
+    renderIndicator(h): VNode {
       const {
         indicatorAutoWrapClassName = '',
         indicatorFixedWrapClassName = '',
@@ -343,6 +346,7 @@ export default {
 
       const fixedColumnConfig = getFixedColumnConfig(columns);
 
+      // @ts-ignore
       return (
         <div class={getIndicatorClassName} style={indicatorStyle}>
           <div
@@ -376,7 +380,7 @@ export default {
         </div>
       );
     },
-    renderMaster(h) {
+    renderMaster(h): VNode {
       const {
         masterStyle = '',
         masterInnerStyle = '',
@@ -390,6 +394,7 @@ export default {
         renderMasterGroup,
       } = this;
 
+      // @ts-ignore
       return (
         <div class={getMasterClassName} style={masterStyle}>
           <StickupLayout
@@ -471,9 +476,10 @@ export default {
 
     this.initScroll();
   },
-  render(h) {
+  render(h): VNode {
+    // @ts-ignore
     return (
-      <div class={this.getClassName} ref="el">
+      <div class={selectorPrefix} ref="el">
         {this.renderIndicator(h)}
         {this.renderMaster(h)}
       </div>

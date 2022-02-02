@@ -9,7 +9,6 @@ module.exports = {
 
     webpackConfig.externals = {
       ...externals.defaultExternals,
-      ...externals.externals(['@baifendian/adherev-ui-css', '@baifendian/adherev-util-intl']),
     };
   },
 };

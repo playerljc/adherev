@@ -1,5 +1,4 @@
 import Vue from 'vue';
-
 import { v1 } from 'uuid';
 
 import { IConfig } from './types';

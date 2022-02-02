@@ -1,6 +1,5 @@
-import { Fill, Stroke, Style, Text } from 'ol/style.js';
-
 import Resource from '@baifendian/adherev-util-resource';
+import { Fill, Stroke, Style, Text } from 'ol/style.js';
 
 import Constent from './constent';
 import Util from './util';

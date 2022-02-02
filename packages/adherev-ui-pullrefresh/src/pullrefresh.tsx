@@ -61,12 +61,12 @@ export default {
     getClassName() {
       const { className } = this;
 
-      return classNames(selectorPrefix, ...className.split(' '));
+      return classNames(selectorPrefix, ...className.split(/\s+/));
     },
     getScrollClassName() {
       const { scrollClassName } = this;
 
-      return classNames(`${selectorPrefix}-scroll`, ...scrollClassName.split(' '));
+      return classNames(`${selectorPrefix}-scroll`, ...scrollClassName.split(/\s+/));
     },
   },
   methods: {
@@ -124,7 +124,7 @@ export default {
         <div
           class={classNames(
             `${selectorPrefix}-trigger-refresh`,
-            ...(loadingAnimation || '').split(' '),
+            ...(loadingAnimation || '').split(/\s+/),
           )}
           ref="refreshElRef"
         >

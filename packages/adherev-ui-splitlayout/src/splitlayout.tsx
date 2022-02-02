@@ -1,8 +1,7 @@
+import classNames from 'classnames';
 import FlexLayout from '@baifendian/adherev-ui-flexlayout';
 
 const { selectorPrefix: flexlayoutSelectorPrefix } = FlexLayout;
-
-import classNames from 'classnames';
 
 const selectorPrefix = 'adherev-ui-splitlayout';
 
@@ -423,7 +422,7 @@ export default {
         class={classNames(
           selectorPrefix,
           `${selectorPrefix}-${getDirection()}`,
-          className.split(' '),
+          className.split(/\s+/),
         )}
       />
     );

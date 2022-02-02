@@ -680,7 +680,7 @@
     </playground>
 
     <h2>分页始终居底</h2>
-    <playground-mulit :config="code6">
+    <playground-mulit :defaultConfig="code6">
       <a-switch
         checked-children="分页"
         :checked="pagination4"
@@ -702,7 +702,7 @@
     </playground-mulit>
 
     <h2>table.tsx</h2>
-    <playground-mulit :defaultExpand="true" :config="code4" />
+    <playground-mulit :defaultExpand="true" :defaultConfig="code4" />
   </div>
 </template>
 <script>
@@ -753,6 +753,7 @@ export default {
     code4() {
       return [
         {
+          type: 'CodePanel',
           title: 'table.tsx',
           lang: 'javascript',
           codeText: `
@@ -1047,6 +1048,7 @@ export default {
     code6() {
       return [
         {
+          type: 'CodePanel',
           title: 'fewTable.tsx',
           lang: 'javascript',
           codeText: `
@@ -1081,6 +1083,7 @@ export default {
         `,
         },
         {
+          type: 'CodePanel',
           title: 'index.vue',
           lang: 'vue',
           codeText: `

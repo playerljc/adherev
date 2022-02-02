@@ -1,7 +1,5 @@
 import Overlay from './overlay';
-
 import Push from './push';
-
 import Revolving from './reveal';
 
 export const selectorPrefix = 'adherev-ui-slidelayout';

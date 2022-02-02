@@ -61,7 +61,7 @@
     />
 
     <h2>基本使用</h2>
-    <playground-mulit :config="code1">
+    <playground-mulit :defaultConfig="code1">
       <a-button type="primary" @click="onCode1F1">重置</a-button>
       <suspense-table :reset="reset" />
     </playground-mulit>
@@ -90,6 +90,7 @@ export default {
     return {
       code1: [
         {
+          type: 'CodePanel',
           title: `table.tsx`,
           codeText: `
             import { Table } from 'ant-design-vue';
@@ -216,6 +217,7 @@ export default {
           lang: 'javascript',
         },
         {
+          type: 'CodePanel',
           title: `index.vue`,
           codeText: `
             <template>

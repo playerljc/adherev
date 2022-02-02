@@ -1,10 +1,9 @@
+import Util from '@baifendian/adherev-util';
+
 import Fixed from './fixed';
-
 import Auto from './auto';
-
 import FlexLayout, { selectorPrefix } from './flexlayout';
 
-import Util from '@baifendian/adherev-util';
 const {
   _util: { withInstall, withVue },
 } = Util;

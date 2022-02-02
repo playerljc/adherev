@@ -66,9 +66,7 @@ export default {
   mounted() {
     const {
       $refs: { el },
-
       zIndex,
-
       mask,
     } = this;
 
@@ -118,21 +116,15 @@ export default {
     initial() {
       const {
         $refs: { el },
-
         $data: { $positionConfig },
-
         direction,
-
         width,
-
         height,
-
         collapse,
       } = this;
 
       if (direction === 'left' || direction === 'right') {
         // 赋值宽度
-
         el?.style.height = '100%';
         width
           ? (el?.style.width = width)
@@ -159,7 +151,6 @@ export default {
 
       const {
         $data: { $positionConfig },
-
         direction,
       } = this;
 
@@ -172,7 +163,6 @@ export default {
 
       const {
         $data: { $positionConfig },
-
         direction,
       } = this;
 

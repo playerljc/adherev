@@ -1,3 +1,26 @@
+# 1.0.8
+
+***
+
+2022-2-2
+
+* **adherev-ui-conditionalrender**
+  - 加入ConditionalRender.Show组件进行display切换
+  - 加入ConditionalRender.Visibility组件进行visibility切换
+* **adherev-ui-playground**
+  - 加入CodePanel组件
+  - 加入CodeTabPanel组件
+  - 加入CodeBoxPanel组件
+  - 加入AnchorNavigation组件
+  - 加入PlayGroundTab组件
+  - 细化Card组件加入description配置
+  - 细化PlayGround组件
+  - 细化PlayGroundMulit组件
+* **adherev-ui-revolving**
+  - bug的修改
+* **adherev-ui-space**
+  - BUG修改
+
 # 1.0.7
 
 ***

@@ -130,7 +130,7 @@
     />
 
     <h2>基本使用</h2>
-    <playground-mulit :config="code1">
+    <playground-mulit :defaultConfig="code1">
       <div style="height: 500px; overflow: hidden">
         <adv-stickuplayout>
           <adv-stickuplayout-item>
@@ -803,6 +803,7 @@ export default {
     code1() {
       return [
         {
+          type: 'CodePanel',
           title: 'index.vue',
           lang: 'vue',
           codeText: `
@@ -1134,6 +1135,7 @@ export default {
           `,
         },
         {
+          type: 'CodePanel',
           title: 'index.less',
           lang: 'less',
           codeText: `

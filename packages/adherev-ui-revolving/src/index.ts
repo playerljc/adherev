@@ -1,6 +1,8 @@
+import BfdUtil from '@baifendian/adherev-util';
+
 import Revolving from './revolving';
 import RevolvingItem from './item';
-import BfdUtil from '@baifendian/adherev-util';
+
 const {
   _util: { withInstall, withVue },
 } = BfdUtil;
@@ -11,6 +13,7 @@ withInstall(RevolvingItem);
 Revolving.Item = RevolvingItem;
 
 Revolving.isUse = () => true;
+
 Revolving.use = (Vue) => {
   Vue.use(Revolving);
   Vue.use(RevolvingItem);

@@ -12,11 +12,6 @@ export interface ITableConfig {
   dataSource: Array<object>;
 }
 
-export function TableConfig(config: ITableConfig) {
-  this.columns = config.columns;
-  this.dataSource = config.dataSource;
-}
-
 export interface IIndicatorTableConfig {
   columns: Array<IColumnConfig>;
   dataSource: object;
@@ -32,19 +27,6 @@ export interface IMasterItem extends ITableConfig {
   autoWrapStyle: string;
   autoInnerClassName: string;
   autoInnerStyle: string;
-}
-
-export function MasterItem(props: IMasterItem) {
-  this.title = props.title;
-  this.className = props.className;
-  this.fixedWrapClassName = props.fixedWrapClassName;
-  this.fixedWrapStyle = props.fixedWrapStyle;
-  this.autoWrapClassName = props.autoWrapClassName;
-  this.autoWrapStyle = props.autoWrapStyle;
-  this.autoInnerClassName = props.autoInnerClassName;
-  this.autoInnerStyle = props.autoInnerStyle;
-  this.columns = props.columns;
-  this.dataSource = props.dataSource;
 }
 
 /**

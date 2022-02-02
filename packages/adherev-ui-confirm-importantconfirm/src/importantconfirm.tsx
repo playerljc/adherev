@@ -1,3 +1,4 @@
+import { VNode } from 'vue';
 import Resource from '@baifendian/adherev-util-resource';
 import MessageDialog from '@baifendian/adherev-ui-messagedialog';
 import intl from '@baifendian/adherev-util-intl';
@@ -39,11 +40,6 @@ export default {
       required: false,
       default: Resource.Dict.value.ResourceNormalMaxZIndex.value,
     },
-    className: {
-      type: String,
-      required: false,
-      default: '',
-    },
     success: {
       type: Function,
       required: false,
@@ -59,11 +55,12 @@ export default {
       open(success, zIndex || Resource.Dict.value.ResourceNormalMaxZIndex.value);
     },
   },
-  render(h) {
-    const { $slots, className } = this;
+  render(h): VNode {
+    const { $slots } = this;
 
+    // @ts-ignore
     return (
-      <div class={`${selectorPrefix} ${className}`} onClick={this.onClick}>
+      <div class={selectorPrefix} onClick={this.onClick}>
         {$slots.default}
       </div>
     );

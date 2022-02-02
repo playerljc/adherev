@@ -1,14 +1,10 @@
-import classNames from 'classnames';
+import { VNode } from 'vue';
 
 const selectorPrefix = 'adherev-ui-sliderscale';
 
 export default {
   name: 'adv-sliderscale',
   props: {
-    className: {
-      type: String,
-      default: '',
-    },
     min: {
       type: [Number, String],
       default: 0,
@@ -131,11 +127,12 @@ export default {
       this.$refs.rangeEl?.value = newVal;
     },
   },
-  render(h) {
-    const { className, min, max, step } = this;
+  render(h):VNode {
+    const { min, max, step } = this;
 
+    // @ts-ignore
     return (
-      <div class={classNames(selectorPrefix, className.split(' '))} ref="el">
+      <div class={selectorPrefix} ref="el">
         <div class={`${selectorPrefix}-scale`}>{this.renderScale(h)}</div>
 
         <input

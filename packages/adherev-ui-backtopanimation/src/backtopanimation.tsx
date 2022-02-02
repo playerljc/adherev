@@ -1,4 +1,4 @@
-import classNames from 'classnames';
+import Vue, { VNode } from 'vue';
 
 import Resource from '@baifendian/adherev-util-resource';
 
@@ -18,16 +18,6 @@ export default {
     duration: {
       type: Number,
       default: 300,
-    },
-    onTarget: {
-      type: Function,
-      default: () => typeof window !== 'undefined' ? window : null,
-    },
-    onTrigger: {
-      type: Function,
-    },
-    onScrollTop: {
-      type: Function,
     },
   },
   data() {
@@ -150,16 +140,11 @@ export default {
       }
     },
   },
-  render(h) {
-    const { className } = this;
-
+  render(h): VNode {
+    // @ts-ignore
     return (
       <div
-        class={classNames(
-          selectorPrefix,
-
-          className.split(' '),
-        )}
+        class={selectorPrefix}
         ref="ref"
         onClick={() => {
           this.trigger();

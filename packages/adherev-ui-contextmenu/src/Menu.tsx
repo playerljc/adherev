@@ -1,3 +1,4 @@
+import { VNode, PropType } from 'vue';
 import classNames from 'classnames';
 
 import { IData } from './types';
@@ -9,11 +10,8 @@ const selectorPrefix = 'adherev-ui-contextmenu-submenu';
 export default {
   props: {
     data: {
-      type: Array,
+      type: Array as PropType<IData[]>,
       default: () => [],
-      validator(val: Array<IData>): boolean {
-        return val instanceof Array;
-      },
     },
     className: {
       type: String,
@@ -68,31 +66,31 @@ export default {
 
       el?.style.top = `${y}px`;
     },
-    renderItems(h) {
+    renderItems(h): VNode {
       const { data = [] } = this;
 
       return data.map((item) => <MenuItem key={item.id} data={item} />);
     },
   },
   computed: {
-    getStyle() {
+    getStyle(): string {
       const { styleName } = this;
 
       const { width } = this.getContext().config;
 
       return `${styleName}width:${width}px;z-index:${99999 * 2 + 1}`;
     },
-    getClass() {
+    getClass(): string {
       const { className } = this;
 
       return classNames(
         selectorPrefix,
-
-        (className || '').split(' '),
+        (className || '').split(/\s+/),
       );
     },
   },
-  render(h) {
+  render(h): VNode {
+    // @ts-ignore
     return (
       <ul class={this.getClass} style={this.getStyle} ref="el">
         {this.renderItems(h)}
