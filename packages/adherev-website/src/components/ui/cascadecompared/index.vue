@@ -1,398 +1,66 @@
 <template>
-  <div class="Page CascadeCompared">
-    <h1>CascadeCompared</h1>
-    <p>级联比较</p>
+  <adv-playground-page :scrollEl="scrollEl" ref="ref" class="CascadeCompared">
+    <adv-playground-page-section title="CascadeCompared">
+      <p>级联比较</p>
+    </adv-playground-page-section>
 
-    <props
-      :border="true"
-      :title="'CascadeCompared'"
-      :data="[
-        {
-          params: 'className',
-          desc: '附加的样式表',
-          type: 'string',
-          defaultVal: '',
-        },
-        {
-          params: 'style',
-          desc: '附加的样式',
-          type: 'String',
-          defaultVal: '',
-        },
-        {
-          params: 'indicatorClassName',
-          desc: 'indicator附加的样式表',
-          type: 'string',
-          defaultVal: '',
-        },
-        {
-          params: 'indicatorStyle',
-          desc: 'indicator的样式',
-          type: 'String',
-          defaultVal: '',
-        },
-        {
-          params: 'indicatorFixedWrapClassName',
-          desc: 'indicatorFixedWrap样式表',
-          type: 'string',
-          defaultVal: '',
-        },
-        {
-          params: 'indicatorFixedWrapStyle',
-          desc: 'indicatorFixedWrap附加的样式',
-          type: 'String',
-          defaultVal: '',
-        },
-        {
-          params: 'indicatorAutoWrapClassName',
-          desc: 'indicatorAutoWrap样式表',
-          type: 'string',
-          defaultVal: '',
-        },
-        {
-          params: 'indicatorAutoWrapStyle',
-          desc: 'indicatorAutoWrap附加的样式',
-          type: 'String',
-          defaultVal: '',
-        },
-        {
-          params: 'masterClassName',
-          desc: 'masterWrap样式表',
-          type: 'string',
-          defaultVal: '',
-        },
-        {
-          params: 'masterStyle',
-          desc: 'master附加的样式',
-          type: 'String',
-          defaultVal: '',
-        },
-        {
-          params: 'masterInnerClassName',
-          desc: 'masterInner样式表',
-          type: 'string',
-          defaultVal: '',
-        },
-        {
-          params: 'masterInnerStyle',
-          desc: 'masterInner附加的样式',
-          type: 'String',
-          defaultVal: '',
-        },
-        {
-          params: 'masterStickFixedClassName',
-          desc: 'masterStickFixed样式表',
-          type: 'string',
-          defaultVal: '',
-        },
-        {
-          params: 'masterStickFixedStyle',
-          desc: 'masterStickFixed附加的样式',
-          type: 'String',
-          defaultVal: '',
-        },
-        {
-          params: 'masterStickInnerClassName',
-          desc: 'masterStickInner样式表',
-          type: 'string',
-          defaultVal: '',
-        },
-        {
-          params: 'masterStickInnerStyle',
-          desc: 'masterStickInner附加的样式',
-          type: 'String',
-          defaultVal: '',
-        },
-        {
-          params: 'indicator',
-          desc: '指示器数据',
-          type: 'IIndicatorTableConfig',
-          defaultVal: '',
-        },
-        {
-          params: 'master',
-          desc: '主数据',
-          type: 'Array<IMasterItem>',
-          defaultVal: '',
-        },
-        {
-          params: 'onStickChange',
-          desc: '滚动改变钩子',
-          type: 'Function',
-          defaultVal: '',
-        },
-        {
-          params: 'defaultCellWidth',
-          desc: '缺省的列宽度',
-          type: 'number | string',
-          defaultVal: '120',
-        },
-      ]"
-    />
+    <adv-playground-page-code-box-section title="代码演示" :config="codeBoxPanelConfig">
+      <template #p1>
+        <div style="width: 320px; height: 548px; border: 1px solid rgba(0, 0, 0, 0.1)">
+          <adv-cascadecompared :indicator="indicator" :master="master" />
+        </div>
+      </template>
 
-    <adv-space />
+      <template #p2>
+        <fragment>
+          <a-button type="primary" @click="onCode2Click">插入</a-button>
 
-    <props
-      :border="true"
-      :title="'IIndicatorTableConfig'"
-      :data="[
-        {
-          params: 'columns',
-          desc: '列配置',
-          type: 'Array<IColumnConfig>',
-          defaultVal: '[]',
-        },
-        {
-          params: 'dataSource',
-          desc: '数据',
-          type: 'Object',
-          defaultVal: '{}',
-        },
-      ]"
-    />
+          <adv-space />
 
-    <adv-space />
+          <div style="width: 320px; height: 548px; border: 1px solid rgba(0, 0, 0, 0.1)">
+            <adv-cascadecompared ref="ref1" :indicator="indicator" :master="data1" />
+          </div>
+        </fragment>
+      </template>
 
-    <props
-      :border="true"
-      :title="'IColumnConfig'"
-      :data="[
-        {
-          params: 'dataIndex',
-          desc: '数据索引',
-          type: 'string',
-          defaultVal: '',
-        },
-        {
-          params: 'isFixed',
-          desc: '是否是固定列',
-          type: 'boolean',
-          defaultVal: 'false',
-        },
-        {
-          params: 'width',
-          desc: '列的宽度',
-          type: 'number | string',
-          defaultVal: '120',
-        },
-        {
-          params: 'render',
-          desc: '渲染列的方法',
-          type: 'Function',
-          defaultVal: '120',
-        },
-        {
-          params: 'className',
-          desc: '附加的样式表',
-          type: 'string',
-          defaultVal: '',
-        },
-        {
-          params: 'style',
-          desc: '附加的样式',
-          type: 'String',
-          defaultVal: '',
-        },
-      ]"
-    />
+      <template #p3>
+        <fragment>
+          <adv-space-group direction="horizontal">
+            <a-button type="primary" @click="$refs.ref2.scrollToByIndex(9, 0)"
+              >滚动到底部(无动画)</a-button
+            >
+            <a-button @click="$refs.ref2.scrollToByIndex(9)">滚动到底部(有动画)</a-button>
+            <a-button @click="$refs.ref2.scrollToByIndex(0)">回到顶部</a-button>
+          </adv-space-group>
 
-    <adv-space />
+          <adv-space />
 
-    <props
-      :border="true"
-      :title="'IMasterItem'"
-      :data="[
-        {
-          params: 'columns',
-          desc: '列配置',
-          type: 'Array<IColumnConfig>',
-          defaultVal: '[]',
-        },
-        {
-          params: 'dataSource',
-          desc: '数据',
-          type: 'Array<Object>',
-          defaultVal: '[]',
-        },
-        {
-          params: 'title',
-          desc: 'header',
-          type: 'string | Object | Function',
-          defaultVal: '',
-        },
-        {
-          params: 'className',
-          desc: '附加的样式表',
-          type: 'string',
-          defaultVal: '',
-        },
-        {
-          params: 'style',
-          desc: '附加的样式',
-          type: 'String',
-          defaultVal: '{}',
-        },
-        {
-          params: 'fixedWrapClassName',
-          desc: '附加的样式表',
-          type: 'string',
-          defaultVal: '',
-        },
-        {
-          params: 'fixedWrapStyle',
-          desc: '附加的样式',
-          type: 'String',
-          defaultVal: '{}',
-        },
-        {
-          params: 'autoWrapClassName',
-          desc: '附加的样式表',
-          type: 'string',
-          defaultVal: '',
-        },
-        {
-          params: 'autoWrapStyle',
-          desc: '附加的样式',
-          type: 'String',
-          defaultVal: '{}',
-        },
-        {
-          params: 'autoInnerClassName',
-          desc: '附加的样式表',
-          type: 'string',
-          defaultVal: '',
-        },
-        {
-          params: 'autoInnerStyle',
-          desc: '附加的样式',
-          type: 'String',
-          defaultVal: '{}',
-        },
-      ]"
-    />
+          <div style="width: 320px; height: 548px; border: 1px solid rgba(0, 0, 0, 0.1)">
+            <adv-cascadecompared ref="ref2" :indicator="indicator" :master="master" />
+          </div>
+        </fragment>
+      </template>
 
-    <adv-space />
+      <template #p4>
+        <fragment>
+          <adv-space-group direction="horizontal">
+            <a-button type="primary" @click="$refs.ref3.scrollToByColumn(1)">滚动到第一列</a-button>
+            <a-button @click="$refs.ref3.scrollToByColumn(9)">滚动到最后一列(有动画)</a-button>
+          </adv-space-group>
 
-    <function-props
-      :border="true"
-      :title="'方法'"
-      :data="[
-        {
-          name: 'scrollToByIndex',
-          desc: '滚动到指定所引出',
-          modifier: 'public',
-          params: [
-            {
-              name: 'index',
-              desc: '滚动到的索引',
-              type: 'number',
-              defaultVal: '',
-              required: 'true',
-            },
-            {
-              name: 'duration',
-              desc: '滚动的时间',
-              type: 'number',
-              defaultVal: '600',
-              required: '',
-            },
-          ],
-          returnType: '',
-          returnDesc: '',
-        },
-        {
-          name: 'scrollToByHeaderEl',
-          desc: '滚动到指定el',
-          modifier: 'public',
-          params: [
-            {
-              name: 'headerEl',
-              desc: '指定的el',
-              type: 'HtmlElement',
-              defaultVal: '',
-              required: 'true',
-            },
-            {
-              name: 'duration',
-              desc: '滚动的时间',
-              type: 'number',
-              defaultVal: '300',
-              required: '',
-            },
-          ],
-          returnType: '',
-          returnDesc: '',
-        },
-        {
-          name: 'scrollToByColumn',
-          desc: '滚动到指定列',
-          modifier: 'public',
-          params: [
-            {
-              name: 'columnIndex',
-              desc: '列的索引从1开始',
-              type: 'number',
-              defaultVal: '',
-              required: 'true',
-            },
-          ],
-          returnType: '',
-          returnDesc: '',
-        },
-      ]"
-    />
+          <adv-space />
 
-    <adv-space />
+          <div style="width: 320px; height: 548px; border: 1px solid rgba(0, 0, 0, 0.1)">
+            <adv-cascadecompared ref="ref3" :indicator="indicator" :master="master" />
+          </div>
+        </fragment>
+      </template>
+    </adv-playground-page-code-box-section>
 
-    <h2>基本使用</h2>
-    <playground :codeText="code1">
-      <div style="width: 320px; height: 548px; border: 1px solid rgba(0, 0, 0, 0.1)">
-        <adv-cascadecompared :indicator="indicator" :master="master" />
-      </div>
-    </playground>
+    <adv-playground-page-function-props-section title="API" :config="apiConfig" />
 
-    <h2>在底部插入</h2>
-    <playground :codeText="code2">
-      <a-button type="primary" @click="onCode2Click">插入</a-button>
-
-      <adv-space />
-
-      <div style="width: 320px; height: 548px; border: 1px solid rgba(0, 0, 0, 0.1)">
-        <adv-cascadecompared ref="ref1" :indicator="indicator" :master="data1" />
-      </div>
-    </playground>
-
-    <h2>通过索引滚动</h2>
-    <playground :codeText="code3">
-      <adv-space-group direction="horizontal">
-        <a-button type="primary" @click="$refs.ref2.scrollToByIndex(9, 0)"
-          >滚动到底部(无动画)</a-button
-        >
-        <a-button @click="$refs.ref2.scrollToByIndex(9)">滚动到底部(有动画)</a-button>
-        <a-button @click="$refs.ref2.scrollToByIndex(0)">回到顶部</a-button>
-      </adv-space-group>
-
-      <adv-space />
-
-      <div style="width: 320px; height: 548px; border: 1px solid rgba(0, 0, 0, 0.1)">
-        <adv-cascadecompared ref="ref2" :indicator="indicator" :master="master" />
-      </div>
-    </playground>
-
-    <h2>滚动到指定列</h2>
-    <playground :codeText="code4">
-      <adv-space-group direction="horizontal">
-        <a-button type="primary" @click="$refs.ref3.scrollToByColumn(1)">滚动到第一列</a-button>
-        <a-button @click="$refs.ref3.scrollToByColumn(9)">滚动到最后一列(有动画)</a-button>
-      </adv-space-group>
-
-      <adv-space />
-
-      <div style="width: 320px; height: 548px; border: 1px solid rgba(0, 0, 0, 0.1)">
-        <adv-cascadecompared ref="ref3" :indicator="indicator" :master="master" />
-      </div>
-    </playground>
-  </div>
+    <adv-playground-page-props-section title="Props" :config="propsConfig" />
+  </adv-playground-page>
 </template>
 
 <script>
@@ -459,14 +127,49 @@ function getMaster() {
 }
 
 export default {
+  computed: {
+    indicator() {
+      return {
+        columns: columns.map((t, i) => ({
+          dataIndex: `column${i + 1}`,
+          isFixed: i === 0,
+          width: 120,
+          render: (h) => <h2>{`指标${i + 1}`}</h2>,
+        })),
+        dataSource: {
+          columns1: 1,
+          columns2: 2,
+          columns3: 3,
+          columns4: 4,
+          columns5: 5,
+          columns6: 6,
+          columns7: 7,
+          columns8: 8,
+          columns9: 9,
+          columns10: 10,
+        },
+      };
+    },
+    master() {
+      return getMaster();
+    },
+  },
   data() {
     return {
       data1: getMaster(),
-    };
-  },
-  computed: {
-    code1() {
-      return `
+      scrollEl: null,
+      codeBoxPanelConfig: [
+        {
+          id: 'p1',
+          name: '基本使用',
+          cardProps: {
+            description: {
+              title: '基本使用',
+              info: '基本的级联操作',
+            },
+          },
+          type: 'PlayGround',
+          codeText: `
         <template>
           <h2>基本使用</h2>
           <div style="width: 320px; height: 548px; border: 1px solid rgba(0, 0, 0, 0.1)">
@@ -565,10 +268,20 @@ export default {
             }
           }
         <\/script>
-      `;
-    },
-    code2() {
-      return `
+      `,
+          childrenSlot: 'p1',
+        },
+        {
+          id: 'p2',
+          name: '在底部插入',
+          cardProps: {
+            description: {
+              title: '在底部插入',
+              info: '在底部插入行',
+            },
+          },
+          type: 'PlayGround',
+          codeText: `
         <template>
           <h2>在底部插入</h2>
           <a-button type="primary" @click="onCode2Click">插入</a-button>
@@ -741,10 +454,20 @@ export default {
             }
           }
         <\/script>
-      `;
-    },
-    code3() {
-      return `
+      `,
+          childrenSlot: 'p2',
+        },
+        {
+          id: 'p3',
+          name: '通过索引滚动',
+          cardProps: {
+            description: {
+              title: '通过索引滚动',
+              info: '通过索引滚动到顶部',
+            },
+          },
+          type: 'PlayGround',
+          codeText: `
         <template>
           <h2>通过索引滚动</h2>
           <adv-space-group direction="horizontal">
@@ -850,10 +573,20 @@ export default {
             }
           }
         <\/script>
-      `;
-    },
-    code4() {
-      return `
+      `,
+          childrenSlot: 'p3',
+        },
+        {
+          id: 'p4',
+          name: '滚动到指定列',
+          cardProps: {
+            description: {
+              title: '滚动到指定列',
+              info: '滚动到指定列',
+            },
+          },
+          type: 'PlayGround',
+          codeText: `
         <template>
           <h2>滚动到指定列</h2>
           <adv-space-group direction="horizontal">
@@ -960,33 +693,344 @@ export default {
             }
           }
         <\/script>
-      `;
-    },
-    indicator() {
-      return {
-        columns: columns.map((t, i) => ({
-          dataIndex: `column${i + 1}`,
-          isFixed: i === 0,
-          width: 120,
-          render: (h) => <h2>{`指标${i + 1}`}</h2>,
-        })),
-        dataSource: {
-          columns1: 1,
-          columns2: 2,
-          columns3: 3,
-          columns4: 4,
-          columns5: 5,
-          columns6: 6,
-          columns7: 7,
-          columns8: 8,
-          columns9: 9,
-          columns10: 10,
+      `,
+          childrenSlot: 'p4',
         },
-      };
-    },
-    master() {
-      return getMaster();
-    },
+      ],
+      apiConfig: [
+        {
+          border: true,
+          title: '方法',
+          data: [
+            {
+              name: 'scrollToByIndex',
+              desc: '滚动到指定所引出',
+              modifier: 'public',
+              params: [
+                {
+                  name: 'index',
+                  desc: '滚动到的索引',
+                  type: 'number',
+                  defaultVal: '',
+                  required: 'true',
+                },
+                {
+                  name: 'duration',
+                  desc: '滚动的时间',
+                  type: 'number',
+                  defaultVal: '600',
+                  required: '',
+                },
+              ],
+              returnType: '',
+              returnDesc: '',
+            },
+            {
+              name: 'scrollToByHeaderEl',
+              desc: '滚动到指定el',
+              modifier: 'public',
+              params: [
+                {
+                  name: 'headerEl',
+                  desc: '指定的el',
+                  type: 'HtmlElement',
+                  defaultVal: '',
+                  required: 'true',
+                },
+                {
+                  name: 'duration',
+                  desc: '滚动的时间',
+                  type: 'number',
+                  defaultVal: '300',
+                  required: '',
+                },
+              ],
+              returnType: '',
+              returnDesc: '',
+            },
+            {
+              name: 'scrollToByColumn',
+              desc: '滚动到指定列',
+              modifier: 'public',
+              params: [
+                {
+                  name: 'columnIndex',
+                  desc: '列的索引从1开始',
+                  type: 'number',
+                  defaultVal: '',
+                  required: 'true',
+                },
+              ],
+              returnType: '',
+              returnDesc: '',
+            },
+          ],
+        },
+      ],
+      propsConfig: [
+        {
+          border: true,
+          title: 'CascadeCompared',
+          data: [
+            {
+              params: 'className',
+              desc: '附加的样式表',
+              type: 'string',
+              defaultVal: '',
+            },
+            {
+              params: 'style',
+              desc: '附加的样式',
+              type: 'String',
+              defaultVal: '',
+            },
+            {
+              params: 'indicatorClassName',
+              desc: 'indicator附加的样式表',
+              type: 'string',
+              defaultVal: '',
+            },
+            {
+              params: 'indicatorStyle',
+              desc: 'indicator的样式',
+              type: 'String',
+              defaultVal: '',
+            },
+            {
+              params: 'indicatorFixedWrapClassName',
+              desc: 'indicatorFixedWrap样式表',
+              type: 'string',
+              defaultVal: '',
+            },
+            {
+              params: 'indicatorFixedWrapStyle',
+              desc: 'indicatorFixedWrap附加的样式',
+              type: 'String',
+              defaultVal: '',
+            },
+            {
+              params: 'indicatorAutoWrapClassName',
+              desc: 'indicatorAutoWrap样式表',
+              type: 'string',
+              defaultVal: '',
+            },
+            {
+              params: 'indicatorAutoWrapStyle',
+              desc: 'indicatorAutoWrap附加的样式',
+              type: 'String',
+              defaultVal: '',
+            },
+            {
+              params: 'masterClassName',
+              desc: 'masterWrap样式表',
+              type: 'string',
+              defaultVal: '',
+            },
+            {
+              params: 'masterStyle',
+              desc: 'master附加的样式',
+              type: 'String',
+              defaultVal: '',
+            },
+            {
+              params: 'masterInnerClassName',
+              desc: 'masterInner样式表',
+              type: 'string',
+              defaultVal: '',
+            },
+            {
+              params: 'masterInnerStyle',
+              desc: 'masterInner附加的样式',
+              type: 'String',
+              defaultVal: '',
+            },
+            {
+              params: 'masterStickFixedClassName',
+              desc: 'masterStickFixed样式表',
+              type: 'string',
+              defaultVal: '',
+            },
+            {
+              params: 'masterStickFixedStyle',
+              desc: 'masterStickFixed附加的样式',
+              type: 'String',
+              defaultVal: '',
+            },
+            {
+              params: 'masterStickInnerClassName',
+              desc: 'masterStickInner样式表',
+              type: 'string',
+              defaultVal: '',
+            },
+            {
+              params: 'masterStickInnerStyle',
+              desc: 'masterStickInner附加的样式',
+              type: 'String',
+              defaultVal: '',
+            },
+            {
+              params: 'indicator',
+              desc: '指示器数据',
+              type: 'IIndicatorTableConfig',
+              defaultVal: '',
+            },
+            {
+              params: 'master',
+              desc: '主数据',
+              type: 'Array<IMasterItem>',
+              defaultVal: '',
+            },
+            {
+              params: 'onStickChange',
+              desc: '滚动改变钩子',
+              type: 'Function',
+              defaultVal: '',
+            },
+            {
+              params: 'defaultCellWidth',
+              desc: '缺省的列宽度',
+              type: 'number | string',
+              defaultVal: '120',
+            },
+          ],
+        },
+        {
+          border: true,
+          title: 'IIndicatorTableConfig',
+          data: [
+            {
+              params: 'columns',
+              desc: '列配置',
+              type: 'Array<IColumnConfig>',
+              defaultVal: '[]',
+            },
+            {
+              params: 'dataSource',
+              desc: '数据',
+              type: 'Object',
+              defaultVal: '{}',
+            },
+          ],
+        },
+        {
+          border: true,
+          title: 'IColumnConfig',
+          data: [
+            {
+              params: 'dataIndex',
+              desc: '数据索引',
+              type: 'string',
+              defaultVal: '',
+            },
+            {
+              params: 'isFixed',
+              desc: '是否是固定列',
+              type: 'boolean',
+              defaultVal: 'false',
+            },
+            {
+              params: 'width',
+              desc: '列的宽度',
+              type: 'number | string',
+              defaultVal: '120',
+            },
+            {
+              params: 'render',
+              desc: '渲染列的方法',
+              type: 'Function',
+              defaultVal: '120',
+            },
+            {
+              params: 'className',
+              desc: '附加的样式表',
+              type: 'string',
+              defaultVal: '',
+            },
+            {
+              params: 'style',
+              desc: '附加的样式',
+              type: 'String',
+              defaultVal: '',
+            },
+          ],
+        },
+        {
+          border: true,
+          title: 'IMasterItem',
+          data: [
+            {
+              params: 'columns',
+              desc: '列配置',
+              type: 'Array<IColumnConfig>',
+              defaultVal: '[]',
+            },
+            {
+              params: 'dataSource',
+              desc: '数据',
+              type: 'Array<Object>',
+              defaultVal: '[]',
+            },
+            {
+              params: 'title',
+              desc: 'header',
+              type: 'string | Object | Function',
+              defaultVal: '',
+            },
+            {
+              params: 'className',
+              desc: '附加的样式表',
+              type: 'string',
+              defaultVal: '',
+            },
+            {
+              params: 'style',
+              desc: '附加的样式',
+              type: 'String',
+              defaultVal: '{}',
+            },
+            {
+              params: 'fixedWrapClassName',
+              desc: '附加的样式表',
+              type: 'string',
+              defaultVal: '',
+            },
+            {
+              params: 'fixedWrapStyle',
+              desc: '附加的样式',
+              type: 'String',
+              defaultVal: '{}',
+            },
+            {
+              params: 'autoWrapClassName',
+              desc: '附加的样式表',
+              type: 'string',
+              defaultVal: '',
+            },
+            {
+              params: 'autoWrapStyle',
+              desc: '附加的样式',
+              type: 'String',
+              defaultVal: '{}',
+            },
+            {
+              params: 'autoInnerClassName',
+              desc: '附加的样式表',
+              type: 'string',
+              defaultVal: '',
+            },
+            {
+              params: 'autoInnerStyle',
+              desc: '附加的样式',
+              type: 'String',
+              defaultVal: '{}',
+            },
+          ],
+        },
+      ],
+    };
+  },
+  mounted() {
+    this.scrollEl = this?.$refs?.ref?.$el?.parentElement?.parentElement;
   },
   methods: {
     onCode2Click() {

@@ -49,6 +49,10 @@
     :scrollEl="scrollEl"
     ref="ref"
   >
+    <adv-playground-page-section title="BackTopAnimation">
+      <p>动画的回到顶部</p>
+    </adv-playground-page-section>
+
     <adv-playground-page-code-box-section title="代码演示" :config="codeBoxPanelConfig">
       <template #cell1>
         <a-button type="primary">显示警告提示</a-button>

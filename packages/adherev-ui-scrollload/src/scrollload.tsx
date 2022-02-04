@@ -113,7 +113,7 @@ export default {
         // @ts-ignore
         return (
           <div
-            className={classNames(
+            class={classNames(
               `${selectorPrefix}-load`,
 
               loadClassName.split(/\s+/),

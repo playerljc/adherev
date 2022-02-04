@@ -1,3 +1,4 @@
+import { PropType } from 'vue';
 import classNames from 'classnames';
 import ConditionalRender from '@baifendian/adherev-ui-conditionalrender';
 
@@ -40,6 +41,10 @@ export const cardPropTypes = {
     type: Array,
     default: () => [],
   },
+  description: {
+    type: Object as PropType<{ title: string; info: string }>,
+    default: () => null,
+  },
 };
 
 export default {
@@ -57,6 +62,7 @@ export default {
       actionStyle,
       title,
       extra,
+      description,
       actions,
       $slots,
     } = this;
@@ -84,6 +90,17 @@ export default {
             style={bodyStyle}
           >
             {$slots.default}
+          </div>
+        </ConditionalRender>
+
+        <ConditionalRender conditional={!!description?.title || !!description?.info}>
+          <div class={`${selectorPrefix}-description`}>
+            <ConditionalRender conditional={!!description?.title}>
+              <div class={`${selectorPrefix}-description-title`}>{description?.title}</div>
+            </ConditionalRender>
+            <ConditionalRender conditional={!!description?.info}>
+              {description?.info}
+            </ConditionalRender>
           </div>
         </ConditionalRender>
 

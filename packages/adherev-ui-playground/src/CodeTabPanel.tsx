@@ -24,7 +24,7 @@ export default {
     const { active, config } = this;
 
     return (
-      <div className={selectPrefix}>
+      <div class={selectPrefix}>
         {/*@ts-ignore*/}
         <SimpleTabs
           defaultActiveKey={active}

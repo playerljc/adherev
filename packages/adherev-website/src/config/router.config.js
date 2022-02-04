@@ -93,8 +93,8 @@ const Notification = () =>
 const FontSizeSetting = () =>
   lazy(import(/* webpackChunkName: "fontsizesetting" */ '@/components/ui/fontsizesetting'));
 const Mixins = () => lazy(import(/* webpackChunkName: "mixins" */ '@/components/util/mixins'));
-const JCategoryTab = () =>
-  lazy(import(/* webpackChunkName: "jcategorytab" */ '@/components/ui/jdcategorytab'));
+const JDCategoryTab = () =>
+  lazy(import(/* webpackChunkName: "jdcategorytab" */ '@/components/ui/jdcategorytab'));
 const ImageLazy = () =>
   lazy(import(/* webpackChunkName: "imagelazy" */ '@/components/ui/imagelazy'));
 const BMap = () => lazy(import(/* webpackChunkName: "bmap" */ '@/components/ui/bmap'));
@@ -277,9 +277,9 @@ export default () => [
                 component: ScrollLoad,
               },
               {
-                path: '/adherev/ui/jcategorytab',
-                name: 'JCategoryTab',
-                component: JCategoryTab,
+                path: '/adherev/ui/jdcategorytab',
+                name: 'JDCategoryTab',
+                component: JDCategoryTab,
               },
               {
                 path: '/adherev/ui/cascadecompared',

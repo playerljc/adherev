@@ -192,7 +192,7 @@ export default Vue.extend({
         <FlexLayout
           direction="vertical"
           style={wrapStyle || ''}
-          className={classNames(
+          class={classNames(
             selectorPrefix,
             fixedTableSpaceBetween ? 'fixedtablespacebetween' : '',
             ...(className || '').split(/\s+/),
@@ -200,7 +200,7 @@ export default Vue.extend({
         >
           <Fixed
             style={searchStyle || ''}
-            className={classNames(
+            class={classNames(
               `${selectorPrefix}-searchwrapper`,
               ...(searchClassName || '').split(/\s+/),
             )}
@@ -223,7 +223,7 @@ export default Vue.extend({
 
           <Auto
             style={tableStyle || ''}
-            className={classNames(
+            class={classNames(
               `${selectorPrefix}-autowrapper`,
               ...(tableClassName || '').split(/\s+/),
               autoFixed ? 'autofixed' : '',

@@ -1,7 +1,7 @@
 import Space from '@baifendian/adherev-ui-space';
 import AnchorNavigation, { AnchorNavigationPropTypes } from '../AnchorNavigation';
 
-const selectPrefix = 'adhere-ui-playground-page';
+const selectPrefix = 'adherev-ui-playground-page';
 
 export const PlayGroundPagePropTypes = {
   ...AnchorNavigationPropTypes,

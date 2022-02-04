@@ -2,7 +2,7 @@ import ConditionalRender from '@baifendian/adherev-ui-conditionalrender';
 
 import Card from './Card';
 import PlayGroundMixins, { PlaygroundMixinsProps } from './PlayGroundMixins';
-import CodePanel from './CodePanel';
+import CodePanel, { CodePanelPropTypes } from './CodePanel';
 
 export const PlayGroundPropTypes = {
   ...PlaygroundMixinsProps,
@@ -17,6 +17,7 @@ export default {
   mixins: [PlayGroundMixins],
   props: {
     ...PlayGroundPropTypes,
+    ...CodePanelPropTypes,
   },
   methods: {
     getClipboardText() {

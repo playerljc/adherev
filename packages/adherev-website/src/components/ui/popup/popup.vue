@@ -35,6 +35,7 @@
     </div>
   </div>
 </template>
+
 <script>
 export default {
   methods: {
@@ -47,4 +48,5 @@ export default {
   },
 };
 </script>
+
 <style lang="less" module src="./index.less" />

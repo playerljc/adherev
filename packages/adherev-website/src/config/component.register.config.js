@@ -1,4 +1,5 @@
 import Vue from 'vue';
+import { Plugin } from 'vue-fragment'
 import {
   Breadcrumb,
   Button,
@@ -189,6 +190,9 @@ const register = [
     Vue.use(FunctionProps);
     Vue.use(Props);
   },
+  () => {
+    Vue.use(Plugin);
+  }
 ];
 
 register.forEach((t) => t());

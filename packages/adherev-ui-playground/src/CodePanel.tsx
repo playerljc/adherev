@@ -1,12 +1,16 @@
 import Vue from 'vue';
 
+export const CodePanelPropTypes = {
+  lang: {
+    type: String,
+    default: 'vue',
+  },
+};
+
 export default {
   name: 'adv-playground-code-panel',
   props: {
-    lang: {
-      type: String,
-      default: 'vue',
-    },
+    ...CodePanelPropTypes,
   },
   render(h) {
     const { lang, $slots } = this;

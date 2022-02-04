@@ -1,203 +1,33 @@
 <template>
-  <div class="Page">
-    <h1>ContextMenu</h1>
-    <p>上下文菜单</p>
+  <adv-playground-page :scrollEl="scrollEl" ref="ref">
+    <adv-playground-page-section title="ContextMenu">
+      <p>上下文菜单</p>
+    </adv-playground-page-section>
 
-    <function-props
-      :border="true"
-      :title="'ContextMenu方法'"
-      :data="[
-        {
-          name: 'open',
-          desc: '显示一个上下文菜单',
-          modifier: 'public',
-          params: [
-            {
-              name: 'data',
-              desc: '菜单的数据',
-              type: 'IData',
-              defaultVal: '',
-              required: '',
-            },
-            {
-              name: 'config',
-              desc: '配置',
-              type: 'IConfig',
-              defaultVal: '{}',
-              required: '',
-            },
-          ],
-          returnType: 'HtmlElement',
-          returnDesc: '上下文菜单的el',
-        },
-        {
-          name: 'close',
-          desc: '关闭一个上下文菜单',
-          modifier: 'public',
-          params: [
-            {
-              name: 'el',
-              desc: '使用open方法返回的参数',
-              type: 'HtmlElement',
-              defaultVal: '',
-              required: '',
-            },
-          ],
-          returnType: '',
-          returnDesc: '',
-        },
-      ]"
-    />
+    <adv-playground-page-code-box-section title="代码演示" :config="codeBoxPanelConfig">
+      <template #p2>
+        <a-button type="primary" @click="onClickCode1($event)">点击弹出</a-button>
+      </template>
 
-    <adv-space />
+      <template #p3>
+        <a-button type="primary" @contextmenu="onContextMenuCode2($event)">右键弹出</a-button>
+      </template>
 
-    <props
-      :border="true"
-      :title="'IData'"
-      :data="[
-        {
-          params: 'name',
-          desc: '菜单名称',
-          type: 'string',
-          defaultVal: '',
-        },
-        {
-          params: 'icon',
-          desc: '菜单图标',
-          type: 'string',
-          defaultVal: '',
-        },
-        {
-          params: 'id',
-          desc: '菜单的唯一id',
-          type: 'string',
-          defaultVal: '',
-        },
-        {
-          params: 'disabled',
-          desc: '是否可用',
-          type: 'boolean',
-          defaultVal: 'true',
-        },
-        {
-          params: 'separation',
-          desc: '是否是分割线',
-          type: 'boolean',
-          defaultVal: 'false',
-        },
-        {
-          params: 'attribute',
-          desc: '自定义参数',
-          type: 'Object',
-          defaultVal: '',
-        },
-        {
-          params: 'children',
-          desc: '孩子',
-          type: 'Array<IData>',
-          defaultVal: '[]',
-        },
-        {
-          params: 'className',
-          desc: '附加样式',
-          type: 'string',
-          defaultVal: '',
-        },
-        {
-          params: 'style',
-          desc: '附加样式',
-          type: 'Object',
-          defaultVal: '',
-        },
-        {
-          params: 'subMenuClassName',
-          desc: '附加样式',
-          type: 'string',
-          defaultVal: '',
-        },
-        {
-          params: 'subMenuStyle',
-          desc: '附加样式',
-          type: 'Object',
-          defaultVal: '',
-        },
-      ]"
-    />
+      <template #p4>
+        <a-radio-group value="large" @change="onChangeCode3($event)">
+          <a-radio-button value="file">File</a-radio-button>
+          <a-radio-button value="edit">Edit</a-radio-button>
+          <a-radio-button value="view">View</a-radio-button>
+        </a-radio-group>
+      </template>
+    </adv-playground-page-code-box-section>
 
-    <adv-space />
+    <adv-playground-page-function-props-section title="API" :config="apiConfig" />
 
-    <props
-      :border="true"
-      :title="'IConfig'"
-      :data="[
-        {
-          params: 'x',
-          desc: '菜单显示的x坐标，现对于视口',
-          type: 'number',
-          defaultVal: '',
-        },
-        {
-          params: 'y',
-          desc: '菜单显示的y坐标，现对于视口',
-          type: 'number',
-          defaultVal: '',
-        },
-        {
-          params: 'width',
-          desc: '菜单宽度',
-          type: 'number',
-          defaultVal: '',
-        },
-        {
-          params: 'maskClosable',
-          desc: '是否点击遮罩消失',
-          type: 'boolean',
-          defaultVal: 'true',
-        },
-        {
-          params: 'handler',
-          desc: '点击菜单项的钩子',
-          type: 'Function',
-          defaultVal: '',
-        },
-        {
-          params: 'className',
-          desc: '附加样式',
-          type: 'string',
-          defaultVal: '',
-        },
-        {
-          params: 'style',
-          desc: '附加样式',
-          type: 'Object',
-          defaultVal: '',
-        },
-      ]"
-    />
-
-    <h2>菜单的数据</h2>
-    <playground :code-text="menuuDataCode" :default-expand="true" lang="javascript" />
-
-    <h2>基本使用</h2>
-    <playground :code-text="code1">
-      <a-button type="primary" @click="onClickCode1($event)">点击弹出</a-button>
-    </playground>
-
-    <h2>右键弹出</h2>
-    <playground :code-text="code2">
-      <a-button type="primary" @contextmenu="onContextMenuCode2($event)">右键弹出</a-button>
-    </playground>
-
-    <h2>多项按钮</h2>
-    <playground :code-text="code3">
-      <a-radio-group value="large" @change="onChangeCode3($event)">
-        <a-radio-button value="file">File</a-radio-button>
-        <a-radio-button value="edit">Edit</a-radio-button>
-        <a-radio-button value="view">View</a-radio-button>
-      </a-radio-group>
-    </playground>
-  </div>
+    <adv-playground-page-props-section title="Props" :config="propsConfig" />
+  </adv-playground-page>
 </template>
+
 <script>
 import { ContextMenu } from '@baifendian/adherev';
 
@@ -330,9 +160,21 @@ const contextMenuData = [
 ];
 
 export default {
-  computed: {
-    menuuDataCode() {
-      return `
+  data() {
+    return {
+      scrollEl: null,
+      codeBoxPanelConfig: [
+        {
+          id: 'p1',
+          name: '菜单的数据',
+          cardProps: {
+            description: {
+              title: '菜单的数据',
+              info: '菜单的数据',
+            },
+          },
+          type: 'PlayGround',
+          codeText: `
         const contextMenuData = [
           {
             // <a-icon type="folder-add" />
@@ -456,10 +298,19 @@ export default {
             children: [],
           },
         ];
-      `;
-    },
-    code1() {
-      return `
+      `,
+        },
+        {
+          id: 'p2',
+          name: '基本使用',
+          cardProps: {
+            description: {
+              title: '基本使用',
+              info: '基本使用',
+            },
+          },
+          type: 'PlayGround',
+          codeText: `
         <template>
           <h2>基本使用</h2>
           <a-button type="primary" @click="onClickCode1($event)">点击弹出</a-button>
@@ -488,10 +339,20 @@ export default {
             }
           }
         <\/script>
-      `;
-    },
-    code2() {
-      return `
+      `,
+          childrenSlot: 'p2',
+        },
+        {
+          id: 'p3',
+          name: '右键弹出',
+          cardProps: {
+            description: {
+              title: '右键弹出',
+              info: '右键弹出',
+            },
+          },
+          type: 'PlayGround',
+          codeText: `
         <template>
           <h2>右键弹出</h2>
           <a-button type="primary" @contextmenu="onContextMenuCode2($event)">右键弹出</a-button>
@@ -522,10 +383,20 @@ export default {
              }
           }
         <\/script>
-      `;
-    },
-    code3() {
-      return `
+      `,
+          childrenSlot: 'p3',
+        },
+        {
+          id: 'p4',
+          name: '多项按钮',
+          cardProps: {
+            description: {
+              title: '多项按钮',
+              info: '多项按钮',
+            },
+          },
+          type: 'PlayGround',
+          codeText: `
         <template>
           <h2>多项按钮</h2>
           <a-radio-group value="large" @change="onChangeCode3($event)">
@@ -561,8 +432,183 @@ export default {
              }
           }
         <\/script>
-      `;
-    },
+      `,
+          childrenSlot: 'p4',
+        },
+      ],
+      apiConfig: [
+        {
+          border: true,
+          title: 'ContextMenu方法',
+          data: [
+            {
+              name: 'open',
+              desc: '显示一个上下文菜单',
+              modifier: 'public',
+              params: [
+                {
+                  name: 'data',
+                  desc: '菜单的数据',
+                  type: 'IData',
+                  defaultVal: '',
+                  required: '',
+                },
+                {
+                  name: 'config',
+                  desc: '配置',
+                  type: 'IConfig',
+                  defaultVal: '{}',
+                  required: '',
+                },
+              ],
+              returnType: 'HtmlElement',
+              returnDesc: '上下文菜单的el',
+            },
+            {
+              name: 'close',
+              desc: '关闭一个上下文菜单',
+              modifier: 'public',
+              params: [
+                {
+                  name: 'el',
+                  desc: '使用open方法返回的参数',
+                  type: 'HtmlElement',
+                  defaultVal: '',
+                  required: '',
+                },
+              ],
+              returnType: '',
+              returnDesc: '',
+            },
+          ],
+        },
+      ],
+      propsConfig: [
+        {
+          border: true,
+          title: 'IData',
+          data: [
+            {
+              params: 'name',
+              desc: '菜单名称',
+              type: 'string',
+              defaultVal: '',
+            },
+            {
+              params: 'icon',
+              desc: '菜单图标',
+              type: 'string',
+              defaultVal: '',
+            },
+            {
+              params: 'id',
+              desc: '菜单的唯一id',
+              type: 'string',
+              defaultVal: '',
+            },
+            {
+              params: 'disabled',
+              desc: '是否可用',
+              type: 'boolean',
+              defaultVal: 'true',
+            },
+            {
+              params: 'separation',
+              desc: '是否是分割线',
+              type: 'boolean',
+              defaultVal: 'false',
+            },
+            {
+              params: 'attribute',
+              desc: '自定义参数',
+              type: 'Object',
+              defaultVal: '',
+            },
+            {
+              params: 'children',
+              desc: '孩子',
+              type: 'Array<IData>',
+              defaultVal: '[]',
+            },
+            {
+              params: 'className',
+              desc: '附加样式',
+              type: 'string',
+              defaultVal: '',
+            },
+            {
+              params: 'style',
+              desc: '附加样式',
+              type: 'Object',
+              defaultVal: '',
+            },
+            {
+              params: 'subMenuClassName',
+              desc: '附加样式',
+              type: 'string',
+              defaultVal: '',
+            },
+            {
+              params: 'subMenuStyle',
+              desc: '附加样式',
+              type: 'Object',
+              defaultVal: '',
+            },
+          ],
+        },
+        {
+          border: true,
+          title: 'IConfig',
+          data: [
+            {
+              params: 'x',
+              desc: '菜单显示的x坐标，现对于视口',
+              type: 'number',
+              defaultVal: '',
+            },
+            {
+              params: 'y',
+              desc: '菜单显示的y坐标，现对于视口',
+              type: 'number',
+              defaultVal: '',
+            },
+            {
+              params: 'width',
+              desc: '菜单宽度',
+              type: 'number',
+              defaultVal: '',
+            },
+            {
+              params: 'maskClosable',
+              desc: '是否点击遮罩消失',
+              type: 'boolean',
+              defaultVal: 'true',
+            },
+            {
+              params: 'handler',
+              desc: '点击菜单项的钩子',
+              type: 'Function',
+              defaultVal: '',
+            },
+            {
+              params: 'className',
+              desc: '附加样式',
+              type: 'string',
+              defaultVal: '',
+            },
+            {
+              params: 'style',
+              desc: '附加样式',
+              type: 'Object',
+              defaultVal: '',
+            },
+          ],
+        },
+      ],
+    };
+  },
+  mounted() {
+    this.scrollEl = this?.$refs?.ref?.$el?.parentElement?.parentElement;
   },
   methods: {
     onClickCode1(e) {
