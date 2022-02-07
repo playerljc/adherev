@@ -1,43 +1,63 @@
 <template>
-  <adv-playground-page :scrollEl="scrollEl" ref="wrapRef">
-    <adv-playground-page-section title="AdapterScreen">
-      <p>对屏幕的缩放进行适配的操作</p>
-    </adv-playground-page-section>
+  <div class="Page">
+    <h1>AdapterScreen</h1>
+    <p>对屏幕的缩放进行适配的操作</p>
 
-    <adv-playground-page-code-box-section title="代码演示" :config="codeBoxPanelConfig">
-      <template #p1>
-        <a-button type="primary" @click="onControlFull">控制整体页面的缩放</a-button>
-      </template>
+    <function-props
+      :border="true"
+      :title="'方法'"
+      :data="[
+        {
+          name: 'AdapterScreen',
+          desc: '对一个元素进行缩放的管理',
+          modifier: 'static',
+          params: [
+            {
+              name: 'el',
+              desc: '控制缩放的元素',
+              type: 'HtmlElement',
+              defaultVal: 'window.document.body',
+              required: '',
+            },
+          ],
+          returnType: 'Function',
+          returnDesc: '注销事件的方法',
+        },
+      ]"
+    />
 
-      <template #p2>
-        <div ref="ref">
-          <a-button type="primary" @click="onControlElement">控制表格元素的缩放</a-button>
-          <a-table :columns="columns" :data-source="data">
-            <a slot="name" slot-scope="text">{{ text }}</a>
-            <span slot="customTitle"><a-icon type="smile-o" /> Name</span>
-            <span slot="tags" slot-scope="tags">
-              <a-tag
-                v-for="tag in tags"
-                :key="tag"
-                :color="tag === 'loser' ? 'volcano' : tag.length > 5 ? 'geekblue' : 'green'"
-              >
-                {{ tag.toUpperCase() }}
-              </a-tag>
-            </span>
-            <span slot="action" slot-scope="text, record">
-              <a>Invite 一 {{ record.name }}</a>
-              <a-divider type="vertical" />
-              <a>Delete</a>
-              <a-divider type="vertical" />
-              <a class="ant-dropdown-link"> More actions <a-icon type="down" /> </a>
-            </span>
-          </a-table>
-        </div>
-      </template>
-    </adv-playground-page-code-box-section>
+    <h2>基本使用</h2>
+    <playground :code-text="code1">
+      <a-button type="primary" @click="onControlFull">控制整体页面的缩放</a-button>
+    </playground>
 
-    <adv-playground-page-function-props-section title="API" :config="apiConfig" />
-  </adv-playground-page>
+    <h2>传递不同的元素</h2>
+    <playground :code-text="code2">
+      <div ref="ref">
+        <a-button type="primary" @click="onControlElement">控制表格元素的缩放</a-button>
+        <a-table :columns="columns" :data-source="data">
+          <a slot="name" slot-scope="text">{{ text }}</a>
+          <span slot="customTitle"><a-icon type="smile-o" /> Name</span>
+          <span slot="tags" slot-scope="tags">
+            <a-tag
+              v-for="tag in tags"
+              :key="tag"
+              :color="tag === 'loser' ? 'volcano' : tag.length > 5 ? 'geekblue' : 'green'"
+            >
+              {{ tag.toUpperCase() }}
+            </a-tag>
+          </span>
+          <span slot="action" slot-scope="text, record">
+            <a>Invite 一 {{ record.name }}</a>
+            <a-divider type="vertical" />
+            <a>Delete</a>
+            <a-divider type="vertical" />
+            <a class="ant-dropdown-link"> More actions <a-icon type="down" /> </a>
+          </span>
+        </a-table>
+      </div>
+    </playground>
+  </div>
 </template>
 
 <script>
@@ -100,21 +120,7 @@ const data = [
 export default {
   data() {
     return {
-      data,
-      columns,
-      scrollEl: null,
-      codeBoxPanelConfig: [
-        {
-          id: 'p1',
-          name: '基本使用',
-          cardProps: {
-            description: {
-              title: '基本使用',
-              info: '基本使用',
-            },
-          },
-          type: 'PlayGround',
-          codeText: `
+      code1: `
         <template>
           <h2>基本使用</h2>
           <a-button type="primary" @click="onControlFull">控制整体页面的缩放</a-button>
@@ -131,19 +137,7 @@ export default {
         }
         <\/script>
       `,
-          childrenSlot: 'p1',
-        },
-        {
-          id: 'p2',
-          name: '传递不同的元素',
-          cardProps: {
-            description: {
-              title: '传递不同的元素',
-              info: '传递不同的元素',
-            },
-          },
-          type: 'PlayGround',
-          codeText: `
+      code2: `
         <template>
           <h2>传递不同的元素</h2>
           <div ref="ref">
@@ -236,37 +230,9 @@ export default {
         }
         <\/script>
       `,
-          childrenSlot: 'p2',
-        },
-      ],
-      apiConfig: [
-        {
-          border: true,
-          title: '方法',
-          data: [
-            {
-              name: 'AdapterScreen',
-              desc: '对一个元素进行缩放的管理',
-              modifier: 'static',
-              params: [
-                {
-                  name: 'el',
-                  desc: '控制缩放的元素',
-                  type: 'HtmlElement',
-                  defaultVal: 'window.document.body',
-                  required: '',
-                },
-              ],
-              returnType: 'Function',
-              returnDesc: '注销事件的方法',
-            },
-          ],
-        },
-      ],
+      data,
+      columns,
     };
-  },
-  mounted() {
-    this.scrollEl = this?.$refs?.wrapRef?.$el?.parentElement?.parentElement;
   },
   methods: {
     onControlFull() {
