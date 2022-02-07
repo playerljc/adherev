@@ -1,165 +1,48 @@
 <template>
-  <div class="Page">
-    <h1>Domain</h1>
-    <h2>Domain的浏览器端实现</h2>
+  <adv-playground-page :scrollEl="scrollEl" ref="ref">
+    <adv-playground-page-section title="Domain">
+      <h2>Domain的浏览器端实现</h2>
+    </adv-playground-page-section>
 
-    <function-props
-      :border="true"
-      :title="'Domain'"
-      :data="[
-        {
-          name: 'createDomain',
-          desc: '创建Domain对象',
-          modifier: 'public',
-          params: [],
-          returnType: 'IDomain',
-          returnDesc: '',
-        },
-        {
-          name: 'create',
-          desc: '创建Domain对象',
-          modifier: 'public',
-          params: [],
-          returnType: 'IDomain',
-          returnDesc: '',
-        },
-      ]"
-    />
+    <adv-playground-page-code-box-section title="代码演示" :config="codeBoxPanelConfig">
+      <template #p1>
+        <fragment>
+          <a-button type="primary" @click="onCode1F1">运行</a-button>
+          <div class="Console" ref="console1Ref"></div>
+        </fragment>
+      </template>
 
-    <adv-space />
+      <template #p2>
+        <fragment>
+          <a-button type="primary" @click="onCode2F1">运行</a-button>
+          <div class="Console" ref="console2Ref"></div>
+        </fragment>
+      </template>
+    </adv-playground-page-code-box-section>
 
-    <function-props
-      :border="true"
-      :title="'IDomain'"
-      :data="[
-        {
-          name: 'add',
-          desc: 'add',
-          modifier: 'public',
-          params: [
-            {
-              name: 'emitter',
-              desc: '',
-              type: 'EventEmitter',
-              defaultVal: '',
-              required: '',
-            },
-          ],
-          returnType: 'void',
-          returnDesc: '',
-        },
-        {
-          name: 'bind',
-          desc: 'bind',
-          modifier: 'public',
-          params: [
-            {
-              name: 'fn',
-              desc: '',
-              type: 'Function',
-              defaultVal: '',
-              required: '',
-            },
-          ],
-          returnType: 'Function',
-          returnDesc: '',
-        },
-        {
-          name: 'dispose',
-          desc: 'dispose',
-          modifier: 'public',
-          params: [],
-          returnType: 'IDomain',
-          returnDesc: '',
-        },
-        {
-          name: 'enter',
-          desc: 'enter',
-          modifier: 'public',
-          params: [],
-          returnType: 'IDomain',
-          returnDesc: '',
-        },
-        {
-          name: 'exit',
-          desc: 'exit',
-          modifier: 'public',
-          params: [],
-          returnType: 'IDomain',
-          returnDesc: '',
-        },
-        {
-          name: 'intercept',
-          desc: 'intercept',
-          modifier: 'public',
-          params: [
-            {
-              name: 'fn',
-              desc: '',
-              type: 'Function',
-              defaultVal: '',
-              required: '',
-            },
-          ],
-          returnType: 'Function',
-          returnDesc: '',
-        },
-        {
-          name: 'remove',
-          desc: 'remove',
-          modifier: 'public',
-          params: [
-            {
-              name: 'emitter',
-              desc: '',
-              type: 'EventEmitter',
-              defaultVal: '',
-              required: '',
-            },
-          ],
-          returnType: 'void',
-          returnDesc: '',
-        },
-        {
-          name: 'run',
-          desc: 'run',
-          modifier: 'public',
-          params: [
-            {
-              name: 'fn',
-              desc: '',
-              type: 'Function',
-              defaultVal: '',
-              required: '',
-            },
-          ],
-          returnType: 'IDomain',
-          returnDesc: '',
-        },
-      ]"
-    />
-
-    <h2>基本操作(run方法)</h2>
-    <playground :code-text="code1">
-      <a-button @click="onCode1F1">运行</a-button>
-      <div class="Console" ref="console1Ref"></div>
-    </playground>
-
-    <h2>基本操作(bind方法)</h2>
-    <playground :code-text="code2">
-      <a-button @click="onCode2F1">运行</a-button>
-      <div class="Console" ref="console2Ref"></div>
-    </playground>
-  </div>
+    <adv-playground-page-function-props-section title="API" :config="apiConfig" />
+  </adv-playground-page>
 </template>
 
 <script>
 import { Domain } from '@baifendian/adherev';
 
 export default {
-  computed: {
-    code1() {
-      return `
+  data() {
+    return {
+      scrollEl: null,
+      codeBoxPanelConfig: [
+        {
+          id: 'p1',
+          name: '基本操作(run方法)',
+          cardProps: {
+            description: {
+              title: '基本操作(run方法)',
+              info: '基本操作(run方法)',
+            },
+          },
+          type: 'PlayGround',
+          codeText: `
         <template>
           <a-button @click="onCode1F1">运行</a-button>
           <div class="Console" ref="console1Ref"></div>
@@ -197,10 +80,20 @@ export default {
             border: 1px solid rgba(0, 0, 0, 0.1);
           }
         </style>
-      `;
-    },
-    code2() {
-      return `
+      `,
+          childrenSlot: 'p1',
+        },
+        {
+          id: 'p2',
+          name: '基本操作(bind方法)',
+          cardProps: {
+            description: {
+              title: '基本操作(bind方法)',
+              info: '基本操作(bind方法)',
+            },
+          },
+          type: 'PlayGround',
+          codeText: `
         <template>
           <a-button @click="onCode2F1">运行</a-button>
           <div class="Console" ref="console2Ref"></div>
@@ -245,8 +138,148 @@ export default {
             border: 1px solid rgba(0, 0, 0, 0.1);
           }
         </style>
-      `;
-    },
+      `,
+          childrenSlot: 'p2',
+        },
+      ],
+      apiConfig: [
+        {
+          border: true,
+          title: 'Domain',
+          data: [
+            {
+              name: 'createDomain',
+              desc: '创建Domain对象',
+              modifier: 'public',
+              params: [],
+              returnType: 'IDomain',
+              returnDesc: '',
+            },
+            {
+              name: 'create',
+              desc: '创建Domain对象',
+              modifier: 'public',
+              params: [],
+              returnType: 'IDomain',
+              returnDesc: '',
+            },
+          ],
+        },
+        {
+          border: true,
+          title: 'IDomain',
+          data: [
+            {
+              name: 'add',
+              desc: 'add',
+              modifier: 'public',
+              params: [
+                {
+                  name: 'emitter',
+                  desc: '',
+                  type: 'EventEmitter',
+                  defaultVal: '',
+                  required: '',
+                },
+              ],
+              returnType: 'void',
+              returnDesc: '',
+            },
+            {
+              name: 'bind',
+              desc: 'bind',
+              modifier: 'public',
+              params: [
+                {
+                  name: 'fn',
+                  desc: '',
+                  type: 'Function',
+                  defaultVal: '',
+                  required: '',
+                },
+              ],
+              returnType: 'Function',
+              returnDesc: '',
+            },
+            {
+              name: 'dispose',
+              desc: 'dispose',
+              modifier: 'public',
+              params: [],
+              returnType: 'IDomain',
+              returnDesc: '',
+            },
+            {
+              name: 'enter',
+              desc: 'enter',
+              modifier: 'public',
+              params: [],
+              returnType: 'IDomain',
+              returnDesc: '',
+            },
+            {
+              name: 'exit',
+              desc: 'exit',
+              modifier: 'public',
+              params: [],
+              returnType: 'IDomain',
+              returnDesc: '',
+            },
+            {
+              name: 'intercept',
+              desc: 'intercept',
+              modifier: 'public',
+              params: [
+                {
+                  name: 'fn',
+                  desc: '',
+                  type: 'Function',
+                  defaultVal: '',
+                  required: '',
+                },
+              ],
+              returnType: 'Function',
+              returnDesc: '',
+            },
+            {
+              name: 'remove',
+              desc: 'remove',
+              modifier: 'public',
+              params: [
+                {
+                  name: 'emitter',
+                  desc: '',
+                  type: 'EventEmitter',
+                  defaultVal: '',
+                  required: '',
+                },
+              ],
+              returnType: 'void',
+              returnDesc: '',
+            },
+            {
+              name: 'run',
+              desc: 'run',
+              modifier: 'public',
+              params: [
+                {
+                  name: 'fn',
+                  desc: '',
+                  type: 'Function',
+                  defaultVal: '',
+                  required: '',
+                },
+              ],
+              returnType: 'IDomain',
+              returnDesc: '',
+            },
+          ],
+        },
+      ],
+    };
+  },
+  mounted() {
+    this.scrollEl = this?.$refs?.ref?.$el?.parentElement?.parentElement;
   },
   methods: {
     onCode1F1() {

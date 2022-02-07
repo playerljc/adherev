@@ -1,16 +1,32 @@
 <template>
-  <div class="Page">
-    <h1>资源</h1>
-    <desc>资源是以已字典的方式提供</desc>
+  <adv-playground-page :scrollEl="scrollEl" ref="ref">
+    <adv-playground-page-section title="Resource">
+      <h1>资源</h1>
+      <desc>资源是以已字典的方式提供</desc>
+    </adv-playground-page-section>
 
-    <h2>Normal</h2>
-    <playground-mulit
-      :defaultExpand="true"
-      :defaultConfig="[
+    <adv-playground-page-code-box-section title="代码演示" :config="codeBoxPanelConfig" />
+  </adv-playground-page>
+</template>
+
+<script>
+export default {
+  data() {
+    return {
+      scrollEl: null,
+      codeBoxPanelConfig: [
         {
-          type: 'CodePanel',
-          title: 'static资源',
+          id: 'p1',
+          name: 'Normal',
+          cardProps: {
+            description: {
+              title: 'Normal',
+              info: 'Normal',
+            },
+          },
+          type: 'PlayGround',
           lang: 'javascript',
+          defaultExpand: true,
           codeText: `
     // 最大层级
     Dict.handlers.ResourceNormalMaxZIndex = () => 19999;
@@ -160,17 +176,18 @@
       ]);
             `,
         },
-      ]"
-    />
-
-    <h2>Form(表单)相关</h2>
-    <playground-mulit
-      :defaultExpand="true"
-      :defaultConfig="[
         {
-          type: 'CodePanel',
-          title: '静态资源',
+          id: 'p2',
+          name: 'Form(表单)相关',
+          cardProps: {
+            description: {
+              title: 'Form(表单)相关',
+              info: 'Form(表单)相关',
+            },
+          },
+          type: 'PlayGround',
           lang: 'javascript',
+          defaultExpand: true,
           codeText: `
     Dict.handlers.FormInputNumberRule = () => ({
       whitespace: true,
@@ -191,17 +208,18 @@
     Dict.handlers.FormPopupContainer = () => (el) => el.parentElement;
         `,
         },
-      ]"
-    />
-
-    <h2>Gis相关</h2>
-    <playground-mulit
-      :defaultExpand="true"
-      :defaultConfig="[
         {
-          type: 'CodePanel',
-          title: '静态资源',
+          id: 'p3',
+          name: 'Gis相关',
+          cardProps: {
+            description: {
+              title: 'Gis相关',
+              info: 'Gis相关',
+            },
+          },
+          type: 'PlayGround',
           lang: 'javascript',
+          defaultExpand: true,
           codeText: `
     Dict.handlers.ResourceGisEpsg4326 = () => 'EPSG:4326';
 
@@ -1262,17 +1280,18 @@
     Dict.handlers.ResourceGisXinbeiquCenterPoint = () => [119.879673, 31.933156];
             `,
         },
-      ]"
-    />
-
-    <h2>Locals相关</h2>
-    <playground-mulit
-      :defaultExpand="true"
-      :defaultConfig="[
         {
-          type: 'CodePanel',
-          title: '静态资源',
+          id: 'p4',
+          name: 'Locals相关',
+          cardProps: {
+            description: {
+              title: 'Locals相关',
+              info: 'Locals相关',
+            },
+          },
+          type: 'PlayGround',
           lang: 'javascript',
+          defaultExpand: true,
           codeText: `
     import moment from 'moment';
     import zhCN from 'antd/es/locale/zh_CN';
@@ -1311,17 +1330,18 @@
     });
           `,
         },
-      ]"
-    />
-
-    <h2>Mime相关</h2>
-    <playground-mulit
-      :defaultExpand="true"
-      :defaultConfig="[
         {
-          type: 'CodePanel',
-          title: '静态资源',
+          id: 'p5',
+          name: 'Mime相关',
+          cardProps: {
+            description: {
+              title: 'Mime相关',
+              info: 'Mime相关',
+            },
+          },
+          type: 'PlayGround',
           lang: 'javascript',
+          defaultExpand: true,
           codeText: `
     Dict.handlers.ResourceMime123 = () => 'application/vnd.lotus-1-2-3';
 
@@ -3356,17 +3376,18 @@
     Dict.handlers.ResourceMimezmm = () => 'application/vnd.handheld-entertainment+xml';
           `,
         },
-      ]"
-    />
-
-    <h2>Moment相关</h2>
-    <playground-mulit
-      :defaultExpand="true"
-      :defaultConfig="[
         {
-          type: 'CodePanel',
-          title: '静态资源',
+          id: 'p6',
+          name: 'Moment相关',
+          cardProps: {
+            description: {
+              title: 'Moment相关',
+              info: 'Moment相关',
+            },
+          },
+          type: 'PlayGround',
           lang: 'javascript',
+          defaultExpand: true,
           codeText: `
     Dict.handlers.ResourceMomentFormatYear = () => 'YYYY';
 
@@ -3375,9 +3396,12 @@
     Dict.handlers.ResourceMomentFormatFull = () => 'YYYY-MM-DD HH:mm:ss';
           `,
         },
-      ]"
-    />
-  </div>
-</template>
-
-<script></script>
+      ],
+    };
+  },
+  mounted() {
+    this.scrollEl = this?.$refs?.ref?.$el?.parentElement?.parentElement;
+  },
+  methods: {},
+};
+</script>

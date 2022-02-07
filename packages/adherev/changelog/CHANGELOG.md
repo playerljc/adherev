@@ -2,7 +2,7 @@
 
 ***
 
-2022-2-2
+2022-2-7
 
 * **adherev-ui-conditionalrender**
   - 加入ConditionalRender.Show组件进行display切换
@@ -17,7 +17,7 @@
   - 细化PlayGround组件
   - 细化PlayGroundMulit组件
 * **adherev-ui-revolving**
-  - bug的修改
+  - BUG的修改
 * **adherev-ui-space**
   - BUG修改
 
