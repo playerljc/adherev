@@ -5,23 +5,31 @@
       <h2 class="ant-typography">概述</h2>
       <div class="ant-typography">
         <span class="ant-typography">
-          这个工程中包含很多个 npm 包，这些包都是在平时工作中沉淀出来的一些可以高度复用的组件，有 UI
-          相关、功能相关、GIS 相关,使用的是 Vue 技术，有的可能是对
-          ant-design-vue(还有其他第三方的库)的二次封装
+          这个工程中包含很多个npm包(整体也是一个npm包)，这些包都是在平时工作中沉淀出来的一些可以高度复用的组件，有UI相关、工具相关、GIS相关,使用的是Vue技术，有的可能是对ant-design-vue(还有其他第三方的库)的二次封装
         </span>
       </div>
-      <h2 class="ant-typography">兼容</h2>
+      <h2 class="ant-typography">特性</h2>
       <div class="ant-typography">
         <ul>
-          <li>- 支持vue2.x</li>
-          <li>- 支持ant-design-vue</li>
+          <li>- 支持vue(2.x)</li>
+          <li>- 支持ant-design-vue(1.x)</li>
           <li>- 支持国际化</li>
           <li>- 支持修改主题</li>
           <li>- 支持动态引入(babel-plugin-import)</li>
+          <li>- 每一个子包都可以单独安装</li>
+          <li>- 使用typescript编写</li>
+        </ul>
+      </div>
+      <h2 class="ant-typography">兼容环境</h2>
+      <div class="ant-typography">
+        <ul>
+          <li>- 现代浏览器，不支持IE</li>
+          <li>- 每一个子包对IE的兼容性都不一样需要具体看</li>
         </ul>
       </div>
       <h2 class="ant-typography">安装</h2>
       <div class="ant-typography"><code>npm i @baifendian/adherev --save</code></div>
+      <div class="ant-typography"><code>yarn add @baifendian/adherev</code></div>
     </article>
 
     <article class="ant-typography" style="margin: 20px 0">
