@@ -1,9 +1,10 @@
 import Vue from 'vue';
+import NProgress from 'nprogress';
 import 'vue-highlight.js/lib/allLanguages';
 import { Intl, Util, Resource, MessageDialog } from '@baifendian/adherev';
 
-import Router from './lib/Router';
 import '@/config/component.register.config.js';
+import Router from './lib/Router';
 
 import en_US from './locales/en_US';
 import zh_CN from './locales/zh_CN';
@@ -11,6 +12,7 @@ import pt_PT from './locales/pt_PT';
 
 import 'font-awesome/less/font-awesome.less';
 import 'highlight.js/styles/agate.css';
+import 'nprogress/nprogress.css';
 // TODO:umd umd需要注释掉
 import '@baifendian/adherev/lib/css.less';
 // import 'ant-design-vue/dist/antd.less'
@@ -31,14 +33,26 @@ MessageDialog.setConfig({
 });
 
 Router().then((router) => {
+  router.beforeEach((_to, _from, next) => {
+    NProgress.inc();
+    next();
+  });
+
+  router.afterEach(() => {
+    NProgress.done();
+  });
+
   return new Vue({
     el: '#container',
     i18n: Intl({
       // @ts-ignore
       I18nOptions: {
         messages: {
+          // @ts-ignore
           en_US,
+          // @ts-ignore
           zh_CN,
+          // @ts-ignore
           pt_PT,
         },
         locale: lang,
