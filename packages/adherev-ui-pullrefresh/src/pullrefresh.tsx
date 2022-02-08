@@ -237,7 +237,7 @@ export default {
 
           // 具备刷新条件
           if (distance >= $refreshHeight + 80) {
-            console.log('3.具备刷新条件');
+            // console.log('3.具备刷新条件');
             this.rotateIcon($iconEl, 0, 150);
 
             this.isCan = true;
@@ -261,7 +261,7 @@ export default {
 
           this.rotateIcon($iconEl, 0, 150);
 
-          console.log('4.拉动到了底部');
+          // console.log('4.拉动到了底部');
 
           this.isCan = true;
 
@@ -301,7 +301,7 @@ export default {
           if (distance >= $refreshHeight + 80) {
             this.refresh();
           } else {
-            console.log('2.没有具备刷新条件弹回');
+            // console.log('2.没有具备刷新条件弹回');
             // self.events.trigger('pullRebound');
             this.trigger('pull-rebound');
             this.reset();

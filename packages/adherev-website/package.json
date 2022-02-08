@@ -5,8 +5,8 @@
   "description": "adherev的website",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "startapp": "cross-env environment=dev mode=development ctbuildv startapp --define alias=@,evnVars=true,cssModules=true,static=assets",
-    "buildapp": "cross-env environment=dev mode=production ctbuildv buildapp --define alias=@,evnVars=true,cssModules=true,static=assets",
+    "startapp": "cross-env environment=dev mode=development ctbuildv startapp --define alias=@,evnVars=true,cssModules=true,static=assets,runtimeCompiler=true",
+    "buildapp": "cross-env environment=dev mode=production ctbuildv buildapp --define alias=@,evnVars=true,cssModules=true,static=assets,runtimeCompiler=true",
     "buildapp:analysis": "cross-env environment=dev mode=production ctbuildv buildapp --define alias=@,evnVars=true,cssModules=true,analysis=true,static=assets",
     "lint": "npm run lint:js && npm run lint:style && npm run lint:prettier",
     "lint-staged": "lint-staged",

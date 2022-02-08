@@ -20,7 +20,7 @@ module.exports = {
     webpackConfig.resolve.alias = {
       ...webpackConfig.resolve.alias,
       // TODO: 能编译template部分模板
-      vue$: 'vue/dist/vue.esm.js',
+      // vue$: 'vue/dist/vue.esm.js',
       // TODO:umd umd的时候需要注释掉
       // vue: path.join(__dirname, '../../node_modules', 'vue'),
       // TODO: 因为是link的操作所以需要进行目录的精确定义
@@ -86,6 +86,7 @@ module.exports = {
     // TODO:umd umd的时候需要注释掉
     // babel-plugin-import的配置
     const { use } = webpackConfig.module.rules[1];
+
     const babelLoaderConfig = use.find((loaderConfig) => {
       if (typeof loaderConfig === 'string') return false;
 
@@ -95,6 +96,7 @@ module.exports = {
 
       return false;
     });
+
     if (babelLoaderConfig) {
       babelLoaderConfig.query.plugins.push(
         [
@@ -116,25 +118,6 @@ module.exports = {
             style: true,
           },
           'adherev',
-        ],
-        [
-          'import',
-          {
-            libraryName: 'antd',
-            libraryDirectory: 'es',
-            // styleLibraryDirectory: 'es',
-            style: true,
-          },
-          'ant',
-        ],
-        [
-          'import',
-          {
-            libraryName: '@ant-design/icons',
-            libraryDirectory: 'es/icons',
-            camel2DashComponentName: false,
-          },
-          'ant-design-icons',
         ],
         [
           'import',
