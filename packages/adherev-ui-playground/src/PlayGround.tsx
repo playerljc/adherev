@@ -6,6 +6,7 @@ import CodePanel, { CodePanelPropTypes } from './CodePanel';
 
 export const PlayGroundPropTypes = {
   ...PlaygroundMixinsProps,
+  ...CodePanelPropTypes,
   codeText: {
     type: String,
     default: '',
@@ -17,7 +18,6 @@ export default {
   mixins: [PlayGroundMixins],
   props: {
     ...PlayGroundPropTypes,
-    ...CodePanelPropTypes,
   },
   methods: {
     getClipboardText() {

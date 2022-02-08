@@ -40,6 +40,11 @@ export default {
       return expand ? Intl.v('收起') : Intl.v('展开');
     },
   },
+  watch: {
+    defaultExpand(expand) {
+      this.expand = expand;
+    },
+  },
   methods: {
     copy(e) {
       this.getClipboardText(e).then((text) => {

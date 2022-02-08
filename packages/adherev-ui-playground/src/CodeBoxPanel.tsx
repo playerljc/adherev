@@ -98,7 +98,7 @@ export default {
         <PlayGround
           {...{ props: playGroundProps, attrs: { id } }}
           isActive={activeAnchor === id}
-          expand={expandAll}
+          defaultExpand={expandAll}
         >
           <ConditionalRender conditional={!!$scopedSlots[childrenSlot]}>
             {$scopedSlots[childrenSlot]?.({
@@ -126,7 +126,7 @@ export default {
         <PlayGroundTab
           {...{ props: playGroundTabProps, attrs: { id } }}
           isActive={activeAnchor === id}
-          expand={expandAll}
+          defaultExpand={expandAll}
         >
           <ConditionalRender conditional={!!$scopedSlots[childrenSlot]}>
             {$scopedSlots[childrenSlot]?.({
@@ -154,7 +154,7 @@ export default {
         <PlayGroundMulit
           {...{ props: playGroundProps, attrs: { id } }}
           isActive={activeAnchor === id}
-          expand={expandAll}
+          defaultExpand={expandAll}
         >
           <ConditionalRender conditional={!!$scopedSlots[childrenSlot]}>
             {$scopedSlots[childrenSlot]?.({
@@ -198,18 +198,6 @@ export default {
             <ConditionalRender conditional={isShowExpandAllBtn}>
               <ConditionalRender
                 conditional={expandAll}
-                noMatch={
-                  <img
-                    class={`${selectPrefix}-expand-code`}
-                    src={Constant.ExpandCodeAll}
-                    alt=""
-                    onClick={() => {
-                      if ($expandLock) return;
-                      this.$data.$expandLock = true;
-                      this.expandAll = true;
-                    }}
-                  />
-                }
               >
                 <img
                   class={`${selectPrefix}-expand-code`}
@@ -218,8 +206,20 @@ export default {
                   onClick={() => {
                     if ($expandLock) return;
                     this.$data.$expandLock = true;
-                    this.expandAll = true;
+                    this.expandAll = false;
                   }}
+                />
+
+                <img
+                    slot="noMatch"
+                    class={`${selectPrefix}-expand-code`}
+                    src={Constant.ExpandCodeAll}
+                    alt=""
+                    onClick={() => {
+                      if ($expandLock) return;
+                      this.$data.$expandLock = true;
+                      this.expandAll = true;
+                    }}
                 />
               </ConditionalRender>
             </ConditionalRender>
