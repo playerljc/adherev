@@ -12,8 +12,6 @@ export default {
   props: { ...PlayGroundPagePropTypes },
   computed: {
     getAnchors() {
-      console.log('this.$slots.default', this.$slots.default);
-
       const anchors = this.$slots.default
         .filter((c) =>
           ['CodeBoxSection', 'adv-playground-page-code-box-section'].some(
@@ -27,7 +25,6 @@ export default {
           })),
         )
         ?.flat();
-      console.log('anchors', anchors);
 
       return anchors;
     },

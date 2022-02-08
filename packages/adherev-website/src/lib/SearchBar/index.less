@@ -22,6 +22,15 @@
   > .Auto {
     flex-grow: 1;
     min-width: 0;
+
+    :global {
+      .dropdownClassName {
+        > .ant-select-selection.ant-select-selection--single {
+          border: 0;
+          box-shadow: none;
+        }
+      }
+    }
   }
 }
 

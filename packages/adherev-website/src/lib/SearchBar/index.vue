@@ -7,6 +7,7 @@
     <div :class="$style.Auto" ref="ref">
       <a-select
         style="width: 600px"
+        class="dropdownClassName"
         :search-value="searchVal"
         :get-popup-container="(e) => e.parentElement"
         :open="open"

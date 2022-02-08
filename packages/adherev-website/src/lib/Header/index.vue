@@ -93,9 +93,7 @@ const MenuItemsConfig = [
   },
 ];
 
-function getDefaultMenuSelectKey() {
-  const { pathname } = window.location;
-
+function getDefaultMenuSelectKey(pathname = window.location.pathname) {
   const findMenuItemConfig = MenuItemsConfig.find(
     (menuItemConfig) => pathname.indexOf(menuItemConfig.key) !== -1,
   );
@@ -124,6 +122,12 @@ export default {
     },
     repositoryUrl() {
       return packageJSON.repository.url;
+    },
+  },
+  watch: {
+    $route(to) {
+      const { path } = to;
+      this.menuSelectKeys = [getDefaultMenuSelectKey(path)];
     },
   },
   methods: {
