@@ -30,34 +30,36 @@ MessageDialog.setConfig({
   },
 });
 
-new Vue({
-  el: '#container',
-  i18n: Intl({
-    // @ts-ignore
-    I18nOptions: {
-      messages: {
-        en_US,
-        zh_CN,
-        pt_PT,
+Router().then((router) => {
+  return new Vue({
+    el: '#container',
+    i18n: Intl({
+      // @ts-ignore
+      I18nOptions: {
+        messages: {
+          en_US,
+          zh_CN,
+          pt_PT,
+        },
+        locale: lang,
       },
-      locale: lang,
+      prefix: 'local',
+    }),
+    router,
+    data() {
+      return {
+        locale: Resource.Dict.value.LocalsAntd.value[lang],
+      };
     },
-    prefix: 'local',
-  }),
-  router: Router(),
-  data() {
-    return {
-      local: Resource.Dict.value.LocalsAntd.value[lang],
-    };
-  },
-  render: Vue.compile(
-    `
-        <a-config-provider :local="local">
+    render: Vue.compile(
+      `
+        <a-config-provider :locale="locale">
           <div id="app">
             <keep-alive>
               <router-view />
             </keep-alive>
           </div>
         </a-config-provider>`,
-  ).render,
+    ).render,
+  });
 });

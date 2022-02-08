@@ -2,8 +2,10 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 import { Skeleton } from 'ant-design-vue';
 
+// @ts-ignore
 import RouterConfig from '@/config/router.config';
 
+// @ts-ignore
 import BasicLayout from '../BasicLayout';
 import Util from '../BasicLayout/Util';
 
@@ -167,7 +169,7 @@ export function lazy(AsyncView) {
  * Router - Router的创建
  * @return {Promise<*>}
  */
-export default () => {
+export default async () => {
   // 路由配置
   const config = RouterConfig();
 
