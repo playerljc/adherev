@@ -25,12 +25,14 @@
           <adv-conditionalrender :conditional="!!filter.length">
             <div :class="$style.List">
               <ul :class="$style.Fixed">
-                <li v-for="(item, index) in filter" :key="index">
+                <li v-for="(item, index) in filter" :key="index" @click="onLink(item.path)">
                   {{ item.group }} - {{ item.kw[0] }}
                 </li>
               </ul>
               <ul :class="$style.Auto">
-                <li v-for="(item, index) in filter" :key="index">{{ item.kw[1] }}</li>
+                <li v-for="(item, index) in filter" :key="index" @click="onLink(item.path)">
+                  {{ item.kw[1] }}
+                </li>
               </ul>
             </div>
 
@@ -100,6 +102,10 @@ export default {
       if ($refs.ref && !$data.$instance) {
         $data.$instance = new Mark($refs.ref);
       }
+    },
+    onLink(path) {
+      this.$router.push(path);
+      this.searchVal = '';
     },
   },
 };
