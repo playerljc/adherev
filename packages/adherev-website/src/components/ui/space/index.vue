@@ -141,7 +141,7 @@ export default {
           childrenSlot: 'p3',
         },
         {
-          id: 'p1',
+          id: 'p4',
           name: 'SpaceGroup',
           cardProps: {
             description: {

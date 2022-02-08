@@ -108,8 +108,7 @@ const Browsersniff = () =>
 const Validator = () =>
   lazy(import(/* webpackChunkName: "validator" */ '@/components/util/validator'));
 
-const Demo = () =>
-  lazy(import(/* webpackChunkName: "demo" */ '@/components/ui/demo'));
+const Demo = () => lazy(import(/* webpackChunkName: "demo" */ '@/components/ui/demo'));
 
 export default () => [
   {
@@ -118,111 +117,112 @@ export default () => [
     children: [
       {
         path: '/',
-        redirect: '/adherev',
+        redirect: '/adherev/introduction',
       },
       {
-        path: '/adherev',
+        path: '/adherev/introduction',
+        name: '简介',
+        component: Introduction,
+      },
+      {
+        path: '/adherev/changelog',
+        name: '更新日志',
+        component: Changelog,
+      },
+      {
+        path: '/adherev/component',
         component: BasicLayout,
         children: [
           {
             path: '/',
-            redirect: '/adherev/introduction',
+            redirect: '/adherev/component/ui',
           },
+
           {
-            path: '/adherev/introduction',
-            name: '简介',
-            component: Introduction,
-          },
-          {
-            path: '/adherev/changelog',
-            name: '更新日志',
-            component: Changelog,
-          },
-          {
-            path: '/adherev/ui',
+            path: '/adherev/component/ui',
             name: 'UI',
             children: [
               {
                 path: '/',
-                redirect: '/adherev/ui/conditionalrender',
+                redirect: '/adherev/component/ui/conditionalrender',
               },
               {
-                path: '/adherev/ui/demo',
+                path: '/adherev/component/ui/demo',
                 name: 'Demo',
                 component: Demo,
               },
               {
-                path: '/adherev/ui/conditionalrender',
+                path: '/adherev/component/ui/conditionalrender',
                 name: 'ConditionalRender',
                 component: ConditionalRender,
               },
               {
-                path: '/adherev/ui/split',
+                path: '/adherev/component/ui/split',
                 name: 'Split',
                 component: Split,
               },
               {
-                path: '/adherev/ui/space',
+                path: '/adherev/component/ui/space',
                 name: 'Space',
                 component: Space,
               },
               {
-                path: '/adherev/ui/delconfirm',
+                path: '/adherev/component/ui/delconfirm',
                 name: 'DelConfirm',
                 component: DelConfirm,
               },
               {
-                path: '/adherev/ui/importantconfirm',
+                path: '/adherev/component/ui/importantconfirm',
                 name: 'ImportantConfirm',
                 component: ImportantConfirm,
               },
               {
-                path: '/adherev/ui/globalindicator',
+                path: '/adherev/component/ui/globalindicator',
                 name: 'GlobalIndicator',
                 component: GlobalIndicator,
               },
               {
-                path: '/adherev/ui/spin',
+                path: '/adherev/component/ui/spin',
                 name: 'Spin',
                 component: Spin,
               },
               {
-                path: '/adherev/ui/historyback',
+                path: '/adherev/component/ui/historyback',
                 name: 'HistoryBack',
                 component: HistoryBack,
               },
               {
-                path: '/adherev/ui/successprompt',
+                path: '/adherev/component/ui/successprompt',
                 name: 'SuccessPrompt',
                 component: SuccessPrompt,
               },
               {
-                path: '/adherev/ui/errorprompt',
+                path: '/adherev/component/ui/errorprompt',
                 name: 'ErrorPrompt',
                 component: ErrorPrompt,
               },
               {
-                path: '/adherev/ui/warnprompt',
+                path: '/adherev/component/ui/warnprompt',
                 name: 'WarnPrompt',
                 component: WarnPrompt,
               },
               {
-                path: '/adherev/ui/imagelazy',
+                path: '/adherev/component/ui/imagelazy',
                 name: 'ImageLazy',
                 component: ImageLazy,
               },
               {
-                path: '/adherev/ui/messagedialog',
+                path: '/adherev/component/ui/messagedialog',
                 name: 'MessageDialog',
                 component: MessageDialog,
               },
               {
-                path: '/adherev/ui/permission',
+                path: '/adherev/component/ui/permission',
                 name: 'Permission',
                 component: Permission,
               },
               {
-                path: '/adherev/ui/suspense',
+                path: '/adherev/component/ui/suspense',
                 name: 'Suspense',
                 component: Suspense,
               },
@@ -232,77 +232,77 @@ export default () => [
               //   component: TableHeadSearch,
               // },
               {
-                path: '/adherev/ui/css',
+                path: '/adherev/component/ui/css',
                 name: 'CSS',
                 component: CSS,
               },
               {
-                path: '/adherev/ui/olmap',
+                path: '/adherev/component/ui/olmap',
                 name: 'OLMap',
                 component: OLMap,
               },
               {
-                path: '/adherev/ui/flexlayout',
+                path: '/adherev/component/ui/flexlayout',
                 name: 'FlexLayout',
                 component: FlexLayout,
               },
               {
-                path: '/adherev/ui/splitlayout',
+                path: '/adherev/component/ui/splitlayout',
                 name: 'SplitLayout',
                 component: SplitLayout,
               },
               {
-                path: '/adherev/ui/stickuplayout',
+                path: '/adherev/component/ui/stickuplayout',
                 name: 'StickupLayout',
                 component: StickupLayout,
               },
               {
-                path: '/adherev/ui/surnames',
+                path: '/adherev/component/ui/surnames',
                 name: 'Surnames',
                 component: Surnames,
               },
               {
-                path: '/adherev/ui/sliderscale',
+                path: '/adherev/component/ui/sliderscale',
                 name: 'SliderScale',
                 component: SliderScale,
               },
               {
-                path: '/adherev/ui/revolving',
+                path: '/adherev/component/ui/revolving',
                 name: 'Revolving',
                 component: Revolving,
               },
               {
-                path: '/adherev/ui/scrollload',
+                path: '/adherev/component/ui/scrollload',
                 name: 'ScrollLoad',
                 component: ScrollLoad,
               },
               {
-                path: '/adherev/ui/jdcategorytab',
+                path: '/adherev/component/ui/jdcategorytab',
                 name: 'JDCategoryTab',
                 component: JDCategoryTab,
               },
               {
-                path: '/adherev/ui/cascadecompared',
+                path: '/adherev/component/ui/cascadecompared',
                 name: 'CascadeCompared',
                 component: CascadeCompared,
               },
               {
-                path: '/adherev/ui/slidelayout',
+                path: '/adherev/component/ui/slidelayout',
                 name: 'SlideLayout',
                 component: SlideLayout,
               },
               {
-                path: '/adherev/ui/contextmenu',
+                path: '/adherev/component/ui/contextmenu',
                 name: 'ContextMenu',
                 component: ContextMenu,
               },
               {
-                path: '/adherev/ui/fontsizesetting',
+                path: '/adherev/component/ui/fontsizesetting',
                 name: 'FontSizeSetting',
                 component: FontSizeSetting,
               },
               {
-                path: '/adherev/ui/searchtable',
+                path: '/adherev/component/ui/searchtable',
                 name: 'SearchTable',
                 component: SearchTable,
               },
@@ -317,52 +317,52 @@ export default () => [
               //   component: TableList,
               // },
               {
-                path: '/adherev/ui/popup',
+                path: '/adherev/component/ui/popup',
                 name: 'Popup',
                 component: Popup,
               },
               {
-                path: '/adherev/ui/backtopanimation',
+                path: '/adherev/component/ui/backtopanimation',
                 name: 'BackTopAnimation',
                 component: BackTopAnimation,
               },
               {
-                path: '/adherev/ui/pullrefresh',
+                path: '/adherev/component/ui/pullrefresh',
                 name: 'PullRefresh',
                 component: PullRefresh,
               },
               {
-                path: '/adherev/ui/notification',
+                path: '/adherev/component/ui/notification',
                 name: 'Notification',
                 component: Notification,
               },
               {
-                path: '/adherev/ui/swipeout',
+                path: '/adherev/component/ui/swipeout',
                 name: 'SwipeOut',
                 component: SwipeOut,
               },
               {
-                path: '/adherev/ui/polygonselection',
+                path: '/adherev/component/ui/polygonselection',
                 name: 'PolygonSelection',
                 component: PolygonSelection,
               },
               {
-                path: '/adherev/ui/bmap',
+                path: '/adherev/component/ui/bmap',
                 name: 'BMap',
                 component: BMap,
               },
             ],
           },
           {
-            path: '/adherev/util',
+            path: '/adherev/component/util',
             name: 'Util',
             children: [
               {
                 path: '/',
-                redirect: '/adherev/util/adapterscreen',
+                redirect: '/adherev/component/util/adapterscreen',
               },
               {
-                path: '/adherev/util/adapterscreen',
+                path: '/adherev/component/util/adapterscreen',
                 name: 'AdapterScreen',
                 component: AdapterScreen,
               },
@@ -372,67 +372,67 @@ export default () => [
               //   component: Decorators,
               // },
               {
-                path: '/adherev/util/dict',
+                path: '/adherev/component/util/dict',
                 name: 'Dict',
                 component: Dict,
               },
               {
-                path: '/adherev/util/emitter',
+                path: '/adherev/component/util/emitter',
                 name: 'Emitter',
                 component: Emitter,
               },
               {
-                path: '/adherev/util/preferences',
+                path: '/adherev/component/util/preferences',
                 name: 'Preferences',
                 component: Preferences,
               },
               {
-                path: '/adherev/util/intl',
+                path: '/adherev/component/util/intl',
                 name: 'Intl',
                 component: Intl,
               },
               {
-                path: '/adherev/util/notnull',
+                path: '/adherev/component/util/notnull',
                 name: 'NotNull',
                 component: NotNull,
               },
               {
-                path: '/adherev/util/util',
+                path: '/adherev/component/util/util',
                 name: 'Util',
                 component: Util,
               },
               {
-                path: '/adherev/util/watchmemoized',
+                path: '/adherev/component/util/watchmemoized',
                 name: 'WatchMemoized',
                 component: WatchMemoized,
               },
               {
-                path: '/adherev/util/ajax',
+                path: '/adherev/component/util/ajax',
                 name: 'Ajax',
                 component: Ajax,
               },
               {
-                path: '/adhere/util/mixins',
+                path: '/adherev/component/util/mixins',
                 name: 'Mixins',
                 component: Mixins,
               },
               {
-                path: '/adhere/util/domain',
+                path: '/adherev/component/util/domain',
                 name: 'Domain',
                 component: Domain,
               },
               {
-                path: '/adhere/util/resource',
+                path: '/adherev/component/util/resource',
                 name: 'Resource',
                 component: Resource,
               },
               {
-                path: '/adhere/util/browsersniff',
+                path: '/adherev/component/util/browsersniff',
                 name: 'Browsersniff',
                 component: Browsersniff,
               },
               {
-                path: '/adhere/util/validator',
+                path: '/adherev/component/util/validator',
                 name: 'Validator',
                 component: Validator,
               },

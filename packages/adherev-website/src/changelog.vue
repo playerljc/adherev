@@ -1,12 +1,19 @@
 <template>
-  <div v-html="changeLog" :class="$style.Wrap" />
+  <ScrollFooterPanel>
+    <div v-html="changeLog" :class="$style.Wrap" />
+  </ScrollFooterPanel>
 </template>
 
 <script>
 import marked from 'marked';
+
+import ScrollFooterPanel from '@/lib/ScrollFooterPanel';
 import changeLog from '../../adherev/changelog/CHANGELOG.md';
 
 export default {
+  components: {
+    ScrollFooterPanel
+  },
   computed: {
     changeLog() {
       return marked(changeLog, { sanitize: true });
