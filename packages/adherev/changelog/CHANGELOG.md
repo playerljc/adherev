@@ -2,7 +2,7 @@
 
 ***
 
-2022-2-7
+2022-2-9
 
 * **adherev-ui-conditionalrender**
   - 加入ConditionalRender.Show组件进行display切换
@@ -20,6 +20,8 @@
   - BUG的修改
 * **adherev-ui-space**
   - BUG修改
+* **adherev-util-intl**
+  - 加入对@baifendian/adhere-util-intl的初始化
 
 # 1.0.7
 

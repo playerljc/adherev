@@ -46,14 +46,14 @@
       </article>
       <playground :code-text="code1" :default-expand="true" lang="javascript" />
 
-      <article class="ant-typography" style="margin: 20px 0">
+      <!--<article class="ant-typography" style="margin: 20px 0">
         <h2>国际化说明</h2>
         <div class="ant-typography">
           因为有些组件依赖于@baifendian/adhere中的组件，此组件中国际化使用的是adhere-util-intl，而ahderev使用的是adherev-util-intl组件，<br />
           所以需要在webpack中加入alias的配置使其指向adherev-util-intl国际化组件
         </div>
       </article>
-      <playground :code-text="code2" :default-expand="true" lang="javascript" />
+      <playground :code-text="code2" :default-expand="true" lang="javascript" />-->
 
       <article class="ant-typography" style="margin: 20px 0">
         <h2>UMD使用</h2>
@@ -84,6 +84,16 @@ export default {
         [
           'import',
           {
+            libraryName: '@baifendian/adhere',
+            transformToDefaultImport: true,
+            libraryDirectory: 'es',
+            style: true,
+          },
+          'adhere',
+        ],
+        [
+          'import',
+          {
             libraryName: '@baifendian/adherev',
             transformToDefaultImport: true,
             style: true,
@@ -99,13 +109,13 @@ export default {
           'ant-design-vue',
         ],
       `,
-      code2: `
-        /*  加入['@baifendian/adhere-util-intl'] = adherev-util-intl包的路径  */
-        webpackConfig.resolve.alias['@baifendian/adhere-util-intl'] = path.join(
-        __dirname,
-        'node_modules/'@baifendian/adherev/node_modules/@baifendian/adherev-util-intl',
-      )
-      `,
+      // code2: `
+      //   /*  加入['@baifendian/adhere-util-intl'] = adherev-util-intl包的路径  */
+      //   webpackConfig.resolve.alias['@baifendian/adhere-util-intl'] = path.join(
+      //   __dirname,
+      //   'node_modules/'@baifendian/adherev/node_modules/@baifendian/adherev-util-intl',
+      // )
+      // `,
       code3: [
         {
           type: 'CodePanel',

@@ -1,5 +1,8 @@
 import VueI18n from 'vue-i18n';
 import { I18nOptions, Path, TranslateResult, Locale, IVueI18n } from 'vue-i18n/types';
+
+import Intl from '@baifendian/adhere-util-intl';
+
 import en_US from './locales/en_US';
 import zh_CN from './locales/zh_CN';
 import pt_PT from './locales/pt_PT';
@@ -89,7 +92,7 @@ export function extend(Vue: any): void {
 const I18nFactory = function (config: { I18nOptions: I18nOptions; prefix }) {
   const { I18nOptions, prefix = 'local' } = config;
 
-  const { messages: locales = {} } = I18nOptions;
+  const { messages: locales = {}, locale } = I18nOptions;
 
   const finallyLocalesKeys = Object.keys(finallyLocales);
   const localesKeys = Object.keys(locales || {});
@@ -109,14 +112,12 @@ const I18nFactory = function (config: { I18nOptions: I18nOptions; prefix }) {
   for (const p in masterLocales) {
     mainLocales[p] = getLocal(
       prefix,
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore
       Array.from(new Set([...masterLocales[p], ...(slaveLocales[p] || [])])),
     );
   }
 
   // 反转资源文件
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore
   initIntlMap(mainLocales.zh_CN);
 
@@ -124,6 +125,13 @@ const I18nFactory = function (config: { I18nOptions: I18nOptions; prefix }) {
   i18n = new VueI18n({
     ...I18nOptions,
     ...{ messages: mainLocales },
+  });
+
+  // 初始化@baifendian/adhere-util-intl
+  Intl.init({
+    // @ts-ignore
+    currentLocale: locale,
+    locales,
   });
 
   return i18n;

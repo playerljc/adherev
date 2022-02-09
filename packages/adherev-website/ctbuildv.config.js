@@ -39,15 +39,15 @@ module.exports = {
       //   'node_modules/@baifendian/adherev/node_modules/@baifendian/adherev-ui-olmap/node_modules/ol',
       // ),
       // TODO: 因为有些组件依赖于@baifendian/adhere库，而adhere中的国际化是adhere-util-intl，所以要指向adherev-util-intl组件
-      ['@baifendian/adhere-util-intl']: path.join(
-        __dirname,
-        '../../node_modules',
-        '@baifendian',
-        // 'adherev',
-        // 'node_modules',
-        // '@baifendian',
-        'adherev-util-intl',
-      ),
+      // ['@baifendian/adhere-util-intl']: path.join(
+      //   __dirname,
+      //   '../../node_modules',
+      //   '@baifendian',
+      //   // 'adherev',
+      //   // 'node_modules',
+      //   // '@baifendian',
+      //   'adherev-util-intl',
+      // ),
 
       // swiper: path.join(
       //   __dirname,
