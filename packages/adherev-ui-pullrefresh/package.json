@@ -1,6 +1,6 @@
 {
   "name": "@baifendian/adherev-ui-pullrefresh",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "下拉刷新",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -35,18 +35,18 @@
   "devDependencies": {
     "@babel/runtime": "^7.7.4",
     "@ctsj/buildv": "^2.0.8",
-    "typescript": "^3.8.2",
-    "npm-run-all": "^4.1.5"
+    "npm-run-all": "^4.1.5",
+    "typescript": "^3.8.2"
   },
   "dependencies": {
-    "vue": "^2.6.14",
-    "@baifendian/adherev-ui-css": "^1.0.7",
-    "@baifendian/adherev-util": "^1.0.7",
-    "@baifendian/adherev-util-intl": "^1.0.7",
-    "@baifendian/adherev-util-resource": "^1.0.7",
+    "@baifendian/adherev-ui-css": "^1.0.8",
+    "@baifendian/adherev-util": "^1.0.8",
+    "@baifendian/adherev-util-intl": "^1.0.8",
+    "@baifendian/adherev-util-resource": "^1.0.8",
     "classnames": "^2.2.6",
     "load-awesome": "^1.1.0",
     "moment": "^2.29.1",
-    "omit.js": "^2.0.2"
+    "omit.js": "^2.0.2",
+    "vue": "^2.6.14"
   }
 }
