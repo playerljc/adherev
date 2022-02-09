@@ -3104,6 +3104,9 @@ export default {
       ],
     };
   },
+  mounted() {
+    this.scrollEl = this?.$refs?.ref?.$el?.parentElement?.parentElement;
+  },
   methods: {
     onAddWindLayer() {
       const { winLayerRef } = this.$refs;
