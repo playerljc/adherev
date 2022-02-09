@@ -145,7 +145,15 @@ export function lazy(AsyncView) {
     // 异步组件加载时使用的组件
     loading: {
       render(h) {
-        return <Skeleton avatar paragraph={{ rows: 4 }} />;
+        const result = [];
+
+        for (let i = 0; i < 15; i++) {
+          // @ts-ignore
+          result.push(<Skeleton key={i + 1} loading active avatar />);
+        }
+
+        // @ts-ignore
+        return <div>{result}</div>;
       },
     },
     // 加载失败时使用的组件
