@@ -42,15 +42,6 @@
                 </li>
                 <li>
                   <a
-                    href="https://github.com/playerljc/CTSJ-DvaGenerator"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    CTSJ-DvaGenerator
-                  </a>
-                </li>
-                <li>
-                  <a
                     href="https://github.com/playerljc/CTSJ-ROUTER"
                     target="_blank"
                     rel="noopener noreferrer"
@@ -65,6 +56,24 @@
                     rel="noopener noreferrer"
                   >
                     CTSJ-VuexGenerator
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="https://github.com/playerljc/CTSJ-DOC"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    CTSJ-DOC
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="https://github.com/playerljc/CTSJ-DvaGenerator"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    CTSJ-DvaGenerator
                   </a>
                 </li>
                 <li>
