@@ -85,6 +85,8 @@ const SliderScale = () =>
 const StickupLayout = () =>
   lazy(import(/* webpackChunkName: "stickuplayout" */ '@/components/ui/stickuplayout'));
 const Surnames = () => lazy(import(/* webpackChunkName: "surnames" */ '@/components/ui/surnames'));
+const PlayGround = () =>
+  lazy(import(/* webpackChunkName: "playground" */ '@/components/ui/playground'));
 const CascadeCompared = () =>
   lazy(import(/* webpackChunkName: "cascadecompared" */ '@/components/ui/cascadecompared'));
 const SwipeOut = () => lazy(import(/* webpackChunkName: "swipeout" */ '@/components/ui/swipeout'));
@@ -345,6 +347,11 @@ export default () => [
                 path: '/adherev/component/ui/polygonselection',
                 name: 'PolygonSelection',
                 component: PolygonSelection,
+              },
+              {
+                path: '/adherev/component/ui/PlayGround',
+                name: 'PlayGround',
+                component: PlayGround,
               },
               {
                 path: '/adherev/component/ui/bmap',
