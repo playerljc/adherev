@@ -295,20 +295,9 @@
     "group": "组件 - Util",
     "path": "/adherev/component/util/watchmemoized"
   },
-
   {
     "kw": ["echarts", "echarts"],
     "group": "Gallery",
     "path": "/adherev/gallery/echarts"
-  },
-  {
-    "kw": ["bmap", "bmap"],
-    "group": "Gallery",
-    "path": "/adherev/gallery/gis/bmap"
-  },
-  {
-    "kw": ["Windmill", "Windmill"],
-    "group": "Gallery",
-    "path": "/adherev/gallery/graph"
   }
 ]

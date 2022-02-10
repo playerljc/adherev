@@ -48,7 +48,7 @@ export default {
               <Col span={24 / rowCount} key={`${index}`}>
                 <div className={styles.CardWrap}>
                   <Card title={t.title} bordered={false}>
-                    {t.component}
+                    {t.component(h)}
                   </Card>
                 </div>
               </Col>

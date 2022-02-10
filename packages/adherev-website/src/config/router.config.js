@@ -109,8 +109,9 @@ const Browsersniff = () =>
   lazy(import(/* webpackChunkName: "browsersniff" */ '@/components/util/browsersniff'));
 const Validator = () =>
   lazy(import(/* webpackChunkName: "validator" */ '@/components/util/validator'));
-
 const Demo = () => lazy(import(/* webpackChunkName: "demo" */ '@/components/ui/demo'));
+
+const Echarts = () => lazy(import(/* webpackChunkName: "echarts" */ '@/components/gallery/echarts'));
 
 export default () => [
   {
@@ -132,6 +133,21 @@ export default () => [
         component: Changelog,
       },
       {
+        path: '/adherev/gallery',
+        component: BasicLayout,
+        children: [
+          {
+            path: '/',
+            redirect: '/adherev/gallery/echarts',
+          },
+          {
+            path: '/adherev/gallery/echarts',
+            name: 'Echarts',
+            component: Echarts,
+          },
+        ],
+      },
+      {
         path: '/adherev/component',
         component: BasicLayout,
         children: [
@@ -139,7 +155,6 @@ export default () => [
             path: '/',
             redirect: '/adherev/component/ui',
           },
-
           {
             path: '/adherev/component/ui',
             name: 'UI',
