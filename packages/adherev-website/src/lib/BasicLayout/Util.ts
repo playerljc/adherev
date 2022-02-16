@@ -6,9 +6,9 @@ export default {
    * @param defaultOpenKeys
    * @param defaultSelectedKeys
    * @param routes
+   * @param pathname
    */
-  loopRoutes({ defaultOpenKeys, defaultSelectedKeys, routes }) {
-    const { pathname } = window.location;
+  loopRoutes({ defaultOpenKeys, defaultSelectedKeys, routes, pathname }) {
     for (let i = 0; i < routes.length; i++) {
       const route = routes[i];
       if (pathname.indexOf(route.path) !== -1) {
@@ -21,7 +21,12 @@ export default {
             path: route.path,
             name: route.name,
           });
-          this.loopRoutes({ defaultOpenKeys, defaultSelectedKeys, routes: route.children });
+          this.loopRoutes({
+            defaultOpenKeys,
+            defaultSelectedKeys,
+            routes: route.children,
+            pathname,
+          });
         } else {
           if (pathname === route.path) {
             // 如果是hide，找到第一个不是hide的route
