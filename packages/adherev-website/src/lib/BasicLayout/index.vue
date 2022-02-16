@@ -60,7 +60,7 @@ export default {
     Footer,
   },
   props: {
-    routes: {
+    defaultRoutes: {
       type: Array,
       default: () => [],
     },
@@ -69,8 +69,19 @@ export default {
       default: '',
     },
   },
+  data() {
+    return {
+      authorized: [],
+      isMenuCollapse: false,
+
+      selectedKeys: [],
+      openKeys: [],
+      routes: Util.sortRouters(this.defaultRoutes),
+    };
+  },
   watch: {
-    '$route.path': function (pathname) {
+    // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+    '$route.path'(pathname) {
       const { defaultSelectedKeys, defaultOpenKeys } = this.getDefaultKeys(pathname);
 
       if (
@@ -81,15 +92,12 @@ export default {
         this.openKeys = defaultOpenKeys;
       }
     },
-  },
-  data() {
-    return {
-      authorized: [],
-      isMenuCollapse: false,
-
-      selectedKeys: [],
-      openKeys: [],
-    };
+    // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+    defaultRoutes(newVal, oldVal) {
+      if (JSON.stringify(newVal) !== JSON.stringify(oldVal)) {
+        this.routes = Util.sortRouters(newVal);
+      }
+    },
   },
   computed: {
     defaultSelectedKeys() {
@@ -120,7 +128,7 @@ export default {
      * getDefaultKeys
      */
     getDefaultKeys(pathname = window.location.pathname) {
-      const { routes = [] } = this;
+      const { defaultRoutes: routes = [] } = this;
       const defaultSelectedKeys = [];
       const defaultOpenKeys = [];
 
