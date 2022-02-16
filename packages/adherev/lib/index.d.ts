@@ -1,5 +1,4 @@
 import BackTopAnimation from '@baifendian/adherev-ui-backtopanimation';
-import BMap from '@baifendian/adherev-ui-bmap';
 import CascadeCompared from '@baifendian/adherev-ui-cascadecompared';
 import ConditionalRender from '@baifendian/adherev-ui-conditionalrender';
 import DelConfirm from '@baifendian/adherev-ui-confirm-delconfirm';
@@ -49,7 +48,7 @@ import Preferences from '@baifendian/adherev-util-preferences';
 import Resource from '@baifendian/adherev-util-resource';
 import Validator from '@baifendian/adherev-util-validator';
 import WatchMemoized from '@baifendian/adherev-util-watchmemoized';
-export { BackTopAnimation, BMap, CascadeCompared, ConditionalRender, DelConfirm, ImportantConfirm, ContextMenu, FlexLayout, FontSizeSetting, GlobalIndicator, HistoryBack, ImageLazy, JdCategoryTab, MessageDialog, Notification, OLMap, Permission, PlayGround, PolygonSelection, Popup, ErrorPrompt, SuccessPrompt, WarnPrompt, PullRefresh, Revolving, ScrollLoad, SearchTable, SlideLayout, SliderScale, Space, Spin, Split, SplitLayout, StickupLayout, Surnames, Suspense, SwipeOut, Util, AdapterScreen, Browsersniff, Ajax, Dict, Domain, Emitter, Intl, Mixins, NotNull, Preferences, Resource, Validator, WatchMemoized, };
+export { BackTopAnimation, CascadeCompared, ConditionalRender, DelConfirm, ImportantConfirm, ContextMenu, FlexLayout, FontSizeSetting, GlobalIndicator, HistoryBack, ImageLazy, JdCategoryTab, MessageDialog, Notification, OLMap, Permission, PlayGround, PolygonSelection, Popup, ErrorPrompt, SuccessPrompt, WarnPrompt, PullRefresh, Revolving, ScrollLoad, SearchTable, SlideLayout, SliderScale, Space, Spin, Split, SplitLayout, StickupLayout, Surnames, Suspense, SwipeOut, Util, AdapterScreen, Browsersniff, Ajax, Dict, Domain, Emitter, Intl, Mixins, NotNull, Preferences, Resource, Validator, WatchMemoized, };
 declare const _default: {
     install: (Vue: any) => void;
 };
