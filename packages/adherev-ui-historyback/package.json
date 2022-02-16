@@ -1,6 +1,6 @@
 {
   "name": "@baifendian/adherev-ui-historyback",
-  "version": "1.0.8",
+  "version": "1.0.8-fix.0",
   "description": "历史记录返回操作",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -39,6 +39,6 @@
   },
   "dependencies": {
     "@baifendian/adhere-ui-historyback": "^1.0.14",
-    "@baifendian/adherev-util": "^1.0.8"
+    "@baifendian/adherev-util": "^1.0.8-fix.0"
   }
 }

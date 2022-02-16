@@ -1,6 +1,6 @@
 {
   "name": "@baifendian/adherev-ui-slidelayout",
-  "version": "1.0.8",
+  "version": "1.0.8-fix.0",
   "description": "实现抽屉布局",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -38,7 +38,7 @@
     "typescript": "^3.8.2"
   },
   "dependencies": {
-    "@baifendian/adherev-util": "^1.0.8",
+    "@baifendian/adherev-util": "^1.0.8-fix.0",
     "classnames": "^2.2.6",
     "vue-fragment": "^1.5.2"
   }

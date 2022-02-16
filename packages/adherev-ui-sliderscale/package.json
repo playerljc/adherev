@@ -1,6 +1,6 @@
 {
   "name": "@baifendian/adherev-ui-sliderscale",
-  "version": "1.0.8",
+  "version": "1.0.8-fix.0",
   "description": "刻度盘",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -38,7 +38,7 @@
     "typescript": "^3.8.2"
   },
   "dependencies": {
-    "@baifendian/adherev-util": "^1.0.8",
+    "@baifendian/adherev-util": "^1.0.8-fix.0",
     "vue": "^2.6.14"
   }
 }
