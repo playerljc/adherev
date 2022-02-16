@@ -38,6 +38,6 @@
     "typescript": "^3.8.2"
   },
   "dependencies": {
-    "@baifendian/adhere-util": "^1.0.14-fix.0"
+    "@baifendian/adhere-util": "^1.0.14-fix.1"
   }
 }
