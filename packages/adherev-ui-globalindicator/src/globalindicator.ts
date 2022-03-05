@@ -4,7 +4,14 @@ const selectorPrefix = 'adherev-ui-globalindicator';
 
 const MAX_ZINDEX = Resource.Dict.value.ResourceNormalMaxZIndex.value;
 
-export default {
+export type GlobalIndicatorType = {
+  isUse?(): boolean;
+  use?(Vue: any): void;
+  show(parent: HTMLElement, text: string, zIndex: number): HTMLElement;
+  hide(indicatorDom: HTMLElement);
+};
+
+const GlobalIndicator: GlobalIndicatorType = {
   /**
    * show
    * @return {HTMLElement}
@@ -21,13 +28,13 @@ export default {
        <div class="${selectorPrefix}-text">${text}</div>
       </div>`;
 
-    const indicatorDom: HTMLElement | null = el.firstElementChild;
+    const indicatorDom: Element | null = el.firstElementChild;
 
     if (parent === document.body) {
       (indicatorDom as HTMLElement).style.position = 'fixed';
     }
 
-    parent.appendChild(indicatorDom);
+    parent.appendChild(indicatorDom as HTMLElement);
 
     return indicatorDom as HTMLElement;
   },
@@ -37,7 +44,9 @@ export default {
    */
   hide(indicatorDom: HTMLElement) {
     if (indicatorDom) {
-      indicatorDom.parentElement.removeChild(indicatorDom);
+      indicatorDom?.parentElement?.removeChild(indicatorDom);
     }
   },
 };
+
+export default GlobalIndicator;

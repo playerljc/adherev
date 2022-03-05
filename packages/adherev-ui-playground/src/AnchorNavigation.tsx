@@ -142,6 +142,7 @@ export default {
         }
 
         if (index === $data.$anchorDimensionIndex.length - 1) {
+          // @ts-ignore
           entry.range.bottom = top + el.offsetHeight;
         }
       });

@@ -1,17 +1,18 @@
-import { VNode } from 'vue';
 import Resource from '@baifendian/adherev-util-resource';
 import MessageDialog from '@baifendian/adherev-ui-messagedialog';
 import intl from '@baifendian/adherev-util-intl';
+import { VNode } from 'vue';
 
 const selectorPrefix = 'adherev-ui-delconfirm';
 
 export function open(success, zIndex) {
   MessageDialog.Confirm({
+    // @ts-ignore
     title: intl.tv('提示'),
     text: `${intl.tv('确定删除吗')}?`,
     zIndex,
     onSuccess: () => {
-      return new Promise((resolve, reject) => {
+      return new Promise<void>((resolve, reject) => {
         if (success) {
           success()
             .then(() => {
@@ -46,19 +47,15 @@ export default {
     onClick(e) {
       e.stopPropagation();
 
-      // @ts-ignore
       const { success, zIndex = Resource.Dict.value.ResourceNormalMaxZIndex.value } = this;
 
       open(success, zIndex || Resource.Dict.value.ResourceNormalMaxZIndex.value);
     },
   },
   render(h): VNode {
-    // @ts-ignore
     const { $slots } = this;
 
-    // @ts-ignore
     return (
-      // @ts-ignore
       <div class={selectorPrefix} onClick={this.onClick}>
         {$slots.default}
       </div>

@@ -67,8 +67,10 @@ export default {
     }
 
     return (
+      // @ts-ignore
       <Collapse {...{ props }}>
         <div class={selectPrefix}>
+          {/*@ts-ignore*/}
           <Table
             scopedSlots={scopedSlots}
             columns={this.columns}

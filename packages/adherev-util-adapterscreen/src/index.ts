@@ -5,7 +5,9 @@ const {
   _util: { withVue },
 } = BfdUtil;
 
+// @ts-ignore
 AdapterScreen.isUse = () => true;
+// @ts-ignore
 AdapterScreen.use = (Vue) => {
   withVue(Vue, 'AdapterScreen', AdapterScreen);
 };

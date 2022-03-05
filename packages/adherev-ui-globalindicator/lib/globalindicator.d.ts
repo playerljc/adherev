@@ -1,16 +1,8 @@
-declare const _default: {
-    /**
-     * show
-     * @return {HTMLElement}
-     * @param parent
-     * @param text
-     * @param zIndex
-     */
-    show(parent?: HTMLElement, text?: string, zIndex?: number): HTMLElement;
-    /**
-     * hide
-     * @param indicatorDom
-     */
-    hide(indicatorDom: HTMLElement): void;
+export declare type GlobalIndicatorType = {
+    isUse?(): boolean;
+    use?(Vue: any): void;
+    show(parent: HTMLElement, text: string, zIndex: number): HTMLElement;
+    hide(indicatorDom: HTMLElement): any;
 };
-export default _default;
+declare const GlobalIndicator: GlobalIndicatorType;
+export default GlobalIndicator;

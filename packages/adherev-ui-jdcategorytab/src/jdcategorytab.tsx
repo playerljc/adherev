@@ -79,8 +79,8 @@ export default {
 
       return classNames(`${selectorPrefix}-tab`, tabClassName.split(/\s+/));
     },
-    getMenuItemClassName(): string {
-      return (curKey) => {
+    getMenuItemClassName() {
+      return (curKey: string): string => {
         const { menuItemClassName, activeKey } = this;
 
         return classNames(
@@ -128,7 +128,7 @@ export default {
       const arr = Array.from(menuInnerEl?.querySelectorAll(`.${selectorPrefix}-menu-item`));
 
       if (arr.length) {
-        return arr[index];
+        return arr[index] as HTMLElement;
       }
 
       return null;
@@ -193,7 +193,6 @@ export default {
       tabStyle,
     } = this;
 
-    // @ts-ignore
     return (
       <div class={selectorPrefix} ref="el">
         <div class={getMenuClassName} style={menuStyle} ref="menuEl">

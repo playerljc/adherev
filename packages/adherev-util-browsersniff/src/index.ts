@@ -5,7 +5,9 @@ const {
   _util: { withVue },
 } = BfdUtil;
 
+// @ts-ignore
 Browsersniff.isUse = () => true;
+// @ts-ignore
 Browsersniff.use = (Vue) => {
   withVue(Vue, 'Browsersniff', Browsersniff);
 };

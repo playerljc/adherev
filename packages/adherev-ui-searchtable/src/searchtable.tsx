@@ -3,6 +3,7 @@ import { Table, Button } from 'ant-design-vue';
 import classNames from 'classnames';
 
 import Suspense from '@baifendian/adherev-ui-suspense';
+// @ts-ignore
 import FlexLayout from '@baifendian/adherev-ui-flexlayout';
 import ConditionalRender from '@baifendian/adherev-ui-conditionalrender';
 import Intl from '@baifendian/adherev-util-intl';
@@ -99,6 +100,7 @@ export default Vue.extend({
       scrollY: 0,
     };
   },
+  // @ts-ignore
   updatedEx(prevState) {
     if (!this.$refs.tableWrapRef) return;
 
@@ -144,7 +146,7 @@ export default Vue.extend({
       const scrollBodyEl = this.getScrollBodyEl();
       const scrollHeaderEl = this.getScrollHeaderEl();
 
-      scrollHeaderEl?.scrollLeft = scrollBodyEl?.scrollLeft;
+      (scrollHeaderEl as HTMLElement).scrollLeft = scrollBodyEl?.scrollLeft;
     },
     getScrollHeaderEl(): HTMLElement | null {
       const tableWrapRef: HTMLElement = this.$refs.tableWrapRef as HTMLElement;
@@ -254,6 +256,7 @@ export default Vue.extend({
 
       const defaultItems = [
         <Button
+          // @ts-ignore
           class={`${selectorPrefix}-searchfooteritem`}
           type="primary"
           onClick={() => {
@@ -265,7 +268,11 @@ export default Vue.extend({
           <i class="iconfont iconsousuo" />
           {Intl.tv('查询')}
         </Button>,
-        <Button class={`${selectorPrefix}-searchfooteritem`} onClick={this.onClear}>
+        <Button
+          // @ts-ignore
+          class={`${selectorPrefix}-searchfooteritem`}
+          onClick={this.onClear}
+        >
           {Intl.tv('重置')}
         </Button>,
       ];
@@ -366,12 +373,16 @@ export default Vue.extend({
         const { scrollY } = this;
 
         if (tablePropsAttr) {
+          // @ts-ignore
           if (tablePropsAttr.scroll) {
+            // @ts-ignore
             tableProps.props.scroll.y = scrollY;
           } else {
+            // @ts-ignore
             tableProps.props.scroll = { y: scrollY };
           }
         } else {
+          // @ts-ignore
           tableProps.props.scroll = { y: scrollY };
         }
       }
@@ -498,6 +509,7 @@ export default Vue.extend({
           this.fetchData();
         },
         showTotal: (total) => {
+          // @ts-ignore
           return Intl.tv(`当前 {page}-{pageSize}/共 {total}条`, {
             page: this.page,
             pageSize: this.limit,

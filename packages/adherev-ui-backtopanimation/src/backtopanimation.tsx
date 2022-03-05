@@ -1,5 +1,4 @@
-import Vue, { VNode } from 'vue';
-
+import { VNode } from 'vue';
 import Resource from '@baifendian/adherev-util-resource';
 
 const selectorPrefix = 'adherev-ui-backtopanimation';
@@ -58,7 +57,9 @@ export default {
         // 一次滚动的步进
         const step =
           $data.$scrollEl.scrollHeight /
+          //@ts-ignore
           (duration / (screen.updateInterval || 16.7) +
+            //@ts-ignore
             (duration % (screen.updateInterval || 16.7) !== 0 ? 1 : 0));
 
         /**
@@ -141,7 +142,6 @@ export default {
     },
   },
   render(h): VNode {
-    // @ts-ignore
     return (
       <div
         class={selectorPrefix}

@@ -16,6 +16,7 @@ export default {
     const { lang, $slots } = this;
     const VueHighlightJS = Vue.component('highlight-code');
 
+    // @ts-ignore
     return <VueHighlightJS lang={lang}>{$slots.default}</VueHighlightJS>;
   },
 };

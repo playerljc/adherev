@@ -66,7 +66,7 @@
   },
   "devDependencies": {
     "@babel/runtime": "^7.9.2",
-    "@ctsj/buildv": "^2.0.8",
+    "@ctsj/buildv": "^2.0.9",
     "@umijs/fabric": "^2.0.8",
     "@vue/eslint-config-prettier": "^7.0.0",
     "@vue/eslint-config-standard": "^6.1.0",
@@ -86,7 +86,7 @@
     "raw-loader": "^4.0.2",
     "stylelint": "^13.7.2",
     "tslint": "^6.1.3",
-    "typescript": "^3.8.3",
+    "typescript": "^4.6.2",
     "vue-eslint-parser": "^7.11.0"
   }
 }

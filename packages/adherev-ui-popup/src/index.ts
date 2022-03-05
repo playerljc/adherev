@@ -4,7 +4,9 @@ const {
   _util: { withVue },
 } = BfdUtil;
 
+// @ts-ignore
 Popup.isUse = () => true;
+// @ts-ignore
 Popup.use = (Vue) => {
   withVue(Vue, 'Popup', Popup);
 };

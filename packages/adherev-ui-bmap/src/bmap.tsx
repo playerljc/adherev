@@ -58,10 +58,11 @@ export default {
         return new Promise((resolve) => {
           const script = document.createElement('script');
           script.onload = () => {
+            // @ts-ignore
             resolve(window.BMap);
           };
           script.src = src;
-          document.querySelector('head').appendChild(script);
+          document.querySelector('head')?.appendChild(script);
         });
       }
 
@@ -113,6 +114,7 @@ export default {
         logoEl && logoEl?.parentElement?.removeChild(logoEl);
 
         setTimeout(() => {
+          // @ts-ignore
           this?.$refs?.ref?.style?.background = `url("${loadGridIcon}") repeat #fff;`;
         }, 2000);
       });
@@ -143,6 +145,7 @@ export default {
 
     // 外部载入bmap.js
     if (externalImportBMapScript) {
+      // @ts-ignore
       this.$data.$BMap = window.BMap;
 
       this.isReady = true;
@@ -155,6 +158,7 @@ export default {
       this.importBMapJS().then((BMap) => {
         this.$data.$BMap = BMap;
 
+        // @ts-ignore
         window.BMap = BMap;
 
         this.$emit('onBMapScriptReady');
@@ -171,6 +175,7 @@ export default {
     const { isReady } = this;
     return (
       <ConditionalRender conditional={isReady}>
+        {/*@ts-ignore*/}
         <div class={selectorPrefix} ref="ref" />
         <div slot="noMatch">loading</div>
       </ConditionalRender>

@@ -138,7 +138,6 @@ export default {
   },
   computed: {
     getIndicatorClassName() {
-      // @ts-ignore
       const { indicatorClassName = '' } = this;
 
       return classNames(`${selectorPrefix}-indicator`, (indicatorClassName || '').split(/\s+/));
@@ -163,13 +162,11 @@ export default {
         classNames(`${selectorPrefix}-autoInner`, (className || '').split(/\s+/));
     },
     getMasterClassName() {
-      // @ts-ignore
       const { masterClassName = '' } = this;
 
       return classNames(`${selectorPrefix}-master`, (masterClassName || '').split(/\s+/));
     },
     getMasterInnerClassName() {
-      // @ts-ignore
       const { masterInnerClassName = '' } = this;
 
       return classNames(
@@ -178,13 +175,11 @@ export default {
       );
     },
     getFixedClassName() {
-      // @ts-ignore
       const { masterStickFixedClassName = '' } = this;
 
       return classNames((masterStickFixedClassName || '').split(/\s+/));
     },
     getInnerClassName() {
-      // @ts-ignore
       const { masterStickInnerClassName = '' } = this;
 
       return classNames((masterStickInnerClassName || '').split(/\s+/));
@@ -232,15 +227,15 @@ export default {
 
       return columns.length ? columns[0] : null;
     },
-    renderCell(h, config: IColumnConfig, dataSource: object): VNode {
+    renderCell(h, config: IColumnConfig, dataSource: any): VNode {
       if (config.render) {
+        // @ts-ignore
         return config.render(h, dataSource[config.dataIndex], dataSource);
       }
 
       return dataSource[config.dataIndex];
     },
     renderMasterGroupTitle(h, title): VNode {
-      // @ts-ignore
       return Util.isObject(title) ? (
         <div slot="title">{h(title)}</div>
       ) : Util.isFunction(title) ? (
@@ -273,8 +268,8 @@ export default {
 
       const fixedColumnConfig = getFixedColumnConfig(columns);
 
-      // @ts-ignore
       return (
+        // @ts-ignore
         <Fragment>
           <div
             class={getFixedWrapClassName(fixedWrapClassName)}
@@ -315,8 +310,8 @@ export default {
 
       const { renderMasterGroupTitle, renderMasterGroupContent } = this;
 
-      // @ts-ignore
       return (
+        // @ts-ignore
         <StickupLayout.Item
           key={index}
           class={classNames((className || '').split(/\s+/))}
@@ -324,6 +319,7 @@ export default {
         >
           {renderMasterGroupTitle(h, title)}
           {renderMasterGroupContent(h, config)}
+          {/*@ts-ignore*/}
         </StickupLayout.Item>
       );
     },
@@ -346,7 +342,6 @@ export default {
 
       const fixedColumnConfig = getFixedColumnConfig(columns);
 
-      // @ts-ignore
       return (
         <div class={getIndicatorClassName} style={indicatorStyle}>
           <div
@@ -394,9 +389,9 @@ export default {
         renderMasterGroup,
       } = this;
 
-      // @ts-ignore
       return (
         <div class={getMasterClassName} style={masterStyle}>
+          {/*@ts-ignore*/}
           <StickupLayout
             ref="stickup"
             class={getMasterInnerClassName}
@@ -477,7 +472,6 @@ export default {
     this.initScroll();
   },
   render(h): VNode {
-    // @ts-ignore
     return (
       <div class={selectorPrefix} ref="el">
         {this.renderIndicator(h)}

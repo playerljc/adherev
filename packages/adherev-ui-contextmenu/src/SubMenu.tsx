@@ -27,11 +27,7 @@ export default {
     getClass(): string {
       const { className } = this;
 
-      return classNames(
-        selectorPrefix,
-
-        (className || '').split(/\s+/),
-      );
+      return classNames(selectorPrefix, (className || '').split(/\s+/));
     },
     getStyle(): string {
       const { styleName } = this;
@@ -42,14 +38,14 @@ export default {
     },
   },
   methods: {
-    renderItems(h): VNode {
+    renderItems(h): VNode[] {
       const { data = [] } = this;
 
+      // @ts-ignore
       return data.map((item) => <MenuItem key={item.id} data={item} />);
     },
   },
   render(h): VNode {
-    // @ts-ignore
     return (
       <ul class={this.getClass} style={this.getStyle}>
         {this.renderItems(h)}

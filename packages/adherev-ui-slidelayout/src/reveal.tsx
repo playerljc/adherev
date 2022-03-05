@@ -137,23 +137,17 @@ export default {
     const { $slots, masterClassName, slaveClassName, direction } = this;
 
     return (
+      // @ts-ignore
       <Fragment>
         <div
-          class={classNames(
-            `${selectorPrefix}`,
-            direction,
-            slaveClassName.split(/\s+/),
-          )}
+          class={classNames(`${selectorPrefix}`, direction, slaveClassName.split(/\s+/))}
           ref="el"
         >
           {$slots.slide}
         </div>
 
         <div
-          class={classNames(
-            `${selectorPrefix}-master`,
-            masterClassName.split(/\s+/),
-          )}
+          class={classNames(`${selectorPrefix}-master`, masterClassName.split(/\s+/))}
           ref="rMasterEl"
         >
           {$slots.master}

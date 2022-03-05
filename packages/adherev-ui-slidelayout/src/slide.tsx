@@ -125,17 +125,17 @@ export default {
 
       if (direction === 'left' || direction === 'right') {
         // 赋值宽度
-        el?.style.height = '100%';
+        (el as HTMLElement).style.height = '100%';
         width
-          ? (el?.style.width = width)
-          : (el?.style.width = `${el?.parentElement?.offsetWidth * 0.9}px`);
+          ? ((el as HTMLElement).style.width = width)
+          : ((el as HTMLElement).style.width = `${el?.parentElement?.offsetWidth * 0.9}px`);
       } else {
         // 赋值高度
 
-        el?.style.width = '100%';
+        (el as HTMLElement).style.width = '100%';
         height
-          ? (el?.style.height = height)
-          : (el?.style.height = `${el?.parentElement?.offsetHeight * 0.3}px`);
+          ? ((el as HTMLElement).style.height = height)
+          : ((el as HTMLElement).style.height = `${el?.parentElement?.offsetHeight * 0.3}px`);
       }
 
       // 赋值默认位置

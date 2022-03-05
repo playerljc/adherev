@@ -1,5 +1,6 @@
-import classNames from 'classnames';
+// @ts-ignore
 import FlexLayout from '@baifendian/adherev-ui-flexlayout';
+import classNames from 'classnames';
 
 const { selectorPrefix: flexlayoutSelectorPrefix } = FlexLayout;
 
@@ -25,7 +26,7 @@ const directionProp = {
 function toPoint(percent: string) {
   const str = percent.replace('%', '');
 
-  return str / 100;
+  return Number.parseInt(str) / 100;
 }
 
 export default {
@@ -42,21 +43,6 @@ export default {
     minSize: {
       type: [String, Number],
       default: 10,
-    },
-    canDrag: {
-      type: Function,
-    },
-    dragStarted: {
-      type: Function,
-    },
-    dragFinished: {
-      type: Function,
-    },
-    out: {
-      type: Function,
-    },
-    change: {
-      type: Function,
     },
   },
   data() {
@@ -127,7 +113,7 @@ export default {
       const keys = Array.from($data.$situation.keys());
 
       return keys.some((key) => {
-        const arr = key.split('_');
+        const arr = (key as string).split('_');
         const prevKey = arr[0];
         const nextKey = arr[1];
 
@@ -345,7 +331,7 @@ export default {
       if ($data.$isDown) {
         $data.$isDown = false;
 
-        $data._sMove = false;
+        $data.$isMove = false;
 
         $data.$isEnter = false;
 

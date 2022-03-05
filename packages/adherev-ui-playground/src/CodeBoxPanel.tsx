@@ -52,7 +52,7 @@ export default {
     column() {
       const { columnCount } = this;
 
-      const column = [];
+      const column: any[] = [];
       if (columnCount != null) {
         column.length = columnCount;
       }
@@ -95,6 +95,7 @@ export default {
       const { type, childrenSlot, wrapSlot, id, ...playGroundProps } = config[index];
 
       const children = (
+        // @ts-ignore
         <PlayGround
           {...{ props: playGroundProps, attrs: { id } }}
           isActive={activeAnchor === id}
@@ -113,6 +114,7 @@ export default {
       return (
         <ConditionalRender conditional={!!$scopedSlots[wrapSlot]}>
           {$scopedSlots[wrapSlot]?.({ columnIndex, index, config, children })}
+          {/*@ts-ignore*/}
           <Fragment slot="noMatch">{children}</Fragment>
         </ConditionalRender>
       );
@@ -123,6 +125,7 @@ export default {
       const { type, childrenSlot, wrapSlot, id, ...playGroundTabProps } = config[index];
 
       const children = (
+        // @ts-ignore
         <PlayGroundTab
           {...{ props: playGroundTabProps, attrs: { id } }}
           isActive={activeAnchor === id}
@@ -141,6 +144,7 @@ export default {
       return (
         <ConditionalRender conditional={!!$scopedSlots[wrapSlot]}>
           {$scopedSlots[wrapSlot]?.({ columnIndex, index, config, children })}
+          {/*@ts-ignore*/}
           <Fragment slot="noMatch">{children}</Fragment>
         </ConditionalRender>
       );
@@ -151,6 +155,7 @@ export default {
       const { type, childrenSlot, wrapSlot, id, ...playGroundProps } = config[index];
 
       const children = (
+        // @ts-ignore
         <PlayGroundMulit
           {...{ props: playGroundProps, attrs: { id } }}
           isActive={activeAnchor === id}
@@ -169,6 +174,7 @@ export default {
       return (
         <ConditionalRender conditional={!!$scopedSlots[wrapSlot]}>
           {$scopedSlots[wrapSlot]?.({ columnIndex, index, config, children })}
+          {/*@ts-ignore*/}
           <Fragment slot="noMatch">{children}</Fragment>
         </ConditionalRender>
       );
@@ -196,9 +202,7 @@ export default {
 
           <div class={`${selectPrefix}-header-extra`}>
             <ConditionalRender conditional={isShowExpandAllBtn}>
-              <ConditionalRender
-                conditional={expandAll}
-              >
+              <ConditionalRender conditional={expandAll}>
                 <img
                   class={`${selectPrefix}-expand-code`}
                   src={Constant.CloseCodeAll}
@@ -211,15 +215,15 @@ export default {
                 />
 
                 <img
-                    slot="noMatch"
-                    class={`${selectPrefix}-expand-code`}
-                    src={Constant.ExpandCodeAll}
-                    alt=""
-                    onClick={() => {
-                      if ($expandLock) return;
-                      this.$data.$expandLock = true;
-                      this.expandAll = true;
-                    }}
+                  slot="noMatch"
+                  class={`${selectPrefix}-expand-code`}
+                  src={Constant.ExpandCodeAll}
+                  alt=""
+                  onClick={() => {
+                    if ($expandLock) return;
+                    this.$data.$expandLock = true;
+                    this.expandAll = true;
+                  }}
                 />
               </ConditionalRender>
             </ConditionalRender>

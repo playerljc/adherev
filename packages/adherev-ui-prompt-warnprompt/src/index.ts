@@ -4,7 +4,9 @@ const {
   _util: { withVue },
 } = BfdUtil;
 
+// @ts-ignore
 WarnPrompt.isUse = () => true;
+// @ts-ignore
 WarnPrompt.use = (Vue) => {
   withVue(Vue, 'WarnPrompt', WarnPrompt);
 };

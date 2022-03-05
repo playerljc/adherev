@@ -14,7 +14,6 @@ export default {
     },
   },
   render(h) {
-    // @ts-ignore
     const { conditional, $slots } = this;
 
     deal({

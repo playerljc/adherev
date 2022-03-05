@@ -9,13 +9,14 @@ const icon =
 
 export function open(success, zIndex) {
   MessageDialog.Confirm({
+    // @ts-ignore
     title: intl.tv('提示'),
     text: `${intl.tv('真的要执行此操作码')}?`,
     zIndex,
 
     icon: (h) => <img src={icon} alt="" width={32} />,
     onSuccess: () => {
-      return new Promise((resolve, reject) => {
+      return new Promise<void>((resolve, reject) => {
         if (success) {
           success()
             .then(() => {
@@ -58,7 +59,6 @@ export default {
   render(h): VNode {
     const { $slots } = this;
 
-    // @ts-ignore
     return (
       <div class={selectorPrefix} onClick={this.onClick}>
         {$slots.default}

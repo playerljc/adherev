@@ -1,4 +1,5 @@
 import Vue, { CreateElement, VNode } from 'vue';
+// @ts-ignore
 import { mapState, mapMutations, mapActions, cleanMixin } from '@ctsj/vuexgenerator';
 import { TableRowSelection } from 'ant-design-vue/lib/table/interface';
 import SearchTable, { NUMBER_GENERATOR_RULE_CONTINUITY } from './searchtable';
@@ -10,11 +11,15 @@ export default (serviceName) =>
     mixins: serviceName ? [SearchTable, cleanMixin([serviceName])] : [SearchTable],
     data() {
       return {
+        // @ts-ignore
         ...this.getParams(),
+        // @ts-ignore
         [this.getOrderFieldProp()]: this.getOrderFieldValue(),
+        // @ts-ignore
         [this.getOrderProp()]: this.getOrderPropValue() || 'descend',
         // 查询参数
         searchParams: {
+          // @ts-ignore
           ...this.getParams(),
         },
         selectedRowKeys: [],
@@ -259,7 +264,7 @@ export default (serviceName) =>
          * @override
          */
         clear(): Promise<any> {
-          return new Promise((resolve) => {
+          return new Promise<void>((resolve) => {
             Object.assign(this, {
               ...this.getParams(),
               [this.getOrderFieldProp()]: this.getOrderFieldValue(),
@@ -334,7 +339,7 @@ export default (serviceName) =>
             params[key] = this[key];
           });
 
-          return new Promise((resolve) => {
+          return new Promise<void>((resolve) => {
             this.searchParams = {
               ...params,
               [this.getOrderFieldProp()]: this[this.getOrderFieldProp()],

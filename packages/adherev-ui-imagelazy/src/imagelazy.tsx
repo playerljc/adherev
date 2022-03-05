@@ -80,13 +80,12 @@ export default {
       img.src = targetSrc;
     },
   },
-  render(h):VNode {
+  render(h): VNode {
     const {
       imgArgs: { originSrc },
       className,
     } = this;
 
-    // @ts-ignore
     return (
       <div class={`${selectorPrefix} ${className}`} ref="el">
         <img src={originSrc || placeholder} />

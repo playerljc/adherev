@@ -1,7 +1,6 @@
 import classNames from 'classnames';
-
-import { slider } from './slidelayout';
 import SlideLayout from './slide';
+import { slider } from './slidelayout';
 
 const selectorPrefix = 'adherev-ui-slidelayout-push';
 
@@ -131,29 +130,15 @@ export default {
 
     return (
       <div
-        class={classNames(
-          `${selectorPrefix}-master`,
-          masterClassName.split(/\s+/),
-        )}
+        class={classNames(`${selectorPrefix}-master`, masterClassName.split(/\s+/))}
         ref="pMasterEl"
       >
-        {/* @ts-ignore */}
-        <div
-          class={classNames(
-            selectorPrefix,
-            direction,
-            className.split(/\s+/),
-          )}
-          ref="el"
-        >
+        <div class={classNames(selectorPrefix, direction, className.split(/\s+/))} ref="el">
           {$slots.slide}
         </div>
 
         <div
-          class={classNames(
-            `${selectorPrefix}-slave`,
-            slaveClassName.split(/\s+/),
-          )}
+          class={classNames(`${selectorPrefix}-slave`, slaveClassName.split(/\s+/))}
           ref="pSlaveEl"
         >
           {$slots.master}

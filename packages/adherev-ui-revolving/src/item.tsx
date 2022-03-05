@@ -4,22 +4,9 @@ const selectorPrefix = 'adherev-ui-revolving-item';
 
 export default {
   name: 'adv-revolving-item',
-  props: {
-    className: {
-      type: String,
-      default: '',
-    },
-  },
   computed: {
     getClassName() {
-      const { className } = this;
-
-      return classNames(
-        selectorPrefix,
-        'swiper-slide',
-
-        className.split(/\s+/),
-      );
+      return classNames(selectorPrefix, 'swiper-slide');
     },
   },
   render(h) {

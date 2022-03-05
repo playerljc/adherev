@@ -49,6 +49,7 @@ export default {
     copy(e) {
       this.getClipboardText(e).then((text) => {
         copy(text);
+        // @ts-ignore
         Message.success(Intl.v('复制成功'));
       });
     },
@@ -58,6 +59,7 @@ export default {
 
     return (
       <div class={classNames(selectPrefix, isActive ? `${selectPrefix}-active` : '')}>
+        {/*@ts-ignore*/}
         <Card actions={['copy', 'expand']} {...{ props: cardProps || {} }}>
           <img
             class={`${selectPrefix}-action-btn`}

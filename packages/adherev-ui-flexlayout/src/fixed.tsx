@@ -21,7 +21,6 @@ export default {
   render(h): VNode {
     const { $slots, fit } = this;
 
-    // @ts-ignore
     return (
       <div ref="ref" class={classNames(selectorPrefix, `${fit ? selectorPrefix + '-fit' : ''}`)}>
         {$slots.default}

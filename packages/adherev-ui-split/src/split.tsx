@@ -1,3 +1,5 @@
+import { VNode } from 'vue';
+
 const selectorPrefix = 'adherev-ui-split';
 
 /**
@@ -16,10 +18,6 @@ const Split = {
     size: {
       type: [String, Number],
       default: 20,
-    },
-    className: {
-      type: String,
-      default: '',
     },
   },
   methods: {
@@ -77,21 +75,20 @@ export const SplitGroup = {
   render(h) {
     const { $slots, direction, size, className } = this;
 
-    const JSXS = [];
+    const JSXS: VNode[] = [];
 
     if ($slots.default) {
       for (let i = 0; i < $slots.default.length; i++) {
         if (i !== 0) {
           const props = {
             props: {
-              ...{
-                direction,
-                size,
-                className,
-              },
+              direction,
+              size,
             },
+            class: className,
           };
 
+          // @ts-ignore
           JSXS.push(<Split {...props} key={i} />);
         }
 

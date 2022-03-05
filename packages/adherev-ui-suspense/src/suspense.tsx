@@ -47,9 +47,10 @@ export default Vue.extend({
      * renderNormalFirstLoading
      */
     renderNormalFirstLoading(h): VNode | null {
-      const result = [];
+      const result: VNode[] = [];
 
       for (let i = 0; i < 7; i++) {
+        // @ts-ignore
         result.push(<Skeleton key={i + 1} loading active avatar />);
       }
 
@@ -74,6 +75,7 @@ export default Vue.extend({
      */
     renderNormal(h: VNode | null) {
       return (
+        // @ts-ignore
         <Spin size="large" spinning={this.showLoading()}>
           {this.renderInner(h)}
         </Spin>

@@ -5,7 +5,9 @@ const {
   _util: { withVue },
 } = BfdUtil;
 
+// @ts-ignore
 Preferences.isUse = () => true;
+// @ts-ignore
 Preferences.use = (Vue) => {
   withVue(Vue, 'Preferences', Preferences);
 };

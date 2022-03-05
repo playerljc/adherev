@@ -7,7 +7,7 @@ const {
   _util: { withInstall, withVue },
 } = Util;
 
-const BMap = {
+const BMap: { isUse?(): boolean; use?(Vue: any); BMap: any } = {
   ...OriginBMap,
   BMap: BMapComponent,
 };

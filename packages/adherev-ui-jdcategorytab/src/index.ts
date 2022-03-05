@@ -1,11 +1,21 @@
 import Util from '@baifendian/adherev-util';
 
-import JdCategoryTab from './jdcategorytab';
+import _JdCategoryTab from './jdcategorytab';
 import JdCategoryTabItem from './item';
 
 const {
   _util: { withInstall, withVue },
 } = Util;
+
+type JdCategoryTabType = {
+  isUse(): boolean;
+  use(Vue: any): void;
+  Item: any;
+  [prop: string]: any;
+};
+
+// @ts-ignore
+const JdCategoryTab: JdCategoryTabType = _JdCategoryTab;
 
 withInstall(JdCategoryTab);
 withInstall(JdCategoryTabItem);

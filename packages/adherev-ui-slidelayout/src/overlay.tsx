@@ -1,19 +1,12 @@
 import classNames from 'classnames';
-
-import { slider } from './slidelayout';
 import SlideLayout from './slide';
+import { slider } from './slidelayout';
 
 const selectorPrefix = 'adherev-ui-slidelayout-overlay';
 
 export default {
   name: 'adv-slidelayout-overlay',
   mixins: [SlideLayout],
-  props: {
-    className: {
-      type: String,
-      default: '',
-    },
-  },
   watch: {
     zIndex(val) {
       this.$refs.el.style.zIndex = val;
@@ -26,14 +19,7 @@ export default {
           slider(this.$refs.el, '-100%', '0', '0', '0');
         },
         right: () => {
-          slider(
-            this.$refs.el,
-
-            `${this.$refs.el?.parentElement?.offsetWidth}px`,
-            '0',
-            '0',
-            '0',
-          );
+          slider(this.$refs.el, `${this.$refs.el?.parentElement?.offsetWidth}px`, '0', '0', '0');
         },
         top: () => {
           slider(this.$refs.el, '0', '-100%', '0', '0');
@@ -152,17 +138,10 @@ export default {
     this.$refs.el.style.zIndex = this.zIndex;
   },
   render(h) {
-    const { $slots, className, direction } = this;
+    const { $slots, direction } = this;
 
     return (
-      <div
-        class={classNames(
-          selectorPrefix,
-          direction,
-          className.split(/\s+/),
-        )}
-        ref="el"
-      >
+      <div class={classNames(selectorPrefix, direction)} ref="el">
         {$slots.default}
       </div>
     );

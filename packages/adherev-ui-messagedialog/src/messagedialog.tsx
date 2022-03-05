@@ -35,21 +35,30 @@ let globalConfig: IConfig | null = null;
 function renderByIcon({ h, icon, text }) {
   return (
     <div class={`${selectorPrefix}-renderByIcon`}>
-      {/* @ts-ignore */}
       <div class={`${selectorPrefix}-renderByIcon-fixed`}>
-        {/* @ts-ignore */}
-        {Util.isFunction(icon) ? icon(h) : <Fragment>{icon}</Fragment>}
+        {Util.isFunction(icon) ? (
+          icon(h)
+        ) : (
+          // @ts-ignore
+          <Fragment>{icon}</Fragment>
+        )}
       </div>
-      {/* @ts-ignore */}
       <div class={`${selectorPrefix}-renderByIcon-auto`}>
-        {/* @ts-ignore */}
-        {Util.isFunction(text) ? text(h) : <Fragment>{text}</Fragment>}
+        {Util.isFunction(text) ? (
+          text(h)
+        ) : (
+          // @ts-ignore
+          <Fragment>{text}</Fragment>
+        )}
       </div>
     </div>
   );
 }
 
 const MessageDialogFactory = {
+  setConfig: (gc: IConfig) => {
+    globalConfig = gc;
+  },
   /**
    * Confirm
    * @param title {String | Function}
@@ -78,6 +87,7 @@ const MessageDialogFactory = {
         footer: (h) => {
           return [
             <Button
+              // @ts-ignore
               key="submit"
               type="primary"
               title={Intl.tv('确定')}
@@ -100,7 +110,13 @@ const MessageDialogFactory = {
 
       children: icon
         ? (h) => renderByIcon({ h, icon, text })
-        : (h) => (Util.isFunction(text) ? text(h) : <Fragment>{text}</Fragment>),
+        : (h) =>
+            Util.isFunction(text) ? (
+              (text as Function)(h)
+            ) : (
+              // @ts-ignore
+              <Fragment>{text}</Fragment>
+            ),
     });
   },
   /**
@@ -130,6 +146,7 @@ const MessageDialogFactory = {
         footer: (h) => {
           return [
             <Button
+              // @ts-ignore
               key="submit"
               type="primary"
               title={Intl.tv('确定')}
@@ -302,7 +319,13 @@ const MessageDialogFactory = {
 
       children: icon
         ? (h) => renderByIcon({ h, icon, text })
-        : (h) => (Util.isFunction(text) ? text(h) : <Fragment>{text}</Fragment>),
+        : (h) =>
+            Util.isFunction(text) ? (
+              (text as Function)(h)
+            ) : (
+              // @ts-ignore
+              <Fragment>{text}</Fragment>
+            ),
     });
   },
   /**
@@ -351,6 +374,7 @@ const MessageDialogFactory = {
       if (!Util.isEmpty(title)) {
         // 如果是jsx
         if (Util.isFunction(title)) {
+          // @ts-ignore
           return <Fragment slot="title">{title(h)}</Fragment>;
         }
 
@@ -388,10 +412,10 @@ const MessageDialogFactory = {
     function close() {
       _vm.$destroy();
 
-      el.parentElement.removeChild(el);
+      el?.parentElement?.removeChild(el);
     }
 
-    const { title, ...others } = config;
+    const { title, ...others } = config as any;
 
     const modalConfig = {
       maskClosable: false,
@@ -407,6 +431,7 @@ const MessageDialogFactory = {
     const _vm = new Vue({
       i18n: Intl({
         I18nOptions: {
+          // @ts-ignore
           messages: (globalConfig || {}).messages,
           locale: local || DEFAULT_LOCAL,
         },
@@ -420,6 +445,7 @@ const MessageDialogFactory = {
         }
 
         return (
+          // @ts-ignore
           <ConfigProvider locale={LOCAL[local || DEFAULT_LOCAL]}>
             {/* @ts-ignore */}
             <ModalDialog
@@ -451,10 +477,6 @@ const MessageDialogFactory = {
   close(el: HTMLElement) {
     Emitter.trigger(Actions.close, el);
   },
-};
-
-MessageDialogFactory.setConfig = (gc: IConfig) => {
-  globalConfig = gc;
 };
 
 export default MessageDialogFactory;

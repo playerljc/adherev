@@ -5,7 +5,9 @@ const {
   _util: { withVue },
 } = BfdUtil;
 
+// @ts-ignore
 WatchMemoized.isUse = () => true;
+// @ts-ignore
 WatchMemoized.use = (Vue) => {
   withVue(Vue, 'WatchMemoized', WatchMemoized);
 };

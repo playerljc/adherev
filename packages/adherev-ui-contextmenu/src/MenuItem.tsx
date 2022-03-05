@@ -23,11 +23,7 @@ export default {
         data: { disabled = false, className },
       } = this;
 
-      return classNames(
-        selectorPrefix,
-        disabled ? 'disabled' : '',
-        (className || '').split(/\s+/),
-      );
+      return classNames(selectorPrefix, disabled ? 'disabled' : '', (className || '').split(/\s+/));
     },
   },
   methods: {
@@ -36,7 +32,6 @@ export default {
         data: { icon },
       } = this;
 
-      // @ts-ignore
       return (
         <ConditionalRender conditional={Util.isString(icon)}>
           <span class={classNames(`${selectorPrefix}-icon`, icon)} />
@@ -53,12 +48,11 @@ export default {
         </ConditionalRender>
       );
     },
-    renderName(h):VNode {
+    renderName(h): VNode {
       const {
         data: { name },
       } = this;
 
-      // @ts-ignore
       return (
         <ConditionalRender conditional={Util.isString(name)}>
           <span class={classNames(`${selectorPrefix}-name`)}>{name}</span>
@@ -75,26 +69,25 @@ export default {
         </ConditionalRender>
       );
     },
-    renderMore(h):VNode {
+    renderMore(h): VNode {
       const {
         data: { children },
       } = this;
 
-      // @ts-ignore
       return (
         <ConditionalRender conditional={children.length !== 0}>
           <span class={`${selectorPrefix}-more fa fa-caret-right`} />
         </ConditionalRender>
       );
     },
-    renderSubMenu(h):VNode {
+    renderSubMenu(h): VNode {
       const {
         data: { children, subMenuClassName, subMenuStyle },
       } = this;
 
-      // @ts-ignore
       return (
         <ConditionalRender conditional={children.length !== 0}>
+          {/*@ts-ignore*/}
           <SubMenu data={children} className={subMenuClassName} styleName={subMenuStyle} />
         </ConditionalRender>
       );
@@ -121,12 +114,11 @@ export default {
       }
     },
   },
-  render(h):VNode {
+  render(h): VNode {
     const {
       data: { separation, styleName },
     } = this;
 
-    // @ts-ignore
     return (
       <ConditionalRender conditional={!separation}>
         <li class={this.getClass} style={styleName} onClick={this.onClick}>

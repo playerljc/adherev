@@ -39,6 +39,7 @@ export default {
                 key: column.key,
               };
 
+              // @ts-ignore
               column.width && (props.width = column.width);
 
               return (

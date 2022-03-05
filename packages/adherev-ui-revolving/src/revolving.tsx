@@ -132,7 +132,6 @@ export default {
   render(h): VNode {
     const { $slots } = this;
 
-    // @ts-ignore
     return (
       <div class={this.getClass} ref="el">
         <div class={this.getWrapperClass} style={this.getWrapperStyle} ref="wrapperEl">

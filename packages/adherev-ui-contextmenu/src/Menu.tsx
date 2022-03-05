@@ -25,7 +25,7 @@ export default {
   inject: ['getContext'],
   methods: {
     mount() {
-      const {
+      let {
         config: { x, y },
       } = this.getContext();
 
@@ -62,13 +62,14 @@ export default {
         y = clientHeight - menuHeight;
       }
 
-      el?.style.left = `${x}px`;
+      (el as HTMLElement).style.left = `${x}px`;
 
-      el?.style.top = `${y}px`;
+      (el as HTMLElement).style.top = `${y}px`;
     },
-    renderItems(h): VNode {
+    renderItems(h): VNode[] {
       const { data = [] } = this;
 
+      // @ts-ignore
       return data.map((item) => <MenuItem key={item.id} data={item} />);
     },
   },
@@ -83,14 +84,10 @@ export default {
     getClass(): string {
       const { className } = this;
 
-      return classNames(
-        selectorPrefix,
-        (className || '').split(/\s+/),
-      );
+      return classNames(selectorPrefix, (className || '').split(/\s+/));
     },
   },
   render(h): VNode {
-    // @ts-ignore
     return (
       <ul class={this.getClass} style={this.getStyle} ref="el">
         {this.renderItems(h)}

@@ -1,4 +1,5 @@
 import ConditionalRender from '@baifendian/adherev-ui-conditionalrender';
+// @ts-ignore
 import ContextMenu from '@baifendian/adherev-ui-contextmenu';
 
 import Card from './Card';
@@ -36,6 +37,7 @@ export default {
           'CodePanel',
           {
             render: (h, { type, codeText, title, ...config }) => (
+              // @ts-ignore
               <CodePanel {...{ props: config }}>{codeText}</CodePanel>
             ),
             getCodeText: (config) => config.codeText,
@@ -46,6 +48,7 @@ export default {
           {
             render: (h, { type, ...props }, index: number) => {
               return (
+                // @ts-ignore
                 <CodeTabPanel
                   {...{ props }}
                   onChange={(key) => {
@@ -85,13 +88,13 @@ export default {
             },
             children: [],
           })),
+          // @ts-ignore
           {
             width: 200,
             x: e.clientX,
             y: e.clientY,
             maskClosable: true,
             handler: (id, attribute) => {
-              // @ts-ignore
               resolve(
                 $data.$configMap
                   .get(attribute.config.type || 'CodePanel')
@@ -119,6 +122,7 @@ export default {
 
       return (
         <ConditionalRender.Show conditional={expand}>
+          {/*@ts-ignore*/}
           <Card>{(config || []).map((c, index) => this.renderCodePanelView(h, c, index))}</Card>
         </ConditionalRender.Show>
       );

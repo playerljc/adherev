@@ -1,6 +1,6 @@
 import Vue, { VNode, PropType } from 'vue';
 
-import { IData, IConfig } from './types';
+import { IData, IConfig, ContextMenuType } from './types';
 import Menu from './Menu';
 
 const selectorPrefix = 'adherev-ui-contextmenu';
@@ -67,7 +67,6 @@ const ContextMenuComponent = {
   render(h): VNode {
     const { data = [], config } = this;
 
-    // @ts-ignore
     return (
       <div
         class={selectorPrefix}
@@ -75,13 +74,14 @@ const ContextMenuComponent = {
         onClick={this.onClick}
         onContextMenu={this.onContextMenu}
       >
+        {/*@ts-ignore*/}
         <Menu data={data} className={config.className} styleName={config.styleName} ref="menuIns" />
       </div>
     );
   },
 };
 
-const ContextMenu = {
+const ContextMenu: ContextMenuType = {
   /**
    * config
    * {
@@ -105,7 +105,7 @@ const ContextMenu = {
    * @param config
    */
   open(data: IData, config: IConfig) {
-    config = { width: 200, maskClosable: true, ...config };
+    config = { ...{ width: 200, maskClosable: true }, ...config };
 
     const parentEl = document.createElement('div');
 
@@ -144,7 +144,7 @@ const ContextMenu = {
    */
   close({ vm, el }) {
     vm.$destroy();
-    el.parentElement.removeChild(el);
+    el?.parentElement?.removeChild?.(el);
   },
 };
 

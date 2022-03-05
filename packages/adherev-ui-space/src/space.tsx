@@ -41,7 +41,6 @@ const Space = {
     },
   },
   render(h): VNode {
-    // @ts-ignore
     return <div class={selectorPrefix} style={this.getStyle} />;
   },
 };
@@ -73,21 +72,20 @@ export const SpaceGroup = {
   render(h): VNode {
     const { $slots, direction, size, className } = this;
 
-    const JSXS = [];
+    const JSXS: VNode[] = [];
 
     if ($slots.default) {
       for (let i = 0; i < $slots.default.length; i++) {
         if (i !== 0) {
           const props = {
             props: {
-              ...{
-                direction,
-                size,
-                className,
-              },
+              direction,
+              size,
             },
+            class: className,
           };
 
+          // @ts-ignore
           JSXS.push(<Space {...props} key={i} />);
         }
 
@@ -95,7 +93,6 @@ export const SpaceGroup = {
       }
     }
 
-    // @ts-ignore
     return <div class={`${selectorPrefix}-group ${direction}`}>{JSXS}</div>;
   },
 };

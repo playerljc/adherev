@@ -1,3 +1,4 @@
+// @ts-ignore
 import FlexLayout from '@baifendian/adherev-ui-flexlayout';
 import SplitLayout from './splitlayout';
 import BfdUtil from '@baifendian/adherev-util';

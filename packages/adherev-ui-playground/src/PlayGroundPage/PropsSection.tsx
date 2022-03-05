@@ -16,9 +16,11 @@ export default {
     const { title, extra, config } = this;
 
     return (
+      // @ts-ignore*
       <Section title={title} extra={extra}>
         <Space.Group direction="vertical">
           {(config || []).map((c, index) => (
+            // @ts-ignore*
             <Props key={index + 1} {...{ props: c }} />
           ))}
         </Space.Group>

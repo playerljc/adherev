@@ -27,7 +27,6 @@ export default {
   render(h): VNode {
     const { $slots, direction } = this;
 
-    // @ts-ignore
     return (
       <div class={classNames(selectorPrefix, `${selectorPrefix}-${direction}`)}>
         {$slots.default}

@@ -32,6 +32,7 @@ export default {
   render(h) {
     return (
       <div class={selectPrefix}>
+        {/*@ts-ignore*/}
         <AnchorNavigation
           anchors={this.getAnchors}
           defaultActiveAnchor={this.defaultActiveAnchor}

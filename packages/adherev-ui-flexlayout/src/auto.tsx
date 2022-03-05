@@ -25,7 +25,6 @@ export default {
   render(h): VNode {
     const { $slots, autoFixed, fit } = this;
 
-    // @ts-ignore
     return (
       <div
         ref="ref"

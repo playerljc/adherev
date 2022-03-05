@@ -1,6 +1,6 @@
-import { VNode } from 'vue';
-import classNames from 'classnames';
 import Intl from '@baifendian/adherev-util-intl';
+import classNames from 'classnames';
+import { VNode } from 'vue';
 
 const selectorPrefix = 'adherev-ui-scrollload';
 
@@ -11,10 +11,6 @@ export const NORMAL = 'normal';
 export default {
   name: 'adv-scrollload',
   props: {
-    className: {
-      type: String,
-      default: '',
-    },
     loadClassName: {
       type: String,
       default: '',
@@ -110,7 +106,6 @@ export default {
       const { $slots, loadClassName } = this;
 
       if ($slots.loading) {
-        // @ts-ignore
         return (
           <div
             class={classNames(
@@ -125,7 +120,6 @@ export default {
         );
       }
 
-      // @ts-ignore
       return (
         <div
           class={classNames(`${selectorPrefix}-load`, 'standard', loadClassName.split(/\s+/))}
@@ -139,7 +133,6 @@ export default {
       const { $slots, emptyClassName } = this;
 
       if ($slots.empty) {
-        // @ts-ignore
         return (
           <div
             class={classNames(`${selectorPrefix}-empty`, emptyClassName.split(/\s+/))}
@@ -150,7 +143,6 @@ export default {
         );
       }
 
-      // @ts-ignore
       return (
         <div
           class={classNames(`${selectorPrefix}-empty`, emptyClassName.split(/\s+/))}
@@ -164,7 +156,6 @@ export default {
       const { $slots, errorClassName } = this;
 
       if ($slots.error) {
-        // @ts-ignore
         return (
           <div
             class={classNames(`${selectorPrefix}-error`, errorClassName.split(/\s+/))}
@@ -175,7 +166,6 @@ export default {
         );
       }
 
-      // @ts-ignore
       return (
         <div
           class={classNames(`${selectorPrefix}-error`, errorClassName.split(/\s+/))}
@@ -199,11 +189,10 @@ export default {
     },
   },
   render(h): VNode {
-    const { $slots, className } = this;
+    const { $slots } = this;
 
-    // @ts-ignore
     return (
-      <div class={classNames(selectorPrefix, className.split(/\s+/))} ref="el">
+      <div class={selectorPrefix} ref="el">
         {$slots.default}
         {this.renderLoading(h)}
         {this.renderEmpty(h)}

@@ -19,8 +19,10 @@ const Component = {
   Util,
 };
 
+// @ts-ignore
 Component.isUse = () => true;
 
+// @ts-ignore
 Component.use = (Vue) => {
   Vue.use(Component.OLMap);
 

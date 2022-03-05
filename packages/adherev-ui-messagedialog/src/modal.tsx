@@ -53,6 +53,7 @@ export default {
 
       return (
         <Button
+          // @ts-ignore
           key="close"
           type={!config.footerJSX ? 'primary' : ''}
           title={Intl.tv('取消')}
@@ -81,7 +82,10 @@ export default {
     renderTitle(h) {
       const { $slots } = this;
 
-      return $slots.title ? <Fragment slot="title">{$slots.title}</Fragment> : null;
+      return $slots.title ? (
+        // @ts-ignore
+        <Fragment slot="title">{$slots.title}</Fragment>
+      ) : null;
     },
     /**
      * renderFooter
@@ -95,21 +99,22 @@ export default {
       if (config.footerJSX) {
         if (closeBtn) {
           result = (
+            // @ts-ignore
             <Fragment slot="footer">
-              {/* @ts-ignore */}
               <div>{[...config.footerJSX, this.renderCloseBtn(h)]}</div>
             </Fragment>
           );
         } else {
           result = (
+            // @ts-ignore
             <Fragment slot="footer">
-              {/* @ts-ignore */}
               <div>{config.footerJSX}</div>
             </Fragment>
           );
         }
       } else {
         if (closeBtn) {
+          // @ts-ignore
           result = <Fragment slot="footer">{this.renderCloseBtn(h)}</Fragment>;
         }
       }
@@ -137,6 +142,7 @@ export default {
     return (
       <Modal
         {...data}
+        // @ts-ignore
         centered={centered}
         wrapClassName={selectorPrefix}
         onCancel={() => {
@@ -146,11 +152,8 @@ export default {
         }}
         visible
       >
-        {/* @ts-ignore */}
         {this.renderDefault(h)}
-        {/* @ts-ignore */}
         {this.renderTitle(h)}
-        {/* @ts-ignore */}
         {this.renderFooter(h)}
       </Modal>
     );

@@ -27,8 +27,8 @@ declare const I18nFactory: {
      * @param zh
      * @param values
      */
-    tv: (zh: Path) => string | VueI18n.LocaleMessages | undefined;
-    v(zh: Path): string | VueI18n.LocaleMessages | undefined;
+    tv: (zh: Path) => VueI18n.TranslateResult | undefined;
+    v(zh: Path): VueI18n.TranslateResult | undefined;
     /**
      * tcv
      * @param zh

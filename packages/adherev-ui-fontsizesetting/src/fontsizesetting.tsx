@@ -40,7 +40,6 @@ export default {
     },
   },
   render(h): VNode {
-    // @ts-ignore
     return (
       <div class={selectorPrefix} ref="el">
         <div class={`${selectorPrefix}-rangeWrap`}>
@@ -58,8 +57,8 @@ export default {
               <span>{this.$tv('特大')}</span>
             </div>
           </div>
-          {/*@ts-ignore*/}
           <Slider
+            // @ts-ignore
             min={this.min}
             max={this.max}
             step={this.step}

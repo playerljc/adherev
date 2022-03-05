@@ -1,7 +1,7 @@
-import classNames from 'classnames';
-import moment from 'moment';
 import Intl from '@baifendian/adherev-util-intl';
 import Resource from '@baifendian/adherev-util-resource';
+import classNames from 'classnames';
+import moment from 'moment';
 
 const selectorPrefix = 'adherev-ui-pullrefresh';
 const defaultImg =
@@ -55,11 +55,6 @@ export default {
     };
   },
   computed: {
-    getClassName() {
-      const { className } = this;
-
-      return classNames(selectorPrefix, ...className.split(/\s+/));
-    },
     getScrollClassName() {
       const { scrollClassName } = this;
 
@@ -73,13 +68,11 @@ export default {
       return $slots.icon ? (
         <div class={`${selectorPrefix}-trigger-icon`}>
           <div class={`${selectorPrefix}-trigger-icon-inner`} ref="iconElRef">
-            {/* @ts-ignore */}
             {$slots.icon}
           </div>
         </div>
       ) : (
         <div class={`${selectorPrefix}-trigger-icon`}>
-          {/* @ts-ignore */}
           <img
             class={`${selectorPrefix}-trigger-icon-inner`}
             src={defaultImg}
@@ -360,7 +353,7 @@ export default {
 
       this.$refs.refreshElRef.style.display = 'none';
 
-      $data.$triggerInnerEl?.style.display = 'flex';
+      ($data.$triggerInnerEl as HTMLElement).style.display = 'flex';
 
       this.rotateIcon($data.$iconEl, 180, 0);
 
@@ -407,7 +400,7 @@ export default {
       function onTransitionEnd() {
         $scrollEl.removeEventListener('transitionend', onTransitionEnd);
 
-        $triggerInnerEl?.style.display = 'flex';
+        ($triggerInnerEl as HTMLElement).style.display = 'flex';
       }
 
       this.clear();
@@ -418,7 +411,7 @@ export default {
 
       this.translateY($el, 'calc(-100% + 0px)', 200);
     },
-    resetUpdateTime(updateTime: number): Promise<null> {
+    resetUpdateTime(updateTime: number): Promise<void> {
       return new Promise((resolve) => {
         this.preUpdateTime = updateTime || moment().valueOf();
         resolve();
@@ -451,7 +444,7 @@ export default {
     const { $slots } = this;
 
     return (
-      <div class={this.getClassName}>
+      <div class={selectorPrefix}>
         <div class={this.getScrollClassName} ref="scrollElRef">
           {$slots.default}
         </div>

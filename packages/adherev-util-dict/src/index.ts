@@ -5,7 +5,9 @@ const {
   _util: { withVue },
 } = BfdUtil;
 
+// @ts-ignore
 Dict.isUse = () => true;
+// @ts-ignore
 Dict.use = (Vue) => {
   withVue(Vue, 'Dict', Dict);
 };

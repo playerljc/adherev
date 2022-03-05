@@ -28,7 +28,9 @@ export default {
 
       return (
         <ConditionalRender.Show conditional={expand}>
+          {/*@ts-ignore**/}
           <Card>
+            {/*@ts-ignore***/}
             <CodePanel lang={lang}>{codeText}</CodePanel>
           </Card>
         </ConditionalRender.Show>

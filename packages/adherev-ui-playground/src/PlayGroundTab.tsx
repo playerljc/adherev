@@ -38,7 +38,9 @@ export default {
 
       return (
         <ConditionalRender.Show conditional={expand}>
+          {/*@ts-ignore*/}
           <Card>
+            {/*@ts-ignore*/}
             <CodeTabPanel
               config={config}
               active={this.activeKey}

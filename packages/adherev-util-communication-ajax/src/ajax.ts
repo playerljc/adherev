@@ -1,5 +1,6 @@
 import { notification } from 'ant-design-vue';
 
+// @ts-ignore
 import Util from '@baifendian/adherev-util';
 
 import intl from '@baifendian/adherev-util-intl';
@@ -100,9 +101,11 @@ function getDefaultConfig(): IConfig & {
     interceptor: ({ status }) => {
       switch (status) {
         case 401:
+          // @ts-ignore
           deal401.call(this);
           break;
         case 402:
+          // @ts-ignore
           deal402.call(this);
           break;
         default:
@@ -299,6 +302,7 @@ function sendPrepare(
 
   // 显示loading
   if (show) {
+    // @ts-ignore
     indicator = GlobalIndicator.show(el || document.body, text || defaultLoadingText);
   }
 
@@ -320,11 +324,13 @@ function sendPrepare(
     return { xhr: null, contentType: '' };
   }
 
+  // @ts-ignore
   const { baseURL, config } = this;
 
   const { timeout, withCredentials, interceptor, ...events } = Object.assign(
     // 默认的属性
 
+    // @ts-ignore
     getDefaultConfig.call(this),
     config,
     curConfig,
@@ -363,7 +369,9 @@ function sendPrepare(
     if (!Util.isEmpty(data) && Util.isRef(data) && method !== ('get' || 'GET')) {
       if (
         !(
-          'form' in data &&
+          'form' in
+            // @ts-ignore
+            data &&
           'data' in data &&
           !Util.isEmpty(data.form) &&
           !Util.isEmpty(data.data) &&
@@ -389,6 +397,7 @@ function sendPrepare(
 
   // onreadystatechange
 
+  // @ts-ignore
   xhr.onreadystatechange = onreadystatechange.bind(this, {
     xhr,
     interceptor,
@@ -476,9 +485,14 @@ function getSendParams({ data, contentType }) {
 function complexRequest(method: string, params: ISendArg) {
   return new Promise((resolve, reject) => {
     const { xhr, contentType } = sendPrepare.call(
+      // @ts-ignore
       this,
       {
-        ...getDefaultConfig.call(this),
+        ...getDefaultConfig.call(
+          // @ts-ignore
+          this,
+        ),
+        // @ts-ignore
         ...this.config,
         method,
         ...params,
@@ -491,10 +505,14 @@ function complexRequest(method: string, params: ISendArg) {
 
     if (xhr) {
       xhr.send(
-        getSendParams.call(this, {
-          data: params.data,
-          contentType,
-        }),
+        getSendParams.call(
+          // @ts-ignore
+          this,
+          {
+            data: params.data,
+            contentType,
+          },
+        ),
       );
     }
   });
@@ -513,6 +531,7 @@ function deal401() {
   }
 
   window.location.href = Util.casUrl({
+    // @ts-ignore
     baseUrl: this.systemManagerBaseURL,
     enterUrl: window.location.href,
   });
@@ -530,6 +549,7 @@ function deal402() {
   }
 
   window.location.href = Util.casLogoutUrl({
+    // @ts-ignore
     baseUrl: this.systemManagerBaseURL,
     enterUrl: window.location.href,
     params: '&code=402',

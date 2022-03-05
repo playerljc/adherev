@@ -20,7 +20,6 @@ export default {
   name: 'adv-playground-code-tab-panel',
   props: { ...CodeTabPanelDefaultProps },
   render(h) {
-    // @ts-ignore
     const { active, config } = this;
 
     return (
@@ -29,10 +28,8 @@ export default {
         <SimpleTabs
           defaultActiveKey={active}
           onChange={(key) => {
-            // @ts-ignore
-            this.active = key;
+            // this.active = key;
 
-            // @ts-ignore
             this.$emit('change', key);
           }}
         >

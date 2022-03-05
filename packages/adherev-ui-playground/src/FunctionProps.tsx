@@ -32,10 +32,12 @@ export default {
     }
 
     return (
+      // @ts-ignore
       <Collapse {...{ props }}>
         <div class={selectorPrefix}>
           <table class={`${selectorPrefix}-inner`}>
             {data.map(({ name, desc, modifier, params, returnType, returnDesc }, index) => (
+              // @ts-ignore
               <Fragment>
                 <tr key={`${index}`} class={`${selectorPrefix}-item`}>
                   <td valign="top" class={`${selectorPrefix}-item-name`}>

@@ -10,7 +10,6 @@ export default {
     },
   },
   render(h) {
-    // @ts-ignore
     const { conditional, $slots } = this;
 
     return conditional ? $slots.default : $slots.noMatch ? $slots.noMatch : null;

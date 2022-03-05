@@ -40,7 +40,7 @@ export default {
 
       const { value } = e.target;
 
-      $refs?.rangeEl?.value = value;
+      ($refs?.rangeEl as HTMLInputElement).value = value;
 
       if ($preValue !== value) {
         this.$data.$preValue = value;
@@ -51,7 +51,7 @@ export default {
     renderScale(h) {
       const { min, max, interval } = this;
 
-      const itResult = [];
+      const itResult: Array<VNode | null> = [];
 
       for (let i = min; i < max; i++) {
         if (max - 1 === min) {
@@ -82,11 +82,10 @@ export default {
           itemJSX = <div key={i} class={`${selectorPrefix}-scale-item`} />;
         }
 
-        // @ts-ignore
         itResult.push(itemJSX);
       }
 
-      const result = [];
+      const result: Array<VNode | null> = [];
 
       if (min === max) {
         result.push(
@@ -120,17 +119,16 @@ export default {
     },
   },
   mounted() {
-    this.$refs.rangeEl?.value = this.value;
+    (this.$refs.rangeEl as HTMLInputElement).value = this.value;
   },
   watch: {
     value(newVal) {
-      this.$refs.rangeEl?.value = newVal;
+      (this.$refs.rangeEl as HTMLInputElement).value = newVal;
     },
   },
-  render(h):VNode {
+  render(h): VNode {
     const { min, max, step } = this;
 
-    // @ts-ignore
     return (
       <div class={selectorPrefix} ref="el">
         <div class={`${selectorPrefix}-scale`}>{this.renderScale(h)}</div>
@@ -142,7 +140,7 @@ export default {
           min={min}
           max={max}
           step={step}
-          onMousemove={this.onMousemove}
+          onMouseMove={this.onMousemove}
           onTouchMove={this.onTouchmove}
         />
       </div>
