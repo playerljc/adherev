@@ -1,0 +1,194 @@
+@import '~ant-design-vue/es/table/style/index.less';
+@import '~ant-design-vue/es/pagination/style/index.less';
+@import '~ant-design-vue/es/button/style/index.less';
+@import '~@baifendian/adherev-ui-suspense/lib/index.less';
+@import '~@baifendian/adherev-ui-flexlayout/lib/index.less';
+@import '~@baifendian/adherev-ui-css/lib/iconfont/iconfont.less';
+
+.adherev-ui-searchtable-wrap {
+  display: flex;
+  width: 100%;
+
+  > .adherev-ui-suspense {
+    overflow: auto;
+
+    .adherev-ui-searchtable {
+      position: relative;
+      padding: 24px;
+      background-color: #f0f2f5;
+
+      .adherev-ui-searchtable-tablewrapper {
+        > .ant-table-wrapper {
+          > .ant-spin-nested-loading {
+            > .ant-spin-container {
+              > .ant-table {
+                > .ant-table-content {
+                  > .ant-table-body {
+                    overflow: auto;
+                  }
+                }
+              }
+
+              > .ant-table-empty {
+                > .ant-table-container {
+                  > .ant-table-body {
+                    max-height: initial !important;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+
+      > .adherev-ui-searchtable-searchwrapper {
+        margin-bottom: 16px;
+        padding: 24px 24px 0;
+        background: #fff;
+
+        .adherev-ui-searchtable-searchfooterwrapper {
+          display: flex;
+          align-items: center;
+          justify-content: flex-end;
+          margin-bottom: 20px;
+
+          > .adherev-ui-searchtable-searchfooteritem {
+            display: flex;
+            align-items: center;
+
+            &:not(:last-child) {
+              margin-right: 10px;
+            }
+
+            &.ant-btn {
+              display: flex;
+            }
+          }
+        }
+      }
+
+      > .adherev-ui-searchtable-autowrapper {
+        position: relative;
+        background: #fff;
+        border-radius: 2px;
+
+        &.autofixed {
+          overflow-y: auto;
+        }
+
+        > .adherev-ui-searchtable-tablewrapper {
+          width: 100%;
+        }
+      }
+
+      &.fixedtablespacebetween {
+        > .adherev-ui-searchtable-autowrapper {
+          > .adherev-ui-searchtable-tablewrapper {
+            .ant-table-wrapper {
+              height: 100%;
+
+              > .ant-spin-nested-loading {
+                > .ant-spin-container {
+                  display: flex;
+                  flex-direction: column;
+
+                  > .ant-table {
+                    display: flex;
+                    flex-grow: 1;
+                    width: 100%;
+                    min-height: 0;
+
+                    > .ant-table-content {
+                      width: 100%;
+                      // 没有滚动
+                      //> .ant-table-body {
+                      //  > table {
+                      //    display: flex;
+                      //    flex-direction: column;
+                      //    height: 100%;
+                      //
+                      //    > .ant-table-header {
+                      //      flex-shrink: 0;
+                      //    }
+                      //
+                      //    > .ant-table-body {
+                      //      flex-grow: 1;
+                      //      min-height: 0;
+                      //      overflow-y: auto !important;
+                      //    }
+                      //  }
+                      //}
+
+                      // 滚动
+                      > .ant-table-scroll {
+                        display: flex;
+                        flex-direction: column;
+                        height: 100%;
+
+                        > .ant-table-header {
+                          flex-shrink: 0;
+                        }
+
+                        > .ant-table-body {
+                          flex-grow: 1;
+                          min-height: 0;
+                          overflow-y: auto !important;
+                        }
+                      }
+                    }
+
+                    //> .ant-table-container {
+                    //  display: flex;
+                    //  flex-direction: column;
+                    //  height: 100%;
+                    //
+                    //  > .ant-table-header {
+                    //    flex-shrink: 0;
+                    //  }
+                    //
+                    //  > .ant-table-body {
+                    //    flex-grow: 1;
+                    //    min-height: 0;
+                    //    overflow-y: auto !important;
+                    //  }
+                    //}
+                  }
+
+                  > .ant-table-pagination {
+                    display: flex;
+                    flex-shrink: 0;
+                    justify-content: flex-end;
+                    padding-right: 20px;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .adherev-ui-searchform {
+      min-width: 100%;
+      table-layout: fixed;
+      border-collapse: separate;
+      border-spacing: 0 20px;
+
+      > tbody {
+        > .adherev-ui-searchform-row {
+          > .adherev-ui-searchform-label {
+            //max-width: 60px;
+            padding-right: 10px;
+            white-space: nowrap;
+            text-align: right;
+            word-break: keep-all;
+          }
+        }
+      }
+    }
+
+    .adherev-ui-searchtableimplement-tablewrapper {
+      height: 100%;
+    }
+  }
+}

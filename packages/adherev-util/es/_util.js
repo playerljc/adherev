@@ -1,0 +1,2 @@
+import"core-js/modules/es.function.name.js";import{__assign}from"tslib";var withInstall=function(i){return i.install=function(n){n.component(i.displayName||i.name,i)},i},withVue=function(n,i,o){n.config.globalProperties.$adv=n.config.globalProperties.$adv||{},n.config.globalProperties.$adv[i]=o},HOC=function(n,i){return __assign(__assign({},n),i||{})};export{withInstall,withVue,HOC};
+//# sourceMappingURL=_util.js.map

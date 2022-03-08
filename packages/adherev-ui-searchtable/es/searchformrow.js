@@ -1,0 +1,2 @@
+import{createVNode as _createVNode}from"vue";import{defineComponent}from"vue";var selectorPrefix="adherev-ui-searchform-row";export default defineComponent({name:"adv-searchtable-searchform-row",setup:function(e,r){var o=r.slots;return function(){var e;return _createVNode("tr",{class:selectorPrefix},[null===(e=null==o?void 0:o.default)||void 0===e?void 0:e.call(o)])}}});
+//# sourceMappingURL=searchformrow.js.map

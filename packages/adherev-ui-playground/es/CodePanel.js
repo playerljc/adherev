@@ -1,0 +1,2 @@
+import{createVNode as _createVNode}from"vue";import{defineComponent}from"vue";import{string}from"vue-types";import hljsVuePlugin from"@highlightjs/vue-plugin";var codePanelProps={lang:string().def("vue"),codeText:string().def("")};export default defineComponent({name:"adv-playground-code-panel",props:codePanelProps,setup:function(o,e){e.slots;return function(){var e=hljsVuePlugin.component;return _createVNode(e,{language:o.lang,code:o.codeText},null)}}});export{codePanelProps};
+//# sourceMappingURL=CodePanel.js.map

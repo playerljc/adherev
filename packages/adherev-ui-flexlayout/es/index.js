@@ -1,0 +1,2 @@
+import Util from"@baifendian/adherev-util";import Auto from"./auto";import Fixed from"./fixed";import FlexLayout,{selectorPrefix}from"./flexlayout";var _a=Util._util,withInstall=_a.withInstall,withVue=_a.withVue,Component=withInstall(FlexLayout);Component.isUse=function(){return!0},Component.use=function(t){t.use(Component),t.use(Component.Fixed),t.use(Component.Auto),withVue(t,"FlexLayout",Component)},Component.Fixed=withInstall(Fixed),Component.Auto=withInstall(Auto),Component.selectorPrefix=selectorPrefix;export default Component;
+//# sourceMappingURL=index.js.map

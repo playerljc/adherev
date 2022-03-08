@@ -1,0 +1,2 @@
+import{createVNode as _createVNode,Fragment as _Fragment}from"vue";import{defineComponent}from"vue";import{bool}from"vue-types";import{deal}from"./util";var props={conditional:bool().def(!0)};export default defineComponent({name:"adv-conditionalrender-show",props:props,slots:["default","noMatch"],setup:function(t,e){var n=e.slots;return function(){var e=deal({conditional:t.conditional,rule:"display",ruleVisibleValue:"",ruleHideValue:"none",slots:n}),o=e.defaultVNodes,e=e.noMatchVNodes;return _createVNode(_Fragment,null,[o,e])}}});
+//# sourceMappingURL=show.js.map

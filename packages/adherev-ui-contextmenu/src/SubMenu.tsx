@@ -1,59 +1,44 @@
-import { VNode, PropType } from 'vue';
 import classNames from 'classnames';
-
-import { IData } from './types';
-
+import { computed, CSSProperties, defineComponent, inject } from 'vue';
+import { array, object, string } from 'vue-types';
 import MenuItem from './MenuItem';
+import { IData } from './types';
+import { ContextReturnType } from './ContextMenu';
 
 const selectorPrefix = 'adherev-ui-contextmenu-submenu';
 
-export default {
-  props: {
-    data: {
-      type: Array as PropType<IData[]>,
-      default: () => [],
-    },
-    className: {
-      type: String,
-      default: '',
-    },
-    styleName: {
-      type: String,
-      default: '',
-    },
-  },
-  inject: ['getContext'],
-  computed: {
-    getClass(): string {
-      const { className } = this;
+const props = {
+  data: array<IData>().def([]),
+  className: string().def(''),
+  style: object<CSSProperties>().def({}),
+};
 
-      return classNames(
-        selectorPrefix,
+export default defineComponent({
+  props,
+  setup(props) {
+    const context = inject('context') as ContextReturnType;
 
-        (className || '').split(/\s+/),
-      );
-    },
-    getStyle(): string {
-      const { styleName } = this;
+    const getClass = computed(() =>
+      classNames(selectorPrefix, (props.className || '').split(/\s+/)),
+    );
 
-      const { width } = this.getContext().config;
+    const getStyle = computed(() => {
+      return {
+        ...props.style,
+        width: `${context.config.width}px`,
+        zIndex: 99999 * 2 + 1,
+      };
+    });
 
-      return `${styleName}width:${width}px;z-index:${99999 * 2 + 1}`;
-    },
-  },
-  methods: {
-    renderItems(h): VNode {
-      const { data = [] } = this;
+    const renderItems = (): JSX.Element[] =>
+      // @ts-ignore
+      props.data.map((item) => <MenuItem key={item.id} data={item} />);
 
-      return data.map((item) => <MenuItem key={item.id} data={item} />);
-    },
-  },
-  render(h): VNode {
-    // @ts-ignore
-    return (
-      <ul class={this.getClass} style={this.getStyle}>
-        {this.renderItems(h)}
+    return () => (
+      // @ts-ignore
+      <ul class={getClass.value} style={getStyle.value}>
+        {renderItems()}
       </ul>
     );
   },
-};
+});

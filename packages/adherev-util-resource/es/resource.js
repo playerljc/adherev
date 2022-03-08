@@ -1,0 +1,2 @@
+import Util from"@baifendian/adherev-util";import Dict from"@baifendian/adherev-util-dict";function initBasicDict(){var c=require.context("./dict",!1,/.*\.(js)$/);c.keys().forEach(function(i){var t,n,l,i=c(i).default;i&&null!==(t=Util.isObject)&&void 0!==t&&t.call(Util,i)&&("initStatic"in i&&null!==(n=Util.isFunction)&&void 0!==n&&n.call(Util,i.initStatic)&&i.initStatic(),"initRemote"in i&&null!==(l=Util.isFunction)&&void 0!==l&&l.call(Util,i.initRemote)&&i.initRemote())})}initBasicDict();export default{Dict:Dict};
+//# sourceMappingURL=resource.js.map

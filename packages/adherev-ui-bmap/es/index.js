@@ -1,0 +1,2 @@
+import{__assign}from"tslib";import OriginBMap from"@baifendian/adhere-ui-bmap";import Util from"@baifendian/adherev-util";import BMapComponent from"./bmap";var _a=Util._util,withInstall=_a.withInstall,withVue=_a.withVue,BMap=__assign(__assign({},OriginBMap),{BMap:BMapComponent});BMap.isUse=function(){return!0},BMap.use=function(a){a.use(BMapComponent),withVue(a,"BMap",BMap)},withInstall(BMapComponent);export default BMap;
+//# sourceMappingURL=index.js.map
