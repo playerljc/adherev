@@ -1,69 +1,82 @@
+import { defineComponent, nextTick, provide, ref, VNode, watch } from 'vue';
+import { string } from 'vue-types';
 const selectorPrefix = 'adherev-ui-playground-simple-tabs';
 
-export default {
+const tabProps = {
+  defaultActiveKey: string().def(''),
+};
+
+export default defineComponent({
   name: 'adv-playground-simple-tabs',
-  props: {
-    defaultActiveKey: {
-      type: String,
-      default: '',
-    },
-  },
-  data() {
-    return {
-      activeKey: this.defaultActiveKey,
-    };
-  },
-  watch: {
-    defaultActiveKey(activeKey) {
-      this.activeKey = activeKey;
-    },
-  },
-  provide() {
-    return {
-      getActiveKey: this.getActiveKey,
-    };
-  },
-  methods: {
-    getActiveKey() {
-      return this.activeKey;
-    },
-    renderHead(h) {
-      const { $slots } = this;
+  props: tabProps,
+  emits: ['change'],
+  setup(props, { slots, emit }) {
+    const activeKey = ref<string>(props.defaultActiveKey);
 
-      return $slots.default.map((t) => this.renderHeadItem(h, t));
-    },
-    renderHeadItem(h, vNode) {
-      const {
-        componentOptions: {
-          propsData: { index, title },
-        },
-      } = vNode;
+    const getActiveKey = () => activeKey.value;
 
-      const { activeKey } = this;
+    const renderHead = (): VNode[] => {
+      if (!slots.default) return [];
+
+      if (Array.isArray(slots?.default?.())) {
+        if (slots?.default?.().length) {
+          if (Array.isArray(slots?.default?.()[0].children)) {
+            return ((slots.default() as VNode[])[0].children as VNode[]).map((vNode: VNode) =>
+              renderHeadItem(vNode),
+            );
+          }
+        }
+      }
+
+      return [];
+    };
+
+    const renderHeadItem = (node: VNode): JSX.Element => {
+      const { index, title } = node.props as { title: string; index: string };
 
       return (
         <li
           key={index}
-          class={activeKey === index ? 'active' : ''}
+          // @ts-ignore
+          class={activeKey.value === index ? 'active' : ''}
           onClick={() => {
-            this.activeKey = index;
+            activeKey.value = index;
 
-            this.$nextTick(function () {
-              this.$emit('change', index);
+            nextTick(function () {
+              emit('change', index);
             });
           }}
         >
           {title}
         </li>
       );
-    },
-  },
-  render(h) {
-    return (
-      <div class={selectorPrefix}>
-        <ul class={`${selectorPrefix}-head`}>{this.renderHead(h)}</ul>
-        <div class={`${selectorPrefix}-body`}>{this.$slots.default}</div>
+    };
+
+    watch(
+      () => props.defaultActiveKey,
+      newValue => (activeKey.value = newValue),
+    );
+
+    provide('getActiveKey', getActiveKey);
+
+    return () => (
+      <div
+        // @ts-ignore
+        class={selectorPrefix}
+      >
+        <ul
+          // @ts-ignore
+          class={`${selectorPrefix}-head`}
+        >
+          {renderHead()}
+        </ul>
+        <div
+          // @ts-ignore
+          class={`${selectorPrefix}-body`}
+        >
+          {slots?.default?.()}
+        </div>
       </div>
     );
   },
-};
+});

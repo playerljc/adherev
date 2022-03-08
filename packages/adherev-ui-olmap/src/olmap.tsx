@@ -1,18 +1,19 @@
 import Resource from '@baifendian/adherev-util-resource';
 import { Fill, Stroke, Style, Text } from 'ol/style.js';
-
+import { defineComponent } from 'vue';
 import Constent from './constent';
+import { IOLMapData, IOLMapSelf } from './types';
 import Util from './util';
 
 const selectorPrefix = 'adherev-ui-olmap';
 
-export default {
+export default defineComponent({
   name: 'adv-olmap',
   props: {
     type: {
       type: String,
       default: Constent.MAP_TYPE_ADMINISTRATIVE,
-      validator(val) {
+      validator(val: string) {
         return [Constent.MAP_TYPE_ADMINISTRATIVE, Constent.MAP_TYPE_SATELLITE].indexOf(val) !== -1;
       },
     },
@@ -49,7 +50,7 @@ export default {
       default: () => undefined,
     },
   },
-  data() {
+  data(): IOLMapData {
     return {
       $map: null,
       $zoom: null,
@@ -57,13 +58,12 @@ export default {
     };
   },
   mounted() {
-    const { mapConfig, type, maxZoom, minZoom, zoom, layers, center, extent } = this;
+    const { mapConfig, type, maxZoom, minZoom, zoom, layers, center, extent, $data, $refs } =
+      this as unknown as IOLMapSelf;
 
-    // console.log('OLMap', this.$refs, center, zoom, extent, layers, mapConfig);
-
-    this.$data.$map = Util.createMap({
+    $data.$map = Util.createMap({
       config: {
-        target: this.$refs.ref,
+        target: $refs.ref,
       },
       type,
       maxZoom,
@@ -75,7 +75,7 @@ export default {
       ...mapConfig,
     });
 
-    this.$data.$zoom = this.$data.$map.getView().getZoom();
+    this.$data.$zoom = $data.$map.getView().getZoom();
   },
   methods: {
     /**
@@ -83,10 +83,10 @@ export default {
      * @param geoJSONStyle
      * @param geoJSONData
      */
-    addMainGeoJSONLayer({ geoJSONStyle, geoJSONData }) {
+    addMainGeoJSONLayer({ geoJSONStyle, geoJSONData }: any) {
       const { stroke, fill, text } = geoJSONStyle; // Dict.value['feature-style-xinbeiqu'];
 
-      this.$data.$mainGeoLayer = this.addGeoLayer(
+      (this as unknown as IOLMapSelf).$data.$mainGeoLayer = this.addGeoLayer(
         geoJSONData /* Dict.value.mainGeoJSONData */,
         () => {
           return new Style({
@@ -97,97 +97,98 @@ export default {
         },
       );
     },
-
     /**
      * 添加GeoJSONLayer
      * @param geojsonData
      * @param getStyleConfig
      * @param zIndex
      */
-    addGeoLayer(geojsonData, getStyleConfig, zIndex = 0) {
+    addGeoLayer(geojsonData: any, getStyleConfig: any, zIndex = 0) {
       return Util.addGeoLayer(this.$data.$map, geojsonData, getStyleConfig, zIndex);
     },
-
     /**
      * addWindLayer - 添加风场层
      * @param data
      * @param config
      * @param zIndex
      */
-    addWindLayer(data, config, zIndex = 0) {
+    addWindLayer(data: any, config: any, zIndex = 0) {
       return Util.addWindLayer(this.$data.$map, data, config, zIndex);
     },
-
     /**
      * 添加数据层
      * @return {*|{vectorLayer, vectorSource}}
      */
-    addDataLayer(zIndex) {
+    addDataLayer(zIndex: any) {
       return Util.addVectorLayer(this.$data.$map, zIndex);
     },
-
     /**
      * 给地图实例添加 hover监听者
      */
-    addHoverListener(layer, hit, unHit) {
+    addHoverListener(layer: any, hit: (arg0: any) => void, unHit: (arg0?: undefined) => void) {
       Util.addHoverListener(this.$data.$map, layer, hit, unHit);
     },
-
     /**
      * 添加缩放事件
      * @param handler
      */
-    addZoomListener(handler) {
-      this.$data.$map.on('moveend', (evt) => {
-        const zoom = this.$data.$map.getView().getZoom();
+    addZoomListener(handler: (arg0: any) => void) {
+      const { $data } = this as unknown as IOLMapSelf;
 
-        if (zoom !== this.$data.$zoom) {
+      (this as unknown as IOLMapSelf).$data.$map.on('moveend', () => {
+        const zoom = $data.$map.getView().getZoom();
+
+        if (zoom !== $data.$zoom) {
           handler(zoom);
         }
 
         this.$data.$zoom = zoom;
       });
     },
-
     /**
      * 给地图实例添加 单击监听者
      */
-    addClickListener(layer, hit, unHit) {
+    addClickListener(
+      layer: any,
+      hit: ((feature: any) => void) | undefined,
+      unHit: ((feature: any) => void) | undefined,
+    ) {
       Util.addClickListener(this.$data.$map, layer, hit, unHit, this.setCursor);
     },
-
     /**
      * 添加一个Overlay对象, 一般来说只有弹窗marker 故仅实例化一个
      */
-    addOverlay(config) {
-      return Util.addOverlay(this.$data.$map, config);
-    },
+    addOverlay(config: any) {
+      const { $data } = this as unknown as IOLMapSelf;
 
+      return Util.addOverlay($data.$map, config);
+    },
     /**
      * 给Overlay对象 配置状态
      */
-    setOverlayState(overlay, state) {
+    setOverlayState(overlay: { setPosition: (arg0: any) => void }, state: any) {
       Util.setOverlayState(overlay, state);
     },
-
     /**
      * 将此处鼠标点样式
      */
-    setCursor(style) {
-      this.$data.$map.getTarget().style.cursor = style;
-    },
+    setCursor(style: any) {
+      const { $data } = this as unknown as IOLMapSelf;
 
+      $data.$map.getTarget().style.cursor = style;
+    },
     /**
      * 清空所有层，除了底图和常州geoJSOn层
      */
     clear() {
-      const layers = this.$data.$map.getLayers();
+      const { $data } = this as unknown as IOLMapSelf;
+
+      const layers = $data.$map.getLayers();
 
       for (let i = 1; i < layers.getLength(); i++) {
-        this.$data.$map.removeLayer(layers.item(i));
+        (this as unknown as IOLMapSelf).$data.$map.removeLayer(layers.item(i));
       }
     },
-
     /**
      * getMap
      * @return {*|Map}
@@ -196,7 +197,8 @@ export default {
       return this.$data.$map;
     },
   },
-  render(h) {
+  render() {
+    // @ts-ignore
     return <div class={selectorPrefix} ref="ref" />;
   },
-};
+});

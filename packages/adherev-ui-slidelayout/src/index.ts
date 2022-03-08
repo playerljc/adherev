@@ -10,7 +10,7 @@ withInstall(Revolving);
 
 export default {
   isUse: () => true,
-  use: (Vue) => {
+  use: (Vue: any) => {
     Vue.use(Push);
     Vue.use(Overlay);
     Vue.use(Revolving);

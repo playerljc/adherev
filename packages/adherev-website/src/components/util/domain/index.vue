@@ -6,17 +6,13 @@
 
     <adv-playground-page-code-box-section title="代码演示" :config="codeBoxPanelConfig">
       <template #p1>
-        <fragment>
-          <a-button type="primary" @click="onCode1F1">运行</a-button>
-          <div class="Console" ref="console1Ref"></div>
-        </fragment>
+        <a-button type="primary" @click="onCode1F1">运行</a-button>
+        <div class="Console" ref="console1Ref"></div>
       </template>
 
       <template #p2>
-        <fragment>
-          <a-button type="primary" @click="onCode2F1">运行</a-button>
-          <div class="Console" ref="console2Ref"></div>
-        </fragment>
+        <a-button type="primary" @click="onCode2F1">运行</a-button>
+        <div class="Console" ref="console2Ref"></div>
       </template>
     </adv-playground-page-code-box-section>
 

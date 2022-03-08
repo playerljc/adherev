@@ -32,15 +32,16 @@
     "access": "public"
   },
   "devDependencies": {
-    "@babel/runtime": "^7.7.4",
-    "@ctsj/buildv": "^2.0.8",
+    "@babel/runtime": "^7.17.2",
+    "@ctsj/buildv": "^5.0.2-beta",
     "npm-run-all": "^4.1.5",
-    "typescript": "^3.8.2"
+    "typescript": "^4.5.5"
   },
   "dependencies": {
     "@baifendian/adherev-ui-css": "^1.0.8",
     "@baifendian/adherev-util": "^1.0.8",
-    "ant-design-vue": "^1.7.6",
-    "vue": "^2.6.14"
+    "ant-design-vue": "^3.0.0-beta.9",
+    "vue": "^3.2.31",
+    "vue-types": "^4.1.1"
   }
 }

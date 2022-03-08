@@ -290,15 +290,16 @@ export default {
      * @return {{permission}}
      */
     onSetAllPermission() {
-      const { el, vm } = MessageDialog.Modal({
+      const { el, vm, rootRef } = MessageDialog.Modal({
         config: {
           title: '设置所有权限',
           width: 200,
-          footer: (h) => [
+          footer: () => [
             <Button
               type="primary"
               onClick={() => {
-                const val = vm.$refs.formRef.allPermission.trim();
+                const val = rootRef.value.allPermission.toString().trim(); // vm.$refs.formRef.allPermission.trim();
+
                 if (val) {
                   this.allPermission = val.split(',');
                 }
@@ -330,15 +331,15 @@ export default {
     onSetCurPermission() {
       const { curPermission } = this;
 
-      const { el, vm } = MessageDialog.Modal({
+      const { el, vm, rootRef } = MessageDialog.Modal({
         config: {
           title: '设置当前权限',
           width: 200,
-          footer: (h) => [
+          footer: () => [
             <Button
               type="primary"
               onClick={() => {
-                const val = vm.$refs.formRef.curPermission.trim();
+                const val = rootRef.value.curPermission.trim(); // vm.$refs.formRef.curPermission.trim();
                 if (val) {
                   this.curPermission = val.split(',');
                 }

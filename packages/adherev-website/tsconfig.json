@@ -1,11 +1,5 @@
 {
   "extends": "../../node_modules/@ctsj/buildv/appconfig-base.json",
-  "compilerOptions": {
-    "experimentalDecorators": true,
-    "outDir": "./lib",
-    "baseUrl": "./",
-    "module": "esnext"
-  },
   "exclude": ["node_modules"],
   "include": ["src/**/*"]
 }

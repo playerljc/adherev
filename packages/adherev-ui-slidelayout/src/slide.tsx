@@ -1,174 +1,119 @@
+import { onBeforeUnmount, onMounted, ref, watch } from 'vue';
+import { bool, number, oneOfType, string } from 'vue-types';
 import { createMask } from './slidelayout';
 
-export default {
-  props: {
-    width: {
-      type: [String, Number],
-      default: '80%',
-    },
-    height: {
-      type: [String, Number],
-      default: '40%',
-    },
-    mask: {
-      type: Boolean,
-      default: true,
-    },
-    zIndex: {
-      type: Number,
-      default: 9999,
-    },
-    time: {
-      type: Number,
-      default: 300,
-    },
-    direction: {
-      type: String,
-      default: 'left',
-      validator(val) {
-        return ['left', 'right', 'top', 'bottom'].indexOf(val) !== -1;
-      },
-    },
-    defaultCollapse: {
-      type: Boolean,
-      default: false,
-    },
-  },
-  data() {
-    return {
-      $positionConfig: {},
-      $maskEl: null,
+export enum direction {
+  top = 'top',
+  bottom = 'bottom',
+  left = 'left',
+  right = 'right',
+}
 
-      collapse: this.defaultCollapse,
-    };
-  },
-  watch: {
-    defaultCollapse(newVal, oldVal) {
+export const slideProps = {
+  width: oneOfType([string(), number()]).def('80%'),
+  height: oneOfType([string(), number()]).def('40%'),
+  mask: bool().def(true),
+  zIndex: number().def(9999),
+  time: number().def(300),
+  direction: string<direction>().def(direction.left),
+  defaultCollapse: bool().def(false),
+};
+
+export default function useSlide(props: any, { emit }: any) {
+  const collapse = ref<boolean>(props.defaultCollapse);
+
+  const el = ref<HTMLElement>();
+
+  let positionConfig = {};
+
+  let maskEl: HTMLElement | null = null;
+
+  const setPositionConfig = (callback: ({ el, maskEl }: any) => object) => {
+    positionConfig = callback({ el, maskEl });
+  };
+
+  const getDuration = (time: undefined | null | string | number) =>
+    time !== undefined && time !== null ? time : props.time;
+
+  const getElRef = () => el;
+
+  const initial = () => {
+    const $el = el.value as HTMLElement;
+
+    if (props.direction === 'left' || props.direction === 'right') {
+      // 赋值宽度
+      $el.style.height = '100%';
+      props.width
+        ? ($el.style.width = props.width)
+        : ($el.style.width = `${($el.parentElement as HTMLElement).offsetWidth * 0.9}px`);
+    } else {
+      // 赋值高度
+      $el.style.width = '100%';
+      props.height
+        ? ($el.style.height = props.height)
+        : ($el.style.height = `${($el.parentElement as HTMLElement).offsetHeight * 0.3}px`);
+    }
+
+    // 赋值默认位置
+    positionConfig['init'][props.direction]();
+
+    if (collapse.value) {
+      positionConfig['show'][props.direction](0);
+    }
+  };
+
+  const show = () => {
+    emit('before-show');
+
+    collapse.value = true;
+
+    positionConfig['show'][props.direction]();
+  };
+
+  const close = () => {
+    emit('before-close');
+
+    collapse.value = false;
+
+    positionConfig['close'][props.direction]();
+  };
+
+  watch(
+    () => props.defaultCollapse,
+    (newVal, oldVal) => {
       if (newVal !== oldVal) {
-        this.collapse = newVal;
+        collapse.value = newVal;
 
-        const {
-          $data: { $positionConfig },
-
-          direction,
-
-          collapse,
-        } = this;
-
-        if (collapse) {
-          $positionConfig['show'][direction]();
+        if (collapse.value) {
+          positionConfig['show'][props.direction]();
         } else {
-          $positionConfig['close'][direction]();
+          positionConfig['close'][props.direction]();
         }
       }
     },
-  },
-  mounted() {
-    const {
-      $refs: { el },
-      zIndex,
-      mask,
-    } = this;
+  );
 
-    if (mask) {
-      this.$data.$maskEl = createMask(zIndex, () => {
-        this.close();
+  onMounted(() => {
+    if (props.mask) {
+      maskEl = createMask(props.zIndex, () => {
+        close();
       });
 
-      el?.parentElement?.insertBefore(this.$data.$maskEl, el);
+      el.value?.parentElement?.insertBefore(maskEl as HTMLElement, el.value);
     }
 
-    this.initial();
-  },
-  // updated() {
-  //   const {
-  //
-  //     $data: { _preCollapse, $positionConfig },
-  //
-  //     direction,
-  //
-  //     collapse,
-  //   } = this;
-  //
-  //   if (_preCollapse !== collapse) {
-  //     if (collapse) {
-  //
-  //       $positionConfig['show'][direction]();
-  //     } else {
-  //
-  //       $positionConfig['close'][direction]();
-  //     }
-  //   }
-  // },
-  beforeDestroy() {
-    const {
-      $data: { $maskEl },
-    } = this;
+    initial();
+  });
 
-    if ($maskEl) {
-      $maskEl.parentElement.removeChild($maskEl);
+  onBeforeUnmount(() => {
+    if (maskEl) {
+      (maskEl as HTMLElement)?.parentElement?.removeChild(maskEl);
     }
-  },
-  methods: {
-    getDuration(time: undefined | null | string | number) {
-      return time !== undefined && time !== null ? time : this.time;
-    },
-    initial() {
-      const {
-        $refs: { el },
-        $data: { $positionConfig },
-        direction,
-        width,
-        height,
-        collapse,
-      } = this;
+  });
 
-      if (direction === 'left' || direction === 'right') {
-        // 赋值宽度
-        el?.style.height = '100%';
-        width
-          ? (el?.style.width = width)
-          : (el?.style.width = `${el?.parentElement?.offsetWidth * 0.9}px`);
-      } else {
-        // 赋值高度
-
-        el?.style.width = '100%';
-        height
-          ? (el?.style.height = height)
-          : (el?.style.height = `${el?.parentElement?.offsetHeight * 0.3}px`);
-      }
-
-      // 赋值默认位置
-
-      $positionConfig['init'][direction]();
-
-      if (collapse) {
-        $positionConfig['show'][direction](0);
-      }
-    },
-    show() {
-      this.$emit('before-show');
-
-      const {
-        $data: { $positionConfig },
-        direction,
-      } = this;
-
-      this.collapse = true;
-
-      $positionConfig['show'][direction]();
-    },
-    close() {
-      this.$emit('before-close');
-
-      const {
-        $data: { $positionConfig },
-        direction,
-      } = this;
-
-      this.collapse = false;
-
-      $positionConfig['close'][direction]();
-    },
-  },
-};
+  return {
+    setPositionConfig,
+    getDuration,
+    getElRef,
+  };
+}

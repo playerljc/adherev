@@ -6,172 +6,166 @@
 
     <adv-playground-page-code-box-section title="代码演示" :config="codeBoxPanelConfig">
       <template #p1>
-        <fragment>
-          <adv-flexlayout style="height: 200px; border: 1px solid #ccc">
-            <adv-flexlayout-fixed>
-              <div style="padding: 15px 20px; border-bottom: 1px solid #ccc; text-align: center">
-                Top
-              </div>
-            </adv-flexlayout-fixed>
-            <adv-flexlayout-auto style="justify-content: center; align-items: center"
+        <adv-flexlayout style="height: 200px; border: 1px solid #ccc">
+          <adv-flexlayout-fixed>
+            <div style="padding: 15px 20px; border-bottom: 1px solid #ccc; text-align: center">
+              Top
+            </div>
+          </adv-flexlayout-fixed>
+          <adv-flexlayout-auto style="justify-content: center; align-items: center"
             >Center</adv-flexlayout-auto
-            >
-            <adv-flexlayout-fixed>
-              <div style="padding: 15px 20px; border-top: 1px solid #ccc; text-align: center">
-                Bottom
-              </div>
-            </adv-flexlayout-fixed>
-          </adv-flexlayout>
+          >
+          <adv-flexlayout-fixed>
+            <div style="padding: 15px 20px; border-top: 1px solid #ccc; text-align: center">
+              Bottom
+            </div>
+          </adv-flexlayout-fixed>
+        </adv-flexlayout>
 
-          <adv-space />
+        <adv-space />
 
-          <adv-flexlayout style="height: 200px; border: 1px solid #ccc">
-            <adv-flexlayout-fixed>
-              <div style="padding: 15px 20px; border-bottom: 1px solid #ccc; text-align: center">
+        <adv-flexlayout style="height: 200px; border: 1px solid #ccc">
+          <adv-flexlayout-fixed>
+            <div style="padding: 15px 20px; border-bottom: 1px solid #ccc; text-align: center">
+              Top
+            </div>
+          </adv-flexlayout-fixed>
+          <adv-flexlayout-auto>
+            <adv-flexlayout direction="horizontal">
+              <adv-flexlayout-fixed
+                style="
+                  padding: 0 20px;
+                  border-right: 1px solid #ccc;
+                  justify-content: center;
+                  align-items: center;
+                "
+              >
+                left
+              </adv-flexlayout-fixed>
+              <adv-flexlayout-auto style="justify-content: center; align-items: center">
+                Center
+              </adv-flexlayout-auto>
+              <adv-flexlayout-fixed
+                style="
+                  padding: 0 20px;
+                  border-left: 1px solid #ccc;
+                  justify-content: center;
+                  align-items: center;
+                "
+              >
+                Right
+              </adv-flexlayout-fixed>
+            </adv-flexlayout>
+          </adv-flexlayout-auto>
+          <adv-flexlayout-fixed>
+            <div style="padding: 15px 20px; border-top: 1px solid #ccc; text-align: center">
+              Bottom
+            </div>
+          </adv-flexlayout-fixed>
+        </adv-flexlayout>
+
+        <adv-space />
+
+        <adv-flexlayout direction="horizontal" style="height: 200px; border: 1px solid #ccc">
+          <adv-flexlayout-fixed
+            style="
+              border-right: 1px solid #ccc;
+              padding: 0 15px;
+              justify-content: center;
+              align-items: center;
+            "
+          >
+            Left
+          </adv-flexlayout-fixed>
+          <adv-flexlayout-auto>
+            <adv-flexlayout>
+              <adv-flexlayout-fixed
+                style="
+                  padding: 15px 0;
+                  border-bottom: 1px solid #ccc;
+                  justify-content: center;
+                  align-items: center;
+                "
+              >
                 Top
-              </div>
-            </adv-flexlayout-fixed>
-            <adv-flexlayout-auto>
-              <adv-flexlayout direction="horizontal">
-                <adv-flexlayout-fixed
-                  style="
-                padding: 0 20px;
-                border-right: 1px solid #ccc;
-                justify-content: center;
-                align-items: center;
-              "
-                >
-                  left
-                </adv-flexlayout-fixed>
-                <adv-flexlayout-auto style="justify-content: center; align-items: center">
-                  Center
-                </adv-flexlayout-auto>
-                <adv-flexlayout-fixed
-                  style="
-                padding: 0 20px;
-                border-left: 1px solid #ccc;
-                justify-content: center;
-                align-items: center;
-              "
-                >
-                  Right
-                </adv-flexlayout-fixed>
-              </adv-flexlayout>
-            </adv-flexlayout-auto>
-            <adv-flexlayout-fixed>
-              <div style="padding: 15px 20px; border-top: 1px solid #ccc; text-align: center">
+              </adv-flexlayout-fixed>
+              <adv-flexlayout-auto style="justify-content: center; align-items: center">
+                Center
+              </adv-flexlayout-auto>
+              <adv-flexlayout-fixed
+                style="
+                  padding: 15px 0;
+                  border-top: 1px solid #ccc;
+                  justify-content: center;
+                  align-items: center;
+                "
+              >
                 Bottom
-              </div>
-            </adv-flexlayout-fixed>
-          </adv-flexlayout>
-
-          <adv-space />
-
-          <adv-flexlayout direction="horizontal" style="height: 200px; border: 1px solid #ccc">
-            <adv-flexlayout-fixed
-              style="
-            border-right: 1px solid #ccc;
-            padding: 0 15px;
-            justify-content: center;
-            align-items: center;
-          "
-            >
-              Left
-            </adv-flexlayout-fixed>
-            <adv-flexlayout-auto>
-              <adv-flexlayout>
-                <adv-flexlayout-fixed
-                  style="
-                padding: 15px 0;
-                border-bottom: 1px solid #ccc;
-                justify-content: center;
-                align-items: center;
-              "
-                >
-                  Top
-                </adv-flexlayout-fixed>
-                <adv-flexlayout-auto style="justify-content: center; align-items: center">
-                  Center
-                </adv-flexlayout-auto>
-                <adv-flexlayout-fixed
-                  style="
-                padding: 15px 0;
-                border-top: 1px solid #ccc;
-                justify-content: center;
-                align-items: center;
-              "
-                >
-                  Bottom
-                </adv-flexlayout-fixed>
-              </adv-flexlayout>
-            </adv-flexlayout-auto>
-            <adv-flexlayout-fixed
-              style="
-            border-left: 1px solid #ccc;
-            padding: 0 15px;
-            justify-content: center;
-            align-items: center;
-          "
+              </adv-flexlayout-fixed>
+            </adv-flexlayout>
+          </adv-flexlayout-auto>
+          <adv-flexlayout-fixed
+            style="
+              border-left: 1px solid #ccc;
+              padding: 0 15px;
+              justify-content: center;
+              align-items: center;
+            "
             >Right</adv-flexlayout-fixed
-            >
-          </adv-flexlayout>
-        </fragment>
+          >
+        </adv-flexlayout>
       </template>
 
       <template #p2>
-        <fragment>
-          <adv-flexlayout style="height: 500px; border: 1px solid #ccc">
-            <adv-flexlayout-fixed>fixed1</adv-flexlayout-fixed>
-            <adv-flexlayout-fixed>fixed2</adv-flexlayout-fixed>
-            <adv-flexlayout-auto>auto1</adv-flexlayout-auto>
-            <adv-flexlayout-fixed>fixed3</adv-flexlayout-fixed>
-            <adv-flexlayout-auto>auto2</adv-flexlayout-auto>
-            <adv-flexlayout-fixed>fixed4</adv-flexlayout-fixed>
-          </adv-flexlayout>
+        <adv-flexlayout style="height: 500px; border: 1px solid #ccc">
+          <adv-flexlayout-fixed>fixed1</adv-flexlayout-fixed>
+          <adv-flexlayout-fixed>fixed2</adv-flexlayout-fixed>
+          <adv-flexlayout-auto>auto1</adv-flexlayout-auto>
+          <adv-flexlayout-fixed>fixed3</adv-flexlayout-fixed>
+          <adv-flexlayout-auto>auto2</adv-flexlayout-auto>
+          <adv-flexlayout-fixed>fixed4</adv-flexlayout-fixed>
+        </adv-flexlayout>
 
-          <adv-space />
+        <adv-space />
 
-          <adv-flexlayout direction="horizontal" style="height: 200px; border: 1px solid #ccc">
-            <adv-flexlayout-fixed>fixed1</adv-flexlayout-fixed>
-            <adv-flexlayout-fixed>fixed2</adv-flexlayout-fixed>
-            <adv-flexlayout-auto>auto1</adv-flexlayout-auto>
-            <adv-flexlayout-fixed>fixed3</adv-flexlayout-fixed>
-            <adv-flexlayout-auto>auto2</adv-flexlayout-auto>
-            <adv-flexlayout-fixed>fixed4</adv-flexlayout-fixed>
-          </adv-flexlayout>
-        </fragment>
+        <adv-flexlayout direction="horizontal" style="height: 200px; border: 1px solid #ccc">
+          <adv-flexlayout-fixed>fixed1</adv-flexlayout-fixed>
+          <adv-flexlayout-fixed>fixed2</adv-flexlayout-fixed>
+          <adv-flexlayout-auto>auto1</adv-flexlayout-auto>
+          <adv-flexlayout-fixed>fixed3</adv-flexlayout-fixed>
+          <adv-flexlayout-auto>auto2</adv-flexlayout-auto>
+          <adv-flexlayout-fixed>fixed4</adv-flexlayout-fixed>
+        </adv-flexlayout>
       </template>
 
       <template #p3>
-        <fragment>
-          <adv-flexlayout style="height: 100px; border: 1px solid #ccc">
-            <adv-flexlayout-fixed>Top</adv-flexlayout-fixed>
-            <adv-flexlayout-auto :fit="false" :auto-fixed="false" style="overflow-y: auto">
-              <p>今天是个好日子</p>
-              <p>今天是个好日子</p>
-              <p>今天是个好日子</p>
-              <p>今天是个好日子</p>
-              <p>今天是个好日子</p>
-              <p>今天是个好日子</p>
-              <p>今天是个好日子</p>
-              <p>今天是个好日子</p>
-              <p>今天是个好日子</p>
-              <p>今天是个好日子</p>
-            </adv-flexlayout-auto>
-          </adv-flexlayout>
+        <adv-flexlayout style="height: 100px; border: 1px solid #ccc">
+          <adv-flexlayout-fixed>Top</adv-flexlayout-fixed>
+          <adv-flexlayout-auto :fit="false" :auto-fixed="false" style="overflow-y: auto">
+            <p>今天是个好日子</p>
+            <p>今天是个好日子</p>
+            <p>今天是个好日子</p>
+            <p>今天是个好日子</p>
+            <p>今天是个好日子</p>
+            <p>今天是个好日子</p>
+            <p>今天是个好日子</p>
+            <p>今天是个好日子</p>
+            <p>今天是个好日子</p>
+            <p>今天是个好日子</p>
+          </adv-flexlayout-auto>
+        </adv-flexlayout>
 
-          <adv-space />
+        <adv-space />
 
-          <adv-flexlayout
-            direction="horizontal"
-            style="overflow: auto; height: 100px; border: 1px solid #ccc"
-          >
-            <adv-flexlayout-fixed>Left</adv-flexlayout-fixed>
-            <adv-flexlayout-auto :fit="false" :auto-fixed="false">
-              111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
-            </adv-flexlayout-auto>
-          </adv-flexlayout>
-        </fragment>
+        <adv-flexlayout
+          direction="horizontal"
+          style="overflow: auto; height: 100px; border: 1px solid #ccc"
+        >
+          <adv-flexlayout-fixed>Left</adv-flexlayout-fixed>
+          <adv-flexlayout-auto :fit="false" :auto-fixed="false">
+            111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
+          </adv-flexlayout-auto>
+        </adv-flexlayout>
       </template>
     </adv-playground-page-code-box-section>
 

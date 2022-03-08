@@ -1,10 +1,12 @@
+import { CSSProperties } from 'vue';
+
 export interface IColumnConfig {
   dataIndex: string;
   isFixed: boolean;
   width: string | number;
-  render: Function | Object;
+  render?: (config: IColumnConfig, dataSource: object) => any | Object;
   className: string;
-  style: string;
+  style: CSSProperties;
 }
 
 export interface ITableConfig {
@@ -20,36 +22,16 @@ export interface IIndicatorTableConfig {
 export interface IMasterItem extends ITableConfig {
   title: Function | Object;
   className: string;
-  style: string;
+  style: CSSProperties;
   fixedWrapClassName: string;
-  fixedWrapStyle: string;
+  fixedWrapStyle: CSSProperties;
   autoWrapClassName: string;
-  autoWrapStyle: string;
+  autoWrapStyle: CSSProperties;
   autoInnerClassName: string;
-  autoInnerStyle: string;
+  autoInnerStyle: CSSProperties;
 }
 
-/**
- * ICascadeComparedProps
- * @interface ICascadeComparedProps
- */
-export interface ICascadeComparedProps {
-  className?: string;
-  indicatorClassName?: string;
-  indicatorStyle?: string;
-  indicatorFixedWrapClassName?: string;
-  indicatorFixedWrapStyle?: string;
-  indicatorAutoWrapClassName?: string;
-  indicatorAutoWrapStyle?: string;
-  masterClassName?: string;
-  masterStyle?: string;
-  masterInnerClassName?: string;
-  masterInnerStyle?: string;
-  masterStickFixedClassName?: string;
-  masterStickFixedStyle?: string;
-  masterStickInnerClassName?: string;
-  masterStickInnerStyle?: string;
-  indicator: IIndicatorTableConfig;
-  master: Array<IMasterItem>;
-  defaultCellWidth: number | string;
+export interface IComponent {
+  isUse(): boolean;
+  use(Vue: any): void;
 }

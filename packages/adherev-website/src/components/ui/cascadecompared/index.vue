@@ -12,7 +12,6 @@
       </template>
 
       <template #p2>
-        <fragment>
           <a-button type="primary" @click="onCode2Click">插入</a-button>
 
           <adv-space />
@@ -20,11 +19,9 @@
           <div style="width: 320px; height: 548px; border: 1px solid rgba(0, 0, 0, 0.1)">
             <adv-cascadecompared ref="ref1" :indicator="indicator" :master="data1" />
           </div>
-        </fragment>
       </template>
 
       <template #p3>
-        <fragment>
           <adv-space-group direction="horizontal">
             <a-button type="primary" @click="$refs.ref2.scrollToByIndex(9, 0)"
               >滚动到底部(无动画)</a-button
@@ -38,11 +35,9 @@
           <div style="width: 320px; height: 548px; border: 1px solid rgba(0, 0, 0, 0.1)">
             <adv-cascadecompared ref="ref2" :indicator="indicator" :master="master" />
           </div>
-        </fragment>
       </template>
 
       <template #p4>
-        <fragment>
           <adv-space-group direction="horizontal">
             <a-button type="primary" @click="$refs.ref3.scrollToByColumn(1)">滚动到第一列</a-button>
             <a-button @click="$refs.ref3.scrollToByColumn(9)">滚动到最后一列(有动画)</a-button>
@@ -53,7 +48,6 @@
           <div style="width: 320px; height: 548px; border: 1px solid rgba(0, 0, 0, 0.1)">
             <adv-cascadecompared ref="ref3" :indicator="indicator" :master="master" />
           </div>
-        </fragment>
       </template>
     </adv-playground-page-code-box-section>
 

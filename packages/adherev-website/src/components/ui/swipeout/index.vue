@@ -6,49 +6,55 @@
 
     <adv-playground-page-code-box-section title="代码演示" :config="codeBoxPanelConfig">
       <template #p1>
-        <fragment>
-          <div>
-            <a-radio-group>
-              <a-radio-button value="large" @click="onShowBefore">showBefore</a-radio-button>
-              <a-radio-button value="default" @click="onShowAfter">showAfter</a-radio-button>
-              <a-radio-button value="small" @click="onShowCloseAll">closeAll</a-radio-button>
-            </a-radio-group>
-          </div>
+        <div>
+          <a-radio-group>
+            <a-radio-button value="large" @click="onShowBefore">showBefore</a-radio-button>
+            <a-radio-button value="default" @click="onShowAfter">showAfter</a-radio-button>
+            <a-radio-button value="small" @click="onShowCloseAll">closeAll</a-radio-button>
+          </a-radio-group>
+        </div>
 
-          <adv-space />
+        <adv-space />
 
-          <a-list item-layout="horizontal" :data-source="data">
+        <a-list item-layout="horizontal" :data-source="data">
+          <template #renderItem="{ item, index }">
             <adv-swipeout
-              slot="renderItem"
-              slot-scope="item, index"
               :before-show="item.beforeShow"
               :after-show="item.afterShow"
               :duration="item.duration"
             >
-              <a-radio-group slot="before">
-                <a-radio-button value="large">Large</a-radio-button>
-                <a-radio-button value="default">Default</a-radio-button>
-                <a-radio-button value="small">Small</a-radio-button>
-              </a-radio-group>
+              <template #before>
+                <a-radio-group>
+                  <a-radio-button value="large">Large</a-radio-button>
+                  <a-radio-button value="default">Default</a-radio-button>
+                  <a-radio-button value="small">Small</a-radio-button>
+                </a-radio-group>
+              </template>
 
-              <a-radio-group slot="after">
-                <a-radio-button value="large">Large</a-radio-button>
-                <a-radio-button value="default">Default</a-radio-button>
-                <a-radio-button value="small">Small</a-radio-button>
-              </a-radio-group>
+              <template #after>
+                <a-radio-group>
+                  <a-radio-button value="large">Large</a-radio-button>
+                  <a-radio-button value="default">Default</a-radio-button>
+                  <a-radio-button value="small">Small</a-radio-button>
+                </a-radio-group>
+              </template>
 
               <a-list-item-meta
                 description="Ant Design, a design language for background applications, is refined by Ant UED Team"
               >
-                <a slot="title" href="https://www.antdv.com/">{{ item.title }}</a>
-                <a-avatar
-                  slot="avatar"
-                  src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"
-                />
+                <template #title>
+                  <a href="https://www.antdv.com/">{{ item.title }}</a>
+                </template>
+
+                <template #avatar>
+                  <a-avatar
+                    src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"
+                  />
+                </template>
               </a-list-item-meta>
             </adv-swipeout>
-          </a-list>
-        </fragment>
+          </template>
+        </a-list>
       </template>
     </adv-playground-page-code-box-section>
 

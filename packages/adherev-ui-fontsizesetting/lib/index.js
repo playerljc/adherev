@@ -1,2 +1,16 @@
-"use strict";require("core-js/modules/es.object.define-property.js");var __importDefault=function(e){return e&&e.__esModule?e:{default:e}};Object.defineProperty(exports,"__esModule",{value:!0});var ant_design_vue_1=require("ant-design-vue"),adherev_util_1=__importDefault(require("@baifendian/adherev-util")),fontsizesetting_1=__importDefault(require("./fontsizesetting")),_a=adherev_util_1.default._util,withInstall=_a.withInstall,withVue=_a.withVue,Component=withInstall(fontsizesetting_1.default);Component.isUse=function(){return!0},Component.use=function(e){e.use(ant_design_vue_1.Slider),e.use(Component),withVue(e,"FontSizeSetting",Component)},exports.default=Component;
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var tslib_1 = require("tslib");
+var adherev_util_1 = (0, tslib_1.__importDefault)(require("@baifendian/adherev-util"));
+var ant_design_vue_1 = require("ant-design-vue");
+var fontsizesetting_1 = (0, tslib_1.__importDefault)(require("./fontsizesetting"));
+var _a = adherev_util_1.default._util, withInstall = _a.withInstall, withVue = _a.withVue;
+var Component = withInstall(fontsizesetting_1.default);
+Component.isUse = function () { return true; };
+Component.use = function (Vue) {
+    Vue.use(ant_design_vue_1.Slider);
+    Vue.use(Component);
+    withVue(Vue, 'FontSizeSetting', Component);
+};
+exports.default = Component;
 //# sourceMappingURL=index.js.map

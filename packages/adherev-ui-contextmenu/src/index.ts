@@ -8,7 +8,7 @@ const {
 
 ContextMenu.isUse = () => true;
 
-ContextMenu.use = (Vue) => {
+ContextMenu.use = (Vue: any) => {
   withVue(Vue, 'ContextMenu', ContextMenu);
 };
 

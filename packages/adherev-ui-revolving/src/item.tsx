@@ -1,28 +1,18 @@
 import classNames from 'classnames';
+import { defineComponent } from 'vue';
 
 const selectorPrefix = 'adherev-ui-revolving-item';
 
-export default {
+export default defineComponent({
   name: 'adv-revolving-item',
-  props: {
-    className: {
-      type: String,
-      default: '',
-    },
+  setup(props, { slots }) {
+    return () => (
+      <div
+        // @ts-ignore
+        class={classNames(selectorPrefix, 'swiper-slide')}
+      >
+        {slots?.default?.()}
+      </div>
+    );
   },
-  computed: {
-    getClassName() {
-      const { className } = this;
-
-      return classNames(
-        selectorPrefix,
-        'swiper-slide',
-
-        className.split(/\s+/),
-      );
-    },
-  },
-  render(h) {
-    return <div class={this.getClassName}>{this.$slots.default}</div>;
-  },
-};
+});

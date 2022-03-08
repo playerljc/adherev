@@ -1,11 +1,14 @@
-import WarnPrompt from './warnprompt';
 import BfdUtil from '@baifendian/adherev-util';
+
+import WarnPrompt from './warnprompt';
+import { IComponent } from './types';
+
 const {
   _util: { withVue },
 } = BfdUtil;
 
-WarnPrompt.isUse = () => true;
-WarnPrompt.use = (Vue) => {
+(WarnPrompt as IComponent).isUse = () => true;
+(WarnPrompt as IComponent).use = (Vue: any) => {
   withVue(Vue, 'WarnPrompt', WarnPrompt);
 };
 

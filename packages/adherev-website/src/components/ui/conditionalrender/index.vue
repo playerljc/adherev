@@ -59,11 +59,13 @@
             }}</a-button>
           </template>
           <adv-conditionalrender-show :conditional="rShow">
-            <p>
-              In the process of internal desktop applications development, many different design
-              specs and implementations would be involved, which might cause designers and
-              developers difficulties and duplication and reduce the efficiency of development.
-            </p>
+            <adv-conditionalrender-wrap>
+              <p>
+                In the process of internal desktop applications development, many different design
+                specs and implementations would be involved, which might cause designers and
+                developers difficulties and duplication and reduce the efficiency of development.
+              </p>
+            </adv-conditionalrender-wrap>
           </adv-conditionalrender-show>
         </a-card>
       </template>
@@ -76,13 +78,17 @@
             }}</a-button>
           </template>
           <adv-conditionalrender-show :conditional="rNoMatchShow">
-            <p>
-              In the process of internal desktop applications development, many different design
-              specs and implementations would be involved, which might cause designers and
-              developers difficulties and duplication and reduce the efficiency of development.
-            </p>
+            <adv-conditionalrender-wrap>
+              <p>
+                In the process of internal desktop applications development, many different design
+                specs and implementations would be involved, which might cause designers and
+                developers difficulties and duplication and reduce the efficiency of development.
+              </p>
+            </adv-conditionalrender-wrap>
 
-            <a-empty slot="noMatch" />
+            <template v-slot:noMatch>
+              <a-empty />
+            </template>
           </adv-conditionalrender-show>
         </a-card>
       </template>
@@ -95,13 +101,19 @@
             }}</a-button>
           </template>
           <adv-conditionalrender-show :conditional="rFragmentShow">
-            <p>Fragment1</p>
-            <p>Fragment2</p>
-            <p>Fragment3</p>
+            <adv-conditionalrender-wrap>
+              <p>Fragment1</p>
+              <p>Fragment2</p>
+              <p>Fragment3</p>
+            </adv-conditionalrender-wrap>
 
-            <p slot="noMatch">NoMatchFragment1</p>
-            <p slot="noMatch">NoMatchFragment2</p>
-            <p slot="noMatch">NoMatchFragment3</p>
+            <template v-slot:noMatch>
+              <adv-conditionalrender-wrap>
+                <p>NoMatchFragment1</p>
+                <p>NoMatchFragment2</p>
+                <p>NoMatchFragment3</p>
+              </adv-conditionalrender-wrap>
+            </template>
           </adv-conditionalrender-show>
         </a-card>
       </template>
@@ -114,11 +126,13 @@
             }}</a-button>
           </template>
           <adv-conditionalrender-visibility :conditional="rVisibility">
-            <p>
-              In the process of internal desktop applications development, many different design
-              specs and implementations would be involved, which might cause designers and
-              developers difficulties and duplication and reduce the efficiency of development.
-            </p>
+            <adv-conditionalrender-wrap>
+              <p>
+                In the process of internal desktop applications development, many different design
+                specs and implementations would be involved, which might cause designers and
+                developers difficulties and duplication and reduce the efficiency of development.
+              </p>
+            </adv-conditionalrender-wrap>
           </adv-conditionalrender-visibility>
         </a-card>
       </template>
@@ -131,13 +145,17 @@
             }}</a-button>
           </template>
           <adv-conditionalrender-visibility :conditional="rNoMatchVisibility">
-            <p>
-              In the process of internal desktop applications development, many different design
-              specs and implementations would be involved, which might cause designers and
-              developers difficulties and duplication and reduce the efficiency of development.
-            </p>
+            <adv-conditionalrender-wrap>
+              <p>
+                In the process of internal desktop applications development, many different design
+                specs and implementations would be involved, which might cause designers and
+                developers difficulties and duplication and reduce the efficiency of development.
+              </p>
+            </adv-conditionalrender-wrap>
 
-            <a-empty slot="noMatch" />
+            <template v-slot:noMatch>
+              <a-empty />
+            </template>
           </adv-conditionalrender-visibility>
         </a-card>
       </template>
@@ -150,13 +168,19 @@
             }}</a-button>
           </template>
           <adv-conditionalrender-visibility :conditional="rFragmentVisibility">
-            <p>Fragment1</p>
-            <p>Fragment2</p>
-            <p>Fragment3</p>
+            <adv-conditionalrender-wrap>
+              <p>Fragment1</p>
+              <p>Fragment2</p>
+              <p>Fragment3</p>
+            </adv-conditionalrender-wrap>
 
-            <p slot="noMatch">NoMatchFragment1</p>
-            <p slot="noMatch">NoMatchFragment2</p>
-            <p slot="noMatch">NoMatchFragment3</p>
+            <template v-slot:noMatch>
+              <adv-conditionalrender-wrap>
+                <p>NoMatchFragment1</p>
+                <p>NoMatchFragment2</p>
+                <p>NoMatchFragment3</p>
+              </adv-conditionalrender-wrap>
+            </template>
           </adv-conditionalrender-visibility>
         </a-card>
       </template>
@@ -248,14 +272,18 @@ export default {
           codeText: `
         <a-card>
           <template #actions class="ant-card-actions">
-            <a-button type="primary" @click="rShow = !rShow">{{ rShow ? '隐藏' : '显示' }}</a-button>
+            <a-button type="primary" @click="rShow = !rShow">{{
+              rShow ? '隐藏' : '显示'
+            }}</a-button>
           </template>
           <adv-conditionalrender-show :conditional="rShow">
-            <p>
-              In the process of internal desktop applications development, many different design specs
-              and implementations would be involved, which might cause designers and developers
-              difficulties and duplication and reduce the efficiency of development.
-            </p>
+            <adv-conditionalrender-wrap>
+              <p>
+                In the process of internal desktop applications development, many different design
+                specs and implementations would be involved, which might cause designers and
+                developers difficulties and duplication and reduce the efficiency of development.
+              </p>
+            </adv-conditionalrender-wrap>
           </adv-conditionalrender-show>
         </a-card>
       `,
@@ -279,13 +307,15 @@ export default {
             }}</a-button>
           </template>
           <adv-conditionalrender-show :conditional="rNoMatchShow">
-            <p>
-              In the process of internal desktop applications development, many different design specs
-              and implementations would be involved, which might cause designers and developers
-              difficulties and duplication and reduce the efficiency of development.
-            </p>
+            <adv-conditionalrender-wrap>
+              <p>
+                In the process of internal desktop applications development, many different design
+                specs and implementations would be involved, which might cause designers and
+                developers difficulties and duplication and reduce the efficiency of development.
+              </p>
+            </adv-conditionalrender-wrap>
 
-            <template #noMatch>
+            <template v-slot:noMatch>
               <a-empty />
             </template>
           </adv-conditionalrender-show>
@@ -311,14 +341,18 @@ export default {
             }}</a-button>
           </template>
           <adv-conditionalrender-show :conditional="rFragmentShow">
-            <p>Fragment1</p>
-            <p>Fragment2</p>
-            <p>Fragment3</p>
+            <adv-conditionalrender-wrap>
+              <p>Fragment1</p>
+              <p>Fragment2</p>
+              <p>Fragment3</p>
+            </adv-conditionalrender-wrap>
 
-            <template #noMatch>
-              <p>NoMatchFragment1</p>
-              <p>NoMatchFragment2</p>
-              <p>NoMatchFragment3</p>
+            <template v-slot:noMatch>
+              <adv-conditionalrender-wrap>
+                <p>NoMatchFragment1</p>
+                <p>NoMatchFragment2</p>
+                <p>NoMatchFragment3</p>
+              </adv-conditionalrender-wrap>
             </template>
           </adv-conditionalrender-show>
         </a-card>
@@ -338,16 +372,18 @@ export default {
           codeText: `
         <a-card>
           <template #actions class="ant-card-actions">
-            <a-button type="primary" @click="rShow = !rVisibility">{{
+            <a-button type="primary" @click="rVisibility = !rVisibility">{{
               rVisibility ? '隐藏' : '显示'
             }}</a-button>
           </template>
           <adv-conditionalrender-visibility :conditional="rVisibility">
-            <p>
-              In the process of internal desktop applications development, many different design specs
-              and implementations would be involved, which might cause designers and developers
-              difficulties and duplication and reduce the efficiency of development.
-            </p>
+            <adv-conditionalrender-wrap>
+              <p>
+                In the process of internal desktop applications development, many different design
+                specs and implementations would be involved, which might cause designers and
+                developers difficulties and duplication and reduce the efficiency of development.
+              </p>
+            </adv-conditionalrender-wrap>
           </adv-conditionalrender-visibility>
         </a-card>
       `,
@@ -371,13 +407,15 @@ export default {
             }}</a-button>
           </template>
           <adv-conditionalrender-visibility :conditional="rNoMatchVisibility">
-            <p>
-              In the process of internal desktop applications development, many different design specs
-              and implementations would be involved, which might cause designers and developers
-              difficulties and duplication and reduce the efficiency of development.
-            </p>
+            <adv-conditionalrender-wrap>
+              <p>
+                In the process of internal desktop applications development, many different design
+                specs and implementations would be involved, which might cause designers and
+                developers difficulties and duplication and reduce the efficiency of development.
+              </p>
+            </adv-conditionalrender-wrap>
 
-            <template #noMatch>
+            <template v-slot:noMatch>
               <a-empty />
             </template>
           </adv-conditionalrender-visibility>
@@ -403,14 +441,18 @@ export default {
             }}</a-button>
           </template>
           <adv-conditionalrender-visibility :conditional="rFragmentVisibility">
-            <p>Fragment1</p>
-            <p>Fragment2</p>
-            <p>Fragment3</p>
+            <adv-conditionalrender-wrap>
+              <p>Fragment1</p>
+              <p>Fragment2</p>
+              <p>Fragment3</p>
+            </adv-conditionalrender-wrap>
 
-            <template #noMatch>
-              <p>NoMatchFragment1</p>
-              <p>NoMatchFragment2</p>
-              <p>NoMatchFragment3</p>
+            <template v-slot:noMatch>
+              <adv-conditionalrender-wrap>
+                <p>NoMatchFragment1</p>
+                <p>NoMatchFragment2</p>
+                <p>NoMatchFragment3</p>
+              </adv-conditionalrender-wrap>
             </template>
           </adv-conditionalrender-visibility>
         </a-card>

@@ -33,20 +33,21 @@
     "access": "public"
   },
   "devDependencies": {
-    "@babel/runtime": "^7.7.4",
-    "@ctsj/buildv": "^2.0.8",
+    "@babel/runtime": "^7.17.2",
+    "@ctsj/buildv": "^5.0.2-beta",
     "npm-run-all": "^4.1.5",
-    "typescript": "^3.8.2"
+    "typescript": "^4.5.5"
   },
   "dependencies": {
     "@baifendian/adherev-ui-css": "^1.0.8",
     "@baifendian/adherev-util": "^1.0.8",
     "@baifendian/adherev-util-intl": "^1.0.8",
     "@baifendian/adherev-util-resource": "^1.0.8",
-    "classnames": "^2.2.6",
+    "classnames": "^2.3.1",
     "load-awesome": "^1.1.0",
     "moment": "^2.29.1",
     "omit.js": "^2.0.2",
-    "vue": "^2.6.14"
+    "vue": "^3.2.31",
+    "vue-types": "^4.1.1"
   }
 }

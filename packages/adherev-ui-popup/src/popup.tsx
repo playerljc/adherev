@@ -1,20 +1,20 @@
-import Vue from 'vue';
 import { v1 } from 'uuid';
-
-import { IConfig } from './types';
+import { createApp, h } from 'vue';
+import { IComponent, IConfig } from './types';
 
 const selectorPrefix = 'adherev-ui-popup';
 
+// @ts-ignore
 let prePopup: this;
-let maskEl;
-let el = null;
+let maskEl: HTMLDivElement;
+let el: HTMLElement | null = null;
 
 /**
  * Popup
  * @class Popup
  * @classdesc Popup
  */
-class Popup {
+export class Popup {
   private readonly id: string = '';
   private readonly config: IConfig | null = null;
 
@@ -22,7 +22,7 @@ class Popup {
   private el: HTMLElement | null = null;
   private popupEl: HTMLDivElement | null = null;
   private popupInnerEl: HTMLDivElement | null = null;
-  private vm: Vue | undefined;
+  private vm: any | undefined;
 
   /**
    * constructor
@@ -44,7 +44,7 @@ class Popup {
    * createMask
    */
   private createMask(): void {
-    const { zIndex } = this.config;
+    const { zIndex } = this.config as IConfig;
 
     maskEl = document.createElement('div');
 
@@ -52,7 +52,7 @@ class Popup {
 
     maskEl.style.zIndex = String((zIndex || 11000) - 1500);
 
-    this.el.appendChild(maskEl);
+    this?.el?.appendChild(maskEl);
 
     maskEl.addEventListener('transitionend', this.onMaskElTransitionend);
   }
@@ -61,7 +61,7 @@ class Popup {
    * render
    */
   private render(): void {
-    const { children, zIndex } = this.config;
+    const { children, zIndex } = this.config as IConfig;
 
     this.popupEl = document.createElement('div');
 
@@ -77,26 +77,30 @@ class Popup {
 
     const self = this;
 
-    this.vm = new Vue({
+    this.vm = createApp({
       mounted() {
-        self.el.appendChild(self.popupEl);
+        self?.el?.appendChild(self.popupEl as HTMLElement);
         self.trigger('onCreate');
       },
-      render(h) {
-        return h(children);
+      render() {
+        return h(children as string);
       },
-    });
-
-    this.vm.$mount(this.popupInnerEl);
+    }).mount(this.popupInnerEl);
   }
 
   /**
    * trigger
    * @param hookName
    */
-  private trigger(hookName: string): void {
-    if (this.config[hookName]) {
-      return this.config[hookName]();
+  private trigger(hookName: string) {
+    const { config } = this;
+
+    if (!config) return;
+
+    // @ts-ignore
+    if (config[hookName]) {
+      // @ts-ignore
+      return config[hookName]();
     }
   }
 
@@ -115,7 +119,7 @@ class Popup {
 
     maskEl.style.display = 'block';
 
-    this.popupEl.style.display = 'block';
+    (this.popupEl as HTMLElement).style.display = 'block';
 
     this.isShow = true;
 
@@ -124,7 +128,7 @@ class Popup {
     setTimeout(() => {
       maskEl.classList.add('modal-in');
 
-      this.popupEl.classList.add('modal-in');
+      (this.popupEl as HTMLElement).classList.add('modal-in');
     }, 100);
 
     return true;
@@ -145,12 +149,12 @@ class Popup {
 
     if (promise) {
       (promise as unknown as Promise<null>).then(() => {
-        this.popupEl.classList.remove('modal-in');
+        (this.popupEl as HTMLElement).classList.remove('modal-in');
 
         maskEl.classList.remove('modal-in');
       });
     } else {
-      this.popupEl.classList.remove('modal-in');
+      (this.popupEl as HTMLElement).classList.remove('modal-in');
 
       maskEl.classList.remove('modal-in');
     }
@@ -162,9 +166,12 @@ class Popup {
    * destroy - 销毁一个popup
    */
   destroy(): boolean {
-    this.vm.$destroy();
+    try {
+      this.vm.unmount();
+    } catch (err) {
+      (this.popupEl as HTMLElement)?.parentNode?.removeChild(this.popupEl as HTMLElement);
+    }
 
-    this.popupEl.parentNode.removeChild(this.popupEl);
     this.popupEl = null;
 
     this.trigger('onDestroy');
@@ -195,7 +202,7 @@ class Popup {
     if (!this.isShow) {
       prePopup = null;
 
-      this.popupEl.style.display = 'none';
+      (this.popupEl as HTMLElement).style.display = 'none';
 
       this.trigger('onAfterClose');
     } else {
@@ -218,7 +225,7 @@ class Popup {
 /**
  * PopupFactory
  */
-const PopupFactory = {
+const PopupFactory: IComponent = {
   /**
    * create
    * @param config
@@ -227,7 +234,6 @@ const PopupFactory = {
   create(config: IConfig): Popup {
     return new Popup(config);
   },
-
   /**
    * show - 显示一个popup
    * @param popup
@@ -244,7 +250,6 @@ const PopupFactory = {
 
     return popup.show();
   },
-
   /**
    * close - 关闭一个popup
    * @param {Popup} popup
@@ -257,7 +262,6 @@ const PopupFactory = {
 
     return popup.close();
   },
-
   /**
    * closeAll - 关闭所有
    * @return boolean
@@ -269,7 +273,6 @@ const PopupFactory = {
 
     return false;
   },
-
   /**
    * destroy - 销毁一个popup
    * @param {Popup} popup
@@ -282,19 +285,18 @@ const PopupFactory = {
 
     return popup.destroy();
   },
-
   /**
    * getEl
    * @return {HTMLElement}
    */
-  getEl() {
+  getEl(): HTMLElement {
     return el || document.body;
   },
   /**
    * setEl
    * @param tel
    */
-  setEl(tel) {
+  setEl(tel: HTMLElement) {
     el = tel;
   },
 };

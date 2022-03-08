@@ -1,5 +1,7 @@
-import 'vue-highlight.js/lib/allLanguages';
-import VueHighlightJS from 'vue-highlight.js';
+// import 'vue3-highlightjs/lib/allLanguages';
+import 'highlight.js/lib/common';
+import hljsVuePlugin from '@highlightjs/vue-plugin';
+// @ts-ignore
 import BfdUtil from '@baifendian/adherev-util';
 
 import Props from './Props';
@@ -38,7 +40,7 @@ Component.PlayGroundPage.Section = withInstall(Section);
 
 Component.isUse = () => true;
 
-Component.use = (Vue) => {
+Component.use = (Vue: any) => {
   Vue.use(Component);
   Vue.use(Component.FunctionProps);
   Vue.use(Component.Props);
@@ -53,7 +55,7 @@ Component.use = (Vue) => {
   Vue.use(Component.PlayGroundPage.FunctionPropsSection);
   Vue.use(Component.PlayGroundPage.PropsSection);
   Vue.use(Component.PlayGroundPage.Section);
-  Vue.use(VueHighlightJS);
+  Vue.use(hljsVuePlugin);
 
   withVue(Vue, 'PlayGround', Component);
   withVue(Vue, 'FunctionProps', FunctionProps);

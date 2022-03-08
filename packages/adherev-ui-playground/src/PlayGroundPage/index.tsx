@@ -1,46 +1,61 @@
+// @ts-ignore
 import Space from '@baifendian/adherev-ui-space';
-import AnchorNavigation, { AnchorNavigationPropTypes } from '../AnchorNavigation';
+import { computed, defineComponent, VNode } from 'vue';
+import AnchorNavigation, { anchorNavigationProps } from '../AnchorNavigation';
+import { Util } from '@baifendian/adherev';
 
 const selectPrefix = 'adherev-ui-playground-page';
 
-export const PlayGroundPagePropTypes = {
-  ...AnchorNavigationPropTypes,
+const playGroundPageProps = {
+  ...anchorNavigationProps,
 };
 
-export default {
+export default defineComponent({
   name: 'adv-playground-page',
-  props: { ...PlayGroundPagePropTypes },
-  computed: {
-    getAnchors() {
-      const anchors = this.$slots.default
-        .filter((c) =>
-          ['CodeBoxSection', 'adv-playground-page-code-box-section'].some(
-            (t) => c.tag.indexOf(t) !== -1,
-          ),
-        )
-        .map((c) =>
-          c?.componentOptions?.propsData?.config?.map((t) => ({
+  props: playGroundPageProps,
+  setup(props, { slots }) {
+    const getAnchors = computed(() => {
+      return slots
+        .default?.()
+        .filter((c: VNode) => {
+          return ['CodeBoxSection', 'adv-playground-page-code-box-section'].some(
+            t => {
+              if (c.type) {
+                if (Util.isObject?.(c.type) && (c.type as any).name) {
+                  return (c.type as any).name === t;
+                }
+
+                return false;
+              }
+
+              return false;
+            }, //(Util.isObject?.(c.type) ? (c.type as any).name : c.type).indexOf(t) !== -1,
+          );
+        })
+        .map(c =>
+          c?.props?.config?.map?.((t: { name: any; id: any }) => ({
             name: t.name,
             anchor: t.id,
           })),
         )
         ?.flat();
+    });
 
-      return anchors;
-    },
-  },
-  render(h) {
-    return (
-      <div class={selectPrefix}>
+    return () => (
+      <div
+        // @ts-ignore
+        class={selectPrefix}
+      >
+        {/*@ts-ignore*/}
         <AnchorNavigation
-          anchors={this.getAnchors}
-          defaultActiveAnchor={this.defaultActiveAnchor}
-          anchorPosition={this.anchorPosition}
-          scrollEl={this.scrollEl}
+          anchors={getAnchors.value}
+          defaultActiveAnchor={props.defaultActiveAnchor}
+          anchorPosition={props.anchorPosition}
+          scrollEl={props.scrollEl}
         >
-          <Space.Group direction="vertical">{this.$slots.default}</Space.Group>
+          <Space.Group direction="vertical">{slots?.default?.()}</Space.Group>
         </AnchorNavigation>
       </div>
     );
   },
-};
+});

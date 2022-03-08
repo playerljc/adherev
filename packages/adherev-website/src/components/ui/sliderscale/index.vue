@@ -6,36 +6,30 @@
 
     <adv-playground-page-code-box-section title="代码演示" :config="codeBoxPanelConfig">
       <template #p1>
-        <fragment>
-          <adv-sliderscale :min="0" :max="10" :step="1" :interval="5" />
-          <adv-space />
-          <adv-sliderscale :min="0" :max="60" :step="1" :interval="5" />
-        </fragment>
+        <adv-sliderscale :min="0" :max="10" :step="1" :interval="5" />
+        <adv-space />
+        <adv-sliderscale :min="0" :max="60" :step="1" :interval="5" />
       </template>
 
       <template #p2>
-        <fragment>
-          <adv-sliderscale :min="0" :max="60" :step="1" :interval="10" />
-          <adv-space />
-          <adv-sliderscale :min="0" :max="60" :step="1" :interval="20" />
-        </fragment>
+        <adv-sliderscale :min="0" :max="60" :step="1" :interval="10" />
+        <adv-space />
+        <adv-sliderscale :min="0" :max="60" :step="1" :interval="20" />
       </template>
 
       <template #p3>
-        <fragment>
-          <a-slider :min="0" :max="60" :value="value" @change="onSliderChange" />
+        <a-slider :min="0" :max="60" :value="value" @change="onSliderChange" />
 
-          <adv-space />
+        <adv-space />
 
-          <adv-sliderscale
-            :min="0"
-            :max="60"
-            :step="1"
-            :interval="20"
-            :value="value"
-            @change="onSliderScaleChange"
-          />
-        </fragment>
+        <adv-sliderscale
+          :min="0"
+          :max="60"
+          :step="1"
+          :interval="20"
+          :value="value"
+          @change="onSliderScaleChange"
+        />
       </template>
     </adv-playground-page-code-box-section>
 
@@ -199,6 +193,7 @@ export default {
   },
   methods: {
     onSliderChange(value) {
+      console.log(value);
       this.value = parseInt(value);
     },
     onSliderScaleChange(value) {

@@ -1,240 +1,273 @@
 import ConditionalRender from '@baifendian/adherev-ui-conditionalrender';
-import { Fragment } from 'vue-fragment';
-
-import PlayGround from './PlayGround';
-import PlayGroundMulit from './PlayGroundMulit';
-import PlayGroundTab from './PlayGroundTab';
-
+import {
+  computed,
+  defineComponent,
+  ExtractPropTypes,
+  onBeforeMount,
+  onMounted,
+  ref,
+  VNode,
+  watch,
+} from 'vue';
+import { array, bool, number, object, oneOfType, string } from 'vue-types';
 import Constant from './constant';
+import PlayGround, { PlayGroundProps } from './PlayGround';
+import PlayGroundMulit, { PlayGroundMulitProps } from './PlayGroundMulit';
+import PlayGroundTab, { PlayGroundTabProps } from './PlayGroundTab';
 
 const selectPrefix = 'adherev-ui-playground-code-box';
 
-export const CodeBoxPanelPropTypes = {
-  title: {
-    type: [String, Object],
-    default: '',
-  },
-  extra: {
-    type: Object,
-    default: () => null,
-  },
-  isShowExpandAllBtn: {
-    type: Boolean,
-    default: true,
-  },
-  columnCount: {
-    type: Number,
-    default: 1,
-  },
-  defaultExpandAll: {
-    type: Boolean,
-    default: false,
-  },
-  config: {
-    type: Array,
-    default: () => [],
-  },
+type ConfigItemCommonType = { type: string; childrenSlot: string; wrapSlot: string };
+
+type ConfigItemType =
+  | (PlayGroundProps & ConfigItemCommonType & { id: string })
+  | (PlayGroundMulitProps & ConfigItemCommonType & { id: string })
+  | (PlayGroundTabProps & ConfigItemCommonType & { id: string });
+
+const codeBoxPanelProps = {
+  title: oneOfType([string(), object<VNode>()]),
+  extra: object<VNode>(),
+  isShowExpandAllBtn: bool().def(true),
+  columnCount: number().def(1),
+  defaultExpandAll: bool().def(false),
+  config: array<ConfigItemType>().def([]),
 };
 
-export default {
+export type CodeBoxPanelProps = Partial<ExtractPropTypes<typeof codeBoxPanelProps>>;
+
+export default defineComponent({
   name: 'adv-playground-code-box-panel',
-  props: {
-    ...CodeBoxPanelPropTypes,
-  },
-  data() {
-    return {
-      activeAnchor: '',
-      expandAll: this.defaultExpandAll,
-      $expandLock: false,
-    };
-  },
-  computed: {
-    column() {
-      const { columnCount } = this;
+  props: codeBoxPanelProps,
+  setup(props, { slots }) {
+    const activeAnchor = ref<string>('');
 
-      const column = [];
-      if (columnCount != null) {
-        column.length = columnCount;
+    const expandAll = ref<boolean>(props.defaultExpandAll);
+
+    let expandLock: boolean = false;
+
+    const column = computed(() => {
+      const column: number[] = [];
+      if (props.columnCount != null) {
+        column.length = props.columnCount;
       }
-      column.fill(undefined);
+      column.fill(0);
       return column;
-    },
-    renderMap() {
-      return new Map<string, Function>([
-        ['PlayGroundMulit', this.renderPlayGroundMulit],
-        ['PlayGround', this.renderPlayGround],
-        ['PlayGroundTab', this.renderPlayGroundTab],
-      ]);
-    },
-  },
-  mounted() {
-    if (typeof window === 'undefined') return;
+    });
 
-    window.addEventListener('hashchange', this.onHashChange);
-  },
-  beforeDestroy() {
-    if (typeof window === 'undefined') return;
+    const onHashChange = () => {
+      activeAnchor.value = window.location.hash.substring(1);
+    };
 
-    window.removeEventListener('hashchange', this.onHashChange);
-  },
-  watch: {
-    expandAll() {
-      this.$data.$expandLock = false;
-    },
-    defaultExpandAll(expandAll) {
-      this.expandAll = expandAll;
-    },
-  },
-  methods: {
-    onHashChange() {
-      this.activeAnchor = window.location.hash.substring(1);
-    },
-    renderPlayGround(h, columnIndex: number, index: number) {
-      const { $scopedSlots, config, activeAnchor, expandAll } = this;
-
-      const { type, childrenSlot, wrapSlot, id, ...playGroundProps } = config[index];
+    const renderPlayGround = (columnIndex: number, index: number): JSX.Element => {
+      const { type, childrenSlot, wrapSlot, id, ...playGroundProps } = props.config[index];
 
       const children = (
+        // @ts-ignore
         <PlayGround
-          {...{ props: playGroundProps, attrs: { id } }}
-          isActive={activeAnchor === id}
-          defaultExpand={expandAll}
+          {...playGroundProps}
+          id={id}
+          isActive={activeAnchor.value === id}
+          defaultExpand={expandAll.value}
         >
-          <ConditionalRender conditional={!!$scopedSlots[childrenSlot]}>
-            {$scopedSlots[childrenSlot]?.({
+          {/*@ts-ignore*/}
+          <ConditionalRender conditional={!!slots[childrenSlot]}>
+            {slots[childrenSlot]?.({
               columnIndex,
               index,
-              config,
+              config: props.config,
             })}
           </ConditionalRender>
         </PlayGround>
       );
 
       return (
-        <ConditionalRender conditional={!!$scopedSlots[wrapSlot]}>
-          {$scopedSlots[wrapSlot]?.({ columnIndex, index, config, children })}
-          <Fragment slot="noMatch">{children}</Fragment>
+        // @ts-ignore
+        <ConditionalRender conditional={!!slots[wrapSlot]}>
+          {{
+            default: () =>
+              slots[wrapSlot]?.({ columnIndex, index, config: props.config, children }),
+            noMatch: () => children,
+          }}
         </ConditionalRender>
       );
-    },
-    renderPlayGroundTab(h, columnIndex: number, index: number) {
-      const { $scopedSlots, config, activeAnchor, expandAll } = this;
+    };
 
-      const { type, childrenSlot, wrapSlot, id, ...playGroundTabProps } = config[index];
+    const renderPlayGroundTab = (columnIndex: number, index: number): JSX.Element => {
+      const { type, childrenSlot, wrapSlot, id, ...playGroundTabProps } = props.config[index];
 
       const children = (
+        // @ts-ignore
         <PlayGroundTab
-          {...{ props: playGroundTabProps, attrs: { id } }}
-          isActive={activeAnchor === id}
-          defaultExpand={expandAll}
+          {...playGroundTabProps}
+          id={id}
+          isActive={activeAnchor.value === id}
+          defaultExpand={expandAll.value}
         >
-          <ConditionalRender conditional={!!$scopedSlots[childrenSlot]}>
-            {$scopedSlots[childrenSlot]?.({
+          {/*@ts-ignore*/}
+          <ConditionalRender conditional={!!slots[childrenSlot]}>
+            {slots[childrenSlot]?.({
               columnIndex,
               index,
-              config,
+              config: props.config,
             })}
           </ConditionalRender>
         </PlayGroundTab>
       );
 
       return (
-        <ConditionalRender conditional={!!$scopedSlots[wrapSlot]}>
-          {$scopedSlots[wrapSlot]?.({ columnIndex, index, config, children })}
-          <Fragment slot="noMatch">{children}</Fragment>
+        // @ts-ignore
+        <ConditionalRender conditional={!!slots[wrapSlot]}>
+          {{
+            default: () =>
+              slots[wrapSlot]?.({ columnIndex, index, config: props.config, children }),
+            noMatch: () => children,
+          }}
         </ConditionalRender>
       );
-    },
-    renderPlayGroundMulit(h, columnIndex: number, index: number) {
-      const { $scopedSlots, config, activeAnchor, expandAll } = this;
+    };
 
-      const { type, childrenSlot, wrapSlot, id, ...playGroundProps } = config[index];
+    const renderPlayGroundMulit = (columnIndex: number, index: number): JSX.Element => {
+      const { type, childrenSlot, wrapSlot, id, ...playGroundProps } = props.config[index];
 
       const children = (
+        // @ts-ignore
         <PlayGroundMulit
-          {...{ props: playGroundProps, attrs: { id } }}
-          isActive={activeAnchor === id}
-          defaultExpand={expandAll}
+          {...playGroundProps}
+          id={id}
+          isActive={activeAnchor.value === id}
+          defaultExpand={expandAll.value}
         >
-          <ConditionalRender conditional={!!$scopedSlots[childrenSlot]}>
-            {$scopedSlots[childrenSlot]?.({
+          {/*@ts-ignore*/}
+          <ConditionalRender conditional={!!slots[childrenSlot]}>
+            {slots[childrenSlot]?.({
               columnIndex,
               index,
-              config,
+              config: props.config,
             })}
           </ConditionalRender>
         </PlayGroundMulit>
       );
 
       return (
-        <ConditionalRender conditional={!!$scopedSlots[wrapSlot]}>
-          {$scopedSlots[wrapSlot]?.({ columnIndex, index, config, children })}
-          <Fragment slot="noMatch">{children}</Fragment>
+        // @ts-ignore
+        <ConditionalRender conditional={!!slots[wrapSlot]}>
+          {{
+            default: () =>
+              slots[wrapSlot]?.({ columnIndex, index, config: props.config, children }),
+            noMatch: () => children,
+          }}
         </ConditionalRender>
       );
-    },
-  },
-  render(h) {
-    const {
-      title,
-      isShowExpandAllBtn,
-      extra,
-      expandAll,
-      config,
-      columnCount,
-      column,
-      renderMap,
-      $data: { $expandLock },
-    } = this;
+    };
 
-    return (
-      <div class={selectPrefix}>
-        <div class={`${selectPrefix}-header`}>
-          <ConditionalRender conditional={!!title}>
-            <div class={`${selectPrefix}-header-title`}>{title}</div>
+    const renderMap = new Map<string, Function>([
+      ['PlayGround', renderPlayGround],
+      ['PlayGroundMulit', renderPlayGroundMulit],
+      ['PlayGroundTab', renderPlayGroundTab],
+    ]);
+
+    watch(expandAll, () => {
+      expandLock = false;
+    });
+
+    watch(
+      () => props.defaultExpandAll,
+      (newValue) => (expandAll.value = newValue),
+    );
+
+    onMounted(() => {
+      if (typeof window === 'undefined') return;
+
+      window.addEventListener('hashchange', onHashChange);
+    });
+
+    onBeforeMount(() => {
+      if (typeof window === 'undefined') return;
+
+      window.removeEventListener('hashchange', onHashChange);
+    });
+
+    return () => (
+      <div
+        // @ts-ignore
+        class={selectPrefix}
+      >
+        <div
+          // @ts-ignore
+          class={`${selectPrefix}-header`}
+        >
+          {/*@ts-ignore*/}
+          <ConditionalRender conditional={!!props.title}>
+            <div
+              // @ts-ignore
+              class={`${selectPrefix}-header-title`}
+            >
+              {props.title}
+            </div>
           </ConditionalRender>
 
-          <div class={`${selectPrefix}-header-extra`}>
-            <ConditionalRender conditional={isShowExpandAllBtn}>
-              <ConditionalRender
-                conditional={expandAll}
-              >
-                <img
-                  class={`${selectPrefix}-expand-code`}
-                  src={Constant.CloseCodeAll}
-                  alt=""
-                  onClick={() => {
-                    if ($expandLock) return;
-                    this.$data.$expandLock = true;
-                    this.expandAll = false;
-                  }}
-                />
-
-                <img
-                    slot="noMatch"
-                    class={`${selectPrefix}-expand-code`}
-                    src={Constant.ExpandCodeAll}
-                    alt=""
-                    onClick={() => {
-                      if ($expandLock) return;
-                      this.$data.$expandLock = true;
-                      this.expandAll = true;
-                    }}
-                />
+          <div
+            // @ts-ignore
+            class={`${selectPrefix}-header-extra`}
+          >
+            {/*@ts-ignore*/}
+            <ConditionalRender conditional={props.isShowExpandAllBtn}>
+              {/*@ts-ignore**/}
+              <ConditionalRender conditional={expandAll.value}>
+                {{
+                  default: () => (
+                    <img
+                      // @ts-ignore
+                      class={`${selectPrefix}-expand-code`}
+                      src={Constant.CloseCodeAll}
+                      alt=""
+                      onClick={() => {
+                        if (expandLock) return;
+                        expandLock = true;
+                        expandAll.value = false;
+                      }}
+                    />
+                  ),
+                  noMatch: () => (
+                    <img
+                      // @ts-ignore
+                      class={`${selectPrefix}-expand-code`}
+                      src={Constant.ExpandCodeAll}
+                      alt=""
+                      onClick={() => {
+                        if (expandLock) return;
+                        expandLock = true;
+                        expandAll.value = true;
+                      }}
+                    />
+                  ),
+                }}
               </ConditionalRender>
             </ConditionalRender>
-            <ConditionalRender conditional={!!extra}>{extra}</ConditionalRender>
+
+            {/*@ts-ignore*/}
+            <ConditionalRender conditional={!!props.extra}>{props.extra}</ConditionalRender>
           </div>
         </div>
 
-        <div class={`${selectPrefix}-main`}>
-          {column.map((item, columnIndex) => (
-            <div class={`${selectPrefix}-column`}>
-              {config.map((item, index) => {
-                if (index % columnCount === columnIndex) {
+        <div
+          // @ts-ignore
+          class={`${selectPrefix}-main`}
+        >
+          {column.value.map((_: any, columnIndex: number) => (
+            <div
+              // @ts-ignore
+              class={`${selectPrefix}-column`}
+            >
+              {props.config.map((item, index) => {
+                if (index % props.columnCount === columnIndex) {
                   return (
-                    <div class={`${selectPrefix}-item`} key={item.id}>
-                      {renderMap.get(item.type)(h, columnIndex, index)}
+                    <div
+                      // @ts-ignore
+                      class={`${selectPrefix}-item`}
+                      key={item.id}
+                    >
+                      {renderMap?.get(item.type)?.(columnIndex, index)}
                     </div>
                   );
                 }
@@ -247,4 +280,4 @@ export default {
       </div>
     );
   },
-};
+});

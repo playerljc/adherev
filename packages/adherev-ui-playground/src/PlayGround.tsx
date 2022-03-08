@@ -1,38 +1,66 @@
 import ConditionalRender from '@baifendian/adherev-ui-conditionalrender';
-
+import omit from 'omit.js';
+import { defineComponent, ExtractPropTypes, ref, watch } from 'vue';
+import { string } from 'vue-types';
 import Card from './Card';
-import PlayGroundMixins, { PlaygroundMixinsProps } from './PlayGroundMixins';
-import CodePanel, { CodePanelPropTypes } from './CodePanel';
+import CodePanel, { codePanelProps } from './CodePanel';
+import PlayGroundBase, { playGroundBaseProps } from './PlayGroundBase';
 
-export const PlayGroundPropTypes = {
-  ...PlaygroundMixinsProps,
-  ...CodePanelPropTypes,
-  codeText: {
-    type: String,
-    default: '',
-  },
+const playGroundProps = {
+  ...codePanelProps,
+  ...playGroundBaseProps,
+  codeText: string().def(''),
 };
 
-export default {
+export type PlayGroundProps = Partial<ExtractPropTypes<typeof playGroundProps>>;
+
+export default defineComponent({
   name: 'adv-playground',
-  mixins: [PlayGroundMixins],
-  props: {
-    ...PlayGroundPropTypes,
-  },
-  methods: {
-    getClipboardText() {
-      return Promise.resolve(this.codeText);
-    },
-    renderCodeView(h) {
-      const { expand, lang, codeText } = this;
+  props: playGroundProps,
+  setup(props, { slots }) {
+    const others = omit(playGroundBaseProps, ['getClipboardText', 'defaultExpand']);
+
+    const expand = ref<boolean>(props.defaultExpand);
+
+    const getClipboardText = (): Promise<string> => Promise.resolve(props.codeText);
+
+    const onExpand = (_expand: boolean) => {
+      expand.value = !_expand;
+    };
+
+    watch(
+      () => props.defaultExpand,
+      (newValue) => (expand.value = newValue),
+    );
+
+    return () => {
+      const _playGroundBaseProps = {};
+      for (const p in others) {
+        _playGroundBaseProps[p] = props[p];
+      }
 
       return (
-        <ConditionalRender.Show conditional={expand}>
-          <Card>
-            <CodePanel lang={lang}>{codeText}</CodePanel>
-          </Card>
-        </ConditionalRender.Show>
+        // @ts-ignore
+        <PlayGroundBase
+          {..._playGroundBaseProps}
+          defaultExpand={expand.value}
+          getClipboardText={getClipboardText}
+          onExpand={onExpand}
+        >
+          {{
+            default: () => slots?.default?.(),
+            codeView: () => (
+              <ConditionalRender.Show conditional={expand.value}>
+                {/*@ts-ignore*/}
+                <Card>
+                  {/*@ts-ignore**/}
+                  <CodePanel lang={props.lang} codeText={props.codeText} />
+                </Card>
+              </ConditionalRender.Show>
+            ),
+          }}
+        </PlayGroundBase>
       );
-    },
+    };
   },
-};
+});

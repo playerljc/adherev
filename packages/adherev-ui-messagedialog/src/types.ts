@@ -46,4 +46,43 @@ export interface IPromptConfig {
 
 export interface IConfig {
   messages: object;
+  useComponents: any[];
+}
+
+export interface IModalArg {
+  config?: any;
+  children?: any;
+  defaultCloneBtn?: boolean;
+  local?: string | null | undefined;
+}
+
+export interface IMessageDialogFactory extends IComponent {
+  Confirm(config: IConfirmArgv): void;
+  Prompt(config: IPromptConfig): void;
+  InputPrompt(config: IPromptConfig): void;
+  TextAreaPrompt(config: IPromptConfig): void;
+  PassWordPrompt(config: IPromptConfig): void;
+  NumberPrompt(config: IPromptConfig): void;
+  Alert(config: IAlertArgv): void;
+  Modal(config: IModalArg): void;
+  close(el: HTMLElement): void;
+  setConfig(gc: IConfig): void;
+}
+
+export interface IModalProps {
+  config: any;
+  closeBtn: boolean;
+}
+
+export interface IModalMethod {
+  onEmitterClose(): void;
+  renderCloseBtn(): void;
+  renderDefault(): void;
+  renderTitle(): void;
+  renderFooter(): void;
+}
+
+export interface IComponent {
+  isUse?(): boolean;
+  use?(Vue: any): void;
 }

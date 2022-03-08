@@ -1,210 +1,174 @@
-import { VNode, PropType } from 'vue';
 import classNames from 'classnames';
+// @ts-ignore
 import IScroll from 'iscroll/build/iscroll';
-
+import {
+  computed,
+  CSSProperties,
+  defineComponent,
+  nextTick,
+  onMounted,
+  provide,
+  ref,
+  watch,
+} from 'vue';
+import { array, func, object, string } from 'vue-types';
 import { IMenuDataItem } from './types';
 
 const selectorPrefix = 'adherev-ui-jdcategorytab';
 
-export default {
+const props = {
+  className: string().def(''),
+  menuClassName: string().def(''),
+  menuStyle: object<CSSProperties>().def({}),
+  menuInnerClassName: string().def(''),
+  menuInnerStyle: object<CSSProperties>().def({}),
+  tabClassName: string().def(''),
+  tabStyle: object<CSSProperties>().def({}),
+  menuItemClassName: string().def(''),
+  menuItemStyle: object<CSSProperties>().def({}),
+  menuData: array<IMenuDataItem>().def([]),
+  defaultActiveKey: string().def(''),
+  onBeforeChange: func<(activeKey: string, key: string) => boolean>(),
+};
+
+export default defineComponent({
   name: 'adv-jdcategorytab',
-  props: {
-    className: {
-      type: String,
-      default: '',
-    },
-    menuClassName: {
-      type: String,
-      default: '',
-    },
-    menuStyle: {
-      type: String,
-      default: '',
-    },
-    menuInnerClassName: {
-      type: String,
-      default: '',
-    },
-    menuInnerStyle: {
-      type: String,
-      default: '',
-    },
-    tabClassName: {
-      type: String,
-      default: '',
-    },
-    tabStyle: {
-      type: String,
-      default: '',
-    },
-    menuItemClassName: {
-      type: String,
-      default: '',
-    },
-    menuItemStyle: {
-      type: String,
-      default: '',
-    },
-    menuData: {
-      type: Array as PropType<IMenuDataItem[]>,
-      default: () => [],
-    },
-    defaultActiveKey: {
-      type: [String, Number],
-      default: '',
-    },
-    onBeforeChange: {
-      type: Function,
-    },
-  },
-  data() {
-    return {
-      activeKey: this.defaultActiveKey,
-      $scroll: null,
-      $ease: IScroll.utils.ease,
-    };
-  },
-  computed: {
-    getMenuClassName(): string {
-      const { menuClassName } = this;
+  props,
+  slots: ['menuItem'],
+  emits: ['change'],
+  setup(props, { slots, emit, expose }) {
+    const activeKey = ref<string>(props.defaultActiveKey);
+    const menuEl = ref<HTMLDivElement | null>(null);
+    const menuInnerEl = ref<HTMLDivElement | null>(null);
 
-      return classNames(`${selectorPrefix}-menu`, menuClassName.split(/\s+/));
-    },
-    getMenuInnerClassName(): string {
-      const { menuInnerClassName } = this;
-      return classNames(`${selectorPrefix}-menu-inner`, menuInnerClassName.split(/\s+/));
-    },
-    getTabClassName(): string {
-      const { tabClassName } = this;
+    let scroll: any = null;
+    let ease = IScroll.utils.ease;
 
-      return classNames(`${selectorPrefix}-tab`, tabClassName.split(/\s+/));
-    },
-    getMenuItemClassName(): string {
-      return (curKey) => {
-        const { menuItemClassName, activeKey } = this;
+    const getMenuClassName = computed(() =>
+      classNames(`${selectorPrefix}-menu`, props.menuClassName.split(/\s+/)),
+    );
 
-        return classNames(
+    const getMenuInnerClassName = computed(() =>
+      classNames(`${selectorPrefix}-menu-inner`, props.menuInnerClassName.split(/\s+/)),
+    );
+
+    const getTabClassName = computed(() =>
+      classNames(`${selectorPrefix}-tab`, props.tabClassName.split(/\s+/)),
+    );
+
+    const getMenuItemClassName = computed(
+      () => (curKey: string) =>
+        classNames(
           `${selectorPrefix}-menu-item`,
-          activeKey === curKey ? 'active' : null,
-          menuItemClassName.split(/\s+/),
-        );
-      };
-    },
-  },
-  watch: {
-    defaultActiveKey(defaultActiveKey) {
-      this.activeKey = defaultActiveKey;
-    },
-  },
-  mounted() {
-    this.initMenuScroll();
-  },
-  provide: function () {
-    return {
-      getActiveKey: this.getActiveKey,
-    };
-  },
-  methods: {
-    initMenuScroll() {
-      const {
-        $refs: { menuEl },
-        $data,
-      } = this;
+          activeKey.value === curKey ? 'active' : null,
+          props.menuItemClassName.split(/\s+/),
+        ),
+    );
 
-      $data.$scroll = new IScroll(menuEl, { mouseWheel: true, click: true });
+    const initMenuScroll = () => {
+      scroll = new IScroll(menuEl.value, { mouseWheel: true, click: true });
 
-      menuEl.addEventListener('touchmove', (e) => {
+      (menuEl.value as HTMLDivElement).addEventListener('touchmove', (e) => {
         e.preventDefault();
       });
-    },
-    findElByKey(key): HTMLElement | null {
-      const {
-        $refs: { menuInnerEl },
-        menuData,
-      } = this;
+    };
 
-      const index = menuData.findIndex((t) => t.key === key);
+    const findElByKey = (key: string): HTMLElement | null => {
+      const index = props.menuData.findIndex((t) => t.key === key);
 
-      const arr = Array.from(menuInnerEl?.querySelectorAll(`.${selectorPrefix}-menu-item`));
+      const arr = Array.from(
+        (menuInnerEl.value as HTMLDivElement)?.querySelectorAll(`.${selectorPrefix}-menu-item`),
+      );
 
       if (arr.length) {
-        return arr[index];
+        return arr[index] as HTMLElement;
       }
 
       return null;
-    },
-    getActiveKey(): string {
-      return this.activeKey;
-    },
-    scrollTo(key, time = 250, easing) {
-      const {
-        $data: {
-          $ease: { circular },
-          $scroll,
-        },
-        onBeforeChange,
-        activeKey,
-      } = this;
+    };
 
-      easing = easing || circular;
+    const scrollTo = (key: string, time?: number, easing?: number) => {
+      easing = easing || ease.circular;
 
       let isCan = true;
 
-      if (onBeforeChange) {
-        isCan = onBeforeChange(activeKey, key);
+      if (props.onBeforeChange) {
+        isCan = props.onBeforeChange(activeKey.value, key);
       }
 
       if (!isCan) return;
 
-      $scroll.scrollToElement(this.findElByKey(key), time, null, null, easing);
+      scroll.scrollToElement(findElByKey(key), time, null, null, easing);
 
       setTimeout(() => {
-        this.activeKey = key;
+        activeKey.value = key;
 
-        this.$nextTick(function () {
-          this.$emit('change', key);
+        nextTick(function () {
+          emit('change', key);
         });
       }, time);
-    },
-    renderMenu(h): VNode {
-      const { $scopedSlots, menuData, getMenuItemClassName, menuItemStyle } = this;
+    };
 
-      return menuData.map((data) => (
-        <li key={data.key} class={getMenuItemClassName(data.key)} style={menuItemStyle}>
+    const renderMenu = () => {
+      return props.menuData.map((data) => (
+        // @ts-ignore
+        <li key={data.key} class={getMenuItemClassName.value(data.key)} style={props.menuItemStyle}>
           <a
             onClick={() => {
-              this.scrollTo(data.key);
+              scrollTo(data.key);
             }}
           >
-            {$scopedSlots.menuItem ? $scopedSlots.menuItem(data) : data.name}
+            {slots.menuItem ? slots.menuItem(data) : data.name}
           </a>
         </li>
       ));
-    },
-  },
-  render(h): VNode {
-    const {
-      $slots,
-      getMenuClassName,
-      getMenuInnerClassName,
-      getTabClassName,
-      menuStyle,
-      menuInnerStyle,
-      tabStyle,
-    } = this;
+    };
 
-    // @ts-ignore
-    return (
-      <div class={selectorPrefix} ref="el">
-        <div class={getMenuClassName} style={menuStyle} ref="menuEl">
-          <ul class={getMenuInnerClassName} style={menuInnerStyle} ref="menuInnerEl">
-            {this.renderMenu(h)}
+    watch(
+      () => props.defaultActiveKey,
+      (newActiveKey) => {
+        activeKey.value = newActiveKey;
+      },
+    );
+
+    onMounted(() => {
+      initMenuScroll();
+    });
+
+    provide('activeKey', activeKey);
+
+    expose({
+      scrollTo,
+    });
+
+    return () => (
+      <div
+        // @ts-ignore
+        class={selectorPrefix}
+      >
+        <div
+          class={getMenuClassName.value}
+          style={props.menuStyle}
+          // @ts-ignore
+          ref={menuEl}
+        >
+          <ul
+            class={getMenuInnerClassName.value}
+            style={props.menuInnerStyle}
+            // @ts-ignore
+            ref={menuInnerEl}
+          >
+            {renderMenu()}
           </ul>
         </div>
-        <ul class={getTabClassName} style={tabStyle}>
-          {$slots.default}
+        <ul
+          // @ts-ignore
+          class={getTabClassName.value}
+          style={props.tabStyle}
+        >
+          {slots.default ? slots.default() : null}
         </ul>
       </div>
     );
   },
-};
+});

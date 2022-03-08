@@ -1,11 +1,8 @@
-import VueI18n from 'vue-i18n';
-import { I18nOptions, Path, TranslateResult, Locale, IVueI18n } from 'vue-i18n/types';
-
 import Intl from '@baifendian/adhere-util-intl';
-
+import { createI18n, I18nOptions, Locale, Path, TranslateResult } from 'vue-i18n';
 import en_US from './locales/en_US';
-import zh_CN from './locales/zh_CN';
 import pt_PT from './locales/pt_PT';
+import zh_CN from './locales/zh_CN';
 
 // 组件的国际化文件
 const finallyLocales = {
@@ -18,7 +15,7 @@ const intlMap = {};
 
 const mainLocales = {};
 
-let i18n: IVueI18n | null = null;
+let i18n: any = null;
 
 /**
  * initIntlMap - 初始化以中文为key,intl.get()为值的Map
@@ -53,34 +50,40 @@ export function getLocal(prefix = 'local', data: Array<string>): object {
 
 /**
  * extend
- * @param Vue
+ * @param app
  */
-export function extend(Vue: any): void {
-  if (!Vue.prototype.hasOwnProperty('$i18n')) {
-    // $FlowFixMe
-    Object.defineProperty(Vue.prototype, '$i18n', {
-      get() {
-        return this._i18n;
-      },
-    });
-  }
+export function extend(app: any): void {
+  // if (!app.config.globalProperties.hasOwnProperty('$i18n')) {
+  //   // $FlowFixMe
+  //   Object.defineProperty(app.config.globalProperties, '$i18n', {
+  //     get() {
+  //       return i18n /*this._i18n*/;
+  //     },
+  //   });
+  // }
 
-  Vue.prototype.$tv = function (zh: Path, ...values: any): TranslateResult {
-    const i18n = this.$i18n;
-    const key = intlMap[zh];
-    return i18n.t(key, i18n.locale, i18n._getMessages(), this, ...values);
+  app.config.globalProperties.$tv = function (zh: Path, ...values: []): TranslateResult {
+    // const i18n = this.$i18n;
+    // const key = intlMap[zh];
+    return I18nFactory.tv.apply(this, [zh, ...values]); // i18n.t(key, i18n.locale, i18n._getMessages(), this, ...values);
   };
 
-  Vue.prototype.$tcv = function (zh: Path, choice?: number, ...values: any): TranslateResult {
-    const i18n = this.$i18n;
-    const key = intlMap[zh];
-    return i18n._tc(key, i18n.locale, i18n._getMessages(), this, choice, ...values);
+  app.config.globalProperties.$tcv = function (
+    zh: Path,
+    choice?: number,
+    ...values: any
+  ): TranslateResult {
+    // const i18n = this.$i18n;
+    // const key = intlMap[zh];
+    // @ts-ignore
+    return I18nFactory.tcv.apply(this, [zh, ...values]); // i18n._tc(key, i18n.locale, i18n._getMessages(), this, choice, ...values);
   };
 
-  Vue.prototype.$tev = function (zh: Path, locale?: Locale): boolean {
-    const i18n = this.$i18n;
-    const key = intlMap[zh];
-    return i18n._te(key, i18n.locale, i18n._getMessages(), locale);
+  app.config.globalProperties.$tev = function (zh: Path, locale?: Locale): boolean {
+    // const i18n = this.$i18n;
+    // const key = intlMap[zh];
+    // @ts-ignore
+    return I18nFactory.tv.apply(this, [zh, locale]); //i18n._te(key, i18n.locale, i18n._getMessages(), locale);
   };
 }
 
@@ -122,7 +125,7 @@ const I18nFactory = function (config: { I18nOptions: I18nOptions; prefix }) {
   initIntlMap(mainLocales.zh_CN);
 
   // i18n实例
-  i18n = new VueI18n({
+  i18n = createI18n({
     ...I18nOptions,
     ...{ messages: mainLocales },
   });
@@ -145,9 +148,7 @@ const I18nFactory = function (config: { I18nOptions: I18nOptions; prefix }) {
 I18nFactory.tv = I18nFactory.v = function (zh: Path, ...values: []) {
   const key = intlMap[zh];
 
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore
-  return i18n?.t.apply(i18n, [key, ...(values || [])]);
+  return i18n?.global?.t?.apply?.(i18n, [key, ...(values || [])]);
 };
 
 /**
@@ -158,9 +159,7 @@ I18nFactory.tv = I18nFactory.v = function (zh: Path, ...values: []) {
 I18nFactory.tcv = function (zh: Path, ...values: []) {
   const key = intlMap[zh];
 
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore
-  return i18n?.tc.apply(i18n, [key, ...(values || [])]);
+  return i18n?.global?.tc?.apply?.(i18n, [key, ...(values || [])]);
 };
 
 /**
@@ -171,7 +170,7 @@ I18nFactory.tcv = function (zh: Path, ...values: []) {
 I18nFactory.tev = function (zh: Path, ...values: []) {
   const key = intlMap[zh];
 
-  return i18n?.te.apply(i18n, [key, ...values]);
+  return i18n?.global?.te?.apply?.(i18n, [key, ...values]);
 };
 
 /**

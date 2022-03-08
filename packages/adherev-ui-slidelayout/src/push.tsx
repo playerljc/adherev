@@ -1,164 +1,127 @@
 import classNames from 'classnames';
-
+import { CSSProperties, defineComponent, ref, watch } from 'vue';
+import { object, string } from 'vue-types';
+import useSlide, { slideProps } from './slide';
 import { slider } from './slidelayout';
-import SlideLayout from './slide';
 
 const selectorPrefix = 'adherev-ui-slidelayout-push';
 
-export default {
+const pushProps = {
+  ...slideProps,
+  className: string().def(''),
+  style: object<CSSProperties>().def({}),
+  slaveClassName: string().def(''),
+  slaveStyle: object<CSSProperties>().def({}),
+};
+
+export default defineComponent({
   name: 'adv-slidelayout-push',
-  mixins: [SlideLayout],
-  props: {
-    masterClassName: {
-      type: String,
-      default: '',
-    },
-    className: {
-      type: String,
-      default: '',
-    },
-    slaveClassName: {
-      type: String,
-      default: '',
-    },
-  },
-  watch: {
-    zIndex(val) {
-      this.$refs.pMasterEl.style.zIndex = val - 1;
+  props: pushProps,
+  slots: ['slide', 'master'],
+  emits: ['after-show', 'after-close'],
+  setup(props, context) {
+    const { slots, emit } = context;
+    const pMasterEl = ref<HTMLDivElement>();
+    const pSlaveEl = ref<HTMLDivElement>();
 
-      this.$refs.el.style.zIndex = val;
+    const { setPositionConfig, getDuration, getElRef } = useSlide(props, context);
 
-      this.$refs.pSlaveEl.zIndex = val - 2;
-    },
-  },
-  created() {
-    this.$data.$positionConfig = {
+    setPositionConfig(({ el, maskEl }) => ({
       init: {
         left: () => {
-          this.$refs.el.style.left = '0';
-
-          this.$refs.pSlaveEl.style.left = `${this.$refs.el.offsetWidth}px`;
-
-          slider(this.$refs.pMasterEl, `-${this.$refs.el.offsetWidth}px`, '0', '0', '0');
+          el.value.style.left = '0';
+          (pSlaveEl.value as HTMLElement).style.left = `${el.value.offsetWidth}px`;
+          slider(pMasterEl.value, `-${el.value.offsetWidth}px`, '0', '0', '0');
         },
         right: () => {
-          this.$refs.el.style.right = '0';
-
-          this.$refs.pSlaveEl.style.right = `${this.$refs.el.offsetWidth}px`;
-
-          slider(this.$refs.pMasterEl, `${this.$refs.el.offsetWidth}px`, '0', '0', '0');
+          el.value.style.right = '0';
+          (pSlaveEl.value as HTMLElement).style.right = `${el.value.offsetWidth}px`;
+          slider(pMasterEl.value, `${el.value.offsetWidth}px`, '0', '0', '0');
         },
       },
       show: {
-        left: (time) => {
-          slider(
-            this.$refs.pMasterEl,
-            '0',
-            '0',
-            '0',
+        left: (time: string | number | null | undefined) => {
+          slider(pMasterEl.value, '0', '0', '0', `${getDuration(time)}ms`, () => {
+            emit('after-show');
+          });
 
-            `${this.getDuration(time)}ms`,
-            () => {
-              this.$emit('after-show');
-            },
-          );
-
-          if (this.$data.$maskEl) this.$data.$maskEl.style.display = 'block';
+          if (maskEl) maskEl.style.display = 'block';
         },
-        right: (time) => {
-          slider(
-            this.$refs.pMasterEl,
-            '0',
-            '0',
-            '0',
+        right: (time: string | number | null | undefined) => {
+          slider(pMasterEl.value, '0', '0', '0', `${getDuration(time)}ms`, () => {
+            emit('after-show');
+          });
 
-            `${this.getDuration(time)}ms`,
-            () => {
-              this.$emit('after-show');
-            },
-          );
-
-          if (this.$data.$maskEl) this.$data.$maskEl.style.display = 'block';
+          if (maskEl) maskEl.style.display = 'block';
         },
       },
       close: {
-        left: (time) => {
+        left: (time: string | number | null | undefined) => {
           slider(
-            this.$refs.pMasterEl,
-
-            `-${this.$refs.el.offsetWidth}px`,
+            pMasterEl.value,
+            `-${el.value.offsetWidth}px`,
             '0',
             '0',
-
-            `${this.getDuration(time)}ms`,
+            `${getDuration(time)}ms`,
             () => {
-              this.$emit('after-close');
+              emit('after-close');
             },
           );
 
-          if (this.$data.$maskEl) this.$data.$maskEl.style.display = 'none';
+          if (maskEl) maskEl.style.display = 'none';
         },
-        right: (time) => {
+        right: (time: string | number | null | undefined) => {
           slider(
-            this.$refs.pMasterEl,
-
-            `${this.$refs.el.offsetWidth}px`,
+            pMasterEl.value,
+            `${el.value.offsetWidth}px`,
             '0',
             '0',
-
-            `${this.getDuration(time)}ms`,
+            `${getDuration(time)}ms`,
             () => {
-              this.$emit('after-close');
+              emit('after-close');
             },
           );
 
-          if (this.$data.$maskEl) this.$data.$maskEl.style.display = 'none';
+          if (maskEl) maskEl.style.display = 'none';
         },
       },
-    };
-  },
-  mounted() {
-    const { zIndex } = this;
+    }));
 
-    this.$refs.pMasterEl.style.zIndex = zIndex - 1;
+    watch(
+      () => props.zIndex,
+      val => {
+        (pMasterEl.value as HTMLElement).style.zIndex = `${val - 1}`;
 
-    this.$refs.el.style.zIndex = zIndex;
+        (getElRef().value as HTMLElement).style.zIndex = `${val}`;
 
-    this.$refs.pSlaveEl.zIndex = zIndex - 2;
-  },
-  render(h) {
-    const { $slots, masterClassName, className, slaveClassName, direction } = this;
+        (pSlaveEl.value as HTMLElement).style.zIndex = `${val - 2}`;
+      },
+    );
 
-    return (
+    return () => (
       <div
-        class={classNames(
-          `${selectorPrefix}-master`,
-          masterClassName.split(/\s+/),
-        )}
-        ref="pMasterEl"
+        class={`${selectorPrefix}-master`}
+        // @ts-ignore
+        ref={pMasterEl}
       >
-        {/* @ts-ignore */}
         <div
-          class={classNames(
-            selectorPrefix,
-            direction,
-            className.split(/\s+/),
-          )}
-          ref="el"
+          class={classNames(selectorPrefix, props.direction, props.className.split(/\s+/))}
+          style={props.style}
+          // @ts-ignore
+          ref={getElRef()}
         >
-          {$slots.slide}
+          {slots?.slide?.()}
         </div>
 
         <div
-          class={classNames(
-            `${selectorPrefix}-slave`,
-            slaveClassName.split(/\s+/),
-          )}
-          ref="pSlaveEl"
+          class={classNames(`${selectorPrefix}-slave`, (props.slaveClassName || '').split(/\s+/))}
+          style={props.slaveStyle}
+          // @ts-ignore
+          ref={pSlaveEl}
         >
-          {$slots.master}
+          {slots?.master?.()}
         </div>
       </div>
     );
   },
-};
+});

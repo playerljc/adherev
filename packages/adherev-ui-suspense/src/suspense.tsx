@@ -1,7 +1,12 @@
-import Vue, { VNode } from 'vue';
-import { Spin, Skeleton } from 'ant-design-vue';
+import { Skeleton, Spin } from 'ant-design-vue';
+import { defineComponent } from 'vue';
+import { bool } from 'vue-types';
 
 const selectorPrefix = 'adherev-ui-suspense';
+
+const suspenseProps = {
+  reset: bool().def(false),
+};
 
 /**
  * Suspense
@@ -9,13 +14,9 @@ const selectorPrefix = 'adherev-ui-suspense';
  * @overview renderInner: VNode | null
  * @overview fetchData(): void
  */
-export default Vue.extend({
-  props: {
-    reset: {
-      type: Boolean,
-      default: false,
-    },
-  },
+export default defineComponent({
+  props: suspenseProps,
+  slots: ['firstLoading'],
   data() {
     return {
       // 第一次
@@ -40,42 +41,56 @@ export default Vue.extend({
     },
   },
   mounted() {
+    // @ts-ignore
     this.fetchData();
   },
   methods: {
     /**
      * renderNormalFirstLoading
      */
-    renderNormalFirstLoading(h): VNode | null {
+    renderNormalFirstLoading(): JSX.Element {
       const result = [];
 
       for (let i = 0; i < 7; i++) {
+        // @ts-ignore
         result.push(<Skeleton key={i + 1} loading active avatar />);
       }
 
-      return <div class={`${selectorPrefix}-loading`}>{result}</div>;
+      return (
+        <div
+          // @ts-ignore
+          class={`${selectorPrefix}-loading`}
+        >
+          {result}
+        </div>
+      );
     },
     /**
      * renderFirstLoading
      * @param h
      */
-    renderFirstLoading(h): VNode | null {
+    renderFirstLoading(): JSX.Element {
       const { $slots } = this;
 
       if ($slots.firstLoading) {
-        return $slots.firstLoading;
+        // @ts-ignore
+        return $slots.firstLoading();
       }
 
-      return this.renderNormalFirstLoading(h);
+      return this.renderNormalFirstLoading();
     },
     /**
      * renderNormal
      * @param h
      */
-    renderNormal(h: VNode | null) {
+    renderNormal(): JSX.Element {
       return (
+        // @ts-ignore
         <Spin size="large" spinning={this.showLoading()}>
-          {this.renderInner(h)}
+          {
+            // @ts-ignore
+            this.renderInner()
+          }
         </Spin>
       );
     },
@@ -83,7 +98,8 @@ export default Vue.extend({
      * renderDispatch
      * @param h
      */
-    renderDispatch(h) {
+    renderDispatch(): JSX.Element {
+      // @ts-ignore
       const loading = this.showLoading();
 
       if (this.isFirst && !this.isFirstLoading && loading) {
@@ -97,25 +113,31 @@ export default Vue.extend({
       }
 
       if (this.isFirst) {
-        return this.renderFirstLoading(h);
+        return this.renderFirstLoading();
       }
 
-      return this.renderNormal(h);
+      return this.renderNormal();
     },
     /**
      * renderSuspense
      * @description - renderSuspense
      * @param h
      */
-    renderSuspense(h) {
-      return <div class={selectorPrefix}>{this.renderDispatch(h)}</div>;
+    renderSuspense(): JSX.Element {
+      return (
+        <div
+          // @ts-ignore
+          class={selectorPrefix}
+        >
+          {this.renderDispatch()}
+        </div>
+      );
     },
   },
   /**
    * render
-   * @param h
    */
-  render(h) {
-    return this.renderSuspense(h);
+  render(): JSX.Element {
+    return this.renderSuspense();
   },
 });

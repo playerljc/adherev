@@ -27,25 +27,23 @@
       </template>
 
       <template #p2>
-        <fragment>
-          <adv-pullrefresh ref="ref" :class-name="$style.Wrap" @pull-refresh="onCode2Refresh">
-            <a-list item-layout="horizontal" :data-source="data">
-              <a-list-item slot="renderItem" slot-scope="item, index">
-                <a-list-item-meta
-                  description="Ant Design, a design language for background applications, is refined by Ant UED Team"
-                >
-                  <a slot="title" href="https://www.antdv.com/">{{ item.title }}</a>
-                  <a-avatar
-                    slot="avatar"
-                    src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"
-                  />
-                </a-list-item-meta>
-              </a-list-item>
-            </a-list>
-          </adv-pullrefresh>
-          <adv-space />
-          <a-button type="primary" @click="onCode2Click">触发下拉刷新</a-button>
-        </fragment>
+        <adv-pullrefresh ref="ref" :class-name="$style.Wrap" @pull-refresh="onCode2Refresh">
+          <a-list item-layout="horizontal" :data-source="data">
+            <a-list-item slot="renderItem" slot-scope="item, index">
+              <a-list-item-meta
+                description="Ant Design, a design language for background applications, is refined by Ant UED Team"
+              >
+                <a slot="title" href="https://www.antdv.com/">{{ item.title }}</a>
+                <a-avatar
+                  slot="avatar"
+                  src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"
+                />
+              </a-list-item-meta>
+            </a-list-item>
+          </a-list>
+        </adv-pullrefresh>
+        <adv-space />
+        <a-button type="primary" @click="onCode2Click">触发下拉刷新</a-button>
       </template>
 
       <template #p3>

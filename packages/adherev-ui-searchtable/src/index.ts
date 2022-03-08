@@ -22,7 +22,7 @@ const {
 
 SearchTable.isUse = () => true;
 
-SearchTable.use = (Vue) => {
+SearchTable.use = (Vue: any) => {
   Vue.use(SearchTable.SearchForm);
 
   Vue.use(SearchTable.SearchFormRow);

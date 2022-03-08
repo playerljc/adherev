@@ -1,2 +1,95 @@
-"use strict";require("core-js/modules/es.object.assign.js"),require("core-js/modules/es.object.define-property.js");var __assign=function(){return(__assign=Object.assign||function(e){for(var t,r=1,o=arguments.length;r<o;r++)for(var i in t=arguments[r])Object.prototype.hasOwnProperty.call(t,i)&&(e[i]=t[i]);return e}).apply(this,arguments)},__importDefault=function(e){return e&&e.__esModule?e:{default:e}};Object.defineProperty(exports,"__esModule",{value:!0}),exports.getTileWMSTileLayer=exports.getWMTSTileLayer=exports.getXYZTileLayer=exports.getOSMTileLayer=exports.getTileWMS=exports.getWMTS=exports.getXYZ=exports.getOSM=void 0;var Tile_1=__importDefault(require("ol/layer/Tile")),source_js_1=require("ol/source.js");function getOSM(e){return new source_js_1.OSM(e)}function getXYZ(e){return new source_js_1.XYZ(e)}function getTileWMS(e){return new source_js_1.TileWMS(e)}function getWMTS(e){return new source_js_1.WMTS(e)}function getOSMTileLayer(e){var t=void 0===e?{sourceOptions:{},options:{}}:e,e=t.sourceOptions,t=t.options,t=void 0===t?{}:t;return new Tile_1.default(__assign({source:getOSM((void 0===e?{}:e)||{})},t||{}))}function getXYZTileLayer(e){var t=void 0===e?{sourceOptions:{},options:{}}:e,e=t.sourceOptions,t=t.options,t=void 0===t?{}:t;return new Tile_1.default(__assign({source:getXYZ((void 0===e?{}:e)||{})},t||{}))}function getWMTSTileLayer(e){var t=void 0===e?{sourceOptions:{},options:{}}:e,e=t.sourceOptions,t=t.options,t=void 0===t?{}:t;return new Tile_1.default(__assign({source:getWMTS((void 0===e?{}:e)||{})},t||{}))}function getTileWMSTileLayer(e){var t=void 0===e?{sourceOptions:{},options:{}}:e,e=t.sourceOptions,t=t.options,t=void 0===t?{}:t;return new Tile_1.default(__assign({source:getTileWMS((void 0===e?{}:e)||{})},t||{}))}exports.getOSM=getOSM,exports.getXYZ=getXYZ,exports.getTileWMS=getTileWMS,exports.getWMTS=getWMTS,exports.getOSMTileLayer=getOSMTileLayer,exports.getXYZTileLayer=getXYZTileLayer,exports.getWMTSTileLayer=getWMTSTileLayer,exports.getTileWMSTileLayer=getTileWMSTileLayer;
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.getTileWMSTileLayer = exports.getWMTSTileLayer = exports.getXYZTileLayer = exports.getOSMTileLayer = exports.getTileWMS = exports.getWMTS = exports.getXYZ = exports.getOSM = void 0;
+var tslib_1 = require("tslib");
+var Tile_1 = (0, tslib_1.__importDefault)(require("ol/layer/Tile"));
+var source_js_1 = require("ol/source.js");
+/**
+ * getOSM - OSM的resource
+ * @param options
+ * @return {OSM}
+ */
+function getOSM(options) {
+    return new source_js_1.OSM(options);
+}
+exports.getOSM = getOSM;
+/**
+ * getXYZ
+ * @param options
+ * @return {XYZ}
+ */
+function getXYZ(options) {
+    return new source_js_1.XYZ(options);
+}
+exports.getXYZ = getXYZ;
+/**
+ * getTileWMS
+ * @param options
+ * @return {TileWMS}
+ */
+function getTileWMS(options) {
+    return new source_js_1.TileWMS(options);
+}
+exports.getTileWMS = getTileWMS;
+/**
+ * getWMTS
+ * @param options
+ * @return {WMTS}
+ */
+function getWMTS(options) {
+    return new source_js_1.WMTS(options);
+}
+exports.getWMTS = getWMTS;
+/**
+ * getOSMTileLayer
+ * @param sourceOptions
+ * @param options
+ */
+function getOSMTileLayer(_a) {
+    var _b = _a === void 0 ? {
+        sourceOptions: {},
+        options: {},
+    } : _a, _c = _b.sourceOptions, sourceOptions = _c === void 0 ? {} : _c, _d = _b.options, options = _d === void 0 ? {} : _d;
+    return new Tile_1.default((0, tslib_1.__assign)({ source: getOSM(sourceOptions || {}) }, (options || {})));
+}
+exports.getOSMTileLayer = getOSMTileLayer;
+/**
+ * getXYZTileLayer
+ * @param sourceOptions
+ * @param options
+ */
+function getXYZTileLayer(_a) {
+    var _b = _a === void 0 ? {
+        sourceOptions: {},
+        options: {},
+    } : _a, _c = _b.sourceOptions, sourceOptions = _c === void 0 ? {} : _c, _d = _b.options, options = _d === void 0 ? {} : _d;
+    return new Tile_1.default((0, tslib_1.__assign)({ source: getXYZ(sourceOptions || {}) }, (options || {})));
+}
+exports.getXYZTileLayer = getXYZTileLayer;
+/**
+ * getWMTSTileLayer
+ * @param sourceOptions
+ * @param options
+ */
+function getWMTSTileLayer(_a) {
+    var _b = _a === void 0 ? {
+        sourceOptions: {},
+        options: {},
+    } : _a, _c = _b.sourceOptions, sourceOptions = _c === void 0 ? {} : _c, _d = _b.options, options = _d === void 0 ? {} : _d;
+    return new Tile_1.default((0, tslib_1.__assign)({ source: getWMTS(sourceOptions || {}) }, (options || {})));
+}
+exports.getWMTSTileLayer = getWMTSTileLayer;
+/**
+ * getTileWMSTileLayer
+ * @param sourceOptions
+ * @param options
+ */
+function getTileWMSTileLayer(_a) {
+    var _b = _a === void 0 ? {
+        sourceOptions: {},
+        options: {},
+    } : _a, _c = _b.sourceOptions, sourceOptions = _c === void 0 ? {} : _c, _d = _b.options, options = _d === void 0 ? {} : _d;
+    return new Tile_1.default((0, tslib_1.__assign)({ source: getTileWMS(sourceOptions || {}) }, (options || {})));
+}
+exports.getTileWMSTileLayer = getTileWMSTileLayer;
 //# sourceMappingURL=titlelayer.js.map

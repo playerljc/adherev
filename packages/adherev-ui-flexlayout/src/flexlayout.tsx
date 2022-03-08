@@ -1,37 +1,27 @@
-import { VNode } from 'vue';
 import classNames from 'classnames';
+import { defineComponent, provide } from 'vue';
+import { oneOf } from 'vue-types';
 
 export const selectorPrefix = 'adherev-ui-flexlayout';
 
-export default {
-  name: 'adv-flexlayout',
-  props: {
-    direction: {
-      type: String,
-      default: 'vertical',
-      validator(val) {
-        return ['vertical', 'horizontal'].indexOf(val) !== -1;
-      },
-    },
-  },
-  methods: {
-    getDirection(): string {
-      return this.direction;
-    },
-  },
-  provide() {
-    return {
-      getDirection: this.getDirection,
-    };
-  },
-  render(h): VNode {
-    const { $slots, direction } = this;
+const props = {
+  direction: oneOf(['vertical', 'horizontal']).def('vertical'),
+};
 
-    // @ts-ignore
-    return (
-      <div class={classNames(selectorPrefix, `${selectorPrefix}-${direction}`)}>
-        {$slots.default}
+export default defineComponent({
+  name: 'adv-flexlayout',
+  props,
+  setup(props, { slots }) {
+    // const getDirection = () => props.direction;
+    // provide('getDirection', getDirection);
+
+    provide('direction', props.direction);
+
+    return () => (
+      // @ts-ignore
+      <div class={classNames(selectorPrefix, `${selectorPrefix}-${props.direction}`)}>
+        {slots.default ? slots.default() : null}
       </div>
     );
   },
-};
+});

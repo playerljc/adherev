@@ -1,21 +1,17 @@
-import Vue, { CreateElement } from 'vue';
-import classNames from 'classnames';
+import { defineComponent } from 'vue';
 
 const selectorPrefix = 'adherev-ui-searchform-label';
 
-export default Vue.extend({
+export default defineComponent({
   name: 'adv-searchtable-searchform-label',
-  props: {
-    className: {
-      type: String,
-      default: '',
-    },
-  },
-  render(h: CreateElement) {
-    const { $slots, className } = this;
-
-    return (
-      <td class={classNames(selectorPrefix, ...(className || '').split(/\s+/))}>{$slots.default}</td>
+  setup(props, { slots }) {
+    return () => (
+      <td
+        // @ts-ignore
+        class={selectorPrefix}
+      >
+        {slots?.default?.()}
+      </td>
     );
   },
 });

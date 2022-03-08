@@ -1,23 +1,29 @@
-import classNames from 'classnames';
+import { defineComponent } from 'vue';
 
 const selectorPrefix = 'adherev-ui-stickuplayout-item';
 
-export default {
+export default defineComponent({
   name: 'adv-stickuplayout-item',
-  props: {
-    className: {
-      type: String,
-      default: '',
-    },
-  },
-  render(h) {
-    const { $slots, className } = this;
-
-    return (
-      <div class={classNames(selectorPrefix, className.split(/\s+/))}>
-        <div class={`${selectorPrefix}-header`}>{$slots.title}</div>
-        <div class={`${selectorPrefix}-content`}>{$slots.default}</div>
+  slots: ['title'],
+  setup(props, { slots }) {
+    return () => (
+      <div
+        // @ts-ignore
+        class={selectorPrefix}
+      >
+        <div
+          // @ts-ignore
+          class={`${selectorPrefix}-header`}
+        >
+          {slots?.title?.()}
+        </div>
+        <div
+          // @ts-ignore
+          class={`${selectorPrefix}-content`}
+        >
+          {slots?.default?.()}
+        </div>
       </div>
     );
   },
-};
+});

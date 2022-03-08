@@ -19,15 +19,17 @@ export function slider(
   y: string,
   z: string,
   time = '0',
-  callback: Function,
+  callback?: Function,
 ) {
   if (callback) {
     callback(el);
   }
 
-  el.style.transform = el.style.webkitTransform = `translate3d(${x},${y},${z})`;
+  console.log('x,y,z', x, y, z);
 
-  el.style.transition = el.style.webkitTransition = `all ${time} ease`;
+  (el as HTMLElement).style.transform = `translate3d(${x},${y},${z})`;
+
+  (el as HTMLElement).style.transition = `all ${time} ease`;
 }
 
 /**
@@ -42,9 +44,10 @@ export function createMask(zIndex: number | string, closeCallback: Function): HT
 
   const maskEl = el.firstElementChild;
 
-  maskEl.style.zIndex = zIndex - 1;
+  // @ts-ignore
+  (maskEl as HTMLElement).style.zIndex = `${Number.parseInt(zIndex) - 1}`;
 
-  maskEl.addEventListener('click', () => {
+  (maskEl as HTMLElement).addEventListener('click', () => {
     closeCallback();
   });
 

@@ -1,5 +1,4 @@
 import Util from '@baifendian/adherev-util';
-
 import Notification from './notification';
 
 const {
@@ -8,7 +7,7 @@ const {
 
 Notification.isUse = () => true;
 
-Notification.use = (Vue) => {
+Notification.use = (Vue: any) => {
   withVue(Vue, 'Notification', Notification);
 };
 

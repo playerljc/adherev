@@ -5,8 +5,10 @@ const {
   _util: { withVue },
 } = BfdUtil;
 
+// @ts-ignore
 Domain.isUse = () => true;
-Domain.use = (Vue) => {
+// @ts-ignore
+Domain.use = (Vue: any) => {
   withVue(Vue, 'Domain', Domain);
 };
 

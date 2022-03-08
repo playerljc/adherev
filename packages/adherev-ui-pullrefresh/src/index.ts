@@ -2,16 +2,17 @@ import BfdUtil from '@baifendian/adherev-util';
 
 import PullRefresh from './pullrefresh';
 
+import { IComponent } from './types';
 
 const {
   _util: { withInstall, withVue },
 } = BfdUtil;
 
-const Component = withInstall(PullRefresh);
+const Component: IComponent = withInstall(PullRefresh);
 
 Component.isUse = () => true;
 
-Component.use = (Vue) => {
+Component.use = (Vue: any) => {
   Vue.use(Component);
   withVue(Vue, 'PullRefresh', Component);
 };

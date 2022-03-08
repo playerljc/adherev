@@ -1,28 +1,28 @@
 import classNames from 'classnames';
+import { computed, defineComponent, inject } from 'vue';
+import { string } from 'vue-types';
 
 const selectorPrefix = 'adherev-ui-jdcategorytab';
 
-export default {
-  name: 'adv-jdcategorytab-item',
-  props: {
-    id: {
-      type: String,
-      default: '',
-    },
-  },
-  computed: {
-    getClassName() {
-      const { id, getActiveKey } = this;
-
-      const activeKey = getActiveKey();
-
-      return classNames(`${selectorPrefix}-tab-item`, activeKey === id ? 'active' : null);
-    },
-  },
-  inject: ['getActiveKey'],
-  render(h) {
-    const { $slots, getClassName } = this;
-
-    return <li class={getClassName}>{$slots.default}</li>;
-  },
+const props = {
+  id: string().def(''),
 };
+
+export default defineComponent({
+  name: 'adv-jdcategorytab-item',
+  props,
+  setup(props, { slots }) {
+    const activeKey = inject('activeKey');
+
+    const getClassName = computed(() =>
+      classNames(
+        `${selectorPrefix}-tab-item`,
+        // @ts-ignore
+        activeKey.value == props.id ? 'active' : null,
+      ),
+    );
+
+    // @ts-ignore
+    return () => <li class={getClassName.value}>{slots.default ? slots.default() : null}</li>;
+  },
+});

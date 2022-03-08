@@ -1,87 +1,84 @@
-import Vue, { VNode, PropType } from 'vue';
-
-import { IData, IConfig } from './types';
+import { computed, createApp, defineComponent, onMounted, provide, reactive, ref } from 'vue';
+import { array, object } from 'vue-types';
 import Menu from './Menu';
+import { IComponent, IConfig, IData } from './types';
 
 const selectorPrefix = 'adherev-ui-contextmenu';
+
+export type ContextReturnType = {
+  config: IConfig;
+  el: HTMLElement;
+};
+
+const props = {
+  data: array<IData>().def([]),
+  config: object<IConfig>().def(),
+  el: object<HTMLElement>().def(),
+};
 
 /**
  * ContextMenuComponent
  * @class ContextMenuComponent
  * @classdesc ContextMenuComponent
  */
-const ContextMenuComponent = {
-  props: {
-    data: {
-      type: Array as PropType<IData[]>,
-      default: () => [],
-    },
-    config: {
-      type: Object as PropType<IData>,
-      default: () => {},
-    },
-    el: {
-      type: HTMLElement,
-      default: () => null,
-    },
-  },
-  provide() {
-    return {
-      getContext: this.getContext,
-    };
-  },
-  computed: {
-    getStyle() {
-      return `z-index: ${9999 * 2}`;
-    },
-  },
-  methods: {
-    getContext() {
-      return {
-        config: this.config,
-        el: this.el,
-      };
-    },
-    mount() {
-      this.$refs.menuIns?.mount();
-    },
-    onClick(e) {
+const ContextMenuComponent = defineComponent({
+  props,
+  setup(props, { expose }) {
+    const menuIns = ref<any>(null);
+
+    const context = reactive({
+      config: props.config,
+      el: props.el,
+    });
+
+    const getStyle = computed(() => ({
+      zIndex: 9999 * 2,
+    }));
+
+    onMounted(() => mount());
+
+    const onClick = (e: MouseEvent) => {
       e.stopPropagation();
 
-      this.$destroy();
+      props.el?.parentElement?.removeChild?.(props.el);
+    };
 
-      const { el } = this;
-
-      el.parentElement.removeChild(el);
-    },
-    onContextMenu(e) {
+    const onContextMenu = (e: MouseEvent) => {
       e.preventDefault();
 
-      this.$destroy();
+      props.el?.parentElement?.removeChild?.(props.el);
+    };
 
-      const { el } = this;
+    const mount = () => menuIns.value.mount();
 
-      el.parentElement.removeChild(el);
-    },
-  },
-  render(h): VNode {
-    const { data = [], config } = this;
+    provide('context', context);
 
-    // @ts-ignore
-    return (
+    expose({
+      mount,
+    });
+
+    return () => (
       <div
         class={selectorPrefix}
-        style={this.getStyle}
-        onClick={this.onClick}
-        onContextMenu={this.onContextMenu}
+        style={getStyle.value}
+        // @ts-ignore
+        onClick={onClick}
+        // @ts-ignore
+        onContextMenu={onContextMenu}
       >
-        <Menu data={data} className={config.className} styleName={config.styleName} ref="menuIns" />
+        {/*@ts-ignore*/}
+        <Menu
+          data={props.data}
+          className={props.config.className}
+          style={props.config.style}
+          ref={menuIns}
+        />
       </div>
     );
   },
-};
+});
 
-const ContextMenu = {
+const ContextMenu: IComponent = {
   /**
    * config
    * {
@@ -102,38 +99,42 @@ const ContextMenu = {
    * }
    * @return {HTMLDivElement}
    * @param data
-   * @param config
+   * @param defaultConfig
    */
-  open(data: IData, config: IConfig) {
-    config = { width: 200, maskClosable: true, ...config };
+  open(data: IData[], defaultConfig: IConfig) {
+    const config: IConfig = { ...defaultConfig, width: 200, maskClosable: true };
 
     const parentEl = document.createElement('div');
 
-    const replaceEl = document.createElement('div');
-
-    parentEl.appendChild(replaceEl);
     document.body.appendChild(parentEl);
 
-    const vm = new Vue({
-      mounted() {
-        this.$refs.ref.mount();
-      },
-      render(h) {
-        return h(ContextMenuComponent, {
-          props: {
-            data,
-            config,
-            el: parentEl,
-          },
-          ref: 'ref',
-        });
-      },
-    });
+    const app = createApp({
+      setup() {
+        const root = ref<any>(null);
 
-    vm.$mount(replaceEl);
+        onMounted(() => {
+          root.value.mount();
+        });
+
+        provide('root', {
+          unmount() {
+            console.log('app', app, parentEl);
+            try {
+              // @ts-ignore
+              app.unmount();
+            } catch (err) {
+              (parentEl as HTMLElement)?.parentElement?.removeChild(parentEl);
+            }
+          },
+        });
+
+        // @ts-ignore
+        return () => <ContextMenuComponent ref={root} data={data} config={config} el={parentEl} />;
+      },
+    }).mount(parentEl);
 
     return {
-      vm,
+      vm: app,
       el: parentEl,
     };
   },
@@ -143,8 +144,11 @@ const ContextMenu = {
    * @param el
    */
   close({ vm, el }) {
-    vm.$destroy();
-    el.parentElement.removeChild(el);
+    try {
+      vm.unmount();
+    } catch (err) {
+      (el as HTMLElement)?.parentElement?.removeChild(el);
+    }
   },
 };
 

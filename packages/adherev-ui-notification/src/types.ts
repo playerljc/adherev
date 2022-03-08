@@ -1,3 +1,5 @@
+import { Notification } from './notification';
+
 /**
  * IConfig
  * @interface IConfig
@@ -34,4 +36,10 @@ export interface IShowStandardConfig {
   text: Object | Function | string;
   icon: string;
   datetime: Object | Function | string;
+}
+
+export interface INotificationFactory {
+  build(container: HTMLElement, config: IConfig): Notification;
+  isUse?(): boolean;
+  use?(Vue: any): void;
 }

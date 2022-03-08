@@ -1,2 +1,6 @@
-"use strict";require("core-js/modules/es.object.define-property.js");var _interopRequireDefault=require("@babel/runtime/helpers/interopRequireDefault");Object.defineProperty(exports,"__esModule",{value:!0}),exports.default=void 0;var _updatedEx=_interopRequireDefault(require("./updatedEx")),_default={isUse:function(){return!1},updatedEx:_updatedEx.default};exports.default=_default;
+import updatedEx from './updatedEx';
+export default {
+    isUse: function () { return false; },
+    updatedEx: updatedEx,
+};
 //# sourceMappingURL=index.js.map

@@ -6,14 +6,14 @@ export declare const withInstall: (comp: any) => any;
 /**
  * withVue
  * @description - 将属性p混入到Vue实例中，在Vue实例的表达式中可以使用this.$adv[p]来进行访问
- * @param Vue
+ * @param app
  * @param p
  * @param val
  */
-export declare const withVue: (Vue: any, p: string, val: any) => void;
+export declare const withVue: (app: any, p: string, val: any) => void;
 /**
- * Fragment
+ * HOC
+ * @param VueComponent
+ * @param overwrite
  */
-export declare const Fragment: {
-    render(h: any): any;
-};
+export declare const HOC: (VueComponent: object, overwrite?: any) => object;

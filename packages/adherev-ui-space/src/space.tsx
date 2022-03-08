@@ -1,103 +1,99 @@
-import { VNode } from 'vue';
+import { computed, CSSProperties, defineComponent } from 'vue';
+import { number, object, string } from 'vue-types';
 
 const selectorPrefix = 'adherev-ui-space';
+
+enum directionType {
+  vertical = 'vertical',
+  horizontal = 'horizontal',
+}
+
+const spaceProps = {
+  direction: string<directionType>().def(directionType.vertical),
+  size: number().def(20),
+};
 
 /**
  * Space
  */
-const Space = {
+const Space = defineComponent({
   name: 'adv-space',
-  props: {
-    direction: {
-      type: String,
-      default: 'vertical',
-      validator(value) {
-        // 这个值必须匹配下列字符串中的一个
-        return ['vertical', 'horizontal'].indexOf(value) !== -1;
-      },
-    },
-    size: {
-      type: [Number, String],
-      default: 20,
-    },
-  },
-  computed: {
-    getStyle() {
-      const { direction, size } = this;
-
-      if (direction === 'horizontal') {
+  props: spaceProps,
+  setup(props, {}) {
+    const getStyle = computed(() => {
+      if (props.direction === directionType.horizontal) {
         return {
           display: 'inline-block',
           height: '100%',
-          margin: `0 ${size}px`,
+          margin: `0 ${props.size}px`,
         };
       }
 
       return {
         width: '100%',
         height: '0.1px',
-        margin: `${size}px 0`,
+        margin: `${props.size}px 0`,
       };
-    },
+    });
+
+    return () => (
+      <div
+        // @ts-ignore
+        class={selectorPrefix}
+        style={getStyle.value}
+      />
+    );
   },
-  render(h): VNode {
-    // @ts-ignore
-    return <div class={selectorPrefix} style={this.getStyle} />;
-  },
+});
+
+const spaceGroupProps = {
+  direction: string<directionType>().def(directionType.vertical),
+  size: number().def(20),
+  className: string().def(''),
+  style: object<CSSProperties>().def({}),
 };
 
 /**
  * SpaceGroup
  */
-export const SpaceGroup = {
+export const SpaceGroup = defineComponent({
   name: 'adv-space-group',
-  props: {
-    direction: {
-      type: String,
-      default: 'vertical',
-      validator(value) {
-        // 这个值必须匹配下列字符串中的一个
-        return ['vertical', 'horizontal'].indexOf(value) !== -1;
-      },
-    },
-    size: {
-      type: [Number, String],
-      default: 20,
-    },
-    className: {
-      type: String,
-      required: false,
-      default: '',
-    },
-  },
-  render(h): VNode {
-    const { $slots, direction, size, className } = this;
+  props: spaceGroupProps,
+  setup(props, { slots }) {
+    return () => {
+      const JSXS: JSX.Element[] = [];
 
-    const JSXS = [];
+      if (slots.default) {
+        const children = slots.default();
 
-    if ($slots.default) {
-      for (let i = 0; i < $slots.default.length; i++) {
-        if (i !== 0) {
-          const props = {
-            props: {
-              ...{
-                direction,
-                size,
-                className,
-              },
-            },
-          };
+        for (let i = 0; i < children.length; i++) {
+          if (i !== 0) {
+            const spaceProps = {
+              key: i,
+              direction: props.direction,
+              size: props.size,
+              class: props.className,
+              style: props.style,
+            };
 
-          JSXS.push(<Space {...props} key={i} />);
+            // @ts-ignore
+            JSXS.push(<Space {...spaceProps} />);
+          }
+
+          JSXS.push(children[i]);
         }
-
-        JSXS.push($slots.default[i]);
       }
-    }
 
-    // @ts-ignore
-    return <div class={`${selectorPrefix}-group ${direction}`}>{JSXS}</div>;
+      return (
+        <div
+          // @ts-ignore
+          class={`${selectorPrefix}-group ${props.direction}`}
+        >
+          {JSXS}
+        </div>
+      );
+    };
   },
-};
+});
 
 export default Space;

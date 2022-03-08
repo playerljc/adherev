@@ -5,8 +5,10 @@ const {
   _util: { withVue },
 } = BfdUtil;
 
+// @ts-ignore
 Validator.isUse = () => true;
-Validator.use = (Vue) => {
+// @ts-ignore
+Validator.use = (Vue: any) => {
   withVue(Vue, 'Validator', Validator);
 };
 

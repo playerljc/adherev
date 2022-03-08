@@ -7,7 +7,7 @@ const {
 
 const Component = withInstall(SwipeOut);
 Component.isUse = () => true;
-Component.use = (Vue) => {
+Component.use = (Vue: any) => {
   Vue.use(Component);
   withVue(Vue, 'SwipeOut', Component);
 };

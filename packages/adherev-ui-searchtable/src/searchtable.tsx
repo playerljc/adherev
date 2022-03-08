@@ -1,12 +1,13 @@
-import Vue, { CreateElement } from 'vue';
-import { Table, Button } from 'ant-design-vue';
-import classNames from 'classnames';
-
-import Suspense from '@baifendian/adherev-ui-suspense';
-import FlexLayout from '@baifendian/adherev-ui-flexlayout';
 import ConditionalRender from '@baifendian/adherev-ui-conditionalrender';
+import FlexLayout from '@baifendian/adherev-ui-flexlayout';
+import Suspense from '@baifendian/adherev-ui-suspense';
 import Intl from '@baifendian/adherev-util-intl';
 import Mixins from '@baifendian/adherev-util-mixins';
+import { Button, Table } from 'ant-design-vue';
+import classNames from 'classnames';
+import { ReactChild, ReactFragment, ReactPortal } from 'react';
+import { defineComponent } from 'vue';
+import { ISearchTableData, ISearchTableSelf } from './types';
 
 const selectorPrefix = 'adherev-ui-searchtable';
 
@@ -19,7 +20,7 @@ export const NUMBER_GENERATOR_RULE_ALONE = Symbol();
 // 连续模式
 export const NUMBER_GENERATOR_RULE_CONTINUITY = Symbol();
 
-export default Vue.extend({
+export default defineComponent({
   // @overview
   mixins: [Suspense, updatedEx],
   props: {
@@ -91,7 +92,7 @@ export default Vue.extend({
       default: false,
     },
   },
-  data() {
+  data(): ISearchTableData {
     return {
       page: 1,
       limit: 10,
@@ -99,20 +100,23 @@ export default Vue.extend({
       scrollY: 0,
     };
   },
-  updatedEx(prevState) {
-    if (!this.$refs.tableWrapRef) return;
+  updatedEx(prevState: { scrollY: number; expand: boolean }) {
+    const { $refs, scrollY, expand, fixedHeaderAutoTable } = this as unknown as ISearchTableSelf;
 
-    if (this.fixedHeaderAutoTable) {
+    if (!$refs.tableWrapRef) return;
+
+    if (fixedHeaderAutoTable) {
+      // @ts-ignore
       const dataSource = this.getData();
 
       if (
         dataSource &&
         dataSource.length &&
-        ((prevState.scrollY === 0 && this.scrollY === 0) ||
-          prevState.scrollY !== this.scrollY ||
-          prevState.expand !== this.expand)
+        ((prevState.scrollY === 0 && scrollY === 0) ||
+          prevState.scrollY !== scrollY ||
+          prevState.expand !== expand)
       ) {
-        const tableWrapRef = this.$refs.tableWrapRef as HTMLElement;
+        const tableWrapRef = $refs.tableWrapRef as HTMLElement;
 
         const scrollBodyEl = this.getScrollBodyEl();
         if (scrollBodyEl) {
@@ -132,7 +136,7 @@ export default Vue.extend({
       }
     }
   },
-  beforeDestroy() {
+  beforeUnmount() {
     const { fixedHeaderAutoTable } = this;
 
     if (fixedHeaderAutoTable) {
@@ -144,7 +148,8 @@ export default Vue.extend({
       const scrollBodyEl = this.getScrollBodyEl();
       const scrollHeaderEl = this.getScrollHeaderEl();
 
-      scrollHeaderEl?.scrollLeft = scrollBodyEl?.scrollLeft;
+      // @ts-ignore
+      (scrollHeaderEl as HTMLElement)?.scrollLeft = scrollBodyEl?.scrollLeft;
     },
     getScrollHeaderEl(): HTMLElement | null {
       const tableWrapRef: HTMLElement = this.$refs.tableWrapRef as HTMLElement;
@@ -167,14 +172,10 @@ export default Vue.extend({
      * @param number
      * @param params
      */
-    renderTableNumberColumn(
-      h: CreateElement,
-      number = '',
-      params: { record: object; index: number },
-    ) {
+    renderTableNumberColumn(number = '', params: { record: object; index: number }) {
       return <span>{number}</span>;
     },
-    renderSearchTableInner(h: CreateElement) {
+    renderSearchTableInner() {
       const {
         wrapStyle,
         className,
@@ -186,9 +187,11 @@ export default Vue.extend({
         fitTable,
         autoFixed,
         fixedTableSpaceBetween,
-      } = this;
+        $slots,
+      } = this as unknown as ISearchTableSelf;
 
       return (
+        // @ts-ignore
         <FlexLayout
           direction="vertical"
           style={wrapStyle || ''}
@@ -206,19 +209,25 @@ export default Vue.extend({
             )}
             fit={fitSearch}
           >
+            {/*@ts-ignore*/}
             <FlexLayout direction="vertical">
               <Fixed>
+                {/*@ts-ignore**/}
                 <ConditionalRender conditional={this.expand}>
-                  {this.renderSearchForm(h)}
+                  {
+                    // @ts-ignore
+                    this.renderSearchForm()
+                  }
                 </ConditionalRender>
               </Fixed>
 
-              <Fixed>{this.renderSearchFooter(h)}</Fixed>
+              <Fixed>{this.renderSearchFooter()}</Fixed>
             </FlexLayout>
           </Fixed>
 
-          <ConditionalRender conditional={!!this.$slots.tableHeader}>
-            <Fixed>{this.$slots.tableHeader}</Fixed>
+          {/*@ts-ignore*/}
+          <ConditionalRender conditional={!!$slots.tableHeader}>
+            <Fixed>{$slots.tableHeader()}</Fixed>
           </ConditionalRender>
 
           <Auto
@@ -231,40 +240,49 @@ export default Vue.extend({
             fit={fitTable}
             autoFixed={autoFixed}
           >
-            <div ref="tableWrapRef" class={`${selectorPrefix}-tablewrapper`}>
-              {this.renderTable(h)}
+            <div
+              ref="tableWrapRef"
+              // @ts-ignore
+              class={`${selectorPrefix}-tablewrapper`}
+            >
+              {this.renderTable()}
             </div>
           </Auto>
 
-          <ConditionalRender conditional={!!this.$slots.tableFooter}>
-            <Fixed>{this.$slots.tableFooter}</Fixed>
+          {/*@ts-ignore*/}
+          <ConditionalRender conditional={!!$slots.tableFooter}>
+            <Fixed>{$slots.tableFooter()}</Fixed>
           </ConditionalRender>
         </FlexLayout>
       );
     },
     /**
      * renderInner
-     * @param h
      */
-    renderInner(h: CreateElement) {
-      return this.renderSearchTableInner(h);
+    renderInner() {
+      return this.renderSearchTableInner();
     },
-    renderSearchTableSearchFooter(h: CreateElement) {
-      const { isShowExpandSearch } = this;
+    renderSearchTableSearchFooter() {
+      const { isShowExpandSearch } = this as unknown as ISearchTableSelf;
 
       const defaultItems = [
+        // @ts-ignore
         <Button
           class={`${selectorPrefix}-searchfooteritem`}
           type="primary"
           onClick={() => {
             this.page = 1;
-
+            // @ts-ignore
             this.onSearch();
           }}
         >
-          <i class="iconfont iconsousuo" />
+          <i
+            // @ts-ignore
+            class="iconfont iconsousuo"
+          />
           {Intl.tv('查询')}
         </Button>,
+        // @ts-ignore
         <Button class={`${selectorPrefix}-searchfooteritem`} onClick={this.onClear}>
           {Intl.tv('重置')}
         </Button>,
@@ -272,72 +290,108 @@ export default Vue.extend({
 
       if (isShowExpandSearch) {
         defaultItems.push(
+          // @ts-ignore
           <ConditionalRender conditional={this.expand}>
-            <a
-              slot="noMatch"
-              style="display: flex; align-items: center"
-              onClick={() => {
-                this.expand = true;
-              }}
-            >
-              <span style="margin-right: 5px;">{Intl.tv('展开')}</span>
-              <img
-                style="width: 16px;"
-                src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBzdGFuZGFsb25lPSJubyI/PjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+PHN2ZyB0PSIxNjMzODYzMjYyMTM1IiBjbGFzcz0iaWNvbiIgdmlld0JveD0iMCAwIDEwMjQgMTAyNCIgdmVyc2lvbj0iMS4xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHAtaWQ9IjE1MjQ0IiB3aWR0aD0iMzIiIGhlaWdodD0iMzIiIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIj48ZGVmcz48c3R5bGUgdHlwZT0idGV4dC9jc3MiPjwvc3R5bGU+PC9kZWZzPjxwYXRoIGQ9Ik0xOTkuMzYgNTcyLjc2OGEzMS45MDQgMzEuOTA0IDAgMCAwIDIyLjYyNC05LjM3NmwyOTQuMTQ0LTI5NC4xNDQgMjg1LjcyOCAyODUuNzI4YTMxLjk2OCAzMS45NjggMCAxIDAgNDUuMjQ4LTQ1LjI0OEw1MzguNzUyIDIwMS4zNzZhMzIgMzIgMCAwIDAtNDUuMjggMEwxNzYuNzA0IDUxOC4xNDRhMzEuOTY4IDMxLjk2OCAwIDAgMCAyMi42NTYgNTQuNjI0eiBtMzM5LjQyNC0xMTUuMzkyYTMyIDMyIDAgMCAwLTQ1LjI4IDBMMTc2LjczNiA3NzQuMTQ0YTMxLjk2OCAzMS45NjggMCAxIDAgNDUuMjQ4IDQ1LjI0OGwyOTQuMTQ0LTI5NC4xNDQgMjg1LjcyOCAyODUuNzI4YTMxLjk2OCAzMS45NjggMCAxIDAgNDUuMjQ4LTQ1LjI0OGwtMzA4LjMyLTMwOC4zNTJ6IiBwLWlkPSIxNTI0NSIgZmlsbD0iIzE4OTBmZiI+PC9wYXRoPjwvc3ZnPg=="
-                alt="up"
-              />
-            </a>
-
-            <a
-              style="display: flex; align-items: center"
-              onClick={() => {
-                this.expand = false;
-              }}
-            >
-              <span style="margin-right: 5px;">{Intl.tv('关闭')}</span>
-              <img
-                style="width: 16px;"
-                src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBzdGFuZGFsb25lPSJubyI/PjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+PHN2ZyB0PSIxNjMzODYzMTc4MzI5IiBjbGFzcz0iaWNvbiIgdmlld0JveD0iMCAwIDEwMjQgMTAyNCIgdmVyc2lvbj0iMS4xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHAtaWQ9IjE0ODY3IiB3aWR0aD0iMzIiIGhlaWdodD0iMzIiIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIj48ZGVmcz48c3R5bGUgdHlwZT0idGV4dC9jc3MiPjwvc3R5bGU+PC9kZWZzPjxwYXRoIGQ9Ik00OTMuNTA0IDU1OC4xNDRhMzEuOTA0IDMxLjkwNCAwIDAgMCA0NS4yOCAwbDMwOC4zNTItMzA4LjM1MmEzMS45NjggMzEuOTY4IDAgMSAwLTQ1LjI0OC00NS4yNDhMNTE2LjE2IDQ5MC4yNzIgMjIxLjk4NCAxOTYuMTI4YTMxLjk2OCAzMS45NjggMCAxIDAtNDUuMjQ4IDQ1LjI0OGwzMTYuNzY4IDMxNi43Njh6IiBwLWlkPSIxNDg2OCIgZmlsbD0iIzE4OTBmZiI+PC9wYXRoPjxwYXRoIGQ9Ik04MDEuODg4IDQ2MC41NzZMNTE2LjE2IDc0Ni4zMDQgMjIyLjAxNiA0NTIuMTZhMzEuOTY4IDMxLjk2OCAwIDEgMC00NS4yNDggNDUuMjQ4bDMxNi43NjggMzE2Ljc2OGEzMS45MDQgMzEuOTA0IDAgMCAwIDQ1LjI4IDBsMzA4LjM1Mi0zMDguMzUyYTMyIDMyIDAgMSAwLTQ1LjI4LTQ1LjI0OHoiIHAtaWQ9IjE0ODY5IiBmaWxsPSIjMTg5MGZmIj48L3BhdGg+PC9zdmc+"
-                alt="down"
-              />
-            </a>
+            {{
+              default: () => (
+                <a
+                  // @ts-ignore
+                  style="display: flex; align-items: center"
+                  onClick={() => {
+                    this.expand = false;
+                  }}
+                >
+                  <span
+                    // @ts-ignore
+                    style="margin-right: 5px;"
+                  >
+                    {Intl.tv('关闭')}
+                  </span>
+                  <img
+                    // @ts-ignore
+                    style="width: 16px;"
+                    src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBzdGFuZGFsb25lPSJubyI/PjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+PHN2ZyB0PSIxNjMzODYzMTc4MzI5IiBjbGFzcz0iaWNvbiIgdmlld0JveD0iMCAwIDEwMjQgMTAyNCIgdmVyc2lvbj0iMS4xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHAtaWQ9IjE0ODY3IiB3aWR0aD0iMzIiIGhlaWdodD0iMzIiIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIj48ZGVmcz48c3R5bGUgdHlwZT0idGV4dC9jc3MiPjwvc3R5bGU+PC9kZWZzPjxwYXRoIGQ9Ik00OTMuNTA0IDU1OC4xNDRhMzEuOTA0IDMxLjkwNCAwIDAgMCA0NS4yOCAwbDMwOC4zNTItMzA4LjM1MmEzMS45NjggMzEuOTY4IDAgMSAwLTQ1LjI0OC00NS4yNDhMNTE2LjE2IDQ5MC4yNzIgMjIxLjk4NCAxOTYuMTI4YTMxLjk2OCAzMS45NjggMCAxIDAtNDUuMjQ4IDQ1LjI0OGwzMTYuNzY4IDMxNi43Njh6IiBwLWlkPSIxNDg2OCIgZmlsbD0iIzE4OTBmZiI+PC9wYXRoPjxwYXRoIGQ9Ik04MDEuODg4IDQ2MC41NzZMNTE2LjE2IDc0Ni4zMDQgMjIyLjAxNiA0NTIuMTZhMzEuOTY4IDMxLjk2OCAwIDEgMC00NS4yNDggNDUuMjQ4bDMxNi43NjggMzE2Ljc2OGEzMS45MDQgMzEuOTA0IDAgMCAwIDQ1LjI4IDBsMzA4LjM1Mi0zMDguMzUyYTMyIDMyIDAgMSAwLTQ1LjI4LTQ1LjI0OHoiIHAtaWQ9IjE0ODY5IiBmaWxsPSIjMTg5MGZmIj48L3BhdGg+PC9zdmc+"
+                    alt="down"
+                  />
+                </a>
+              ),
+              noMatch: () => (
+                <a
+                  // @ts-ignore
+                  style="display: flex; align-items: center"
+                  onClick={() => {
+                    this.expand = true;
+                  }}
+                >
+                  <span
+                    // @ts-ignore
+                    style="margin-right: 5px;"
+                  >
+                    {Intl.tv('展开')}
+                  </span>
+                  <img
+                    // @ts-ignore
+                    style="width: 16px;"
+                    src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBzdGFuZGFsb25lPSJubyI/PjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+PHN2ZyB0PSIxNjMzODYzMjYyMTM1IiBjbGFzcz0iaWNvbiIgdmlld0JveD0iMCAwIDEwMjQgMTAyNCIgdmVyc2lvbj0iMS4xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHAtaWQ9IjE1MjQ0IiB3aWR0aD0iMzIiIGhlaWdodD0iMzIiIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIj48ZGVmcz48c3R5bGUgdHlwZT0idGV4dC9jc3MiPjwvc3R5bGU+PC9kZWZzPjxwYXRoIGQ9Ik0xOTkuMzYgNTcyLjc2OGEzMS45MDQgMzEuOTA0IDAgMCAwIDIyLjYyNC05LjM3NmwyOTQuMTQ0LTI5NC4xNDQgMjg1LjcyOCAyODUuNzI4YTMxLjk2OCAzMS45NjggMCAxIDAgNDUuMjQ4LTQ1LjI0OEw1MzguNzUyIDIwMS4zNzZhMzIgMzIgMCAwIDAtNDUuMjggMEwxNzYuNzA0IDUxOC4xNDRhMzEuOTY4IDMxLjk2OCAwIDAgMCAyMi42NTYgNTQuNjI0eiBtMzM5LjQyNC0xMTUuMzkyYTMyIDMyIDAgMCAwLTQ1LjI4IDBMMTc2LjczNiA3NzQuMTQ0YTMxLjk2OCAzMS45NjggMCAxIDAgNDUuMjQ4IDQ1LjI0OGwyOTQuMTQ0LTI5NC4xNDQgMjg1LjcyOCAyODUuNzI4YTMxLjk2OCAzMS45NjggMCAxIDAgNDUuMjQ4LTQ1LjI0OGwtMzA4LjMyLTMwOC4zNTJ6IiBwLWlkPSIxNTI0NSIgZmlsbD0iIzE4OTBmZiI+PC9wYXRoPjwvc3ZnPg=="
+                    alt="up"
+                  />
+                </a>
+              ),
+            }}
           </ConditionalRender>,
         );
       }
 
       // 返回的是VNodes数组
-      const items = this.renderSearchFooterItems(h, defaultItems) || [...defaultItems];
+      // @ts-ignore
+      const items = this.renderSearchFooterItems(defaultItems) || [...defaultItems];
 
       return (
-        <div class={`${selectorPrefix}-searchfooterwrapper`}>
-          {items.map((t) => (
-            <div class={`${selectorPrefix}-searchfooteritem`}>{t}</div>
+        <div
+          // @ts-ignore
+          class={`${selectorPrefix}-searchfooterwrapper`}
+        >
+          {items.map((t: boolean | ReactChild | ReactFragment | ReactPortal | null | undefined) => (
+            <div
+              // @ts-ignore
+              class={`${selectorPrefix}-searchfooteritem`}
+            >
+              {t}
+            </div>
           ))}
         </div>
       );
     },
     /**
      * renderSearchFooter
-     * @param h
      */
-    renderSearchFooter(h: CreateElement) {
-      return this.renderSearchTableSearchFooter(h);
+    renderSearchFooter() {
+      return this.renderSearchTableSearchFooter();
     },
-    renderSearchTableTable(h: CreateElement) {
-      const { antdTableProps, fixedHeaderAutoTable } = this;
+    renderSearchTableTable() {
+      const {
+        getScopedSlotsInner,
+        antdTableProps,
+        fixedHeaderAutoTable,
+        getRowKey,
+        getData,
+        getRowSelection,
+      } = this;
 
       // 作用域插槽
-      const scopedSlots = {
-        ...(this.getScopedSlots(h) || {}),
-      };
+      // const scopedSlots = {
+      //   // @ts-ignore
+      //   ...(getScopedSlots() || {}),
+      // };
 
-      const tablePropsAttr = {};
+      const tablePropsAttr: any = {};
       const tableOnAttr = {};
 
       const mergeProps = antdTableProps || {};
 
       for (const p in mergeProps) {
         if (p.startsWith('on')) {
+          // @ts-ignore
           tableOnAttr[p.substring(2).toLowerCase()] = mergeProps[p];
         } else {
           tablePropsAttr[p] = mergeProps[p];
@@ -345,54 +399,132 @@ export default Vue.extend({
       }
 
       // Table的antdProps配置
+      // const tableProps = {
+      //   scopedSlots,
+      //   props: {
+      //     // @ts-ignore
+      //     rowKey: getRowKey(),
+      //     // @ts-ignore
+      //     dataSource: getData(),
+      //     columns: this.getTableColumns(),
+      //     pagination: this.getPagination(),
+      //     // @ts-ignore
+      //     rowSelection: getRowSelection(),
+      //     ...(tablePropsAttr || {}),
+      //   },
+      //   on: {
+      //     change: this.onTableChange,
+      //     ...(tableOnAttr || {}),
+      //   },
+      // };
+
       const tableProps = {
-        scopedSlots,
-        props: {
-          rowKey: this.getRowKey(),
-          dataSource: this.getData(),
-          columns: this.getTableColumns(h),
-          pagination: this.getPagination(),
-          rowSelection: this.getRowSelection(),
-          ...(tablePropsAttr || {}),
-        },
-        on: {
-          change: this.onTableChange,
-          ...(tableOnAttr || {}),
-        },
+        // @ts-ignore
+        rowKey: getRowKey(),
+        // @ts-ignore
+        dataSource: getData(),
+        columns: this.getTableColumns(),
+        pagination: this.getPagination(),
+        // @ts-ignore
+        rowSelection: getRowSelection(),
+        ...(tablePropsAttr || {}),
+        onChange: this.onTableChange,
+        ...(tableOnAttr || {}),
       };
 
       // 是否支持锁定列头，表格体滚动
       if (fixedHeaderAutoTable) {
         const { scrollY } = this;
 
+        // if (tablePropsAttr) {
+        //   if (tablePropsAttr.scroll) {
+        //     tableProps.props.scroll.y = scrollY;
+        //   } else {
+        //     tableProps.props.scroll = { y: scrollY };
+        //   }
+        // } else {
+        //   tableProps.props.scroll = { y: scrollY };
+        // }
+
         if (tablePropsAttr) {
           if (tablePropsAttr.scroll) {
-            tableProps.props.scroll.y = scrollY;
+            tableProps.scroll.y = scrollY;
           } else {
-            tableProps.props.scroll = { y: scrollY };
+            tableProps.scroll = { y: scrollY };
           }
         } else {
-          tableProps.props.scroll = { y: scrollY };
+          tableProps.scroll = { y: scrollY };
         }
       }
 
-      return <Table {...tableProps} />;
+      return (
+        // @ts-ignore
+        <Table
+          {...tableProps}
+          v-slots={{
+            // @ts-ignore
+            bodyCell: (row) => getScopedSlotsInner(row),
+          }}
+        />
+      );
     },
     /**
      * renderTable
      * @description - 认选表格体
      * @protected
      */
-    renderTable(h: CreateElement) {
-      return this.renderSearchTableTable(h);
+    renderTable() {
+      return this.renderSearchTableTable();
     },
-    getSearchTableTableColumns(h: CreateElement): Array<any> {
+    getScopedSlotsInner(row) {
+      const { record, index, column } = row;
+
+      if (column.key === 'number') {
+        const { getNumberGeneratorRule } = this;
+
+        // @ts-ignore
+        const numberGeneratorRule = getNumberGeneratorRule() || NUMBER_GENERATOR_RULE_ALONE;
+
+        const { page, limit } = this;
+
+        return (
+          // @ts-ignore
+          <ConditionalRender conditional={numberGeneratorRule === NUMBER_GENERATOR_RULE_ALONE}>
+            {{
+              default: () => (
+                // @ts-ignore
+                <span>{this.renderTableNumberColumn(index + 1, { record: row, index })}</span>
+              ),
+              noMatch: () => (
+                <span>
+                  {
+                    // @ts-ignore
+                    this.renderTableNumberColumn((page - 1) * limit + (index + 1), {
+                      record,
+                      index,
+                    })
+                  }
+                </span>
+              ),
+            }}
+          </ConditionalRender>
+        );
+      }
+
+      return this.getScopedSlots(row);
+    },
+    getSearchTableTableColumns(): Array<any> {
+      const { /*getNumberGeneratorRule, */ getColumns } = this;
+
+      // @ts-ignore
       const isShowNumber = this.isShowNumber();
 
+      // @ts-ignore
       const getTableNumberColumnWidth = this.getTableNumberColumnWidth();
 
       // 对权限进行过滤
-      const columns = this.getColumns().filter((column) => {
+      // @ts-ignore
+      const columns = getColumns().filter((column) => {
         if ('authorized' in column) {
           return column.authorized();
         }
@@ -408,26 +540,6 @@ export default Vue.extend({
             key: 'number',
             align: 'center',
             width: getTableNumberColumnWidth || 80,
-            customRender: (text, row, index) => {
-              const numberGeneratorRule =
-                this.getNumberGeneratorRule() || NUMBER_GENERATOR_RULE_ALONE;
-
-              const { page, limit } = this;
-
-              return (
-                <ConditionalRender
-                  conditional={numberGeneratorRule === NUMBER_GENERATOR_RULE_ALONE}
-                >
-                  <span>{this.renderTableNumberColumn(h, index + 1, { record: row, index })}</span>
-                  <span slot="noMatch">
-                    {this.renderTableNumberColumn(h, (page - 1) * limit + (index + 1), {
-                      record: row,
-                      index,
-                    })}
-                  </span>
-                </ConditionalRender>
-              );
-            },
           },
         ].concat(columns);
       }
@@ -437,8 +549,8 @@ export default Vue.extend({
     /**
      * onTableChange - 表格change
      */
-    getTableColumns(h: CreateElement): Array<any> {
-      return this.getSearchTableTableColumns(h);
+    getTableColumns(): Array<any> {
+      return this.getSearchTableTableColumns();
     },
     /**
      * onTableChange
@@ -446,18 +558,24 @@ export default Vue.extend({
      * @param filters
      * @param sorter
      */
-    onTableChange(pagination, filters, sorter) {
+    onTableChange(pagination: any, filters: any, sorter: { field?: any; order: any }) {
+      // console.log('onTableChange', pagination, filters, sorter);
+
+      // @ts-ignore
       this[this.getOrderFieldProp()] = sorter.field;
 
+      // @ts-ignore
       this[this.getOrderProp()] = sorter.order;
 
       const { order } = sorter;
 
       if (!order) return;
 
+      // @ts-ignore
       this.fetchData();
 
-      this.onSubTableChange(pagination, filters, sorter);
+      // @ts-ignore
+      this.onSubTableChange?.(pagination, filters, sorter);
     },
     /**
      * onClear - 清除操作
@@ -467,7 +585,9 @@ export default Vue.extend({
 
       this.limit = 10;
 
+      // @ts-ignore
       this.clear().then(() => {
+        // @ts-ignore
         this.fetchData();
       });
     },
@@ -476,6 +596,7 @@ export default Vue.extend({
      * @param columnName
      */
     sortOrder(columnName: string): string {
+      // @ts-ignore
       return this[this.getOrderFieldProp()] === columnName ? this[this.getOrderProp()] : '';
     },
     /**
@@ -483,27 +604,31 @@ export default Vue.extend({
      */
     getSearchTablePagination() {
       return {
-        onChange: (page, limit) => {
+        onChange: (page: number, limit: number) => {
           this.page = page;
 
           this.limit = limit;
 
+          // @ts-ignore
           this.fetchData();
         },
-        onShowSizeChange: (page, limit) => {
+        onShowSizeChange: (page: number, limit: number) => {
           this.page = page;
 
           this.limit = limit;
 
+          // @ts-ignore
           this.fetchData();
         },
-        showTotal: (total) => {
+        showTotal: (total: any) => {
+          // @ts-ignore
           return Intl.tv(`当前 {page}-{pageSize}/共 {total}条`, {
             page: this.page,
             pageSize: this.limit,
             total,
           });
         },
+        // @ts-ignore
         total: this.getTotal(),
         current: this.page,
         pageSize: this.limit,
@@ -519,13 +644,22 @@ export default Vue.extend({
     /**
      * renderSearchTable
      * @description - renderSearchTable
-     * @param h
      */
-    renderSearchTable(h) {
-      return <div class={`${selectorPrefix}-wrap`}>{this.renderSuspense(h)}</div>;
+    renderSearchTable() {
+      return (
+        <div
+          // @ts-ignore
+          class={`${selectorPrefix}-wrap`}
+        >
+          {
+            // @ts-ignore
+            this.renderSuspense()
+          }
+        </div>
+      );
     },
   },
-  render(h) {
-    return this.renderSearchTable(h);
+  render() {
+    return this.renderSearchTable();
   },
 });

@@ -19,7 +19,8 @@
     "buildumd": "node script/buildumd.js",
     "buildumd:core": "ctbuild buildumd --packagename adherev --define alias=@,evnVars=true",
     "generatorchangelog": "bd changelog/CHANGELOG.html",
-    "mergegenchangelog": "node script/changelog.js"
+    "mergegenchangelog": "node script/changelog.js",
+    "upgrade": "yarn upgrade --latest"
   },
   "repository": {
     "type": "git",
@@ -43,7 +44,7 @@
     "cheerio": "^1.0.0-rc.10",
     "npm-run-all": "^4.1.5",
     "rimraf": "^3.0.2",
-    "typescript": "^3.8.2"
+    "typescript": "^4.5.5"
   },
   "dependencies": {
     "@baifendian/adhere-ui-css": "^1.0.14",
@@ -107,19 +108,20 @@
     "@baifendian/adherev-util-resource": "^1.0.8",
     "@baifendian/adherev-util-validator": "^1.0.8",
     "@baifendian/adherev-util-watchmemoized": "^1.0.8",
-    "@form-create/ant-design-vue": "^2.5.6",
+    "@form-create/ant-design-vue": "^2.5.17",
     "algebra.js": "^0.2.6",
-    "ant-design-vue": "^1.7.5",
-    "classnames": "^2.2.6",
+    "ant-design-vue": "^3.0.0-beta.9",
+    "classnames": "^2.3.1",
     "iscroll": "^5.2.0",
     "load-awesome": "^1.1.0",
     "moment": "^2.29.1",
-    "ol": "^6.5.0",
+    "ol": "^6.12.0",
     "omit.js": "^2.0.2",
     "swiper": "4.4.6",
     "uuid": "^8.3.2",
-    "vue": "^2.6.12",
+    "vue": "^3.2.31",
     "vue-fragment": "^1.5.2",
-    "vue-i18n": "^8.24.4"
+    "vue-i18n": "^9.1.9",
+    "vue-types": "^4.1.1"
   }
 }

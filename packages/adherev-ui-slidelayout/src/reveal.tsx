@@ -1,164 +1,136 @@
-import { Fragment } from 'vue-fragment';
 import classNames from 'classnames';
-
-import SlideLayout from './slide';
+import { CSSProperties, defineComponent, ref, watch } from 'vue';
+import { object, string } from 'vue-types';
+import useSlide, { slideProps } from './slide';
 import { slider } from './slidelayout';
 
 const selectorPrefix = 'adherev-ui-slidelayout-reveal';
 
-export default {
-  name: 'adv-slidelayout-reveal',
-  mixins: [SlideLayout],
-  props: {
-    masterClassName: {
-      type: String,
-      default: '',
-    },
-    className: {
-      type: String,
-      default: '',
-    },
-    slaveClassName: {
-      type: String,
-      default: '',
-    },
-  },
-  watch: {
-    zIndex(val) {
-      this.$refs.el.style.zIndex = val;
+const revealProps = {
+  ...slideProps,
+  masterClassName: string().def(''),
+  masterStyle: object<CSSProperties>().def({}),
+  slaveClassName: string().def(''),
+  slaveStyle: object<CSSProperties>().def({}),
+};
 
-      this.$refs.rMasterEl.style.zIndex = val + 1;
-    },
-  },
-  created() {
-    this.$data.$positionConfig = {
+export default defineComponent({
+  name: 'adv-slidelayout-reveal',
+  props: revealProps,
+  slots: ['slide', 'master'],
+  emits: ['after-show', 'after-close'],
+  setup(props, context) {
+    const { slots, emit } = context;
+
+    const rMasterEl = ref<HTMLElement>();
+
+    const { getElRef, setPositionConfig, getDuration } = useSlide(props, context);
+
+    setPositionConfig(({ el, maskEl }) => ({
       init: {
         left: () => {
-          this.$refs.el.style.zIndex = this.zIndex;
-
-          this.$refs.rMasterEl.style.zIndex = this.zIndex + 1;
-
-          this.$refs.el.style.left = '0';
+          el.value.style.zIndex = props.zIndex;
+          (rMasterEl.value as HTMLElement).style.zIndex = `${props.zIndex + 1}`;
+          el.value.style.left = '0';
         },
         right: () => {
-          this.$refs.el.style.zIndex = this.zIndex;
-
-          this.$refs.rMasterEl.style.zIndex = this.zIndex + 1;
-
-          this.$refs.el.style.right = '0';
+          el.value.style.zIndex = props.zIndex;
+          (rMasterEl.value as HTMLElement).style.zIndex = `${props.zIndex + 1}`;
+          el.value.style.right = '0';
         },
       },
       show: {
-        left: (time) => {
-          this.$refs.el.style.zIndex = this.zIndex;
-
-          this.$data.$maskEl.style.zIndex = this.zIndex - 1;
-
-          this.$refs.rMasterEl.style.zIndex = this.zIndex - 2;
+        left: (time: string | number | null | undefined) => {
+          el.value.style.zIndex = props.zIndex;
+          if (maskEl) maskEl.style.zIndex = props.zIndex - 1;
+          (rMasterEl.value as HTMLElement).style.zIndex = `${props.zIndex - 2}`;
 
           slider(
-            this.$refs.rMasterEl,
-
-            `${this.$refs.el.offsetWidth}px`,
+            rMasterEl.value,
+            `${el.value.offsetWidth}px`,
             '0',
             '0',
-
-            `${this.getDuration(time)}ms`,
+            `${getDuration(time)}ms`,
             () => {
-              this.$emit('after-show');
+              emit('after-show');
             },
           );
 
-          if (this.$data.$maskEl) this.$data.$maskEl.style.display = 'block';
+          if (maskEl) maskEl.style.display = 'block';
         },
-        right: (time) => {
-          this.$refs.el.style.zIndex = this.zIndex;
-
-          this.$data.$maskEl.style.zIndex = this.zIndex - 1;
-
-          this.$refs.rMasterEl.style.zIndex = this.zIndex - 2;
+        right: (time: string | number | null | undefined) => {
+          el.value.style.zIndex = props.zIndex;
+          if (maskEl) maskEl.style.zIndex = props.zIndex - 1;
+          (rMasterEl.value as HTMLElement).style.zIndex = `${props.zIndex - 2}`;
 
           slider(
-            this.$refs.rMasterEl,
-
-            `-${this.$refs.el.offsetWidth}px`,
+            rMasterEl.value,
+            `-${el.value.offsetWidth}px`,
             '0',
             '0',
-
-            `${this.getDuration(time)}ms`,
+            `${getDuration(time)}ms`,
             () => {
-              this.$emit('after-show');
+              emit('after-show');
             },
           );
 
-          if (this.$data.$maskEl) this.$data.$maskEl.style.display = 'block';
+          if (maskEl) maskEl.style.display = 'block';
         },
       },
       close: {
-        left: (time) => {
-          this.$refs.el.style.zIndex = this.zIndex;
-
-          this.$refs.rMasterEl.style.zIndex = this.zIndex + 1;
-
-          slider(this.$refs.rMasterEl, '0', '0', '0', `${this.getDuration(time)}ms`, () => {
-            this.$emit('after-close');
+        left: (time: string | number | null | undefined) => {
+          el.value.style.zIndex = props.zIndex;
+          (rMasterEl.value as HTMLElement).style.zIndex = `${props.zIndex + 1}`;
+          slider(rMasterEl.value, '0', '0', '0', `${getDuration(time)}ms`, () => {
+            emit('after-close');
           });
 
-          if (this.$data.$maskEl) this.$data.$maskEl.style.display = 'none';
+          if (maskEl) maskEl.style.display = 'none';
         },
-        right: (time) => {
-          this.$refs.el.style.zIndex = this.zIndex;
+        right: (time: string | number | null | undefined) => {
+          el.value.style.zIndex = props.zIndex;
+          (rMasterEl.value as HTMLElement).style.zIndex = `${props.zIndex + 1}`;
+          slider(rMasterEl.value, '0', '0', '0', `${getDuration(time)}ms`, () => {
+            emit('after-close');
+          });
 
-          this.$refs.rMasterEl.style.zIndex = this.zIndex + 1;
-
-          slider(
-            this.$refs.rMasterEl,
-            '0',
-            '0',
-            '0',
-
-            `${this.getDuration(time)}ms`,
-            () => {
-              this.$emit('after-close');
-            },
-          );
-
-          if (this.$data.$maskEl) this.$data.$maskEl.style.display = 'none';
+          if (maskEl) maskEl.style.display = 'none';
         },
       },
-    };
-  },
-  mounted() {
-    this.$refs.el.style.zIndex = this.zIndex;
+    }));
 
-    this.$refs.rMasterEl.style.zIndex = this.zIndex + 1;
-  },
-  render(h) {
-    const { $slots, masterClassName, slaveClassName, direction } = this;
+    watch(
+      () => props.zIndex,
+      (val) => {
+        (getElRef().value as HTMLElement).style.zIndex = `${val}`;
+        (rMasterEl.value as HTMLElement).style.zIndex = `${val + 1}`;
+      },
+    );
 
-    return (
-      <Fragment>
+    return () => (
+      <>
         <div
           class={classNames(
             `${selectorPrefix}`,
-            direction,
-            slaveClassName.split(/\s+/),
+            props.direction,
+            (props.slaveClassName || '').split(/\s+/),
           )}
-          ref="el"
+          style={props.slaveStyle}
+          // @ts-ignore
+          ref={getElRef()}
         >
-          {$slots.slide}
+          {slots?.slide?.()}
         </div>
 
         <div
-          class={classNames(
-            `${selectorPrefix}-master`,
-            masterClassName.split(/\s+/),
-          )}
-          ref="rMasterEl"
+          class={classNames(`${selectorPrefix}-master`, (props.masterClassName || '').split(/\s+/))}
+          style={props.masterStyle}
+          // @ts-ignore
+          ref={rMasterEl}
         >
-          {$slots.master}
+          {slots?.master?.()}
         </div>
-      </Fragment>
+      </>
     );
   },
-};
+});

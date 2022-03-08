@@ -3,18 +3,21 @@ import Util from '@baifendian/adherev-util';
 
 import BMapComponent from './bmap';
 
+import { IComponent } from './types';
+
 const {
   _util: { withInstall, withVue },
 } = Util;
 
-const BMap = {
+// @ts-ignore
+const BMap: IComponent = {
   ...OriginBMap,
   BMap: BMapComponent,
 };
 
 BMap.isUse = () => true;
 
-BMap.use = (Vue) => {
+BMap.use = (Vue: any) => {
   Vue.use(BMapComponent);
   withVue(Vue, 'BMap', BMap);
 };

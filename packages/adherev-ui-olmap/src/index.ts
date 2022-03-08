@@ -1,16 +1,18 @@
-import OLMap from './olmap';
-import HeatMap from './heatmap';
-import GeoLayer from './geolayer';
-import * as TitleLayer from './titlelayer';
-import Util from './util';
-import AnimationManager from './animationmanager';
-
 import BfdUtil from '@baifendian/adherev-util';
+// @ts-ignore
+import AnimationManager from './animationmanager';
+import GeoLayer from './geolayer';
+import HeatMap from './heatmap';
+import OLMap from './olmap';
+import * as TitleLayer from './titlelayer';
+import { IComponent } from './types';
+import Util from './util';
+
 const {
   _util: { withInstall, withVue },
 } = BfdUtil;
 
-const Component = {
+const Component: IComponent = {
   AnimationManager,
   GeoLayer,
   TitleLayer,
@@ -21,7 +23,7 @@ const Component = {
 
 Component.isUse = () => true;
 
-Component.use = (Vue) => {
+Component.use = Vue => {
   Vue.use(Component.OLMap);
 
   Vue.use(Component.HeatMap);

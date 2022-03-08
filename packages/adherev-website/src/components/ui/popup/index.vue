@@ -22,6 +22,7 @@
 <script>
 import { Popup } from '@baifendian/adherev';
 import PopupInner from './popup';
+
 export default {
   data() {
     return {

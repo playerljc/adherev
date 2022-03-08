@@ -1,146 +1,160 @@
-import { VNode, PropType } from 'vue';
-import classNames from 'classnames';
 import ConditionalRender from '@baifendian/adherev-ui-conditionalrender';
 import Util from '@baifendian/adherev-util';
-
-import { IMenuItemProps } from './types';
-
+import classNames from 'classnames';
+import { computed, defineComponent, h, inject } from 'vue';
+import { object } from 'vue-types';
+import { ContextReturnType } from './ContextMenu';
 import SubMenu from './SubMenu';
+import { IData } from './types';
 
 const selectorPrefix = 'adherev-ui-contextmenu-menuitem';
 
-export default {
-  props: {
-    data: {
-      type: Object as PropType<IMenuItemProps>,
-      default: () => ({}),
-    },
-  },
-  inject: ['getContext'],
-  computed: {
-    getClass() {
-      const {
-        data: { disabled = false, className },
-      } = this;
+const props = {
+  data: object<IData>().def({}),
+};
 
-      return classNames(
+export default defineComponent({
+  props,
+  setup(props) {
+    const context = inject('context') as ContextReturnType;
+    const root = inject('root') as any;
+
+    const getClass = computed(() =>
+      classNames(
         selectorPrefix,
-        disabled ? 'disabled' : '',
-        (className || '').split(/\s+/),
-      );
-    },
-  },
-  methods: {
-    renderIcon(h): VNode {
-      const {
-        data: { icon },
-      } = this;
+        props.data.disabled ? 'disabled' : '',
+        (props.data.className || '').split(/\s+/),
+      ),
+    );
 
-      // @ts-ignore
+    const renderIcon = (): JSX.Element => {
       return (
-        <ConditionalRender conditional={Util.isString(icon)}>
-          <span class={classNames(`${selectorPrefix}-icon`, icon)} />
-
-          <ConditionalRender slot="noMatch" conditional={Util.isObject(icon)}>
-            <span class={classNames(`${selectorPrefix}-icon`)}>{h(icon)}</span>
-
-            <ConditionalRender slot="noMatch" conditional={Util.isFunction(icon)}>
-              <span class={classNames(`${selectorPrefix}-icon`)}>
-                {Util.isFunction(icon) ? icon(h) : null}
-              </span>
-            </ConditionalRender>
-          </ConditionalRender>
+        // @ts-ignore
+        <ConditionalRender conditional={Util?.isString?.(props.data.icon)}>
+          {{
+            // @ts-ignore
+            default: () => <span class={classNames(`${selectorPrefix}-icon`, props.data.icon)} />,
+            noMatch: () => (
+              // @ts-ignore
+              <ConditionalRender conditional={Util?.isObject?.(props.data.icon)}>
+                {{
+                  default: () => (
+                    // @ts-ignore
+                    <span class={classNames(`${selectorPrefix}-icon`)}>
+                      {h(props.data.icon as object)}
+                    </span>
+                  ),
+                  noMatch: () => (
+                    // @ts-ignore
+                    <ConditionalRender conditional={Util?.isFunction?.(props.data.icon)}>
+                      {/*@ts-ignore*/}
+                      <span class={classNames(`${selectorPrefix}-icon`)}>
+                        {Util?.isFunction?.(props.data.icon)
+                          ? (props.data.icon as Function)()
+                          : null}
+                      </span>
+                    </ConditionalRender>
+                  ),
+                }}
+              </ConditionalRender>
+            ),
+          }}
         </ConditionalRender>
       );
-    },
-    renderName(h):VNode {
-      const {
-        data: { name },
-      } = this;
+    };
 
-      // @ts-ignore
+    const renderName = (): JSX.Element => {
       return (
-        <ConditionalRender conditional={Util.isString(name)}>
-          <span class={classNames(`${selectorPrefix}-name`)}>{name}</span>
-
-          <ConditionalRender slot="noMatch" conditional={Util.isObject(name)}>
-            {<span class={classNames(`${selectorPrefix}-name`)}>{h(name)}</span>}
-
-            <ConditionalRender slot="noMatch" conditional={Util.isFunction(name)}>
-              <span class={classNames(`${selectorPrefix}-name`)}>
-                {Util.isFunction(name) ? name(h) : null}
-              </span>
-            </ConditionalRender>
-          </ConditionalRender>
+        // @ts-ignore
+        <ConditionalRender conditional={Util?.isString?.(props.data.name)}>
+          {{
+            default: () => (
+              // @ts-ignore
+              <span class={classNames(`${selectorPrefix}-name`)}>{props.data.name}</span>
+            ),
+            noMatch: () => (
+              // @ts-ignore
+              <ConditionalRender conditional={Util?.isObject?.(props.data.name)}>
+                {{
+                  default: () => (
+                    // @ts-ignore
+                    <span class={classNames(`${selectorPrefix}-name`)}>
+                      {h(props.data.name as object)}
+                    </span>
+                  ),
+                  noMatch: () => (
+                    // @ts-ignore
+                    <ConditionalRender conditional={Util?.isFunction?.(props.data.name)}>
+                      {/*@ts-ignore*/}
+                      <span class={classNames(`${selectorPrefix}-name`)}>
+                        {Util?.isFunction?.(props.data.name)
+                          ? (props.data.name as Function)()
+                          : null}
+                      </span>
+                    </ConditionalRender>
+                  ),
+                }}
+              </ConditionalRender>
+            ),
+          }}
         </ConditionalRender>
       );
-    },
-    renderMore(h):VNode {
-      const {
-        data: { children },
-      } = this;
+    };
 
+    const renderMore = (): JSX.Element => (
       // @ts-ignore
-      return (
-        <ConditionalRender conditional={children.length !== 0}>
-          <span class={`${selectorPrefix}-more fa fa-caret-right`} />
-        </ConditionalRender>
-      );
-    },
-    renderSubMenu(h):VNode {
-      const {
-        data: { children, subMenuClassName, subMenuStyle },
-      } = this;
+      <ConditionalRender conditional={props?.data?.children?.length !== 0}>
+        {/*@ts-ignore*/}
+        <span class={`${selectorPrefix}-more fa fa-caret-right`} />
+      </ConditionalRender>
+    );
 
+    const renderSubMenu = (): JSX.Element => (
       // @ts-ignore
-      return (
-        <ConditionalRender conditional={children.length !== 0}>
-          <SubMenu data={children} className={subMenuClassName} styleName={subMenuStyle} />
-        </ConditionalRender>
-      );
-    },
-    onClick(e) {
+      <ConditionalRender conditional={props?.data?.children?.length !== 0}>
+        {/*@ts-ignore*/}
+        <SubMenu
+          data={props?.data?.children}
+          className={props.data.subMenuClassName}
+          style={props.data.subMenuStyle}
+        />
+      </ConditionalRender>
+    );
+
+    const onClick = (e: MouseEvent) => {
       e.stopPropagation();
+      // const { config, el } = inject('getContext') as ContextReturnType;
 
-      const {
-        data: { id, attribute, disabled, children },
-      } = this;
+      const { handler } = context.config;
 
-      const { config, el } = this.getContext();
-
-      const { handler } = config;
-
-      if (disabled || (children || []).length > 0) return false;
+      if (props.data.disabled || (props.data.children || []).length > 0) return false;
 
       if (handler) {
-        handler(id, attribute);
+        handler(props.data.id, props.data.attribute);
 
-        this.$root.$destroy();
+        (root as any).unmount();
 
-        el?.parentElement?.removeChild(el);
+        context.el?.parentElement?.removeChild(context.el);
       }
-    },
-  },
-  render(h):VNode {
-    const {
-      data: { separation, styleName },
-    } = this;
+    };
 
-    // @ts-ignore
-    return (
-      <ConditionalRender conditional={!separation}>
-        <li class={this.getClass} style={styleName} onClick={this.onClick}>
-          {this.renderIcon(h)}
-
-          {this.renderName(h)}
-
-          {this.renderMore(h)}
-
-          {this.renderSubMenu(h)}
-        </li>
-
-        <li slot="noMatch" class={`${selectorPrefix}-separation`} />
+    return () => (
+      // @ts-ignore
+      <ConditionalRender conditional={!props.data.separation}>
+        {{
+          default: () => (
+            // @ts-ignore
+            <li class={getClass.value} style={props.data.style} onClick={onClick}>
+              {renderIcon()}
+              {renderName()}
+              {renderMore()}
+              {renderSubMenu()}
+            </li>
+          ),
+          // @ts-ignore
+          noMatch: () => <li class={`${selectorPrefix}-separation`} />,
+        }}
       </ConditionalRender>
     );
   },
-};
+});

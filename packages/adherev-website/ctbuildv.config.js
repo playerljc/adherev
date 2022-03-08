@@ -1,4 +1,4 @@
-const path = require('path');
+// const path = require('path');
 const modifyVars = require('./themes/default/vars');
 
 module.exports = {
@@ -67,7 +67,12 @@ module.exports = {
       /packages[\\/]adherev[\\/]es[\\/].*.less/,
     );
 
-    webpackConfig.module.rules[3].include.push(/ol.css/, /swiper.css/, /nprogress.css/);
+    webpackConfig.module.rules[3].include.push(
+      /ol.css/,
+      /swiper.css/,
+      /nprogress.css/,
+      /agate.css/,
+    );
 
     // 加入markdown的解析
     webpackConfig.module.rules.push({
@@ -98,7 +103,7 @@ module.exports = {
     });
 
     if (babelLoaderConfig) {
-      babelLoaderConfig.query.plugins.push(
+      babelLoaderConfig.options.plugins.push(
         [
           'import',
           {

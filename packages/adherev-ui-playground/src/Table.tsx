@@ -1,115 +1,135 @@
-import classNames from 'classnames';
 import ConditionalRender from '@baifendian/adherev-ui-conditionalrender';
+import classNames from 'classnames';
+import { CSSProperties, defineComponent } from 'vue';
+import { array, object, string } from 'vue-types';
 
 const selectorPrefix = 'adherev-ui-playground-table';
 
-export default {
+interface IColumnItem {
+  title?: string;
+  className?: string;
+  style?: CSSProperties;
+  align?: string;
+  width?: string | null;
+  key: string;
+  dataIndex: string;
+  valign?: string;
+  slot?: string;
+}
+
+const tableProps = {
+  tableClassName: string().def(''),
+  tableStyle: object<CSSProperties>().def({}),
+  columns: array<IColumnItem>().def([]),
+  dataSource: array<object>().def([]),
+  rowKey: string().def(''),
+};
+
+export default defineComponent({
   name: 'adv-playground-table',
-  props: {
-    tableClassName: {
-      type: String,
-      default: '',
-    },
-    tableStyle: {
-      type: String,
-      default: '',
-    },
-    columns: {
-      type: Array,
-      default: () => [],
-    },
-    dataSource: {
-      type: Array,
-      default: () => [],
-    },
-    rowKey: {
-      type: String,
-    },
-  },
-  methods: {
-    renderHeader(h) {
-      const { columns } = this;
+  props: tableProps,
+  setup(props, { slots }) {
+    const renderHeader = (): JSX.Element => (
+      <thead>
+        <tr
+          // @ts-ignore
+          class={`${selectorPrefix}-header`}
+        >
+          {props.columns.map(column => {
+            const { className, style, align } = column;
 
-      return (
-        <thead>
-          <tr class={`${selectorPrefix}-header`}>
-            {columns.map((column) => {
-              const { className, style, align } = column;
-              const props = {
-                key: column.key,
-              };
+            const defaultProps: {
+              key: string;
+              width?: string | number;
+            } = {
+              key: column.key,
+            };
 
-              column.width && (props.width = column.width);
+            column.width && (defaultProps.width = column.width);
 
-              return (
-                <th
-                  {...{ props }}
-                  class={classNames(
-                    `${selectorPrefix}-header-column`,
-                    (className || '').split(/\s+/),
-                  )}
-                  style={`text-align:${align || 'left'};${style}`}
-                >
-                  {column.title || '-'}
-                </th>
-              );
-            })}
-          </tr>
-        </thead>
-      );
-    },
-    renderBody(h) {
-      const { columns, dataSource, rowKey, $scopedSlots } = this;
-
-      return (
-        <tbody>
-          {dataSource.map((record, rowIndex: number) => {
             return (
-              <tr class={`${selectorPrefix}-row`} key={record[rowKey]}>
-                {columns.map((column, columnIndex) => {
-                  const { dataIndex, slot, align, valign } = column;
-
-                  return (
-                    <td
-                      class={`${selectorPrefix}-cell`}
-                      key={column.key}
-                      valign={valign || 'top'}
-                      style={`text-align:${align || 'left'};`}
-                    >
-                      <ConditionalRender conditional={!!slot}>
-                        {$scopedSlots[slot]
-                          ? $scopedSlots[slot]({
-                              value: record[dataIndex],
-                              record,
-                              rowIndex,
-                              columnIndex,
-                            })
-                          : null}
-                        <span slot="noMatch">{record[dataIndex] || '-'}</span>
-                      </ConditionalRender>
-                    </td>
-                  );
-                })}
-              </tr>
+              <th
+                {...defaultProps}
+                class={classNames(
+                  `${selectorPrefix}-header-column`,
+                  (className || '').split(/\s+/),
+                )}
+                style={{
+                  ...style,
+                  // @ts-ignore
+                  textAlign: align || 'left',
+                }}
+              >
+                {column.title || '-'}
+              </th>
             );
           })}
-        </tbody>
-      );
-    },
-  },
-  render(h) {
-    const { tableClassName, tableStyle } = this;
+        </tr>
+      </thead>
+    );
 
-    return (
-      <div class={selectorPrefix}>
+    const renderBody = (): JSX.Element => (
+      <tbody>
+        {props.dataSource.map((record: any, rowIndex: number) => {
+          return (
+            <tr
+              // @ts-ignore
+              class={`${selectorPrefix}-row`}
+              key={record[props.rowKey]}
+            >
+              {props.columns.map((column, columnIndex) => {
+                const { dataIndex, slot, align, valign } = column;
+
+                return (
+                  <td
+                    class={`${selectorPrefix}-cell`}
+                    key={column.key}
+                    // @ts-ignore
+                    valign={valign || 'top'}
+                    style={{
+                      // @ts-ignore
+                      textAlign: align || 'left',
+                    }}
+                  >
+                    {/*@ts-ignore*/}
+                    <ConditionalRender conditional={!!slot}>
+                      {{
+                        default: () =>
+                          slot && slots[slot]
+                            ? // @ts-ignore
+                              slots[slot]({
+                                value: record[dataIndex],
+                                record,
+                                rowIndex,
+                                columnIndex,
+                              })
+                            : null,
+                        noMatch: () => <span>{record[dataIndex] || '-'}</span>,
+                      }}
+                    </ConditionalRender>
+                  </td>
+                );
+              })}
+            </tr>
+          );
+        })}
+      </tbody>
+    );
+
+    return () => (
+      <div
+        // @ts-ignore
+        class={selectorPrefix}
+      >
         <table
-          class={classNames(`${selectorPrefix}-inner`, tableClassName.split(/\s+/))}
-          style={tableStyle}
+          // @ts-ignore
+          class={classNames(`${selectorPrefix}-inner`, (props.tableClassName || '').split(/\s+/))}
+          style={props.tableStyle}
         >
-          {this.renderHeader(h)}
-          {this.renderBody(h)}
+          {renderHeader()}
+          {renderBody()}
         </table>
       </div>
     );
   },
-};
+});

@@ -1,2 +1,36 @@
-"use strict";require("core-js/modules/es.object.set-prototype-of.js"),require("core-js/modules/es.object.define-property.js");var __extends=function(){var o=function(e,r){return(o=Object.setPrototypeOf||{__proto__:[]}instanceof Array&&function(e,r){e.__proto__=r}||function(e,r){for(var t in r)r.hasOwnProperty(t)&&(e[t]=r[t])})(e,r)};return function(e,r){function t(){this.constructor=e}o(e,r),e.prototype=null===r?Object.create(r):(t.prototype=r.prototype,new t)}}(),__importDefault=function(e){return e&&e.__esModule?e:{default:e}};Object.defineProperty(exports,"__esModule",{value:!0});var layer_1=require("ol/layer"),source_1=require("ol/source"),GeoJSON_1=__importDefault(require("ol/format/GeoJSON")),adherev_util_resource_1=__importDefault(require("@baifendian/adherev-util-resource")),GeoLayer=function(u){function e(e,r,t){var o=this,e=new source_1.Vector({features:new GeoJSON_1.default({dataProjection:adherev_util_resource_1.default.Dict.value.ResourceGisEpsg4326.value,featureProjection:adherev_util_resource_1.default.Dict.value.ResourceGisEpsg3857.value}).readFeatures(e)});return(o=u.call(this,{source:e,style:r,zIndex:t})||this).vectorSource=e,o}return __extends(e,u),e}(layer_1.Vector);exports.default=GeoLayer;
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var tslib_1 = require("tslib");
+var adherev_util_resource_1 = (0, tslib_1.__importDefault)(require("@baifendian/adherev-util-resource"));
+var GeoJSON_1 = (0, tslib_1.__importDefault)(require("ol/format/GeoJSON"));
+var layer_1 = require("ol/layer");
+var source_1 = require("ol/source");
+/**
+ * GeoLayer
+ * @class GeoLayer
+ * @classdesc openlayers中的geojson的layer
+ */
+var GeoLayer = /** @class */ (function (_super) {
+    (0, tslib_1.__extends)(GeoLayer, _super);
+    /**
+     * constructor
+     * @param geoJsonObject - 数据
+     * @param onStyle - onStyle
+     * @param zIndex
+     */
+    function GeoLayer(geoJsonObject, onStyle, zIndex) {
+        var _this = this;
+        var geoSource = new source_1.Vector({
+            features: new GeoJSON_1.default({
+                dataProjection: adherev_util_resource_1.default.Dict.value.ResourceGisEpsg4326.value,
+                featureProjection: adherev_util_resource_1.default.Dict.value.ResourceGisEpsg3857.value,
+            }).readFeatures(geoJsonObject),
+        });
+        _this = _super.call(this, { source: geoSource, style: onStyle, zIndex: zIndex }) || this;
+        _this.vectorSource = geoSource;
+        return _this;
+    }
+    return GeoLayer;
+}(layer_1.Vector));
+exports.default = GeoLayer;
 //# sourceMappingURL=geolayer.js.map

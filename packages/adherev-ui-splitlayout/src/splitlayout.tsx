@@ -1,5 +1,8 @@
-import classNames from 'classnames';
 import FlexLayout from '@baifendian/adherev-ui-flexlayout';
+import classNames from 'classnames';
+import { defineComponent, inject, onMounted, onUpdated, ref } from 'vue';
+import { number, oneOfType, string } from 'vue-types';
+import { MouseEvent } from 'react';
 
 const { selectorPrefix: flexlayoutSelectorPrefix } = FlexLayout;
 
@@ -25,361 +28,311 @@ const directionProp = {
 function toPoint(percent: string) {
   const str = percent.replace('%', '');
 
-  return str / 100;
+  return Number.parseInt(str) / 100;
 }
 
-export default {
+const splitLayoutProps = {
+  maxSize: oneOfType([string(), number()]).def('100%'),
+  minSize: oneOfType([string(), number()]).def(10),
+};
+
+export default defineComponent({
   name: 'adv-splitlayout',
-  props: {
-    className: {
-      type: String,
-      default: '',
-    },
-    maxSize: {
-      type: [String, Number],
-      default: '100%',
-    },
-    minSize: {
-      type: [String, Number],
-      default: 10,
-    },
-    canDrag: {
-      type: Function,
-    },
-    dragStarted: {
-      type: Function,
-    },
-    dragFinished: {
-      type: Function,
-    },
-    out: {
-      type: Function,
-    },
-    change: {
-      type: Function,
-    },
-  },
-  data() {
-    return {
-      $fixedEl: null,
-      $autoEl: null,
-      $containerEl: null,
-      $isEnter: false,
-      $isOut: false,
-      $isDown: false,
-      $isMove: false,
-      $startVal: 0,
-      $changeVal: 0,
-      $changeBaseVal: 0,
-      $fixedValue: 0,
-      $maxDimension: 0,
-      $situation: new Map([
-        [`${flexlayoutSelectorPrefix}-fixed_${flexlayoutSelectorPrefix}-auto`, true],
-        [`${flexlayoutSelectorPrefix}-auto_${flexlayoutSelectorPrefix}-fixed`, true],
-      ]),
+  emits: ['canDrag', 'dragStarted', 'dragFinished', 'change'],
+  props: splitLayoutProps,
+  setup(props, { emit }) {
+    const root = ref<HTMLElement>();
+
+    const direction = inject('direction');
+
+    let fixedEl: HTMLElement | null = null;
+    let autoEl: HTMLElement | null = null;
+    let containerEl: HTMLElement | null = null;
+    let isEnter: boolean = false;
+    let isOut: boolean = false;
+    let isDown: boolean = false;
+    let isMove: boolean = false;
+    let startVal: number = 0;
+    let changeVal: number = 0;
+    let changeBaseVal: number = 0;
+    let fixedValue: number = 0;
+    let maxDimension: number = 0;
+    const situation = new Map<string, boolean>([
+      [`${flexlayoutSelectorPrefix}-fixed_${flexlayoutSelectorPrefix}-auto`, true],
+      [`${flexlayoutSelectorPrefix}-auto_${flexlayoutSelectorPrefix}-fixed`, true],
+    ]);
+
+    const initEvents = () => {
+      // @ts-ignore
+      root.value?.removeEventListener('mouseenter', onMouseenter);
+      // @ts-ignore
+      root.value?.removeEventListener('mousedown', onMousedown);
+      // @ts-ignore
+      root.value?.removeEventListener('mouseout', onMouseout);
+      // @ts-ignore
+      root.value?.removeEventListener('mousemove', onMousemove);
+      // @ts-ignore
+      root.value?.removeEventListener('mouseup', onMouseup);
+      // @ts-ignore
+      fixedEl?.removeEventListener('mousemove', onMousemove);
+      // @ts-ignore
+      fixedEl?.removeEventListener('mouseout', onMouseout);
+      // @ts-ignore
+      fixedEl?.removeEventListener('mouseup', onMouseup);
+      // @ts-ignore
+      autoEl?.removeEventListener('mouseout', onMouseout);
+      // @ts-ignore
+      autoEl?.removeEventListener('mousemove', onMousemove);
+      // @ts-ignore
+      autoEl?.removeEventListener('mouseup', onMouseup);
+      // @ts-ignore
+      containerEl?.removeEventListener('mouseleave', onMouseleave);
+
+      // @ts-ignore
+      root.value?.addEventListener('mouseenter', onMouseenter);
+      // @ts-ignore
+      root.value?.addEventListener('mousedown', onMousedown);
+      // @ts-ignore
+      root.value?.addEventListener('mousemove', onMousemove);
+      // @ts-ignore
+      root.value?.addEventListener('mouseout', onMouseout);
+      // @ts-ignore
+      root.value?.addEventListener('mouseup', onMouseup);
+      // @ts-ignore
+      fixedEl?.addEventListener('mousemove', onMousemove);
+      // @ts-ignore
+      fixedEl?.addEventListener('mouseout', onMouseout);
+      // @ts-ignore
+      fixedEl?.addEventListener('mouseup', onMouseup);
+      // @ts-ignore
+      autoEl?.addEventListener('mousemove', onMousemove);
+      // @ts-ignore
+      autoEl?.addEventListener('mouseout', onMouseout);
+      // @ts-ignore
+      autoEl?.addEventListener('mouseup', onMouseup);
+      // @ts-ignore
+      containerEl?.addEventListener('mouseleave', onMouseleave);
     };
-  },
-  mounted() {
-    if (this.checked()) {
-      const { $data } = this;
 
-      $data.$fixedEl = this.getFixedEl();
+    const checked = (): boolean => {
+      const { previousElementSibling, nextElementSibling } = root.value as HTMLElement;
 
-      $data.$autoEl = this.getAutoEl();
+      const keys = Array.from(situation.keys());
 
-      $data.$containerEl = this.$refs.ref.parentElement;
-
-      $data.$containerEl?.classList.add(`${selectorPrefix}-noSelect`);
-
-      this.initEvents();
-    }
-  },
-  created() {},
-  updated() {
-    if (this.checked()) {
-      const { $data } = this;
-
-      $data.$isEnter = false;
-      $data.$isOut = false;
-      $data.$isDown = false;
-      $data.$isMove = false;
-
-      $data.$startVal = 0;
-      $data.$changeVal = 0;
-      $data.$changeBaseVal = 0;
-      $data.$fixedValue = 0;
-      $data.$maxDimension = 0;
-
-      $data.$fixedEl = this.getFixedEl();
-
-      $data.$autoEl = this.getAutoEl();
-
-      this.initEvents();
-    }
-  },
-  inject: ['getDirection'],
-  methods: {
-    checked(): boolean {
-      const { $refs, $data } = this;
-
-      const { previousElementSibling, nextElementSibling } = $refs.ref;
-
-      const keys = Array.from($data.$situation.keys());
-
-      return keys.some((key) => {
+      return keys.some((key: string) => {
         const arr = key.split('_');
         const prevKey = arr[0];
         const nextKey = arr[1];
 
         return (
-          previousElementSibling.classList.contains(prevKey) &&
-          nextElementSibling.classList.contains(nextKey)
+          previousElementSibling?.classList.contains(prevKey) &&
+          nextElementSibling?.classList.contains(nextKey)
         );
       });
-    },
-    initEvents(): void {
-      const {
-        $data: { $fixedEl, $autoEl, $containerEl },
-      } = this;
+    };
 
-      const {
-        $refs: { ref: _splitEl },
-      } = this;
+    const getFixedEl = (): HTMLElement => {
+      const { previousElementSibling, nextElementSibling } = root.value as HTMLElement;
 
-      _splitEl.removeEventListener('mouseenter', this.onMouseenter);
-      _splitEl.removeEventListener('mousedown', this.onMousedown);
-      _splitEl.removeEventListener('mouseout', this.onMouseout);
-      _splitEl.removeEventListener('mousemove', this.onMousemove);
-      _splitEl.removeEventListener('mouseup', this.onMouseup);
-      $fixedEl.removeEventListener('mousemove', this.onMousemove);
-      $fixedEl.removeEventListener('mouseout', this.onMouseout);
-      $fixedEl.removeEventListener('mouseup', this.onMouseup);
-      $autoEl.removeEventListener('mouseout', this.onMouseout);
-      $autoEl.removeEventListener('mousemove', this.onMousemove);
-      $autoEl.removeEventListener('mouseup', this.onMouseup);
-      $containerEl.removeEventListener('mouseleave', this.onMouseleave);
+      return previousElementSibling?.classList?.contains?.(`${flexlayoutSelectorPrefix}-fixed`)
+        ? (previousElementSibling as HTMLElement)
+        : (nextElementSibling as HTMLElement);
+    };
 
-      _splitEl.addEventListener('mouseenter', this.onMouseenter);
-      _splitEl.addEventListener('mousedown', this.onMousedown);
-      _splitEl.addEventListener('mousemove', this.onMousemove);
-      _splitEl.addEventListener('mouseout', this.onMouseout);
-      _splitEl.addEventListener('mouseup', this.onMouseup);
-      $fixedEl.addEventListener('mousemove', this.onMousemove);
-      $fixedEl.addEventListener('mouseout', this.onMouseout);
-      $fixedEl.addEventListener('mouseup', this.onMouseup);
-      $autoEl.addEventListener('mousemove', this.onMousemove);
-      $autoEl.addEventListener('mouseout', this.onMouseout);
-      $autoEl.addEventListener('mouseup', this.onMouseup);
-      $containerEl.addEventListener('mouseleave', this.onMouseleave);
-    },
-    getFixedEl(): HTMLElement {
-      const { previousElementSibling, nextElementSibling } = this.$refs.ref;
+    const getAutoEl = (): HTMLElement => {
+      const { previousElementSibling, nextElementSibling } = root.value as HTMLElement;
 
-      return previousElementSibling.classList.contains(`${flexlayoutSelectorPrefix}-fixed`)
-        ? previousElementSibling
-        : nextElementSibling;
-    },
-    getAutoEl(): HTMLElement {
-      const { previousElementSibling, nextElementSibling } = this.$refs.ref;
+      return previousElementSibling?.classList?.contains?.(`${flexlayoutSelectorPrefix}-auto`)
+        ? (previousElementSibling as HTMLElement)
+        : (nextElementSibling as HTMLElement);
+    };
 
-      return previousElementSibling.classList.contains(`${flexlayoutSelectorPrefix}-auto`)
-        ? previousElementSibling
-        : nextElementSibling;
-    },
     /**
      * getFixedElPosition
      */
-    getFixedElPosition(): 'prev' | 'next' {
-      const { previousElementSibling } = this.$refs.ref;
+    const getFixedElPosition = (): 'prev' | 'next' => {
+      const { previousElementSibling } = root.value as HTMLElement;
 
-      return previousElementSibling.classList.contains(`${flexlayoutSelectorPrefix}-fixed`)
+      return previousElementSibling?.classList?.contains?.(`${flexlayoutSelectorPrefix}-fixed`)
         ? 'prev'
         : 'next';
-    },
+    };
+
     /**
      * getMaxDimension
      */
-    getMaxDimension(): number {
-      const { $data } = this;
-
-      if ($data.$maxDimension) {
-        return $data.$maxDimension;
+    const getMaxDimension = (): number => {
+      if (maxDimension) {
+        return maxDimension;
       }
 
-      const fixedEl = this.getFixedEl();
+      const fixedEl = getFixedEl();
 
-      const autoEl = this.getAutoEl();
+      console.log('fixedEl', fixedEl);
 
-      const { offset } = this.getProps();
+      const autoEl = getAutoEl();
 
-      $data.$maxDimension = fixedEl[offset] + autoEl[offset];
+      console.log('autoEl', autoEl);
 
-      return $data.$maxDimension;
-    },
+      const { offset } = getProps();
+
+      // @ts-ignore
+      maxDimension = fixedEl[offset] + autoEl[offset];
+
+      console.log('offset', offset);
+
+      console.log('fixedEl[offset]', fixedEl[offset]);
+
+      console.log('autoEl[offset]', autoEl[offset]);
+
+      console.log('maxDimension', maxDimension);
+
+      return maxDimension;
+    };
+
     /**
      * getResizeClass
      */
-    getResizeClass(): 'rowResize' | 'colResize' {
-      const { getDirection } = this;
+    const getResizeClass = (): 'rowResize' | 'colResize' => {
+      return direction === 'vertical' ? 'rowResize' : 'colResize';
+    };
 
-      return getDirection() === 'vertical' ? 'rowResize' : 'colResize';
-    },
     /**
      * getProps
      */
-    getProps() {
-      const { getDirection } = this;
+    // @ts-ignore
+    const getProps = () => directionProp[direction];
 
-      return directionProp[getDirection()];
-    },
     /**
      * getMaxSize
      */
-    getMaxSize(): number {
-      const { maxSize } = this;
-
+    const getMaxSize = (): number => {
       let resultVal = 0;
 
-      const maxDimension = this.getMaxDimension();
+      const maxDimension = getMaxDimension();
 
-      if (typeof maxSize === 'string') {
-        resultVal = maxDimension * toPoint(maxSize);
-      } else if (typeof maxSize === 'number') {
-        resultVal = maxSize;
+      if (typeof props.maxSize === 'string') {
+        resultVal = maxDimension * toPoint(props.maxSize);
+      } else if (typeof props.maxSize === 'number') {
+        resultVal = props.maxSize;
       }
 
       return resultVal > maxDimension ? maxDimension : resultVal;
-    },
+    };
+
     /**
      * getMinSize
      */
-    getMinSize(): number {
-      const { minSize } = this;
-
+    const getMinSize = (): number => {
       let resultVal = 0;
 
-      const maxDimension = this.getMaxDimension();
+      const maxDimension = getMaxDimension();
 
-      const { offset } = this.getProps();
+      const { offset } = getProps();
 
-      const elSize = this.$refs.ref[offset];
+      // @ts-ignore
+      const elSize = (root.value as HTMLElement)[offset];
 
-      if (typeof minSize === 'string') {
-        resultVal = maxDimension * toPoint(minSize);
-      } else if (typeof minSize === 'number') {
-        resultVal = minSize;
+      if (typeof props.minSize === 'string') {
+        resultVal = maxDimension * toPoint(props.minSize);
+      } else if (typeof props.minSize === 'number') {
+        resultVal = props.minSize;
       }
 
       return resultVal < elSize ? elSize : resultVal;
-    },
-    onMouseenter(e) {
-      // console.log('mouseenter');
+    };
 
-      const {
-        $data,
+    const onMouseenter = (e: MouseEvent) => {
+      root.value?.classList.add(`${selectorPrefix}-${getResizeClass()}`);
 
-        $refs: { ref: splitEl },
-      } = this;
+      isOut = false;
 
-      splitEl.classList.add(`${selectorPrefix}-${this.getResizeClass()}`);
+      isEnter = true;
 
-      $data.$isOut = false;
+      emit('canDrag', e);
+    };
 
-      $data.$isEnter = true;
+    const onMousedown = (e: { [x: string]: number }) => {
+      root.value?.classList.remove(`${selectorPrefix}-${getResizeClass()}`);
 
-      this.$emit('canDrag', e);
-    },
-    onMousedown(e) {
-      // console.log('mousedown');
+      if (isEnter) {
+        isDown = true;
 
-      const {
-        $refs: { ref: splitEl },
+        startVal = e[getProps?.().page];
 
-        $data,
-      } = this;
+        // @ts-ignore
+        fixedValue = fixedEl?.[getProps?.().offset];
 
-      const { $fixedEl, $isEnter } = $data;
-
-      splitEl.classList.remove(`${selectorPrefix}-${this.getResizeClass()}`);
-
-      if ($isEnter) {
-        $data.$isDown = true;
-
-        $data.$startVal = e[this.getProps().page];
-
-        $data.$fixedValue = $fixedEl[this.getProps().offset];
-
-        this.$emit('dragStarted', e);
+        emit('dragStarted', e);
       }
-    },
-    onMouseup(e) {
-      // console.log('mouseup');
+    };
 
-      const {
-        $data,
+    const onMouseup = (e: MouseEvent) => {
+      root.value?.classList.add(`${selectorPrefix}-${getResizeClass()}`);
 
-        $refs: { ref: splitEl },
-      } = this;
+      if (isDown) {
+        isDown = false;
 
-      splitEl.classList.add(`${selectorPrefix}-${this.getResizeClass()}`);
+        isMove = false;
 
-      if ($data.$isDown) {
-        $data.$isDown = false;
+        isEnter = !isOut;
 
-        $data.$isMove = false;
+        startVal = 0;
 
-        $data.$isEnter = !$data.$isOut;
+        changeBaseVal += changeVal;
 
-        $data.$startVal = 0;
-
-        $data.$changeBaseVal += $data.$changeVal;
-
-        this.$emit('dragFinished', e);
+        emit('dragFinished', e);
       }
-    },
-    onMouseleave(e) {
-      // console.log('onMouseleave');
+    };
 
-      const { $data } = this;
+    const onMouseleave = (e: MouseEvent) => {
+      if (isDown) {
+        isDown = false;
 
-      if ($data.$isDown) {
-        $data.$isDown = false;
+        isMove = false;
 
-        $data._sMove = false;
+        isEnter = false;
 
-        $data.$isEnter = false;
+        startVal = 0;
 
-        $data.$startVal = 0;
+        changeBaseVal += changeVal;
 
-        $data.$changeBaseVal += $data.$changeVal;
-
-        this.$emit('dragFinished', e);
+        emit('dragFinished', e);
       }
-    },
-    onMousemove(e) {
-      // e.stopPropagation();
+    };
 
-      const { $data } = this;
+    const onMousemove = (e: MouseEvent) => {
+      if (isEnter && isDown) {
+        isMove = true;
 
-      if ($data.$isEnter && $data.$isDown) {
-        $data.$isMove = true;
+        // @ts-ignore
+        const end = e[getProps().page];
 
-        const end = e[this.getProps().page];
+        // console.log('end', end);
 
-        $data.$changeVal = end - $data.$startVal;
+        changeVal = end - startVal;
 
-        const position = this.getFixedElPosition();
+        // console.log('startVal', startVal);
 
-        const computedValue =
-          position === 'prev'
-            ? $data.$fixedValue + $data.$changeVal
-            : $data.$fixedValue - $data.$changeVal;
+        // console.log('changeVal', changeVal);
+
+        const position = getFixedElPosition();
+
+        // console.log('position', position);
+
+        const computedValue = position === 'prev' ? fixedValue + changeVal : fixedValue - changeVal;
+
+        // console.log('computedValue', computedValue);
 
         let targetValue;
 
-        const maxSize = this.getMaxSize();
+        const maxSize = getMaxSize();
 
-        const minSize = this.getMinSize();
+        const minSize = getMinSize();
+
+        // console.log('maxSize', maxSize);
+
+        // console.log('minSize', minSize);
 
         if (computedValue >= maxSize || computedValue <= minSize) {
           if (computedValue >= maxSize) {
@@ -393,38 +346,67 @@ export default {
           targetValue = computedValue;
         }
 
-        $data.$fixedEl.style[this.getProps().dimension] = `${targetValue}px`;
+        // console.log('targetValue', targetValue);
 
-        this.$emit('change', e);
+        (fixedEl as HTMLElement).style[getProps().dimension] = `${targetValue}px`;
+
+        emit('change', e);
       }
-    },
-    onMouseout(e) {
-      // console.log('onMouseout');
+    };
 
-      const { $data } = this;
+    const onMouseout = (e: MouseEvent) => {
+      isOut = true;
 
-      $data.$isOut = true;
+      if (!isDown) {
+        isEnter = false;
 
-      if (!$data.$isDown) {
-        // split.style.cursor = 'default';
-        $data.$isEnter = false;
-
-        this.$emit('change', e);
+        emit('change', e);
       }
-    },
-  },
-  render(h) {
-    const { className, getDirection } = this;
+    };
 
-    return (
-      <div
-        ref="ref"
-        class={classNames(
-          selectorPrefix,
-          `${selectorPrefix}-${getDirection()}`,
-          className.split(/\s+/),
-        )}
-      />
-    );
+    onMounted(() => {
+      if (checked()) {
+        fixedEl = getFixedEl();
+
+        autoEl = getAutoEl();
+
+        containerEl = root?.value?.parentElement as HTMLElement;
+
+        containerEl?.classList.add(`${selectorPrefix}-noSelect`);
+
+        initEvents();
+      }
+    });
+
+    onUpdated(() => {
+      if (checked()) {
+        isEnter = false;
+        isOut = false;
+        isDown = false;
+        isMove = false;
+
+        startVal = 0;
+        changeVal = 0;
+        changeBaseVal = 0;
+        fixedValue = 0;
+        maxDimension = 0;
+
+        fixedEl = getFixedEl();
+
+        autoEl = getAutoEl();
+
+        initEvents();
+      }
+    });
+
+    return () => {
+      return (
+        <div
+          // @ts-ignore
+          ref={root}
+          class={classNames(selectorPrefix, `${selectorPrefix}-${direction}`)}
+        />
+      );
+    };
   },
-};
+});

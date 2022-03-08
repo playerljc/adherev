@@ -1,11 +1,10 @@
-import { PropType, VNode } from 'vue';
-import classNames from 'classnames';
-import IScroll from 'iscroll/build/iscroll-probe';
-import { Fragment } from 'vue-fragment';
 import StickupLayout from '@baifendian/adherev-ui-stickuplayout';
 import Util from '@baifendian/adherev-util';
-
-import { IColumnConfig, IMasterItem, ITableConfig } from './types';
+import classNames from 'classnames';
+import IScroll from 'iscroll/build/iscroll-probe';
+import { computed, CSSProperties, defineComponent, h, onMounted, onUpdated, ref } from 'vue';
+import { array, number, object, oneOfType, string } from 'vue-types';
+import { IColumnConfig, IIndicatorTableConfig, IMasterItem } from './types';
 
 const selectorPrefix = 'adherev-ui-cascadecompared';
 
@@ -49,161 +48,95 @@ function initTouch() {
 
 initTouch();
 
-export default {
+const props = {
+  className: string().def(''),
+  indicatorClassName: string().def(''),
+  indicatorStyle: object<CSSProperties>().def({}),
+  indicatorFixedWrapClassName: string().def(''),
+  indicatorFixedWrapStyle: object<CSSProperties>().def({}),
+  indicatorAutoWrapClassName: string().def(''),
+  indicatorAutoWrapStyle: object<CSSProperties>().def({}),
+  masterClassName: string().def(''),
+  masterStyle: object<CSSProperties>().def({}),
+  masterInnerClassName: string().def(''),
+  masterInnerStyle: object<CSSProperties>().def({}),
+  masterStickFixedClassName: string().def(''),
+  masterStickFixedStyle: object<CSSProperties>().def({}),
+  masterStickInnerClassName: string().def(''),
+  masterStickInnerStyle: object<CSSProperties>().def({}),
+  indicator: object<IIndicatorTableConfig>().def(() => ({
+    columns: [],
+    dataSource: [],
+  })),
+  master: array<IMasterItem>().def(() => []),
+  defaultCellWidth: oneOfType([number(), string()]).def(defaultCellWidth),
+};
+
+export default defineComponent({
   name: 'adv-cascadecompared',
-  props: {
-    className: {
-      type: String,
-      default: '',
-    },
-    indicatorClassName: {
-      type: String,
-      default: '',
-    },
-    indicatorStyle: {
-      type: String,
-      default: '',
-    },
-    indicatorFixedWrapClassName: {
-      type: String,
-      default: '',
-    },
-    indicatorFixedWrapStyle: {
-      type: String,
-      default: '',
-    },
-    indicatorAutoWrapClassName: {
-      type: String,
-      default: '',
-    },
-    indicatorAutoWrapStyle: {
-      type: String,
-      default: '',
-    },
-    masterClassName: {
-      type: String,
-      default: '',
-    },
-    masterStyle: {
-      type: String,
-      default: '',
-    },
-    masterInnerClassName: {
-      type: String,
-      default: '',
-    },
-    masterInnerStyle: {
-      type: String,
-      default: '',
-    },
-    masterStickFixedClassName: {
-      type: String,
-      default: '',
-    },
-    masterStickFixedStyle: {
-      type: String,
-      default: '',
-    },
-    masterStickInnerClassName: {
-      type: String,
-      default: '',
-    },
-    masterStickInnerStyle: {
-      type: String,
-      default: '',
-    },
-    indicator: {
-      type: Object as PropType<ITableConfig>,
-      default: () => ({
-        columns: [],
-        dataSource: [],
-      }),
-    },
-    master: {
-      type: Array as PropType<IMasterItem[]>,
-      default: () => [],
-      validator(val) {
-        return Array.isArray(val);
-      },
-    },
-    defaultCellWidth: {
-      type: [Number, String],
-      default: defaultCellWidth,
-    },
-  },
-  data() {
-    return {
-      $scrolls: [],
-    };
-  },
-  computed: {
-    getIndicatorClassName() {
-      // @ts-ignore
-      const { indicatorClassName = '' } = this;
+  props,
+  slots: ['title'],
+  emits: ['stick-change'],
+  setup: function (props, { emit, expose }) {
+    const el = ref<HTMLDivElement | null>(null);
 
-      return classNames(`${selectorPrefix}-indicator`, (indicatorClassName || '').split(/\s+/));
-    },
-    getFixedWrapClassName() {
-      return (className) =>
-        classNames(`${selectorPrefix}-fixedWrap`, (className || '').split(/\s+/));
-    },
-    getFixedWrapStyle() {
-      return (style, width) => `${style};width:${width || defaultCellWidth}px`;
-    },
-    getCellClassName() {
-      return (column) =>
-        classNames(`${selectorPrefix}-cell`, (column.className || '').split(/\s+/));
-    },
-    getAutoWrapClassName() {
-      return (className) =>
-        classNames(`${selectorPrefix}-autoWrap`, (className || '').split(/\s+/));
-    },
-    getAutoInnerClassName() {
-      return (className) =>
-        classNames(`${selectorPrefix}-autoInner`, (className || '').split(/\s+/));
-    },
-    getMasterClassName() {
-      // @ts-ignore
-      const { masterClassName = '' } = this;
+    const stickup = ref<any>(null);
 
-      return classNames(`${selectorPrefix}-master`, (masterClassName || '').split(/\s+/));
-    },
-    getMasterInnerClassName() {
-      // @ts-ignore
-      const { masterInnerClassName = '' } = this;
+    let scrolls: any[] = [];
 
-      return classNames(
-        `${selectorPrefix}-master-inner`,
-        (masterInnerClassName || '').split(/\s+/),
-      );
-    },
-    getFixedClassName() {
-      // @ts-ignore
-      const { masterStickFixedClassName = '' } = this;
+    const getIndicatorClassName = computed(() =>
+      classNames(`${selectorPrefix}-indicator`, (props.indicatorClassName || '').split(/\s+/)),
+    );
 
-      return classNames((masterStickFixedClassName || '').split(/\s+/));
-    },
-    getInnerClassName() {
-      // @ts-ignore
-      const { masterStickInnerClassName = '' } = this;
+    const getFixedWrapClassName = computed(
+      () => (className: string) =>
+        classNames(`${selectorPrefix}-fixedWrap`, (className || '').split(/\s+/)),
+    );
 
-      return classNames((masterStickInnerClassName || '').split(/\s+/));
-    },
-  },
-  methods: {
-    initScroll() {
-      const {
-        $refs: { el },
-        $data,
-      } = this;
+    const getFixedWrapStyle = computed(() => (style: CSSProperties, width: number | string) => ({
+      ...style,
+      width: `${width || defaultCellWidth}px`,
+    }));
 
-      const wrapEls = el.querySelectorAll(`.${selectorPrefix}-autoWrap`);
+    const getCellClassName = computed(
+      () => (column: IColumnConfig | null) =>
+        classNames(`${selectorPrefix}-cell`, (column?.className || '').split(/\s+/)),
+    );
 
-      for (let i = 0; i < $data.$scrolls.length; i++) {
-        $data.$scrolls[i].destroy();
+    const getAutoWrapClassName = computed(
+      () => (className: string) =>
+        classNames(`${selectorPrefix}-autoWrap`, (className || '').split(/\s+/)),
+    );
+
+    const getAutoInnerClassName = computed(
+      () => (className: string) =>
+        classNames(`${selectorPrefix}-autoInner`, (className || '').split(/\s+/)),
+    );
+
+    const getMasterClassName = computed(() =>
+      classNames(`${selectorPrefix}-master`, (props.masterClassName || '').split(/\s+/)),
+    );
+
+    const getMasterInnerClassName = computed(() =>
+      classNames(`${selectorPrefix}-master-inner`, (props.masterInnerClassName || '').split(/\s+/)),
+    );
+
+    const getFixedClassName = computed(() =>
+      classNames((props.masterStickFixedClassName || '').split(/\s+/)),
+    );
+
+    const getInnerClassName = computed(() =>
+      classNames((props.masterStickInnerClassName || '').split(/\s+/)),
+    );
+
+    const initScroll = () => {
+      const wrapEls = (el.value as HTMLDivElement).querySelectorAll(`.${selectorPrefix}-autoWrap`);
+
+      for (let i = 0; i < scrolls.length; i++) {
+        scrolls[i].destroy();
       }
 
-      $data.$scrolls = [];
+      scrolls = [];
 
       for (let i = 0; i < wrapEls.length; i++) {
         const scroll = new IScroll(wrapEls[i], {
@@ -214,275 +147,273 @@ export default {
           preventDefault: false,
         });
 
-        $data.$scrolls.push(scroll);
+        scrolls.push(scroll);
 
         scroll.on('scroll', () => {
-          for (let j = 0; j < $data.$scrolls.length; j++) {
-            if ($data.$scrolls[j] !== scroll) {
-              $data.$scrolls[j].scrollTo(scroll.x, scroll.y);
+          for (let j = 0; j < scrolls.length; j++) {
+            if (scrolls[j] !== scroll) {
+              scrolls[j].scrollTo(scroll.x, scroll.y);
             }
           }
         });
       }
-    },
-    getFixedColumnConfig(columns: Array<IColumnConfig>): IColumnConfig | null {
+    };
+
+    const getFixedColumnConfig = (columns: Array<IColumnConfig>): IColumnConfig | null => {
       const config = columns.find((t) => t.isFixed);
 
       if (config) return config;
 
       return columns.length ? columns[0] : null;
-    },
-    renderCell(h, config: IColumnConfig, dataSource: object): VNode {
+    };
+
+    const renderCell = (config: IColumnConfig, dataSource: any): (object | JSX.Element)[] => {
       if (config.render) {
-        return config.render(h, dataSource[config.dataIndex], dataSource);
+        return config.render(dataSource[config.dataIndex], dataSource);
       }
 
       return dataSource[config.dataIndex];
-    },
-    renderMasterGroupTitle(h, title): VNode {
-      // @ts-ignore
-      return Util.isObject(title) ? (
-        <div slot="title">{h(title)}</div>
-      ) : Util.isFunction(title) ? (
-        <div slot="title">{title(h)}</div>
+    };
+
+    const renderMasterGroupTitle = (title: object | Function): JSX.Element => {
+      return Util.isObject?.(title) ? (
+        <div>{h(title as object)}</div>
+      ) : Util.isFunction?.(title) ? (
+        <div>{(title as Function)()}</div>
       ) : (
-        <span slot="title">{title}</span>
+        <span>{title}</span>
       );
-    },
-    renderMasterGroupContent(h, masterItem: IMasterItem): VNode {
+    };
+
+    const renderMasterGroupContent = (masterItem: IMasterItem): JSX.Element => {
       const {
         dataSource = [],
         columns = [],
         fixedWrapClassName = '',
-        fixedWrapStyle = '',
+        fixedWrapStyle = {},
         autoWrapClassName = '',
-        autoWrapStyle = '',
+        autoWrapStyle = {},
         autoInnerClassName = '',
-        autoInnerStyle = '',
+        autoInnerStyle = {},
       } = masterItem;
-
-      const {
-        getFixedColumnConfig,
-        getFixedWrapClassName,
-        getFixedWrapStyle,
-        getCellClassName,
-        getAutoWrapClassName,
-        getAutoInnerClassName,
-        renderCell,
-      } = this;
 
       const fixedColumnConfig = getFixedColumnConfig(columns);
 
-      // @ts-ignore
       return (
-        <Fragment>
+        <>
           <div
-            class={getFixedWrapClassName(fixedWrapClassName)}
-            style={getFixedWrapStyle(fixedWrapStyle, fixedColumnConfig?.width)}
+            // @ts-ignore
+            class={getFixedWrapClassName.value(fixedWrapClassName)}
+            style={getFixedWrapStyle.value(
+              fixedWrapStyle,
+              fixedColumnConfig ? fixedColumnConfig?.width : 0,
+            )}
           >
             {dataSource.map((record, index) => (
-              <div key={index} class={`${selectorPrefix}-item`}>
-                <div class={getCellClassName(fixedColumnConfig)} style={fixedColumnConfig.style}>
-                  {renderCell(h, fixedColumnConfig, record)}
+              <div
+                key={index}
+                // @ts-ignore
+                class={`${selectorPrefix}-item`}
+              >
+                <div
+                  // @ts-ignore
+                  class={getCellClassName.value(fixedColumnConfig)}
+                  style={fixedColumnConfig?.style}
+                >
+                  {renderCell(fixedColumnConfig as IColumnConfig, record)}
                 </div>
               </div>
             ))}
           </div>
-          <div class={getAutoWrapClassName(autoWrapClassName)} style={autoWrapStyle}>
-            <div class={getAutoInnerClassName(autoInnerClassName)} style={autoInnerStyle}>
+          <div
+            // @ts-ignore
+            class={getAutoWrapClassName.value(autoWrapClassName)}
+            style={autoWrapStyle}
+          >
+            <div
+              // @ts-ignore
+              class={getAutoInnerClassName.value(autoInnerClassName)}
+              style={autoInnerStyle}
+            >
               {dataSource.map((record, index) => (
-                <div key={index} class={`${selectorPrefix}-item`}>
+                <div
+                  key={index}
+                  // @ts-ignore
+                  class={`${selectorPrefix}-item`}
+                >
                   {columns
                     .filter((column) => column !== fixedColumnConfig)
                     .map((column) => (
                       <div
                         key={column.dataIndex}
-                        class={getCellClassName(column)}
-                        style={getFixedWrapStyle(column.style, column?.width)}
+                        // @ts-ignore
+                        class={getCellClassName.value(column)}
+                        style={getFixedWrapStyle.value(column.style, column?.width)}
                       >
-                        {renderCell(h, column, record)}
+                        {renderCell(column, record)}
                       </div>
                     ))}
                 </div>
               ))}
             </div>
           </div>
-        </Fragment>
+        </>
       );
-    },
-    renderMasterGroup(h, config: IMasterItem, index): VNode {
-      const { title = null, className = '', style = '' } = config;
+    };
 
-      const { renderMasterGroupTitle, renderMasterGroupContent } = this;
+    const renderMasterGroup = (config: IMasterItem, index: string | number): JSX.Element => {
+      const { title, className = '', style = '' } = config;
 
-      // @ts-ignore
       return (
         <StickupLayout.Item
           key={index}
           class={classNames((className || '').split(/\s+/))}
           style={style}
         >
-          {renderMasterGroupTitle(h, title)}
-          {renderMasterGroupContent(h, config)}
+          {{
+            default: () => renderMasterGroupContent(config),
+            title: () => renderMasterGroupTitle(title),
+          }}
         </StickupLayout.Item>
       );
-    },
-    renderIndicator(h): VNode {
-      const {
-        indicatorAutoWrapClassName = '',
-        indicatorFixedWrapClassName = '',
-        indicatorFixedWrapStyle = '',
-        indicatorStyle = '',
-        indicatorAutoWrapStyle = '',
-        indicator: { columns = [], dataSource = {} },
-        getFixedColumnConfig,
-        getIndicatorClassName,
-        getFixedWrapClassName,
-        getFixedWrapStyle,
-        getCellClassName,
-        getAutoWrapClassName,
-        renderCell,
-      } = this;
+    };
 
-      const fixedColumnConfig = getFixedColumnConfig(columns);
+    const renderIndicator = (): JSX.Element => {
+      const fixedColumnConfig = getFixedColumnConfig(props.indicator.columns);
 
-      // @ts-ignore
       return (
-        <div class={getIndicatorClassName} style={indicatorStyle}>
+        <div
+          // @ts-ignore
+          class={getIndicatorClassName.value}
+          style={props.indicatorStyle}
+        >
           <div
-            class={getFixedWrapClassName(indicatorFixedWrapClassName)}
-            style={getFixedWrapStyle(indicatorFixedWrapStyle, fixedColumnConfig?.width)}
+            // @ts-ignore
+            class={getFixedWrapClassName.value(props.indicatorFixedWrapClassName)}
+            style={getFixedWrapStyle.value(
+              props.indicatorFixedWrapStyle,
+              fixedColumnConfig ? fixedColumnConfig?.width : 0,
+            )}
           >
-            <div class={`${selectorPrefix}-item`}>
-              <div class={getCellClassName(fixedColumnConfig)} style={fixedColumnConfig.style}>
-                {renderCell(h, fixedColumnConfig, dataSource)}
+            <div
+              // @ts-ignore
+              class={`${selectorPrefix}-item`}
+            >
+              <div
+                // @ts-ignore
+                class={getCellClassName.value(fixedColumnConfig)}
+                style={fixedColumnConfig?.style}
+              >
+                {renderCell(fixedColumnConfig as IColumnConfig, props.indicator.dataSource)}
               </div>
             </div>
           </div>
           <div
-            class={getAutoWrapClassName(indicatorAutoWrapClassName)}
-            style={indicatorAutoWrapStyle}
+            // @ts-ignore
+            class={getAutoWrapClassName.value(props.indicatorAutoWrapClassName)}
+            style={props.indicatorAutoWrapStyle}
           >
-            <div class={`${selectorPrefix}-item`}>
-              {columns
+            <div
+              // @ts-ignore
+              class={`${selectorPrefix}-item`}
+            >
+              {props.indicator.columns
                 .filter((column) => column !== fixedColumnConfig)
                 .map((column) => (
                   <div
                     key={column.dataIndex}
-                    class={getCellClassName(column)}
-                    style={getFixedWrapStyle(column.style, column.width)}
+                    // @ts-ignore
+                    class={getCellClassName.value(column)}
+                    style={getFixedWrapStyle.value(column.style, column.width)}
                   >
-                    {renderCell(h, column, dataSource)}
+                    {renderCell(column, props.indicator.dataSource)}
                   </div>
                 ))}
             </div>
           </div>
         </div>
       );
-    },
-    renderMaster(h): VNode {
-      const {
-        masterStyle = '',
-        masterInnerStyle = '',
-        masterStickFixedStyle = '',
-        masterStickInnerStyle = '',
-        master = [],
-        getMasterClassName,
-        getMasterInnerClassName,
-        getFixedClassName,
-        getInnerClassName,
-        renderMasterGroup,
-      } = this;
+    };
 
-      // @ts-ignore
+    const renderMaster = () => {
       return (
-        <div class={getMasterClassName} style={masterStyle}>
+        // @ts-ignore
+        <div class={getMasterClassName.value} style={props.masterStyle}>
+          {/*@ts-ignore*/}
           <StickupLayout
-            ref="stickup"
-            class={getMasterInnerClassName}
-            style={masterInnerStyle}
-            fixedClassName={getFixedClassName}
-            fixedStyle={masterStickFixedStyle}
-            innerClassName={getInnerClassName}
-            innerStyle={masterStickInnerStyle}
+            ref={stickup}
+            class={getMasterInnerClassName.value}
+            style={props.masterInnerStyle}
+            fixedClassName={getFixedClassName.value}
+            fixedStyle={props.masterStickFixedStyle}
+            innerClassName={getInnerClassName.value}
+            innerStyle={props.masterStickInnerStyle}
             onChange={() => {
-              this.$emit('stick-change');
+              emit('stick-change');
             }}
           >
-            {master.map((config, index) => renderMasterGroup(h, config, index))}
+            {props.master.map((config, index) => renderMasterGroup(config, index))}
           </StickupLayout>
         </div>
       );
-    },
+    };
+
     /**
      * scrollToByIndex
      * @param {number} index
      * @param {number} duration
      * @return {boolean}
      */
-    scrollToByIndex(index: number, duration = 300) {
-      const {
-        $refs: { stickup },
-      } = this;
+    const scrollToByIndex = (index: number, duration = 300) => {
+      stickup.value.scrollToByIndex(index, duration);
+    };
 
-      stickup.scrollToByIndex(index, duration);
-    },
     /**
      * scrollToByHeaderEl
      * @param {HtmlElement} headerEl
      * @param {number} duration
      * @return {boolean}
      */
-    scrollToByHeaderEl(headerEl: HTMLElement, duration = 300) {
-      const {
-        $refs: { stickup },
-      } = this;
+    const scrollToByHeaderEl = (headerEl: HTMLElement, duration = 300) => {
+      stickup.value.scrollToByHeaderEl(headerEl, duration);
+    };
 
-      stickup.scrollToByHeaderEl(headerEl, duration);
-    },
     /**
      * scrollToByColumn
      * @param {number} columnIndex
      */
-    scrollToByColumn(columnIndex: number) {
-      const {
-        $data: { $scrolls },
-      } = this;
-
-      const scroll = $scrolls[0];
+    const scrollToByColumn = (columnIndex: number) => {
+      const scroll = scrolls[0];
 
       const el = scroll.wrapper.querySelector(
         `.${selectorPrefix}-item .${selectorPrefix}-cell:nth-of-type(${columnIndex})`,
       );
 
       scroll.scrollToElement(el);
-    },
-  },
-  mounted() {
-    const {
-      $refs: { stickup },
-    } = this;
+    };
 
-    stickup.refresh();
+    onMounted(() => {
+      stickup.value.refresh();
+      initScroll();
+    });
 
-    this.initScroll();
-  },
-  updated() {
-    const {
-      $refs: { stickup },
-    } = this;
+    onUpdated(() => {
+      stickup.value.refresh();
+      initScroll();
+    });
 
-    stickup.refresh();
+    expose({
+      scrollToByIndex,
+      scrollToByColumn,
+      scrollToByHeaderEl,
+    });
 
-    this.initScroll();
-  },
-  render(h): VNode {
-    // @ts-ignore
-    return (
-      <div class={selectorPrefix} ref="el">
-        {this.renderIndicator(h)}
-        {this.renderMaster(h)}
+    return () => (
+      // @ts-ignore
+      <div class={selectorPrefix} ref={el}>
+        {renderIndicator()}
+        {renderMaster()}
       </div>
     );
   },
-};
+});

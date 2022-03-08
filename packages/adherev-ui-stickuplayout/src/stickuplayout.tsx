@@ -1,85 +1,73 @@
 import classNames from 'classnames';
+import { CSSProperties, defineComponent, onBeforeMount, onMounted, onUpdated, ref } from 'vue';
+import { object, string } from 'vue-types';
 
 const selectorPrefix = 'adherev-ui-stickuplayout';
 
-export default {
+const stickupLayoutProps = {
+  fixedClassName: string().def(''),
+  fixedStyle: object<CSSProperties>().def({}),
+  innerClassName: string().def(''),
+  innerStyle: object<CSSProperties>().def({}),
+};
+
+type IndexItemType = {
+  start: number;
+  end: number;
+  dom: HTMLElement;
+  index: number;
+};
+
+export default defineComponent({
   name: 'adv-stickuplayout',
-  props: {
-    className: {
-      type: String,
-      default: '',
-    },
-    fixedClassName: {
-      type: String,
-      default: '',
-    },
-    fixedStyle: {
-      type: String,
-      default: '',
-    },
-    innerClassName: {
-      type: String,
-      default: '',
-    },
-    innerStyle: {
-      type: String,
-      default: '',
-    },
-  },
-  data() {
-    return {};
-  },
-  mounted() {
-    this.initial();
-  },
-  updated() {
-    this.initial();
-  },
-  beforeDestroy() {
-    const {
-      $data: { $maskEl },
-    } = this;
-    if ($maskEl) {
-      $maskEl.parentElement.removeChild($maskEl);
-    }
-  },
-  methods: {
-    initial() {
-      const { $refs, $data } = this;
-      $data.$key = false;
-      $data.$index = [];
-      $data.$headerEls = $refs.el.querySelectorAll(`.${selectorPrefix}-item-header`);
+  props: stickupLayoutProps,
+  setup(props, { slots, emit, expose }) {
+    const root = ref<HTMLElement>();
+    const fixedEl = ref<HTMLElement>();
+    const innerEl = ref<HTMLElement>();
 
-      this.createIndex();
+    let key = false;
+    let maskEl: HTMLElement | null = null;
+    let index: IndexItemType[] = [];
+    let headerEls: NodeListOf<HTMLElement>;
+    let preScrollObj: IndexItemType | null = null;
 
-      this.position();
+    const initial = () => {
+      key = false;
+      index = [];
+      headerEls = root.value?.querySelectorAll(
+        `.${selectorPrefix}-item-header`,
+      ) as NodeListOf<HTMLElement>;
 
-      $refs.innerEl.removeEventListener('scroll', this.onScroll);
-      $refs.innerEl.addEventListener('scroll', this.onScroll);
-    },
-    createIndex() {
-      const { $refs, $data } = this;
+      createIndex();
 
+      position();
+
+      innerEl.value?.removeEventListener('scroll', onScroll);
+      innerEl.value?.addEventListener('scroll', onScroll);
+    };
+
+    const createIndex = () => {
       let pre = 0;
 
-      $data.$index = [];
+      index = [];
 
-      $data.$preScrollObj = null;
+      preScrollObj = null;
 
-      for (let i = 0, len = $data.$headerEls.length; i < len; i++) {
-        const header = $data.$headerEls[i];
+      for (let i = 0, len = headerEls.length; i < len; i++) {
+        const header = headerEls[i];
 
         let rangeStart = pre;
 
-        let rangeEnd;
+        let rangeEnd: number;
 
         if (i !== len - 1) {
-          rangeEnd = $data.$headerEls[i + 1].offsetTop - header.offsetHeight;
+          rangeEnd = headerEls[i + 1].offsetTop - header.offsetHeight;
         } else {
-          rangeEnd = $refs.innerEl.scrollHeight;
+          rangeEnd = innerEl.value?.scrollHeight as number;
         }
 
-        $data.$index.push({
+        index.push({
           start: rangeStart,
           end: rangeEnd,
           dom: header,
@@ -87,23 +75,25 @@ export default {
         });
         pre = rangeEnd;
 
-        if (pre > $refs.innerEl.scrollHeight - $refs.innerEl.offsetHeight) {
+        if (
+          pre >
+          (innerEl.value?.scrollHeight as number) - (innerEl.value?.offsetHeight as number)
+        ) {
           break;
         }
       }
-    },
-    position() {
-      const { $refs, $data } = this;
+    };
 
-      const val = $refs.innerEl.scrollTop;
+    const position = () => {
+      const val = innerEl.value?.scrollTop as number;
 
       let low = 0,
-        high = $data.$index.length - 1,
+        high = index.length - 1,
         middle,
         target;
-      while (low <= high && low <= $data.$index.length - 1 && high <= $data.$index.length - 1) {
+      while (low <= high && low <= index.length - 1 && high <= index.length - 1) {
         middle = (high + low) >> 1;
-        const targetVal = $data.$index[middle];
+        const targetVal = index[middle];
         if (val >= targetVal.start && val < targetVal.end) {
           target = targetVal;
           break;
@@ -115,41 +105,42 @@ export default {
       }
 
       if (target) {
-        if ($data.$preScrollObj && $data.$preScrollObj.index === target.index) {
+        if (preScrollObj && preScrollObj.index === target.index) {
           return false;
         } else {
-          $data.$preScrollObj = target;
-          // @ts-ignore
-          $refs.fixedEl.innerHTML = target.dom.outerHTML;
+          preScrollObj = target;
+          (fixedEl.value as HTMLElement).innerHTML = target.dom.outerHTML;
 
-          this.$emit('change', target.index);
+          emit('change', target.index);
         }
       }
-    },
-    onScroll() {
-      this.position();
-    },
-    scrollAnimationTo(targetTop = 0, duration = 300) {
-      const { $refs, $data } = this;
+    };
 
-      if ($data.$key) return;
+    const onScroll = () => position();
 
-      this.initMask();
+    const scrollAnimationTo = (targetTop = 0, duration = 300) => {
+      if (key) return;
 
-      $data.$key = true;
+      initMask();
 
-      $data.$maskEl.style.display = 'block';
+      key = true;
 
-      let srcTop = $refs.innerEl.scrollTop,
-        scrollVal = srcTop,
-        /**
-         * 一次滚动的步进
-         * @type {number}
-         */
-        setp =
-          $refs.innerEl.scrollHeight /
-          (duration / (screen.updateInterval || 16.7) +
-            (duration % (screen.updateInterval || 16.7) !== 0 ? 1 : 0));
+      (maskEl as HTMLElement).style.display = 'block';
+
+      let srcTop = innerEl.value?.scrollTop as number;
+
+      let scrollVal = srcTop;
+
+      /**
+       * 一次滚动的步进
+       * @type {number}
+       */
+      let setp =
+        (innerEl.value?.scrollHeight as number) /
+        // @ts-ignore
+        (duration / ((window.screen?.updateInterval as number) || 16.7) +
+          // @ts-ignore
+          (duration % ((window.screen?.updateInterval as number) || 16.7) !== 0 ? 1 : 0));
 
       /** *
        * 动画的滚动
@@ -167,7 +158,7 @@ export default {
           scrollVal -= setp;
         }
 
-        $refs.innerEl.scrollTop = scrollVal;
+        (innerEl.value as HTMLElement).scrollTop = scrollVal;
 
         if (srcTop < targetTop) {
           if (scrollVal >= targetTop) {
@@ -182,8 +173,8 @@ export default {
         }
 
         function clear() {
-          $data.$key = false;
-          $data.$maskEl.style.display = 'none';
+          key = false;
+          (maskEl as HTMLElement).style.display = 'none';
         }
       }
 
@@ -191,99 +182,112 @@ export default {
        * 滚动core
        */
       window.requestAnimationFrame(scrollAnimation);
-    },
-    scrollTo(item, duration = 300) {
-      const {
-        $refs,
-        $data: { $headerEls },
-      } = this;
+    };
 
-      const targetTop = item.start + $headerEls[item.index].offsetHeight;
+    const scrollTo = (item: IndexItemType, duration = 300) => {
+      const targetTop = item.start + headerEls[item.index].offsetHeight;
       if (duration === 0) {
-        $refs.innerEl.scrollTop = targetTop;
+        (innerEl.value as HTMLElement).scrollTop = targetTop;
       } else {
-        this.scrollAnimationTo(targetTop, duration);
+        scrollAnimationTo(targetTop, duration);
       }
-    },
-    initMask() {
-      if (!this.$data.$maskEl) {
-        this.$data.$maskEl = document.createElement('div');
+    };
 
-        this.$data.$maskEl.className = `${selectorPrefix}-mask`;
+    const initMask = () => {
+      if (!maskEl) {
+        maskEl = document.createElement('div');
 
-        window.document.body.appendChild(this.$data.$maskEl);
+        maskEl.className = `${selectorPrefix}-mask`;
+
+        window.document.body.appendChild(maskEl);
       }
-    },
-    refresh() {
-      this.initial();
-    },
+    };
+
+    const refresh = () => initial();
+
     /**
      * scrollToByIndex
-     * @param {number} index
+     * @param {number} _index
      * @param {number} duration
      * @return {boolean}
      */
-    scrollToByIndex(index, duration = 300) {
-      const {
-        $data: { $index },
-      } = this;
-
+    const scrollToByIndex = (_index: number, duration = 300) => {
       let i = 0,
         item;
-      for (; i < $index.length; i++) {
-        if ($index[i].index === index) {
-          item = $index[i];
+      for (; i < index.length; i++) {
+        if (index[i].index === _index) {
+          item = index[i];
           break;
         }
       }
       if (!item) return false;
 
-      this.scrollTo(item, duration);
-    },
+      scrollTo(item, duration);
+    };
+
     /**
      * scrollToByHeaderEl
      * @param {HtmlElement} headerEl
      * @param {number} duration
      * @return {boolean}
      */
-    scrollToByHeaderEl(headerEl, duration = 300) {
-      const {
-        $data: { $index },
-      } = this;
-
+    const scrollToByHeaderEl = (headerEl: HTMLElement, duration = 300) => {
       let i = 0,
         item,
-        index = -1;
-      for (; i < $index.length; i++) {
-        if ($index[i].dom === headerEl) {
-          item = $index[i];
-          index = i;
+        _index = -1;
+      for (; i < index.length; i++) {
+        if (index[i].dom === headerEl) {
+          item = index[i];
+          _index = i;
           break;
         }
       }
       if (!item) return false;
 
-      this.scrollTo(item, duration);
-    },
-  },
-  render(h) {
-    const { $slots, className, fixedClassName, fixedStyle, innerClassName, innerStyle } = this;
+      scrollTo(item, duration);
+    };
 
-    return (
-      <div class={classNames(selectorPrefix, className.split(/\s+/))} ref="el">
+    expose({
+      refresh,
+      scrollToByIndex,
+      scrollToByHeaderEl,
+    });
+
+    onMounted(() => {
+      initial();
+    });
+
+    onUpdated(() => {
+      initial();
+    });
+
+    onBeforeMount(() => {
+      if (maskEl) {
+        maskEl?.parentElement?.removeChild?.(maskEl);
+      }
+    });
+
+    return () => (
+      <div
+        class={selectorPrefix}
+        // @ts-ignore
+        ref={root}
+      >
         <div
-          class={classNames(`${selectorPrefix}-fixed`, fixedClassName.split(/\s+/))}
-          style={fixedStyle}
-          ref="fixedEl"
+          class={classNames(`${selectorPrefix}-fixed`, props.fixedClassName.split(/\s+/))}
+          style={props.fixedStyle}
+          // @ts-ignore
+          ref={fixedEl}
         />
         <div
-          class={classNames(`${selectorPrefix}-inner`, innerClassName.split(/\s+/))}
-          style={innerStyle}
-          ref="innerEl"
+          class={classNames(`${selectorPrefix}-inner`, props.innerClassName.split(/\s+/))}
+          style={props.innerStyle}
+          // @ts-ignore
+          ref={innerEl}
         >
-          {$slots.default}
+          {slots?.default?.()}
         </div>
       </div>
     );
   },
-};
+});

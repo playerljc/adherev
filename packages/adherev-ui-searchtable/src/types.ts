@@ -1,4 +1,4 @@
-import { VNode, CreateElement } from 'vue';
+import { VNode } from 'vue';
 import {
   ColumnType,
   FilterValue,
@@ -56,7 +56,7 @@ export interface IOverview {
   /**
    * renderSearchForm - 渲染查询的UI
    */
-  renderSearchForm(h: CreateElement): VNode | null;
+  renderSearchForm(): VNode | null;
 
   /**
    * getTotal - 获取表格数据的总数
@@ -105,5 +105,73 @@ export interface IOverview {
   /**
    * 获取列的ScopeSlots
    */
-  getScopedSlots(): Object;
+  getScopedSlots(): VNode | VNode[] | number;
+}
+
+export interface ISearchTableProps {
+  wrapStyle?: string;
+  className?: string;
+  tableClassName?: string;
+  tableStyle?: string;
+  searchClassName?: string;
+  searchStyle?: string;
+  reset?: boolean;
+  antdTableProps?: any;
+  isShowExpandSearch?: boolean;
+  defaultExpandSearchCollapse?: boolean;
+  fitSearch?: boolean;
+  fitTable?: boolean;
+  autoFixed?: boolean;
+  fixedHeaderAutoTable?: boolean;
+  fixedTableSpaceBetween?: boolean;
+}
+
+export interface ISearchTableData {
+  page: number;
+  limit: number;
+  expand: boolean;
+  scrollY: number;
+  selectedRowKeys?: any[];
+  loading?: any;
+  searchParams?: any;
+}
+
+export interface ISearchTableMethods extends IOverview {
+  onScrollBodyScroll(): void;
+  getScrollHeaderEl(): HTMLElement | null;
+  getScrollBodyEl(): HTMLElement | null;
+  renderTableNumberColumn(number: string, params: { record: object; index: number }): void;
+  renderSearchTableInner(): void;
+  renderInner(): void;
+  renderSearchTableSearchFooter(): void;
+  renderSearchFooter(): void;
+  renderSearchTableTable(): void;
+  renderTable(): void;
+  getSearchTableTableColumns(): Array<any>;
+  getTableColumns(): Array<any>;
+  onTableChange(pagination: any, filters: any, sorter: any): void;
+  onClear(): void;
+  sortOrder(columnName: string): string;
+  getSearchTablePagination(): void;
+  getPagination(): void;
+  renderSearchTable(): void;
+  fetchData(): void;
+  renderSuspense(): void;
+  getOrderFieldValue(): void;
+  getOrderPropValue(): void;
+  getParams(): void;
+}
+
+export interface ISearchTableSelf extends ISearchTableProps, ISearchTableData, ISearchTableMethods {
+  $refs: any;
+  $slots: any;
+  $nextTick(handler: () => {}): void;
+}
+
+export interface ISearchFormProps {
+  className?: string;
+}
+
+export interface ISearchFormSelf extends ISearchFormProps {
+  $slots: any;
 }

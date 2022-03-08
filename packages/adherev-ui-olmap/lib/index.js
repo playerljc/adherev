@@ -1,2 +1,30 @@
-"use strict";require("core-js/modules/es.object.define-property.js");var __createBinding=Object.create?function(e,t,a,r){void 0===r&&(r=a),Object.defineProperty(e,r,{enumerable:!0,get:function(){return t[a]}})}:function(e,t,a,r){e[r=void 0===r?a:r]=t[a]},__setModuleDefault=Object.create?function(e,t){Object.defineProperty(e,"default",{enumerable:!0,value:t})}:function(e,t){e.default=t},__importStar=function(e){if(e&&e.__esModule)return e;var t={};if(null!=e)for(var a in e)"default"!==a&&Object.hasOwnProperty.call(e,a)&&__createBinding(t,e,a);return __setModuleDefault(t,e),t},__importDefault=function(e){return e&&e.__esModule?e:{default:e}};Object.defineProperty(exports,"__esModule",{value:!0});var olmap_1=__importDefault(require("./olmap")),heatmap_1=__importDefault(require("./heatmap")),geolayer_1=__importDefault(require("./geolayer")),TitleLayer=__importStar(require("./titlelayer")),util_1=__importDefault(require("./util")),animationmanager_1=__importDefault(require("./animationmanager")),adherev_util_1=__importDefault(require("@baifendian/adherev-util")),_a=adherev_util_1.default._util,withInstall=_a.withInstall,withVue=_a.withVue,Component={AnimationManager:animationmanager_1.default,GeoLayer:geolayer_1.default,TitleLayer:TitleLayer,OLMap:olmap_1.default,HeatMap:heatmap_1.default,Util:util_1.default,isUse:function(){return!0},use:function(e){e.use(Component.OLMap),e.use(Component.HeatMap),withVue(e,"OLMap",Component)}};Component.OLMap=withInstall(Component.OLMap),Component.HeatMap=withInstall(Component.HeatMap),exports.default=Component;
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var tslib_1 = require("tslib");
+var adherev_util_1 = (0, tslib_1.__importDefault)(require("@baifendian/adherev-util"));
+// @ts-ignore
+var animationmanager_1 = (0, tslib_1.__importDefault)(require("./animationmanager"));
+var geolayer_1 = (0, tslib_1.__importDefault)(require("./geolayer"));
+var heatmap_1 = (0, tslib_1.__importDefault)(require("./heatmap"));
+var olmap_1 = (0, tslib_1.__importDefault)(require("./olmap"));
+var TitleLayer = (0, tslib_1.__importStar)(require("./titlelayer"));
+var util_1 = (0, tslib_1.__importDefault)(require("./util"));
+var _a = adherev_util_1.default._util, withInstall = _a.withInstall, withVue = _a.withVue;
+var Component = {
+    AnimationManager: animationmanager_1.default,
+    GeoLayer: geolayer_1.default,
+    TitleLayer: TitleLayer,
+    OLMap: olmap_1.default,
+    HeatMap: heatmap_1.default,
+    Util: util_1.default,
+};
+Component.isUse = function () { return true; };
+Component.use = function (Vue) {
+    Vue.use(Component.OLMap);
+    Vue.use(Component.HeatMap);
+    withVue(Vue, 'OLMap', Component);
+};
+Component.OLMap = withInstall(Component.OLMap);
+Component.HeatMap = withInstall(Component.HeatMap);
+exports.default = Component;
 //# sourceMappingURL=index.js.map

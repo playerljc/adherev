@@ -11,23 +11,19 @@
 
     <adv-playground-page-code-box-section title="代码演示" :config="codeBoxPanelConfig">
       <template #p1>
-        <fragment>
-          <a-button type="primary" @click="onCode1F1">重置</a-button>
-          <suspense-table :reset="reset" />
-        </fragment>
+        <a-button type="primary" @click="onCode1F1">重置</a-button>
+        <suspense-table :reset="reset" />
       </template>
 
       <template #p2>
-        <fragment>
-          <a-button type="primary" @click="onCode2F1">重置</a-button>
-          <suspense-table :reset="reser1">
-            <template #firstLoading>
-              <div style="position: relative">
-                <adv-spin :spinning="true" />
-              </div>
-            </template>
-          </suspense-table>
-        </fragment>
+        <a-button type="primary" @click="onCode2F1">重置</a-button>
+        <suspense-table :reset="reser1">
+          <template #firstLoading>
+            <div style="position: relative">
+              <adv-spin :spinning="true" />
+            </div>
+          </template>
+        </suspense-table>
       </template>
     </adv-playground-page-code-box-section>
 

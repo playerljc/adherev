@@ -1,73 +1,85 @@
-import { VNode } from 'vue';
+import Intl from '@baifendian/adherev-util-intl';
 import { Slider } from 'ant-design-vue';
-
+import { defineComponent, nextTick, ref, watch } from 'vue';
+import { number } from 'vue-types';
 const selectorPrefix = 'adherev-ui-fontsizesetting';
 
-export default {
-  name: 'adv-fontsizesetting',
-  props: {
-    min: {
-      type: Number,
-    },
-    max: {
-      type: Number,
-    },
-    step: {
-      type: Number,
-    },
-    defaultValue: {
-      type: Number,
-      default: 14,
-    },
-  },
-  data() {
-    return {
-      value: this.defaultValue,
-    };
-  },
-  watch: {
-    defaultValue(value) {
-      this.value = value;
-    },
-  },
-  methods: {
-    onChange(v) {
-      this.value = v;
+const props = {
+  min: number(),
+  max: number(),
+  step: number(),
+  defaultValue: number().def(14),
+};
 
-      this.$nextTick(function () {
-        this.$emit('change', v);
+export default defineComponent({
+  name: 'adv-fontsizesetting',
+  emits: ['change'],
+  props,
+  setup(props, { emit }) {
+    const value = ref<number>(props.defaultValue);
+
+    const onChange = (v: any) => {
+      value.value = v;
+
+      nextTick(function () {
+        emit('change', v);
       });
-    },
-  },
-  render(h): VNode {
-    // @ts-ignore
-    return (
+    };
+
+    watch(
+      () => props.defaultValue,
+      newValue => {
+        value.value = newValue;
+      },
+    );
+
+    return () => (
+      // @ts-ignore
       <div class={selectorPrefix} ref="el">
-        <div class={`${selectorPrefix}-rangeWrap`}>
-          <div class={`${selectorPrefix}-separatedtool`}>
-            <div class={`${selectorPrefix}-separated`}>
-              <span>{this.$tv('小')}</span>
+        <div
+          // @ts-ignore
+          class={`${selectorPrefix}-rangeWrap`}
+        >
+          <div
+            // @ts-ignore
+            class={`${selectorPrefix}-separatedtool`}
+          >
+            <div
+              // @ts-ignore
+              class={`${selectorPrefix}-separated`}
+            >
+              <span>{Intl.tv('小')}</span>
             </div>
-            <div class={`${selectorPrefix}-separated`}>
-              <span>{this.$tv('中')}</span>
+            <div
+              // @ts-ignore
+              class={`${selectorPrefix}-separated`}
+            >
+              <span>{Intl.tv('中')}</span>
             </div>
-            <div class={`${selectorPrefix}-separated`}>
-              <span>{this.$tv('大')}</span>
+            <div
+              // @ts-ignore
+              class={`${selectorPrefix}-separated`}
+            >
+              <span>{Intl.tv('大')}</span>
             </div>
-            <div class={`${selectorPrefix}-separated`}>
-              <span>{this.$tv('特大')}</span>
+            <div
+              // @ts-ignore
+              class={`${selectorPrefix}-separated`}
+            >
+              <span>{Intl.tv('特大')}</span>
             </div>
           </div>
+
           {/*@ts-ignore*/}
           <Slider
-            min={this.min}
-            max={this.max}
-            step={this.step}
-            value={this.value}
-            onChange={this.onChange}
+            min={props.min}
+            max={props.max}
+            step={props.step}
+            value={value.value}
+            onChange={onChange}
           />
         </div>
       </div>
     );
   },
-};
+});

@@ -10,3 +10,9 @@ export interface IConfig {
   enableAutoResize: boolean;
   enableMapClick: boolean;
 }
+
+export interface IComponent {
+  isUse(): boolean;
+  use(Vue: any): void;
+  BMap: any;
+}

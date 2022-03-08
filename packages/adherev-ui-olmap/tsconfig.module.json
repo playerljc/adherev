@@ -1,7 +1,7 @@
 {
   "extends": "../../node_modules/@ctsj/buildv/buildpackagetsconfig-base",
   "compilerOptions": {
-    "declarationDir": "./es",
+    "allowJs": true,
     "outDir": "./es",
     "baseUrl": "./",
     "jsx": "preserve",

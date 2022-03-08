@@ -14,106 +14,98 @@
       </template>
 
       <template #p2>
-        <fragment>
-          <a-switch
-            checked-children="分页"
-            :checked="pagination1"
-            @change="pagination1 = !pagination1"
+        <a-switch
+          checked-children="分页"
+          :checked="pagination1"
+          @change="pagination1 = !pagination1"
+        />
+
+        <adv-space />
+
+        <div style="display: flex; height: 400px">
+          <Table
+            :wrapStyle="'height: 100%;'"
+            :isShowExpandSearch="true"
+            :defaultExpandSearchCollapse="false"
+            :autoFixed="true"
+            :pagination="pagination1"
           />
-
-          <adv-space />
-
-          <div style="display: flex; height: 400px">
-            <Table
-              :wrapStyle="'height: 100%;'"
-              :isShowExpandSearch="true"
-              :defaultExpandSearchCollapse="false"
-              :autoFixed="true"
-              :pagination="pagination1"
-            />
-          </div>
-        </fragment>
+        </div>
       </template>
 
       <template #p3>
-        <fragment>
-          <a-switch
-            checked-children="分页"
-            :checked="pagination2"
-            @change="pagination2 = !pagination2"
+        <a-switch
+          checked-children="分页"
+          :checked="pagination2"
+          @change="pagination2 = !pagination2"
+        />
+
+        <adv-space />
+
+        <div style="display: flex; height: 500px">
+          <Table
+            :wrapStyle="'height: 100%;'"
+            :isShowExpandSearch="true"
+            :defaultExpandSearchCollapse="false"
+            :fixedHeaderAutoTable="true"
+            :fixedTableSpaceBetween="true"
+            :pagination="pagination2"
           />
-
-          <adv-space />
-
-          <div style="display: flex; height: 500px">
-            <Table
-              :wrapStyle="'height: 100%;'"
-              :isShowExpandSearch="true"
-              :defaultExpandSearchCollapse="false"
-              :fixedHeaderAutoTable="true"
-              :fixedTableSpaceBetween="true"
-              :pagination="pagination2"
-            />
-          </div>
-        </fragment>
+        </div>
       </template>
 
       <template #p4>
-        <fragment>
-          <a-switch
-            checked-children="分页"
-            :checked="pagination3"
-            @change="pagination3 = !pagination3"
-          />
+        <a-switch
+          checked-children="分页"
+          :checked="pagination3"
+          @change="pagination3 = !pagination3"
+        />
 
-          <adv-space />
+        <adv-space />
 
-          <div style="display: flex; height: 800px">
-            <Table
-              :wrapStyle="'height: 100%'"
-              :isShowExpandSearch="true"
-              :defaultExpandSearchCollapse="false"
-              :fixedHeaderAutoTable="true"
-              :fixedTableSpaceBetween="true"
-              :pagination="pagination3"
-            >
-              <template v-slot:tableHeader>
-                <div :class="$style.Header">
-                  <h3>查询表格</h3>
-                  <div>
-                    <a-button type="primary">新建</a-button>
-                  </div>
+        <div style="display: flex; height: 800px">
+          <Table
+            :wrapStyle="'height: 100%'"
+            :isShowExpandSearch="true"
+            :defaultExpandSearchCollapse="false"
+            :fixedHeaderAutoTable="true"
+            :fixedTableSpaceBetween="true"
+            :pagination="pagination3"
+          >
+            <template v-slot:tableHeader>
+              <div :class="$style.Header">
+                <h3>查询表格</h3>
+                <div>
+                  <a-button type="primary">新建</a-button>
                 </div>
-              </template>
-              <template v-slot:tableFooter>
-                <div :class="$style.Footer">renderTableFooter</div>
-              </template>
-            </Table>
-          </div>
-        </fragment>
+              </div>
+            </template>
+            <template v-slot:tableFooter>
+              <div :class="$style.Footer">renderTableFooter</div>
+            </template>
+          </Table>
+        </div>
       </template>
 
       <template #p5>
-        <fragment>
-          <a-switch
-            checked-children="分页"
-            :checked="pagination4"
-            @change="pagination4 = !pagination4"
+        <a-switch
+          checked-children="分页"
+          :checked="pagination4"
+          @change="pagination4 = !pagination4"
+        />
+
+        <adv-space />
+
+        <div style="display: flex; height: 700px">
+          <FewTable
+            :wrapStyle="'height: 100%'"
+            :isShowExpandSearch="true"
+            :defaultExpandSearchCollapse="false"
+            :fixedHeaderAutoTable="true"
+            :fixedTableSpaceBetween="true"
+            :pagination="pagination4"
           />
-
-          <adv-space />
-
-          <div style="display: flex; height: 700px">
-            <FewTable
-              :wrapStyle="'height: 100%'"
-              :isShowExpandSearch="true"
-              :defaultExpandSearchCollapse="false"
-              :fixedHeaderAutoTable="true"
-              :fixedTableSpaceBetween="true"
-              :pagination="pagination4"
-            />
-          </div>
-        </fragment>
+        </div>
       </template>
     </adv-playground-page-code-box-section>
 

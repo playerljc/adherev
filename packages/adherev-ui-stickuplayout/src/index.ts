@@ -9,7 +9,7 @@ withInstall(StickupLayout);
 withInstall(StickupLayoutItem);
 
 StickupLayout.isUse = () => true;
-StickupLayout.use = (Vue) => {
+StickupLayout.use = (Vue: any) => {
   Vue.use(StickupLayout);
   Vue.use(StickupLayoutItem);
   withVue(Vue, 'StickupLayout', StickupLayout);

@@ -1,12 +1,14 @@
-import Resource from './resource';
 import BfdUtil from '@baifendian/adherev-util';
+import Resource from './resource';
 
 const {
   _util: { withVue },
 } = BfdUtil;
 
+// @ts-ignore
 Resource.isUse = () => true;
-Resource.use = (Vue) => {
+// @ts-ignore
+Resource.use = (Vue: any) => {
   withVue(Vue, 'Resource', Resource);
 };
 

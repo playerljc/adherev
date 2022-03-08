@@ -1,21 +1,25 @@
-import Vue from 'vue';
+import { defineComponent, ExtractPropTypes } from 'vue';
+import { string } from 'vue-types';
+import hljsVuePlugin from '@highlightjs/vue-plugin';
 
-export const CodePanelPropTypes = {
-  lang: {
-    type: String,
-    default: 'vue',
-  },
+export const codePanelProps = {
+  lang: string().def('vue'),
+  codeText: string().def(''),
 };
 
-export default {
+export type CodePanelProps = Partial<ExtractPropTypes<typeof codePanelProps>>;
+
+export default defineComponent({
   name: 'adv-playground-code-panel',
-  props: {
-    ...CodePanelPropTypes,
-  },
-  render(h) {
-    const { lang, $slots } = this;
-    const VueHighlightJS = Vue.component('highlight-code');
+  props: codePanelProps,
+  setup(props, { slots }) {
+    return () => {
+      const VueHighlightJS = hljsVuePlugin.component;
 
-    return <VueHighlightJS lang={lang}>{$slots.default}</VueHighlightJS>;
+      return (
+        // @ts-ignore
+        <VueHighlightJS language={props.lang} code={props.codeText} />
+      );
+    };
   },
-};
+});

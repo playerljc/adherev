@@ -1,18 +1,15 @@
-import { Vector as VectorLayer } from 'ol/layer';
-
-import { Vector as VectorSource } from 'ol/source';
-
-import GeoJSON from 'ol/format/GeoJSON';
-
 import Resource from '@baifendian/adherev-util-resource';
+import GeoJSON from 'ol/format/GeoJSON';
+import { Vector as VectorLayer } from 'ol/layer';
+import { Vector as VectorSource } from 'ol/source';
 
 /**
  * GeoLayer
  * @class GeoLayer
  * @classdesc openlayers中的geojson的layer
  */
-class GeoLayer extends VectorLayer {
-  private vectorSource: VectorSource;
+class GeoLayer extends VectorLayer<any> {
+  private vectorSource: VectorSource<any>;
 
   /**
    * constructor
@@ -20,7 +17,7 @@ class GeoLayer extends VectorLayer {
    * @param onStyle - onStyle
    * @param zIndex
    */
-  constructor(geoJsonObject, onStyle, zIndex) {
+  constructor(geoJsonObject: any, onStyle: () => void, zIndex: number) {
     const geoSource = new VectorSource({
       features: new GeoJSON({
         dataProjection: Resource.Dict.value.ResourceGisEpsg4326.value,

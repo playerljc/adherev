@@ -11,7 +11,7 @@
         @select="onSelect"
       >
         <template v-for="r in routes">
-          <sub-menu v-if="isSubMenu(r)" :key="r.path" :router="r" :$style="$style" />
+          <sub-menu v-if="isSubMenu(r)" :key="r.path" :router="r" :styles="$style" />
 
           <a-menu-item v-else :key="r.path">
             <router-link :to="r.path">
@@ -37,7 +37,7 @@
 
       <div>
         <keep-alive>
-          <router-view></router-view>
+          <router-view />
         </keep-alive>
       </div>
 

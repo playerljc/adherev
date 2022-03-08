@@ -14,7 +14,7 @@ JdCategoryTab.Item = JdCategoryTabItem;
 
 JdCategoryTab.isUse = () => true;
 
-JdCategoryTab.use = (Vue) => {
+JdCategoryTab.use = (Vue: any) => {
   Vue.use(JdCategoryTab);
   Vue.use(JdCategoryTabItem);
   withVue(Vue, 'JdCategoryTab', JdCategoryTab);

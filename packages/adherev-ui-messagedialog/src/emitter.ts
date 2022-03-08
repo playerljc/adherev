@@ -1,4 +1,6 @@
-const events = {};
+const events: {
+  [prop: string]: { handlers: any[] };
+} = {};
 
 /**
  * Emitter
@@ -9,7 +11,7 @@ export default {
    * @param {string} type
    * @param {Function} handler
    */
-  on(type, handler) {
+  on(type: string, handler: Function) {
     if (!events[type]) {
       events[type] = {
         handlers: [],
@@ -23,9 +25,9 @@ export default {
    * @param {type} type
    * @param {Function} handler
    */
-  remove(type, handler) {
+  remove(type: string, handler: Function) {
     if (events[type]) {
-      const index = events[type].handlers.findIndex((item) => {
+      const index = events[type].handlers.findIndex(item => {
         return item === handler;
       });
 
@@ -40,10 +42,10 @@ export default {
    * @param {string} type
    * @param {Object} params
    */
-  trigger(type, ...params) {
+  trigger(type: string, ...params: any[]) {
     let result;
     if (events[type]) {
-      events[type].handlers.forEach((handler) => {
+      events[type].handlers.forEach(handler => {
         result = handler(...params);
       });
     }

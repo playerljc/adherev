@@ -1,82 +1,99 @@
 import Intl from '@baifendian/adherev-util-intl';
-
+import { defineComponent, VNode } from 'vue';
+import { array } from 'vue-types';
+import Collapse, { collapseProps } from './Collapse';
 import Table from './Table';
-import Collapse from './Collapse';
-import { propTypes } from './types';
 
 const selectPrefix = 'adherev-ui-playground-props';
 
-export const PropsPropTypes = {
-  ...propTypes,
-  data: {
-    type: Array,
-    default: () => [],
-  },
+export interface IDataItemType {
+  params: string | VNode;
+  desc: string | VNode;
+  type: string | VNode;
+  defaultVal: string | VNode;
+}
+
+export const propsProps = {
+  ...collapseProps,
+  data: array<IDataItemType>().def([]),
 };
 
-export default {
+export default defineComponent({
   name: 'adv-playground-props',
-  props: {
-    ...PropsPropTypes,
-  },
-  computed: {
-    columns() {
-      return [
-        {
-          title: Intl.tv('参数'),
-          key: 'params',
-          dataIndex: 'params',
-          width: '20%',
-        },
-        {
-          title: Intl.tv('说明'),
-          key: 'desc',
-          dataIndex: 'desc',
-          width: '50%',
-        },
-        {
-          title: Intl.tv('类型'),
-          key: 'type',
-          dataIndex: 'type',
-          width: '15%',
-          slot: 'type',
-        },
-        {
-          title: Intl.tv('默认值'),
-          key: 'defaultVal',
-          dataIndex: 'defaultVal',
-          width: '15%',
-          slot: 'defaultVal',
-        },
-      ];
-    },
-  },
-  components: {
-    Table,
-    Collapse,
-  },
-  render(h) {
-    const scopedSlots = {
-      type: ({ value }) => <code class={`${selectPrefix}-highlight`}>{value}</code>,
-      defaultVal: ({ value }) => <code>{value ? value : '-'}</code>,
+  props: propsProps,
+  setup(props, {}) {
+    const columns = [
+      {
+        title: Intl.tv('参数'),
+        key: 'params',
+        dataIndex: 'params',
+        width: '20%',
+      },
+      {
+        title: Intl.tv('说明'),
+        key: 'desc',
+        dataIndex: 'desc',
+        width: '50%',
+      },
+      {
+        title: Intl.tv('类型'),
+        key: 'type',
+        dataIndex: 'type',
+        width: '15%',
+      },
+      {
+        title: Intl.tv('默认值'),
+        key: 'defaultVal',
+        dataIndex: 'defaultVal',
+        width: '15%',
+      },
+    ];
+
+    return () => {
+      const _collapseProps = {};
+
+      for (const p in collapseProps) {
+        _collapseProps[p] = props[p];
+      }
+
+      return (
+        // @ts-ignore
+        <Collapse {..._collapseProps}>
+          <div
+            // @ts-ignore
+            class={selectPrefix}
+          >
+            {/*@ts-ignore*/}
+            <Table
+              columns={columns}
+              dataSource={props.data.map((t, i) => ({ ...t, id: `${i + 1}` }))}
+              rowKey="id"
+            >
+              {{
+                // @ts-ignore
+                bodyCell: ({ text, column }) => {
+                  if (column.dataIndex === 'type') {
+                    return (
+                      <code
+                        // @ts-ignore
+                        class={`${selectPrefix}-highlight`}
+                      >
+                        {text}
+                      </code>
+                    );
+                  }
+
+                  if (column.dataIndex === 'defaultVal') {
+                    return <code>{text || '-'}</code>;
+                  }
+
+                  return null;
+                },
+              }}
+            </Table>
+          </div>
+        </Collapse>
+      );
     };
-
-    const props = {};
-    for (const p in propTypes) {
-      props[p] = this[p];
-    }
-
-    return (
-      <Collapse {...{ props }}>
-        <div class={selectPrefix}>
-          <Table
-            scopedSlots={scopedSlots}
-            columns={this.columns}
-            dataSource={this.data.map((t, i) => ({ ...t, id: `${i + 1}` }))}
-            rowKey="id"
-          />
-        </div>
-      </Collapse>
-    );
   },
-};
+});

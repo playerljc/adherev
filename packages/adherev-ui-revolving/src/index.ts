@@ -3,6 +3,8 @@ import BfdUtil from '@baifendian/adherev-util';
 import Revolving from './revolving';
 import RevolvingItem from './item';
 
+import { IComponent } from './types';
+
 const {
   _util: { withInstall, withVue },
 } = BfdUtil;
@@ -10,11 +12,11 @@ const {
 withInstall(Revolving);
 withInstall(RevolvingItem);
 
-Revolving.Item = RevolvingItem;
+(Revolving as unknown as IComponent).Item = RevolvingItem;
 
-Revolving.isUse = () => true;
+(Revolving as unknown as IComponent).isUse = () => true;
 
-Revolving.use = (Vue) => {
+(Revolving as unknown as IComponent).use = (Vue: any) => {
   Vue.use(Revolving);
   Vue.use(RevolvingItem);
   withVue(Vue, 'Revolving', Revolving);

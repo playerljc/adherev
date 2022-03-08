@@ -12,11 +12,16 @@ import changeLog from '../../adherev/changelog/CHANGELOG.md';
 
 export default {
   components: {
-    ScrollFooterPanel
+    ScrollFooterPanel,
   },
   computed: {
     changeLog() {
-      return marked(changeLog, { sanitize: true });
+      const html = marked(changeLog, { sanitize: true });
+
+      console.log('changeLog', changeLog);
+      console.log('html', html);
+
+      return html;
     },
   },
 };

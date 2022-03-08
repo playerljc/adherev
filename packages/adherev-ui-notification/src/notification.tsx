@@ -1,9 +1,8 @@
-import Vue from 'vue';
-import { Fragment } from 'vue-fragment';
-import { v1 } from 'uuid';
 import Util from '@baifendian/adherev-util';
-
-import { IConfig, IShowConfig, IShowStandardConfig } from './types';
+// @ts-ignore
+import { v1 } from 'uuid';
+import { createApp, h } from 'vue';
+import { IConfig, INotificationFactory, IShowConfig, IShowStandardConfig } from './types';
 
 const selectorPrefix = 'adherev-ui-notification';
 
@@ -12,7 +11,7 @@ const selectorPrefix = 'adherev-ui-notification';
  * @class Notification
  * @classdesc Notification
  */
-class Notification {
+export class Notification {
   private readonly config: IConfig = {
     style: 'material',
     type: 'top',
@@ -31,7 +30,7 @@ class Notification {
   private notifications = {};
   private key: boolean = false;
 
-  constructor(container, config: IConfig) {
+  constructor(container: HTMLElement, config: IConfig) {
     this.container = container;
 
     this.config = Object.assign(this.config, config);
@@ -48,10 +47,10 @@ class Notification {
    * @private
    */
   private createInnerContainer(): void {
-    const innerContainer = this.container.querySelector(`.${selectorPrefix}`);
+    const innerContainer: HTMLElement | null = this.container.querySelector(`.${selectorPrefix}`);
 
     if (innerContainer) {
-      innerContainer.parentElement.removeChild(innerContainer);
+      innerContainer?.parentElement?.removeChild(innerContainer);
     }
 
     this.innerContainer = document.createElement('div');
@@ -70,6 +69,8 @@ class Notification {
   private init(): void {
     const { config } = this;
 
+    if (!this.innerContainer) return;
+
     this.innerContainer.classList.remove(
       [selectorPrefix].concat([config.type === 'top' ? 'bottom' : 'top', config.style]).join('-'),
     );
@@ -86,11 +87,18 @@ class Notification {
   private initEvents(): void {
     const self = this;
 
-    this.notificationContainer.addEventListener('click', (e: HTMLElement) => {
-      if (e.target.classList.contains('closeBtn')) {
-        const topDom = Util.getTopDom(e.target, `${selectorPrefix}-item`);
+    if (!this.notificationContainer) return;
 
-        self.closeNotification.call(self, topDom.dataset.id);
+    this.notificationContainer.addEventListener('click', (e: any) => {
+      if (e.target.classList.contains('closeBtn')) {
+        const topDom: HTMLElement | null | undefined = Util.getTopDom?.(
+          e.target,
+          `${selectorPrefix}-item`,
+        );
+
+        if (topDom) {
+          self.closeNotification.call(self, topDom?.dataset?.id as string);
+        }
       }
     });
   }
@@ -108,12 +116,13 @@ class Notification {
 
     self.key = true;
 
+    // @ts-ignore
     const n = self.notifications[id];
 
     function transitionendAction() {
       n.removeEventListener('transitionend', transitionendAction);
 
-      self.notificationContainer.removeChild(n);
+      self?.notificationContainer?.removeChild(n);
 
       self.key = false;
 
@@ -148,30 +157,37 @@ class Notification {
       n.className = `${selectorPrefix}-item`;
       n.dataset.id = id;
 
-      const div = document.createElement('div');
-      n.appendChild(div);
-
       const self = this;
 
-      new Vue({
+      createApp({
         mounted() {
           resolve(self.build(id, n));
         },
-        render(h) {
+        render() {
           return (
-            <Fragment>
-              <div class="info">
-                {Util.isObject(children)
-                  ? h(children)
-                  : Util.isFunction(children)
-                  ? children(h)
+            <>
+              <div
+                // @ts-ignore
+                class="info"
+              >
+                {Util.isObject?.(children)
+                  ? // @ts-ignore
+                    h(children)
+                  : Util.isFunction?.(children)
+                  ? // @ts-ignore
+                    children()
                   : children || ''}
               </div>
-              {closed ? <span class="closeBtn" /> : null}
-            </Fragment>
+              {closed ? (
+                <span
+                  // @ts-ignore
+                  class="closeBtn"
+                />
+              ) : null}
+            </>
           );
         },
-      }).$mount(div);
+      }).mount(n);
     });
   }
 
@@ -198,61 +214,100 @@ class Notification {
       n.className = `${selectorPrefix}-item`;
       n.dataset.id = id;
 
-      const div = document.createElement('div');
-      n.appendChild(div);
-
       const self = this;
 
-      new Vue({
+      createApp({
         mounted() {
           resolve(self.build(id, n));
         },
-        render(h) {
+        render() {
           return (
-            <Fragment>
-              <div class="info">
-                <div class={`${selectorPrefix}-standard-header`}>
-                  <div class={`${selectorPrefix}-standard-header-icon`}>
+            <>
+              <div
+                // @ts-ignore
+                class="info"
+              >
+                <div
+                  // @ts-ignore
+                  class={`${selectorPrefix}-standard-header`}
+                >
+                  <div
+                    // @ts-ignore
+                    class={`${selectorPrefix}-standard-header-icon`}
+                  >
                     {headerIcon ? <img src={headerIcon} alt="" /> : null}
                   </div>
-                  <div class={`${selectorPrefix}-standard-header-label`}>
-                    {Util.isObject(headerLabel)
+                  <div
+                    // @ts-ignore
+                    class={`${selectorPrefix}-standard-header-label`}
+                  >
+                    {Util.isObject?.(headerLabel)
                       ? h(headerLabel)
-                      : Util.isFunction(headerLabel)
-                      ? headerLabel(h)
+                      : Util.isFunction?.(headerLabel)
+                      ? // @ts-ignore
+                        headerLabel()
                       : headerLabel || ''}
                   </div>
                 </div>
-                <div class={`${selectorPrefix}-standard-content`}>
-                  <div class={`${selectorPrefix}-standard-content-media-l`}>
+                <div
+                  // @ts-ignore
+                  class={`${selectorPrefix}-standard-content`}
+                >
+                  <div
+                    // @ts-ignore
+                    class={`${selectorPrefix}-standard-content-media-l`}
+                  >
                     {icon ? <img src={icon} alt="" /> : null}
                   </div>
-                  <div class={`${selectorPrefix}-standard-content-row`}>
-                    <div class={`${selectorPrefix}-standard-content-row-title`}>
-                      {Util.isObject(title)
+                  <div
+                    // @ts-ignore
+                    class={`${selectorPrefix}-standard-content-row`}
+                  >
+                    <div
+                      // @ts-ignore
+                      class={`${selectorPrefix}-standard-content-row-title`}
+                    >
+                      {Util.isObject?.(title)
                         ? h(title)
-                        : Util.isFunction(title)
-                        ? title(h)
+                        : Util.isFunction?.(title)
+                        ? // @ts-ignore
+                          title()
                         : title || ''}
                     </div>
-                    <div class={`${selectorPrefix}-standard-content-row-text`}>
-                      {Util.isObject(text) ? h(text) : Util.isFunction(text) ? text(h) : text || ''}
+                    <div
+                      // @ts-ignore
+                      class={`${selectorPrefix}-standard-content-row-text`}
+                    >
+                      {Util.isObject?.(text)
+                        ? h(text)
+                        : Util.isFunction?.(text)
+                        ? (text as Function)()
+                        : text || ''}
                     </div>
                   </div>
-                  <div class={`${selectorPrefix}-standard-content-media-r`}>
-                    {Util.isObject(datetime)
+                  <div
+                    // @ts-ignore
+                    class={`${selectorPrefix}-standard-content-media-r`}
+                  >
+                    {Util.isObject?.(datetime)
                       ? h(datetime)
-                      : Util.isFunction(datetime)
-                      ? datetime(h)
+                      : Util.isFunction?.(datetime)
+                      ? // @ts-ignore
+                        datetime()
                       : datetime || ''}
                   </div>
                 </div>
               </div>
-              {closed ? <span class="closeBtn" /> : null}
-            </Fragment>
+              {closed ? (
+                <span
+                  // @ts-ignore
+                  class="closeBtn"
+                />
+              ) : null}
+            </>
           );
         },
-      }).$mount(div);
+      }).mount(n);
     });
   }
 
@@ -263,14 +318,14 @@ class Notification {
    * @return string
    * @private
    */
-  private build(id: string, n): string {
+  private build(id: string, n: HTMLLIElement): string {
     const self = this;
 
+    // @ts-ignore
     this.notifications[id] = n;
 
-    this.notificationContainer.appendChild(n);
+    this?.notificationContainer?.appendChild(n);
 
-    // onCreate
     self.trigger('onCreate', n);
 
     n.style.height = 'auto';
@@ -293,7 +348,7 @@ class Notification {
     setTimeout(() => {
       n.style.height = `${targetHeight}px`;
 
-      n.querySelector('.info').style.opacity = '1';
+      (n.querySelector('.info') as HTMLElement).style.opacity = '1';
 
       self.trigger('onShow', n);
     }, 100);
@@ -307,8 +362,10 @@ class Notification {
    * @param params
    * @private
    */
-  private trigger(action, params?: any): void {
+  private trigger(action: string, params?: any): void {
+    // @ts-ignore
     if (this.config[action]) {
+      // @ts-ignore
       this.config[action](params);
     }
   }
@@ -335,15 +392,12 @@ class Notification {
    * close
    * @param {string} id
    */
-  close(id): void {
+  close(id: string): void {
     this.closeNotification(id);
   }
 }
 
-/**
- * NotificationFactory
- */
-export default {
+const NotificationFactory: INotificationFactory = {
   /**
    * build
    * @param container
@@ -354,3 +408,8 @@ export default {
     return new Notification(container, config);
   },
 };
+
+/**
+ * NotificationFactory
+ */
+export default NotificationFactory;

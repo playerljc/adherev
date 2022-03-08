@@ -85,49 +85,43 @@
         </div>
       </template>
       <template #p2>
-        <fragment>
-          <div :class="$style.ToolBar">
-            <a-button type="primary" @click="onAddWindLayer">加入风场</a-button>
-          </div>
-          <div :class="$style.BMapWrap">
-            <adv-bmap
-              ref="winLayerRef"
-              :zoom="2"
-              :externalImportBMapScript="true"
-              @onBMapInitReady="onWindMapInitReady"
-            />
-          </div>
-        </fragment>
+        <div :class="$style.ToolBar">
+          <a-button type="primary" @click="onAddWindLayer">加入风场</a-button>
+        </div>
+        <div :class="$style.BMapWrap">
+          <adv-bmap
+            ref="winLayerRef"
+            :zoom="2"
+            :externalImportBMapScript="true"
+            @onBMapInitReady="onWindMapInitReady"
+          />
+        </div>
       </template>
       <template #p3>
-        <fragment>
-          <div :class="$style.ToolBar">
-            <a-button type="primary" @click="onAddHotLayer">加入热力图</a-button>
-          </div>
-          <div :class="$style.BMapWrap">
-            <adv-bmap
-              ref="hotLayerRef"
-              :zoom="5"
-              :externalImportBMapScript="true"
-              @onBMapInitReady="onHotMapInitReady"
-            />
-          </div>
-        </fragment>
+        <div :class="$style.ToolBar">
+          <a-button type="primary" @click="onAddHotLayer">加入热力图</a-button>
+        </div>
+        <div :class="$style.BMapWrap">
+          <adv-bmap
+            ref="hotLayerRef"
+            :zoom="5"
+            :externalImportBMapScript="true"
+            @onBMapInitReady="onHotMapInitReady"
+          />
+        </div>
       </template>
       <template #p4>
-        <fragment>
-          <div :class="$style.ToolBar">
-            <a-button type="primary" @click="onAddAirPressureLayer">加入气压</a-button>
-          </div>
-          <div :class="$style.BMapWrap">
-            <adv-bmap
-              ref="airPressureRef"
-              :zoom="2"
-              :externalImportBMapScript="true"
-              @onBMapInitReady="onAirPressureMapInitReady"
-            />
-          </div>
-        </fragment>
+        <div :class="$style.ToolBar">
+          <a-button type="primary" @click="onAddAirPressureLayer">加入气压</a-button>
+        </div>
+        <div :class="$style.BMapWrap">
+          <adv-bmap
+            ref="airPressureRef"
+            :zoom="2"
+            :externalImportBMapScript="true"
+            @onBMapInitReady="onAirPressureMapInitReady"
+          />
+        </div>
       </template>
       <template #p5>
         <div :class="$style.BMapWrap">
@@ -140,66 +134,60 @@
         </div>
       </template>
       <template #p6>
-        <fragment>
-          <div :class="$style.ToolBar">
-            <a-select
-              style="width: 200px"
-              v-model="interactionValue"
-              @change="onInteractionChange($event)"
-            >
-              <a-select-option value="-1">请选择</a-select-option>
-              <a-select-option value="Circle">圆</a-select-option>
-              <a-select-option value="Diamond">菱形</a-select-option>
-              <a-select-option value="Free">自由绘制</a-select-option>
-              <a-select-option value="Polygon">多边形</a-select-option>
-              <a-select-option value="Rectangle">矩形</a-select-option>
-              <a-select-option value="Start">五角星</a-select-option>
-              <a-select-option value="Triangle">三角形</a-select-option>
-            </a-select>
-          </div>
-          <div :class="$style.BMapWrap">
-            <adv-bmap
-              ref="interactionRef"
-              :zoom="5"
-              :externalImportBMapScript="true"
-              @onBMapInitReady="onInteractionMapInitReady"
-            />
-          </div>
-        </fragment>
+        <div :class="$style.ToolBar">
+          <a-select
+            style="width: 200px"
+            v-model="interactionValue"
+            @change="onInteractionChange($event)"
+          >
+            <a-select-option value="-1">请选择</a-select-option>
+            <a-select-option value="Circle">圆</a-select-option>
+            <a-select-option value="Diamond">菱形</a-select-option>
+            <a-select-option value="Free">自由绘制</a-select-option>
+            <a-select-option value="Polygon">多边形</a-select-option>
+            <a-select-option value="Rectangle">矩形</a-select-option>
+            <a-select-option value="Start">五角星</a-select-option>
+            <a-select-option value="Triangle">三角形</a-select-option>
+          </a-select>
+        </div>
+        <div :class="$style.BMapWrap">
+          <adv-bmap
+            ref="interactionRef"
+            :zoom="5"
+            :externalImportBMapScript="true"
+            @onBMapInitReady="onInteractionMapInitReady"
+          />
+        </div>
       </template>
       <template #p7>
-        <fragment>
-          <div :class="$style.ToolBar">
-            <a-button type="primary" @click="onRangingStart">开始</a-button>
-          </div>
-          <div :class="$style.BMapWrap">
-            <adv-bmap
-              ref="rangingRef"
-              :zoom="5"
-              :externalImportBMapScript="true"
-              @onBMapInitReady="onRangingMapInitReady"
-            />
-          </div>
-        </fragment>
+        <div :class="$style.ToolBar">
+          <a-button type="primary" @click="onRangingStart">开始</a-button>
+        </div>
+        <div :class="$style.BMapWrap">
+          <adv-bmap
+            ref="rangingRef"
+            :zoom="5"
+            :externalImportBMapScript="true"
+            @onBMapInitReady="onRangingMapInitReady"
+          />
+        </div>
       </template>
       <template #p8>
-        <fragment>
-          <div :class="$style.ToolBar">
-            <a-button type="primary" @click="onTrajectoryStart">开始</a-button>
-            <a-button type="primary" @click="onTrajectoryOther">
-              <span v-if="isTrajectorPause">恢复</span>
-              <span v-else>暂停</span>
-            </a-button>
-          </div>
-          <div :class="$style.BMapWrap">
-            <adv-bmap
-              ref="trajectoryRef"
-              :zoom="5"
-              :externalImportBMapScript="true"
-              @onBMapInitReady="onTrajectoryMapInitReady"
-            />
-          </div>
-        </fragment>
+        <div :class="$style.ToolBar">
+          <a-button type="primary" @click="onTrajectoryStart">开始</a-button>
+          <a-button type="primary" @click="onTrajectoryOther">
+            <span v-if="isTrajectorPause">恢复</span>
+            <span v-else>暂停</span>
+          </a-button>
+        </div>
+        <div :class="$style.BMapWrap">
+          <adv-bmap
+            ref="trajectoryRef"
+            :zoom="5"
+            :externalImportBMapScript="true"
+            @onBMapInitReady="onTrajectoryMapInitReady"
+          />
+        </div>
       </template>
     </adv-playground-page-code-box-section>
 
@@ -208,60 +196,56 @@
       :config="geometryBoxPanelConfig"
     >
       <template #g1>
-        <fragment>
-          <div :class="$style.ToolBar">
-            <span>点的类型：</span>
-            <a-select style="width: 200px" v-model="pointType" @change="onPointTypeChange($event)">
-              <a-select-option value="-1">请选择</a-select-option>
-              <a-select-option value="circle">圆形点</a-select-option>
-              <a-select-option value="image">image</a-select-option>
-              <a-select-option value="regularPolygon">regularPolygon</a-select-option>
-              <a-select-option value="start">start</a-select-option>
-              <a-select-option value="sector">sector</a-select-option>
-              <a-select-option value="rect">rect</a-select-option>
-              <a-select-option value="radiusRect">radiusRect</a-select-option>
-              <a-select-option value="leaf">leaf</a-select-option>
-            </a-select>
-          </div>
-          <div :class="$style.BMapWrap">
-            <adv-bmap
-              ref="pointLayerRef"
-              :zoom="12"
-              :externalImportBMapScript="true"
-              @onBMapInitReady="onPointLayerMapInitReady"
-            />
-          </div>
-        </fragment>
+        <div :class="$style.ToolBar">
+          <span>点的类型：</span>
+          <a-select style="width: 200px" v-model="pointType" @change="onPointTypeChange($event)">
+            <a-select-option value="-1">请选择</a-select-option>
+            <a-select-option value="circle">圆形点</a-select-option>
+            <a-select-option value="image">image</a-select-option>
+            <a-select-option value="regularPolygon">regularPolygon</a-select-option>
+            <a-select-option value="start">start</a-select-option>
+            <a-select-option value="sector">sector</a-select-option>
+            <a-select-option value="rect">rect</a-select-option>
+            <a-select-option value="radiusRect">radiusRect</a-select-option>
+            <a-select-option value="leaf">leaf</a-select-option>
+          </a-select>
+        </div>
+        <div :class="$style.BMapWrap">
+          <adv-bmap
+            ref="pointLayerRef"
+            :zoom="12"
+            :externalImportBMapScript="true"
+            @onBMapInitReady="onPointLayerMapInitReady"
+          />
+        </div>
       </template>
       <template #g2>
-        <fragment>
-          <div :class="$style.ToolBar">
-            <span>点的类型：</span>
-            <a-select
-              style="width: 200px"
-              v-model="mulitPointType"
-              @change="onMulitPointTypeChange($event)"
-            >
-              <a-select-option value="-1">请选择</a-select-option>
-              <a-select-option value="circle">圆形点</a-select-option>
-              <a-select-option value="image">image</a-select-option>
-              <a-select-option value="regularPolygon">regularPolygon</a-select-option>
-              <a-select-option value="start">start</a-select-option>
-              <a-select-option value="sector">sector</a-select-option>
-              <a-select-option value="rect">rect</a-select-option>
-              <a-select-option value="radiusRect">radiusRect</a-select-option>
-              <a-select-option value="leaf">leaf</a-select-option>
-            </a-select>
-          </div>
-          <div :class="$style.BMapWrap">
-            <adv-bmap
-              ref="mulitPointLayerRef"
-              :zoom="5"
-              :externalImportBMapScript="true"
-              @onBMapInitReady="onMulitPointLayerMapInitReady"
-            />
-          </div>
-        </fragment>
+        <div :class="$style.ToolBar">
+          <span>点的类型：</span>
+          <a-select
+            style="width: 200px"
+            v-model="mulitPointType"
+            @change="onMulitPointTypeChange($event)"
+          >
+            <a-select-option value="-1">请选择</a-select-option>
+            <a-select-option value="circle">圆形点</a-select-option>
+            <a-select-option value="image">image</a-select-option>
+            <a-select-option value="regularPolygon">regularPolygon</a-select-option>
+            <a-select-option value="start">start</a-select-option>
+            <a-select-option value="sector">sector</a-select-option>
+            <a-select-option value="rect">rect</a-select-option>
+            <a-select-option value="radiusRect">radiusRect</a-select-option>
+            <a-select-option value="leaf">leaf</a-select-option>
+          </a-select>
+        </div>
+        <div :class="$style.BMapWrap">
+          <adv-bmap
+            ref="mulitPointLayerRef"
+            :zoom="5"
+            :externalImportBMapScript="true"
+            @onBMapInitReady="onMulitPointLayerMapInitReady"
+          />
+        </div>
       </template>
       <template #g3>
         <div :class="$style.BMapWrap">
@@ -294,95 +278,87 @@
         </div>
       </template>
       <template #g6>
-        <fragment>
-          <div :class="$style.ToolBar">
-            <a-select
-              style="width: 200px"
-              v-model="lineStringType"
-              @change="onLineStringTypeChange($event)"
-            >
-              <a-select-option value="-1">请选择</a-select-option>
-              <a-select-option value="base">无箭头</a-select-option>
-              <a-select-option value="fromArrow">开始剪头</a-select-option>
-              <a-select-option value="toArrow">结束箭头</a-select-option>
-              <a-select-option value="betweenArrow">双向箭头</a-select-option>
-            </a-select>
-          </div>
-          <div :class="$style.BMapWrap">
-            <adv-bmap
-              ref="lineStringRef"
-              :zoom="5"
-              :externalImportBMapScript="true"
-              @onBMapInitReady="onLineStringMapInitReady"
-            />
-          </div>
-        </fragment>
+        <div :class="$style.ToolBar">
+          <a-select
+            style="width: 200px"
+            v-model="lineStringType"
+            @change="onLineStringTypeChange($event)"
+          >
+            <a-select-option value="-1">请选择</a-select-option>
+            <a-select-option value="base">无箭头</a-select-option>
+            <a-select-option value="fromArrow">开始剪头</a-select-option>
+            <a-select-option value="toArrow">结束箭头</a-select-option>
+            <a-select-option value="betweenArrow">双向箭头</a-select-option>
+          </a-select>
+        </div>
+        <div :class="$style.BMapWrap">
+          <adv-bmap
+            ref="lineStringRef"
+            :zoom="5"
+            :externalImportBMapScript="true"
+            @onBMapInitReady="onLineStringMapInitReady"
+          />
+        </div>
       </template>
       <template #g7>
-        <fragment>
-          <div :class="$style.ToolBar">
-            <a-select
-              style="width: 200px"
-              v-model="regularPolygonCount"
-              @change="onRegularPolygonChange($event)"
-            >
-              <a-select-option value="-1">请选择</a-select-option>
-              <a-select-option value="4">4</a-select-option>
-              <a-select-option value="5">5</a-select-option>
-              <a-select-option value="6">6</a-select-option>
-              <a-select-option value="7">7</a-select-option>
-            </a-select>
-          </div>
-          <div :class="$style.BMapWrap">
-            <adv-bmap
-              ref="regularPolygonRef"
-              :zoom="5"
-              :externalImportBMapScript="true"
-              @onBMapInitReady="onRegularPolygonMapInitReady"
-            />
-          </div>
-        </fragment>
+        <div :class="$style.ToolBar">
+          <a-select
+            style="width: 200px"
+            v-model="regularPolygonCount"
+            @change="onRegularPolygonChange($event)"
+          >
+            <a-select-option value="-1">请选择</a-select-option>
+            <a-select-option value="4">4</a-select-option>
+            <a-select-option value="5">5</a-select-option>
+            <a-select-option value="6">6</a-select-option>
+            <a-select-option value="7">7</a-select-option>
+          </a-select>
+        </div>
+        <div :class="$style.BMapWrap">
+          <adv-bmap
+            ref="regularPolygonRef"
+            :zoom="5"
+            :externalImportBMapScript="true"
+            @onBMapInitReady="onRegularPolygonMapInitReady"
+          />
+        </div>
       </template>
       <template #g8>
-        <fragment>
-          <div :class="$style.ToolBar">
-            <a-select style="width: 200px" v-model="leafCount" @change="onLeafCountChange($event)">
-              <a-select-option value="-1">请选择</a-select-option>
-              <a-select-option value="6">6</a-select-option>
-              <a-select-option value="7">7</a-select-option>
-              <a-select-option value="8">8</a-select-option>
-              <a-select-option value="9">9</a-select-option>
-              <a-select-option value="10">10</a-select-option>
-            </a-select>
-          </div>
-          <div :class="$style.BMapWrap">
-            <adv-bmap
-              ref="leafRef"
-              :zoom="5"
-              :externalImportBMapScript="true"
-              @onBMapInitReady="onLeafMapInitReady"
-            />
-          </div>
-        </fragment>
+        <div :class="$style.ToolBar">
+          <a-select style="width: 200px" v-model="leafCount" @change="onLeafCountChange($event)">
+            <a-select-option value="-1">请选择</a-select-option>
+            <a-select-option value="6">6</a-select-option>
+            <a-select-option value="7">7</a-select-option>
+            <a-select-option value="8">8</a-select-option>
+            <a-select-option value="9">9</a-select-option>
+            <a-select-option value="10">10</a-select-option>
+          </a-select>
+        </div>
+        <div :class="$style.BMapWrap">
+          <adv-bmap
+            ref="leafRef"
+            :zoom="5"
+            :externalImportBMapScript="true"
+            @onBMapInitReady="onLeafMapInitReady"
+          />
+        </div>
       </template>
       <template #g9>
-        <fragment>
-          <div :class="$style.ToolBar">
-            <a-select style="width: 200px" v-model="textCount" @change="onTextCountChange($event)">
-              <a-select-option value="-1">请选择</a-select-option>
-              <a-select-option value="text">文字</a-select-option>
-              <a-select-option value="geomText">几何图形中的文字</a-select-option>
-            </a-select>
-          </div>
-          <div :class="$style.BMapWrap">
-            <adv-bmap
-              ref="textRef"
-              :zoom="5"
-              :externalImportBMapScript="true"
-              @onBMapInitReady="onTextMapInitReady"
-            />
-          </div>
-        </fragment>
+        <div :class="$style.ToolBar">
+          <a-select style="width: 200px" v-model="textCount" @change="onTextCountChange($event)">
+            <a-select-option value="-1">请选择</a-select-option>
+            <a-select-option value="text">文字</a-select-option>
+            <a-select-option value="geomText">几何图形中的文字</a-select-option>
+          </a-select>
+        </div>
+        <div :class="$style.BMapWrap">
+          <adv-bmap
+            ref="textRef"
+            :zoom="5"
+            :externalImportBMapScript="true"
+            @onBMapInitReady="onTextMapInitReady"
+          />
+        </div>
       </template>
     </adv-playground-page-code-box-section>
   </adv-playground-page>

@@ -1,33 +1,32 @@
-import { Fragment } from 'vue-fragment';
+import { defineComponent } from 'vue';
+import { bool } from 'vue-types';
 
 import { deal } from './util';
 
-export default {
-  name: 'adv-conditionalrender-show',
-  props: {
-    conditional: {
-      type: Boolean,
-      default: true,
-    },
-  },
-  render(h) {
-    // @ts-ignore
-    const { conditional, $slots } = this;
-
-    deal({
-      conditional,
-      rule: 'display',
-      ruleVisibleValue: '',
-      ruleHideValue: 'none',
-      slots: $slots,
-    });
-
-    return (
-      // @ts-ignore
-      <Fragment>
-        {$slots.default}
-        {$slots.noMatch}
-      </Fragment>
-    );
-  },
+const props = {
+  conditional: bool().def(true),
 };
+
+export default defineComponent({
+  name: 'adv-conditionalrender-show',
+  props,
+  slots: ['default', 'noMatch'],
+  setup(props, { slots }) {
+    return () => {
+      const { defaultVNodes, noMatchVNodes } = deal({
+        conditional: props.conditional,
+        rule: 'display',
+        ruleVisibleValue: '',
+        ruleHideValue: 'none',
+        slots,
+      });
+
+      return (
+        <>
+          {defaultVNodes}
+          {noMatchVNodes}
+        </>
+      );
+    };
+  },
+});

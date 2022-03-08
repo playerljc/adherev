@@ -6,7 +6,7 @@ const {
 
 const Component = withInstall(Surnames);
 Component.isUse = () => true;
-Component.use = (Vue) => {
+Component.use = (Vue: any) => {
   Vue.use(Component);
   withVue(Vue, 'Surnames', Component);
 };

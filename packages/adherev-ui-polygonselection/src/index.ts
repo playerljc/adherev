@@ -1,11 +1,14 @@
 import Polygonselection from '@baifendian/adhere-ui-polygonselection';
 import BfdUtil from '@baifendian/adherev-util';
+
+import { IComponent } from './types';
+
 const {
   _util: { withVue },
 } = BfdUtil;
 
-Polygonselection.isUse = () => true;
-Polygonselection.use = (Vue) => {
+(Polygonselection as IComponent).isUse = () => true;
+(Polygonselection as IComponent).use = (Vue: any) => {
   withVue(Vue, 'Polygonselection', Polygonselection);
 };
 

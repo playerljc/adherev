@@ -5,8 +5,10 @@ const {
   _util: { withVue },
 } = BfdUtil;
 
+// @ts-ignore
 Emitter.isUse = () => true;
-Emitter.use = (Vue) => {
+// @ts-ignore
+Emitter.use = (Vue: any) => {
   withVue(Vue, 'Emitter', Emitter);
 };
 

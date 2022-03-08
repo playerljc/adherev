@@ -5,8 +5,10 @@ const {
   _util: { withVue },
 } = BfdUtil;
 
+// @ts-ignore
 NotNull.isUse = () => true;
-NotNull.use = (Vue) => {
+// @ts-ignore
+NotNull.use = (Vue: any) => {
   withVue(Vue, 'NotNull', NotNull);
 };
 

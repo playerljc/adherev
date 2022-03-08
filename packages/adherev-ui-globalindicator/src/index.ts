@@ -8,7 +8,7 @@ const {
 
 GlobalIndicator.isUse = () => true;
 
-GlobalIndicator.use = (Vue) => {
+GlobalIndicator.use = (Vue: any) => {
   withVue(Vue, 'GlobalIndicator', GlobalIndicator);
 };
 

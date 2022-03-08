@@ -9,10 +9,8 @@
 
     <adv-playground-page-code-box-section title="代码演示" :config="codeBoxPanelConfig">
       <template #p1>
-        <fragment>
-          <Person @display="onDisplay" />
-          <div v-html="display" :class="$style.console" ref="ref1" />
-        </fragment>
+        <Person @display="onDisplay" />
+        <div v-html="display" :class="$style.console" ref="ref1" />
       </template>
     </adv-playground-page-code-box-section>
   </adv-playground-page>

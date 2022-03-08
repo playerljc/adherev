@@ -13,7 +13,7 @@ export default {
   checkPermission,
   getPermission,
   isUse: () => true,
-  use: (Vue) => {
+  use: (Vue: { use: (arg0: any) => void }) => {
     Vue.use(Component);
     withVue(Vue, 'Permission', Component);
   },
