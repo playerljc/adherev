@@ -1,5 +1,4 @@
 import BackTopAnimation from '@baifendian/adherev-ui-backtopanimation';
-import BMap from '@baifendian/adherev-ui-bmap';
 import CascadeCompared from '@baifendian/adherev-ui-cascadecompared';
 import ConditionalRender from '@baifendian/adherev-ui-conditionalrender';
 import DelConfirm from '@baifendian/adherev-ui-confirm-delconfirm';
@@ -52,7 +51,6 @@ import WatchMemoized from '@baifendian/adherev-util-watchmemoized';
 
 export { 
   BackTopAnimation,
-  BMap,
   CascadeCompared,
   ConditionalRender,
   DelConfirm,
@@ -111,11 +109,6 @@ export default {
 BackTopAnimation.isUse()){ 
 
 BackTopAnimation.use(Vue); }
-		if(
-
-BMap.isUse()){ 
-
-BMap.use(Vue); }
 		if(
 
 CascadeCompared.isUse()){ 

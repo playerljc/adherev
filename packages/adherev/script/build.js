@@ -53,7 +53,7 @@ const namedMap = new Map([
   ['@baifendian/adherev-ui-jdcategorytab', 'JdCategoryTab'],
   ['@baifendian/adherev-ui-imagelazy', 'ImageLazy'],
   ['@baifendian/adherev-ui-polygonselection', 'PolygonSelection'],
-  ['@baifendian/adherev-ui-bmap', 'BMap'],
+  // ['@baifendian/adherev-ui-bmap', 'BMap'],
   ['@baifendian/adherev-ui-playground', 'PlayGround'],
   ['@baifendian/adherev-util', 'Util'],
   ['@baifendian/adherev-util-communication-ajax', 'Ajax'],
@@ -115,7 +115,10 @@ for (const packageName in dependencies) {
     }
 
     // index.js写入文件
-    fs.writeFileSync(indexPath, `import Model from '${packageName}/${type}';\r\nexport default Model;`);
+    fs.writeFileSync(
+      indexPath,
+      `import Model from '${packageName}/${type}';\r\nexport default Model;`,
+    );
 
     if (!fs.existsSync(stylePath)) {
       // 不存在
