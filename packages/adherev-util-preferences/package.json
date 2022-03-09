@@ -1,6 +1,6 @@
 {
   "name": "@baifendian/adherev-util-preferences",
-  "version": "1.0.8",
+  "version": "2.0.0-beta",
   "description": "sessionStore和localStore进行的封装",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -39,6 +39,6 @@
   },
   "dependencies": {
     "@baifendian/adhere-util-preferences": "^1.0.14",
-    "@baifendian/adherev-util": "^1.0.8"
+    "@baifendian/adherev-util": "^2.0.0-beta"
   }
 }

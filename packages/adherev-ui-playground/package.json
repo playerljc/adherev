@@ -1,6 +1,6 @@
 {
   "name": "@baifendian/adherev-ui-playground",
-  "version": "1.0.8",
+  "version": "2.0.0-beta",
   "description": "一个代码展示的组件",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -40,16 +40,16 @@
     "typescript": "^4.5.5"
   },
   "dependencies": {
-    "@baifendian/adherev-ui-conditionalrender": "^1.0.8",
-    "@baifendian/adherev-ui-contextmenu": "^1.0.8",
-    "@baifendian/adherev-util": "^1.0.8",
-    "@baifendian/adherev-util-intl": "^1.0.8",
+    "@baifendian/adherev-ui-conditionalrender": "^2.0.0-beta",
+    "@baifendian/adherev-ui-contextmenu": "^2.0.0-beta",
+    "@baifendian/adherev-util": "^2.0.0-beta",
+    "@baifendian/adherev-util-intl": "^2.0.0-beta",
+    "@highlightjs/vue-plugin": "^2.0.1",
     "classnames": "^2.3.1",
     "copy-to-clipboard": "^3.3.1",
     "highlight.js": "^11.4.0",
     "omit.js": "^2.0.2",
     "vue": "^3.2.31",
-    "@highlightjs/vue-plugin": "^2.0.1",
     "vue-types": "^4.1.1"
   }
 }

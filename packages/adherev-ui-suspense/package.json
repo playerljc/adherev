@@ -1,6 +1,6 @@
 {
   "name": "@baifendian/adherev-ui-suspense",
-  "version": "1.0.8",
+  "version": "2.0.0-beta",
   "description": "数据加载单元(如第一次是骷髅骨架，其他是 loading)，有数据加载的单元，第一次是骷髅骨架(或其他)mount，更新是 loading",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -38,7 +38,7 @@
     "typescript": "^4.5.5"
   },
   "dependencies": {
-    "@baifendian/adherev-util": "^1.0.8",
+    "@baifendian/adherev-util": "^2.0.0-beta",
     "ant-design-vue": "^3.0.0-beta.9",
     "vue": "^3.2.31",
     "vue-types": "^4.1.1"
