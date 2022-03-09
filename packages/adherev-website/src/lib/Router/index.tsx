@@ -1,10 +1,8 @@
-import Vue from 'vue';
-import VueRouter from 'vue-router';
-import { Skeleton } from 'ant-design-vue';
-
 // @ts-ignore
 import RouterConfig from '@/config/router.config';
-
+import { Skeleton } from 'ant-design-vue';
+import Vue from 'vue';
+import VueRouter from 'vue-router';
 // @ts-ignore
 import BasicLayout from '../BasicLayout';
 import Util from '../BasicLayout/Util';

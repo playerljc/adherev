@@ -121,8 +121,8 @@
       <template #p3>
         <fragment>
           <adv-space-group direction="horizontal">
-            <a-button type="primary" @click="$refs.ref.scrollTo('1')">置顶</a-button>
-            <a-button @click="$refs.ref.scrollTo(`${data.length}`)">置底</a-button>
+            <a-button type="primary" @click="$refs.jdRef.scrollTo('1')">置顶</a-button>
+            <a-button @click="$refs.jdRef.scrollTo(`${data.length}`)">置底</a-button>
           </adv-space-group>
 
           <adv-space />
@@ -138,7 +138,7 @@
             <adv-spin :spinning="loading" />
 
             <adv-jdcategorytab
-              ref="ref"
+              ref="jdRef"
               :menuData="menuData"
               :default-active-key="activeKey1"
               :onBeforeChange="onBeforeChange"

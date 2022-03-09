@@ -12,7 +12,7 @@ import changeLog from '../../adherev/changelog/CHANGELOG.md';
 
 export default {
   components: {
-    ScrollFooterPanel
+    ScrollFooterPanel,
   },
   computed: {
     changeLog() {

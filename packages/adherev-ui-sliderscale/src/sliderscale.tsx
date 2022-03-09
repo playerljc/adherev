@@ -140,8 +140,8 @@ export default {
           min={min}
           max={max}
           step={step}
-          onMouseMove={this.onMousemove}
-          onTouchMove={this.onTouchmove}
+          onMousemove={this.onMousemove}
+          onTouchmove={this.onTouchmove}
         />
       </div>
     );
