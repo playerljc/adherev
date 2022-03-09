@@ -1,6 +1,6 @@
 import pathToRegexp from 'path-to-regexp';
 
-export default {
+const Util = {
   /**
    * loopRoutes
    * @param defaultOpenKeys
@@ -21,7 +21,12 @@ export default {
             path: route.path,
             name: route.name,
           });
-          this.loopRoutes({ defaultOpenKeys, defaultSelectedKeys, routes: route.children });
+          this.loopRoutes({
+            defaultOpenKeys,
+            defaultSelectedKeys,
+            routes: route.children,
+            pathname,
+          });
         } else {
           if (pathname === route.path) {
             // 如果是hide，找到第一个不是hide的route
@@ -132,4 +137,43 @@ export default {
       }
     }
   },
+  /**
+   * sortRouters
+   * @param _routes
+   */
+  sortRouters(_routes) {
+    const routes = _routes.map((t) => ({ ...t }));
+
+    function loop(children) {
+      children.sort((pre, cur) => {
+        if ('sort' in pre) {
+          if ('sort' in cur) {
+            if (pre.sort > cur.sort) return 1;
+            if (pre.sort < cur.sort) return -1;
+            return 0;
+          } else {
+            return 1;
+          }
+        } else {
+          if ('sort' in cur) {
+            return -1;
+          } else {
+            return 0;
+          }
+        }
+      });
+
+      children.forEach((node) => {
+        if ('children' in node && node.children.length) {
+          node.children = Util.sortRouters(node.children);
+        }
+      });
+    }
+
+    loop(routes);
+
+    return routes;
+  },
 };
+
+export default Util;

@@ -13,11 +13,11 @@
 
 # 📦 安装
 ```javascript
-npm install @baifendian/adherev-util-watchmemoized --save
-``` 
+npm install @baifendian/adherev-util-watchmemoized@next --save
+```
 
 ```javascript
-yarn add @baifendian/adherev-util-watchmemoized
+yarn add @baifendian/adherev-util-watchmemoized@next
 ```
 
 # 线上地址(临时)

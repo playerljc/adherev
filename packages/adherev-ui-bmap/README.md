@@ -2,7 +2,7 @@
 &ensp;&ensp;对百度地图的封装
 * VectorLayer
   - VectorSource
-  * Geometry  
+  * Geometry
     - CircleGeometry
     - LeafGeometry
     - LineStringGeometry
@@ -23,9 +23,9 @@
     - RegularPolygonGeometry
     - SectorGeometry
     - StartGeometry
-    - TextGeometry 
+    - TextGeometry
   * Format
-    - GeoJSON  
+    - GeoJSON
 * interaction(交互式绘制)
   * DrawAction
     - CircleDrawAction
@@ -35,7 +35,7 @@
     - PolygonDrawAction
     - RectangleDrawAction
     - StartDrawAction
-    - TriangleDrawAction 
+    - TriangleDrawAction
   * ModifyAction
     - CircleModifyAction
     - DiamondModifyAction
@@ -56,15 +56,15 @@
 - 支持动态引入(babel-plugin-import)
 
 # 🖥 兼容环境
-- 现代浏览器，IE11
+- 现代浏览器
 
 # 📦 安装
 ```javascript
-npm install @baifendian/adhere-ui-bmap --save
-``` 
+npm install @baifendian/adhere-ui-bmap@next --save
+```
 
 ```javascript
-yarn add @baifendian/adhere-ui-bmap
+yarn add @baifendian/adhere-ui-bmap@next
 ```
 
 # 线上地址(临时)

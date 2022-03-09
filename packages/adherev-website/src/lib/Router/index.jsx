@@ -62,6 +62,10 @@ function renderRoute({ router, parentRoutes, route, authorized }) {
     children: [],
   });
 
+  if ('redirect' in cloneRoute) {
+    cloneRoute.path = '';
+  }
+
   router.push(cloneRoute);
 
   if (!cloneRoute.component) {
@@ -82,7 +86,7 @@ function renderRoute({ router, parentRoutes, route, authorized }) {
     cloneRoute.component = {
       render() {
         const routes = getBasicLayoutRoutes(children, authorized);
-        return <BasicLayout routes={routes} name={cloneRoute.name} />;
+        return <BasicLayout defaultRoutes={routes} name={cloneRoute.name} />;
       },
     };
   }

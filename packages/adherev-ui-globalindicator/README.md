@@ -11,15 +11,15 @@
 - 支持动态引入(babel-plugin-import)
 
 # 🖥 兼容环境
-- 现代浏览器，IE11
+- 现代浏览器
 
 # 📦 安装
 ```javascript
-npm install adherev-ui-globalindicator --save
-``` 
+npm install adherev-ui-globalindicator@next --save
+```
 
 ```javascript
-yarn add adherev-ui-globalindicator
+yarn add adherev-ui-globalindicator@next
 ```
 
 # 线上地址(临时)

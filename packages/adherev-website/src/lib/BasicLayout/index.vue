@@ -60,7 +60,7 @@ export default {
     Footer,
   },
   props: {
-    routes: {
+    defaultRoutes: {
       type: Array,
       default: () => [],
     },
@@ -76,14 +76,33 @@ export default {
 
       selectedKeys: [],
       openKeys: [],
+      routes: Util.sortRouters(this.defaultRoutes),
     };
+  },
+  watch: {
+    '$route.path'(pathname) {
+      const { defaultSelectedKeys, defaultOpenKeys } = this.getDefaultKeys(pathname);
+
+      if (
+        JSON.stringify(defaultSelectedKeys) !== JSON.stringify(this.selectedKeys) ||
+        JSON.stringify(defaultOpenKeys) !== JSON.stringify(this.openKeys)
+      ) {
+        this.selectedKeys = defaultSelectedKeys;
+        this.openKeys = defaultOpenKeys;
+      }
+    },
+    defaultRoutes(newVal, oldVal) {
+      if (JSON.stringify(newVal) !== JSON.stringify(oldVal)) {
+        this.routes = Util.sortRouters(newVal);
+      }
+    },
   },
   computed: {
     defaultSelectedKeys() {
-      return this.getDefault().defaultSelectedKeys;
+      return this.getKeys().selectedKeys;
     },
     defaultOpenKeys() {
-      return this.getDefault().defaultOpenKeys;
+      return this.getKeys().openKeys;
     },
     menuClassName() {
       const { isMenuCollapse, $style } = this;
@@ -95,8 +114,16 @@ export default {
      * getDefault
      * @return {{defaultOpenKeys: Array, defaultSelectedKeys: Array}}
      */
-    getDefault() {
-      const { routes = [], openKeys, selectedKeys } = this;
+    getKeys(pathname = window.location.pathname) {
+      const { defaultSelectedKeys, defaultOpenKeys } = this.getDefaultKeys(pathname);
+
+      return {
+        selectedKeys: this.selectedKeys.length ? this.selectedKeys : defaultSelectedKeys,
+        openKeys: this.openKeys.length ? this.openKeys : defaultOpenKeys,
+      };
+    },
+    getDefaultKeys(pathname = window.location.pathname) {
+      const { defaultRoutes: routes = [] } = this;
       const defaultSelectedKeys = [];
       const defaultOpenKeys = [];
 
@@ -104,11 +131,12 @@ export default {
         defaultOpenKeys,
         defaultSelectedKeys,
         routes: routes.filter((t) => !t.redirect),
+        pathname,
       });
 
       return {
-        defaultSelectedKeys: selectedKeys.length ? selectedKeys : defaultSelectedKeys,
-        defaultOpenKeys: openKeys.length ? openKeys : defaultOpenKeys,
+        defaultSelectedKeys,
+        defaultOpenKeys,
       };
     },
     /**
