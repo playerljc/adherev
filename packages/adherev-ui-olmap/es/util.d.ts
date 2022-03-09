@@ -303,7 +303,7 @@ declare const _default: {
      * @param onDrawStart
      * @param onDrawEnd
      */
-    polygonInteraction({ map, freehand, vectorSource, onDrawEnd, ...other }: any): Draw;
+    polygonInteraction({ map, freehand, vectorSource, onDrawEnd, ...other }: any): any;
     /**
      * circleInteraction - 框圆形
      * @param map
@@ -311,7 +311,7 @@ declare const _default: {
      * @param onDrawStart
      * @param onDrawEnd
      */
-    circleInteraction({ map, vectorSource, onDrawEnd, ...other }: any): Draw;
+    circleInteraction({ map, vectorSource, onDrawEnd, ...other }: any): any;
     /**
      * boxInteraction - 框线框
      * @param map
@@ -319,7 +319,7 @@ declare const _default: {
      * @param onDrawEnd
      * @param other
      */
-    boxInteraction({ map, vectorSource, onDrawEnd, ...other }: any): Draw;
+    boxInteraction({ map, vectorSource, onDrawEnd, ...other }: any): any;
     /**
      * linStringInteraction - 线路
      * @param map
@@ -327,7 +327,7 @@ declare const _default: {
      * @param onDrawStart
      * @param onDrawEnd
      */
-    linStringInteraction({ map, freehand, vectorSource, onDrawEnd, ...other }: any): Draw;
+    linStringInteraction({ map, freehand, vectorSource, onDrawEnd, ...other }: any): any;
     /**
      * createModifyInteraction
      * @param map
@@ -394,7 +394,7 @@ declare const _default: {
      * @param type
      * @return {*}
      */
-    getExtentByVectorSource(vectorSource: any, type?: string): number[];
+    getExtentByVectorSource(vectorSource: any, type?: string): any;
     /**
      * getCectorSourceCoordinates - 获取向量层中的所有点
      * @param vectorSource
@@ -409,10 +409,7 @@ declare const _default: {
      */
     getCenterByCoordinates(vectorSource: {
         getFeatures: () => any[];
-    }, type?: string): {
-        centerLon: number;
-        centerLat: number;
-    };
+    }, type?: string): any;
     /**
      * getCenterByPoints - 获取一系列点中的中心点
      * @param points
@@ -450,7 +447,7 @@ declare const _default: {
      * @param map
      */
     getMapExtent(map: any): false | {
-        lon: number;
+        lon: any;
         lat: number;
     }[];
     /**
@@ -467,7 +464,7 @@ declare const _default: {
     getLayersCount(map: any): any;
     rgb(): string;
     color16(): string;
-    getLineColor(index: number): string;
+    getLineColor(index: number): any;
     downLoadMap(map: any): void;
 };
 export default _default;

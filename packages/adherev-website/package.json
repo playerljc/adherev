@@ -67,7 +67,7 @@
   },
   "devDependencies": {
     "@babel/runtime": "^7.17.2",
-    "@ctsj/buildv": "^5.0.2-beta",
+    "@ctsj/buildv": "^5.0.2",
     "@umijs/fabric": "^2.10.2",
     "@vue/eslint-config-prettier": "^7.0.0",
     "@vue/eslint-config-standard": "^6.1.0",
