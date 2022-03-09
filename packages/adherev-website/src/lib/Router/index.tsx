@@ -185,6 +185,7 @@ export default async () => {
   const router = [];
 
   // 根据路由配置生成实际的路由
+  // @ts-ignore
   renderRouterLoop(router, config, authorized);
 
   return new VueRouter({
