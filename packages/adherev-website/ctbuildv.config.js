@@ -74,11 +74,11 @@ module.exports = {
       /agate.css/,
     );
 
-    // 加入markdown的解析
-    webpackConfig.module.rules.push({
-      test: /\.md$/,
-      use: 'raw-loader',
-    });
+    // // 加入markdown的解析
+    // webpackConfig.module.rules.push({
+    //   test: /\.md$/,
+    //   use: 'raw-loader',
+    // });
 
     // 在使用babel-plugin-import的时候让adherev也执行
     // 但是现在adherev-util|util编译完的都是require并不是import所以没有被作用

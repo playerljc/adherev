@@ -29,7 +29,7 @@
       <div :class="$style.BreadcrumbWrap">
         <a-breadcrumb separator="/">
           <a-breadcrumb-item>{{ name }}</a-breadcrumb-item>
-          <a-breadcrumb-item v-for="t in breadcrumbPaths()" :key="t.path">
+          <a-breadcrumb-item v-for="t in breadcrumbPaths" :key="t.path">
             <router-link :key="t.path" :to="t.path">{{ t.name }}</router-link>
           </a-breadcrumb-item>
         </a-breadcrumb>
@@ -73,7 +73,7 @@ export default {
     return {
       authorized: [],
       isMenuCollapse: false,
-
+      pathname: window.location.pathname,
       selectedKeys: [],
       openKeys: [],
       routes: Util.sortRouters(this.defaultRoutes),
@@ -89,6 +89,7 @@ export default {
       ) {
         this.selectedKeys = defaultSelectedKeys;
         this.openKeys = defaultOpenKeys;
+        this.pathname = pathname;
       }
     },
     defaultRoutes(newVal, oldVal) {
@@ -103,6 +104,18 @@ export default {
     },
     defaultOpenKeys() {
       return this.getKeys().openKeys;
+    },
+    breadcrumbPaths() {
+      const { routes } = this;
+
+      const path = [];
+      Util.getPathBySelectKey({
+        path,
+        routes,
+        selectKey: this.pathname,
+      });
+
+      return path.filter((t) => !t.redirect);
     },
     menuClassName() {
       const { isMenuCollapse, $style } = this;
@@ -162,20 +175,6 @@ export default {
      */
     isSubMenu(r) {
       return Util.isSubMenu(r);
-    },
-    breadcrumbPaths() {
-      const { routes } = this;
-
-      const selectKey = window.location.pathname;
-
-      const path = [];
-      Util.getPathBySelectKey({
-        path,
-        routes,
-        selectKey,
-      });
-
-      return path.filter((t) => !t.redirect);
     },
   },
 };

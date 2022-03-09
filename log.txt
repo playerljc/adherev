@@ -106,21 +106,5 @@ adherev-ui-imagelazy(demo)
  .adherev-util-watchmemoized
  .adherev-util
 
-
-
-
-
-
-
-
-
-
-
-.简介vue2改成vue3,ant-design-vue改成3.x版本
-.changelog组件乱码
-.BasicLayout的getDefault修改
 .bmap修改
-.olmap切换的时候出错
-
-
 

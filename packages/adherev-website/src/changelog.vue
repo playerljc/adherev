@@ -16,12 +16,7 @@ export default {
   },
   computed: {
     changeLog() {
-      const html = marked(changeLog, { sanitize: true });
-
-      console.log('changeLog', changeLog);
-      console.log('html', html);
-
-      return html;
+      return marked(changeLog, { sanitize: true });
     },
   },
 };

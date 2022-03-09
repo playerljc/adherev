@@ -1507,14 +1507,14 @@ export default {
                   name: 'fillOpt',
                   desc: '颜色',
                   type: 'object',
-                  defaultVal: { color: 'rgba(23,136,243,.2)' },
+                  defaultVal: JSON.stringify({ color: 'rgba(23,136,243,.2)' }),
                   required: '',
                 },
                 {
                   name: 'strokeColor',
                   desc: '描边颜色',
                   type: 'object',
-                  defaultVal: { width: 2, color: '#1788F3' },
+                  defaultVal: JSON.stringify({ width: 2, color: '#1788F3' }),
                   required: '',
                 },
                 {
@@ -1579,14 +1579,14 @@ export default {
                   name: 'fillOpt',
                   desc: '颜色',
                   type: 'object',
-                  defaultVal: { color: 'rgba(23,136,243,.2)' },
+                  defaultVal: JSON.stringify({ color: 'rgba(23,136,243,.2)' }),
                   required: '',
                 },
                 {
                   name: 'strokeColor',
                   desc: '描边颜色',
                   type: 'object',
-                  defaultVal: { width: 2, color: '#1788F3' },
+                  defaultVal: JSON.stringify({ width: 2, color: '#1788F3' }),
                   required: '',
                 },
                 {
@@ -1872,7 +1872,7 @@ export default {
                 {
                   name: 'points',
                   desc: '数据',
-                  type: 'array<array>',
+                  type: JSON.stringify('array<array>'),
                   defaultVal: '',
                   required: '',
                 },
