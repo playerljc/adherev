@@ -1,15 +1,2 @@
-"use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-var adherev_util_1 = __importDefault(require("@baifendian/adherev-util"));
-var resource_1 = __importDefault(require("./resource"));
-var withVue = adherev_util_1.default._util.withVue;
-// @ts-ignore
-resource_1.default.isUse = function () { return true; };
-// @ts-ignore
-resource_1.default.use = function (Vue) {
-    withVue(Vue, 'Resource', resource_1.default);
-};
-exports.default = resource_1.default;
+"use strict";var __importDefault=this&&this.__importDefault||function(e){return e&&e.__esModule?e:{default:e}},adherev_util_1=(Object.defineProperty(exports,"__esModule",{value:!0}),__importDefault(require("@baifendian/adherev-util"))),resource_1=__importDefault(require("./resource")),withVue=adherev_util_1.default._util.withVue;resource_1.default.isUse=function(){return!0},resource_1.default.use=function(e){withVue(e,"Resource",resource_1.default)},exports.default=resource_1.default;
+//# sourceMappingURL=index.js.map
