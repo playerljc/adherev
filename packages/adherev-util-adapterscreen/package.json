@@ -1,6 +1,6 @@
 {
   "name": "@baifendian/adherev-util-adapterscreen",
-  "version": "2.0.0-beta",
+  "version": "2.0.1-beta",
   "description": "对屏幕的缩放进行适配的操作",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -39,7 +39,7 @@
   },
   "dependencies": {
     "@baifendian/adhere-util-adapterscreen": "^1.0.14",
-    "@baifendian/adherev-util": "^2.0.0-beta",
+    "@baifendian/adherev-util": "^2.0.1-beta",
     "vue": "^3.2.31",
     "vue-types": "^4.1.1"
   }

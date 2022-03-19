@@ -1,6 +1,6 @@
 {
   "name": "@baifendian/adherev-ui-split",
-  "version": "2.0.0-beta",
+  "version": "2.0.1-beta",
   "description": "无侵入性的竖线和横线分割",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -32,7 +32,7 @@
     "access": "public"
   },
   "dependencies": {
-    "@baifendian/adherev-util": "^2.0.0-beta",
+    "@baifendian/adherev-util": "^2.0.1-beta",
     "vue": "^3.2.31",
     "vue-types": "^4.1.1"
   },

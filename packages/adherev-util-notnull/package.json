@@ -1,6 +1,6 @@
 {
   "name": "@baifendian/adherev-util-notnull",
-  "version": "2.0.0-beta",
+  "version": "2.0.1-beta",
   "description": "一个永远都不为空的操作",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -39,6 +39,6 @@
   },
   "dependencies": {
     "@baifendian/adhere-util-notnull": "^1.0.14-fix.0",
-    "@baifendian/adherev-util": "^2.0.0-beta"
+    "@baifendian/adherev-util": "^2.0.1-beta"
   }
 }
