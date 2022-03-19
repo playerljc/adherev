@@ -1,5 +1,5 @@
 import { createApp } from 'vue';
-import { Result } from 'ant-design-vue';
+// import { Result } from 'ant-design-vue';
 import NProgress from 'nprogress';
 import { Intl, Util, Resource, MessageDialog } from '@baifendian/adherev';
 
@@ -31,7 +31,9 @@ MessageDialog.setConfig({
     zh_CN,
     pt_PT,
   },
-  useComponents: [Result],
+  beforeMount(app) {
+    ComponentRegisterConfig(app);
+  },
 });
 
 Router().then((router) => {

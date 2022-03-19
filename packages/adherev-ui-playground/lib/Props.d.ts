@@ -109,14 +109,14 @@ declare const _default: import("vue").DefineComponent<{
         default: boolean;
     };
 }>>, {
+    data: IDataItemType[];
     headerClassName: string;
     headerStyle: import("vue").CSSProperties;
     bodyClassName: string;
     bodyStyle: import("vue").CSSProperties;
-    defaultCollapse: boolean;
     border: boolean;
+    defaultCollapse: boolean;
     scrollY: boolean;
     fixedHeaderScrollBody: boolean;
-    data: IDataItemType[];
 }>;
 export default _default;

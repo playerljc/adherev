@@ -480,13 +480,14 @@ const MessageDialogFactory: IMessageDialogFactory = {
     // @ts-ignore
     Intl.use(app);
 
-    globalConfig?.useComponents?.forEach?.((com) => {
-      if ('use' in com && Util.isFunction?.(com.use)) {
-        com.use(app);
-      } else {
-        app.use(com);
-      }
-    });
+    // globalConfig?.useComponents?.forEach?.((com) => {
+    //   if ('use' in com && Util.isFunction?.(com.use)) {
+    //     com.use(app);
+    //   } else {
+    //     app.use(com);
+    //   }
+    // });
+    globalConfig?.beforeMount?.(app);
 
     app.mount(el);
 

@@ -74,9 +74,9 @@ declare const _default: import("vue").DefineComponent<{
         default: () => ConfigItemType[];
     };
 }>>, {
-    columnCount: number;
     config: ConfigItemType[];
     isShowExpandAllBtn: boolean;
+    columnCount: number;
     defaultExpandAll: boolean;
 }>;
 export default _default;

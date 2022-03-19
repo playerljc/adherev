@@ -42,6 +42,6 @@
     "@baifendian/adherev-util-dict": "^2.0.0-beta",
     "@baifendian/adherev-util-intl": "^2.0.0-beta",
     "ant-design-vue": "^3.0.0-beta.9",
-    "moment": "^2.29.1"
+    "dayjs": "^1.11.0"
   }
 }

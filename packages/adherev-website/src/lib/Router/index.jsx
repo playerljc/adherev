@@ -1,7 +1,7 @@
 import { defineAsyncComponent, resolveComponent, h } from 'vue';
 import { createRouter, createWebHistory } from 'vue-router';
 import { Skeleton } from 'ant-design-vue';
-
+import omit from 'omit.js';
 import RouterConfig from '@/config/router.config';
 
 import BasicLayout from '../BasicLayout';
@@ -66,8 +66,6 @@ function renderRoute({ router, parentRoutes, route, authorized }) {
     cloneRoute.path = '';
   }
 
-  router.push(cloneRoute);
-
   if (!cloneRoute.component) {
     if (!('redirect' in cloneRoute)) {
       // 没有component是SubMenu
@@ -94,6 +92,8 @@ function renderRoute({ router, parentRoutes, route, authorized }) {
   if (children && children.length) {
     renderRouterLoop(cloneRoute.children, children, authorized);
   }
+
+  router.push({ ...omit(cloneRoute, ['id', 'name', 'authority', 'hide']) });
 }
 
 /**

@@ -42,7 +42,7 @@ export interface IPromptConfig {
 }
 export interface IConfig {
     messages: object;
-    useComponents: any[];
+    beforeMount(app: any): void;
 }
 export interface IModalArg {
     config?: any;

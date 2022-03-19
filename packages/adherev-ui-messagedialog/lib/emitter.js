@@ -1,2 +1,55 @@
-"use strict";require("core-js/modules/es.object.define-property.js"),require("core-js/modules/es.array.find-index.js"),require("core-js/modules/es.array.splice.js"),require("core-js/modules/es.object.to-string.js"),require("core-js/modules/web.dom-collections.for-each.js"),Object.defineProperty(exports,"__esModule",{value:!0});var events={};exports.default={on:function(e,r){events[e]||(events[e]={handlers:[]}),events[e].handlers.push(r)},remove:function(e,r){var s;!events[e]||-1!==(s=events[e].handlers.findIndex(function(e){return e===r}))&&events[e].handlers.splice(s,1)},trigger:function(e){for(var r,s=[],n=1;n<arguments.length;n++)s[n-1]=arguments[n];return events[e]&&events[e].handlers.forEach(function(e){r=e.apply(void 0,s)}),r}};
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var events = {};
+/**
+ * Emitter
+ */
+exports.default = {
+    /**
+     * on
+     * @param {string} type
+     * @param {Function} handler
+     */
+    on: function (type, handler) {
+        if (!events[type]) {
+            events[type] = {
+                handlers: [],
+            };
+        }
+        events[type].handlers.push(handler);
+    },
+    /**
+     * remove
+     * @param {type} type
+     * @param {Function} handler
+     */
+    remove: function (type, handler) {
+        if (events[type]) {
+            var index = events[type].handlers.findIndex(function (item) {
+                return item === handler;
+            });
+            if (index !== -1) {
+                events[type].handlers.splice(index, 1);
+            }
+        }
+    },
+    /**
+     * trigger
+     * @param {string} type
+     * @param {Object} params
+     */
+    trigger: function (type) {
+        var params = [];
+        for (var _i = 1; _i < arguments.length; _i++) {
+            params[_i - 1] = arguments[_i];
+        }
+        var result;
+        if (events[type]) {
+            events[type].handlers.forEach(function (handler) {
+                result = handler.apply(void 0, params);
+            });
+        }
+        return result;
+    },
+};
 //# sourceMappingURL=emitter.js.map
