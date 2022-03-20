@@ -197,7 +197,7 @@ export default {
                       <Button
                         type="primary"
                         onClick={() => {
-                          const val = vm.$refs.formRef.allPermission.trim();
+                          const val = vm.$refs.rootRef.allPermission.trim();
                           if (val) {
                             this.allPermission = val.split(',');
                           }
@@ -237,7 +237,7 @@ export default {
                       <Button
                         type="primary"
                         onClick={() => {
-                          const val = vm.$refs.formRef.curPermission.trim();
+                          const val = vm.$refs.rootRef.curPermission.trim();
                           if (val) {
                             this.curPermission = val.split(',');
                           }
@@ -282,7 +282,7 @@ export default {
             <Button
               type="primary"
               onClick={() => {
-                const val = vm.$refs.formRef.allPermission.trim();
+                const val = vm.$refs.rootRef.allPermission.trim();
                 if (val) {
                   this.allPermission = val.split(',');
                 }
@@ -322,7 +322,7 @@ export default {
             <Button
               type="primary"
               onClick={() => {
-                const val = vm.$refs.formRef.curPermission.trim();
+                const val = vm.$refs.rootRef.curPermission.trim();
                 if (val) {
                   this.curPermission = val.split(',');
                 }

@@ -152,7 +152,7 @@ const MessageDialogFactory = {
               title={Intl.tv('确定')}
               onClick={() => {
                 if (onSuccess) {
-                  const fApi = vm.$refs.formRef.fApi;
+                  const fApi = vm.$refs.rootRef.fApi;
 
                   fApi.validate((valid) => {
                     if (valid) {
@@ -353,12 +353,12 @@ const MessageDialogFactory = {
       if (!Util.isEmpty(children)) {
         // 如果是jsx
         if (Util.isFunction(children)) {
-          return children(h);
+          return h(children(h), { ref: 'rootRef' });
         }
 
         // 如果是组件
         if (Util.isObject(children)) {
-          return h(children, { ref: 'formRef' });
+          return h(children, { ref: 'rootRef' });
         }
       }
 
@@ -429,6 +429,7 @@ const MessageDialogFactory = {
     const el = document.createElement('div');
 
     const _vm = new Vue({
+      ...(globalConfig?.getOptions?.() || {}),
       i18n: Intl({
         I18nOptions: {
           // @ts-ignore

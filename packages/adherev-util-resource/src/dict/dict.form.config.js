@@ -11,7 +11,7 @@ export default {
     });
 
     Dict.handlers.FormWhitespaceRule = () => ({
-      message: Intl.v('输入的内容前后不能有空格'),
+      message: Intl.tv('输入的内容前后不能有空格'),
       whitespace: true,
     });
 
