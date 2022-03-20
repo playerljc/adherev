@@ -1,9 +1,7 @@
 import Intl from '@baifendian/adherev-util-intl';
 import { Button, Modal } from 'ant-design-vue';
-import { defineComponent, onBeforeUnmount, onMounted, toRaw } from 'vue';
+import { defineComponent, toRaw } from 'vue';
 import { any, bool, func } from 'vue-types';
-import Actions from './actions';
-import Emitter from './emitter';
 
 export const selectorPrefix = 'adherev-ui-messagedialog';
 
@@ -17,11 +15,11 @@ export default defineComponent({
   props,
   slots: ['title', 'footer'],
   setup(props, { slots }) {
-    const onEmitterClose = () => {
-      if (!!props.onClose) {
-        props.onClose();
-      }
-    };
+    // const onEmitterClose = () => {
+    //   if (!!props.onClose) {
+    //     props.onClose();
+    //   }
+    // };
 
     const renderCloseBtn = (): JSX.Element => {
       return (
@@ -63,18 +61,16 @@ export default defineComponent({
       return result;
     };
 
-    onMounted(() => {
-      Emitter.on(Actions.close, onEmitterClose);
-    });
+    // onMounted(() => {
+    //   Emitter.on(Actions.close, onEmitterClose);
+    // });
 
-    onBeforeUnmount(() => {
-      Emitter.remove(Actions.close, onEmitterClose);
-    });
+    // onBeforeUnmount(() => {
+    //   Emitter.remove(Actions.close, onEmitterClose);
+    // });
 
     return () => {
       const { footer, centered, title, ...other } = toRaw(props.config);
-
-      console.log('other', other);
 
       return (
         // @ts-ignore

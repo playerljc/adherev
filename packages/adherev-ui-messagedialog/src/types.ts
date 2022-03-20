@@ -65,7 +65,7 @@ export interface IMessageDialogFactory extends IComponent {
   NumberPrompt(config: IPromptConfig): void;
   Alert(config: IAlertArgv): void;
   Modal(config: IModalArg): void;
-  close(el: HTMLElement): void;
+  close({app, el}:{app: any,el: HTMLElement}): void;
   setConfig(gc: IConfig): void;
 }
 
@@ -75,7 +75,7 @@ export interface IModalProps {
 }
 
 export interface IModalMethod {
-  onEmitterClose(): void;
+  // onEmitterClose(): void;
   renderCloseBtn(): void;
   renderDefault(): void;
   renderTitle(): void;

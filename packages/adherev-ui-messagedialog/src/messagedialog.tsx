@@ -1,12 +1,11 @@
-import { createApp, ref, h } from 'vue';
-import { Button, ConfigProvider, Form, Row, Col, Slider, Input } from 'ant-design-vue';
-import formCreate from '@form-create/ant-design-vue';
 import Util from '@baifendian/adherev-util';
 import Intl from '@baifendian/adherev-util-intl';
 import Resource from '@baifendian/adherev-util-resource';
-
-import Actions from './actions';
-import Emitter from './emitter';
+import formCreate from '@form-create/ant-design-vue';
+import { Button, Col, ConfigProvider, Form, Input, Row, Slider } from 'ant-design-vue';
+import { createApp, h, ref } from 'vue';
+// import Actions from './actions';
+// import Emitter from './emitter';
 import ModalDialog from './modal';
 import {
   IAlertArgv,
@@ -73,7 +72,7 @@ const MessageDialogFactory: IMessageDialogFactory = {
     icon = null,
     onSuccess,
   }: IConfirmArgv) {
-    const { el } = this.Modal({
+    const { close } = this.Modal({
       config: {
         title,
         centered: true,
@@ -90,10 +89,12 @@ const MessageDialogFactory: IMessageDialogFactory = {
               onClick={() => {
                 if (onSuccess) {
                   onSuccess().then(() => {
-                    Emitter.trigger(Actions.close, el);
+                    // Emitter.trigger(Actions.close, el);
+                    close();
                   });
                 } else {
-                  Emitter.trigger(Actions.close, el);
+                  // Emitter.trigger(Actions.close, el);
+                  close();
                 }
               }}
             >
@@ -127,7 +128,7 @@ const MessageDialogFactory: IMessageDialogFactory = {
     }
 
     // @ts-ignore
-    const { el, /*vm,*/ rootRef } = this.Modal({
+    const { /*vm,*/ rootRef, close } = this.Modal({
       config: {
         title,
         centered: true,
@@ -148,12 +149,14 @@ const MessageDialogFactory: IMessageDialogFactory = {
                   fApi.validate((valid: boolean) => {
                     if (valid) {
                       onSuccess(fApi.getValue(config.rule[0].field)).then(() => {
-                        Emitter.trigger(Actions.close, el);
+                        // Emitter.trigger(Actions.close, el);
+                        close();
                       });
                     }
                   });
                 } else {
-                  Emitter.trigger(Actions.close, el);
+                  // Emitter.trigger(Actions.close, el);
+                  close();
                 }
               }}
             >
@@ -497,14 +500,21 @@ const MessageDialogFactory: IMessageDialogFactory = {
       el,
       vm: app,
       rootRef,
+      close,
     };
   },
   /**
    * close
+   * @param app
    * @param el
    */
-  close(el: HTMLElement) {
-    Emitter.trigger(Actions.close, el);
+  close({ app, el }: { app: any; el: HTMLElement }): void {
+    // Emitter.trigger(Actions.close, el);
+    try {
+      app?.unmount();
+    } catch (err) {
+      el?.parentElement?.removeChild(el);
+    }
   },
   setConfig(gc: IConfig) {
     globalConfig = gc;
