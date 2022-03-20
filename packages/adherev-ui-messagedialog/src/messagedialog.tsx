@@ -343,7 +343,7 @@ const MessageDialogFactory: IMessageDialogFactory = {
       if (!Util?.isEmpty?.(children)) {
         // 如果是jsx
         if (Util?.isFunction?.(children)) {
-          return h(children(), { ref: rootRef });
+          return children(); //h(children(), { ref: rootRef });
         }
 
         // 如果是组件
@@ -363,7 +363,7 @@ const MessageDialogFactory: IMessageDialogFactory = {
       if (!Util.isEmpty?.(title)) {
         // 如果是jsx
         if (Util.isFunction?.(title)) {
-          return h(title());
+          return title();
         }
 
         // 如果是组件
@@ -382,7 +382,7 @@ const MessageDialogFactory: IMessageDialogFactory = {
     function renderFooter(config: any) {
       if (!Util.isEmpty?.(config.footer)) {
         if (Util.isFunction?.(config.footer)) {
-          return h(config.footer());
+          return config.footer();
         }
 
         if (Util.isObject?.(config.footer)) {
