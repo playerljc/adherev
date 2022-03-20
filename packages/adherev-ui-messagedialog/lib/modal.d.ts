@@ -11,10 +11,7 @@ declare const _default: {
             default: boolean;
         };
     };
-    mounted(): void;
-    beforeDestroy(): void;
     methods: {
-        onEmitterClose(): void;
         /**
          * renderCloseBtn
          * @param h

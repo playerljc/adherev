@@ -1,16 +1,10 @@
-import Vue from 'vue';
-import { ConfigProvider, Button } from 'ant-design-vue';
-
+import Util from '@baifendian/adherev-util';
 import Intl from '@baifendian/adherev-util-intl';
 import Resource from '@baifendian/adherev-util-resource';
-import Util from '@baifendian/adherev-util';
-
-import { IAlertArgv, IConfig, IConfirmArgv, IPromptConfig } from './types';
-
-import Actions from './actions';
-import Emitter from './emitter';
-
+import { Button, ConfigProvider } from 'ant-design-vue';
+import Vue from 'vue';
 import ModalDialog from './modal';
+import { IAlertArgv, IConfig, IConfirmArgv, IPromptConfig } from './types';
 
 export const selectorPrefix = 'adherev-ui-messagedialog';
 
@@ -77,7 +71,7 @@ const MessageDialogFactory = {
     icon = null,
     onSuccess,
   }: IConfirmArgv) {
-    const { el } = this.Modal({
+    const { close } = this.Modal({
       config: {
         title,
         centered: true,
@@ -94,10 +88,12 @@ const MessageDialogFactory = {
               onClick={() => {
                 if (onSuccess) {
                   onSuccess().then(() => {
-                    Emitter.trigger(Actions.close, el);
+                    // Emitter.trigger(Actions.close, el);
+                    close();
                   });
                 } else {
-                  Emitter.trigger(Actions.close, el);
+                  // Emitter.trigger(Actions.close, el);
+                  close();
                 }
               }}
             >
@@ -136,7 +132,7 @@ const MessageDialogFactory = {
       config.option.resetBtn = false;
     }
 
-    const { el, vm } = this.Modal({
+    const { close, vm } = this.Modal({
       config: {
         title,
         centered: true,
@@ -157,12 +153,14 @@ const MessageDialogFactory = {
                   fApi.validate((valid) => {
                     if (valid) {
                       onSuccess(fApi.getValue(config.rule[0].field)).then(() => {
-                        Emitter.trigger(Actions.close, el);
+                        // Emitter.trigger(Actions.close, el);
+                        close();
                       });
                     }
                   });
                 } else {
-                  Emitter.trigger(Actions.close, el);
+                  // Emitter.trigger(Actions.close, el);
+                  close();
                 }
               }}
             >
@@ -469,14 +467,18 @@ const MessageDialogFactory = {
     return {
       el,
       vm: _vm,
+      close,
     };
   },
   /**
    * close
    * @param el
    */
-  close(el: HTMLElement) {
-    Emitter.trigger(Actions.close, el);
+  close({ _vm, el }: { _vm: any; el: HTMLElement }) {
+    // Emitter.trigger(Actions.close, el);
+    _vm.$destroy();
+
+    el?.parentElement?.removeChild(el);
   },
 };
 

@@ -1,11 +1,10 @@
-import { CreateElement } from 'vue';
-import { Modal, Button } from 'ant-design-vue';
-
-import Intl from '@baifendian/adherev-util-intl';
 import Util from '@baifendian/adherev-util';
+import Intl from '@baifendian/adherev-util-intl';
+import { Button, Modal } from 'ant-design-vue';
+import { CreateElement } from 'vue';
 
-import Actions from './actions';
-import Emitter from './emitter';
+// import Actions from './actions';
+// import Emitter from './emitter';
 
 const {
   _util: { Fragment },
@@ -24,22 +23,22 @@ export default {
       default: true,
     },
   },
-  mounted() {
-    Emitter.on(Actions.close, this.onEmitterClose);
-  },
-  beforeDestroy() {
-    Emitter.remove(Actions.close, this.onEmitterClose);
-  },
+  // mounted() {
+  //   Emitter.on(Actions.close, this.onEmitterClose);
+  // },
+  // beforeDestroy() {
+  //   Emitter.remove(Actions.close, this.onEmitterClose);
+  // },
   methods: {
-    onEmitterClose() {
-      const {
-        $listeners: { close },
-      } = this;
+    // onEmitterClose() {
+    //   const {
+    //     $listeners: { close },
+    //   } = this;
 
-      if (close) {
-        close();
-      }
-    },
+    //   if (close) {
+    //     close();
+    //   }
+    // },
     /**
      * renderCloseBtn
      * @param h

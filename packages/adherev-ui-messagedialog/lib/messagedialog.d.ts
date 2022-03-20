@@ -86,11 +86,15 @@ declare const MessageDialogFactory: {
     }): {
         el: HTMLDivElement;
         vm: import("vue/types/vue").CombinedVueInstance<Vue, object, object, object, Record<never, any>>;
+        close: () => void;
     };
     /**
      * close
      * @param el
      */
-    close(el: HTMLElement): void;
+    close({ _vm, el }: {
+        _vm: any;
+        el: HTMLElement;
+    }): void;
 };
 export default MessageDialogFactory;
