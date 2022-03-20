@@ -353,7 +353,7 @@ const MessageDialogFactory = {
       if (!Util.isEmpty(children)) {
         // 如果是jsx
         if (Util.isFunction(children)) {
-          return h(children(h), { ref: 'rootRef' });
+          return children(h);
         }
 
         // 如果是组件
