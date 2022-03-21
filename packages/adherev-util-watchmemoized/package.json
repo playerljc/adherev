@@ -1,6 +1,6 @@
 {
   "name": "@baifendian/adherev-util-watchmemoized",
-  "version": "1.0.8-fix.0",
+  "version": "1.0.8-fix.1",
   "description": "对值的监控和缓存",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -39,6 +39,6 @@
   },
   "dependencies": {
     "@baifendian/adhere-util-watchmemoized": "^1.0.14-fix.1",
-    "@baifendian/adherev-util": "^1.0.8-fix.0"
+    "@baifendian/adherev-util": "^1.0.8-fix.1"
   }
 }

@@ -1,6 +1,6 @@
 {
   "name": "@baifendian/adherev-util-validator",
-  "version": "1.0.8-fix.0",
+  "version": "1.0.8-fix.1",
   "description": "一个验证的库",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -39,6 +39,6 @@
   },
   "dependencies": {
     "@baifendian/adhere-util-validator": "^1.0.14",
-    "@baifendian/adherev-util": "^1.0.8-fix.0"
+    "@baifendian/adherev-util": "^1.0.8-fix.1"
   }
 }
