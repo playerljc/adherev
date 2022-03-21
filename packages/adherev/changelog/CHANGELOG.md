@@ -4,6 +4,9 @@
 
 2022-2-9
 
+* **adherev-ui-messagedialog**
+  - 加入store
+  - close方法修改
 * **adherev-ui-conditionalrender**
   - 加入ConditionalRender.Show组件进行display切换
   - 加入ConditionalRender.Visibility组件进行visibility切换
