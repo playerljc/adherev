@@ -1347,10 +1347,10 @@
     xml-loader "^1.2.1"
     yaml-loader "^0.5.0"
 
-"@ctsj/buildv@^5.0.2":
-  version "5.0.2"
-  resolved "https://registry.yarnpkg.com/@ctsj/buildv/-/buildv-5.0.2.tgz#7f0361f6b3b1f35c7058f6e7802aa1a58f31b935"
-  integrity sha512-Ipzn3J3ZGnvEiCPi7RWeFPYiTbQpq9yi7RccbbH1+x81ltcNEmU1vc7a9Pusp3ZpExQ71qEoDLbHjQYwEEDgFA==
+"@ctsj/buildv@^5.0.3":
+  version "5.0.3"
+  resolved "https://registry.yarnpkg.com/@ctsj/buildv/-/buildv-5.0.3.tgz#82946a94146b44d105c34c4d29cd4529b5193096"
+  integrity sha512-OfeB5CVNzNFkCja8GhZJ16ToaiOoGDALGZjgxX4k0YfUhZFkKaxLXEk/i5ll0izW5qK2rJjMSx5+qBWwHAzlNg==
   dependencies:
     "@babel/cli" "^7.17.0"
     "@babel/core" "^7.17.2"
