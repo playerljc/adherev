@@ -15,6 +15,7 @@
     "publish": "lerna publish",
     "publish:next": "lerna publish --dist-tag next",
     "publish:beta": "lerna publish --dist-tag beta",
+    "publish:alpha": "lerna publish --dist-tag alpha",
     "buildpackages": "lerna run buildpackage",
     "buildumd": "node scripts/buildumd.js",
     "generatorchangelog": "lerna run generatorchangelog",
