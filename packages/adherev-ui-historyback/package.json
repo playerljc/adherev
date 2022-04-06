@@ -38,7 +38,7 @@
     "typescript": "^4.5.5"
   },
   "dependencies": {
-    "@baifendian/adhere-ui-historyback": "^1.0.14",
+    "@baifendian/adhere-ui-historyback": "^1.0.15",
     "@baifendian/adherev-util": "^2.0.1-beta",
     "vue-types": "^4.1.1"
   }
