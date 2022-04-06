@@ -11,6 +11,8 @@ import SearchFormValue from './searchformvalue';
 import SearchTable, {
   NUMBER_GENERATOR_RULE_ALONE,
   NUMBER_GENERATOR_RULE_CONTINUITY,
+  ROW_SELECTION_NORMAL_MODE,
+  ROW_SELECTION_CONTINUOUS_MODE,
 } from './searchtable';
 
 import SearchTableImplement from './searchtableimplement';
@@ -59,5 +61,9 @@ SearchTable.SearchTableImplement = SearchTableImplement;
 SearchTable.NUMBER_GENERATOR_RULE_ALONE = NUMBER_GENERATOR_RULE_ALONE;
 // @ts-ignore
 SearchTable.NUMBER_GENERATOR_RULE_CONTINUITY = NUMBER_GENERATOR_RULE_CONTINUITY;
+// @ts-ignore
+SearchTable.ROW_SELECTION_NORMAL_MODE = ROW_SELECTION_NORMAL_MODE;
+// @ts-ignore
+SearchTable.ROW_SELECTION_CONTINUOUS_MODE = ROW_SELECTION_CONTINUOUS_MODE;
 
 export default SearchTable;

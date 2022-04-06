@@ -20,6 +20,11 @@ export const NUMBER_GENERATOR_RULE_ALONE = Symbol();
 // 连续模式
 export const NUMBER_GENERATOR_RULE_CONTINUITY = Symbol();
 
+// 全选的规则 - 标准模式(不能跨页)
+export const ROW_SELECTION_NORMAL_MODE = Symbol();
+// 全选的规则 - 可以跨页
+export const ROW_SELECTION_CONTINUOUS_MODE = Symbol();
+
 export default Vue.extend({
   // @overview
   mixins: [Suspense, updatedEx],
@@ -172,7 +177,7 @@ export default Vue.extend({
     renderTableNumberColumn(
       h: CreateElement,
       number = '',
-      params: { record: object; index: number },
+      params: { value: any; record: object; index: number },
     ) {
       return <span>{number}</span>;
     },
@@ -429,9 +434,16 @@ export default Vue.extend({
                 <ConditionalRender
                   conditional={numberGeneratorRule === NUMBER_GENERATOR_RULE_ALONE}
                 >
-                  <span>{this.renderTableNumberColumn(h, index + 1, { record: row, index })}</span>
+                  <span>
+                    {this.renderTableNumberColumn(h, index + 1, {
+                      value: text,
+                      record: row,
+                      index,
+                    })}
+                  </span>
                   <span slot="noMatch">
                     {this.renderTableNumberColumn(h, (page - 1) * limit + (index + 1), {
+                      value: text,
                       record: row,
                       index,
                     })}

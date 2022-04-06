@@ -115,6 +115,26 @@
           </div>
         </fragment>
       </template>
+
+      <template #p7>
+        <div style="display: flex; height: 700px">
+          <RowSelectedNormal
+            :wrapStyle="'height: 100%'"
+            :isShowExpandSearch="true"
+            :defaultExpandSearchCollapse="false"
+          />
+        </div>
+      </template>
+
+      <template #p8>
+        <div style="display: flex; height: 700px">
+          <RowSelectedContinuous
+            :wrapStyle="'height: 100%'"
+            :isShowExpandSearch="true"
+            :defaultExpandSearchCollapse="false"
+          />
+        </div>
+      </template>
     </adv-playground-page-code-box-section>
 
     <adv-playground-page-function-props-section title="API" :config="apiConfig" />
@@ -126,11 +146,15 @@
 <script>
 import Table from './table';
 import FewTable from './fewTable';
+import RowSelectedContinuous from './rowSelectedContinuous';
+import RowSelectedNormal from './rowSelectedNormal';
 
 export default {
   components: {
     Table,
     FewTable,
+    RowSelectedNormal,
+    RowSelectedContinuous,
   },
   data() {
     return {
@@ -588,6 +612,34 @@ export default {
     },
   };
         `,
+        },
+        {
+          id: 'p7',
+          name: '标准的RowSelected',
+          cardProps: {
+            description: {
+              title: '标准的RowSelected',
+              info: '标准的RowSelected',
+            },
+          },
+          type: 'PlayGround',
+          codeText: `
+      `,
+          childrenSlot: 'p7',
+        },
+        {
+          id: 'p8',
+          name: '可以跨页选择的RowSelected',
+          cardProps: {
+            description: {
+              title: '可以跨页选择的RowSelected',
+              info: '可以跨页选择的RowSelected',
+            },
+          },
+          type: 'PlayGround',
+          codeText: `
+      `,
+          childrenSlot: 'p8',
         },
       ],
       apiConfig: [

@@ -1,3 +1,4 @@
+import { VNode } from 'vue';
 import ConditionalRender from './conditionalrender';
 import ConditionalRenderShow from './show';
 import ConditionalRenderVisibility from './visibility';
@@ -23,5 +24,43 @@ Component.use = (Vue) => {
 };
 Component.Show = ConditionalRenderShow;
 Component.Visibility = ConditionalRenderVisibility;
+
+/**
+ * conditionalRender
+ * @description - 使用方法的ConditionalRender
+ * @param conditional
+ * @param match
+ * @param noMatch
+ */
+Component.conditionalRender = function ({
+  conditional,
+  match,
+  noMatch,
+}: {
+  conditional: boolean;
+  match: VNode;
+  noMatch: VNode | null;
+}): VNode | null {
+  return conditional ? match : noMatch || null;
+};
+
+/**
+ * conditionalArr
+ * @description - 含有PermissionConditional的VNode的数组
+ * @param arr
+ * @return Array
+ */
+Component.conditionalArr = function (arr: any[]): any[] {
+  return arr.filter((t) => {
+    if (t.data.props && 'conditional' in t.data.props) {
+      if (!t.data.props.conditional) {
+        if (t.data.props.noMatch && t.data.props.noMatch?.() !== null) return true;
+        return false;
+      }
+    }
+
+    return true;
+  });
+};
 
 export default Component;

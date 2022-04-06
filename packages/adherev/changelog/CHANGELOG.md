@@ -1,3 +1,18 @@
+# 1.0.9
+
+***
+
+2022-4-6
+
+* **adherev-ui-conditionalrender**
+  - 加入conditionalRender和conditionalArr两个方法
+* **adherev-ui-searchtable**
+  - renderTableNumberColumn修改
+  - 跨页选取的支持
+* **adherev-util-communication-ajax**
+  - 构造函数参数修改
+  - 细节的调整
+
 # 1.0.8
 
 ***

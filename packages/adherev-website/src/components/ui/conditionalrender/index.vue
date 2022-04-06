@@ -163,6 +163,8 @@
     </adv-playground-page-code-box-section>
 
     <adv-playground-page-props-section title="Props" :config="propsConfig" />
+
+    <adv-playground-page-function-props-section title="API" :config="apiConfig" />
   </adv-playground-page>
 </template>
 
@@ -434,6 +436,52 @@ export default {
               desc: '条件部匹配时显示的UI',
               type: 'VNode',
               defaultVal: 'null',
+            },
+          ],
+        },
+      ],
+      apiConfig: [
+        {
+          border: true,
+          title: '方法',
+          data: [
+            {
+              name: 'conditionalRender',
+              desc: '使用方法的ConditionalRender',
+              modifier: 'static',
+              params: [
+                {
+                  name: 'params',
+                  desc: '',
+                  type: `
+                      {
+                        conditional: boolean;
+                        match: JSX.Element;
+                        noMatch: JSX.Element | null;
+                      }
+                    `,
+                  defaultVal: '',
+                  required: '',
+                },
+              ],
+              returnType: 'void',
+              returnDesc: '',
+            },
+            {
+              name: 'conditionalArr',
+              desc: '含有PermissionConditional的React.Element的数组',
+              modifier: 'static',
+              params: [
+                {
+                  name: 'arr',
+                  desc: '',
+                  type: 'any[]',
+                  defaultVal: '',
+                  required: '',
+                },
+              ],
+              returnType: 'any[]',
+              returnDesc: '',
             },
           ],
         },
