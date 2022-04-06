@@ -36,6 +36,6 @@
     "typescript": "^4.6.2"
   },
   "dependencies": {
-    "@baifendian/adhere-ui-css": "^1.0.14"
+    "@baifendian/adhere-ui-css": "^1.0.15"
   }
 }
