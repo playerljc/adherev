@@ -2,7 +2,11 @@
 import { cleanMixin, mapActions, mapMutations, mapState } from '@ctsj/vuexgenerator';
 import { TableRowSelection } from 'ant-design-vue/lib/table/interface';
 import { defineComponent, VNode } from 'vue';
-import SearchTable, { NUMBER_GENERATOR_RULE_CONTINUITY } from './searchtable';
+import SearchTable, {
+  ROW_SELECTION_NORMAL_MODE,
+  ROW_SELECTION_CONTINUOUS_MODE,
+  NUMBER_GENERATOR_RULE_CONTINUITY,
+} from './searchtable';
 import { ISearchTableSelf } from './types';
 
 const selectorPrefix = 'adherev-ui-searchtableimplement';
@@ -24,6 +28,7 @@ export default (serviceName: string) =>
           ...this.getParams(),
         },
         selectedRowKeys: [],
+        selectedRows: [],
       };
     },
     computed: serviceName
@@ -132,6 +137,12 @@ export default (serviceName: string) =>
           return NUMBER_GENERATOR_RULE_CONTINUITY;
         },
         /**
+         * getNumberGeneratorRule - 获取符号列的生成规则
+         */
+        getRowSelectionMode(): Symbol {
+          return ROW_SELECTION_NORMAL_MODE;
+        },
+        /**
          * getTableNumberColumnWidth
          * @override
          * @description - 表格序号列的宽度
@@ -194,11 +205,43 @@ export default (serviceName: string) =>
         getRowSelection(): TableRowSelection<object> {
           const { selectedRowKeys } = this as unknown as ISearchTableSelf;
 
+          const self = this;
+
+          function filter(this: any, selected: boolean, records: Array<any>): void {
+            const rowKey = self.getRowKey();
+
+            if (selected) {
+              // add
+              self.selectedRowKeys = [...self.selectedRowKeys, ...records.map((r) => r[rowKey])];
+              self.selectedRows = [...self.selectedRows, ...records];
+            } else {
+              // remove
+              self.selectedRows = self.selectedRows.filter(
+                (row) => !records.find((r) => r[rowKey] === row[rowKey]),
+              );
+              self.selectedRowKeys = self.selectedRowKeys.filter(
+                (key) => !records.find((r) => r[rowKey] === key),
+              );
+            }
+          }
+
           return {
             selectedRowKeys,
-            onChange: (selectedRowKeys: Array<any>) => {
-              // @ts-ignore
+            onChange: (selectedRowKeys: Array<any>, selectedRows: Array<any>) => {
+              if (this.getRowSelectionMode() === ROW_SELECTION_CONTINUOUS_MODE) return;
+
               this.selectedRowKeys = selectedRowKeys;
+              this.selectedRows = selectedRows;
+            },
+            onSelect: (record, selected) => {
+              if (this.getRowSelectionMode() === ROW_SELECTION_NORMAL_MODE) return;
+
+              filter(selected, [record]);
+            },
+            onSelectAll: (selected, selectedRows, changeRows) => {
+              if (this.getRowSelectionMode() === ROW_SELECTION_NORMAL_MODE) return;
+
+              filter(selected, changeRows);
             },
           };
         },

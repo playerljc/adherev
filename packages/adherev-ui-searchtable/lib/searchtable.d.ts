@@ -1,6 +1,8 @@
 import { ISearchTableData } from './types';
 export declare const NUMBER_GENERATOR_RULE_ALONE: unique symbol;
 export declare const NUMBER_GENERATOR_RULE_CONTINUITY: unique symbol;
+export declare const ROW_SELECTION_NORMAL_MODE: unique symbol;
+export declare const ROW_SELECTION_CONTINUOUS_MODE: unique symbol;
 declare const _default: import("vue").DefineComponent<{
     wrapStyle: {
         type: StringConstructor;
@@ -69,7 +71,6 @@ declare const _default: import("vue").DefineComponent<{
     /**
      * renderTableNumberColumn
      * @description - 渲染序号列
-     * @param h
      * @param number
      * @param params
      */

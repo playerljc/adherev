@@ -20,6 +20,11 @@ export const NUMBER_GENERATOR_RULE_ALONE = Symbol();
 // 连续模式
 export const NUMBER_GENERATOR_RULE_CONTINUITY = Symbol();
 
+// 全选的规则 - 标准模式(不能跨页)
+export const ROW_SELECTION_NORMAL_MODE = Symbol();
+// 全选的规则 - 可以跨页
+export const ROW_SELECTION_CONTINUOUS_MODE = Symbol();
+
 export default defineComponent({
   // @overview
   mixins: [Suspense, updatedEx],
@@ -168,7 +173,6 @@ export default defineComponent({
     /**
      * renderTableNumberColumn
      * @description - 渲染序号列
-     * @param h
      * @param number
      * @param params
      */
