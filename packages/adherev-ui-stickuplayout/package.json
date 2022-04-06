@@ -1,6 +1,6 @@
 {
   "name": "@baifendian/adherev-ui-stickuplayout",
-  "version": "2.0.1-beta",
+  "version": "2.0.4-alpha",
   "description": "滚动固定头额布局",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -38,7 +38,7 @@
     "typescript": "^4.5.5"
   },
   "dependencies": {
-    "@baifendian/adherev-util": "^2.0.1-beta",
+    "@baifendian/adherev-util": "^2.0.4-alpha",
     "classnames": "^2.3.1",
     "vue": "^3.2.31",
     "vue-types": "^4.1.1"

@@ -1,6 +1,6 @@
 {
   "name": "@baifendian/adherev-util",
-  "version": "2.0.1-beta",
+  "version": "2.0.4-alpha",
   "description": "工具类",
   "main": "lib/index.js",
   "module": "es/index.js",

@@ -1,6 +1,6 @@
 {
   "name": "@baifendian/adherev-util-intl",
-  "version": "2.0.1-beta",
+  "version": "2.0.4-alpha",
   "description": "基于 vue-i18n 的国际化组件",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -39,7 +39,7 @@
   },
   "dependencies": {
     "@baifendian/adhere-util-intl": "^1.0.15",
-    "@baifendian/adherev-util": "^2.0.1-beta",
+    "@baifendian/adherev-util": "^2.0.4-alpha",
     "vue": "^3.2.31",
     "vue-i18n": "^9.1.9",
     "vue-types": "^4.1.1"

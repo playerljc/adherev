@@ -1,6 +1,6 @@
 {
   "name": "@baifendian/adherev-util-mixins",
-  "version": "2.0.1-beta",
+  "version": "2.0.4-alpha",
   "description": "mixins",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -32,7 +32,7 @@
     "access": "public"
   },
   "dependencies": {
-    "@baifendian/adherev-util": "^2.0.1-beta"
+    "@baifendian/adherev-util": "^2.0.4-alpha"
   },
   "devDependencies": {
     "@babel/runtime": "^7.17.2",
