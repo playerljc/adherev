@@ -28,7 +28,9 @@ export default defineComponent({
 
     onBeforeUnmount(() => {
       if (maskEl) {
-        maskEl?.parentElement?.removeChild(maskEl);
+        try {
+          maskEl?.parentElement?.removeChild(maskEl);
+        } catch (e) {}
       }
     });
 
