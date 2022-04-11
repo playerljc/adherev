@@ -35,7 +35,9 @@ export default {
     const { $data } = this;
 
     if ($data.$maskEl) {
-      $data.$maskEl.parentElement.removeChild($data.$maskEl);
+      try {
+        $data.$maskEl.parentElement.removeChild($data.$maskEl);
+      } catch (e) {}
     }
   },
   methods: {
