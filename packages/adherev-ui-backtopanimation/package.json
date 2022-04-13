@@ -1,6 +1,6 @@
 {
   "name": "@baifendian/adherev-ui-backtopanimation",
-  "version": "1.0.9",
+  "version": "1.0.9-fix.0",
   "description": "动画的回到顶部",
   "main": "lib/index.js",
   "module": "es/index.js",
