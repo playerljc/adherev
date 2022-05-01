@@ -5,12 +5,17 @@ import { VNode } from 'vue';
 
 const selectorPrefix = 'adherev-ui-delconfirm';
 
-export function open(success, zIndex) {
+/**
+ * open
+ * @param success
+ * @param params
+ */
+export function open({ success, ...params }) {
   MessageDialog.Confirm({
-    // @ts-ignore
-    title: intl.tv('提示'),
-    text: `${intl.tv('确定删除吗')}?`,
-    zIndex,
+    ...params,
+    title: params.title || intl.tv('提示'),
+    text: params.text || `${intl.tv('确定删除吗')}?`,
+    zIndex: 'zIndex' in params ? params.zIndex : Resource.Dict.value.ResourceNormalMaxZIndex.value,
     onSuccess: () => {
       return new Promise<void>((resolve, reject) => {
         if (success) {
@@ -42,14 +47,29 @@ export default {
       required: false,
       default: () => {},
     },
+    title: {
+      type: String,
+      required: false,
+      default: intl.tv('提示'),
+    },
+    text: {
+      type: String,
+      required: false,
+      default: `${intl.tv('确定删除吗')}?`,
+    },
   },
   methods: {
     onClick(e) {
       e.stopPropagation();
 
-      const { success, zIndex = Resource.Dict.value.ResourceNormalMaxZIndex.value } = this;
+      const { success, title, text, zIndex } = this;
 
-      open(success, zIndex || Resource.Dict.value.ResourceNormalMaxZIndex.value);
+      open({
+        success,
+        title,
+        text,
+        zIndex,
+      });
     },
   },
   render(h): VNode {

@@ -1,5 +1,8 @@
 import { VNode } from 'vue';
-export declare function open(success: any, zIndex: any): void;
+export declare function open({ success, ...params }: {
+    [x: string]: any;
+    success: any;
+}): void;
 declare const _default: {
     name: string;
     props: {
@@ -12,6 +15,21 @@ declare const _default: {
             type: FunctionConstructor;
             required: boolean;
             default: () => void;
+        };
+        title: {
+            type: StringConstructor;
+            required: boolean;
+            default: string | import("vue-i18n").default.LocaleMessages | undefined;
+        };
+        text: {
+            type: StringConstructor;
+            required: boolean;
+            default: string;
+        };
+        icon: {
+            type: StringConstructor;
+            required: boolean;
+            default: string;
         };
     };
     methods: {
