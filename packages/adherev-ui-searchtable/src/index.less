@@ -4,6 +4,9 @@
 @import '~@baifendian/adherev-ui-suspense/lib/index.less';
 @import '~@baifendian/adherev-ui-flexlayout/lib/index.less';
 @import '~@baifendian/adherev-ui-css/lib/iconfont/iconfont.less';
+@import '~@baifendian/adhere-ui-css/lib/vars';
+
+@import '~vue-draggable-resizable/dist/VueDraggableResizable.css';
 
 .adherev-ui-searchtable-wrap {
   display: flex;
@@ -32,7 +35,7 @@
               > .ant-table-empty {
                 > .ant-table-container {
                   > .ant-table-body {
-                    max-height: initial !important;
+                    max-height: initial;
                   }
                 }
               }
@@ -114,7 +117,7 @@
                       //    > .ant-table-body {
                       //      flex-grow: 1;
                       //      min-height: 0;
-                      //      overflow-y: auto !important;
+                      //      overflow-y: auto ;
                       //    }
                       //  }
                       //}
@@ -132,7 +135,7 @@
                         > .ant-table-body {
                           flex-grow: 1;
                           min-height: 0;
-                          overflow-y: auto !important;
+                          overflow-y: auto;
                         }
                       }
                     }
@@ -149,7 +152,7 @@
                     //  > .ant-table-body {
                     //    flex-grow: 1;
                     //    min-height: 0;
-                    //    overflow-y: auto !important;
+                    //    overflow-y: auto ;
                     //  }
                     //}
                   }
@@ -189,6 +192,48 @@
 
     .adherev-ui-searchtableimplement-tablewrapper {
       height: 100%;
+    }
+  }
+}
+
+.adherev-ui-searchtable-resize-table-th {
+  position: relative;
+  padding: 0 !important;
+
+  > .ant-table-header-column {
+    position: relative;
+    display: flex !important;
+    justify-content: center;
+    padding: 16px 16px !important;
+
+    &::before {
+      position: absolute;
+      top: 50%;
+      right: 0;
+      width: 1px;
+      height: 1.6em;
+      background-color: rgba(0, 0, 0, 0.06);
+      transform: translateY(-50%);
+      transition: background-color 0.3s;
+      content: '';
+      pointer-events: none;
+    }
+  }
+
+  > .adherev-ui-searchtable-table-draggable-handle {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: auto !important;
+    z-index: 100 !important;
+    height: 100% !important;
+    border: none !important;
+    transform: none !important;
+    cursor: col-resize;
+    touch-action: none;
+    &:hover {
+      width: 2px !important;
+      background-color: @adhere-primary-color;
     }
   }
 }

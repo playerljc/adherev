@@ -1,4 +1,5 @@
 import { Table, Button } from 'ant-design-vue';
+import VueDraggableResizable from 'vue-draggable-resizable';
 
 import SearchForm from './searchform';
 
@@ -42,6 +43,8 @@ SearchTable.use = (Vue) => {
   Vue.use(Table);
 
   Vue.use(Button);
+
+  Vue.component('vue-draggable-resizable', VueDraggableResizable);
 
   withVue(Vue, 'SearchTable', SearchTable);
 };

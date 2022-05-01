@@ -9,7 +9,12 @@ import ConditionalRender from '@baifendian/adherev-ui-conditionalrender';
 import Intl from '@baifendian/adherev-util-intl';
 import Mixins from '@baifendian/adherev-util-mixins';
 
-const selectorPrefix = 'adherev-ui-searchtable';
+import ColumnResizable, {
+  SearchTableResizableTitle,
+  SearchTableResizableObserver,
+} from './Extension/ColumnResizable';
+
+export const selectorPrefix = 'adherev-ui-searchtable';
 
 const { updatedEx } = Mixins;
 
@@ -103,11 +108,30 @@ export default Vue.extend({
       limit: 10,
       expand: this.defaultExpandSearchCollapse,
       scrollY: 0,
+      // 列拖动对象
+      $columnResizable: new ColumnResizable(),
+      // 列属性监控对象
+      $columnObserver: null,
     };
+  },
+  computed: {
+    // 自定义表格部分
+    components() {
+      return {
+        header: {
+          cell: SearchTableResizableTitle(this.getSearchTableTableColumns()),
+        },
+      };
+    },
   },
   // @ts-ignore
   updatedEx(prevState) {
     if (!this.$refs.tableWrapRef) return;
+
+    // 监控header的属性变化(colgroup)
+    if (!this.$data.$columnObserver) {
+      this.$data.$columnObserver = SearchTableResizableObserver(this);
+    }
 
     if (this.fixedHeaderAutoTable) {
       const dataSource = this.getData();
@@ -365,6 +389,7 @@ export default Vue.extend({
           columns: this.getTableColumns(h),
           pagination: this.getPagination(),
           rowSelection: this.getRowSelection(),
+          components: this.components,
           ...(tablePropsAttr || {}),
         },
         on: {
@@ -408,20 +433,28 @@ export default Vue.extend({
       const getTableNumberColumnWidth = this.getTableNumberColumnWidth();
 
       // 对权限进行过滤
-      const columns = this.getColumns().filter((column) => {
-        if ('authorized' in column) {
-          return column.authorized();
-        }
+      const columns = this.getColumns()
+        .filter((column) => {
+          if ('authorized' in column) {
+            return column.authorized();
+          }
 
-        return true;
-      });
+          return true;
+        })
+        .map((column, index) => {
+          if ('resizable' in column && !!column.resizable) {
+            return this.$data.$columnResizable.searchTableResizableColumnItem(this, index, column);
+          }
+
+          return column;
+        });
 
       if (isShowNumber) {
         return [
           {
             title: Intl.tv('序号'),
             // dataIndex: 'number',
-            key: 'number',
+            key: '_number',
             align: 'center',
             width: getTableNumberColumnWidth || 80,
             customRender: (text, row, index) => {

@@ -67,7 +67,12 @@ module.exports = {
       /packages[\\/]adherev[\\/]es[\\/].*.less/,
     );
 
-    webpackConfig.module.rules[3].include.push(/ol.css/, /swiper.css/, /nprogress.css/);
+    webpackConfig.module.rules[3].include.push(
+      /ol.css/,
+      /swiper.css/,
+      /nprogress.css/,
+      /VueDraggableResizable.css/,
+    );
 
     // 加入markdown的解析
     webpackConfig.module.rules.push({
