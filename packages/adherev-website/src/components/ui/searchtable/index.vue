@@ -218,505 +218,505 @@ export default {
       pagination4: false,
       scrollEl: null,
       codeBoxPanelConfig: [
-        //       {
-        //         id: 'p1',
-        //         name: '基本使用',
-        //         cardProps: {
-        //           description: {
-        //             title: '基本使用',
-        //             info: '基本使用',
-        //           },
-        //         },
-        //         type: 'PlayGround',
-        //         codeText: `
-        // <template>
-        //   <Table :isShowExpandSearch="true" :defaultExpandSearchCollapse="false" />
-        // </template>
-        //     `,
-        //         childrenSlot: 'p1',
-        //       },
-        //       {
-        //         id: 'p2',
-        //         name: '表格体可以滚动',
-        //         cardProps: {
-        //           description: {
-        //             title: '表格体可以滚动',
-        //             info: '表格体可以滚动',
-        //           },
-        //         },
-        //         type: 'PlayGround',
-        //         codeText: `
-        // <template>
-        //   <div style="display: flex; height: 400px">
-        //     <Table
-        //       :wrapStyle="'height: 100%;'"
-        //       :isShowExpandSearch="true"
-        //       :defaultExpandSearchCollapse="false"
-        //       :autoFixed="true"
-        //     />
-        //   </div>
-        // </template>
-        //     `,
-        //         childrenSlot: 'p2',
-        //       },
-        //       {
-        //         id: 'p3',
-        //         name: '固定列头',
-        //         cardProps: {
-        //           description: {
-        //             title: '固定列头',
-        //             info: '固定列头',
-        //           },
-        //         },
-        //         type: 'PlayGround',
-        //         codeText: `
-        // <template>
-        //   <div style="display: flex; height: 500px">
-        //     <Table
-        //       :wrapStyle="'height: 100%;'"
-        //       :isShowExpandSearch="true"
-        //       :defaultExpandSearchCollapse="false"
-        //       :fixedHeaderAutoTable="true"
-        //     />
-        //   </div>
-        // </template>
-        //     `,
-        //         childrenSlot: 'p3',
-        //       },
-        //       {
-        //         id: 'p4',
-        //         name: '列表两端的渲染',
-        //         cardProps: {
-        //           description: {
-        //             title: '列表两端的渲染',
-        //             info: '列表两端的渲染',
-        //           },
-        //         },
-        //         type: 'PlayGround',
-        //         codeText: `
-        // <div style="display: flex; height: 800px">
-        //   <Table
-        //     :wrapStyle="'height: 100%'"
-        //     :isShowExpandSearch="true"
-        //     :defaultExpandSearchCollapse="false"
-        //     :fixedHeaderAutoTable="true"
-        //     :fixedTableSpaceBetween="true"
-        //   >
-        //     <template v-slot:tableHeader>
-        //       <div :class="$style.Header">
-        //         <h3>查询表格</h3>
-        //         <div>
-        //           <a-button type="primary">新建</a-button>
-        //         </div>
-        //       </div>
-        //     </template>
-        //     <template v-slot:tableFooter>
-        //       <div :class="$style.Footer">renderTableFooter</div>
-        //     </template>
-        //   </Table>
-        // </div>
-        //     `,
-        //         childrenSlot: 'p4',
-        //       },
-        //       {
-        //         id: 'p5',
-        //         name: '分页始终居底',
-        //         cardProps: {
-        //           description: {
-        //             title: '分页始终居底',
-        //             info: '分页始终居底',
-        //           },
-        //         },
-        //         type: 'PlayGroundTab',
-        //         active: 'fewTable.tsx',
-        //         config: [
-        //           {
-        //             title: 'fewTable.tsx',
-        //             key: 'fewTable.tsx',
-        //             lang: 'javascript',
-        //             codeText: `
-        // import Table from './table';
-        // import { oneFew } from './mock';
-        // import { Ajax } from '@baifendian/adherev';
-        //
-        // const request = new Ajax('');
-        //
-        // export default {
-        //   mixins: [Table],
-        //   methods: {
-        //     fetchDataExecute(searchParams) {
-        //       this.loading = true;
-        //
-        //       return request
-        //         .get({
-        //           mock: true,
-        //           path: oneFew,
-        //         })
-        //         .then((result) => {
-        //           this.dataSource = {
-        //             total: result.total,
-        //             list: result.list,
-        //           };
-        //
-        //           this.loading = false;
-        //         });
-        //     },
-        //   },
-        // };
-        //       `,
-        //           },
-        //           {
-        //             title: 'index.vue',
-        //             key: 'index.vue',
-        //             codeText: `
-        // <template>
-        //   <div style="display: flex; height: 700px">
-        //     <FewTable
-        //       :wrapStyle="'height: 100%'"
-        //       :isShowExpandSearch="true"
-        //       :defaultExpandSearchCollapse="false"
-        //       :fixedHeaderAutoTable="true"
-        //       :fixedTableSpaceBetween="true"
-        //     />
-        //   </div>
-        // </template>
-        // <script>
-        //   import FewTable from './fewTable';
-        //
-        //   export default {
-        //     components: {
-        //       FewTable
-        //     }
-        //   }
-        // <\/script>
-        //         `,
-        //           },
-        //         ],
-        //         childrenSlot: 'p5',
-        //       },
-        //       {
-        //         id: 'p6',
-        //         name: 'table.tsx',
-        //         cardProps: {
-        //           description: {
-        //             title: 'table.tsx',
-        //             info: 'table.tsx',
-        //           },
-        //         },
-        //         type: 'PlayGround',
-        //         lang: 'javascript',
-        //         codeText: `
-        // import moment from 'moment';
-        // import { Input, Select, InputNumber, DatePicker } from 'ant-design-vue';
-        // import { SearchTable, Resource, Ajax } from '@baifendian/adherev';
-        //
-        // const request = new Ajax('');
-        //
-        // const { Option } = Select;
-        // const { RangePicker } = DatePicker;
-        // const { SearchTableImplement, SearchForm, SearchFormRow, SearchFormLabel, SearchFormValue } =
-        //   SearchTable;
-        //
-        // const SearchTableImplementMixins = SearchTableImplement();
-        //
-        // export default {
-        //   mixins: [SearchTableImplementMixins],
-        //   data() {
-        //     return {
-        //       loading: false,
-        //       dataSource: {
-        //         total: 0,
-        //         list: [],
-        //       },
-        //     };
-        //   },
-        //   methods: {
-        //     getParams() {
-        //       return {
-        //         name: '',
-        //         sex: '',
-        //         startTime: null,
-        //         endTime: null,
-        //         deptCode: '',
-        //         homeTown: '',
-        //         width: '',
-        //         height: '',
-        //       };
-        //     },
-        //     getFetchDataParams() {
-        //       const { startTime, endTime } = this.searchParams;
-        //
-        //       return {
-        //         startTime: startTime
-        //           ? startTime.format(Resource.Dict.value.ResourceMomentFormatFull.value)
-        //           : null,
-        //         endTime: endTime
-        //           ? endTime.format(Resource.Dict.value.ResourceMomentFormatFull.value)
-        //           : null,
-        //       };
-        //     },
-        //     getData() {
-        //       return this.dataSource.list;
-        //     },
-        //     getTotal() {
-        //       return this.dataSource.total;
-        //     },
-        //     getColumns() {
-        //       return [
-        //         {
-        //           title: '姓名',
-        //           dataIndex: 'name',
-        //           key: 'name',
-        //           align: 'center',
-        //         },
-        //         {
-        //           title: '性别',
-        //           dataIndex: 'sex',
-        //           key: 'sex',
-        //           align: 'center',
-        //           scopedSlots: { customRender: 'sex' },
-        //         },
-        //         {
-        //           title: '籍贯',
-        //           dataIndex: 'homeTown',
-        //           key: 'homeTown',
-        //           align: 'center',
-        //         },
-        //         {
-        //           title: '出生年月',
-        //           dataIndex: 'birthday',
-        //           key: 'birthday',
-        //           align: 'center',
-        //           sorter: true,
-        //           sortOrder: this.sortOrder('birthday'),
-        //           scopedSlots: { customRender: 'birthday' },
-        //         },
-        //         {
-        //           title: '所在部门',
-        //           dataIndex: 'deptName',
-        //           key: 'deptName',
-        //           align: 'center',
-        //         },
-        //         {
-        //           title: '身高',
-        //           dataIndex: 'height',
-        //           key: 'height',
-        //           align: 'center',
-        //           sorter: true,
-        //           sortOrder: this.sortOrder('height'),
-        //         },
-        //         {
-        //           title: '体重',
-        //           dataIndex: 'width',
-        //           key: 'width',
-        //           align: 'center',
-        //           sorter: true,
-        //           sortOrder: this.sortOrder('width'),
-        //         },
-        //       ];
-        //     },
-        //     getScopedSlots() {
-        //       return {
-        //         sex: (text) => {
-        //           return Resource.Dict.value.ResourceNormalSexMap.value.get(text).label;
-        //         },
-        //         birthday: (text) => {
-        //           return text ? moment(text).format(Resource.Dict.value.ResourceMomentFormat10.value) : '';
-        //         },
-        //       };
-        //     },
-        //     renderSearchForm(h) {
-        //       return (
-        //         <SearchForm>
-        //           <SearchFormRow>
-        //             <SearchFormLabel style="width: 120px;">姓名：</SearchFormLabel>
-        //             <SearchFormValue>
-        //               <Input
-        //                 style="width: 90%"
-        //                 placeholder="姓名"
-        //                 value={this.name}
-        //                 onChange={(e) => {
-        //                   this.name = e.target.value.trim();
-        //                 }}
-        //               />
-        //             </SearchFormValue>
-        //
-        //             <SearchFormLabel style="width: 120px;">性别：</SearchFormLabel>
-        //             <SearchFormValue>
-        //               <Select
-        //                 style="width: 90%"
-        //                 value={this.sex}
-        //                 getPopupContainer={Resource.Dict.value.FormPopupContainer.value}
-        //                 onChange={(v) => {
-        //                   this.sex = v;
-        //                 }}
-        //               >
-        //                 {Resource.Dict.value.ResourceNormalSex.value.map((t) => (
-        //                   <Option key={t.value} value={t.value}>
-        //                     {t.label}
-        //                   </Option>
-        //                 ))}
-        //               </Select>
-        //             </SearchFormValue>
-        //
-        //             <SearchFormLabel style="width: 120px;">出生年月：</SearchFormLabel>
-        //             <SearchFormValue>
-        //               <RangePicker
-        //                 style="width: 90%"
-        //                 value={[this.startTime, this.endTime]}
-        //                 getPopupContainer={Resource.Dict.value.FormPopupContainer.value}
-        //                 onChange={(moments) => {
-        //                   this.startTime = moments.length ? moments[0] : null;
-        //
-        //                   this.endTime = moments.length ? moments[1] : null;
-        //                 }}
-        //                 getCalendarContainer={(el) => el.parentElement}
-        //               />
-        //             </SearchFormValue>
-        //           </SearchFormRow>
-        //
-        //           <SearchFormRow>
-        //             <SearchFormLabel style="width: 120px;">籍贯：</SearchFormLabel>
-        //             <SearchFormValue>
-        //               <Input
-        //                 style="width: 90%"
-        //                 placeholder="籍贯"
-        //                 value={this.homeTown}
-        //                 onChange={(e) => {
-        //                   this.homeTown = e.target.value.trim();
-        //                 }}
-        //               />
-        //             </SearchFormValue>
-        //
-        //             <SearchFormLabel style="width: 120px;">身高：</SearchFormLabel>
-        //             <SearchFormValue>
-        //               <InputNumber
-        //                 style="width: 90%"
-        //                 placeholder="身高"
-        //                 value={this.height}
-        //                 onChange={(v) => {
-        //                   this.height = v;
-        //                 }}
-        //               />
-        //             </SearchFormValue>
-        //
-        //             <SearchFormLabel style="width: 120px;">体重：</SearchFormLabel>
-        //             <SearchFormValue>
-        //               <InputNumber
-        //                 style="width: 90%"
-        //                 placeholder="体重"
-        //                 value={this.width}
-        //                 onChange={(v) => {
-        //                   this.width = v;
-        //                 }}
-        //               />
-        //             </SearchFormValue>
-        //           </SearchFormRow>
-        //
-        //           <SearchFormRow>
-        //             <SearchFormLabel style="width: 120px;">所在部门：</SearchFormLabel>
-        //             <SearchFormValue>
-        //               <Select
-        //                 style="width: 90%"
-        //                 value={this.deptCode}
-        //                 onChange={(v) => {
-        //                   this.deptCode = v;
-        //                 }}
-        //                 getPopupContainer={Resource.Dict.value.FormPopupContainer.value}
-        //               >
-        //                 <Option value="">全部</Option>
-        //
-        //                 <Option value="0">产品部</Option>
-        //
-        //                 <Option value="1">开发部</Option>
-        //
-        //                 <Option value="2">工程部</Option>
-        //               </Select>
-        //             </SearchFormValue>
-        //           </SearchFormRow>
-        //         </SearchForm>
-        //       );
-        //     },
-        //     renderSearchFooterItems() {
-        //       return null;
-        //     },
-        //     showLoading() {
-        //       return this.loading;
-        //     },
-        //     getOrderFieldValue() {
-        //       return 'height';
-        //     },
-        //     fetchDataExecute(searchParams) {
-        //       this.loading = true;
-        //
-        //       return request
-        //         .get({
-        //           mock: true,
-        //           path: require('./mock.js').default,
-        //         })
-        //         .then((result) => {
-        //           this.dataSource = {
-        //             total: result.total,
-        //             list: result.list,
-        //           };
-        //
-        //           this.loading = false;
-        //         });
-        //     },
-        //   },
-        // };
-        //       `,
-        //       },
-        //       {
-        //         id: 'p7',
-        //         name: '标准的RowSelected',
-        //         cardProps: {
-        //           description: {
-        //             title: '标准的RowSelected',
-        //             info: '标准的RowSelected',
-        //           },
-        //         },
-        //         type: 'PlayGround',
-        //         codeText: `
-        // import Table from './table';
-        // import { SearchTable } from '@baifendian/adherev';
-        //
-        // export default {
-        //   mixins: [Table],
-        //   methods: {
-        //     getRowSelectionMode() {
-        //       return SearchTable.ROW_SELECTION_NORMAL_MODE;
-        //     },
-        //   },
-        // };
-        //     `,
-        //         childrenSlot: 'p7',
-        //       },
-        //       {
-        //         id: 'p8',
-        //         name: '可以跨页选择的RowSelected',
-        //         cardProps: {
-        //           description: {
-        //             title: '可以跨页选择的RowSelected',
-        //             info: '可以跨页选择的RowSelected',
-        //           },
-        //         },
-        //         type: 'PlayGround',
-        //         codeText: `
-        // import Table from './table';
-        // import { SearchTable } from '@baifendian/adherev';
-        //
-        // export default {
-        //   mixins: [Table],
-        //   methods: {
-        //     getRowSelectionMode() {
-        //       return SearchTable.ROW_SELECTION_CONTINUOUS_MODE;
-        //     },
-        //   },
-        // };
-        //     `,
-        //         childrenSlot: 'p8',
-        //       },
+        {
+          id: 'p1',
+          name: '基本使用',
+          cardProps: {
+            description: {
+              title: '基本使用',
+              info: '基本使用',
+            },
+          },
+          type: 'PlayGround',
+          codeText: `
+        <template>
+          <Table :isShowExpandSearch="true" :defaultExpandSearchCollapse="false" />
+        </template>
+            `,
+          childrenSlot: 'p1',
+        },
+        {
+          id: 'p2',
+          name: '表格体可以滚动',
+          cardProps: {
+            description: {
+              title: '表格体可以滚动',
+              info: '表格体可以滚动',
+            },
+          },
+          type: 'PlayGround',
+          codeText: `
+        <template>
+          <div style="display: flex; height: 400px">
+            <Table
+              :wrapStyle="'height: 100%;'"
+              :isShowExpandSearch="true"
+              :defaultExpandSearchCollapse="false"
+              :autoFixed="true"
+            />
+          </div>
+        </template>
+            `,
+          childrenSlot: 'p2',
+        },
+        {
+          id: 'p3',
+          name: '固定列头',
+          cardProps: {
+            description: {
+              title: '固定列头',
+              info: '固定列头',
+            },
+          },
+          type: 'PlayGround',
+          codeText: `
+        <template>
+          <div style="display: flex; height: 500px">
+            <Table
+              :wrapStyle="'height: 100%;'"
+              :isShowExpandSearch="true"
+              :defaultExpandSearchCollapse="false"
+              :fixedHeaderAutoTable="true"
+            />
+          </div>
+        </template>
+            `,
+          childrenSlot: 'p3',
+        },
+        {
+          id: 'p4',
+          name: '列表两端的渲染',
+          cardProps: {
+            description: {
+              title: '列表两端的渲染',
+              info: '列表两端的渲染',
+            },
+          },
+          type: 'PlayGround',
+          codeText: `
+        <div style="display: flex; height: 800px">
+          <Table
+            :wrapStyle="'height: 100%'"
+            :isShowExpandSearch="true"
+            :defaultExpandSearchCollapse="false"
+            :fixedHeaderAutoTable="true"
+            :fixedTableSpaceBetween="true"
+          >
+            <template v-slot:tableHeader>
+              <div :class="$style.Header">
+                <h3>查询表格</h3>
+                <div>
+                  <a-button type="primary">新建</a-button>
+                </div>
+              </div>
+            </template>
+            <template v-slot:tableFooter>
+              <div :class="$style.Footer">renderTableFooter</div>
+            </template>
+          </Table>
+        </div>
+            `,
+          childrenSlot: 'p4',
+        },
+        {
+          id: 'p5',
+          name: '分页始终居底',
+          cardProps: {
+            description: {
+              title: '分页始终居底',
+              info: '分页始终居底',
+            },
+          },
+          type: 'PlayGroundTab',
+          active: 'fewTable.tsx',
+          config: [
+            {
+              title: 'fewTable.tsx',
+              key: 'fewTable.tsx',
+              lang: 'javascript',
+              codeText: `
+        import Table from './table';
+        import { oneFew } from './mock';
+        import { Ajax } from '@baifendian/adherev';
+
+        const request = new Ajax('');
+
+        export default {
+          mixins: [Table],
+          methods: {
+            fetchDataExecute(searchParams) {
+              this.loading = true;
+
+              return request
+                .get({
+                  mock: true,
+                  path: oneFew,
+                })
+                .then((result) => {
+                  this.dataSource = {
+                    total: result.total,
+                    list: result.list,
+                  };
+
+                  this.loading = false;
+                });
+            },
+          },
+        };
+              `,
+            },
+            {
+              title: 'index.vue',
+              key: 'index.vue',
+              codeText: `
+        <template>
+          <div style="display: flex; height: 700px">
+            <FewTable
+              :wrapStyle="'height: 100%'"
+              :isShowExpandSearch="true"
+              :defaultExpandSearchCollapse="false"
+              :fixedHeaderAutoTable="true"
+              :fixedTableSpaceBetween="true"
+            />
+          </div>
+        </template>
+        <script>
+          import FewTable from './fewTable';
+
+          export default {
+            components: {
+              FewTable
+            }
+          }
+        <\/script>
+                `,
+            },
+          ],
+          childrenSlot: 'p5',
+        },
+        {
+          id: 'p6',
+          name: 'table.tsx',
+          cardProps: {
+            description: {
+              title: 'table.tsx',
+              info: 'table.tsx',
+            },
+          },
+          type: 'PlayGround',
+          lang: 'javascript',
+          codeText: `
+        import moment from 'moment';
+        import { Input, Select, InputNumber, DatePicker } from 'ant-design-vue';
+        import { SearchTable, Resource, Ajax } from '@baifendian/adherev';
+
+        const request = new Ajax('');
+
+        const { Option } = Select;
+        const { RangePicker } = DatePicker;
+        const { SearchTableImplement, SearchForm, SearchFormRow, SearchFormLabel, SearchFormValue } =
+          SearchTable;
+
+        const SearchTableImplementMixins = SearchTableImplement();
+
+        export default {
+          mixins: [SearchTableImplementMixins],
+          data() {
+            return {
+              loading: false,
+              dataSource: {
+                total: 0,
+                list: [],
+              },
+            };
+          },
+          methods: {
+            getParams() {
+              return {
+                name: '',
+                sex: '',
+                startTime: null,
+                endTime: null,
+                deptCode: '',
+                homeTown: '',
+                width: '',
+                height: '',
+              };
+            },
+            getFetchDataParams() {
+              const { startTime, endTime } = this.searchParams;
+
+              return {
+                startTime: startTime
+                  ? startTime.format(Resource.Dict.value.ResourceMomentFormatFull.value)
+                  : null,
+                endTime: endTime
+                  ? endTime.format(Resource.Dict.value.ResourceMomentFormatFull.value)
+                  : null,
+              };
+            },
+            getData() {
+              return this.dataSource.list;
+            },
+            getTotal() {
+              return this.dataSource.total;
+            },
+            getColumns() {
+              return [
+                {
+                  title: '姓名',
+                  dataIndex: 'name',
+                  key: 'name',
+                  align: 'center',
+                },
+                {
+                  title: '性别',
+                  dataIndex: 'sex',
+                  key: 'sex',
+                  align: 'center',
+                  scopedSlots: { customRender: 'sex' },
+                },
+                {
+                  title: '籍贯',
+                  dataIndex: 'homeTown',
+                  key: 'homeTown',
+                  align: 'center',
+                },
+                {
+                  title: '出生年月',
+                  dataIndex: 'birthday',
+                  key: 'birthday',
+                  align: 'center',
+                  sorter: true,
+                  sortOrder: this.sortOrder('birthday'),
+                  scopedSlots: { customRender: 'birthday' },
+                },
+                {
+                  title: '所在部门',
+                  dataIndex: 'deptName',
+                  key: 'deptName',
+                  align: 'center',
+                },
+                {
+                  title: '身高',
+                  dataIndex: 'height',
+                  key: 'height',
+                  align: 'center',
+                  sorter: true,
+                  sortOrder: this.sortOrder('height'),
+                },
+                {
+                  title: '体重',
+                  dataIndex: 'width',
+                  key: 'width',
+                  align: 'center',
+                  sorter: true,
+                  sortOrder: this.sortOrder('width'),
+                },
+              ];
+            },
+            getScopedSlots() {
+              return {
+                sex: (text) => {
+                  return Resource.Dict.value.ResourceNormalSexMap.value.get(text).label;
+                },
+                birthday: (text) => {
+                  return text ? moment(text).format(Resource.Dict.value.ResourceMomentFormat10.value) : '';
+                },
+              };
+            },
+            renderSearchForm(h) {
+              return (
+                <SearchForm>
+                  <SearchFormRow>
+                    <SearchFormLabel style="width: 120px;">姓名：</SearchFormLabel>
+                    <SearchFormValue>
+                      <Input
+                        style="width: 90%"
+                        placeholder="姓名"
+                        value={this.name}
+                        onChange={(e) => {
+                          this.name = e.target.value.trim();
+                        }}
+                      />
+                    </SearchFormValue>
+
+                    <SearchFormLabel style="width: 120px;">性别：</SearchFormLabel>
+                    <SearchFormValue>
+                      <Select
+                        style="width: 90%"
+                        value={this.sex}
+                        getPopupContainer={Resource.Dict.value.FormPopupContainer.value}
+                        onChange={(v) => {
+                          this.sex = v;
+                        }}
+                      >
+                        {Resource.Dict.value.ResourceNormalSex.value.map((t) => (
+                          <Option key={t.value} value={t.value}>
+                            {t.label}
+                          </Option>
+                        ))}
+                      </Select>
+                    </SearchFormValue>
+
+                    <SearchFormLabel style="width: 120px;">出生年月：</SearchFormLabel>
+                    <SearchFormValue>
+                      <RangePicker
+                        style="width: 90%"
+                        value={[this.startTime, this.endTime]}
+                        getPopupContainer={Resource.Dict.value.FormPopupContainer.value}
+                        onChange={(moments) => {
+                          this.startTime = moments.length ? moments[0] : null;
+
+                          this.endTime = moments.length ? moments[1] : null;
+                        }}
+                        getCalendarContainer={(el) => el.parentElement}
+                      />
+                    </SearchFormValue>
+                  </SearchFormRow>
+
+                  <SearchFormRow>
+                    <SearchFormLabel style="width: 120px;">籍贯：</SearchFormLabel>
+                    <SearchFormValue>
+                      <Input
+                        style="width: 90%"
+                        placeholder="籍贯"
+                        value={this.homeTown}
+                        onChange={(e) => {
+                          this.homeTown = e.target.value.trim();
+                        }}
+                      />
+                    </SearchFormValue>
+
+                    <SearchFormLabel style="width: 120px;">身高：</SearchFormLabel>
+                    <SearchFormValue>
+                      <InputNumber
+                        style="width: 90%"
+                        placeholder="身高"
+                        value={this.height}
+                        onChange={(v) => {
+                          this.height = v;
+                        }}
+                      />
+                    </SearchFormValue>
+
+                    <SearchFormLabel style="width: 120px;">体重：</SearchFormLabel>
+                    <SearchFormValue>
+                      <InputNumber
+                        style="width: 90%"
+                        placeholder="体重"
+                        value={this.width}
+                        onChange={(v) => {
+                          this.width = v;
+                        }}
+                      />
+                    </SearchFormValue>
+                  </SearchFormRow>
+
+                  <SearchFormRow>
+                    <SearchFormLabel style="width: 120px;">所在部门：</SearchFormLabel>
+                    <SearchFormValue>
+                      <Select
+                        style="width: 90%"
+                        value={this.deptCode}
+                        onChange={(v) => {
+                          this.deptCode = v;
+                        }}
+                        getPopupContainer={Resource.Dict.value.FormPopupContainer.value}
+                      >
+                        <Option value="">全部</Option>
+
+                        <Option value="0">产品部</Option>
+
+                        <Option value="1">开发部</Option>
+
+                        <Option value="2">工程部</Option>
+                      </Select>
+                    </SearchFormValue>
+                  </SearchFormRow>
+                </SearchForm>
+              );
+            },
+            renderSearchFooterItems() {
+              return null;
+            },
+            showLoading() {
+              return this.loading;
+            },
+            getOrderFieldValue() {
+              return 'height';
+            },
+            fetchDataExecute(searchParams) {
+              this.loading = true;
+
+              return request
+                .get({
+                  mock: true,
+                  path: require('./mock.js').default,
+                })
+                .then((result) => {
+                  this.dataSource = {
+                    total: result.total,
+                    list: result.list,
+                  };
+
+                  this.loading = false;
+                });
+            },
+          },
+        };
+              `,
+        },
+        {
+          id: 'p7',
+          name: '标准的RowSelected',
+          cardProps: {
+            description: {
+              title: '标准的RowSelected',
+              info: '标准的RowSelected',
+            },
+          },
+          type: 'PlayGround',
+          codeText: `
+        import Table from './table';
+        import { SearchTable } from '@baifendian/adherev';
+
+        export default {
+          mixins: [Table],
+          methods: {
+            getRowSelectionMode() {
+              return SearchTable.ROW_SELECTION_NORMAL_MODE;
+            },
+          },
+        };
+            `,
+          childrenSlot: 'p7',
+        },
+        {
+          id: 'p8',
+          name: '可以跨页选择的RowSelected',
+          cardProps: {
+            description: {
+              title: '可以跨页选择的RowSelected',
+              info: '可以跨页选择的RowSelected',
+            },
+          },
+          type: 'PlayGround',
+          codeText: `
+        import Table from './table';
+        import { SearchTable } from '@baifendian/adherev';
+
+        export default {
+          mixins: [Table],
+          methods: {
+            getRowSelectionMode() {
+              return SearchTable.ROW_SELECTION_CONTINUOUS_MODE;
+            },
+          },
+        };
+            `,
+          childrenSlot: 'p8',
+        },
         {
           id: 'p9',
           name: '可以拖动的列',
@@ -727,7 +727,87 @@ export default {
             },
           },
           type: 'PlayGround',
-          codeText: ``,
+          codeText: `
+  import Table from './table';
+
+  <div style="display: flex; height: 700px">
+    <ColumnResizableTable
+      :wrapStyle="'height: 100%'"
+      :isShowExpandSearch="true"
+      :defaultExpandSearchCollapse="false"
+    />
+  </div>
+
+  export default {
+    mixins: [Table],
+    methods: {
+      getColumns() {
+        return [
+          {
+            title: '姓名',
+            dataIndex: 'name',
+            key: 'name',
+            align: 'center',
+            width: 200,
+          },
+          {
+            title: '性别',
+            dataIndex: 'sex',
+            key: 'sex',
+            align: 'center',
+            width: 200,
+            scopedSlots: { customRender: 'sex' },
+          },
+          {
+            title: '籍贯',
+            dataIndex: 'homeTown',
+            key: 'homeTown',
+            align: 'center',
+            width: 200,
+          },
+          {
+            title: '出生年月',
+            dataIndex: 'birthday',
+            key: 'birthday',
+            align: 'center',
+            sorter: true,
+            width: 200,
+            sortOrder: this.sortOrder('birthday'),
+            scopedSlots: { customRender: 'birthday' },
+          },
+          {
+            title: '所在部门',
+            dataIndex: 'deptName',
+            key: 'deptName',
+            align: 'center',
+            width: 200,
+          },
+          {
+            title: '身高',
+            dataIndex: 'height',
+            key: 'height',
+            align: 'center',
+            sorter: true,
+            sortOrder: this.sortOrder('height'),
+            width: 300,
+          },
+          {
+            title: '体重',
+            dataIndex: 'width',
+            key: 'width',
+            align: 'center',
+            sorter: true,
+            sortOrder: this.sortOrder('width'),
+            width: 300,
+          },
+        ].map((column) => ({
+          ...column,
+          resizable: true,
+        }));
+      },
+    },
+  };
+          `,
           childrenSlot: 'p9',
         },
         {
@@ -740,7 +820,31 @@ export default {
             },
           },
           type: 'PlayGround',
-          codeText: ``,
+          codeText: `
+  import Table from './table';
+
+  <div style="display: flex; height: 700px">
+    <ColumnSettingTable
+      :wrapStyle="'height: 100%'"
+      :isShowExpandSearch="true"
+      :defaultExpandSearchCollapse="false"
+    >
+      <template v-slot:tableHeader>
+        <div :class="$style.Header">
+          <h3>查询表格</h3>
+          <div>
+            <adv-searchtable-column-setting />
+          </div>
+        </div>
+      </template>
+    </ColumnSettingTable>
+  </div>
+
+  export default {
+    mixins: [Table],
+  };
+
+          `,
           childrenSlot: 'p10',
         },
         {
@@ -753,7 +857,30 @@ export default {
             },
           },
           type: 'PlayGround',
-          codeText: ``,
+          codeText: `
+  import Table from './table';
+
+  <div style="display: flex; height: 700px">
+    <TableDensitySetting
+      :wrapStyle="'height: 100%'"
+      :isShowExpandSearch="true"
+      :defaultExpandSearchCollapse="false"
+    >
+      <template v-slot:tableHeader>
+        <div :class="$style.Header">
+          <h3>查询表格</h3>
+          <div>
+            <adv-searchtable-tabledensity />
+          </div>
+        </div>
+      </template>
+    </TableDensitySetting>
+  </div>
+
+  export default {
+    mixins: [Table],
+  };
+          `,
           childrenSlot: 'p11',
         },
       ],
