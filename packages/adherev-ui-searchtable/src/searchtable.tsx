@@ -192,15 +192,11 @@ export default Vue.extend({
     getSortColumnSetting() {
       const columns = [...this.columnSetting];
 
-      console.log('getSortColumnSetting before', this.columnSetting);
-
       columns.sort((c1, c2) => {
         if (c1.sort > c2.sort) return 1;
         if (c1.sort < c2.sort) return -1;
         return 0;
       });
-
-      console.log('getSortColumnSetting after', columns);
 
       return columns;
     },

@@ -42,7 +42,6 @@ export default {
               }));
             }}
             onSortEnd={(map) => {
-              console.log('onSortEnd');
               const { columnSetting } = this.getContext?.();
 
               this.getContext().columnSetting = columnSetting.map((column) => ({
