@@ -1,6 +1,6 @@
 {
   "name": "@baifendian/adherev-ui-prompt-successprompt",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "description": "成功的提示(就是为了全局统一)",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -39,7 +39,7 @@
   },
   "dependencies": {
     "@baifendian/adherev-util": "^1.0.9",
-    "@baifendian/adherev-util-intl": "^1.0.9",
+    "@baifendian/adherev-util-intl": "^1.0.10",
     "ant-design-vue": "^1.7.5",
     "vue": "^2.6.14"
   }

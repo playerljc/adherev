@@ -1,6 +1,6 @@
 {
   "name": "@baifendian/adherev-ui-bmap",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "description": "百度地图3.0的封装",
   "main": "lib/index.js",
   "module": "es/index.js",
