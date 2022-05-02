@@ -71,7 +71,7 @@ module.exports = {
       /ol.css/,
       /swiper.css/,
       /nprogress.css/,
-      /VueDraggableResizable.css/,
+      // /VueDraggableResizable.css/,
     );
 
     // 加入markdown的解析
