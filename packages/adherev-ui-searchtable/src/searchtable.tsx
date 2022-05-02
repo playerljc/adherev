@@ -108,6 +108,9 @@ export default Vue.extend({
       limit: 10,
       expand: this.defaultExpandSearchCollapse,
       scrollY: 0,
+      // 列设置
+      // @ts-ignore
+      columnSetting: [],
       // 列拖动对象
       $columnResizable: new ColumnResizable(),
       // 列属性监控对象
@@ -123,6 +126,11 @@ export default Vue.extend({
         },
       };
     },
+  },
+  provide() {
+    return {
+      getContext: this.getContext,
+    };
   },
   // @ts-ignore
   updatedEx(prevState) {
@@ -170,7 +178,32 @@ export default Vue.extend({
       this.getScrollBodyEl()?.removeEventListener('scroll', this.onScrollBodyScroll);
     }
   },
+  created() {
+    this.columnSetting = this.getTableColumns().map((column, index) => ({
+      ...column,
+      sort: index,
+      display: true,
+    }));
+  },
   methods: {
+    getContext() {
+      return this;
+    },
+    getSortColumnSetting() {
+      const columns = [...this.columnSetting];
+
+      console.log('getSortColumnSetting before', this.columnSetting);
+
+      columns.sort((c1, c2) => {
+        if (c1.sort > c2.sort) return 1;
+        if (c1.sort < c2.sort) return -1;
+        return 0;
+      });
+
+      console.log('getSortColumnSetting after', columns);
+
+      return columns;
+    },
     onScrollBodyScroll() {
       const scrollBodyEl = this.getScrollBodyEl();
       const scrollHeaderEl = this.getScrollHeaderEl();
@@ -380,13 +413,28 @@ export default Vue.extend({
         }
       }
 
+      const { columnSetting } = this;
+
+      const columns = this.getTableColumns(h)
+        .map((column, index) => ({
+          ...columnSetting[index],
+          ...column,
+        }))
+        .filter((column) => column.display);
+
+      columns.sort((c1, c2) => {
+        if (c1.sort > c2.sort) return 1;
+        if (c1.sort < c2.sort) return -1;
+        return 0;
+      });
+
       // Table的antdProps配置
       const tableProps = {
         scopedSlots,
         props: {
           rowKey: this.getRowKey(),
           dataSource: this.getData(),
-          columns: this.getTableColumns(h),
+          columns,
           pagination: this.getPagination(),
           rowSelection: this.getRowSelection(),
           components: this.components,
@@ -513,7 +561,7 @@ export default Vue.extend({
 
       this.fetchData();
 
-      this.onSubTableChange(pagination, filters, sorter);
+      this.onSubTableChange?.(pagination, filters, sorter);
     },
     /**
      * onClear - 清除操作

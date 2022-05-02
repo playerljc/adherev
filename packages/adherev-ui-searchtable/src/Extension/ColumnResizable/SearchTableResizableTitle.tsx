@@ -1,4 +1,15 @@
+import classNames from 'classnames';
+
 import { selectorPrefix } from '../../searchtable';
+import { columnHeaderAlign } from '../../types';
+
+const columnAlignMap = new Map<string | null, string>([
+  [columnHeaderAlign.center, columnHeaderAlign.center],
+  [columnHeaderAlign.left, columnHeaderAlign.left],
+  [columnHeaderAlign.right, columnHeaderAlign.right],
+  ['', ''],
+  [null, ''],
+]);
 
 export default (columns) => (h, props, children) => {
   const { key, ...restProps } = props;
@@ -10,7 +21,10 @@ export default (columns) => (h, props, children) => {
 
   if (!col || !col.width || !col.resizable) {
     return (
-      <th {...restProps} class={`${selectorPrefix}-resize-table-th`}>
+      <th
+        {...restProps}
+        class={classNames(`${selectorPrefix}-resize-table-th`, columnAlignMap.get(col?.align))}
+      >
         {children}
       </th>
     );
@@ -33,6 +47,15 @@ export default (columns) => (h, props, children) => {
       },
     },
   };
+
   const drag = h('vue-draggable-resizable', { ...dragProps });
-  return h('th', { ...restProps, class: `${selectorPrefix}-resize-table-th` }, [...children, drag]);
+
+  return h(
+    'th',
+    {
+      ...restProps,
+      class: classNames(`${selectorPrefix}-resize-table-th`, columnAlignMap.get(col?.align)),
+    },
+    [...children, drag],
+  );
 };

@@ -1,4 +1,4 @@
-import { Table, Button } from 'ant-design-vue';
+import { Table, Button, Popover, Checkbox } from 'ant-design-vue';
 import VueDraggableResizable from 'vue-draggable-resizable';
 
 import SearchForm from './searchform';
@@ -8,6 +8,8 @@ import SearchFormRow from './searchformrow';
 import SearchFormLabel from './searchformlabel';
 
 import SearchFormValue from './searchformvalue';
+
+import ColumnSetting from './Extension/ColumnSetting';
 
 import SearchTable, {
   NUMBER_GENERATOR_RULE_ALONE,
@@ -40,9 +42,16 @@ SearchTable.use = (Vue) => {
   // @ts-ignore
   Vue.use(SearchTable.SearchFormValue);
 
+  // @ts-ignore
+  Vue.use(SearchTable.ColumnSetting);
+
   Vue.use(Table);
 
   Vue.use(Button);
+
+  Vue.use(Popover);
+
+  Vue.use(Checkbox);
 
   Vue.component('vue-draggable-resizable', VueDraggableResizable);
 
@@ -57,6 +66,8 @@ SearchTable.SearchFormRow = withInstall(SearchFormRow);
 SearchTable.SearchFormLabel = withInstall(SearchFormLabel);
 // @ts-ignore
 SearchTable.SearchFormValue = withInstall(SearchFormValue);
+// @ts-ignore
+SearchTable.ColumnSetting = withInstall(ColumnSetting);
 // @ts-ignore
 SearchTable.SearchTableImplement = SearchTableImplement;
 

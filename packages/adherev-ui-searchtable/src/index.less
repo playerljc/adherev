@@ -1,12 +1,15 @@
 @import '~ant-design-vue/es/table/style/index.less';
 @import '~ant-design-vue/es/pagination/style/index.less';
 @import '~ant-design-vue/es/button/style/index.less';
+@import '~ant-design-vue/es/popover/style/index.less';
+@import '~ant-design-vue/es/checkbox/style/index.less';
 @import '~@baifendian/adherev-ui-suspense/lib/index.less';
 @import '~@baifendian/adherev-ui-flexlayout/lib/index.less';
 @import '~@baifendian/adherev-ui-css/lib/iconfont/iconfont.less';
 @import '~@baifendian/adhere-ui-css/lib/vars';
 
 @import '~vue-draggable-resizable/dist/VueDraggableResizable.css';
+@import "./Extension/ColumnSetting/setting.less";
 
 .adherev-ui-searchtable-wrap {
   display: flex;
@@ -199,6 +202,24 @@
 .adherev-ui-searchtable-resize-table-th {
   position: relative;
   padding: 0 !important;
+
+  &.center {
+    > .ant-table-header-column {
+      justify-content: center;
+    }
+  }
+
+  &.left {
+    > .ant-table-header-column {
+      justify-content: flex-start;
+    }
+  }
+
+  &.right {
+    > .ant-table-header-column {
+      justify-content: flex-end;
+    }
+  }
 
   > .ant-table-header-column {
     position: relative;

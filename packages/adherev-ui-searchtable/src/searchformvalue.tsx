@@ -1,9 +1,9 @@
-import Vue, { CreateElement } from 'vue';
+import { CreateElement } from 'vue';
 import classNames from 'classnames';
 
 const selectorPrefix = 'adherev-ui-searchform-value';
 
-export default Vue.extend({
+export default {
   name: 'adv-searchtable-searchform-value',
   props: {
     className: {
@@ -15,7 +15,9 @@ export default Vue.extend({
     const { $slots, className } = this;
 
     return (
-      <td class={classNames(selectorPrefix, ...(className || '').split(/\s+/))}>{$slots.default}</td>
+      <td class={classNames(selectorPrefix, ...(className || '').split(/\s+/))}>
+        {$slots.default}
+      </td>
     );
   },
-});
+};

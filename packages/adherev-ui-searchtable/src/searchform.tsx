@@ -1,9 +1,9 @@
-import Vue, { CreateElement } from 'vue';
+import { CreateElement } from 'vue';
 import classNames from 'classnames';
 
 const selectorPrefix = 'adherev-ui-searchform';
 
-export default Vue.extend({
+export default {
   name: 'adv-searchtable-searchform',
   props: {
     className: {
@@ -20,4 +20,4 @@ export default Vue.extend({
       </table>
     );
   },
-});
+};

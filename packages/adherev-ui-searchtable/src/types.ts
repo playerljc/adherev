@@ -1,4 +1,5 @@
 import { VNode, CreateElement } from 'vue';
+import type { Column } from 'ant-design-vue/types/table/column';
 import {
   ColumnType,
   FilterValue,
@@ -106,4 +107,21 @@ export interface IOverview {
    * 获取列的ScopeSlots
    */
   getScopedSlots(): Object;
+}
+
+/**
+ * IColumnSetting
+ */
+export interface IColumnSetting extends Column {
+  display: boolean;
+  sort: number;
+}
+
+/**
+ * columnHeaderAlign
+ */
+export enum columnHeaderAlign {
+  center = 'center',
+  left = 'left',
+  right = 'right',
 }

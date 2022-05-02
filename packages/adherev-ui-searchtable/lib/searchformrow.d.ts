@@ -1,5 +1,12 @@
-import Vue from 'vue';
-declare const _default: import("vue/types/vue").ExtendedVue<Vue, unknown, unknown, unknown, {
-    className: string;
-}>;
+import { CreateElement } from 'vue';
+declare const _default: {
+    name: string;
+    props: {
+        className: {
+            type: StringConstructor;
+            default: string;
+        };
+    };
+    render(h: CreateElement): any;
+};
 export default _default;
