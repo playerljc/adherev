@@ -2,10 +2,12 @@ import moment from 'moment';
 import { Input, Select, InputNumber, DatePicker } from 'ant-design-vue';
 import { SearchTable, Resource, Ajax } from '@baifendian/adherev';
 
+// @ts-ignore
 const request = new Ajax('');
 
 const { Option } = Select;
 const { RangePicker } = DatePicker;
+// @ts-ignore
 const { SearchTableImplement, SearchForm, SearchFormRow, SearchFormLabel, SearchFormValue } =
   SearchTable;
 
@@ -143,6 +145,7 @@ export default {
           <SearchFormRow>
             <SearchFormLabel style="width: 120px;">姓名：</SearchFormLabel>
             <SearchFormValue>
+              {/*@ts-ignore*/}
               <Input
                 style="width: 90%"
                 placeholder="姓名"
@@ -155,6 +158,7 @@ export default {
 
             <SearchFormLabel style="width: 120px;">性别：</SearchFormLabel>
             <SearchFormValue>
+              {/*@ts-ignore*/}
               <Select
                 style="width: 90%"
                 value={this.sex}
@@ -164,6 +168,7 @@ export default {
                 }}
               >
                 {Resource.Dict.value.ResourceNormalSex.value.map((t) => (
+                  // @ts-ignore*
                   <Option key={t.value} value={t.value}>
                     {t.label}
                   </Option>
@@ -173,6 +178,7 @@ export default {
 
             <SearchFormLabel style="width: 120px;">出生年月：</SearchFormLabel>
             <SearchFormValue>
+              {/*@ts-ignore*/}
               <RangePicker
                 style="width: 90%"
                 value={[this.startTime, this.endTime]}
@@ -190,6 +196,7 @@ export default {
           <SearchFormRow>
             <SearchFormLabel style="width: 120px;">籍贯：</SearchFormLabel>
             <SearchFormValue>
+              {/*@ts-ignore*/}
               <Input
                 style="width: 90%"
                 placeholder="籍贯"
@@ -202,6 +209,7 @@ export default {
 
             <SearchFormLabel style="width: 120px;">身高：</SearchFormLabel>
             <SearchFormValue>
+              {/*@ts-ignore*/}
               <InputNumber
                 style="width: 90%"
                 placeholder="身高"
@@ -214,6 +222,7 @@ export default {
 
             <SearchFormLabel style="width: 120px;">体重：</SearchFormLabel>
             <SearchFormValue>
+              {/*@ts-ignore*/}
               <InputNumber
                 style="width: 90%"
                 placeholder="体重"
@@ -228,6 +237,7 @@ export default {
           <SearchFormRow>
             <SearchFormLabel style="width: 120px;">所在部门：</SearchFormLabel>
             <SearchFormValue>
+              {/*@ts-ignore*/}
               <Select
                 style="width: 90%"
                 value={this.deptCode}
@@ -236,12 +246,16 @@ export default {
                 }}
                 getPopupContainer={Resource.Dict.value.FormPopupContainer.value}
               >
+                {/*@ts-ignore*/}
                 <Option value="">全部</Option>
 
+                {/*@ts-ignore*/}
                 <Option value="0">产品部</Option>
 
+                {/*@ts-ignore*/}
                 <Option value="1">开发部</Option>
 
+                {/*@ts-ignore*/}
                 <Option value="2">工程部</Option>
               </Select>
             </SearchFormValue>
@@ -261,19 +275,22 @@ export default {
     fetchDataExecute(searchParams) {
       this.loading = true;
 
-      return request
-        .get({
-          mock: true,
-          path: require('./mock.js').default,
-        })
-        .then((result) => {
-          this.dataSource = {
-            total: result.total,
-            list: result.list,
-          };
+      return (
+        request
+          // @ts-ignore
+          .get({
+            mock: true,
+            path: require('./mock.js').default,
+          })
+          .then((result: any) => {
+            this.dataSource = {
+              total: result.total,
+              list: result.list,
+            };
 
-          this.loading = false;
-        });
+            this.loading = false;
+          })
+      );
     },
     getPagination() {
       const { pagination } = this;

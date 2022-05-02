@@ -2,6 +2,7 @@ import Table from './table';
 import { oneFew } from './mock';
 import { Ajax } from '@baifendian/adherev';
 
+// @ts-ignore
 const request = new Ajax('');
 
 export default {
@@ -13,9 +14,10 @@ export default {
       return request
         .get({
           mock: true,
+          // @ts-ignore
           path: oneFew,
         })
-        .then((result) => {
+        .then((result: any) => {
           this.dataSource = {
             total: result.total,
             list: result.list,

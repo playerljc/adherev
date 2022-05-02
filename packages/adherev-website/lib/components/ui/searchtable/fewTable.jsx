@@ -1,6 +1,7 @@
 import Table from './table';
 import { oneFew } from './mock';
 import { Ajax } from '@baifendian/adherev';
+// @ts-ignore
 const request = new Ajax('');
 export default {
     mixins: [Table],
@@ -10,6 +11,7 @@ export default {
             return request
                 .get({
                 mock: true,
+                // @ts-ignore
                 path: oneFew,
             })
                 .then((result) => {
