@@ -853,7 +853,7 @@ export default {
           cardProps: {
             description: {
               title: '表格密度设置',
-              info: '列设表格密度设置置',
+              info: '表格密度设置',
             },
           },
           type: 'PlayGround',
