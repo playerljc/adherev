@@ -1,3 +1,21 @@
+# 1.0.10
+
+***
+
+2022-5-2
+
+* **adherev-ui-confirm-delconfirm**
+  - 加入title，text和icon参数
+* **adherev-ui-confirm-importantconfirm**
+  - 加入title，text和icon参数
+* **adherev-ui-searchtable**
+  - 加入列拖动功能
+  - 加入列设置功能
+  - 加入表格密度设置功能
+  - 序号列命名修改
+* **adherev-util-intl**
+  - 加入新词条
+
 # 1.0.9
 
 ***
