@@ -164,6 +164,25 @@
           </ColumnSettingTable>
         </div>
       </template>
+
+      <template #p11>
+        <div style="display: flex; height: 700px">
+          <TableDensitySetting
+            :wrapStyle="'height: 100%'"
+            :isShowExpandSearch="true"
+            :defaultExpandSearchCollapse="false"
+          >
+            <template v-slot:tableHeader>
+              <div :class="$style.Header">
+                <h3>查询表格</h3>
+                <div>
+                  <adv-searchtable-tabledensity />
+                </div>
+              </div>
+            </template>
+          </TableDensitySetting>
+        </div>
+      </template>
     </adv-playground-page-code-box-section>
 
     <adv-playground-page-function-props-section title="API" :config="apiConfig" />
@@ -179,6 +198,7 @@ import RowSelectedContinuous from './rowSelectedContinuous';
 import RowSelectedNormal from './rowSelectedNormal';
 import ColumnResizableTable from './columnResizeTable';
 import ColumnSettingTable from './columnSettingTable';
+import TableDensitySetting from './tableDensitySetting';
 
 export default {
   components: {
@@ -188,6 +208,7 @@ export default {
     RowSelectedContinuous,
     ColumnResizableTable,
     ColumnSettingTable,
+    TableDensitySetting,
   },
   data() {
     return {
@@ -721,6 +742,19 @@ export default {
           type: 'PlayGround',
           codeText: ``,
           childrenSlot: 'p10',
+        },
+        {
+          id: 'p11',
+          name: '表格密度设置',
+          cardProps: {
+            description: {
+              title: '表格密度设置',
+              info: '列设表格密度设置置',
+            },
+          },
+          type: 'PlayGround',
+          codeText: ``,
+          childrenSlot: 'p11',
         },
       ],
       apiConfig: [

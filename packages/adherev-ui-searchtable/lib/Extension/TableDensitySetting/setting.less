@@ -1,38 +1,33 @@
 @import '~ant-design-vue/es/popover/style/index.less';
 @import '~@baifendian/adherev-ui-css/es/vars.less';
 
-.adherev-ui-searchtable-column-setting {
+.adherev-ui-searchtable-table-density-setting {
   background-color: #fff;
 
-  > .adherev-ui-searchtable-column-setting-header {
+  > .adherev-ui-searchtable-table-density-setting-header {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
     padding: 10px 20px;
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
   }
 
-  > .adherev-ui-searchtable-column-setting-body {
+  > .adherev-ui-searchtable-table-density-setting-body {
     > ul {
       margin: 0;
       padding: 0;
       list-style: none;
 
       > li {
-        display: flex;
-        align-items: center;
-        padding: 5px 10px 5px 0;
+        padding: 5px 10px;
+        text-align: center;
 
-        &:hover {
+        &.active {
           background-color: rgba(@adhere-primary-color, 0.3);
         }
 
-        > img {
-          width: 20px;
-          margin-right: 10px;
-
-          &:hover {
-            cursor: row-resize;
-          }
+        &:hover {
+          background-color: rgba(#ccc, 0.3);
+          cursor: pointer;
         }
       }
     }

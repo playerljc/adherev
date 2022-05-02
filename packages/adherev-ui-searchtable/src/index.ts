@@ -11,6 +11,8 @@ import SearchFormValue from './searchformvalue';
 
 import ColumnSetting from './Extension/ColumnSetting';
 
+import TableDensitySetting from './Extension/TableDensitySetting';
+
 import SearchTable, {
   NUMBER_GENERATOR_RULE_ALONE,
   NUMBER_GENERATOR_RULE_CONTINUITY,
@@ -45,6 +47,9 @@ SearchTable.use = (Vue) => {
   // @ts-ignore
   Vue.use(SearchTable.ColumnSetting);
 
+  // @ts-ignore
+  Vue.use(SearchTable.TableDensitySetting);
+
   Vue.use(Table);
 
   Vue.use(Button);
@@ -68,6 +73,8 @@ SearchTable.SearchFormLabel = withInstall(SearchFormLabel);
 SearchTable.SearchFormValue = withInstall(SearchFormValue);
 // @ts-ignore
 SearchTable.ColumnSetting = withInstall(ColumnSetting);
+// @ts-ignore
+SearchTable.TableDensitySetting = withInstall(TableDensitySetting);
 // @ts-ignore
 SearchTable.SearchTableImplement = SearchTableImplement;
 

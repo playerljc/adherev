@@ -14,6 +14,8 @@ import ColumnResizable, {
   SearchTableResizableObserver,
 } from './Extension/ColumnResizable';
 
+import { TableDensity } from './types';
+
 export const selectorPrefix = 'adherev-ui-searchtable';
 
 const { updatedEx } = Mixins;
@@ -111,6 +113,9 @@ export default Vue.extend({
       // 列设置
       // @ts-ignore
       columnSetting: [],
+      // 表格密度
+      // 表格密度设置
+      tableDensity: TableDensity.DEFAULT,
       // 列拖动对象
       $columnResizable: new ColumnResizable(),
       // 列属性监控对象
@@ -184,10 +189,15 @@ export default Vue.extend({
       sort: index,
       display: true,
     }));
+
+    this.tableDensity = this.getTableDensity();
   },
   methods: {
     getContext() {
       return this;
+    },
+    getTableDensity() {
+      return TableDensity.DEFAULT;
     },
     getSortColumnSetting() {
       const columns = [...this.columnSetting];
@@ -431,6 +441,7 @@ export default Vue.extend({
           rowKey: this.getRowKey(),
           dataSource: this.getData(),
           columns,
+          size: this.tableDensity,
           pagination: this.getPagination(),
           rowSelection: this.getRowSelection(),
           components: this.components,

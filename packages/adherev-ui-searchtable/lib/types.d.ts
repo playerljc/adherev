@@ -95,3 +95,11 @@ export declare enum columnHeaderAlign {
     left = "left",
     right = "right"
 }
+/**
+ * TableDensity
+ */
+export declare enum TableDensity {
+    DEFAULT = "default",
+    MIDDLE = "middle",
+    SMALL = "small"
+}
