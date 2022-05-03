@@ -142,6 +142,7 @@
             :wrapStyle="'height: 100%'"
             :isShowExpandSearch="true"
             :defaultExpandSearchCollapse="false"
+            :fixedHeaderAutoTable="true"
           />
         </div>
       </template>
@@ -735,6 +736,7 @@ export default {
       :wrapStyle="'height: 100%'"
       :isShowExpandSearch="true"
       :defaultExpandSearchCollapse="false"
+      :fixedHeaderAutoTable="true"
     />
   </div>
 
