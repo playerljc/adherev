@@ -9,7 +9,14 @@ import { ReactChild, ReactFragment, ReactPortal } from 'react';
 import { defineComponent } from 'vue';
 import { ISearchTableData, ISearchTableSelf } from './types';
 
-const selectorPrefix = 'adherev-ui-searchtable';
+import ColumnResizable, {
+  SearchTableResizableTitle,
+  SearchTableResizableObserver,
+} from './Extension/ColumnResizable';
+
+import { TableDensity } from './types';
+
+export const selectorPrefix = 'adherev-ui-searchtable';
 
 const { updatedEx } = Mixins;
 
@@ -103,12 +110,42 @@ export default defineComponent({
       limit: 10,
       expand: this.defaultExpandSearchCollapse,
       scrollY: 0,
+      // 列设置
+      // @ts-ignore
+      columnSetting: [],
+      // 表格密度
+      // 表格密度设置
+      tableDensity: TableDensity.DEFAULT,
+      // 列拖动对象
+      $columnResizable: new ColumnResizable(),
+      // 列属性监控对象
+      $columnObserver: null,
+    };
+  },
+  computed: {
+    // 自定义表格部分
+    components() {
+      return {
+        header: {
+          cell: SearchTableResizableTitle(this.getSearchTableTableColumns()),
+        },
+      };
+    },
+  },
+  provide() {
+    return {
+      getContext: this.getContext,
     };
   },
   updatedEx(prevState: { scrollY: number; expand: boolean }) {
     const { $refs, scrollY, expand, fixedHeaderAutoTable } = this as unknown as ISearchTableSelf;
 
     if (!$refs.tableWrapRef) return;
+
+    // 监控header的属性变化(colgroup)
+    if (!this.$data.$columnObserver) {
+      this.$data.$columnObserver = SearchTableResizableObserver(this);
+    }
 
     if (fixedHeaderAutoTable) {
       // @ts-ignore
@@ -148,7 +185,33 @@ export default defineComponent({
       this.getScrollBodyEl()?.removeEventListener('scroll', this.onScrollBodyScroll);
     }
   },
+  created() {
+    this.columnSetting = this.getTableColumns().map((column, index) => ({
+      ...column,
+      sort: index,
+      display: true,
+    }));
+
+    this.tableDensity = this.getTableDensity();
+  },
   methods: {
+    getContext() {
+      return this;
+    },
+    getTableDensity() {
+      return TableDensity.DEFAULT;
+    },
+    getSortColumnSetting() {
+      const columns = [...this.columnSetting];
+
+      columns.sort((c1, c2) => {
+        if (c1.sort > c2.sort) return 1;
+        if (c1.sort < c2.sort) return -1;
+        return 0;
+      });
+
+      return columns;
+    },
     onScrollBodyScroll() {
       const scrollBodyEl = this.getScrollBodyEl();
       const scrollHeaderEl = this.getScrollHeaderEl();
@@ -422,17 +485,37 @@ export default defineComponent({
       //   },
       // };
 
+      const { columnSetting } = this;
+
+      const columns = this.getTableColumns()
+        .map((column, index) => ({
+          ...columnSetting[index],
+          ...column,
+        }))
+        .filter((column) => column.display);
+
+      columns.sort((c1, c2) => {
+        if (c1.sort > c2.sort) return 1;
+        if (c1.sort < c2.sort) return -1;
+        return 0;
+      });
+
       const tableProps = {
         // @ts-ignore
         rowKey: getRowKey(),
         // @ts-ignore
         dataSource: getData(),
-        columns: this.getTableColumns(),
+        columns,
+        size: this.tableDensity,
         pagination: this.getPagination(),
         // @ts-ignore
         rowSelection: getRowSelection(),
+        components: this.components,
         ...(tablePropsAttr || {}),
         onChange: this.onTableChange,
+        // onResizeColumn: (w, col) => {
+        //   col.width = w;
+        // },
         ...(tableOnAttr || {}),
       };
 
@@ -483,7 +566,7 @@ export default defineComponent({
     getScopedSlotsInner(row) {
       const { record, index, column } = row;
 
-      if (column.key === 'number') {
+      if (column.key === '_number') {
         const { getNumberGeneratorRule } = this;
 
         // @ts-ignore
@@ -518,7 +601,7 @@ export default defineComponent({
       return this.getScopedSlots(row);
     },
     getSearchTableTableColumns(): Array<any> {
-      const { /*getNumberGeneratorRule, */ getColumns } = this;
+      // const { /*getNumberGeneratorRule, */ getColumns } = this;
 
       // @ts-ignore
       const isShowNumber = this.isShowNumber();
@@ -526,22 +609,32 @@ export default defineComponent({
       // @ts-ignore
       const getTableNumberColumnWidth = this.getTableNumberColumnWidth();
 
+      const _columns = this.getColumns();
+
       // 对权限进行过滤
       // @ts-ignore
-      const columns = getColumns().filter((column) => {
-        if ('authorized' in column) {
-          return column.authorized();
-        }
+      const columns = _columns
+        .filter((column) => {
+          if ('authorized' in column) {
+            return column.authorized();
+          }
 
-        return true;
-      });
+          return true;
+        })
+        .map((column, index) => {
+          if ('resize' in column && !!column.resize) {
+            return this.$data.$columnResizable.searchTableResizableColumnItem(this, index, column);
+          }
+
+          return column;
+        });
 
       if (isShowNumber) {
         return [
           {
             title: Intl.tv('序号'),
             // dataIndex: 'number',
-            key: 'number',
+            key: '_number',
             align: 'center',
             width: getTableNumberColumnWidth || 80,
           },

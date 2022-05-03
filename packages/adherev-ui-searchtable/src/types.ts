@@ -175,3 +175,29 @@ export interface ISearchFormProps {
 export interface ISearchFormSelf extends ISearchFormProps {
   $slots: any;
 }
+
+/**
+ * IColumnSetting
+ */
+export interface IColumnSetting {
+  display: boolean;
+  sort: number;
+}
+
+/**
+ * columnHeaderAlign
+ */
+export enum columnHeaderAlign {
+  center = 'center',
+  left = 'left',
+  right = 'right',
+}
+
+/**
+ * TableDensity
+ */
+export enum TableDensity {
+  DEFAULT = 'default',
+  MIDDLE = 'middle',
+  SMALL = 'small',
+}

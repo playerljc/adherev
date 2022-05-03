@@ -116,6 +116,27 @@ export default {
                   required: 'true',
                 },
                 {
+                  name: 'title',
+                  desc: '标题',
+                  type: 'string',
+                  defaultVal: '',
+                  required: 'false',
+                },
+                {
+                  name: 'text',
+                  desc: '文本',
+                  type: 'string',
+                  defaultVal: '',
+                  required: 'false',
+                },
+                {
+                  name: 'icon',
+                  desc: '图标',
+                  type: 'string',
+                  defaultVal: '',
+                  required: 'false',
+                },
+                {
                   name: 'zIndex',
                   desc: '显示层级',
                   type: 'number',
@@ -151,6 +172,24 @@ export default {
               desc: '确认后的回调，此方法需要返回Promise对象',
               type: 'Function',
               defaultVal: '() => {}',
+            },
+            {
+              name: 'title',
+              desc: '标题',
+              type: 'string',
+              defaultVal: '',
+            },
+            {
+              name: 'text',
+              desc: '文本',
+              type: 'string',
+              defaultVal: '',
+            },
+            {
+              name: 'icon',
+              desc: '图标',
+              type: 'string',
+              defaultVal: '',
             },
             {
               params: 'children',

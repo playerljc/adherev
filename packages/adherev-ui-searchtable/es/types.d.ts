@@ -144,3 +144,26 @@ export interface ISearchFormProps {
 export interface ISearchFormSelf extends ISearchFormProps {
     $slots: any;
 }
+/**
+ * IColumnSetting
+ */
+export interface IColumnSetting {
+    display: boolean;
+    sort: number;
+}
+/**
+ * columnHeaderAlign
+ */
+export declare enum columnHeaderAlign {
+    center = "center",
+    left = "left",
+    right = "right"
+}
+/**
+ * TableDensity
+ */
+export declare enum TableDensity {
+    DEFAULT = "default",
+    MIDDLE = "middle",
+    SMALL = "small"
+}

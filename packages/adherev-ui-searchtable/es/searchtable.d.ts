@@ -1,4 +1,6 @@
 import { ISearchTableData } from './types';
+import { TableDensity } from './types';
+export declare const selectorPrefix = "adherev-ui-searchtable";
 export declare const NUMBER_GENERATOR_RULE_ALONE: unique symbol;
 export declare const NUMBER_GENERATOR_RULE_CONTINUITY: unique symbol;
 export declare const ROW_SELECTION_NORMAL_MODE: unique symbol;
@@ -64,7 +66,18 @@ declare const _default: import("vue").DefineComponent<{
         type: BooleanConstructor;
         default: boolean;
     };
-}, unknown, ISearchTableData, {}, {
+}, unknown, ISearchTableData, {
+    components(): {
+        header: {
+            cell: (props: any, children: any) => import("vue").VNode<import("vue").RendererNode, import("vue").RendererElement, {
+                [key: string]: any;
+            }>;
+        };
+    };
+}, {
+    getContext(): any;
+    getTableDensity(): TableDensity.DEFAULT;
+    getSortColumnSetting(): any[];
     onScrollBodyScroll(): void;
     getScrollHeaderEl(): HTMLElement | null;
     getScrollBodyEl(): HTMLElement | null;
@@ -225,9 +238,9 @@ declare const _default: import("vue").DefineComponent<{
         default: boolean;
     };
 }>>, {
+    className: string;
     reset: boolean;
     wrapStyle: string;
-    className: string;
     tableClassName: string;
     tableStyle: string;
     searchClassName: string;

@@ -72,6 +72,8 @@ module.exports = {
       /swiper.css/,
       /nprogress.css/,
       /agate.css/,
+      // /Vue3DraggableResizable.css/,
+      /index.css/,
     );
 
     // // 加入markdown的解析

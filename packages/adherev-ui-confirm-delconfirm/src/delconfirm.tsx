@@ -3,15 +3,21 @@ import MessageDialog from '@baifendian/adherev-ui-messagedialog';
 import intl from '@baifendian/adherev-util-intl';
 import Resource from '@baifendian/adherev-util-resource';
 import { defineComponent } from 'vue';
-import { func, number } from 'vue-types';
+import { func, number, string } from 'vue-types';
 
 const selectorPrefix = 'adherev-ui-delconfirm';
 
-export function open(success?: Function, zIndex?: number) {
+/**
+ * open
+ * @param success
+ * @param params
+ */
+export function open({ success, ...params }) {
   MessageDialog.Confirm({
-    title: intl.tv('提示'),
-    text: `${intl.tv('确定删除吗')}?`,
-    zIndex,
+    ...params,
+    title: params.title || intl.tv('提示'),
+    text: params.text || `${intl.tv('确定删除吗')}?`,
+    zIndex: 'zIndex' in params ? params.zIndex : Resource.Dict.value.ResourceNormalMaxZIndex.value,
     onSuccess: () => {
       return new Promise<void>((resolve, reject) => {
         if (success) {
@@ -32,7 +38,9 @@ export function open(success?: Function, zIndex?: number) {
 
 const props = {
   zIndex: number().def(Resource.Dict.value.ResourceNormalMaxZIndex.value),
-  success: func<() => void>(),
+  success: func<() => Promise<void>>(),
+  title: string().def(intl.tv('提示')),
+  text: string().def(intl.tv('确定删除吗')),
 };
 
 export default defineComponent({
@@ -40,7 +48,12 @@ export default defineComponent({
   props,
   setup(props, { slots }) {
     const onClick = () =>
-      open(props.success, props.zIndex || Resource.Dict.value.ResourceNormalMaxZIndex.value);
+      open({
+        success: props.success,
+        title: props.title,
+        text: props.text,
+        zIndex: props.zIndex,
+      });
 
     return () => (
       // @ts-ignore

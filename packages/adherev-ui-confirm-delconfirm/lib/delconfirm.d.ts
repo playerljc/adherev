@@ -1,15 +1,37 @@
-export declare function open(success?: Function, zIndex?: number): void;
+/**
+ * open
+ * @param success
+ * @param params
+ */
+export declare function open({ success, ...params }: {
+    [x: string]: any;
+    success: any;
+}): void;
 declare const _default: import("vue").DefineComponent<{
     zIndex: import("vue-types").VueTypeValidableDef<number> & {
         default: number;
     };
-    success: import("vue-types").VueTypeValidableDef<() => void>;
+    success: import("vue-types").VueTypeValidableDef<() => Promise<void>>;
+    title: import("vue-types").VueTypeValidableDef<string> & {
+        default: string;
+    };
+    text: import("vue-types").VueTypeValidableDef<string> & {
+        default: string;
+    };
 }, () => JSX.Element, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, Record<string, any>, string, import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<import("vue").ExtractPropTypes<{
     zIndex: import("vue-types").VueTypeValidableDef<number> & {
         default: number;
     };
-    success: import("vue-types").VueTypeValidableDef<() => void>;
+    success: import("vue-types").VueTypeValidableDef<() => Promise<void>>;
+    title: import("vue-types").VueTypeValidableDef<string> & {
+        default: string;
+    };
+    text: import("vue-types").VueTypeValidableDef<string> & {
+        default: string;
+    };
 }>>, {
+    title: string;
+    text: string;
     zIndex: number;
 }>;
 export default _default;

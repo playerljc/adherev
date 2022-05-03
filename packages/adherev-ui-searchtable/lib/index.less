@@ -1,9 +1,16 @@
 @import '~ant-design-vue/es/table/style/index.less';
 @import '~ant-design-vue/es/pagination/style/index.less';
 @import '~ant-design-vue/es/button/style/index.less';
+@import '~ant-design-vue/es/popover/style/index.less';
+@import '~ant-design-vue/es/checkbox/style/index.less';
 @import '~@baifendian/adherev-ui-suspense/lib/index.less';
 @import '~@baifendian/adherev-ui-flexlayout/lib/index.less';
 @import '~@baifendian/adherev-ui-css/lib/iconfont/iconfont.less';
+@import '~@baifendian/adherev-ui-css/lib/vars';
+@import '~vue-draggable-resizable/dist/VueDraggableResizable.css';
+
+@import "./Extension/ColumnSetting/setting.less";
+@import "./Extension/TableDensitySetting/setting.less";
 
 .adherev-ui-searchtable-wrap {
   display: flex;
@@ -206,6 +213,66 @@
 
     .adherev-ui-searchtableimplement-tablewrapper {
       height: 100%;
+    }
+  }
+}
+
+.adherev-ui-searchtable-resize-table-th {
+  position: relative;
+  padding: 0 !important;
+
+  &.center {
+    > .ant-table-header-column {
+      justify-content: center;
+    }
+  }
+
+  &.left {
+    > .ant-table-header-column {
+      justify-content: flex-start;
+    }
+  }
+
+  &.right {
+    > .ant-table-header-column {
+      justify-content: flex-end;
+    }
+  }
+
+  > .ant-table-header-column {
+    position: relative;
+    display: flex !important;
+    justify-content: center;
+    padding: 16px 16px !important;
+
+    &::before {
+      position: absolute;
+      top: 50%;
+      right: 0;
+      width: 1px;
+      height: 1.6em;
+      background-color: rgba(0, 0, 0, 0.06);
+      transform: translateY(-50%);
+      transition: background-color 0.3s;
+      content: '';
+      pointer-events: none;
+    }
+  }
+
+  > .adherev-ui-searchtable-table-draggable-handle {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: auto !important;
+    z-index: 100 !important;
+    height: 100% !important;
+    border: none !important;
+    transform: none !important;
+    cursor: col-resize;
+    touch-action: none;
+    &:hover {
+      width: 2px !important;
+      background-color: @adhere-primary-color;
     }
   }
 }
