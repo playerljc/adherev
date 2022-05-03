@@ -1,6 +1,6 @@
 {
   "name": "@baifendian/adherev-ui-playground",
-  "version": "2.0.4-alpha",
+  "version": "2.0.5-alpha",
   "description": "一个代码展示的组件",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -43,7 +43,7 @@
     "@baifendian/adherev-ui-conditionalrender": "^2.0.4-alpha",
     "@baifendian/adherev-ui-contextmenu": "^2.0.4-alpha",
     "@baifendian/adherev-util": "^2.0.4-alpha",
-    "@baifendian/adherev-util-intl": "^2.0.4-alpha",
+    "@baifendian/adherev-util-intl": "^2.0.5-alpha",
     "@highlightjs/vue-plugin": "^2.0.1",
     "classnames": "^2.3.1",
     "copy-to-clipboard": "^3.3.1",
