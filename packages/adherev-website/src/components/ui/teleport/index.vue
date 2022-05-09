@@ -67,7 +67,15 @@ export default {
           },
           type: 'PlayGround',
           codeText: `
+  <template>
+    <fragment>
+      <adv-teleport to="#teleport" :is-wrap="false">
+        <div>挂载到id="teleport"的元素上</div>
+      </adv-teleport>
 
+      <div id="teleport"></div>
+    </fragment>
+  </template>
       `,
           childrenSlot: 'p1',
         },
@@ -82,7 +90,18 @@ export default {
           },
           type: 'PlayGround',
           codeText: `
+  <fragment>
+    <adv-teleport
+      to="#teleportWrapTag"
+      :is-wrap="true"
+      :wrap-tag="'p'"
+      :wrap-class-name="$style.customWrapClass"
+    >
+      <div class="myWrap">自定义的包裹元素</div>
+    </adv-teleport>
 
+    <div id="teleportWrapTag"></div>
+  </fragment>
       `,
           childrenSlot: 'p2',
         },
@@ -97,7 +116,18 @@ export default {
           },
           type: 'PlayGround',
           codeText: `
+  <fragment>
+    <adv-teleport
+      :to="p3To"
+      :is-wrap="true"
+      :wrap-tag="'p'"
+      :wrap-class-name="$style.customWrapClass"
+    >
+      <div class="myWrap">使用函数返回目标元素</div>
+    </adv-teleport>
 
+    <div id="customTarget"></div>
+  </fragment>
       `,
           childrenSlot: 'p3',
         },
