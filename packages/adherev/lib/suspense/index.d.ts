@@ -1,2 +1,2 @@
 export default Model;
-import Model from "@baifendian/adherev-ui-suspense";
+import Model from "@baifendian/adherev-ui-suspense/es";

@@ -92,6 +92,7 @@
     "@baifendian/adherev-ui-surnames": "^1.0.9",
     "@baifendian/adherev-ui-suspense": "^1.0.9",
     "@baifendian/adherev-ui-swipeout": "^1.0.9",
+    "@baifendian/adherev-ui-teleport": "^1.0.10",
     "@baifendian/adherev-util": "^1.0.9",
     "@baifendian/adherev-util-adapterscreen": "^1.0.9",
     "@baifendian/adherev-util-browsersniff": "^1.0.9",

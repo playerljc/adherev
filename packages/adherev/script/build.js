@@ -55,6 +55,7 @@ const namedMap = new Map([
   ['@baifendian/adherev-ui-polygonselection', 'PolygonSelection'],
   // ['@baifendian/adherev-ui-bmap', 'BMap'],
   ['@baifendian/adherev-ui-playground', 'PlayGround'],
+  ['@baifendian/adherev-ui-teleport', 'Teleport'],
   ['@baifendian/adherev-util', 'Util'],
   ['@baifendian/adherev-util-communication-ajax', 'Ajax'],
   ['@baifendian/adherev-util-dict', 'Dict'],

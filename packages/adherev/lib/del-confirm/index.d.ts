@@ -1,2 +1,2 @@
 export default Model;
-import Model from "@baifendian/adherev-ui-confirm-delconfirm";
+import Model from "@baifendian/adherev-ui-confirm-delconfirm/es";

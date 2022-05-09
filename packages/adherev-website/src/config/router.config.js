@@ -94,7 +94,7 @@ const Notification = () =>
   lazy(import(/* webpackChunkName: "notification" */ '@/components/ui/notification'));
 const FontSizeSetting = () =>
   lazy(import(/* webpackChunkName: "fontsizesetting" */ '@/components/ui/fontsizesetting'));
-const Mixins = () => lazy(import(/* webpackChunkName: "mixins" */ '@/components/util/mixins'));
+
 const JDCategoryTab = () =>
   lazy(import(/* webpackChunkName: "jdcategorytab" */ '@/components/ui/jdcategorytab'));
 const ImageLazy = () =>
@@ -102,6 +102,10 @@ const ImageLazy = () =>
 const BMap = () => lazy(import(/* webpackChunkName: "bmap" */ '@/components/ui/bmap'));
 const PolygonSelection = () =>
   lazy(import(/* webpackChunkName: "polygonselection" */ '@/components/ui/polygonselection'));
+
+const Teleport = () => lazy(import(/* webpackChunkName: "teleport" */ '@/components/ui/teleport'));
+
+const Mixins = () => lazy(import(/* webpackChunkName: "mixins" */ '@/components/util/mixins'));
 const Domain = () => lazy(import(/* webpackChunkName: "domain" */ '@/components/util/domain'));
 const Resource = () =>
   lazy(import(/* webpackChunkName: "resource" */ '@/components/util/resource'));
@@ -111,7 +115,8 @@ const Validator = () =>
   lazy(import(/* webpackChunkName: "validator" */ '@/components/util/validator'));
 const Demo = () => lazy(import(/* webpackChunkName: "demo" */ '@/components/ui/demo'));
 
-const Echarts = () => lazy(import(/* webpackChunkName: "echarts" */ '@/components/gallery/echarts'));
+const Echarts = () =>
+  lazy(import(/* webpackChunkName: "echarts" */ '@/components/gallery/echarts'));
 
 export default () => [
   {
@@ -372,6 +377,11 @@ export default () => [
                 path: '/adherev/component/ui/bmap',
                 name: 'BMap',
                 component: BMap,
+              },
+              {
+                path: '/adherev/component/ui/teleport',
+                name: 'Teleport',
+                component: Teleport,
               },
             ],
           },

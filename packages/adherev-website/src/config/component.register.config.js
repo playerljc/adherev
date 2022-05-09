@@ -1,5 +1,5 @@
 import Vue from 'vue';
-import { Plugin } from 'vue-fragment'
+import { Plugin } from 'vue-fragment';
 import {
   Breadcrumb,
   Button,
@@ -71,6 +71,7 @@ import {
   Notification,
   PolygonSelection,
   Popup,
+  Teleport,
   AdapterScreen,
   Browsersniff,
   Ajax,
@@ -169,6 +170,7 @@ const register = [
     Notification.use(Vue);
     PolygonSelection.use(Vue);
     Popup.use(Vue);
+    Teleport.use(Vue);
     AdapterScreen.use(Vue);
     Browsersniff.use(Vue);
     Ajax.use(Vue);
@@ -192,7 +194,7 @@ const register = [
   },
   () => {
     Vue.use(Plugin);
-  }
+  },
 ];
 
 register.forEach((t) => t());

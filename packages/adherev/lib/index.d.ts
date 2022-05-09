@@ -34,6 +34,7 @@ import StickupLayout from '@baifendian/adherev-ui-stickuplayout';
 import Surnames from '@baifendian/adherev-ui-surnames';
 import Suspense from '@baifendian/adherev-ui-suspense';
 import SwipeOut from '@baifendian/adherev-ui-swipeout';
+import Teleport from '@baifendian/adherev-ui-teleport';
 import Util from '@baifendian/adherev-util';
 import AdapterScreen from '@baifendian/adherev-util-adapterscreen';
 import Browsersniff from '@baifendian/adherev-util-browsersniff';
@@ -48,7 +49,7 @@ import Preferences from '@baifendian/adherev-util-preferences';
 import Resource from '@baifendian/adherev-util-resource';
 import Validator from '@baifendian/adherev-util-validator';
 import WatchMemoized from '@baifendian/adherev-util-watchmemoized';
-export { BackTopAnimation, CascadeCompared, ConditionalRender, DelConfirm, ImportantConfirm, ContextMenu, FlexLayout, FontSizeSetting, GlobalIndicator, HistoryBack, ImageLazy, JdCategoryTab, MessageDialog, Notification, OLMap, Permission, PlayGround, PolygonSelection, Popup, ErrorPrompt, SuccessPrompt, WarnPrompt, PullRefresh, Revolving, ScrollLoad, SearchTable, SlideLayout, SliderScale, Space, Spin, Split, SplitLayout, StickupLayout, Surnames, Suspense, SwipeOut, Util, AdapterScreen, Browsersniff, Ajax, Dict, Domain, Emitter, Intl, Mixins, NotNull, Preferences, Resource, Validator, WatchMemoized, };
+export { BackTopAnimation, CascadeCompared, ConditionalRender, DelConfirm, ImportantConfirm, ContextMenu, FlexLayout, FontSizeSetting, GlobalIndicator, HistoryBack, ImageLazy, JdCategoryTab, MessageDialog, Notification, OLMap, Permission, PlayGround, PolygonSelection, Popup, ErrorPrompt, SuccessPrompt, WarnPrompt, PullRefresh, Revolving, ScrollLoad, SearchTable, SlideLayout, SliderScale, Space, Spin, Split, SplitLayout, StickupLayout, Surnames, Suspense, SwipeOut, Teleport, Util, AdapterScreen, Browsersniff, Ajax, Dict, Domain, Emitter, Intl, Mixins, NotNull, Preferences, Resource, Validator, WatchMemoized, };
 declare const _default: {
     install: (Vue: any) => void;
 };
