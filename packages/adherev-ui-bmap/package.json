@@ -41,5 +41,6 @@
     "@baifendian/adhere-ui-bmap": "^1.0.16",
     "@baifendian/adherev-ui-conditionalrender": "^1.0.11",
     "@baifendian/adherev-util": "^1.0.11"
-  }
+  },
+  "gitHead": "d9dc0b69ebcdaa5b051cd44c9f7205f58d665275"
 }

@@ -51,5 +51,6 @@
     "vue-fragment": "^1.5.2",
     "vue-highlight.js": "^3.1.0",
     "vue-hoc": "^0.4.7"
-  }
+  },
+  "gitHead": "d9dc0b69ebcdaa5b051cd44c9f7205f58d665275"
 }

@@ -44,5 +44,6 @@
     "uuid": "^8.3.2",
     "vue": "^2.6.14",
     "vue-fragment": "^1.5.2"
-  }
+  },
+  "gitHead": "d9dc0b69ebcdaa5b051cd44c9f7205f58d665275"
 }

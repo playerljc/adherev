@@ -41,5 +41,6 @@
     "@baifendian/adherev-ui-css": "^1.0.9",
     "@baifendian/adherev-util": "^1.0.11",
     "@baifendian/adherev-util-resource": "^1.0.11"
-  }
+  },
+  "gitHead": "d9dc0b69ebcdaa5b051cd44c9f7205f58d665275"
 }

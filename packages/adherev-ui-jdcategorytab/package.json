@@ -42,5 +42,6 @@
     "classnames": "^2.2.6",
     "iscroll": "^5.2.0",
     "vue": "^2.6.14"
-  }
+  },
+  "gitHead": "d9dc0b69ebcdaa5b051cd44c9f7205f58d665275"
 }

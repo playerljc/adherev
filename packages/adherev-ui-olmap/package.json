@@ -44,5 +44,6 @@
     "ol": "6.5.0",
     "ol-wind": "^1.1.1-alpha.2",
     "uuid": "^8.3.2"
-  }
+  },
+  "gitHead": "d9dc0b69ebcdaa5b051cd44c9f7205f58d665275"
 }

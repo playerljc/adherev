@@ -44,5 +44,6 @@
     "@form-create/ant-design-vue": "^2.5.6",
     "ant-design-vue": "^1.7.5",
     "vue": "^2.6.12"
-  }
+  },
+  "gitHead": "d9dc0b69ebcdaa5b051cd44c9f7205f58d665275"
 }

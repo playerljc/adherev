@@ -43,5 +43,6 @@
     "@baifendian/adherev-util-intl": "^1.0.11",
     "ant-design-vue": "^1.7.5",
     "vue": "^2.6.14"
-  }
+  },
+  "gitHead": "d9dc0b69ebcdaa5b051cd44c9f7205f58d665275"
 }

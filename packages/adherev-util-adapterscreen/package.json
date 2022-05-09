@@ -40,5 +40,6 @@
   "dependencies": {
     "@baifendian/adhere-util-adapterscreen": "^1.0.15",
     "@baifendian/adherev-util": "^1.0.11"
-  }
+  },
+  "gitHead": "d9dc0b69ebcdaa5b051cd44c9f7205f58d665275"
 }
