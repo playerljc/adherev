@@ -90,18 +90,20 @@ export default {
           },
           type: 'PlayGround',
           codeText: `
-  <fragment>
-    <adv-teleport
-      to="#teleportWrapTag"
-      :is-wrap="true"
-      :wrap-tag="'p'"
-      :wrap-class-name="$style.customWrapClass"
-    >
-      <div class="myWrap">自定义的包裹元素</div>
-    </adv-teleport>
+  <template>
+    <fragment>
+      <adv-teleport
+        to="#teleportWrapTag"
+        :is-wrap="true"
+        :wrap-tag="'p'"
+        :wrap-class-name="$style.customWrapClass"
+      >
+        <div class="myWrap">自定义的包裹元素</div>
+      </adv-teleport>
 
-    <div id="teleportWrapTag"></div>
-  </fragment>
+      <div id="teleportWrapTag"></div>
+    </fragment>
+  </template>
       `,
           childrenSlot: 'p2',
         },
@@ -116,18 +118,31 @@ export default {
           },
           type: 'PlayGround',
           codeText: `
-  <fragment>
-    <adv-teleport
-      :to="p3To"
-      :is-wrap="true"
-      :wrap-tag="'p'"
-      :wrap-class-name="$style.customWrapClass"
-    >
-      <div class="myWrap">使用函数返回目标元素</div>
-    </adv-teleport>
+  <template>
+    <fragment>
+      <adv-teleport
+        :to="p3To"
+        :is-wrap="true"
+        :wrap-tag="'p'"
+        :wrap-class-name="$style.customWrapClass"
+      >
+        <div class="myWrap">使用函数返回目标元素</div>
+      </adv-teleport>
 
-    <div id="customTarget"></div>
-  </fragment>
+      <div id="customTarget"></div>
+    </fragment>
+  </template>
+
+  <script>
+    export default {
+      methods: {
+        p3To() {
+          return document.getElementById('customTarget');
+        },
+      },
+    }
+  <\/script>
+
       `,
           childrenSlot: 'p3',
         },
