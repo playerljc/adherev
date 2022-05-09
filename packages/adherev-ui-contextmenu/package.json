@@ -1,6 +1,6 @@
 {
   "name": "@baifendian/adherev-ui-contextmenu",
-  "version": "1.0.9",
+  "version": "1.0.11",
   "description": "上下文菜单，可以移动后显示子菜单那种",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -38,9 +38,9 @@
     "typescript": "^4.6.2"
   },
   "dependencies": {
-    "@baifendian/adherev-ui-conditionalrender": "^1.0.9",
+    "@baifendian/adherev-ui-conditionalrender": "^1.0.11",
     "@baifendian/adherev-ui-css": "^1.0.9",
-    "@baifendian/adherev-util": "^1.0.9",
+    "@baifendian/adherev-util": "^1.0.11",
     "classnames": "^2.2.6",
     "vue": "^2.6.14"
   }

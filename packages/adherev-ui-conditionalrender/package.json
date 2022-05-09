@@ -1,6 +1,6 @@
 {
   "name": "@baifendian/adherev-ui-conditionalrender",
-  "version": "1.0.9",
+  "version": "1.0.11",
   "description": "条件渲染",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -32,7 +32,7 @@
     "access": "public"
   },
   "dependencies": {
-    "@baifendian/adherev-util": "^1.0.9",
+    "@baifendian/adherev-util": "^1.0.11",
     "vue": "^2.6.14",
     "vue-fragment": "^1.5.2"
   },
