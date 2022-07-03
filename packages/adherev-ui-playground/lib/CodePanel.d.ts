@@ -23,7 +23,7 @@ declare const _default: import("vue").DefineComponent<{
         default: string;
     };
 }>>, {
-    lang: string;
     codeText: string;
+    lang: string;
 }>;
 export default _default;

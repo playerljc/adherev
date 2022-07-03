@@ -18,9 +18,9 @@ export declare const cardProps: {
     actionStyle: import("vue-types").VueTypeValidableDef<CSSProperties> & {
         default: () => CSSProperties;
     };
-    title: import("vue-types").VueTypeDef<import("vue-types").VueTypeValidableDef<string> | VNode<import("vue").RendererNode, import("vue").RendererElement, {
+    title: import("vue-types").VueTypeDef<VNode<import("vue").RendererNode, import("vue").RendererElement, {
         [key: string]: any;
-    }>>;
+    }> | import("vue-types").VueTypeValidableDef<string>>;
     extra: import("vue-types").VueTypeValidableDef<VNode<import("vue").RendererNode, import("vue").RendererElement, {
         [key: string]: any;
     }>>;
@@ -52,9 +52,9 @@ declare const _default: import("vue").DefineComponent<{
     actionStyle: import("vue-types").VueTypeValidableDef<CSSProperties> & {
         default: () => CSSProperties;
     };
-    title: import("vue-types").VueTypeDef<import("vue-types").VueTypeValidableDef<string> | VNode<import("vue").RendererNode, import("vue").RendererElement, {
+    title: import("vue-types").VueTypeDef<VNode<import("vue").RendererNode, import("vue").RendererElement, {
         [key: string]: any;
-    }>>;
+    }> | import("vue-types").VueTypeValidableDef<string>>;
     extra: import("vue-types").VueTypeValidableDef<VNode<import("vue").RendererNode, import("vue").RendererElement, {
         [key: string]: any;
     }>>;
@@ -84,9 +84,9 @@ declare const _default: import("vue").DefineComponent<{
     actionStyle: import("vue-types").VueTypeValidableDef<CSSProperties> & {
         default: () => CSSProperties;
     };
-    title: import("vue-types").VueTypeDef<import("vue-types").VueTypeValidableDef<string> | VNode<import("vue").RendererNode, import("vue").RendererElement, {
+    title: import("vue-types").VueTypeDef<VNode<import("vue").RendererNode, import("vue").RendererElement, {
         [key: string]: any;
-    }>>;
+    }> | import("vue-types").VueTypeValidableDef<string>>;
     extra: import("vue-types").VueTypeValidableDef<VNode<import("vue").RendererNode, import("vue").RendererElement, {
         [key: string]: any;
     }>>;

@@ -1,2 +1,25 @@
-"use strict";require("core-js/modules/es.object.define-property.js"),require("core-js/modules/es.array.filter.js"),require("core-js/modules/es.object.to-string.js"),Object.defineProperty(exports,"__esModule",{value:!0}),exports.default=function(r){var o=new MutationObserver(function(e){var t,e=e.filter(function(e){return"childList"===e.type&&"colgroup"===(null===(e=null===(e=e.target)||void 0===e?void 0:e.tagName)||void 0===e?void 0:e.toLowerCase())});e.length&&(t=r.getTableColumns(),e.length-1===t.length&&(null!==(e=null==o?void 0:o.disconnect)&&void 0!==e&&e.call(o),null!==(t=null==r?void 0:r.$forceUpdate)&&void 0!==t&&t.call(r)))});return o.observe(r.$refs.tableWrapRef,{attributes:!1,childList:!0,subtree:!0}),o};
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.default = (function (context) {
+    var observer = new MutationObserver(function (mutationsList) {
+        var _a, _b;
+        var list = mutationsList.filter(
+        // @ts-ignore
+        function (t) { var _a, _b; return t.type === 'childList' && ((_b = (_a = t.target) === null || _a === void 0 ? void 0 : _a.tagName) === null || _b === void 0 ? void 0 : _b.toLowerCase()) === 'colgroup'; });
+        if (list.length) {
+            var columns = context.getTableColumns();
+            if (list.length - 1 === columns.length) {
+                // 停止监控
+                (_a = observer === null || observer === void 0 ? void 0 : observer.disconnect) === null || _a === void 0 ? void 0 : _a.call(observer);
+                (_b = context === null || context === void 0 ? void 0 : context.$forceUpdate) === null || _b === void 0 ? void 0 : _b.call(context);
+            }
+        }
+    });
+    observer.observe(context.$refs.tableWrapRef, {
+        attributes: false,
+        childList: true,
+        subtree: true,
+    });
+    return observer;
+});
 //# sourceMappingURL=SearchTableResizableObserver.js.map

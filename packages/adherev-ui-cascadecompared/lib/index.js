@@ -1,2 +1,14 @@
-"use strict";require("core-js/modules/es.object.define-property.js"),Object.defineProperty(exports,"__esModule",{value:!0});var tslib_1=require("tslib"),adherev_util_1=(0,tslib_1.__importDefault)(require("@baifendian/adherev-util")),cascadecompared_1=(0,tslib_1.__importDefault)(require("./cascadecompared")),_a=adherev_util_1.default._util,withInstall=_a.withInstall,withVue=_a.withVue,Component=withInstall(cascadecompared_1.default);Component.isUse=function(){return!0},Component.use=function(e){e.use(Component),withVue(e,"CascadeCompared",Component)},exports.default=Component;
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var tslib_1 = require("tslib");
+var adherev_util_1 = (0, tslib_1.__importDefault)(require("@baifendian/adherev-util"));
+var cascadecompared_1 = (0, tslib_1.__importDefault)(require("./cascadecompared"));
+var _a = adherev_util_1.default._util, withInstall = _a.withInstall, withVue = _a.withVue;
+var Component = withInstall(cascadecompared_1.default);
+Component.isUse = function () { return true; };
+Component.use = function (Vue) {
+    Vue.use(Component);
+    withVue(Vue, 'CascadeCompared', Component);
+};
+exports.default = Component;
 //# sourceMappingURL=index.js.map

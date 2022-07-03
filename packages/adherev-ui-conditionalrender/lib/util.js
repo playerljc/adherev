@@ -1,2 +1,40 @@
-"use strict";function deal(e){var s,o=e.conditional,r=e.rule,l=e.ruleVisibleValue,t=e.ruleHideValue,e=e.slots,p=null;return{defaultVNodes:null===(s=null==e?void 0:e.default)||void 0===s?void 0:s.call(e).map(function(e){return e.props?"style"in e.props||(e.props.style={}):e.props={style:{}},e.props.style[r]=o?l:t,e}),noMatchVNodes:p=e.noMatch?e.noMatch().map(function(e){return e.props?"style"in e.props||(e.props.style={}):e.props={style:{}},e.props.style[r]=o?t:l,e}):p}}require("core-js/modules/es.object.define-property.js"),require("core-js/modules/es.array.map.js"),Object.defineProperty(exports,"__esModule",{value:!0}),exports.deal=void 0,exports.deal=deal;
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.deal = void 0;
+function deal(_a) {
+    var _b;
+    var conditional = _a.conditional, rule = _a.rule, ruleVisibleValue = _a.ruleVisibleValue, ruleHideValue = _a.ruleHideValue, slots = _a.slots;
+    var defaultVNodes = (_b = slots === null || slots === void 0 ? void 0 : slots.default) === null || _b === void 0 ? void 0 : _b.call(slots).map(function (vNode) {
+        if (!vNode.props) {
+            vNode.props = {
+                style: {},
+            };
+        }
+        else if (!('style' in vNode.props)) {
+            vNode.props.style = {};
+        }
+        vNode.props.style[rule] = conditional ? ruleVisibleValue : ruleHideValue;
+        return vNode;
+    });
+    var noMatchVNodes = null;
+    if (slots.noMatch) {
+        noMatchVNodes = slots.noMatch().map(function (vNode) {
+            if (!vNode.props) {
+                vNode.props = {
+                    style: {},
+                };
+            }
+            else if (!('style' in vNode.props)) {
+                vNode.props.style = {};
+            }
+            vNode.props.style[rule] = conditional ? ruleHideValue : ruleVisibleValue;
+            return vNode;
+        });
+    }
+    return {
+        defaultVNodes: defaultVNodes,
+        noMatchVNodes: noMatchVNodes,
+    };
+}
+exports.deal = deal;
 //# sourceMappingURL=util.js.map

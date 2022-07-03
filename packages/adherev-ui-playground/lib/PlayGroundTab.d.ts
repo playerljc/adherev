@@ -25,9 +25,9 @@ declare const playGroundTabProps: {
         actionStyle: import("vue-types").VueTypeValidableDef<import("vue").CSSProperties> & {
             default: () => import("vue").CSSProperties;
         };
-        title: import("vue-types").VueTypeDef<import("vue-types").VueTypeValidableDef<string> | import("vue").VNode<import("vue").RendererNode, import("vue").RendererElement, {
+        title: import("vue-types").VueTypeDef<import("vue").VNode<import("vue").RendererNode, import("vue").RendererElement, {
             [key: string]: any;
-        }>>;
+        }> | import("vue-types").VueTypeValidableDef<string>>;
         extra: import("vue-types").VueTypeValidableDef<import("vue").VNode<import("vue").RendererNode, import("vue").RendererElement, {
             [key: string]: any;
         }>>;
@@ -58,9 +58,9 @@ declare const playGroundTabProps: {
             actionStyle: import("vue-types").VueTypeValidableDef<import("vue").CSSProperties> & {
                 default: () => import("vue").CSSProperties;
             };
-            title: import("vue-types").VueTypeDef<import("vue-types").VueTypeValidableDef<string> | import("vue").VNode<import("vue").RendererNode, import("vue").RendererElement, {
+            title: import("vue-types").VueTypeDef<import("vue").VNode<import("vue").RendererNode, import("vue").RendererElement, {
                 [key: string]: any;
-            }>>;
+            }> | import("vue-types").VueTypeValidableDef<string>>;
             extra: import("vue-types").VueTypeValidableDef<import("vue").VNode<import("vue").RendererNode, import("vue").RendererElement, {
                 [key: string]: any;
             }>>;
@@ -108,9 +108,9 @@ declare const _default: import("vue").DefineComponent<{
         actionStyle: import("vue-types").VueTypeValidableDef<import("vue").CSSProperties> & {
             default: () => import("vue").CSSProperties;
         };
-        title: import("vue-types").VueTypeDef<import("vue-types").VueTypeValidableDef<string> | import("vue").VNode<import("vue").RendererNode, import("vue").RendererElement, {
+        title: import("vue-types").VueTypeDef<import("vue").VNode<import("vue").RendererNode, import("vue").RendererElement, {
             [key: string]: any;
-        }>>;
+        }> | import("vue-types").VueTypeValidableDef<string>>;
         extra: import("vue-types").VueTypeValidableDef<import("vue").VNode<import("vue").RendererNode, import("vue").RendererElement, {
             [key: string]: any;
         }>>;
@@ -141,9 +141,9 @@ declare const _default: import("vue").DefineComponent<{
             actionStyle: import("vue-types").VueTypeValidableDef<import("vue").CSSProperties> & {
                 default: () => import("vue").CSSProperties;
             };
-            title: import("vue-types").VueTypeDef<import("vue-types").VueTypeValidableDef<string> | import("vue").VNode<import("vue").RendererNode, import("vue").RendererElement, {
+            title: import("vue-types").VueTypeDef<import("vue").VNode<import("vue").RendererNode, import("vue").RendererElement, {
                 [key: string]: any;
-            }>>;
+            }> | import("vue-types").VueTypeValidableDef<string>>;
             extra: import("vue-types").VueTypeValidableDef<import("vue").VNode<import("vue").RendererNode, import("vue").RendererElement, {
                 [key: string]: any;
             }>>;
@@ -189,9 +189,9 @@ declare const _default: import("vue").DefineComponent<{
         actionStyle: import("vue-types").VueTypeValidableDef<import("vue").CSSProperties> & {
             default: () => import("vue").CSSProperties;
         };
-        title: import("vue-types").VueTypeDef<import("vue-types").VueTypeValidableDef<string> | import("vue").VNode<import("vue").RendererNode, import("vue").RendererElement, {
+        title: import("vue-types").VueTypeDef<import("vue").VNode<import("vue").RendererNode, import("vue").RendererElement, {
             [key: string]: any;
-        }>>;
+        }> | import("vue-types").VueTypeValidableDef<string>>;
         extra: import("vue-types").VueTypeValidableDef<import("vue").VNode<import("vue").RendererNode, import("vue").RendererElement, {
             [key: string]: any;
         }>>;
@@ -222,9 +222,9 @@ declare const _default: import("vue").DefineComponent<{
             actionStyle: import("vue-types").VueTypeValidableDef<import("vue").CSSProperties> & {
                 default: () => import("vue").CSSProperties;
             };
-            title: import("vue-types").VueTypeDef<import("vue-types").VueTypeValidableDef<string> | import("vue").VNode<import("vue").RendererNode, import("vue").RendererElement, {
+            title: import("vue-types").VueTypeDef<import("vue").VNode<import("vue").RendererNode, import("vue").RendererElement, {
                 [key: string]: any;
-            }>>;
+            }> | import("vue-types").VueTypeValidableDef<string>>;
             extra: import("vue-types").VueTypeValidableDef<import("vue").VNode<import("vue").RendererNode, import("vue").RendererElement, {
                 [key: string]: any;
             }>>;
@@ -246,6 +246,7 @@ declare const _default: import("vue").DefineComponent<{
     getClipboardText: import("vue-types").VueTypeValidableDef<(e?: any) => Promise<string>>;
 }>>, {
     active: string;
+    config: import("./CodeTabPanel").ICodeTabPanelItemProps[];
     cardProps: Partial<ExtractPropTypes<{
         headerClassName: import("vue-types").VueTypeValidableDef<string> & {
             default: string;
@@ -265,9 +266,9 @@ declare const _default: import("vue").DefineComponent<{
         actionStyle: import("vue-types").VueTypeValidableDef<import("vue").CSSProperties> & {
             default: () => import("vue").CSSProperties;
         };
-        title: import("vue-types").VueTypeDef<import("vue-types").VueTypeValidableDef<string> | import("vue").VNode<import("vue").RendererNode, import("vue").RendererElement, {
+        title: import("vue-types").VueTypeDef<import("vue").VNode<import("vue").RendererNode, import("vue").RendererElement, {
             [key: string]: any;
-        }>>;
+        }> | import("vue-types").VueTypeValidableDef<string>>;
         extra: import("vue-types").VueTypeValidableDef<import("vue").VNode<import("vue").RendererNode, import("vue").RendererElement, {
             [key: string]: any;
         }>>;
@@ -281,6 +282,5 @@ declare const _default: import("vue").DefineComponent<{
     }>>;
     isActive: boolean;
     defaultExpand: boolean;
-    config: import("./CodeTabPanel").ICodeTabPanelItemProps[];
 }>;
 export default _default;
