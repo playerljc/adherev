@@ -2,7 +2,7 @@ import Vue from 'vue';
 import { Plugin } from 'vue-fragment';
 import { Breadcrumb, Button, Card, Col, ConfigProvider, DatePicker, Empty, Form, FormModel, Icon, Input, InputNumber, Menu, Modal, Radio, Result, Row, Slider, Table, Tabs, Tooltip, List, Avatar, Tag, Divider, Select, Switch, } from 'ant-design-vue';
 import VueHighlightJS from 'vue-highlight.js';
-import { ConditionalRender, DelConfirm, FlexLayout, ImportantConfirm, Intl, MessageDialog, OLMap, Permission, SearchTable, Space, Spin, Split, Suspense, BackTopAnimation, SplitLayout, ScrollLoad, SlideLayout, SuccessPrompt, ErrorPrompt, WarnPrompt, PullRefresh, Revolving, SliderScale, StickupLayout, Surnames, CascadeCompared, SwipeOut, FontSizeSetting, JdCategoryTab, ImageLazy, BMap, PlayGround, ContextMenu, GlobalIndicator, HistoryBack, Notification, PolygonSelection, Popup, AdapterScreen, Browsersniff, Ajax, Dict, Domain, Emitter, NotNull, Preferences, Resource, Validator, WatchMemoized, Util, } from '@baifendian/adherev';
+import { ConditionalRender, DelConfirm, FlexLayout, ImportantConfirm, Intl, MessageDialog, OLMap, Permission, SearchTable, Space, Spin, Split, Suspense, BackTopAnimation, SplitLayout, ScrollLoad, SlideLayout, SuccessPrompt, ErrorPrompt, WarnPrompt, PullRefresh, Revolving, SliderScale, StickupLayout, Surnames, CascadeCompared, SwipeOut, FontSizeSetting, JdCategoryTab, ImageLazy, BMap, PlayGround, ContextMenu, GlobalIndicator, HistoryBack, Notification, PolygonSelection, Popup, Teleport, AdapterScreen, Browsersniff, Ajax, Dict, Domain, Emitter, NotNull, Preferences, Resource, Validator, WatchMemoized, Util, } from '@baifendian/adherev';
 import Playground from '@/lib/Playground';
 import PlaygroundMulit from '@/lib/PlaygroundMulit';
 import FunctionProps from '@/lib/FunctionProps';
@@ -85,6 +85,7 @@ const register = [
         Notification.use(Vue);
         PolygonSelection.use(Vue);
         Popup.use(Vue);
+        Teleport.use(Vue);
         AdapterScreen.use(Vue);
         Browsersniff.use(Vue);
         Ajax.use(Vue);
@@ -107,7 +108,7 @@ const register = [
     },
     () => {
         Vue.use(Plugin);
-    }
+    },
 ];
 register.forEach((t) => t());
 //# sourceMappingURL=component.register.config.js.map

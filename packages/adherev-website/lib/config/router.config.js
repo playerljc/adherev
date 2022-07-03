@@ -65,11 +65,12 @@ const CascadeCompared = () => lazy(import(/* webpackChunkName: "cascadecompared"
 const SwipeOut = () => lazy(import(/* webpackChunkName: "swipeout" */ '@/components/ui/swipeout'));
 const Notification = () => lazy(import(/* webpackChunkName: "notification" */ '@/components/ui/notification'));
 const FontSizeSetting = () => lazy(import(/* webpackChunkName: "fontsizesetting" */ '@/components/ui/fontsizesetting'));
-const Mixins = () => lazy(import(/* webpackChunkName: "mixins" */ '@/components/util/mixins'));
 const JDCategoryTab = () => lazy(import(/* webpackChunkName: "jdcategorytab" */ '@/components/ui/jdcategorytab'));
 const ImageLazy = () => lazy(import(/* webpackChunkName: "imagelazy" */ '@/components/ui/imagelazy'));
 const BMap = () => lazy(import(/* webpackChunkName: "bmap" */ '@/components/ui/bmap'));
 const PolygonSelection = () => lazy(import(/* webpackChunkName: "polygonselection" */ '@/components/ui/polygonselection'));
+const Teleport = () => lazy(import(/* webpackChunkName: "teleport" */ '@/components/ui/teleport'));
+const Mixins = () => lazy(import(/* webpackChunkName: "mixins" */ '@/components/util/mixins'));
 const Domain = () => lazy(import(/* webpackChunkName: "domain" */ '@/components/util/domain'));
 const Resource = () => lazy(import(/* webpackChunkName: "resource" */ '@/components/util/resource'));
 const Browsersniff = () => lazy(import(/* webpackChunkName: "browsersniff" */ '@/components/util/browsersniff'));
@@ -335,6 +336,11 @@ export default () => [
                                 path: '/adherev/component/ui/bmap',
                                 name: 'BMap',
                                 component: BMap,
+                            },
+                            {
+                                path: '/adherev/component/ui/teleport',
+                                name: 'Teleport',
+                                component: Teleport,
                             },
                         ],
                     },
