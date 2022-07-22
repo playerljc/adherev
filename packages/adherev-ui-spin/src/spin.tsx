@@ -7,7 +7,6 @@ export default {
   props: {
     spinning: {
       type: Boolean,
-      require: true,
       default: false,
     },
     text: {

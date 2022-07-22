@@ -1,7 +1,6 @@
+import { VNode, PropType } from 'vue';
 import classNames from 'classnames';
-
 import ConditionalRender from '@baifendian/adherev-ui-conditionalrender';
-
 import Util from '@baifendian/adherev-util';
 
 import { IMenuItemProps } from './types';
@@ -13,31 +12,22 @@ const selectorPrefix = 'adherev-ui-contextmenu-menuitem';
 export default {
   props: {
     data: {
-      type: Object,
-      default: {},
-      validator(val: IMenuItemProps): boolean {
-        return val instanceof Object;
-      },
+      type: Object as PropType<IMenuItemProps>,
+      default: () => ({}),
     },
   },
+  inject: ['getContext'],
   computed: {
     getClass() {
       const {
         data: { disabled = false, className },
       } = this;
 
-      return classNames(
-        selectorPrefix,
-        disabled ? 'disabled' : '',
-
-        (className || '').split(' '),
-      );
+      return classNames(selectorPrefix, disabled ? 'disabled' : '', (className || '').split(/\s+/));
     },
   },
   methods: {
-    renderIcon(h) {
-      // console.log('data', this.data, Util.isString(this.data.icon),Util.isObject(this.data.icon));
-
+    renderIcon(h): VNode {
       const {
         data: { icon },
       } = this;
@@ -58,7 +48,7 @@ export default {
         </ConditionalRender>
       );
     },
-    renderName(h) {
+    renderName(h): VNode {
       const {
         data: { name },
       } = this;
@@ -79,7 +69,7 @@ export default {
         </ConditionalRender>
       );
     },
-    renderMore(h) {
+    renderMore(h): VNode {
       const {
         data: { children },
       } = this;
@@ -90,13 +80,14 @@ export default {
         </ConditionalRender>
       );
     },
-    renderSubMenu(h) {
+    renderSubMenu(h): VNode {
       const {
         data: { children, subMenuClassName, subMenuStyle },
       } = this;
 
       return (
         <ConditionalRender conditional={children.length !== 0}>
+          {/*@ts-ignore*/}
           <SubMenu data={children} className={subMenuClassName} styleName={subMenuStyle} />
         </ConditionalRender>
       );
@@ -123,8 +114,7 @@ export default {
       }
     },
   },
-  inject: ['getContext'],
-  render(h) {
+  render(h): VNode {
     const {
       data: { separation, styleName },
     } = this;

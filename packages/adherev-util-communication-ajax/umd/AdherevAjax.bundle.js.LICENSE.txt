@@ -1,16 +1,4 @@
 /*!
-  Copyright (c) 2018 Jed Watson.
-  Licensed under the MIT License (MIT), see
-  http://jedwatson.github.io/classnames
-*/
-
-/*!
- * Vue.js v2.6.14
- * (c) 2014-2021 Evan You
- * Released under the MIT License.
- */
-
-/*!
  * vue-i18n v8.24.4 
  * (c) 2021 kazuya kawaguchi
  * Released under the MIT License.

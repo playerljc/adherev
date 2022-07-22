@@ -66,3 +66,43 @@ adherev-ui-imagelazy(demo)
 .下拉刷新出错
 .抽屉初始化不是打开
 .Mixins出错
+
+
+
+.需要同步andhere的功能
+ 新组件
+  adhere-util-domain - 引用
+  adhere-ui-polygonselection - 引用
+  adhere-ui-bmap - 引用
+   .存在引用的国际化问题
+  adhere-ui-playground - 研发
+
+ 修改的功能
+   .adhere-ui-olmap
+    加入windLayer(风场) ok
+
+ demo
+  1.风场
+  2.util
+
+
+.需要在Vue.prototype中进行注册的组件
+ .adherev-ui-contextmenu
+ .adherev-ui-globalindicator
+ .adherev-ui-historyback
+ .adherev-ui-notification
+ .adherev-ui-polygonselection
+ .adherev-ui-popup
+ .adherev-util-adapterscreen
+ .adherev-util-browsersniff
+ .adherev-util-communication-ajax
+ .adherev-util-dict
+ .adherev-util-domain
+ .adherev-util-emitter
+ .adherev-util-notnull
+ .adherev-util-preferences
+ .adherev-util-resource
+ .adherev-util-validator
+ .adherev-util-watchmemoized
+ .adherev-util
+

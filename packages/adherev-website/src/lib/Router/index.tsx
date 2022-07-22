@@ -1,9 +1,9 @@
+// @ts-ignore
+import RouterConfig from '@/config/router.config';
+import { Skeleton } from 'ant-design-vue';
 import Vue from 'vue';
 import VueRouter from 'vue-router';
-import { Skeleton } from 'ant-design-vue';
-
-import RouterConfig from '@/config/router.config';
-
+// @ts-ignore
 import BasicLayout from '../BasicLayout';
 import Util from '../BasicLayout/Util';
 
@@ -84,7 +84,7 @@ function renderRoute({ router, parentRoutes, route, authorized }) {
     cloneRoute.component = {
       render(h) {
         const routes = getBasicLayoutRoutes(children, authorized);
-        return <BasicLayout routes={routes} name={cloneRoute.name} />;
+        return <BasicLayout defaultRoutes={routes} name={cloneRoute.name} />;
       },
     };
   }
@@ -143,7 +143,15 @@ export function lazy(AsyncView) {
     // 异步组件加载时使用的组件
     loading: {
       render(h) {
-        return <Skeleton avatar paragraph={{ rows: 4 }} />;
+        const result = [];
+
+        for (let i = 0; i < 15; i++) {
+          // @ts-ignore
+          result.push(<Skeleton key={i + 1} loading active avatar />);
+        }
+
+        // @ts-ignore
+        return <div>{result}</div>;
       },
     },
     // 加载失败时使用的组件
@@ -167,7 +175,7 @@ export function lazy(AsyncView) {
  * Router - Router的创建
  * @return {Promise<*>}
  */
-export default () => {
+export default async () => {
   // 路由配置
   const config = RouterConfig();
 
@@ -177,6 +185,7 @@ export default () => {
   const router = [];
 
   // 根据路由配置生成实际的路由
+  // @ts-ignore
   renderRouterLoop(router, config, authorized);
 
   return new VueRouter({

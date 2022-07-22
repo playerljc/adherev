@@ -1,0 +1,2 @@
+"use strict";require("core-js/modules/es.object.define-property.js"),Object.defineProperty(exports,"__esModule",{value:!0});var selectorPrefix="adherev-ui-stickuplayout-item";exports.default={name:"adv-stickuplayout-item",render:function(e){var t=this.$slots;return e("div",{class:selectorPrefix},[e("div",{class:selectorPrefix+"-header"},[t.title]),e("div",{class:selectorPrefix+"-content"},[t.default])])}};
+//# sourceMappingURL=item.js.map

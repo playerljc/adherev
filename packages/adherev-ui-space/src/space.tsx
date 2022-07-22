@@ -1,3 +1,5 @@
+import { VNode } from 'vue';
+
 const selectorPrefix = 'adherev-ui-space';
 
 /**
@@ -8,7 +10,6 @@ const Space = {
   props: {
     direction: {
       type: String,
-      require: true,
       default: 'vertical',
       validator(value) {
         // 这个值必须匹配下列字符串中的一个
@@ -17,16 +18,10 @@ const Space = {
     },
     size: {
       type: [Number, String],
-      require: true,
       default: 20,
     },
-    className: {
-      type: String,
-      require: false,
-      default: '',
-    },
   },
-  methods: {
+  computed: {
     getStyle() {
       const { direction, size } = this;
 
@@ -40,14 +35,13 @@ const Space = {
 
       return {
         width: '100%',
+        height: '0.1px',
         margin: `${size}px 0`,
       };
     },
   },
-  render(h) {
-    const { className } = this;
-
-    return <div className={`${selectorPrefix} ${className}`} style={this.getStyle()} />;
+  render(h): VNode {
+    return <div class={selectorPrefix} style={this.getStyle} />;
   },
 };
 
@@ -59,7 +53,6 @@ export const SpaceGroup = {
   props: {
     direction: {
       type: String,
-      require: true,
       default: 'vertical',
       validator(value) {
         // 这个值必须匹配下列字符串中的一个
@@ -68,33 +61,31 @@ export const SpaceGroup = {
     },
     size: {
       type: [Number, String],
-      require: true,
       default: 20,
     },
     className: {
       type: String,
-      require: false,
+      required: false,
       default: '',
     },
   },
-  render(h) {
+  render(h): VNode {
     const { $slots, direction, size, className } = this;
 
-    const JSXS = [];
+    const JSXS: VNode[] = [];
 
     if ($slots.default) {
       for (let i = 0; i < $slots.default.length; i++) {
         if (i !== 0) {
           const props = {
             props: {
-              ...{
-                direction,
-                size,
-                className,
-              },
+              direction,
+              size,
             },
+            class: className,
           };
 
+          // @ts-ignore
           JSXS.push(<Space {...props} key={i} />);
         }
 

@@ -1,14 +1,10 @@
-import classNames from 'classnames';
+import { VNode } from 'vue';
 
 const selectorPrefix = 'adherev-ui-sliderscale';
 
 export default {
   name: 'adv-sliderscale',
   props: {
-    className: {
-      type: String,
-      default: '',
-    },
     min: {
       type: [Number, String],
       default: 0,
@@ -44,7 +40,7 @@ export default {
 
       const { value } = e.target;
 
-      $refs?.rangeEl?.value = value;
+      ($refs?.rangeEl as HTMLInputElement).value = value;
 
       if ($preValue !== value) {
         this.$data.$preValue = value;
@@ -55,7 +51,7 @@ export default {
     renderScale(h) {
       const { min, max, interval } = this;
 
-      const itResult = [];
+      const itResult: Array<VNode | null> = [];
 
       for (let i = min; i < max; i++) {
         if (max - 1 === min) {
@@ -86,11 +82,10 @@ export default {
           itemJSX = <div key={i} class={`${selectorPrefix}-scale-item`} />;
         }
 
-        // @ts-ignore
         itResult.push(itemJSX);
       }
 
-      const result = [];
+      const result: Array<VNode | null> = [];
 
       if (min === max) {
         result.push(
@@ -124,18 +119,18 @@ export default {
     },
   },
   mounted() {
-    this.$refs.rangeEl?.value = this.value;
+    (this.$refs.rangeEl as HTMLInputElement).value = this.value;
   },
   watch: {
     value(newVal) {
-      this.$refs.rangeEl?.value = newVal;
+      (this.$refs.rangeEl as HTMLInputElement).value = newVal;
     },
   },
-  render(h) {
-    const { className, min, max, step } = this;
+  render(h): VNode {
+    const { min, max, step } = this;
 
     return (
-      <div class={classNames(selectorPrefix, className.split(' '))} ref="el">
+      <div class={selectorPrefix} ref="el">
         <div class={`${selectorPrefix}-scale`}>{this.renderScale(h)}</div>
 
         <input
@@ -146,7 +141,7 @@ export default {
           max={max}
           step={step}
           onMousemove={this.onMousemove}
-          onTouchMove={this.onTouchmove}
+          onTouchmove={this.onTouchmove}
         />
       </div>
     );

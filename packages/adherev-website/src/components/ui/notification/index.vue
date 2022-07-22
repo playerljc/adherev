@@ -1,228 +1,35 @@
 <template>
-  <div class="Page">
-    <h1>Notification</h1>
-    <p>通知</p>
-    <ul>
-      <li>- 支持ios和material</li>
-      <li>- 支持top和bottom方向</li>
-    </ul>
+  <adv-playground-page :scrollEl="scrollEl" ref="ref">
+    <adv-playground-page-section title="Notification">
+      <p>通知</p>
+      <ul>
+        <li>- 支持ios和material</li>
+        <li>- 支持top和bottom方向</li>
+      </ul>
+    </adv-playground-page-section>
 
-    <h3>NotificationFactory</h3>
-    <function-props
-      :data="[
-        {
-          name: 'build',
-          desc: '构建一个Notification',
-          modifier: 'static',
-          params: [
-            {
-              name: 'container',
-              desc: '父容器',
-              type: 'HtmlElement',
-              defaultVal: '',
-              required: '',
-            },
-            {
-              name: 'config',
-              desc: '配置',
-              type: 'IConfig',
-              defaultVal: '',
-              required: '',
-            },
-          ],
-          returnType: 'Notification',
-          returnDesc: '',
-        },
-      ]"
-    />
-
-    <adv-space />
-
-    <h3>Notification</h3>
-    <function-props
-      :data="[
-        {
-          name: 'show',
-          desc: '显示一个自定义的notification',
-          modifier: 'public',
-          params: [
-            {
-              name: 'config',
-              desc: '配置',
-              type: 'IShowConfig',
-              defaultVal: '',
-              required: '',
-            },
-          ],
-          returnType: 'string',
-          returnDesc: 'notification的id',
-        },
-        {
-          name: 'showStandard',
-          desc: '显示一个标准的notification',
-          modifier: 'public',
-          params: [
-            {
-              name: 'config',
-              desc: '配置',
-              type: 'IShowStandardConfig',
-              defaultVal: '',
-              required: '',
-            },
-          ],
-          returnType: 'string',
-          returnDesc: 'notification的id',
-        },
-        {
-          name: 'close',
-          desc: '关闭一个notification',
-          modifier: 'public',
-          params: [
-            {
-              name: 'id',
-              desc: 'id',
-              type: 'string',
-              defaultVal: '',
-              required: '',
-            },
-          ],
-          returnType: 'void',
-          returnDesc: '',
-        },
-      ]"
-    />
-
-    <adv-space />
-
-    <h3>IConfig</h3>
-    <props
-      :data="[
-        {
-          params: 'style',
-          desc: '风格',
-          type: 'ios' | 'material',
-          defaultVal: 'ios',
-        },
-        {
-          params: 'type',
-          desc: '类型',
-          type: 'top' | 'bottom',
-          defaultVal: 'top',
-        },
-        {
-          params: 'onCreate',
-          desc: '创建完成',
-          type: 'Function',
-          defaultVal: '',
-        },
-        {
-          params: 'onShow',
-          desc: '显示完成',
-          type: 'Function',
-          defaultVal: '',
-        },
-        {
-          params: 'onCloseBefore',
-          desc: '关闭之前',
-          type: 'Function',
-          defaultVal: '',
-        },
-        {
-          params: 'onCloseAfter',
-          desc: '关闭之后',
-          type: 'Function',
-          defaultVal: '',
-        },
-      ]"
-    />
-
-    <adv-space />
-
-    <h3>IShowConfig</h3>
-    <props
-      :data="[
-        {
-          params: 'closed',
-          desc: '是否有关闭按钮',
-          type: 'boolean',
-          defaultVal: '',
-        },
-        {
-          params: 'children',
-          desc: '显示的UI',
-          type: 'Object | Function | String',
-          defaultVal: '',
-        },
-      ]"
-    />
-
-    <adv-space />
-
-    <h3>IShowStandardConfig</h3>
-    <props
-      :data="[
-        {
-          params: 'closed',
-          desc: '是否有关闭按钮',
-          type: 'boolean',
-          defaultVal: '',
-        },
-        {
-          params: 'headerLabel',
-          desc: '头部UI',
-          type: 'string | Object | Function',
-          defaultVal: '',
-        },
-        {
-          params: 'headerIcon',
-          desc: '头部图标',
-          type: 'string',
-          defaultVal: '',
-        },
-        {
-          params: 'title',
-          desc: '标题',
-          type: 'string | Object | Function',
-          defaultVal: '',
-        },
-        {
-          params: 'text',
-          desc: '内容',
-          type: 'string | Object | Function',
-          defaultVal: '',
-        },
-        {
-          params: 'icon',
-          desc: '图标',
-          type: 'string',
-          defaultVal: '',
-        },
-        {
-          params: 'datetime',
-          desc: '时间',
-          type: 'string | Object | Function',
-          defaultVal: '',
-        },
-      ]"
-    />
-
-    <h2>基本使用</h2>
-    <playground :codeText="code1">
-      <a-tabs tab-position="left" :active-key="activeKey" @change="onChange">
-        <a-tab-pane v-for="t in config" :key="t.key" :tab="t.key">
-          <div v-if="t.key === activeKey" :class="$style.Tab">
-            <div :class="$style.Fixed">
-              <a-button @click="onShowCustomClose">show custom close</a-button>
-              <a-button @click="onShowCustomUnClose">show custom unclose</a-button>
-              <a-button @click="onShowStandardClose">show Standard close</a-button>
-              <a-button @click="onShowStandardUnClose">show Standard unclose</a-button>
+    <adv-playground-page-code-box-section title="代码演示" :config="codeBoxPanelConfig">
+      <template #p1>
+        <a-tabs tab-position="left" :active-key="activeKey" @change="onChange">
+          <a-tab-pane v-for="t in config" :key="t.key" :tab="t.key">
+            <div v-if="t.key === activeKey" :class="$style.Tab">
+              <div :class="$style.Fixed">
+                <a-button @click="onShowCustomClose">show custom close</a-button>
+                <a-button @click="onShowCustomUnClose">show custom unclose</a-button>
+                <a-button @click="onShowStandardClose">show Standard close</a-button>
+                <a-button @click="onShowStandardUnClose">show Standard unclose</a-button>
+              </div>
+              <div :class="$style.Auto" :ref="t.ref" />
             </div>
-            <div :class="$style.Auto" :ref="t.ref" />
-          </div>
-        </a-tab-pane>
-      </a-tabs>
-    </playground>
-  </div>
+          </a-tab-pane>
+        </a-tabs>
+      </template>
+    </adv-playground-page-code-box-section>
+
+    <adv-playground-page-function-props-section title="API" :config="apiConfig" />
+
+    <adv-playground-page-props-section title="Props" :config="propsConfig" />
+  </adv-playground-page>
 </template>
 
 <script>
@@ -238,11 +45,19 @@ export default {
         { key: 'material-bottom', ref: 'ref4', ins: null },
       ],
       activeKey: 'ios-top',
-    };
-  },
-  computed: {
-    code1() {
-      return `
+      scrollEl: null,
+      codeBoxPanelConfig: [
+        {
+          id: 'p1',
+          name: '基本使用',
+          cardProps: {
+            description: {
+              title: '基本使用',
+              info: '基本使用',
+            },
+          },
+          type: 'PlayGround',
+          codeText: `
         <template>
           <h2>基本使用</h2>
           <a-tabs tab-position="left" :active-key="activeKey" @change="onChange">
@@ -342,8 +157,206 @@ export default {
             }
           }
         <\/script>
-      `;
-    }
+      `,
+          childrenSlot: 'p1',
+        },
+      ],
+      apiConfig: [
+        {
+          border: true,
+          title: 'NotificationFactory',
+          data: [
+            {
+              name: 'build',
+              desc: '构建一个Notification',
+              modifier: 'static',
+              params: [
+                {
+                  name: 'container',
+                  desc: '父容器',
+                  type: 'HtmlElement',
+                  defaultVal: '',
+                  required: '',
+                },
+                {
+                  name: 'config',
+                  desc: '配置',
+                  type: 'IConfig',
+                  defaultVal: '',
+                  required: '',
+                },
+              ],
+              returnType: 'Notification',
+              returnDesc: '',
+            },
+          ],
+        },
+        {
+          border: true,
+          title: 'Notification',
+          data: [
+            {
+              name: 'show',
+              desc: '显示一个自定义的notification',
+              modifier: 'public',
+              params: [
+                {
+                  name: 'config',
+                  desc: '配置',
+                  type: 'IShowConfig',
+                  defaultVal: '',
+                  required: '',
+                },
+              ],
+              returnType: 'string',
+              returnDesc: 'notification的id',
+            },
+            {
+              name: 'showStandard',
+              desc: '显示一个标准的notification',
+              modifier: 'public',
+              params: [
+                {
+                  name: 'config',
+                  desc: '配置',
+                  type: 'IShowStandardConfig',
+                  defaultVal: '',
+                  required: '',
+                },
+              ],
+              returnType: 'string',
+              returnDesc: 'notification的id',
+            },
+            {
+              name: 'close',
+              desc: '关闭一个notification',
+              modifier: 'public',
+              params: [
+                {
+                  name: 'id',
+                  desc: 'id',
+                  type: 'string',
+                  defaultVal: '',
+                  required: '',
+                },
+              ],
+              returnType: 'void',
+              returnDesc: '',
+            },
+          ],
+        },
+      ],
+      propsConfig: [
+        {
+          border: true,
+          title: 'IConfig',
+          data: [
+            {
+              params: 'style',
+              desc: '风格',
+              type: 'ios' | 'material',
+              defaultVal: 'ios',
+            },
+            {
+              params: 'type',
+              desc: '类型',
+              type: 'top' | 'bottom',
+              defaultVal: 'top',
+            },
+            {
+              params: 'onCreate',
+              desc: '创建完成',
+              type: 'Function',
+              defaultVal: '',
+            },
+            {
+              params: 'onShow',
+              desc: '显示完成',
+              type: 'Function',
+              defaultVal: '',
+            },
+            {
+              params: 'onCloseBefore',
+              desc: '关闭之前',
+              type: 'Function',
+              defaultVal: '',
+            },
+            {
+              params: 'onCloseAfter',
+              desc: '关闭之后',
+              type: 'Function',
+              defaultVal: '',
+            },
+          ],
+        },
+        {
+          border: true,
+          title: 'IShowConfig',
+          data: [
+            {
+              params: 'closed',
+              desc: '是否有关闭按钮',
+              type: 'boolean',
+              defaultVal: '',
+            },
+            {
+              params: 'children',
+              desc: '显示的UI',
+              type: 'Object | Function | String',
+              defaultVal: '',
+            },
+          ],
+        },
+        {
+          border: true,
+          title: 'IShowStandardConfig',
+          data: [
+            {
+              params: 'closed',
+              desc: '是否有关闭按钮',
+              type: 'boolean',
+              defaultVal: '',
+            },
+            {
+              params: 'headerLabel',
+              desc: '头部UI',
+              type: 'string | Object | Function',
+              defaultVal: '',
+            },
+            {
+              params: 'headerIcon',
+              desc: '头部图标',
+              type: 'string',
+              defaultVal: '',
+            },
+            {
+              params: 'title',
+              desc: '标题',
+              type: 'string | Object | Function',
+              defaultVal: '',
+            },
+            {
+              params: 'text',
+              desc: '内容',
+              type: 'string | Object | Function',
+              defaultVal: '',
+            },
+            {
+              params: 'icon',
+              desc: '图标',
+              type: 'string',
+              defaultVal: '',
+            },
+            {
+              params: 'datetime',
+              desc: '时间',
+              type: 'string | Object | Function',
+              defaultVal: '',
+            },
+          ],
+        },
+      ],
+    };
   },
   mounted() {
     const record = this.getRecord(this.activeKey);
@@ -352,6 +365,8 @@ export default {
       style,
       type,
     });
+
+    this.scrollEl = this?.$refs?.ref?.$el?.parentElement?.parentElement;
   },
   methods: {
     onChange(key) {

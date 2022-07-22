@@ -43,3 +43,8 @@ export interface IPromptConfig {
     option: any;
   };
 }
+
+export interface IConfig {
+  messages: object;
+  getOptions(): any;
+}

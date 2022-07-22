@@ -1,11 +1,14 @@
-import { CreateElement } from 'vue';
-import { Modal, Button } from 'ant-design-vue';
-
+import Util from '@baifendian/adherev-util';
 import Intl from '@baifendian/adherev-util-intl';
+import { Button, Modal } from 'ant-design-vue';
+import { CreateElement } from 'vue';
 
-import { Fragment } from '../../_util';
-import Actions from './actions';
-import Emitter from './emitter';
+// import Actions from './actions';
+// import Emitter from './emitter';
+
+const {
+  _util: { Fragment },
+} = Util;
 
 export const selectorPrefix = 'adherev-ui-messagedialog';
 
@@ -13,30 +16,29 @@ export default {
   props: {
     config: {
       type: Object,
-      require: true,
     },
     closeBtn: {
       type: Boolean,
-      require: false,
+      required: false,
       default: true,
     },
   },
-  mounted() {
-    Emitter.on(Actions.close, this.onEmitterClose);
-  },
-  beforeDestroy() {
-    Emitter.remove(Actions.close, this.onEmitterClose);
-  },
+  // mounted() {
+  //   Emitter.on(Actions.close, this.onEmitterClose);
+  // },
+  // beforeDestroy() {
+  //   Emitter.remove(Actions.close, this.onEmitterClose);
+  // },
   methods: {
-    onEmitterClose() {
-      const {
-        $listeners: { close },
-      } = this;
+    // onEmitterClose() {
+    //   const {
+    //     $listeners: { close },
+    //   } = this;
 
-      if (close) {
-        close();
-      }
-    },
+    //   if (close) {
+    //     close();
+    //   }
+    // },
     /**
      * renderCloseBtn
      * @param h
@@ -50,6 +52,7 @@ export default {
 
       return (
         <Button
+          // @ts-ignore
           key="close"
           type={!config.footerJSX ? 'primary' : ''}
           title={Intl.tv('取消')}
@@ -78,7 +81,10 @@ export default {
     renderTitle(h) {
       const { $slots } = this;
 
-      return $slots.title ? <Fragment slot="title">{$slots.title}</Fragment> : null;
+      return $slots.title ? (
+        // @ts-ignore
+        <Fragment slot="title">{$slots.title}</Fragment>
+      ) : null;
     },
     /**
      * renderFooter
@@ -92,21 +98,22 @@ export default {
       if (config.footerJSX) {
         if (closeBtn) {
           result = (
+            // @ts-ignore
             <Fragment slot="footer">
-              {/* @ts-ignore */}
               <div>{[...config.footerJSX, this.renderCloseBtn(h)]}</div>
             </Fragment>
           );
         } else {
           result = (
+            // @ts-ignore
             <Fragment slot="footer">
-              {/* @ts-ignore */}
               <div>{config.footerJSX}</div>
             </Fragment>
           );
         }
       } else {
         if (closeBtn) {
+          // @ts-ignore
           result = <Fragment slot="footer">{this.renderCloseBtn(h)}</Fragment>;
         }
       }
@@ -134,6 +141,7 @@ export default {
     return (
       <Modal
         {...data}
+        // @ts-ignore
         centered={centered}
         wrapClassName={selectorPrefix}
         onCancel={() => {
@@ -143,11 +151,8 @@ export default {
         }}
         visible
       >
-        {/* @ts-ignore */}
         {this.renderDefault(h)}
-        {/* @ts-ignore */}
         {this.renderTitle(h)}
-        {/* @ts-ignore */}
         {this.renderFooter(h)}
       </Modal>
     );

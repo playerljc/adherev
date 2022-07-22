@@ -1,5 +1,6 @@
 import { notification } from 'ant-design-vue';
 
+// @ts-ignore
 import Util from '@baifendian/adherev-util';
 
 import intl from '@baifendian/adherev-util-intl';
@@ -11,16 +12,29 @@ import { IConfig, ISendArg, ISendPrepareArg } from './types';
 // 是否触发过402
 let trigger402 = false;
 
+// notification的节流时间(毫秒)
+const notificationThrottlingTime = 2000;
+
+let errorInfoHandler;
+let warnInfoHandler;
+
 /**
  * errorInfo - 错误的提示
  * @param title
  * @param message
  */
 function errorInfo(title, message) {
-  notification.error({
-    message: title,
-    description: message,
-  });
+  if (errorInfoHandler) {
+    clearTimeout(errorInfoHandler);
+    errorInfoHandler = null;
+  }
+
+  errorInfoHandler = setTimeout(() => {
+    notification.error({
+      message: title,
+      description: message,
+    });
+  }, notificationThrottlingTime);
 }
 
 /**
@@ -29,10 +43,17 @@ function errorInfo(title, message) {
  * @param message
  */
 function warnInfo(title, message) {
-  notification.warn({
-    message: title,
-    description: message,
-  });
+  if (warnInfoHandler) {
+    clearTimeout(warnInfoHandler);
+    warnInfoHandler = null;
+  }
+
+  warnInfoHandler = setTimeout(() => {
+    notification.warn({
+      message: title,
+      description: message,
+    });
+  }, notificationThrottlingTime);
 }
 
 /**
@@ -47,16 +68,7 @@ function createXHR() {
  * getDefaultConfig - 返回构造函数config的默认值
  * @return IConfig
  */
-function getDefaultConfig(): IConfig & {
-  loading: {
-    // 是否显示遮罩
-    show: boolean;
-    // 遮罩的内容
-    text: string;
-    // 遮罩的元素
-    el: HTMLElement;
-  };
-} {
+function getDefaultConfig(): IConfig {
   return {
     timeout: Ajax.TIMEOUT,
     withCredentials: true,
@@ -80,13 +92,19 @@ function getDefaultConfig(): IConfig & {
     interceptor: ({ status }) => {
       switch (status) {
         case 401:
+          // @ts-ignore
           deal401.call(this);
           break;
         case 402:
+          // @ts-ignore
           deal402.call(this);
+          break;
+        default:
+          errorInfo(intl.tv('提示'), intl.tv('已提出请求，但未收到任何回复'));
           break;
       }
     },
+    mock: false,
     // loading的配置
     loading: {
       // 是否显示遮罩
@@ -96,6 +114,12 @@ function getDefaultConfig(): IConfig & {
       // 遮罩的元素
       el: document.body,
     },
+    onBeforeResponse: () => {},
+    dataKey: 'data',
+    messageKey: 'message',
+    codeKey: 'code',
+    codeSuccess: 200,
+    showWarn: true,
   };
 }
 
@@ -190,8 +214,8 @@ function onreadystatechange({
         // 只有application/json才进行三大值的判断
         const jsonObj = JSON.parse(xhr.responseText);
 
-        if (showWarn && jsonObj[codeKey] !== codeSuccess) {
-          warnInfo(intl.tv('提示'), jsonObj[messageKey]);
+        if (showWarn && codeKey in jsonObj && jsonObj[codeKey] !== codeSuccess) {
+          warnInfo(intl.v('提示'), jsonObj[messageKey]);
         }
 
         resolve(resolveData({ show, data: jsonObj, indicator }));
@@ -210,8 +234,6 @@ function onreadystatechange({
       // 3xx
       // 4xx
       // 5xx
-
-      errorInfo(intl.tv('提示'), intl.tv('已提出请求，但未收到任何回复'));
 
       // 拦截器
       interceptor({
@@ -274,10 +296,11 @@ function sendPrepare(
 
   const defaultLoadingText = `${intl.tv('加载中')}...`;
 
-  const { show = false, text = defaultLoadingText, el = document.body } = loading;
+  const { show = false, text = defaultLoadingText, el = document.body } = loading!;
 
   // 显示loading
   if (show) {
+    // @ts-ignore
     indicator = GlobalIndicator.show(el || document.body, text || defaultLoadingText);
   }
 
@@ -299,11 +322,13 @@ function sendPrepare(
     return { xhr: null, contentType: '' };
   }
 
+  // @ts-ignore
   const { baseURL, config } = this;
 
   const { timeout, withCredentials, interceptor, ...events } = Object.assign(
     // 默认的属性
 
+    // @ts-ignore
     getDefaultConfig.call(this),
     config,
     curConfig,
@@ -327,11 +352,12 @@ function sendPrepare(
   // 如果用户设置了header
   if (!Util.isEmpty(headers) && Util.isObject(headers)) {
     // 不是get请求且如果用户没有定义Content-type 则默认添加application/json
-    if (!('Content-type' in headers) && method !== ('get' || 'GET')) {
+    if (!('Content-Type' in headers) && method !== ('get' || 'GET')) {
       headers['Content-Type'] = `${Ajax.CONTENT_TYPE_APPLICATION_JSON};charset=utf-8`;
-      contentType = headers['Content-Type'];
-      console.log('设置了header，但是没有设置Content-Type', Ajax.CONTENT_TYPE_MULTIPART_FORM_DATA);
+      // console.log('设置了header，但是没有设置Content-Type', Ajax.CONTENT_TYPE_MULTIPART_FORM_DATA);
     }
+
+    contentType = headers['Content-Type'] ?? '';
 
     for (const header in headers) {
       xhr.setRequestHeader(header, headers[header]);
@@ -342,18 +368,20 @@ function sendPrepare(
     if (!Util.isEmpty(data) && Util.isRef(data) && method !== ('get' || 'GET')) {
       if (
         !(
-          'form' in data &&
+          'form' in
+            // @ts-ignore
+            data &&
           'data' in data &&
           !Util.isEmpty(data.form) &&
           !Util.isEmpty(data.data) &&
           data.form instanceof HTMLFormElement
         )
       ) {
-        console.log('默认设置Content-Type', `${Ajax.CONTENT_TYPE_APPLICATION_JSON};charset=utf-8`);
+        // console.log('默认设置Content-Type', `${Ajax.CONTENT_TYPE_APPLICATION_JSON};charset=utf-8`);
         contentType = `${Ajax.CONTENT_TYPE_APPLICATION_JSON};charset=utf-8`;
         xhr.setRequestHeader('Content-Type', `${Ajax.CONTENT_TYPE_APPLICATION_JSON};charset=utf-8`);
       } else {
-        console.log('有formData不需要设置Content-Type');
+        // console.log('有formData不需要设置Content-Type');
         contentType = Ajax.CONTENT_TYPE_MULTIPART_FORM_DATA;
       }
     }
@@ -368,6 +396,7 @@ function sendPrepare(
 
   // onreadystatechange
 
+  // @ts-ignore
   xhr.onreadystatechange = onreadystatechange.bind(this, {
     xhr,
     interceptor,
@@ -412,55 +441,75 @@ function getSendParams({ data, contentType }) {
   // multipart/form-data
   // FormData
 
-  console.log('getSendParams', data, contentType);
+  // console.log('getSendParams', data, contentType);
 
-  // application/json
-  if (contentType.indexOf(Ajax.CONTENT_TYPE_APPLICATION_JSON) === 0 && Util.isRef(data)) {
-    console.log('数据需要被转换成JSON字符串', JSON.stringify(data));
+  /**
+   * application/json
+   */
+  if (contentType.startsWith(Ajax.CONTENT_TYPE_APPLICATION_JSON) && Util.isRef(data)) {
+    // console.log('数据需要被转换成JSON字符串', JSON.stringify(data));
     return JSON.stringify(data);
   }
 
-  // application/x-www-form-urlencoded
+  /**
+   * application/x-www-form-urlencoded
+   */
   if (
-    contentType.indexOf(Ajax.CONTENT_TYPE_APPLICATION_X_WWW_FORM_URLENCODED) === 0 &&
+    contentType.startsWith(Ajax.CONTENT_TYPE_APPLICATION_X_WWW_FORM_URLENCODED) &&
     Util.isObject(data)
   ) {
-    console.log('application/x-www-form-urlencoded转换', JSON.stringify(data));
+    // console.log('application/x-www-form-urlencoded转换', JSON.stringify(data));
     return Array.from(Object.keys(data))
-      .map((k) => encodeURIComponent(`${k}=${data[k]}`))
+      .map((k) => `${k}=${encodeURIComponent(data[k])}`)
       .join('&');
   }
 
-  // multipart/form-data
-  if (contentType.indexOf(Ajax.CONTENT_TYPE_MULTIPART_FORM_DATA) === 0 && Util.isObject(data)) {
-    console.log('multipart/form-data转换');
-    console.log('form', data.form);
+  /**
+   * multipart/form-data
+   */
+  if (contentType.startsWith(Ajax.CONTENT_TYPE_MULTIPART_FORM_DATA) && Util.isObject(data)) {
+    // console.log('multipart/form-data转换');
+    // console.log('form', data.form);
 
     const formData = new FormData(data.form);
 
     Array.from(Object.keys(data.data)).forEach(function (k) {
       formData.append(k, data.data[k]);
-      console.log(k, data.data[k]);
+      // console.log(k, data.data[k]);
     });
 
     return formData;
   }
+
+  /**
+   * text/plain
+   */
+  if (contentType.startsWith(Ajax.CONTENT_TYPE_TEXT_PLAIN)) {
+    if (Util.isString(data)) return data;
+    if (Util.isObject(data)) return JSON.stringify(data);
+  }
+
+  return data.toString();
 }
 
 /**
  * complexRequest - 复杂的请求
  * @param method
- * @param data
- * @param arg
+ * @param params
  */
 function complexRequest(method: string, params: ISendArg) {
   return new Promise((resolve, reject) => {
     const { xhr, contentType } = sendPrepare.call(
+      // @ts-ignore
       this,
       {
+        // 缺省的
+        // @ts-ignore
         ...getDefaultConfig.call(this),
-
+        // @ts-ignore
+        ...this.config,
         method,
+        // 方法传的
         ...params,
       },
       {
@@ -471,10 +520,14 @@ function complexRequest(method: string, params: ISendArg) {
 
     if (xhr) {
       xhr.send(
-        getSendParams.call(this, {
-          data: params.data,
-          contentType,
-        }),
+        getSendParams.call(
+          // @ts-ignore
+          this,
+          {
+            data: params.data,
+            contentType,
+          },
+        ),
       );
     }
   });
@@ -493,7 +546,8 @@ function deal401() {
   }
 
   window.location.href = Util.casUrl({
-    baseUrl: this.systemManagerBaseUrl,
+    // @ts-ignore
+    baseUrl: this.systemManagerBaseURL,
     enterUrl: window.location.href,
   });
 }
@@ -510,7 +564,8 @@ function deal402() {
   }
 
   window.location.href = Util.casLogoutUrl({
-    baseUrl: this.systemManagerBaseUrl,
+    // @ts-ignore
+    baseUrl: this.systemManagerBaseURL,
     enterUrl: window.location.href,
     params: '&code=402',
   });
@@ -607,6 +662,7 @@ class Ajax {
         this,
         {
           ...getDefaultConfig.call(this),
+          ...this.config,
           method: 'get',
           ...arg,
         },

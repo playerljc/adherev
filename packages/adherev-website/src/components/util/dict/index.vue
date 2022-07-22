@@ -1,42 +1,55 @@
 <template>
-  <div class="Page">
-    <h1>字典</h1>
-    <ul>
-      <li>- 静态字典</li>
-      <li>- 异步字典</li>
-    </ul>
-    <p>
-      第一次使用的时候才加载到内存，加载过之后就不在加载，如果字典是函数，也会对函数的值进行memoized处理
-    </p>
+  <adv-playground-page :scrollEl="scrollEl" ref="ref">
+    <adv-playground-page-section title="字典">
+      <ul>
+        <li>- 静态字典</li>
+        <li>- 异步字典</li>
+      </ul>
+      <p>
+        第一次使用的时候才加载到内存，加载过之后就不在加载，如果字典是函数，也会对函数的值进行memoized处理
+      </p>
+    </adv-playground-page-section>
 
-    <h2>字典的定义</h2>
-    <playground :code-text="defineCode" lang="javascript">
-      在项目指定的目录中(如项目的src/dict)创建dict.业务名称
-      .config.js文件，这里介绍的是规范的命名方式，其实也可以任意命名都可以。文件的内容如展开后代码里的内容
-    </playground>
+    <adv-playground-page-code-box-section title="代码演示" :config="codeBoxPanelConfig">
+      <template #p1>
+        在项目指定的目录中(如项目的src/dict)创建dict.业务名称
+        .config.js文件，这里介绍的是规范的命名方式，其实也可以任意命名都可以。文件的内容如展开后代码里的内容
+      </template>
 
-    <h2>字典的注册</h2>
-    <playground :code-text="registerCode" lang="javascript">
-      如上所示，在src/dict目录中会创建很多个dict.业务名称
-      .config.js的文件，我们需要去初始化字典，这里用到了webpack提供的required.context函数去自动遍历指定目录下的.js文件
-    </playground>
+      <template #p2>
+        如上所示，在src/dict目录中会创建很多个dict.业务名称
+        .config.js的文件，我们需要去初始化字典，这里用到了webpack提供的required.context函数去自动遍历指定目录下的.js文件
+      </template>
 
-    <h2>字典的使用</h2>
-    <playground :code-text="useCode" lang="javascript">
-      字典的使用分为静态字典的使用和异步字典的使用
-    </playground>
+      <template #p3>
+        字典的使用分为静态字典的使用和异步字典的使用
+      </template>
 
-    <h2>字典返回函数值的memoized操作</h2>
-    <playground :code-text="memoizedCode" lang="javascript">
-      字典返回的是函数，字典会对函数值做memoized的操作,只有当函数的参数个数和参数的值发生改变的时候才会重新调用函数
-    </playground>
-  </div>
+      <template #p4>
+        字典返回的是函数，字典会对函数值做memoized的操作,只有当函数的参数个数和参数的值发生改变的时候才会重新调用函数
+      </template>
+    </adv-playground-page-code-box-section>
+  </adv-playground-page>
 </template>
+
 <script>
 export default {
   data() {
     return {
-      defineCode: `
+      scrollEl: null,
+      codeBoxPanelConfig: [
+        {
+          id: 'p1',
+          name: '字典的定义',
+          lang: 'javascript',
+          cardProps: {
+            description: {
+              title: '字典的定义',
+              info: '字典的定义',
+            },
+          },
+          type: 'PlayGround',
+          codeText: `
       import { Dict } from '@baifendian/adherev';
 
       /**
@@ -98,7 +111,20 @@ export default {
         },
       };
       `,
-      registerCode: `
+          childrenSlot: 'p1',
+        },
+        {
+          id: 'p2',
+          name: '字典的注册',
+          lang: 'javascript',
+          cardProps: {
+            description: {
+              title: '字典的注册',
+              info: '字典的注册',
+            },
+          },
+          type: 'PlayGround',
+          codeText: `
         import { Dict } from '@baifendian/adherev';
 
         const requireComponent = require.context('./dict', false, /.*\\.(js)$/);
@@ -112,7 +138,20 @@ export default {
 
         Dict.init(dictArr);
       `,
-      useCode: `
+          childrenSlot: 'p2',
+        },
+        {
+          id: 'p3',
+          name: '字典的使用',
+          lang: 'javascript',
+          cardProps: {
+            description: {
+              title: '字典的使用',
+              info: '字典的使用',
+            },
+          },
+          type: 'PlayGround',
+          codeText: `
         import { Dict } from '@baifendian/adhere';
 
         // 静态字典的使用
@@ -135,7 +174,20 @@ export default {
           console.log(result);
         });
       `,
-      memoizedCode: `
+          childrenSlot: 'p3',
+        },
+        {
+          id: 'p4',
+          lang: 'javascript',
+          name: '字典返回函数值的memoized操作',
+          cardProps: {
+            description: {
+              title: '字典返回函数值的memoized操作',
+              info: '字典返回函数值的memoized操作',
+            },
+          },
+          type: 'PlayGround',
+          codeText: `
         import { Dict } from '@baifendian/adhere';
 
         Dict.handlers.MyFun = () => {
@@ -151,7 +203,14 @@ export default {
         // 函数参数发生了变化，会调用函数进行重新计算
         console.log(Dict.value.MyFun(3,4));
       `,
+          childrenSlot: 'p4',
+        },
+      ],
     };
   },
+  mounted() {
+    this.scrollEl = this?.$refs?.ref?.$el?.parentElement?.parentElement;
+  },
+  methods: {},
 };
 </script>

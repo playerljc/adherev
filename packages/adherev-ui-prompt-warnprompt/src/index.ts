@@ -1,5 +1,14 @@
 import WarnPrompt from './warnprompt';
+import BfdUtil from '@baifendian/adherev-util';
+const {
+  _util: { withVue },
+} = BfdUtil;
 
-WarnPrompt.isUse = false;
+// @ts-ignore
+WarnPrompt.isUse = () => true;
+// @ts-ignore
+WarnPrompt.use = (Vue) => {
+  withVue(Vue, 'WarnPrompt', WarnPrompt);
+};
 
 export default WarnPrompt;

@@ -1,5 +1,4 @@
-import classNames from 'classnames';
-
+import { VNode } from 'vue';
 import Resource from '@baifendian/adherev-util-resource';
 
 const selectorPrefix = 'adherev-ui-backtopanimation';
@@ -19,16 +18,6 @@ export default {
       type: Number,
       default: 300,
     },
-    onTarget: {
-      type: Function,
-      default: () => window,
-    },
-    onTrigger: {
-      type: Function,
-    },
-    onScrollTop: {
-      type: Function,
-    },
   },
   data() {
     return {
@@ -46,7 +35,9 @@ export default {
     const { $data } = this;
 
     if ($data.$maskEl) {
-      $data.$maskEl.parentElement.removeChild($data.$maskEl);
+      try {
+        $data.$maskEl.parentElement.removeChild($data.$maskEl);
+      } catch (e) {}
     }
   },
   methods: {
@@ -68,7 +59,9 @@ export default {
         // 一次滚动的步进
         const step =
           $data.$scrollEl.scrollHeight /
+          //@ts-ignore
           (duration / (screen.updateInterval || 16.7) +
+            //@ts-ignore
             (duration % (screen.updateInterval || 16.7) !== 0 ? 1 : 0));
 
         /**
@@ -150,16 +143,10 @@ export default {
       }
     },
   },
-  render(h) {
-    const { className } = this;
-
+  render(h): VNode {
     return (
       <div
-        class={classNames(
-          selectorPrefix,
-
-          className.split(' '),
-        )}
+        class={selectorPrefix}
         ref="ref"
         onClick={() => {
           this.trigger();

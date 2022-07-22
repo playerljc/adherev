@@ -1,56 +1,261 @@
 @import '~ant-design-vue/es/table/style/index.less';
-@import "~ant-design-vue/es/pagination/style/index.less";
+@import '~ant-design-vue/es/pagination/style/index.less';
 @import '~ant-design-vue/es/button/style/index.less';
+@import '~ant-design-vue/es/popover/style/index.less';
+@import '~ant-design-vue/es/checkbox/style/index.less';
 @import '~@baifendian/adherev-ui-suspense/lib/index.less';
 @import '~@baifendian/adherev-ui-flexlayout/lib/index.less';
 @import '~@baifendian/adherev-ui-css/lib/iconfont/iconfont.less';
+@import '~@baifendian/adherev-ui-css/lib/vars';
 
-.adherev-ui-searchtable {
-  position: relative;
-  padding: 24px;
-  background-color: #f0f2f5;
+@import '~vue-draggable-resizable/dist/VueDraggableResizable.css';
+@import "./Extension/ColumnSetting/setting.less";
+@import "./Extension/TableDensitySetting/setting.less";
 
-  > .adherev-ui-searchtable-SearchWrapper {
-    margin-bottom: 16px;
-    padding: 24px 24px 0;
-    background: #fff;
+.adherev-ui-searchtable-wrap {
+  display: flex;
+  width: 100%;
 
-    .adherev-ui-searchtable-SearchFooterWrapper {
-      display: flex;
-      align-items: center;
-      justify-content: flex-end;
-      margin-bottom: 20px;
+  > .adherev-ui-suspense {
+    overflow: auto;
 
-      > .adherev-ui-searchtable-SearchFooterItem {
-        &:not(:last-child) {
-          margin-right: 10px;
+    .adherev-ui-searchtable {
+      position: relative;
+      padding: 24px;
+      background-color: #f0f2f5;
+
+      .adherev-ui-searchtable-tablewrapper {
+        > .ant-table-wrapper {
+          > .ant-spin-nested-loading {
+            > .ant-spin-container {
+              > .ant-table {
+                > .ant-table-content {
+                  > .ant-table-body {
+                    overflow: auto;
+                  }
+                }
+              }
+
+              > .ant-table-empty {
+                > .ant-table-container {
+                  > .ant-table-body {
+                    max-height: initial;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+
+      > .adherev-ui-searchtable-searchwrapper {
+        margin-bottom: 16px;
+        padding: 24px 24px 0;
+        background: #fff;
+
+        .adherev-ui-searchtable-searchfooterwrapper {
+          display: flex;
+          align-items: center;
+          justify-content: flex-end;
+          margin-bottom: 20px;
+
+          > .adherev-ui-searchtable-searchfooteritem {
+            display: flex;
+            align-items: center;
+
+            &:not(:last-child) {
+              margin-right: 10px;
+            }
+
+            &.ant-btn {
+              display: flex;
+            }
+          }
+        }
+      }
+
+      > .adherev-ui-searchtable-autowrapper {
+        position: relative;
+        background: #fff;
+        border-radius: 2px;
+
+        &.autofixed {
+          overflow-y: auto;
+        }
+
+        > .adherev-ui-searchtable-tablewrapper {
+          width: 100%;
+        }
+      }
+
+      &.fixedtablespacebetween {
+        > .adherev-ui-searchtable-autowrapper {
+          > .adherev-ui-searchtable-tablewrapper {
+            .ant-table-wrapper {
+              height: 100%;
+
+              > .ant-spin-nested-loading {
+                > .ant-spin-container {
+                  display: flex;
+                  flex-direction: column;
+
+                  > .ant-table {
+                    display: flex;
+                    flex-grow: 1;
+                    width: 100%;
+                    min-height: 0;
+
+                    > .ant-table-content {
+                      width: 100%;
+                      // 没有滚动
+                      //> .ant-table-body {
+                      //  > table {
+                      //    display: flex;
+                      //    flex-direction: column;
+                      //    height: 100%;
+                      //
+                      //    > .ant-table-header {
+                      //      flex-shrink: 0;
+                      //    }
+                      //
+                      //    > .ant-table-body {
+                      //      flex-grow: 1;
+                      //      min-height: 0;
+                      //      overflow-y: auto ;
+                      //    }
+                      //  }
+                      //}
+
+                      // 滚动
+                      > .ant-table-scroll {
+                        display: flex;
+                        flex-direction: column;
+                        height: 100%;
+
+                        > .ant-table-header {
+                          flex-shrink: 0;
+                        }
+
+                        > .ant-table-body {
+                          flex-grow: 1;
+                          min-height: 0;
+                          overflow-y: auto;
+                        }
+                      }
+                    }
+
+                    //> .ant-table-container {
+                    //  display: flex;
+                    //  flex-direction: column;
+                    //  height: 100%;
+                    //
+                    //  > .ant-table-header {
+                    //    flex-shrink: 0;
+                    //  }
+                    //
+                    //  > .ant-table-body {
+                    //    flex-grow: 1;
+                    //    min-height: 0;
+                    //    overflow-y: auto ;
+                    //  }
+                    //}
+                  }
+
+                  > .ant-table-pagination {
+                    display: flex;
+                    flex-shrink: 0;
+                    justify-content: flex-end;
+                    padding-right: 20px;
+                  }
+                }
+              }
+            }
+          }
         }
       }
     }
-  }
 
-  > .adherev-ui-searchtable-TableWrapper {
-    position: relative;
-    background: #fff;
-    border-radius: 2px;
+    .adherev-ui-searchform {
+      min-width: 100%;
+      table-layout: fixed;
+      border-collapse: separate;
+      border-spacing: 0 20px;
+
+      > tbody {
+        > .adherev-ui-searchform-row {
+          > .adherev-ui-searchform-label {
+            //max-width: 60px;
+            padding-right: 10px;
+            white-space: nowrap;
+            text-align: right;
+            word-break: keep-all;
+          }
+        }
+      }
+    }
+
+    .adherev-ui-searchtableimplement-tablewrapper {
+      height: 100%;
+    }
   }
 }
 
-.adherev-ui-searchform {
-  min-width: 100%;
-  table-layout: fixed;
-  border-collapse: separate;
-  border-spacing: 0 20px;
+.adherev-ui-searchtable-resize-table-th {
+  position: relative;
+  padding: 0 !important;
 
-  > tbody {
-    > .adherev-ui-searchform-row {
-      > .adherev-ui-searchform-label {
-        max-width: 60px;
-        padding-right: 10px;
-        white-space: nowrap;
-        text-align: right;
-        word-break: keep-all;
-      }
+  &.center {
+    > .ant-table-header-column {
+      justify-content: center;
+    }
+  }
+
+  &.left {
+    > .ant-table-header-column {
+      justify-content: flex-start;
+    }
+  }
+
+  &.right {
+    > .ant-table-header-column {
+      justify-content: flex-end;
+    }
+  }
+
+  > .ant-table-header-column {
+    position: relative;
+    display: flex !important;
+    justify-content: center;
+    padding: 16px 16px !important;
+
+    &::before {
+      position: absolute;
+      top: 50%;
+      right: 0;
+      width: 1px;
+      height: 1.6em;
+      background-color: rgba(0, 0, 0, 0.06);
+      transform: translateY(-50%);
+      transition: background-color 0.3s;
+      content: '';
+      pointer-events: none;
+    }
+  }
+
+  > .adherev-ui-searchtable-table-draggable-handle {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: auto !important;
+    z-index: 100 !important;
+    height: 100% !important;
+    border: none !important;
+    transform: none !important;
+    cursor: col-resize;
+    touch-action: none;
+    &:hover {
+      width: 2px !important;
+      background-color: @adhere-primary-color;
     }
   }
 }

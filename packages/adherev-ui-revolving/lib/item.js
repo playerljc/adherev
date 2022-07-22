@@ -1,0 +1,2 @@
+"use strict";require("core-js/modules/es.object.define-property.js"),Object.defineProperty(exports,"__esModule",{value:!0});var tslib_1=require("tslib"),classnames_1=tslib_1.__importDefault(require("classnames")),selectorPrefix="adherev-ui-revolving-item";exports.default={name:"adv-revolving-item",computed:{getClassName:function(){return classnames_1.default(selectorPrefix,"swiper-slide")}},render:function(e){return e("div",{class:this.getClassName},[this.$slots.default])}};
+//# sourceMappingURL=item.js.map

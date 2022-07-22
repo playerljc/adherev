@@ -1,11 +1,9 @@
 <template>
   <div :class="$style.App">
     <div :class="$style.Fixed">
-      <div :class="$style.Fixed">
-        <h2>adherev</h2>
-      </div>
-      <div :class="$style.Auto" />
+      <Header />
     </div>
+
     <div :class="$style.Auto">
       <keep-alive>
         <router-view />
@@ -15,7 +13,13 @@
 </template>
 
 <script>
-export default {};
+import Header from '@/lib/Header';
+
+export default {
+  components: {
+    Header,
+  },
+};
 </script>
 
 <style lang="less" module>
@@ -28,6 +32,7 @@ export default {};
   > .Fixed {
     display: flex;
     flex-shrink: 0;
+    align-items: center;
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 
     > .Fixed {
@@ -38,6 +43,8 @@ export default {};
     > .Auto {
       flex-grow: 1;
       min-width: 0;
+      margin-right: 20px;
+      text-align: right;
     }
   }
 

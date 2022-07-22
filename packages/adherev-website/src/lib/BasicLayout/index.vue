@@ -11,7 +11,7 @@
         @select="onSelect"
       >
         <template v-for="r in routes">
-          <sub-menu v-if="isSubMenu(r)" :router="r" :$style="$style" :key="r.path" />
+          <sub-menu v-if="isSubMenu(r)" :key="r.path" :router="r" :$style="$style" />
 
           <a-menu-item v-else :key="r.path">
             <router-link :to="r.path">
@@ -29,16 +29,20 @@
       <div :class="$style.BreadcrumbWrap">
         <a-breadcrumb separator="/">
           <a-breadcrumb-item>{{ name }}</a-breadcrumb-item>
-          <a-breadcrumb-item v-for="t in breadcrumbPaths()">
+          <a-breadcrumb-item v-for="t in breadcrumbPaths()" :key="t.path">
             <router-link :key="t.path" :to="t.path">{{ t.name }}</router-link>
           </a-breadcrumb-item>
         </a-breadcrumb>
       </div>
 
-      <div :class="$style.Auto">
+      <div>
         <keep-alive>
           <router-view></router-view>
         </keep-alive>
+      </div>
+
+      <div :class="$style.FooterWrap">
+        <Footer />
       </div>
     </div>
   </div>
@@ -47,18 +51,21 @@
 <script>
 import classNames from 'classnames';
 import SubMenu from './SubMenu';
+import Footer from '@/lib/Footer';
 import Util from './Util';
 
 export default {
+  components: {
+    'sub-menu': SubMenu,
+    Footer,
+  },
   props: {
-    routes: {
+    defaultRoutes: {
       type: Array,
-      require: true,
-      default: [],
+      default: () => [],
     },
     name: {
       type: String,
-      require: true,
       default: '',
     },
   },
@@ -69,14 +76,35 @@ export default {
 
       selectedKeys: [],
       openKeys: [],
+      routes: Util.sortRouters(this.defaultRoutes),
     };
+  },
+  watch: {
+    // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+    '$route.path'(pathname) {
+      const { defaultSelectedKeys, defaultOpenKeys } = this.getDefaultKeys(pathname);
+
+      if (
+        JSON.stringify(defaultSelectedKeys) !== JSON.stringify(this.selectedKeys) ||
+        JSON.stringify(defaultOpenKeys) !== JSON.stringify(this.openKeys)
+      ) {
+        this.selectedKeys = defaultSelectedKeys;
+        this.openKeys = defaultOpenKeys;
+      }
+    },
+    // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+    defaultRoutes(newVal, oldVal) {
+      if (JSON.stringify(newVal) !== JSON.stringify(oldVal)) {
+        this.routes = Util.sortRouters(newVal);
+      }
+    },
   },
   computed: {
     defaultSelectedKeys() {
-      return this.getDefault().defaultSelectedKeys;
+      return this.getKeys().selectedKeys;
     },
     defaultOpenKeys() {
-      return this.getDefault().defaultOpenKeys;
+      return this.getKeys().openKeys;
     },
     menuClassName() {
       const { isMenuCollapse, $style } = this;
@@ -88,8 +116,19 @@ export default {
      * getDefault
      * @return {{defaultOpenKeys: Array, defaultSelectedKeys: Array}}
      */
-    getDefault() {
-      const { routes = [], openKeys, selectedKeys } = this;
+    getKeys(pathname = window.location.pathname) {
+      const { defaultSelectedKeys, defaultOpenKeys } = this.getDefaultKeys(pathname);
+
+      return {
+        selectedKeys: this.selectedKeys.length ? this.selectedKeys : defaultSelectedKeys,
+        openKeys: this.openKeys.length ? this.openKeys : defaultOpenKeys,
+      };
+    },
+    /**
+     * getDefaultKeys
+     */
+    getDefaultKeys(pathname = window.location.pathname) {
+      const { defaultRoutes: routes = [] } = this;
       const defaultSelectedKeys = [];
       const defaultOpenKeys = [];
 
@@ -97,11 +136,12 @@ export default {
         defaultOpenKeys,
         defaultSelectedKeys,
         routes: routes.filter((t) => !t.redirect),
+        pathname,
       });
 
       return {
-        defaultSelectedKeys: selectedKeys.length ? selectedKeys : defaultSelectedKeys,
-        defaultOpenKeys: openKeys.length ? openKeys : defaultOpenKeys,
+        defaultSelectedKeys,
+        defaultOpenKeys,
       };
     },
     /**
@@ -143,9 +183,6 @@ export default {
       return path.filter((t) => !t.redirect);
     },
   },
-  components: {
-    'sub-menu': SubMenu,
-  },
 };
 </script>
 
@@ -162,11 +199,11 @@ export default {
       padding: 20px;
     }
 
-    > .Auto {
-      min-height: 0;
-      overflow-y: auto;
-      background: @common-block-background-color;
-    }
+    //> .Auto {
+    //  //min-height: 0;
+    //  overflow-y: auto;
+    //  background: @common-block-background-color;
+    //}
   }
 
   .Fixed {
@@ -180,9 +217,11 @@ export default {
   }
 
   .Auto {
+    position: relative;
     display: flex;
     flex-grow: 1;
     min-width: 0;
+    overflow-y: auto;
   }
 }
 

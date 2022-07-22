@@ -1,8 +1,8 @@
+// @ts-ignore
 import FlexLayout from '@baifendian/adherev-ui-flexlayout';
+import classNames from 'classnames';
 
 const { selectorPrefix: flexlayoutSelectorPrefix } = FlexLayout;
-
-import classNames from 'classnames';
 
 const selectorPrefix = 'adherev-ui-splitlayout';
 
@@ -26,7 +26,7 @@ const directionProp = {
 function toPoint(percent: string) {
   const str = percent.replace('%', '');
 
-  return str / 100;
+  return Number.parseInt(str) / 100;
 }
 
 export default {
@@ -43,21 +43,6 @@ export default {
     minSize: {
       type: [String, Number],
       default: 10,
-    },
-    canDrag: {
-      type: Function,
-    },
-    dragStarted: {
-      type: Function,
-    },
-    dragFinished: {
-      type: Function,
-    },
-    out: {
-      type: Function,
-    },
-    change: {
-      type: Function,
     },
   },
   data() {
@@ -128,7 +113,7 @@ export default {
       const keys = Array.from($data.$situation.keys());
 
       return keys.some((key) => {
-        const arr = key.split('_');
+        const arr = (key as string).split('_');
         const prevKey = arr[0];
         const nextKey = arr[1];
 
@@ -148,51 +133,29 @@ export default {
       } = this;
 
       _splitEl.removeEventListener('mouseenter', this.onMouseenter);
-
-      _splitEl.addEventListener('mouseenter', this.onMouseenter);
-
       _splitEl.removeEventListener('mousedown', this.onMousedown);
-
-      _splitEl.addEventListener('mousedown', this.onMousedown);
-
-      $fixedEl.removeEventListener('mousemove', this.onMousemove);
-
-      _splitEl.removeEventListener('mousemove', this.onMousemove);
-
-      $autoEl.removeEventListener('mousemove', this.onMousemove);
-
-      $fixedEl.addEventListener('mousemove', this.onMousemove);
-
-      _splitEl.addEventListener('mousemove', this.onMousemove);
-
-      $autoEl.addEventListener('mousemove', this.onMousemove);
-
-      $fixedEl.removeEventListener('mouseout', this.onMouseout);
-
       _splitEl.removeEventListener('mouseout', this.onMouseout);
-
-      $autoEl.removeEventListener('mouseout', this.onMouseout);
-
-      $fixedEl.addEventListener('mouseout', this.onMouseout);
-
-      _splitEl.addEventListener('mouseout', this.onMouseout);
-
-      $autoEl.addEventListener('mouseout', this.onMouseout);
-
-      $fixedEl.removeEventListener('mouseup', this.onMouseup);
-
+      _splitEl.removeEventListener('mousemove', this.onMousemove);
       _splitEl.removeEventListener('mouseup', this.onMouseup);
-
+      $fixedEl.removeEventListener('mousemove', this.onMousemove);
+      $fixedEl.removeEventListener('mouseout', this.onMouseout);
+      $fixedEl.removeEventListener('mouseup', this.onMouseup);
+      $autoEl.removeEventListener('mouseout', this.onMouseout);
+      $autoEl.removeEventListener('mousemove', this.onMousemove);
       $autoEl.removeEventListener('mouseup', this.onMouseup);
-
-      $fixedEl.addEventListener('mouseup', this.onMouseup);
-
-      _splitEl.addEventListener('mouseup', this.onMouseup);
-
-      $autoEl.addEventListener('mouseup', this.onMouseup);
-
       $containerEl.removeEventListener('mouseleave', this.onMouseleave);
 
+      _splitEl.addEventListener('mouseenter', this.onMouseenter);
+      _splitEl.addEventListener('mousedown', this.onMousedown);
+      _splitEl.addEventListener('mousemove', this.onMousemove);
+      _splitEl.addEventListener('mouseout', this.onMouseout);
+      _splitEl.addEventListener('mouseup', this.onMouseup);
+      $fixedEl.addEventListener('mousemove', this.onMousemove);
+      $fixedEl.addEventListener('mouseout', this.onMouseout);
+      $fixedEl.addEventListener('mouseup', this.onMouseup);
+      $autoEl.addEventListener('mousemove', this.onMousemove);
+      $autoEl.addEventListener('mouseout', this.onMouseout);
+      $autoEl.addEventListener('mouseup', this.onMouseup);
       $containerEl.addEventListener('mouseleave', this.onMouseleave);
     },
     getFixedEl(): HTMLElement {
@@ -296,7 +259,7 @@ export default {
       return resultVal < elSize ? elSize : resultVal;
     },
     onMouseenter(e) {
-      console.log('mouseenter');
+      // console.log('mouseenter');
 
       const {
         $data,
@@ -312,9 +275,8 @@ export default {
 
       this.$emit('canDrag', e);
     },
-
     onMousedown(e) {
-      console.log('mousedown');
+      // console.log('mousedown');
 
       const {
         $refs: { ref: splitEl },
@@ -336,9 +298,8 @@ export default {
         this.$emit('dragStarted', e);
       }
     },
-
-    onMouseup() {
-      console.log('mouseup');
+    onMouseup(e) {
+      // console.log('mouseup');
 
       const {
         $data,
@@ -358,18 +319,19 @@ export default {
         $data.$startVal = 0;
 
         $data.$changeBaseVal += $data.$changeVal;
+
+        this.$emit('dragFinished', e);
       }
     },
-
     onMouseleave(e) {
-      console.log('onMouseleave');
+      // console.log('onMouseleave');
 
       const { $data } = this;
 
       if ($data.$isDown) {
         $data.$isDown = false;
 
-        $data._sMove = false;
+        $data.$isMove = false;
 
         $data.$isEnter = false;
 
@@ -380,7 +342,6 @@ export default {
         this.$emit('dragFinished', e);
       }
     },
-
     onMousemove(e) {
       // e.stopPropagation();
 
@@ -423,9 +384,8 @@ export default {
         this.$emit('change', e);
       }
     },
-
     onMouseout(e) {
-      console.log('onMouseout');
+      // console.log('onMouseout');
 
       const { $data } = this;
 
@@ -448,7 +408,7 @@ export default {
         class={classNames(
           selectorPrefix,
           `${selectorPrefix}-${getDirection()}`,
-          className.split(' '),
+          className.split(/\s+/),
         )}
       />
     );

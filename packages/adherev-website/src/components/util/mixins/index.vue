@@ -1,16 +1,21 @@
 <template>
-  <div class="Page">
-    <h1>Mixins-混入</h1>
-    <p>提供一些全局和局部的混入功能</p>
+  <adv-playground-page :scrollEl="scrollEl" ref="ref">
+    <adv-playground-page-section title="Mixins-混入">
+      <p>提供一些全局和局部的混入功能</p>
+      <h2>updatedEx</h2>
+      <p>提供pre参数的updated的hook</p>
+      <p>updated生命周期函数没有提供data和props的pre参数</p>
+    </adv-playground-page-section>
 
-    <h2>updatedEx</h2>
-    <p>提供pre参数的updated的hook</p>
-    <p>updated生命周期函数没有提供data和props的pre参数</p>
-    <playground-mulit :config="code1">
-      <Person @display="onDisplay" />
-      <div v-html="display" :class="$style.console" ref="ref1" />
-    </playground-mulit>
-  </div>
+    <adv-playground-page-code-box-section title="代码演示" :config="codeBoxPanelConfig">
+      <template #p1>
+        <fragment>
+          <Person @display="onDisplay" />
+          <div v-html="display" :class="$style.console" ref="ref1" />
+        </fragment>
+      </template>
+    </adv-playground-page-code-box-section>
+  </adv-playground-page>
 </template>
 
 <script>
@@ -21,14 +26,24 @@ export default {
   data() {
     return {
       display: '',
-    };
-  },
-  computed: {
-    code1() {
-      return [
+      scrollEl: null,
+      codeBoxPanelConfig: [
         {
-          title: 'index.vue',
-          codeText: `
+          id: 'p1',
+          name: '基本使用',
+          cardProps: {
+            description: {
+              title: '基本使用',
+              info: '基本使用',
+            },
+          },
+          type: 'PlayGroundTab',
+          active: 'index.vue',
+          config: [
+            {
+              title: 'index.vue',
+              key: 'index.vue',
+              codeText: `
             <template>
               <Person @display="onDisplay" />
               <div v-html="display" :class="$style.console" ref="ref1" />
@@ -56,10 +71,11 @@ export default {
               }
             <\/script>
 					`,
-        },
-        {
-          title: 'person.vue',
-          codeText: `
+            },
+            {
+              title: 'person.vue',
+              key: 'person.vue',
+              codeText: `
           	<template>
               <div @click="onClick" :class="$style.Wrap">
                 <div>点击改变数据</div>
@@ -108,9 +124,15 @@ export default {
               }
             </style>
 `,
+            },
+          ],
+          childrenSlot: 'p1',
         },
-      ];
-    },
+      ],
+    };
+  },
+  mounted() {
+    this.scrollEl = this?.$refs?.ref?.$el?.parentElement?.parentElement;
   },
   methods: {
     onDisplay({ pre, cur }) {
@@ -131,7 +153,7 @@ export default {
   margin-top: 10px;
   padding: 0 10px 10px 10px;
   overflow-y: auto;
-  border: 1px solid #ccc;
   color: red;
+  border: 1px solid #ccc;
 }
 </style>

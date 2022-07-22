@@ -1,6 +1,7 @@
 const path = require('path');
 const fs = require('fs');
 
+const args = require('./commandArgs');
 const packageJSON = require('../package.json');
 
 const { dependencies } = packageJSON;
@@ -13,6 +14,8 @@ const indexLessContent = [];
 const indexJsContent = [];
 const indexJsExportContent = ['export { \r\n'];
 const indexJsExportDefaultContent = ['export default {\r\n\tinstall:function (Vue){\r\n\t'];
+
+const type = args.getArg('module');
 
 const namedMap = new Map([
   ['@baifendian/adherev-ui-conditionalrender', 'ConditionalRender'],
@@ -42,13 +45,17 @@ const namedMap = new Map([
   ['@baifendian/adherev-ui-popup', 'Popup'],
   ['@baifendian/adherev-ui-sliderscale', 'SliderScale'],
   ['@baifendian/adherev-ui-stickuplayout', 'StickupLayout'],
-  ['@baifendian/adherev-ui-surnames','Surnames'],
-  ['@baifendian/adherev-ui-notification','Notification'],
-  ['@baifendian/adherev-ui-fontsizesetting','FontSizeSetting'],
-  ['@baifendian/adherev-ui-cascadecompared','CascadeCompared'],
-  ['@baifendian/adherev-ui-swipeout','SwipeOut'],
-  ['@baifendian/adherev-ui-jdcategorytab','JdCategoryTab'],
-  ['@baifendian/adherev-ui-imagelazy','ImageLazy'],
+  ['@baifendian/adherev-ui-surnames', 'Surnames'],
+  ['@baifendian/adherev-ui-notification', 'Notification'],
+  ['@baifendian/adherev-ui-fontsizesetting', 'FontSizeSetting'],
+  ['@baifendian/adherev-ui-cascadecompared', 'CascadeCompared'],
+  ['@baifendian/adherev-ui-swipeout', 'SwipeOut'],
+  ['@baifendian/adherev-ui-jdcategorytab', 'JdCategoryTab'],
+  ['@baifendian/adherev-ui-imagelazy', 'ImageLazy'],
+  ['@baifendian/adherev-ui-polygonselection', 'PolygonSelection'],
+  // ['@baifendian/adherev-ui-bmap', 'BMap'],
+  ['@baifendian/adherev-ui-playground', 'PlayGround'],
+  ['@baifendian/adherev-ui-teleport', 'Teleport'],
   ['@baifendian/adherev-util', 'Util'],
   ['@baifendian/adherev-util-communication-ajax', 'Ajax'],
   ['@baifendian/adherev-util-dict', 'Dict'],
@@ -59,7 +66,10 @@ const namedMap = new Map([
   ['@baifendian/adherev-util-resource', 'Resource'],
   ['@baifendian/adherev-util-adapterscreen', 'AdapterScreen'],
   ['@baifendian/adherev-util-watchmemoized', 'WatchMemoized'],
-  ['@baifendian/adherev-util-mixins','Mixins'],
+  ['@baifendian/adherev-util-mixins', 'Mixins'],
+  ['@baifendian/adherev-util-domain', 'Domain'],
+  ['@baifendian/adherev-util-browsersniff', 'Browsersniff'],
+  ['@baifendian/adherev-util-validator', 'Validator'],
 ]);
 
 /**
@@ -106,7 +116,10 @@ for (const packageName in dependencies) {
     }
 
     // index.js写入文件
-    fs.writeFileSync(indexPath, `import Model from '${packageName}';\r\nexport default Model;`);
+    fs.writeFileSync(
+      indexPath,
+      `import Model from '${packageName}/${type}';\r\nexport default Model;`,
+    );
 
     if (!fs.existsSync(stylePath)) {
       // 不存在
@@ -116,8 +129,8 @@ for (const packageName in dependencies) {
     // 查看packages中是否存在index.less
     if (fs.existsSync(path.join(packagesPath, name, 'src', 'index.less'))) {
       // index.less写入文件
-      fs.writeFileSync(styleIndexPath, `@import '~${packageName}/lib/index.less';`);
-      indexLessContent.push(`@import '~${packageName}/lib/index.less';\r\n`);
+      fs.writeFileSync(styleIndexPath, `@import '~${packageName}/${type}/index.less';`);
+      indexLessContent.push(`@import '~${packageName}/${type}/index.less';\r\n`);
     } else {
       fs.writeFileSync(styleIndexPath, '');
     }

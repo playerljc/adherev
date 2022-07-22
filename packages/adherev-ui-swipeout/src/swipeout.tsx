@@ -105,7 +105,7 @@ export default {
     getContainerClassName() {
       const { className } = this;
 
-      return classNames(selectorPrefix, 'swiper-container', className.split(' '));
+      return classNames(selectorPrefix, 'swiper-container', className.split(/\s+/));
     },
     getWrapperClassName() {
       return `swiper-wrapper`;
@@ -113,17 +113,17 @@ export default {
     getBeforeClassName() {
       const { beforeClassName } = this;
 
-      return classNames('swiper-slide', `${selectorPrefix}-before`, beforeClassName.split(' '));
+      return classNames('swiper-slide', `${selectorPrefix}-before`, beforeClassName.split(/\s+/));
     },
     getContentClassName() {
       const { contentClassName } = this;
 
-      return classNames('swiper-slide', `${selectorPrefix}-content`, contentClassName.split(' '));
+      return classNames('swiper-slide', `${selectorPrefix}-content`, contentClassName.split(/\s+/));
     },
     getAfterClassName() {
       const { afterClassName } = this;
 
-      return classNames('swiper-slide', `${selectorPrefix}-after`, afterClassName.split(' '));
+      return classNames('swiper-slide', `${selectorPrefix}-after`, afterClassName.split(/\s+/));
     },
   },
   methods: {

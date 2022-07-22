@@ -1,16 +1,24 @@
 import VueI18n from 'vue-i18n';
 import { I18nOptions, Path, TranslateResult, Locale, IVueI18n } from 'vue-i18n/types';
 
+import Intl from '@baifendian/adhere-util-intl';
+
+import en_US from './locales/en_US';
+import zh_CN from './locales/zh_CN';
+import pt_PT from './locales/pt_PT';
+
 // 组件的国际化文件
 const finallyLocales = {
-  en_US: require('./locales/en_US').default,
-  zh_CN: require('./locales/zh_CN').default,
-  pt_PT: require('./locales/pt_PT').default,
+  en_US,
+  zh_CN,
+  pt_PT,
 };
 
 const intlMap = {};
 
-let i18n: IVueI18n = null;
+const mainLocales = {};
+
+let i18n: IVueI18n | null = null;
 
 /**
  * initIntlMap - 初始化以中文为key,intl.get()为值的Map
@@ -27,16 +35,17 @@ function initIntlMap(zh_CN) {
 
 /**
  * getLocal
+ * @param prefix
  * @param data
  * @return object
  */
-export function getLocal(data: Array<string>): object {
+export function getLocal(prefix = 'local', data: Array<string>): object {
   const result = [...Array.from(new Set(data))];
 
   const local = {};
 
   for (let i = 0; i < result.length; i++) {
-    local[`local${i + 1}`] = result[i];
+    local[`${prefix}${i + 1}`] = result[i];
   }
 
   return local;
@@ -80,23 +89,49 @@ export function extend(Vue: any): void {
  * @param config
  * @constructor
  */
-const I18nFactory = function (config: I18nOptions = {}) {
-  const { messages = {} } = config;
+const I18nFactory = function (config: { I18nOptions: I18nOptions; prefix }) {
+  const { I18nOptions, prefix = 'local' } = config;
+
+  const { messages: locales = {}, locale } = I18nOptions;
+
+  const finallyLocalesKeys = Object.keys(finallyLocales);
+  const localesKeys = Object.keys(locales || {});
+
+  let masterLocales;
+  let slaveLocales;
+
+  if (finallyLocalesKeys.length > localesKeys.length) {
+    masterLocales = finallyLocales;
+    slaveLocales = locales || {};
+  } else if (finallyLocalesKeys.length <= localesKeys.length) {
+    masterLocales = locales || {};
+    slaveLocales = finallyLocales;
+  }
 
   // 整合用户的locales
-  for (const lang in messages || {}) {
-    if (lang in finallyLocales) {
-      finallyLocales[lang] = Object.assign(finallyLocales[lang], (messages || {})[lang]);
-    }
+  for (const p in masterLocales) {
+    mainLocales[p] = getLocal(
+      prefix,
+      // @ts-ignore
+      Array.from(new Set([...masterLocales[p], ...(slaveLocales[p] || [])])),
+    );
   }
 
   // 反转资源文件
-  initIntlMap(finallyLocales.zh_CN);
+  // @ts-ignore
+  initIntlMap(mainLocales.zh_CN);
 
   // i18n实例
   i18n = new VueI18n({
-    ...config,
-    ...{ messages: finallyLocales },
+    ...I18nOptions,
+    ...{ messages: mainLocales },
+  });
+
+  // 初始化@baifendian/adhere-util-intl
+  Intl.init({
+    // @ts-ignore
+    currentLocale: locale,
+    locales,
   });
 
   return i18n;
@@ -107,10 +142,12 @@ const I18nFactory = function (config: I18nOptions = {}) {
  * @param zh
  * @param values
  */
-I18nFactory.tv = function (zh: Path, ...values: []) {
+I18nFactory.tv = I18nFactory.v = function (zh: Path, ...values: []) {
   const key = intlMap[zh];
 
-  return i18n.t.apply(i18n, [key, ...values]);
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
+  return i18n?.t.apply(i18n, [key, ...(values || [])]);
 };
 
 /**
@@ -121,7 +158,9 @@ I18nFactory.tv = function (zh: Path, ...values: []) {
 I18nFactory.tcv = function (zh: Path, ...values: []) {
   const key = intlMap[zh];
 
-  return i18n.tc.apply(i18n, [key, ...values]);
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
+  return i18n?.tc.apply(i18n, [key, ...(values || [])]);
 };
 
 /**
@@ -132,7 +171,7 @@ I18nFactory.tcv = function (zh: Path, ...values: []) {
 I18nFactory.tev = function (zh: Path, ...values: []) {
   const key = intlMap[zh];
 
-  return i18n.te.apply(i18n, [key, ...values]);
+  return i18n?.te.apply(i18n, [key, ...values]);
 };
 
 /**

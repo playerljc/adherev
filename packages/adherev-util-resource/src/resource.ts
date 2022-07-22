@@ -7,6 +7,7 @@ import Dict from '@baifendian/adherev-util-dict';
  * Resource提供的字典命名规范 Resource${业务分组}${实际业务名称}
  */
 function initBasicDict() {
+  // @ts-ignore
   const requireComponent = require.context('./dict', false, /.*\.(js)$/);
 
   requireComponent.keys().forEach((path) => {

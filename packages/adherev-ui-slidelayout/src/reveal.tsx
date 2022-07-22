@@ -1,9 +1,7 @@
 import { Fragment } from 'vue-fragment';
-
 import classNames from 'classnames';
 
 import SlideLayout from './slide';
-
 import { slider } from './slidelayout';
 
 const selectorPrefix = 'adherev-ui-slidelayout-reveal';
@@ -139,25 +137,17 @@ export default {
     const { $slots, masterClassName, slaveClassName, direction } = this;
 
     return (
+      // @ts-ignore
       <Fragment>
         <div
-          class={classNames(
-            `${selectorPrefix}`,
-            direction,
-
-            slaveClassName.split(' '),
-          )}
+          class={classNames(`${selectorPrefix}`, direction, slaveClassName.split(/\s+/))}
           ref="el"
         >
           {$slots.slide}
         </div>
 
         <div
-          class={classNames(
-            `${selectorPrefix}-master`,
-
-            masterClassName.split(' '),
-          )}
+          class={classNames(`${selectorPrefix}-master`, masterClassName.split(/\s+/))}
           ref="rMasterEl"
         >
           {$slots.master}

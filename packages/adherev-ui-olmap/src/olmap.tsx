@@ -1,6 +1,5 @@
-import { Fill, Stroke, Style, Text } from 'ol/style.js';
-
 import Resource from '@baifendian/adherev-util-resource';
+import { Fill, Stroke, Style, Text } from 'ol/style.js';
 
 import Constent from './constent';
 import Util from './util';
@@ -40,6 +39,10 @@ export default {
     center: {
       type: Array,
       default: () => Resource.Dict.value.ResourceGisXinbeiquCenterPoint.value,
+    },
+    extent: {
+      type: Array,
+      default: () => [] /*Resource.Dict.value.ResourceGisXinbeiquMapExtent.value*/,
     },
     layers: {
       type: Array,
@@ -103,6 +106,16 @@ export default {
      */
     addGeoLayer(geojsonData, getStyleConfig, zIndex = 0) {
       return Util.addGeoLayer(this.$data.$map, geojsonData, getStyleConfig, zIndex);
+    },
+
+    /**
+     * addWindLayer - 添加风场层
+     * @param data
+     * @param config
+     * @param zIndex
+     */
+    addWindLayer(data, config, zIndex = 0) {
+      return Util.addWindLayer(this.$data.$map, data, config, zIndex);
     },
 
     /**

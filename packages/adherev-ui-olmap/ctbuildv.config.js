@@ -10,6 +10,7 @@ module.exports = {
       ...externals.externals([
         '@baifendian/adherev-util-resource',
         'algebra.js',
+        'ol-wind',
         'ol',
         'ol/proj.js',
         'ol/layer',

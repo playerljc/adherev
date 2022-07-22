@@ -1,42 +1,26 @@
-.idea
-
-.history
-
-node_modules
-
-dist
-
-dist.zip
-
-antd
-
-webpack.config.dev.js
-
-coverage
-
-test
-
 .DS_Store
+node_modules
+/dist
 
-stats.json
+/tests/e2e/videos/
+/tests/e2e/screenshots/
 
-test
 
-dll/commons-manifest.json
-dll/commons.js
-dll/commons.prod.js
-dll/commons-manifest.prod.json
+# local env files
+.env.local
+.env.*.local
 
-npm-debug
+# Log files
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
 
-.cache
-
-.zip
-
+# Editor directories and files
+.idea
 .vscode
-
-**/.idea
-**/node_modules
-**/dist
-
-README.html
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?

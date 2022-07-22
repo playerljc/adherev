@@ -5,5 +5,9 @@ module.exports = {
     delete webpackConfig.module.rules[2].include;
 
     webpackConfig.resolve.modules.unshift(path.join(__dirname, 'node_modules'));
+
+    webpackConfig.externals = {
+      ...externals.umdExternals,
+    };
   },
 };

@@ -1,2 +1,2 @@
-import Model from '@baifendian/adherev-ui-popup';
+import Model from '@baifendian/adherev-ui-popup/es';
 export default Model;

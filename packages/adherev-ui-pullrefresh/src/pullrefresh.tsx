@@ -1,10 +1,7 @@
-import classNames from 'classnames';
-
-import moment from 'moment';
-
 import Intl from '@baifendian/adherev-util-intl';
-
 import Resource from '@baifendian/adherev-util-resource';
+import classNames from 'classnames';
+import moment from 'moment';
 
 const selectorPrefix = 'adherev-ui-pullrefresh';
 const defaultImg =
@@ -58,15 +55,10 @@ export default {
     };
   },
   computed: {
-    getClassName() {
-      const { className } = this;
-
-      return classNames(selectorPrefix, ...className.split(' '));
-    },
     getScrollClassName() {
       const { scrollClassName } = this;
 
-      return classNames(`${selectorPrefix}-scroll`, ...scrollClassName.split(' '));
+      return classNames(`${selectorPrefix}-scroll`, ...scrollClassName.split(/\s+/));
     },
   },
   methods: {
@@ -76,13 +68,11 @@ export default {
       return $slots.icon ? (
         <div class={`${selectorPrefix}-trigger-icon`}>
           <div class={`${selectorPrefix}-trigger-icon-inner`} ref="iconElRef">
-            {/* @ts-ignore */}
             {$slots.icon}
           </div>
         </div>
       ) : (
         <div class={`${selectorPrefix}-trigger-icon`}>
-          {/* @ts-ignore */}
           <img
             class={`${selectorPrefix}-trigger-icon-inner`}
             src={defaultImg}
@@ -124,7 +114,7 @@ export default {
         <div
           class={classNames(
             `${selectorPrefix}-trigger-refresh`,
-            ...(loadingAnimation || '').split(' '),
+            ...(loadingAnimation || '').split(/\s+/),
           )}
           ref="refreshElRef"
         >
@@ -240,7 +230,7 @@ export default {
 
           // 具备刷新条件
           if (distance >= $refreshHeight + 80) {
-            console.log('3.具备刷新条件');
+            // console.log('3.具备刷新条件');
             this.rotateIcon($iconEl, 0, 150);
 
             this.isCan = true;
@@ -264,7 +254,7 @@ export default {
 
           this.rotateIcon($iconEl, 0, 150);
 
-          console.log('4.拉动到了底部');
+          // console.log('4.拉动到了底部');
 
           this.isCan = true;
 
@@ -304,7 +294,7 @@ export default {
           if (distance >= $refreshHeight + 80) {
             this.refresh();
           } else {
-            console.log('2.没有具备刷新条件弹回');
+            // console.log('2.没有具备刷新条件弹回');
             // self.events.trigger('pullRebound');
             this.trigger('pull-rebound');
             this.reset();
@@ -363,7 +353,7 @@ export default {
 
       this.$refs.refreshElRef.style.display = 'none';
 
-      $data.$triggerInnerEl?.style.display = 'flex';
+      ($data.$triggerInnerEl as HTMLElement).style.display = 'flex';
 
       this.rotateIcon($data.$iconEl, 180, 0);
 
@@ -410,7 +400,7 @@ export default {
       function onTransitionEnd() {
         $scrollEl.removeEventListener('transitionend', onTransitionEnd);
 
-        $triggerInnerEl?.style.display = 'flex';
+        ($triggerInnerEl as HTMLElement).style.display = 'flex';
       }
 
       this.clear();
@@ -421,7 +411,7 @@ export default {
 
       this.translateY($el, 'calc(-100% + 0px)', 200);
     },
-    resetUpdateTime(updateTime: number): Promise<null> {
+    resetUpdateTime(updateTime: number): Promise<void> {
       return new Promise((resolve) => {
         this.preUpdateTime = updateTime || moment().valueOf();
         resolve();
@@ -454,7 +444,7 @@ export default {
     const { $slots } = this;
 
     return (
-      <div class={this.getClassName}>
+      <div class={selectorPrefix}>
         <div class={this.getScrollClassName} ref="scrollElRef">
           {$slots.default}
         </div>

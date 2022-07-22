@@ -1,10 +1,12 @@
+import Util from '@baifendian/adherev-util';
+
 import Fixed from './fixed';
-
 import Auto from './auto';
-
 import FlexLayout, { selectorPrefix } from './flexlayout';
 
-import { withInstall } from '../../_util';
+const {
+  _util: { withInstall, withVue },
+} = Util;
 
 const Component = withInstall(FlexLayout);
 
@@ -16,6 +18,8 @@ Component.use = (Vue) => {
   Vue.use(Component.Fixed);
 
   Vue.use(Component.Auto);
+
+  withVue(Vue, 'FlexLayout', Component);
 };
 
 Component.Fixed = withInstall(Fixed);

@@ -4,7 +4,7 @@ const path = require('path');
 const cheerio = require('cheerio');
 const lerna = require('../../../lerna.json');
 
-const excludePackageNames = ['adhere', 'adhere-website'];
+const excludePackageNames = ['adherev', 'adherev-website', '_util'];
 
 // packages目录路径
 const packagesDirPath = path.join(__dirname, '../../');
@@ -28,7 +28,7 @@ const packageNames = fs
 const curData = new Date();
 // 迭代所有包中的changelog/changelog.html中指定版本的信息，合并成一个html字符串
 let changelogHtmlStr = `
- <h1>1.0.6</h1>
+ <h1>${version}</h1>
  <hr />
  <div>${curData.getFullYear()}-${curData.getMonth() + 1}-${curData.getDate()}</div>
  <ul>

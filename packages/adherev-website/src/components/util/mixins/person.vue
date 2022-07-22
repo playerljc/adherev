@@ -1,6 +1,6 @@
 <template>
   <div @click="onClick" :class="$style.Wrap">
-		<div>点击改变数据</div>
+    <div>点击改变数据</div>
     <div>{{ name }}</div>
     <div>{{ sex }}</div>
   </div>
@@ -39,9 +39,9 @@ export default {
 </script>
 
 <style lang="less" module>
-	.Wrap {
-		&:hover {
-			cursor: pointer;
-		}
-	}
+.Wrap {
+  &:hover {
+    cursor: pointer;
+  }
+}
 </style>

@@ -10,6 +10,13 @@ export interface IMenuItemProps {
 
 export type ISubMenuProps = IMenuProps;
 
+export type ContextMenuType = {
+  isUse?(): boolean;
+  use?(Vue: any): void;
+  open(data: IData, config: IConfig): void;
+  close(params: { vm: any; el: HTMLElement });
+};
+
 export interface IContextMenuComponentProps {
   data: Array<IData>;
   config: IData;

@@ -1,11 +1,11 @@
 import Vue from 'vue';
-
 import { v1 } from 'uuid';
 
 import { IConfig } from './types';
 
 const selectorPrefix = 'adherev-ui-popup';
 
+// @ts-ignore
 let prePopup: this;
 let maskEl;
 let el = null;
@@ -45,6 +45,7 @@ class Popup {
    * createMask
    */
   private createMask(): void {
+    // @ts-ignore
     const { zIndex } = this.config;
 
     maskEl = document.createElement('div');
@@ -53,7 +54,7 @@ class Popup {
 
     maskEl.style.zIndex = String((zIndex || 11000) - 1500);
 
-    this.el.appendChild(maskEl);
+    this?.el?.appendChild(maskEl);
 
     maskEl.addEventListener('transitionend', this.onMaskElTransitionend);
   }
@@ -62,6 +63,7 @@ class Popup {
    * render
    */
   private render(): void {
+    // @ts-ignore
     const { children, zIndex } = this.config;
 
     this.popupEl = document.createElement('div');
@@ -80,7 +82,7 @@ class Popup {
 
     this.vm = new Vue({
       mounted() {
-        self.el.appendChild(self.popupEl);
+        self?.el?.appendChild(self.popupEl as HTMLElement);
         self.trigger('onCreate');
       },
       render(h) {
@@ -96,7 +98,9 @@ class Popup {
    * @param hookName
    */
   private trigger(hookName: string): void {
+    // @ts-ignore
     if (this.config[hookName]) {
+      // @ts-ignore
       return this.config[hookName]();
     }
   }
@@ -116,7 +120,7 @@ class Popup {
 
     maskEl.style.display = 'block';
 
-    this.popupEl.style.display = 'block';
+    (this.popupEl as HTMLElement).style.display = 'block';
 
     this.isShow = true;
 
@@ -125,7 +129,7 @@ class Popup {
     setTimeout(() => {
       maskEl.classList.add('modal-in');
 
-      this.popupEl.classList.add('modal-in');
+      (this.popupEl as HTMLElement).classList.add('modal-in');
     }, 100);
 
     return true;
@@ -144,14 +148,15 @@ class Popup {
 
     const promise = this.trigger('onBeforeClose');
 
+    // @ts-ignore
     if (promise) {
       (promise as unknown as Promise<null>).then(() => {
-        this.popupEl.classList.remove('modal-in');
+        this.popupEl?.classList.remove('modal-in');
 
         maskEl.classList.remove('modal-in');
       });
     } else {
-      this.popupEl.classList.remove('modal-in');
+      this.popupEl?.classList.remove('modal-in');
 
       maskEl.classList.remove('modal-in');
     }
@@ -163,9 +168,10 @@ class Popup {
    * destroy - 销毁一个popup
    */
   destroy(): boolean {
+    // @ts-ignore
     this.vm.$destroy();
 
-    this.popupEl.parentNode.removeChild(this.popupEl);
+    this.popupEl?.parentNode?.removeChild(this.popupEl);
     this.popupEl = null;
 
     this.trigger('onDestroy');
@@ -196,7 +202,7 @@ class Popup {
     if (!this.isShow) {
       prePopup = null;
 
-      this.popupEl.style.display = 'none';
+      (this.popupEl as HTMLElement).style.display = 'none';
 
       this.trigger('onAfterClose');
     } else {

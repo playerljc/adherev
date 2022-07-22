@@ -1,6 +1,6 @@
-import classNames from 'classnames';
-
 import Intl from '@baifendian/adherev-util-intl';
+import classNames from 'classnames';
+import { VNode } from 'vue';
 
 const selectorPrefix = 'adherev-ui-scrollload';
 
@@ -11,10 +11,6 @@ export const NORMAL = 'normal';
 export default {
   name: 'adv-scrollload',
   props: {
-    className: {
-      type: String,
-      default: '',
-    },
     loadClassName: {
       type: String,
       default: '',
@@ -62,9 +58,7 @@ export default {
     onScroll() {
       const {
         $refs: { el, loadEl, errorEl, emptyEl },
-
         $data,
-
         distance,
       } = this;
 
@@ -72,13 +66,6 @@ export default {
 
       const scrollTop = el.scrollTop;
 
-      console.log(
-        '11111111111111',
-        scrollTop,
-        bottomHeight,
-        distance,
-        Math.abs(scrollTop - bottomHeight) <= distance,
-      );
       /**
        * 条件完全相等或误差值在1之间
        */
@@ -115,16 +102,16 @@ export default {
     onErrorClick() {
       this.$emit('error-click');
     },
-    renderLoading(h) {
+    renderLoading(h): VNode {
       const { $slots, loadClassName } = this;
 
       if ($slots.loading) {
         return (
           <div
-            className={classNames(
+            class={classNames(
               `${selectorPrefix}-load`,
 
-              loadClassName.split(' '),
+              loadClassName.split(/\s+/),
             )}
             ref="loadEl"
           >
@@ -135,29 +122,20 @@ export default {
 
       return (
         <div
-          class={classNames(
-            `${selectorPrefix}-load`,
-            'standard',
-
-            loadClassName.split(' '),
-          )}
+          class={classNames(`${selectorPrefix}-load`, 'standard', loadClassName.split(/\s+/))}
           ref="loadEl"
         >
           {Intl.tv('数据加载中')}
         </div>
       );
     },
-    renderEmpty(h) {
+    renderEmpty(h): VNode {
       const { $slots, emptyClassName } = this;
 
       if ($slots.empty) {
         return (
           <div
-            class={classNames(
-              `${selectorPrefix}-empty`,
-
-              emptyClassName.split(' '),
-            )}
+            class={classNames(`${selectorPrefix}-empty`, emptyClassName.split(/\s+/))}
             ref="emptyEl"
           >
             {$slots.empty}
@@ -167,28 +145,20 @@ export default {
 
       return (
         <div
-          class={classNames(
-            `${selectorPrefix}-empty`,
-
-            emptyClassName.split(' '),
-          )}
+          class={classNames(`${selectorPrefix}-empty`, emptyClassName.split(/\s+/))}
           ref="emptyEl"
         >
           ~{Intl.tv('没有更多')}
         </div>
       );
     },
-    renderError(h) {
+    renderError(h): VNode {
       const { $slots, errorClassName } = this;
 
       if ($slots.error) {
         return (
           <div
-            class={classNames(
-              `${selectorPrefix}-error`,
-
-              errorClassName.split(' '),
-            )}
+            class={classNames(`${selectorPrefix}-error`, errorClassName.split(/\s+/))}
             ref="errorEl"
           >
             {$slots.error}
@@ -198,11 +168,7 @@ export default {
 
       return (
         <div
-          class={classNames(
-            `${selectorPrefix}-error`,
-
-            errorClassName.split(' '),
-          )}
+          class={classNames(`${selectorPrefix}-error`, errorClassName.split(/\s+/))}
           ref="errorEl"
         >
           {Intl.tv('出现错误')}
@@ -222,24 +188,14 @@ export default {
       emptyEl.style.display = 'none';
     },
   },
-  render(h) {
-    const { $slots, className } = this;
+  render(h): VNode {
+    const { $slots } = this;
 
     return (
-      <div
-        class={classNames(
-          selectorPrefix,
-
-          className.split(' '),
-        )}
-        ref="el"
-      >
+      <div class={selectorPrefix} ref="el">
         {$slots.default}
-
         {this.renderLoading(h)}
-
         {this.renderEmpty(h)}
-
         {this.renderError(h)}
       </div>
     );

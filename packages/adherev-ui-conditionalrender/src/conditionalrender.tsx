@@ -1,9 +1,11 @@
+/**
+ * ConditionalRender
+ */
 export default {
   name: 'adv-conditionalrender',
   props: {
     conditional: {
       type: Boolean,
-      required: true,
       default: true,
     },
   },

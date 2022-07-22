@@ -13,6 +13,8 @@ module.exports = {
         '@baifendian/adherev-ui-flexlayout',
         '@baifendian/adherev-ui-suspense',
         '@baifendian/adherev-util-intl',
+        '@baifendian/adherev-util-mixins',
+        '@ctsj/vuexgenerator',
       ]),
     };
 

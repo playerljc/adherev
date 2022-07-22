@@ -1,7 +1,5 @@
 import Overlay from './overlay';
-
 import Push from './push';
-
 import Revolving from './reveal';
 
 export const selectorPrefix = 'adherev-ui-slidelayout';
@@ -16,12 +14,12 @@ export const selectorPrefix = 'adherev-ui-slidelayout';
  * @param callback
  */
 export function slider(
-  el: HTMLElement | null | undefined,
+  el: HTMLElement,
   x: string,
   y: string,
   z: string,
-  time = '0',
-  callback: Function,
+  time?: number | string,
+  callback?: Function,
 ) {
   if (callback) {
     callback(el);
@@ -44,9 +42,10 @@ export function createMask(zIndex: number | string, closeCallback: Function): HT
 
   const maskEl = el.firstElementChild;
 
-  maskEl.style.zIndex = zIndex - 1;
+  // @ts-ignore
+  (maskEl as HTMLElement).style.zIndex = `${parseInt(zIndex) - 1}`;
 
-  maskEl.addEventListener('click', () => {
+  (maskEl as HTMLElement).addEventListener('click', () => {
     closeCallback();
   });
 

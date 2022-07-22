@@ -1,15 +1,19 @@
 {
   "name": "@baifendian/adherev-ui-contextmenu",
-  "version": "1.0.0",
+  "version": "1.0.11",
   "description": "上下文菜单，可以移动后显示子菜单那种",
   "main": "lib/index.js",
+  "module": "es/index.js",
   "files": [
     "lib",
+    "es",
     "umd"
   ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "buildpackage": "ctbuildv buildpackagets",
+    "buildpackage:cjs": "ctbuildv buildpackagets -c ctbuildv.package.ts.cjs.config.js -o lib",
+    "buildpackage:es": "ctbuildv buildpackagets -c ctbuildv.package.ts.esm.config.js -o es",
+    "buildpackage": "npm-run-all --parallel buildpackage:cjs buildpackage:es",
     "buildumd": "ctbuildv buildumd --config ctbuildv.config.umd.js --packagename AdherevContextMenu --define alias=@,evnVars=true",
     "generatorchangelog": "bd changelog/CHANGELOG.html"
   },
@@ -17,9 +21,7 @@
     "type": "git",
     "url": "https://gitee.com/playerljc/adherev"
   },
-  "resolutions": {
-    "graceful-fs": "4.2.2"
-  },
+  "resolutions": {},
   "author": "playerljc",
   "license": "ISC",
   "bugs": {
@@ -31,14 +33,16 @@
   },
   "devDependencies": {
     "@babel/runtime": "^7.7.4",
-    "@ctsj/buildv": "^2.0.2",
-    "typescript": "^3.8.2"
+    "@ctsj/buildv": "^2.0.9",
+    "npm-run-all": "^4.1.5",
+    "typescript": "^4.6.2"
   },
   "dependencies": {
-    "@baifendian/adherev-ui-conditionalrender": "^1.0.0",
-    "@baifendian/adherev-ui-css": "^1.0.0",
-    "@baifendian/adherev-util": "^1.0.0",
+    "@baifendian/adherev-ui-conditionalrender": "^1.0.11",
+    "@baifendian/adherev-ui-css": "^1.0.9",
+    "@baifendian/adherev-util": "^1.0.11",
     "classnames": "^2.2.6",
     "vue": "^2.6.14"
-  }
+  },
+  "gitHead": "2e23d8b8d13e6a97f5326e4e5d257c9903cd108d"
 }

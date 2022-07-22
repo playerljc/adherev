@@ -46,6 +46,7 @@ import Resource from '@baifendian/adherev-util-resource';
 
 import * as TitleLayer from './titlelayer';
 import GeoLayer from './geolayer';
+import WindLayer from './windlayer';
 
 const EARTH_RADIUS = Resource.Dict.value.ResourceGisEarthRadius.value; // 单位M
 
@@ -66,6 +67,7 @@ function getMinZoom(target) {
  */
 function transformLonLat(point?: Array<number>) {
   return transform(
+    // @ts-ignore
     point,
     Resource.Dict.value.ResourceGisEpsg3857.value,
     Resource.Dict.value.ResourceGisEpsg4326.value,
@@ -86,12 +88,25 @@ export default {
       minZoom = getMinZoom(config.target) || 3,
       maxZoom = Resource.Dict.value.ResourceGisMapMaxZoom.value,
       center = Resource.Dict.value.ResourceGisXinbeiquCenterPoint.value,
-      extent = Resource.Dict.value.ResourceGisXinbeiquMapExtent.value,
+      extent = [] /*Resource.Dict.value.ResourceGisXinbeiquMapExtent.value*/,
       layers = [TitleLayer.getOSMTileLayer()],
     } = Config;
 
-    console.log(center);
-    console.log(fromLonLat(center), zoom, extent, layers, fitZoom);
+    const viewConfig = {
+      center: fromLonLat(center),
+      minZoom,
+      maxZoom,
+      zoom,
+    };
+
+    if (extent && extent.length) {
+      // @ts-ignore
+      viewConfig.extent = transformExtent(
+        boundingExtent(extent),
+        Resource.Dict.value.ResourceGisEpsg4326.value,
+        Resource.Dict.value.ResourceGisEpsg3857.value,
+      );
+    }
 
     const map = new Map({
       ...config,
@@ -108,37 +123,37 @@ export default {
         }),
       ]),
       pixelRatio: 1,
-      view: new View({
-        center: fromLonLat(center),
-        minZoom,
-        maxZoom,
-        zoom,
-        extent: transformExtent(
-          boundingExtent(extent),
-          Resource.Dict.value.ResourceGisEpsg4326.value,
-          Resource.Dict.value.ResourceGisEpsg3857.value,
-        ),
+      view: new View(
+        viewConfig,
+        // {
         // zoom: 13,
         // projection : 'EPSG:3857',
         // projection: 'EPSG:4326',
-      }),
+        // }
+      ),
       layers,
     });
 
-    setTimeout(() => {
-      let zoom;
+    // console.log('viewConfig', viewConfig);
 
-      if (fitZoom) {
-        zoom = fitZoom;
-      } else {
-        const mapExtentTransform = [].concat(fromLonLat(extent[0])).concat(fromLonLat(extent[1]));
-        const resolution = map.getView().getResolutionForExtent(mapExtentTransform);
-        zoom = map.getView().getZoomForResolution(resolution);
-        // zoom = 11.5;
-      }
+    if (extent && extent.length) {
+      // console.log('setTimeout');
+      setTimeout(() => {
+        let zoom;
 
-      map.getView().setZoom(zoom);
-    }, 100);
+        if (fitZoom) {
+          zoom = fitZoom;
+        } else {
+          // @ts-ignore
+          const mapExtentTransform = [].concat(fromLonLat(extent[0])).concat(fromLonLat(extent[1]));
+          const resolution = map.getView().getResolutionForExtent(mapExtentTransform);
+          zoom = map.getView().getZoomForResolution(resolution);
+          // zoom = 11.5;
+        }
+
+        map.getView().setZoom(zoom);
+      }, 100);
+    }
 
     return map;
   },
@@ -272,6 +287,20 @@ export default {
   },
 
   /**
+   * addWindLayer - 添加风场层
+   * @param mapInstance
+   * @param data
+   * @param config
+   * @param zIndex
+   * @return WindLayer
+   */
+  addWindLayer: (mapInstance, data, config, zIndex = 0) => {
+    const windLayer = new WindLayer(data, config);
+    mapInstance.addLayer(windLayer);
+    return windLayer;
+  },
+
+  /**
    * addVectorLayer - 添加一个向量层
    * @param map
    * @param zIndex
@@ -313,7 +342,7 @@ export default {
     // map.addLayer(heatmapLayer);
     return {
       layer,
-      vectorSource
+      vectorSource,
     };
   },
 
@@ -499,6 +528,7 @@ export default {
 
     point.setStyle(
       new Style({
+        // @ts-ignore
         image: new RegularShape({
           fill: new Fill(fillOpt),
           stroke: new Stroke(strokeOpt),
@@ -622,15 +652,19 @@ export default {
       x = origin[0] + radius * Math.cos(rotatedAngle);
       y = origin[1] + radius * Math.sin(rotatedAngle);
 
+      // @ts-ignore
       points.push([x, y]);
     }
     if (rotation !== 0) {
+      // @ts-ignore
       points.push(origin);
     }
     const ring = new LinearRing(points);
     ring.rotate(Math.PI - ((angel - r / 2) / 180) * Math.PI, origin);
     const poy = new Polygon([points]);
+    // @ts-ignore
     const a = ring.A;
+    // @ts-ignore
     poy.A = a;
 
     return poy;
@@ -688,7 +722,9 @@ export default {
         stroke: new Stroke({
           width,
           color,
+          // @ts-ignore
           lineCap,
+          // @ts-ignore
           lineJoin,
         }),
       }),
@@ -732,7 +768,7 @@ export default {
     drawPolygonInteraction.on('drawend', (e) => {
       e.feature.setId(v4());
       const geometry = e.feature.getGeometry();
-      const lonlats = [];
+      const lonlats: any = [];
       const coordinates = geometry.getCoordinates()[0].map((v) => {
         lonlats.push(transformLonLat(v));
         return v;
@@ -844,7 +880,7 @@ export default {
     drawPolygonInteraction.on('drawend', (e) => {
       e.feature.setId(v4());
       const geometry = e.feature.getGeometry();
-      const lonlats = [];
+      const lonlats: any = [];
       const coordinates = geometry.getCoordinates().map((v) => {
         lonlats.push(transformLonLat(v));
         return v;
@@ -945,7 +981,7 @@ export default {
    * @return {Array}
    */
   addArrowsSource({ points, color, icon }) {
-    const arrows = [];
+    const arrows: any = [];
     for (let i = 0; i < points.length - 1; i++) {
       const start = points[i];
       const end = points[i + 1];
@@ -1004,9 +1040,8 @@ export default {
    * addOverlay - 添加覆盖物
    * @param map
    * @param config
-   * @param div
    */
-  addOverlay: (map, config, div: HTMLDivElement | null) => {
+  addOverlay: (map, config) => {
     const overlay = new Overlay(config);
     map.addOverlay(overlay);
     return overlay;
@@ -1033,8 +1068,8 @@ export default {
       return [].concat(coordinates[0], coordinates[0]);
     }
 
-    const lons = [];
-    const lats = [];
+    const lons: any = [];
+    const lats: any = [];
     for (let i = 0; i < coordinates.length; i++) {
       const point = coordinates[i];
 
@@ -1073,7 +1108,7 @@ export default {
    * @param type
    */
   getCectorSourceCoordinates(vectorSource, type = 'Point') {
-    let points = [];
+    let points: any = [];
     vectorSource
       .getFeatures()
       .filter((f) => {
@@ -1107,7 +1142,7 @@ export default {
    */
   getCenterByCoordinates(vectorSource, type = 'Point') {
     // 获取所有点的数据
-    let points = [];
+    let points: any = [];
     vectorSource
       .getFeatures()
       .filter((f) => {
@@ -1140,8 +1175,8 @@ export default {
    * @return {{centerLon: number, centerLat: number}}
    */
   getCenterByPoints(points) {
-    const lons = [];
-    const lats = [];
+    const lons: any = [];
+    const lats: any = [];
     for (let i = 0; i < points.length; i++) {
       const lonlat = transform(
         points[i],
@@ -1165,8 +1200,8 @@ export default {
    * @return {{centerLon: number, centerLat: number}}
    */
   getPointsExtent(points) {
-    const lons = [];
-    const lats = [];
+    const lons: any = [];
+    const lats: any = [];
     for (let i = 0; i < points.length; i++) {
       const lonlat = transform(
         points[i],

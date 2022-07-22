@@ -1,8 +1,6 @@
-import Vue from 'vue';
+import Vue, { VNode, PropType } from 'vue';
 
-import classNames from 'classnames';
-import { IData, IConfig } from './types';
-
+import { IData, IConfig, ContextMenuType } from './types';
 import Menu from './Menu';
 
 const selectorPrefix = 'adherev-ui-contextmenu';
@@ -15,21 +13,16 @@ const selectorPrefix = 'adherev-ui-contextmenu';
 const ContextMenuComponent = {
   props: {
     data: {
-      type: Array,
+      type: Array as PropType<IData[]>,
       default: () => [],
-      validator(val: Array<IData>): boolean {
-        return val instanceof Array;
-      },
     },
     config: {
-      type: Object,
+      type: Object as PropType<IData>,
       default: () => {},
-      validator(val: IData): boolean {
-        return val instanceof Object;
-      },
     },
     el: {
       type: HTMLElement,
+      default: () => null,
     },
   },
   provide() {
@@ -38,9 +31,6 @@ const ContextMenuComponent = {
     };
   },
   computed: {
-    getClass() {
-      return classNames(selectorPrefix);
-    },
     getStyle() {
       return `z-index: ${9999 * 2}`;
     },
@@ -49,7 +39,6 @@ const ContextMenuComponent = {
     getContext() {
       return {
         config: this.config,
-
         el: this.el,
       };
     },
@@ -75,23 +64,24 @@ const ContextMenuComponent = {
       el.parentElement.removeChild(el);
     },
   },
-  render(h) {
+  render(h): VNode {
     const { data = [], config } = this;
 
     return (
       <div
-        class={this.getClass}
+        class={selectorPrefix}
         style={this.getStyle}
         onClick={this.onClick}
         onContextMenu={this.onContextMenu}
       >
+        {/*@ts-ignore*/}
         <Menu data={data} className={config.className} styleName={config.styleName} ref="menuIns" />
       </div>
     );
   },
 };
 
-const ContextMenu = {
+const ContextMenu: ContextMenuType = {
   /**
    * config
    * {
@@ -115,11 +105,12 @@ const ContextMenu = {
    * @param config
    */
   open(data: IData, config: IConfig) {
-    config = { width: 200, maskClosable: true, ...config };
+    config = { ...{ width: 200, maskClosable: true }, ...config };
 
     const parentEl = document.createElement('div');
 
     const replaceEl = document.createElement('div');
+
     parentEl.appendChild(replaceEl);
     document.body.appendChild(parentEl);
 
@@ -153,7 +144,7 @@ const ContextMenu = {
    */
   close({ vm, el }) {
     vm.$destroy();
-    el.parentElement.removeChild(el);
+    el?.parentElement?.removeChild?.(el);
   },
 };
 

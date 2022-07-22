@@ -1,3 +1,4 @@
+import { CreateElement } from 'vue';
 import classNames from 'classnames';
 
 const selectorPrefix = 'adherev-ui-searchform';
@@ -10,12 +11,11 @@ export default {
       default: '',
     },
   },
-  render(h) {
+  render(h: CreateElement) {
     const { $slots, className } = this;
 
     return (
-      //  @ts-ignore
-      <table class={classNames(selectorPrefix, ...(className || '').split(' '))}>
+      <table class={classNames(selectorPrefix, ...(className || '').split(/\s+/))}>
         <tbody>{$slots.default}</tbody>
       </table>
     );

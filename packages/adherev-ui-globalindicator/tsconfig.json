@@ -1,15 +1,16 @@
 {
-  "extends": "./node_modules/@ctsj/build/buildpackagetsconfig-base",
+  "extends": "../../node_modules/@ctsj/build/buildpackagetsconfig-base",
   "compilerOptions": {
     "declarationDir": "./lib",
     "outDir": "./lib",
     "baseUrl": "./",
-    "module": "esnext"
+    "jsx": "preserve"
   },
   "exclude": [
     "node_modules"
   ],
   "include": [
+    "../_util/index.ts",
     "src/**/*"
   ]
 }

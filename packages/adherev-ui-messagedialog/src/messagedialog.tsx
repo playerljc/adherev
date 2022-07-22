@@ -1,23 +1,23 @@
-import Vue from 'vue';
-import { ConfigProvider, Button } from 'ant-design-vue';
-
+import Util from '@baifendian/adherev-util';
 import Intl from '@baifendian/adherev-util-intl';
 import Resource from '@baifendian/adherev-util-resource';
-import Util from '@baifendian/adherev-util';
-
-import { IAlertArgv, IConfirmArgv, IPromptConfig } from './types';
-import { Fragment } from '../../_util';
+import { Button, ConfigProvider } from 'ant-design-vue';
+import Vue from 'vue';
+import ModalDialog from './modal';
+import { IAlertArgv, IConfig, IConfirmArgv, IPromptConfig } from './types';
 
 export const selectorPrefix = 'adherev-ui-messagedialog';
 
-import Actions from './actions';
-import Emitter from './emitter';
-
-import ModalDialog from './modal';
-
 const DEFAULT_LOCAL = 'zh_CN';
 
-const LOCAL = Resource.Dict.value.LocalsAntd;
+const LOCAL = Resource.Dict.value.LocalsAntd.value;
+
+const {
+  _util: { Fragment },
+} = Util;
+
+// MessageDialog的配置
+let globalConfig: IConfig | null = null;
 
 /**
  * renderByIcon
@@ -29,21 +29,30 @@ const LOCAL = Resource.Dict.value.LocalsAntd;
 function renderByIcon({ h, icon, text }) {
   return (
     <div class={`${selectorPrefix}-renderByIcon`}>
-      {/* @ts-ignore */}
       <div class={`${selectorPrefix}-renderByIcon-fixed`}>
-        {/* @ts-ignore */}
-        {Util.isFunction(icon) ? icon(h) : <Fragment>{icon}</Fragment>}
+        {Util.isFunction(icon) ? (
+          icon(h)
+        ) : (
+          // @ts-ignore
+          <Fragment>{icon}</Fragment>
+        )}
       </div>
-      {/* @ts-ignore */}
       <div class={`${selectorPrefix}-renderByIcon-auto`}>
-        {/* @ts-ignore */}
-        {Util.isFunction(text) ? text(h) : <Fragment>{text}</Fragment>}
+        {Util.isFunction(text) ? (
+          text(h)
+        ) : (
+          // @ts-ignore
+          <Fragment>{text}</Fragment>
+        )}
       </div>
     </div>
   );
 }
 
 const MessageDialogFactory = {
+  setConfig: (gc: IConfig) => {
+    globalConfig = gc;
+  },
   /**
    * Confirm
    * @param title {String | Function}
@@ -62,7 +71,7 @@ const MessageDialogFactory = {
     icon = null,
     onSuccess,
   }: IConfirmArgv) {
-    const { el } = this.Modal({
+    const { close } = this.Modal({
       config: {
         title,
         centered: true,
@@ -72,16 +81,19 @@ const MessageDialogFactory = {
         footer: (h) => {
           return [
             <Button
+              // @ts-ignore
               key="submit"
               type="primary"
               title={Intl.tv('确定')}
               onClick={() => {
                 if (onSuccess) {
                   onSuccess().then(() => {
-                    Emitter.trigger(Actions.close, el);
+                    // Emitter.trigger(Actions.close, el);
+                    close();
                   });
                 } else {
-                  Emitter.trigger(Actions.close, el);
+                  // Emitter.trigger(Actions.close, el);
+                  close();
                 }
               }}
             >
@@ -94,7 +106,13 @@ const MessageDialogFactory = {
 
       children: icon
         ? (h) => renderByIcon({ h, icon, text })
-        : (h) => (Util.isFunction(text) ? text(h) : <Fragment>{text}</Fragment>),
+        : (h) =>
+            Util.isFunction(text) ? (
+              (text as Function)(h)
+            ) : (
+              // @ts-ignore
+              <Fragment>{text}</Fragment>
+            ),
     });
   },
   /**
@@ -114,7 +132,7 @@ const MessageDialogFactory = {
       config.option.resetBtn = false;
     }
 
-    const { el, vm } = this.Modal({
+    const { close, vm } = this.Modal({
       config: {
         title,
         centered: true,
@@ -124,22 +142,25 @@ const MessageDialogFactory = {
         footer: (h) => {
           return [
             <Button
+              // @ts-ignore
               key="submit"
               type="primary"
               title={Intl.tv('确定')}
               onClick={() => {
                 if (onSuccess) {
-                  const fApi = vm.$refs.formRef.fApi;
+                  const fApi = vm.$refs.rootRef.fApi;
 
                   fApi.validate((valid) => {
                     if (valid) {
                       onSuccess(fApi.getValue(config.rule[0].field)).then(() => {
-                        Emitter.trigger(Actions.close, el);
+                        // Emitter.trigger(Actions.close, el);
+                        close();
                       });
                     }
                   });
                 } else {
-                  Emitter.trigger(Actions.close, el);
+                  // Emitter.trigger(Actions.close, el);
+                  close();
                 }
               }}
             >
@@ -296,7 +317,13 @@ const MessageDialogFactory = {
 
       children: icon
         ? (h) => renderByIcon({ h, icon, text })
-        : (h) => (Util.isFunction(text) ? text(h) : <Fragment>{text}</Fragment>),
+        : (h) =>
+            Util.isFunction(text) ? (
+              (text as Function)(h)
+            ) : (
+              // @ts-ignore
+              <Fragment>{text}</Fragment>
+            ),
     });
   },
   /**
@@ -329,7 +356,7 @@ const MessageDialogFactory = {
 
         // 如果是组件
         if (Util.isObject(children)) {
-          return h(children, { ref: 'formRef' });
+          return h(children, { ref: 'rootRef' });
         }
       }
 
@@ -345,6 +372,7 @@ const MessageDialogFactory = {
       if (!Util.isEmpty(title)) {
         // 如果是jsx
         if (Util.isFunction(title)) {
+          // @ts-ignore
           return <Fragment slot="title">{title(h)}</Fragment>;
         }
 
@@ -382,10 +410,10 @@ const MessageDialogFactory = {
     function close() {
       _vm.$destroy();
 
-      el.parentElement.removeChild(el);
+      el?.parentElement?.removeChild(el);
     }
 
-    const { title, ...others } = config;
+    const { title, ...others } = config as any;
 
     const modalConfig = {
       maskClosable: false,
@@ -399,6 +427,15 @@ const MessageDialogFactory = {
     const el = document.createElement('div');
 
     const _vm = new Vue({
+      ...(globalConfig?.getOptions?.() || {}),
+      i18n: Intl({
+        I18nOptions: {
+          // @ts-ignore
+          messages: (globalConfig || {}).messages,
+          locale: local || DEFAULT_LOCAL,
+        },
+        prefix: 'local',
+      }),
       render(h) {
         const footerJSX = renderFooter({ config, h });
 
@@ -407,6 +444,7 @@ const MessageDialogFactory = {
         }
 
         return (
+          // @ts-ignore
           <ConfigProvider locale={LOCAL[local || DEFAULT_LOCAL]}>
             {/* @ts-ignore */}
             <ModalDialog
@@ -429,14 +467,18 @@ const MessageDialogFactory = {
     return {
       el,
       vm: _vm,
+      close,
     };
   },
   /**
    * close
    * @param el
    */
-  close(el: HTMLElement) {
-    Emitter.trigger(Actions.close, el);
+  close({ _vm, el }: { _vm: any; el: HTMLElement }) {
+    // Emitter.trigger(Actions.close, el);
+    _vm.$destroy();
+
+    el?.parentElement?.removeChild(el);
   },
 };
 

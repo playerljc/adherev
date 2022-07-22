@@ -1,5 +1,15 @@
 import Dict from '@baifendian/adhere-util-dict';
+import BfdUtil from '@baifendian/adherev-util';
 
-Dict.isUse = () => false;
+const {
+  _util: { withVue },
+} = BfdUtil;
+
+// @ts-ignore
+Dict.isUse = () => true;
+// @ts-ignore
+Dict.use = (Vue) => {
+  withVue(Vue, 'Dict', Dict);
+};
 
 export default Dict;

@@ -51,7 +51,7 @@ class Notification {
     const innerContainer = this.container.querySelector(`.${selectorPrefix}`);
 
     if (innerContainer) {
-      innerContainer.parentElement.removeChild(innerContainer);
+      innerContainer?.parentElement?.removeChild(innerContainer);
     }
 
     this.innerContainer = document.createElement('div');
@@ -70,11 +70,11 @@ class Notification {
   private init(): void {
     const { config } = this;
 
-    this.innerContainer.classList.remove(
+    this?.innerContainer?.classList.remove(
       [selectorPrefix].concat([config.type === 'top' ? 'bottom' : 'top', config.style]).join('-'),
     );
 
-    this.innerContainer.classList.add(
+    this?.innerContainer?.classList.add(
       [selectorPrefix].concat([config.type, config.style]).join('-'),
     );
   }
@@ -86,11 +86,11 @@ class Notification {
   private initEvents(): void {
     const self = this;
 
-    this.notificationContainer.addEventListener('click', (e: HTMLElement) => {
-      if (e.target.classList.contains('closeBtn')) {
+    this?.notificationContainer?.addEventListener('click', (e: MouseEvent) => {
+      if ((e.target as HTMLElement)?.classList?.contains?.('closeBtn')) {
         const topDom = Util.getTopDom(e.target, `${selectorPrefix}-item`);
 
-        self.closeNotification.call(self, topDom.dataset.id);
+        self.closeNotification.call(self, (topDom as HTMLElement).dataset.id as string);
       }
     });
   }
@@ -113,7 +113,7 @@ class Notification {
     function transitionendAction() {
       n.removeEventListener('transitionend', transitionendAction);
 
-      self.notificationContainer.removeChild(n);
+      self?.notificationContainer?.removeChild(n);
 
       self.key = false;
 
@@ -159,12 +159,13 @@ class Notification {
         },
         render(h) {
           return (
+            // @ts-ignore
             <Fragment>
               <div class="info">
                 {Util.isObject(children)
                   ? h(children)
                   : Util.isFunction(children)
-                  ? children(h)
+                  ? (children as Function)(h)
                   : children || ''}
               </div>
               {closed ? <span class="closeBtn" /> : null}
@@ -181,8 +182,8 @@ class Notification {
    * @return Promise<string>
    * @private
    */
-  private buildStandard(config: IShowStandardConfig): Promise<string> {
-    return new Promise((resolve) => {
+  private buildStandard(config: IShowStandardConfig): Promise<any> {
+    return new Promise<void>((resolve) => {
       const {
         headerLabel = '',
         headerIcon = '',
@@ -205,10 +206,12 @@ class Notification {
 
       new Vue({
         mounted() {
+          // @ts-ignore
           resolve(self.build(id, n));
         },
         render(h) {
           return (
+            // @ts-ignore
             <Fragment>
               <div class="info">
                 <div class={`${selectorPrefix}-standard-header`}>
@@ -219,7 +222,7 @@ class Notification {
                     {Util.isObject(headerLabel)
                       ? h(headerLabel)
                       : Util.isFunction(headerLabel)
-                      ? headerLabel(h)
+                      ? (headerLabel as Function)(h)
                       : headerLabel || ''}
                   </div>
                 </div>
@@ -232,18 +235,22 @@ class Notification {
                       {Util.isObject(title)
                         ? h(title)
                         : Util.isFunction(title)
-                        ? title(h)
+                        ? (title as Function)(h)
                         : title || ''}
                     </div>
                     <div class={`${selectorPrefix}-standard-content-row-text`}>
-                      {Util.isObject(text) ? h(text) : Util.isFunction(text) ? text(h) : text || ''}
+                      {Util.isObject(text)
+                        ? h(text)
+                        : Util.isFunction(text)
+                        ? (text as Function)(h)
+                        : text || ''}
                     </div>
                   </div>
                   <div class={`${selectorPrefix}-standard-content-media-r`}>
                     {Util.isObject(datetime)
                       ? h(datetime)
                       : Util.isFunction(datetime)
-                      ? datetime(h)
+                      ? (datetime as Function)(h)
                       : datetime || ''}
                   </div>
                 </div>
@@ -268,7 +275,7 @@ class Notification {
 
     this.notifications[id] = n;
 
-    this.notificationContainer.appendChild(n);
+    this?.notificationContainer?.appendChild(n);
 
     // onCreate
     self.trigger('onCreate', n);

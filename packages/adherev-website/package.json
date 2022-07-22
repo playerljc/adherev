@@ -1,17 +1,18 @@
 {
   "name": "@baifendian/adherev-website",
-  "version": "1.0.0",
+  "version": "1.0.11",
   "private": true,
   "description": "adherev的website",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "startapp": "cross-env environment=dev mode=development ctbuildv startapp --define alias=@,evnVars=true,cssModules=true,static=assets",
-    "buildapp": "cross-env environment=dev mode=production ctbuildv buildapp --define alias=@,evnVars=true,cssModules=true,static=assets",
+    "startapp": "cross-env environment=dev mode=development ctbuildv startapp --define alias=@,evnVars=true,cssModules=true,static=assets,runtimeCompiler=true",
+    "buildapp": "cross-env environment=dev mode=production ctbuildv buildapp --define alias=@,evnVars=true,cssModules=true,static=assets,runtimeCompiler=true",
+    "buildapp:analysis": "cross-env environment=dev mode=production ctbuildv buildapp --define alias=@,evnVars=true,cssModules=true,analysis=true,static=assets",
     "lint": "npm run lint:js && npm run lint:style && npm run lint:prettier",
     "lint-staged": "lint-staged",
-    "lint-staged:js": "eslint --ext .js,.jsx,.ts,.tsx ",
-    "lint:fix": "eslint --fix --cache --ext .js,.jsx,.ts,.tsx --format=pretty ./src && npm run lint:style",
-    "lint:js": "eslint --cache --ext .js,.jsx,.ts,.tsx --format=pretty ./src",
+    "lint-staged:js": "eslint --ext .vue,.js,.jsx,.ts,.tsx ",
+    "lint:fix": "eslint --fix --cache --ext .vue,.js,.jsx,.ts,.tsx --format=pretty ./src && npm run lint:style",
+    "lint:js": "eslint --cache --ext .vue,.js,.jsx,.ts,.tsx --format=pretty ./src",
     "lint:prettier": "check-prettier lint",
     "lint:style": "stylelint --fix \"src/**/*.less\" --syntax less",
     "prettier": "prettier -c --write \"**/*\""
@@ -23,36 +24,27 @@
   },
   "lint-staged": {
     "**/*.less": "stylelint --syntax less",
-    "**/*.{js,jsx,tsx,ts,less,md,json}": [
+    "**/*.{vue,js,jsx,tsx,ts,less,md,json}": [
       "prettier --write",
       "git add"
     ],
-    "**/*.{js,jsx,ts,tsx}": "npm run lint-staged:js"
+    "**/*.{vue,js,jsx,ts,tsx}": "npm run lint-staged:js"
   },
   "author": "playerljc <playerljc@163.com>",
   "repository": {
     "type": "git",
-    "url": "https://gitee.com/playerljc/adherev"
+    "url": "http://git.baifendian.com/SYYF/adherev"
   },
   "bugs": {
-    "url": "https://gitee.com/playerljc/ReactPro/issues/new"
+    "url": "http://git.baifendian.com/SYYF/adherev/issues"
   },
   "license": "ISC",
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
+  "resolutions": {
+    "mini-css-extract-plugin": "1.6.2"
   },
   "dependencies": {
     "@ant-design/icons": "^4.4.0",
-    "@baifendian/adherev": "^1.0.0",
+    "@baifendian/adherev": "^1.0.11",
     "ant-design-vue": "^1.7.5",
     "classnames": "^2.2.6",
     "copy-to-clipboard": "^3.3.1",
@@ -60,30 +52,41 @@
     "faker": "^5.4.0",
     "font-awesome": "^4.7.0",
     "highlight.js": "^9.11.0",
+    "mark.js": "^8.11.1",
+    "marked": "^3.0.4",
     "moment": "^2.29.1",
+    "nprogress": "^0.2.0",
     "ol": "^6.5.0",
     "vue": "^2.6.12",
+    "vue-fragment": "^1.5.2",
     "vue-highlight.js": "^3.1.0",
+    "vue-hoc": "^0.4.7",
     "vue-i18n": "^8.24.4",
     "vue-router": "^3.5.1"
   },
   "devDependencies": {
     "@babel/runtime": "^7.9.2",
-    "@ctsj/buildv": "^2.0.1",
+    "@ctsj/buildv": "^2.0.9",
     "@umijs/fabric": "^2.0.8",
-    "@vue/eslint-config-standard": "^6.0.0",
+    "@vue/eslint-config-prettier": "^7.0.0",
+    "@vue/eslint-config-standard": "^6.1.0",
+    "@vue/eslint-config-typescript": "^10.0.0",
     "babel-plugin-import": "^1.13.3",
     "babel-plugin-transform-vue-jsx": "^3.7.0",
+    "check-prettier": "^1.0.3",
     "cross-env": "^7.0.2",
     "eslint": "^7.29.0",
+    "eslint-plugin-jest": "^25.3.0",
     "eslint-plugin-markdown": "^2.2.0",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-vue": "^7.9.0",
     "husky": "^4.2.5",
     "lint-staged": "^10.2.0",
     "prettier": "^2.0.5",
+    "raw-loader": "^4.0.2",
     "stylelint": "^13.7.2",
     "tslint": "^6.1.3",
-    "typescript": "^3.8.3"
+    "typescript": "^4.6.2",
+    "vue-eslint-parser": "^7.11.0"
   }
 }

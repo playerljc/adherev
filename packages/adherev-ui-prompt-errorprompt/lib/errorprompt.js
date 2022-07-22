@@ -1,2 +1,2 @@
-import{message}from"ant-design-vue";import Intl from"@baifendian/adherev-util-intl";export default function(e){return message.error(e||Intl.tv("系统异常"))}
+"use strict";var __importDefault=this&&this.__importDefault||function(e){return e&&e.__esModule?e:{default:e}};Object.defineProperty(exports,"__esModule",{value:!0});var ant_design_vue_1=require("ant-design-vue"),adherev_util_intl_1=__importDefault(require("@baifendian/adherev-util-intl"));exports.default=function(e){return ant_design_vue_1.message.error(e||adherev_util_intl_1.default.tv("系统异常"))};
 //# sourceMappingURL=errorprompt.js.map

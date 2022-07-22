@@ -1,2 +1,2 @@
-import Model from '@baifendian/adherev-util-mixins';
+import Model from '@baifendian/adherev-util-mixins/es';
 export default Model;

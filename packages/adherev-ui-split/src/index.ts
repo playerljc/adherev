@@ -1,6 +1,9 @@
 import Split, { SplitGroup } from './split';
 
-import { withInstall } from '../../_util';
+import BfdUtil from '@baifendian/adherev-util';
+const {
+  _util: { withInstall, withVue },
+} = BfdUtil;
 
 const Component = withInstall(Split);
 
@@ -10,6 +13,8 @@ Component.use = (Vue) => {
   Vue.use(Component);
 
   Vue.use(Component.Group);
+
+  withVue(Vue, 'Split', Component);
 };
 
 Component.Group = withInstall(SplitGroup);

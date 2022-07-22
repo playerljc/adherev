@@ -1,21 +1,13 @@
-import classNames from 'classnames';
 import Util from '@baifendian/adherev-util';
+import classNames from 'classnames';
 
 const selectorPrefix = 'adherev-ui-surnames';
 
 const DURATION = 100;
 
-function isTouch() {
-  return 'ontouchend' in document;
-}
-
 export default {
   name: 'adv-surnames',
   props: {
-    className: {
-      type: String,
-      default: '',
-    },
     position: {
       type: String,
       default: 'right',
@@ -46,13 +38,9 @@ export default {
   },
   computed: {
     getClassName() {
-      const { position, className } = this;
+      const { position } = this;
 
-      return classNames(
-        selectorPrefix,
-        `${selectorPrefix}-config-position-${position}`,
-        className.split(' '),
-      );
+      return classNames(selectorPrefix, `${selectorPrefix}-config-position-${position}`);
     },
   },
   mounted() {
@@ -93,7 +81,7 @@ export default {
 
       const indexItemEl = Util.getTopDom(target, `${selectorPrefix}-index-item`);
 
-      this.$data.$curIndexName = indexItemEl.dataset.name;
+      this.$data.$curIndexName = indexItemEl?.dataset.name;
 
       this.moveDetail(x, y);
     },
@@ -119,7 +107,7 @@ export default {
 
       // console.log('按下获取索引名称', indexItemEl.dataset.name);
 
-      this.$data.$curIndexName = indexItemEl.dataset.name;
+      this.$data.$curIndexName = indexItemEl?.dataset.name;
 
       this.$data.$isMouseClicked = true;
     },
@@ -224,7 +212,7 @@ export default {
         $refs: { indexInnerEl },
       } = this;
 
-      if (isTouch()) {
+      if (Util.isTouch()) {
         indexInnerEl.addEventListener('click', this.onClick);
 
         // 索引touchmove和mousemove
@@ -251,10 +239,10 @@ export default {
       const direction = this.getDirection();
 
       if (direction === 'vertical') {
-        el?.style.height = `${indexInnerEl?.offsetHeight + 50}px`;
-        el?.style.width = '100%';
+        (el as HTMLElement).style.height = `${indexInnerEl?.offsetHeight + 50}px`;
+        (el as HTMLElement).style.width = '100%';
       } else {
-        el?.style.height = '100%';
+        (el as HTMLElement).style.height = '100%';
       }
     },
     createIndexPosition() {
@@ -313,6 +301,7 @@ export default {
 
       const targetTop = targetEl.offsetTop;
 
+      // @ts-ignore
       const { updateInterval } = screen;
 
       const step =

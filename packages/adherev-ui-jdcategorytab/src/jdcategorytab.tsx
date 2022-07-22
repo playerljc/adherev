@@ -1,5 +1,8 @@
+import { VNode, PropType } from 'vue';
 import classNames from 'classnames';
 import IScroll from 'iscroll/build/iscroll';
+
+import { IMenuDataItem } from './types';
 
 const selectorPrefix = 'adherev-ui-jdcategorytab';
 
@@ -43,7 +46,7 @@ export default {
       default: '',
     },
     menuData: {
-      type: Array,
+      type: Array as PropType<IMenuDataItem[]>,
       default: () => [],
     },
     defaultActiveKey: {
@@ -62,33 +65,28 @@ export default {
     };
   },
   computed: {
-    getClassName() {
-      const { className } = this;
-
-      return classNames(selectorPrefix, className.split(' '));
-    },
-    getMenuClassName() {
+    getMenuClassName(): string {
       const { menuClassName } = this;
 
-      return classNames(`${selectorPrefix}-menu`, menuClassName.split(' '));
+      return classNames(`${selectorPrefix}-menu`, menuClassName.split(/\s+/));
     },
-    getMenuInnerClassName() {
+    getMenuInnerClassName(): string {
       const { menuInnerClassName } = this;
-      return classNames(`${selectorPrefix}-menu-inner`, menuInnerClassName.split(' '));
+      return classNames(`${selectorPrefix}-menu-inner`, menuInnerClassName.split(/\s+/));
     },
-    getTabClassName() {
+    getTabClassName(): string {
       const { tabClassName } = this;
 
-      return classNames(`${selectorPrefix}-tab`, tabClassName.split(' '));
+      return classNames(`${selectorPrefix}-tab`, tabClassName.split(/\s+/));
     },
     getMenuItemClassName() {
-      return (curKey) => {
+      return (curKey: string): string => {
         const { menuItemClassName, activeKey } = this;
 
         return classNames(
           `${selectorPrefix}-menu-item`,
           activeKey === curKey ? 'active' : null,
-          menuItemClassName.split(' '),
+          menuItemClassName.split(/\s+/),
         );
       };
     },
@@ -119,7 +117,7 @@ export default {
         e.preventDefault();
       });
     },
-    findElByKey(key) {
+    findElByKey(key): HTMLElement | null {
       const {
         $refs: { menuInnerEl },
         menuData,
@@ -130,12 +128,12 @@ export default {
       const arr = Array.from(menuInnerEl?.querySelectorAll(`.${selectorPrefix}-menu-item`));
 
       if (arr.length) {
-        return arr[index];
+        return arr[index] as HTMLElement;
       }
 
       return null;
     },
-    getActiveKey() {
+    getActiveKey(): string {
       return this.activeKey;
     },
     scrollTo(key, time = 250, easing) {
@@ -168,7 +166,7 @@ export default {
         });
       }, time);
     },
-    renderMenu(h) {
+    renderMenu(h): VNode {
       const { $scopedSlots, menuData, getMenuItemClassName, menuItemStyle } = this;
 
       return menuData.map((data) => (
@@ -184,10 +182,9 @@ export default {
       ));
     },
   },
-  render(h) {
+  render(h): VNode {
     const {
       $slots,
-      getClassName,
       getMenuClassName,
       getMenuInnerClassName,
       getTabClassName,
@@ -197,7 +194,7 @@ export default {
     } = this;
 
     return (
-      <div class={getClassName} ref="el">
+      <div class={selectorPrefix} ref="el">
         <div class={getMenuClassName} style={menuStyle} ref="menuEl">
           <ul class={getMenuInnerClassName} style={menuInnerStyle} ref="menuInnerEl">
             {this.renderMenu(h)}

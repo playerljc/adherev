@@ -1,4 +1,4 @@
-import classNames from 'classnames';
+import { VNode } from 'vue';
 import { Slider } from 'ant-design-vue';
 
 const selectorPrefix = 'adherev-ui-fontsizesetting';
@@ -6,10 +6,6 @@ const selectorPrefix = 'adherev-ui-fontsizesetting';
 export default {
   name: 'adv-fontsizesetting',
   props: {
-    className: {
-      type: String,
-      default: '',
-    },
     min: {
       type: Number,
     },
@@ -32,13 +28,6 @@ export default {
   watch: {
     defaultValue(value) {
       this.value = value;
-    }
-  },
-  computed: {
-    getClassName() {
-      const { className } = this;
-
-      return classNames(selectorPrefix, className.split(' '));
     },
   },
   methods: {
@@ -50,9 +39,9 @@ export default {
       });
     },
   },
-  render(h) {
+  render(h): VNode {
     return (
-      <div class={this.getClassName} ref="el">
+      <div class={selectorPrefix} ref="el">
         <div class={`${selectorPrefix}-rangeWrap`}>
           <div class={`${selectorPrefix}-separatedtool`}>
             <div class={`${selectorPrefix}-separated`}>
@@ -69,6 +58,7 @@ export default {
             </div>
           </div>
           <Slider
+            // @ts-ignore
             min={this.min}
             max={this.max}
             step={this.step}

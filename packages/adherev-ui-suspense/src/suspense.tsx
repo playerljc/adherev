@@ -1,19 +1,7 @@
+import Vue, { VNode } from 'vue';
 import { Spin, Skeleton } from 'ant-design-vue';
 
 const selectorPrefix = 'adherev-ui-suspense';
-
-/**
- * renderNormalFirstLoading
- */
-function renderNormalFirstLoading(h) {
-  const result = [];
-
-  for (let i = 0; i < 7; i++) {
-    result.push(<Skeleton key={i + 1} loading active avatar />);
-  }
-
-  return <div class={`${selectorPrefix}-loading`}>{result}</div>;
-}
 
 /**
  * Suspense
@@ -21,7 +9,7 @@ function renderNormalFirstLoading(h) {
  * @overview renderInner: VNode | null
  * @overview fetchData(): void
  */
-export default {
+export default Vue.extend({
   props: {
     reset: {
       type: Boolean,
@@ -56,24 +44,38 @@ export default {
   },
   methods: {
     /**
+     * renderNormalFirstLoading
+     */
+    renderNormalFirstLoading(h): VNode | null {
+      const result: VNode[] = [];
+
+      for (let i = 0; i < 7; i++) {
+        // @ts-ignore
+        result.push(<Skeleton key={i + 1} loading active avatar />);
+      }
+
+      return <div class={`${selectorPrefix}-loading`}>{result}</div>;
+    },
+    /**
      * renderFirstLoading
      * @param h
      */
-    renderFirstLoading(h) {
+    renderFirstLoading(h): VNode | null {
       const { $slots } = this;
 
       if ($slots.firstLoading) {
         return $slots.firstLoading;
       }
 
-      return renderNormalFirstLoading(h);
+      return this.renderNormalFirstLoading(h);
     },
     /**
      * renderNormal
      * @param h
      */
-    renderNormal(h) {
+    renderNormal(h: VNode | null) {
       return (
+        // @ts-ignore
         <Spin size="large" spinning={this.showLoading()}>
           {this.renderInner(h)}
         </Spin>
@@ -102,12 +104,20 @@ export default {
 
       return this.renderNormal(h);
     },
+    /**
+     * renderSuspense
+     * @description - renderSuspense
+     * @param h
+     */
+    renderSuspense(h) {
+      return <div class={selectorPrefix}>{this.renderDispatch(h)}</div>;
+    },
   },
   /**
    * render
    * @param h
    */
   render(h) {
-    return <div class={selectorPrefix}>{this.renderDispatch(h)}</div>;
+    return this.renderSuspense(h);
   },
-};
+});

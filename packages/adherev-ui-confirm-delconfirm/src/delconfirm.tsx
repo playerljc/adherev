@@ -1,16 +1,23 @@
 import Resource from '@baifendian/adherev-util-resource';
 import MessageDialog from '@baifendian/adherev-ui-messagedialog';
 import intl from '@baifendian/adherev-util-intl';
+import { VNode } from 'vue';
 
 const selectorPrefix = 'adherev-ui-delconfirm';
 
-export function open(success, zIndex) {
+/**
+ * open
+ * @param success
+ * @param params
+ */
+export function open({ success, ...params }) {
   MessageDialog.Confirm({
-    title: intl.tv('提示'),
-    text: `${intl.tv('确定删除吗')}?`,
-    zIndex,
+    ...params,
+    title: params.title || intl.tv('提示'),
+    text: params.text || `${intl.tv('确定删除吗')}?`,
+    zIndex: 'zIndex' in params ? params.zIndex : Resource.Dict.value.ResourceNormalMaxZIndex.value,
     onSuccess: () => {
-      return new Promise((resolve, reject) => {
+      return new Promise<void>((resolve, reject) => {
         if (success) {
           success()
             .then(() => {
@@ -32,34 +39,44 @@ export default {
   props: {
     zIndex: {
       type: Number,
-      require: false,
+      required: false,
       default: Resource.Dict.value.ResourceNormalMaxZIndex.value,
-    },
-    className: {
-      type: String,
-      require: false,
-      default: '',
     },
     success: {
       type: Function,
-      require: false,
+      required: false,
       default: () => {},
+    },
+    title: {
+      type: String,
+      required: false,
+      default: intl.tv('提示'),
+    },
+    text: {
+      type: String,
+      required: false,
+      default: `${intl.tv('确定删除吗')}?`,
     },
   },
   methods: {
     onClick(e) {
       e.stopPropagation();
 
-      const { success, zIndex = Resource.Dict.value.ResourceNormalMaxZIndex.value } = this;
+      const { success, title, text, zIndex } = this;
 
-      open(success, zIndex || Resource.Dict.value.ResourceNormalMaxZIndex.value);
+      open({
+        success,
+        title,
+        text,
+        zIndex,
+      });
     },
   },
-  render(h) {
-    const { $slots, className } = this;
+  render(h): VNode {
+    const { $slots } = this;
 
     return (
-      <div class={`${selectorPrefix} ${className}`} onClick={this.onClick}>
+      <div class={selectorPrefix} onClick={this.onClick}>
         {$slots.default}
       </div>
     );

@@ -1,5 +1,8 @@
 import { Push, Overlay, Revolving } from './slidelayout';
-import { withInstall } from '../../_util/index';
+import BfdUtil from '@baifendian/adherev-util';
+const {
+  _util: { withInstall, withVue },
+} = BfdUtil;
 
 withInstall(Push);
 withInstall(Overlay);
@@ -11,5 +14,10 @@ export default {
     Vue.use(Push);
     Vue.use(Overlay);
     Vue.use(Revolving);
+    withVue(Vue, 'SlideLayout', {
+      Push,
+      Overlay,
+      Revolving,
+    });
   },
 };

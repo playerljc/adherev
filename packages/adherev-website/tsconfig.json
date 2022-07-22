@@ -1,5 +1,5 @@
 {
-  "extends": "./node_modules/@ctsj/buildv/appconfig-base.json",
+  "extends": "../../node_modules/@ctsj/buildv/appconfig-base.json",
   "compilerOptions": {
     "experimentalDecorators": true,
     "outDir": "./lib",

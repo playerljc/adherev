@@ -5,29 +5,31 @@ const selectorPrefix = 'adherev-ui-stickuplayout';
 export default {
   name: 'adv-stickuplayout',
   props: {
-    className: {
-      type: String,
-      default: '',
-    },
     fixedClassName: {
       type: String,
       default: '',
     },
     fixedStyle: {
-      type: String,
-      default: '',
+      type: Object,
+      default: () => ({}),
     },
     innerClassName: {
       type: String,
       default: '',
     },
     innerStyle: {
-      type: String,
-      default: '',
+      type: Object,
+      default: () => ({}),
     },
   },
   data() {
-    return {};
+    return {
+      $key: false,
+      $maskEl: null,
+      $index: [],
+      $headerEls: null,
+      $preScrollObj: null,
+    };
   },
   mounted() {
     this.initial();
@@ -148,7 +150,9 @@ export default {
          */
         setp =
           $refs.innerEl.scrollHeight /
+          // @ts-ignore
           (duration / (screen.updateInterval || 16.7) +
+            // @ts-ignore
             (duration % (screen.updateInterval || 16.7) !== 0 ? 1 : 0));
 
       /** *
@@ -173,12 +177,12 @@ export default {
           if (scrollVal >= targetTop) {
             clear();
           } else {
-            window.requestAnimationFrame(scrollAnimation);
+            if (typeof window !== 'undefined') window.requestAnimationFrame(scrollAnimation);
           }
         } else if (scrollVal <= targetTop) {
           clear();
         } else {
-          window.requestAnimationFrame(scrollAnimation);
+          if (typeof window !== 'undefined') window.requestAnimationFrame(scrollAnimation);
         }
 
         function clear() {
@@ -267,17 +271,17 @@ export default {
     },
   },
   render(h) {
-    const { $slots, className, fixedClassName, fixedStyle, innerClassName, innerStyle } = this;
+    const { $slots, fixedClassName, fixedStyle, innerClassName, innerStyle } = this;
 
     return (
-      <div class={classNames(selectorPrefix, className.split(' '))} ref="el">
+      <div class={selectorPrefix} ref="el">
         <div
-          class={classNames(`${selectorPrefix}-fixed`, fixedClassName.split(' '))}
+          class={classNames(`${selectorPrefix}-fixed`, fixedClassName.split(/\s+/))}
           style={fixedStyle}
           ref="fixedEl"
         />
         <div
-          class={classNames(`${selectorPrefix}-inner`, innerClassName.split(' '))}
+          class={classNames(`${selectorPrefix}-inner`, innerClassName.split(/\s+/))}
           style={innerStyle}
           ref="innerEl"
         >
