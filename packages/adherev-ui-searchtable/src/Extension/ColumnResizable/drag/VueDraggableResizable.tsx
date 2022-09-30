@@ -1,12 +1,12 @@
 import { defineComponent } from 'vue';
 
 import {
-  matchesSelectorToParentElements,
-  getComputedSize,
   addEvent,
+  getComputedSize,
+  matchesSelectorToParentElements,
   removeEvent,
 } from './utils/dom';
-import { computeWidth, computeHeight, restrictToBounds, snapToGrid } from './utils/fns';
+import { computeHeight, computeWidth, restrictToBounds, snapToGrid } from './utils/fns';
 
 const events = {
   mouse: {

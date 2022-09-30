@@ -1,8 +1,10 @@
 // @ts-ignore
-import Space from '@baifendian/adherev-ui-space';
-import { computed, defineComponent, VNode } from 'vue';
-import AnchorNavigation, { anchorNavigationProps } from '../AnchorNavigation';
+import { VNode, computed, defineComponent } from 'vue';
+
 import { Util } from '@baifendian/adherev';
+import Space from '@baifendian/adherev-ui-space';
+
+import AnchorNavigation, { anchorNavigationProps } from '../AnchorNavigation';
 
 const selectPrefix = 'adherev-ui-playground-page';
 
@@ -19,7 +21,7 @@ export default defineComponent({
         .default?.()
         .filter((c: VNode) => {
           return ['CodeBoxSection', 'adv-playground-page-code-box-section'].some(
-            t => {
+            (t) => {
               if (c.type) {
                 if (Util.isObject?.(c.type) && (c.type as any).name) {
                   return (c.type as any).name === t;
@@ -32,7 +34,7 @@ export default defineComponent({
             }, //(Util.isObject?.(c.type) ? (c.type as any).name : c.type).indexOf(t) !== -1,
           );
         })
-        .map(c =>
+        .map((c) =>
           c?.props?.config?.map?.((t: { name: any; id: any }) => ({
             name: t.name,
             anchor: t.id,

@@ -1,4 +1,3 @@
-import { VNode } from 'vue';
 import {
   ColumnType,
   FilterValue,
@@ -7,6 +6,7 @@ import {
   TablePaginationConfig,
   TableRowSelection,
 } from 'ant-design-vue/lib/table/interface';
+import { VNode } from 'vue';
 
 /**
  * IOverview

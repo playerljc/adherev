@@ -1,7 +1,6 @@
 import Util from '@baifendian/adherev-util';
 
 import CascadeCompared from './cascadecompared';
-
 import { IComponent } from './types';
 
 const {

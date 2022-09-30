@@ -1,4 +1,5 @@
 import BfdUtil from '@baifendian/adherev-util';
+
 import ScrollLoad, { EMPTY, ERROR, NORMAL } from './scrollload';
 import { IComponent } from './types';
 

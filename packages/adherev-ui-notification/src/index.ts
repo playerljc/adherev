@@ -1,4 +1,5 @@
 import Util from '@baifendian/adherev-util';
+
 import Notification from './notification';
 
 const {

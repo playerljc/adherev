@@ -1,13 +1,12 @@
-import dayjs from 'dayjs';
-import Dict from '@baifendian/adherev-util-dict';
-
-import zhCN from 'ant-design-vue/es/locale/zh_CN';
 import enUS from 'ant-design-vue/es/locale/en_US';
 import ptPT from 'ant-design-vue/es/locale/pt_PT';
-
-import 'dayjs/locale/zh-cn';
+import zhCN from 'ant-design-vue/es/locale/zh_CN';
+import dayjs from 'dayjs';
 import 'dayjs/locale/en-ca';
 import 'dayjs/locale/pt';
+import 'dayjs/locale/zh-cn';
+
+import Dict from '@baifendian/adherev-util-dict';
 
 export default {
   initStatic() {

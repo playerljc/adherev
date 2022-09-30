@@ -1,6 +1,7 @@
 import classNames from 'classnames';
 import { defineComponent, ref } from 'vue';
 import { bool } from 'vue-types';
+
 import { selectorPrefix as parentSelectorPrefix } from './flexlayout';
 
 const selectorPrefix = `${parentSelectorPrefix}-fixed`;

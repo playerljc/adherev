@@ -1,5 +1,6 @@
 import { v1 } from 'uuid';
 import { createApp, h } from 'vue';
+
 import { IComponent, IConfig } from './types';
 
 const selectorPrefix = 'adherev-ui-popup';

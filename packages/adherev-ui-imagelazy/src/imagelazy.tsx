@@ -1,5 +1,6 @@
 import { defineComponent, onMounted, ref, toRaw, watch } from 'vue';
 import { object } from 'vue-types';
+
 import { IImgArgs } from './types';
 
 const selectorPrefix = 'adherev-ui-imagelazy';

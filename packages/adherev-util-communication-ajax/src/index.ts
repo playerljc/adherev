@@ -1,4 +1,5 @@
 import BfdUtil from '@baifendian/adherev-util';
+
 import Ajax from './ajax';
 
 const {

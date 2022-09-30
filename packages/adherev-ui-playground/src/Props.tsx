@@ -1,6 +1,8 @@
-import Intl from '@baifendian/adherev-util-intl';
-import { defineComponent, VNode } from 'vue';
+import { VNode, defineComponent } from 'vue';
 import { array } from 'vue-types';
+
+import Intl from '@baifendian/adherev-util-intl';
+
 import Collapse, { collapseProps } from './Collapse';
 import Table from './Table';
 

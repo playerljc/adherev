@@ -1,11 +1,13 @@
-import Resource from '@baifendian/adherev-util-resource';
+import Feature from 'ol/Feature.js';
+import Map from 'ol/Map';
+import Overlay from 'ol/Overlay.js';
+import View from 'ol/View';
 import { defaults as defaultControls } from 'ol/control.js';
 import MousePosition from 'ol/control/MousePosition.js';
 import ScaleLine from 'ol/control/ScaleLine.js';
 import Zoom from 'ol/control/Zoom.js';
 import { createStringXY } from 'ol/coordinate';
 import { boundingExtent, getBottomLeft, getTopRight } from 'ol/extent.js';
-import Feature from 'ol/Feature.js';
 import { Geometry, LineString, Point } from 'ol/geom';
 import Circle from 'ol/geom/Circle';
 import LinearRing from 'ol/geom/LinearRing';
@@ -13,15 +15,15 @@ import Polygon from 'ol/geom/Polygon';
 import Draw, { createBox } from 'ol/interaction/Draw.js';
 import Modify from 'ol/interaction/Modify';
 import { Heatmap as HeatmapLayer, Vector as VectorLayer } from 'ol/layer.js';
-import Map from 'ol/Map';
-import Overlay from 'ol/Overlay.js';
 import { fromLonLat, toLonLat, transform, transformExtent } from 'ol/proj.js';
 import { Vector as VectorSource } from 'ol/source.js';
 import { Circle as CircleStyle, Fill, Icon, RegularShape, Stroke, Style } from 'ol/style.js';
 import Text from 'ol/style/Text';
-import View from 'ol/View';
 // @ts-ignore
 import { v4 } from 'uuid';
+
+import Resource from '@baifendian/adherev-util-resource';
+
 import GeoLayer from './geolayer';
 import * as TitleLayer from './titlelayer';
 // @ts-ignore
@@ -209,12 +211,12 @@ export default {
         mapInstance.un('pointermove', onPointerMove);
       }
 
-      onClick = evt => {
+      onClick = (evt) => {
         if (evt.dragging) return;
         displayFeatureInfo(evt.pixel);
       };
 
-      onPointerMove = evt => {
+      onPointerMove = (evt) => {
         if (evt.dragging) return;
         mapInstance.forEachFeatureAtPixel(evt.pixel, (_, layer) => {
           setCursor(layer === listeningLayer ? 'pointer' : '');
@@ -275,7 +277,7 @@ export default {
         mapInstance.un('pointermove', onPointermove);
       }
 
-      onPointermove = evt => {
+      onPointermove = (evt) => {
         if (evt.dragging) return;
         const pixel = mapInstance.getEventPixel(evt.originalEvent);
         displayFeatureInfo(pixel);
@@ -779,7 +781,7 @@ export default {
     const { onDrawStart } = config;
     const drawPolygonInteraction = new Draw(config);
 
-    drawPolygonInteraction.on('drawstart', e => {
+    drawPolygonInteraction.on('drawstart', (e) => {
       if (onDrawStart) {
         onDrawStart(e);
       }
@@ -803,7 +805,7 @@ export default {
       ...other,
     });
 
-    drawPolygonInteraction.on('drawend', e => {
+    drawPolygonInteraction.on('drawend', (e) => {
       e.feature.setId(v4());
       const geometry = e.feature.getGeometry();
       const lonlats: number[][] = [];
@@ -842,7 +844,7 @@ export default {
       ...other,
     });
 
-    drawCircleInteraction.on('drawend', e => {
+    drawCircleInteraction.on('drawend', (e) => {
       const geometry = e.feature.getGeometry();
       // 半径
       const radius = geometry.getRadius();
@@ -880,7 +882,7 @@ export default {
       ...other,
     });
 
-    drawBoxInteraction.on('drawend', e => {
+    drawBoxInteraction.on('drawend', (e) => {
       e.feature.setId(v4());
       const geometry = e.feature.getGeometry();
       const coordinates = geometry.getCoordinates()[0].map((v: any) => {
@@ -915,7 +917,7 @@ export default {
       ...other,
     });
 
-    drawPolygonInteraction.on('drawend', e => {
+    drawPolygonInteraction.on('drawend', (e) => {
       e.feature.setId(v4());
       const geometry = e.feature.getGeometry();
       const lonlats: number[][] = [];
@@ -953,7 +955,7 @@ export default {
       source: vectorSource,
     });
 
-    modifyInteraction.on('modifyend', e => {
+    modifyInteraction.on('modifyend', (e) => {
       const features = e.features.getArray();
       const geometry = features[features.length - 1].getGeometry();
       onModifyEnd({
@@ -1188,7 +1190,7 @@ export default {
         const geometry = f.getGeometry();
         return geometry.getType() === type;
       })
-      .map(f => {
+      .map((f) => {
         const geometry = f.getGeometry();
         if (type === 'Circle') {
           const extent = geometry.getExtent();

@@ -1,9 +1,10 @@
-import Intl from '@baifendian/adherev-util-intl';
-import Resource from '@baifendian/adherev-util-resource';
 import classNames from 'classnames';
 import moment from 'moment';
-import { computed, CSSProperties, defineComponent, ExtractPropTypes, onMounted, ref } from 'vue';
+import { CSSProperties, ExtractPropTypes, computed, defineComponent, onMounted, ref } from 'vue';
 import { bool, number, object, string } from 'vue-types';
+
+import Intl from '@baifendian/adherev-util-intl';
+import Resource from '@baifendian/adherev-util-resource';
 
 const selectorPrefix = 'adherev-ui-pullrefresh';
 const defaultImg =
@@ -405,7 +406,7 @@ export default defineComponent({
     };
 
     const resetUpdateTime = (updateTime: number): Promise<null> => {
-      return new Promise(resolve => {
+      return new Promise((resolve) => {
         preUpdateTime = updateTime || moment().valueOf();
         resolve(null);
       });

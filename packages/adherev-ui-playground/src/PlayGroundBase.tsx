@@ -1,12 +1,13 @@
-import Intl from '@baifendian/adherev-util-intl';
 import classNames from 'classnames';
+import copy from 'copy-to-clipboard';
 import { computed, defineComponent } from 'vue';
 import { bool, func, object, string } from 'vue-types';
-import copy from 'copy-to-clipboard';
+
+import Intl from '@baifendian/adherev-util-intl';
 
 import Card, { CardProps } from './Card';
-import Constant from './constant';
 import Message from './Message';
+import Constant from './constant';
 
 const selectPrefix = 'adherev-ui-playground';
 

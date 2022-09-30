@@ -36,7 +36,9 @@ export const checkPermission = (
   }
 
   if (Array.isArray(currentPermissions)) {
-    return currentPermissions.every(curPermissions => allPermission.indexOf(curPermissions) !== -1);
+    return currentPermissions.every(
+      (curPermissions) => allPermission.indexOf(curPermissions) !== -1,
+    );
   }
 
   return allPermission.indexOf(currentPermissions) !== -1;

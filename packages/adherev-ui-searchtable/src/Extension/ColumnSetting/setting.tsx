@@ -1,10 +1,11 @@
-import { PropType, defineComponent } from 'vue';
 import { Checkbox } from 'ant-design-vue';
+import { PropType, defineComponent } from 'vue';
 import Draggable from 'vuedraggable';
+
 import Intl from '@baifendian/adherev-util-intl';
 
-import { IColumnSetting } from '../../types';
 import { selectorPrefix } from '../../searchtable';
+import { IColumnSetting } from '../../types';
 
 export default defineComponent({
   props: {

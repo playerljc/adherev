@@ -1,7 +1,8 @@
-import ConditionalRender from '@baifendian/adherev-ui-conditionalrender';
 import classNames from 'classnames';
-import { CSSProperties, defineComponent, ExtractPropTypes, VNode } from 'vue';
+import { CSSProperties, ExtractPropTypes, VNode, defineComponent } from 'vue';
 import { array, object, oneOfType, string } from 'vue-types';
+
+import ConditionalRender from '@baifendian/adherev-ui-conditionalrender';
 
 const selectorPrefix = 'adherev-ui-playground-card';
 

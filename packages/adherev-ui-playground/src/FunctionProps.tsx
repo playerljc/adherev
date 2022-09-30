@@ -1,7 +1,9 @@
+import { VNode, defineComponent } from 'vue';
+import { array } from 'vue-types';
+
 import ConditionalRender from '@baifendian/adherev-ui-conditionalrender';
 import Intl from '@baifendian/adherev-util-intl';
-import { defineComponent, VNode } from 'vue';
-import { array } from 'vue-types';
+
 import Collapse, { collapseProps } from './Collapse';
 
 const selectorPrefix = 'adherev-ui-playground-functionprops';

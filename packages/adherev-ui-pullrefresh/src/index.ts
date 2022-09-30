@@ -1,7 +1,6 @@
 import BfdUtil from '@baifendian/adherev-util';
 
 import PullRefresh from './pullrefresh';
-
 import { IComponent } from './types';
 
 const {

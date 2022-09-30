@@ -1,5 +1,6 @@
 import classNames from 'classnames';
 import { defineComponent, watch } from 'vue';
+
 import useSlide, { slideProps } from './slide';
 import { slider } from './slidelayout';
 

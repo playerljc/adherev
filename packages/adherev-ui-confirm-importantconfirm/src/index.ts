@@ -1,7 +1,6 @@
 import Util from '@baifendian/adherev-util';
 
 import ImportantConfirm, { open } from './importantconfirm';
-
 import { IComponent } from './types';
 
 const {

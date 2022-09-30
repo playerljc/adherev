@@ -1,7 +1,9 @@
-import Util from '@baifendian/adherev-util';
 // @ts-ignore
 import { v1 } from 'uuid';
 import { createApp, h } from 'vue';
+
+import Util from '@baifendian/adherev-util';
+
 import { IConfig, INotificationFactory, IShowConfig, IShowStandardConfig } from './types';
 
 const selectorPrefix = 'adherev-ui-notification';

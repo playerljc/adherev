@@ -1,8 +1,7 @@
 import BfdUtil from '@baifendian/adherev-util';
 
-import Revolving from './revolving';
 import RevolvingItem from './item';
-
+import Revolving from './revolving';
 import { IComponent } from './types';
 
 const {

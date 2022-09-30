@@ -1,5 +1,6 @@
 // @ts-ignore
 import Util from '@baifendian/adherev-util';
+
 import CodeBoxPanel from '../CodeBoxPanel';
 
 const options = {

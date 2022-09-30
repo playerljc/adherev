@@ -1,7 +1,9 @@
 // @ts-ignore
-import Space from '@baifendian/adherev-ui-space';
 import { defineComponent } from 'vue';
 import { array } from 'vue-types';
+
+import Space from '@baifendian/adherev-ui-space';
+
 import FunctionProps, { IDataItemType } from '../FunctionProps';
 import Section, { sectionProps } from './Section';
 

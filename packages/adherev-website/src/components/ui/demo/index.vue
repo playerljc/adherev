@@ -20,8 +20,7 @@
     <adv-playground-page-props-section title="Props" :config="propsConfig" />
   </adv-playground-page>
 
-
-<!--  <adv-playground-page-code-box-section title="代码演示" :config="codeBoxPanelConfig">
+  <!--  <adv-playground-page-code-box-section title="代码演示" :config="codeBoxPanelConfig">
     <template #cell1>
       <a-button type="primary">显示警告提示</a-button>
     </template>

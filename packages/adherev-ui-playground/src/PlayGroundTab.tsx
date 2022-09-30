@@ -1,6 +1,8 @@
-import ConditionalRender from '@baifendian/adherev-ui-conditionalrender';
 import omit from 'omit.js';
-import { defineComponent, ExtractPropTypes, ref, watch } from 'vue';
+import { ExtractPropTypes, defineComponent, ref, watch } from 'vue';
+
+import ConditionalRender from '@baifendian/adherev-ui-conditionalrender';
+
 import Card from './Card';
 import CodeTabPanel, { codeTabPanelProps } from './CodeTabPanel';
 import PlayGroundBase, { playGroundBaseProps } from './PlayGroundBase';

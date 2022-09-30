@@ -1,31 +1,16 @@
-import {
-  Breadcrumb,
-  Button,
-  Card,
-  Col,
-  ConfigProvider,
-  DatePicker,
-  Empty,
-  Form,
-  Input,
-  InputNumber,
-  Menu,
-  Modal,
-  Radio,
-  Result,
-  Row,
-  Slider,
-  Table,
-  Tabs,
-  Tooltip,
-  List,
-  Avatar,
-  Tag,
-  Divider,
-  Select,
-  Switch,
-} from 'ant-design-vue';
-
+import AnchorNavigation from '@/lib/AnchorNavigation';
+import CodeBoxPanel from '@/lib/CodeBoxPanel';
+import CodePanel from '@/lib/CodePanel';
+import CodeTabPanel from '@/lib/CodeTabPanel';
+import FunctionProps from '@/lib/FunctionProps';
+import Playground from '@/lib/Playground';
+import PlaygroundMulit from '@/lib/PlaygroundMulit';
+import PlaygroundPage from '@/lib/PlaygroundPage';
+import PlaygroundTab from '@/lib/PlaygroundTab';
+import Props from '@/lib/Props';
+import en_US from '@/locales/en_US';
+import pt_PT from '@/locales/pt_PT';
+import zh_CN from '@/locales/zh_CN';
 import {
   ConditionalRender,
   DelConfirm,
@@ -56,8 +41,7 @@ import {
   SwipeOut,
   FontSizeSetting,
   JdCategoryTab,
-  ImageLazy,
-  // BMap,
+  ImageLazy, // BMap,
   PlayGround,
   ContextMenu,
   GlobalIndicator,
@@ -78,21 +62,33 @@ import {
   WatchMemoized,
   Util,
 } from '@baifendian/adherev';
-
-import AnchorNavigation from '@/lib/AnchorNavigation';
-import CodeBoxPanel from '@/lib/CodeBoxPanel';
-import CodePanel from '@/lib/CodePanel';
-import CodeTabPanel from '@/lib/CodeTabPanel';
-import Playground from '@/lib/Playground';
-import PlaygroundMulit from '@/lib/PlaygroundMulit';
-import PlaygroundPage from '@/lib/PlaygroundPage';
-import PlaygroundTab from '@/lib/PlaygroundTab';
-import FunctionProps from '@/lib/FunctionProps';
-import Props from '@/lib/Props';
-
-import en_US from '@/locales/en_US';
-import zh_CN from '@/locales/zh_CN';
-import pt_PT from '@/locales/pt_PT';
+import {
+  Breadcrumb,
+  Button,
+  Card,
+  Col,
+  ConfigProvider,
+  DatePicker,
+  Empty,
+  Form,
+  Input,
+  InputNumber,
+  Menu,
+  Modal,
+  Radio,
+  Result,
+  Row,
+  Slider,
+  Table,
+  Tabs,
+  Tooltip,
+  List,
+  Avatar,
+  Tag,
+  Divider,
+  Select,
+  Switch,
+} from 'ant-design-vue';
 
 const register = [
   (app) => {

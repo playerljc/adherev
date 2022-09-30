@@ -1,5 +1,6 @@
 import { onBeforeUnmount, onMounted, ref, watch } from 'vue';
 import { bool, number, oneOfType, string } from 'vue-types';
+
 import { createMask } from './slidelayout';
 
 export enum direction {

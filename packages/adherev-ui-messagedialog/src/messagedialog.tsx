@@ -1,9 +1,11 @@
+import { Button, Col, ConfigProvider, Form, Input, Row, Slider } from 'ant-design-vue';
+import { createApp, h, ref } from 'vue';
+
 import Util from '@baifendian/adherev-util';
 import Intl from '@baifendian/adherev-util-intl';
 import Resource from '@baifendian/adherev-util-resource';
 import formCreate from '@form-create/ant-design-vue';
-import { Button, Col, ConfigProvider, Form, Input, Row, Slider } from 'ant-design-vue';
-import { createApp, h, ref } from 'vue';
+
 // import Actions from './actions';
 // import Emitter from './emitter';
 import ModalDialog from './modal';

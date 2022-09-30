@@ -1,7 +1,9 @@
-import Intl from '@baifendian/adherev-util-intl';
 import { Slider } from 'ant-design-vue';
 import { defineComponent, nextTick, ref, watch } from 'vue';
 import { number } from 'vue-types';
+
+import Intl from '@baifendian/adherev-util-intl';
+
 const selectorPrefix = 'adherev-ui-fontsizesetting';
 
 const props = {
@@ -28,7 +30,7 @@ export default defineComponent({
 
     watch(
       () => props.defaultValue,
-      newValue => {
+      (newValue) => {
         value.value = newValue;
       },
     );

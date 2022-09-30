@@ -1,5 +1,6 @@
-import { defineComponent, ExtractPropTypes } from 'vue';
+import { ExtractPropTypes, defineComponent } from 'vue';
 import { string } from 'vue-types';
+
 import hljsVuePlugin from '@highlightjs/vue-plugin';
 
 export const codePanelProps = {

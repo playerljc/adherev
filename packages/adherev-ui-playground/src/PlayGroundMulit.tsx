@@ -1,8 +1,10 @@
+import omit from 'omit.js';
+import { ExtractPropTypes, defineComponent, ref, watch } from 'vue';
+import { array } from 'vue-types';
+
 import ConditionalRender from '@baifendian/adherev-ui-conditionalrender';
 import ContextMenu from '@baifendian/adherev-ui-contextmenu';
-import omit from 'omit.js';
-import { defineComponent, ExtractPropTypes, ref, watch } from 'vue';
-import { array } from 'vue-types';
+
 import Card from './Card';
 import CodePanel, { CodePanelProps } from './CodePanel';
 import CodeTabPanel, { CodeTabPanelProps } from './CodeTabPanel';

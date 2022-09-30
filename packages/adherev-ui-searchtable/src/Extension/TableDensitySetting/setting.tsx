@@ -1,4 +1,5 @@
 import { defineComponent } from 'vue';
+
 import Intl from '@baifendian/adherev-util-intl';
 
 import { selectorPrefix } from '../../searchtable';

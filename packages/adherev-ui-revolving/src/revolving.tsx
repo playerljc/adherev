@@ -1,7 +1,7 @@
 import classNames from 'classnames';
 // @ts-ignore
 import Swiper from 'swiper';
-import { computed, CSSProperties, defineComponent, onMounted, onUpdated, ref } from 'vue';
+import { CSSProperties, computed, defineComponent, onMounted, onUpdated, ref } from 'vue';
 import { bool, number, object, string } from 'vue-types';
 
 const selectorPrefix = 'adherev-ui-revolving';

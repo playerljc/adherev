@@ -1,9 +1,9 @@
-import { h } from 'vue';
-import vueDraggableResizable from './drag/VueDraggableResizable';
 import classNames from 'classnames';
+import { h } from 'vue';
 
 import { selectorPrefix } from '../../searchtable';
 import { columnHeaderAlign } from '../../types';
+import vueDraggableResizable from './drag/VueDraggableResizable';
 
 const columnAlignMap = new Map<string | null, string>([
   [columnHeaderAlign.center, columnHeaderAlign.center],

@@ -1,7 +1,8 @@
-import ConditionalRender from '@baifendian/adherev-ui-conditionalrender';
 import classNames from 'classnames';
 import { CSSProperties, defineComponent } from 'vue';
 import { array, object, string } from 'vue-types';
+
+import ConditionalRender from '@baifendian/adherev-ui-conditionalrender';
 
 const selectorPrefix = 'adherev-ui-playground-table';
 
@@ -35,7 +36,7 @@ export default defineComponent({
           // @ts-ignore
           class={`${selectorPrefix}-header`}
         >
-          {props.columns.map(column => {
+          {props.columns.map((column) => {
             const { className, style, align } = column;
 
             const defaultProps: {

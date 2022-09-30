@@ -1,27 +1,22 @@
-import { Table, Button, Popover, Checkbox } from 'ant-design-vue';
-// import VueDraggableResizable from 'vue-draggable-resizable';
-import SearchForm from './searchform';
+import { Button, Checkbox, Popover, Table } from 'ant-design-vue';
 
-import SearchFormRow from './searchformrow';
-
-import SearchFormLabel from './searchformlabel';
-
-import SearchFormValue from './searchformvalue';
+import BfdUtil from '@baifendian/adherev-util';
 
 import ColumnSetting from './Extension/ColumnSetting';
-
 import TableDensitySetting from './Extension/TableDensitySetting';
-
+// import VueDraggableResizable from 'vue-draggable-resizable';
+import SearchForm from './searchform';
+import SearchFormLabel from './searchformlabel';
+import SearchFormRow from './searchformrow';
+import SearchFormValue from './searchformvalue';
 import SearchTable, {
   NUMBER_GENERATOR_RULE_ALONE,
   NUMBER_GENERATOR_RULE_CONTINUITY,
-  ROW_SELECTION_NORMAL_MODE,
   ROW_SELECTION_CONTINUOUS_MODE,
+  ROW_SELECTION_NORMAL_MODE,
 } from './searchtable';
-
 import SearchTableImplement from './searchtableimplement';
 
-import BfdUtil from '@baifendian/adherev-util';
 const {
   _util: { withInstall, withVue },
 } = BfdUtil;

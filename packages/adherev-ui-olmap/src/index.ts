@@ -1,4 +1,5 @@
 import BfdUtil from '@baifendian/adherev-util';
+
 // @ts-ignore
 import AnimationManager from './animationmanager';
 import GeoLayer from './geolayer';
@@ -23,7 +24,7 @@ const Component: IComponent = {
 
 Component.isUse = () => true;
 
-Component.use = Vue => {
+Component.use = (Vue) => {
   Vue.use(Component.OLMap);
 
   Vue.use(Component.HeatMap);

@@ -111,7 +111,8 @@ const Validator = () =>
   lazy(import(/* webpackChunkName: "validator" */ '@/components/util/validator'));
 const Demo = () => lazy(import(/* webpackChunkName: "demo" */ '@/components/ui/demo'));
 
-const Echarts = () => lazy(import(/* webpackChunkName: "echarts" */ '@/components/gallery/echarts'));
+const Echarts = () =>
+  lazy(import(/* webpackChunkName: "echarts" */ '@/components/gallery/echarts'));
 
 export default () => [
   {

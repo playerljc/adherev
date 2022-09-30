@@ -1,5 +1,6 @@
 import { computed, createApp, defineComponent, onMounted, provide, reactive, ref } from 'vue';
 import { array, object } from 'vue-types';
+
 import Menu from './Menu';
 import { IComponent, IConfig, IData } from './types';
 

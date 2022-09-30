@@ -1,11 +1,12 @@
 import { VNode } from 'vue';
-import ConditionalRender from './conditionalrender';
-import ConditionalRenderShow from './show';
-import ConditionalRenderVisibility from './visibility';
-import ConditionalRenderWrap from './wrap';
+
 import Util from '@baifendian/adherev-util';
 
+import ConditionalRender from './conditionalrender';
+import ConditionalRenderShow from './show';
 import { IComponent } from './types';
+import ConditionalRenderVisibility from './visibility';
+import ConditionalRenderWrap from './wrap';
 
 const {
   _util: { withInstall, withVue },

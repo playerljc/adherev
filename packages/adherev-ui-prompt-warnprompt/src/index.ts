@@ -1,7 +1,7 @@
 import BfdUtil from '@baifendian/adherev-util';
 
-import WarnPrompt from './warnprompt';
 import { IComponent } from './types';
+import WarnPrompt from './warnprompt';
 
 const {
   _util: { withVue },

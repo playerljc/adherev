@@ -1,6 +1,6 @@
-import Util from '@baifendian/adherev-util';
-import { PlayGround } from '@baifendian/adherev';
 import { withInstall } from '@/_util';
+import { PlayGround } from '@baifendian/adherev';
+import Util from '@baifendian/adherev-util';
 
 const options = {
   name: 'code-tab-panel',

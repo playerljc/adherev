@@ -1,5 +1,7 @@
-import BfdUtil from '@baifendian/adherev-util';
 import { Skeleton, Spin } from 'ant-design-vue';
+
+import BfdUtil from '@baifendian/adherev-util';
+
 import Suspense from './suspense';
 
 const {

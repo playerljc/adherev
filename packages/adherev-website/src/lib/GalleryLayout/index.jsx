@@ -1,6 +1,5 @@
-import { Input, Row, Col, Card } from 'ant-design-vue';
-
 import styles from './index.less';
+import { Input, Row, Col, Card } from 'ant-design-vue';
 
 const { Search } = Input;
 

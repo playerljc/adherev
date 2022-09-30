@@ -2,8 +2,8 @@ import classNames from 'classnames';
 // @ts-ignore
 import IScroll from 'iscroll/build/iscroll';
 import {
-  computed,
   CSSProperties,
+  computed,
   defineComponent,
   nextTick,
   onMounted,
@@ -12,6 +12,7 @@ import {
   watch,
 } from 'vue';
 import { array, func, object, string } from 'vue-types';
+
 import { IMenuDataItem } from './types';
 
 const selectorPrefix = 'adherev-ui-jdcategorytab';

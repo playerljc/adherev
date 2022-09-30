@@ -1,6 +1,8 @@
-import ConditionalRender from '@baifendian/adherev-ui-conditionalrender';
-import { defineComponent, ref, VNode, watch, ExtractPropTypes } from 'vue';
+import { ExtractPropTypes, VNode, defineComponent, ref, watch } from 'vue';
 import { array, string } from 'vue-types';
+
+import ConditionalRender from '@baifendian/adherev-ui-conditionalrender';
+
 import CodePanel from './CodePanel';
 import SimpleTabs from './SimpleTabs';
 import TabPanel from './SimpleTabs/TabPanel';
@@ -30,7 +32,7 @@ export default defineComponent({
 
     watch(
       () => props.active,
-      newValue => (active.value = newValue),
+      (newValue) => (active.value = newValue),
     );
 
     return () => (

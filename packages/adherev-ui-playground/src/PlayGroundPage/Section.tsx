@@ -1,4 +1,4 @@
-import { defineComponent, ExtractPropTypes, VNode } from 'vue';
+import { ExtractPropTypes, VNode, defineComponent } from 'vue';
 import { object, oneOfType, string } from 'vue-types';
 
 const selectPrefix = 'adherev-ui-playground-page-section';

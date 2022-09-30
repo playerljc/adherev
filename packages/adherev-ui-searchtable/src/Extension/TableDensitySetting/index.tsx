@@ -1,8 +1,7 @@
-import { defineComponent } from 'vue';
 import { Popover } from 'ant-design-vue';
+import { defineComponent } from 'vue';
 
 import { TableDensity } from '../../types';
-
 // @ts-ignore
 import Setting from './setting';
 

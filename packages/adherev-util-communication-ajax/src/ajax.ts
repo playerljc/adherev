@@ -1,7 +1,9 @@
+import { notification } from 'ant-design-vue';
+
 import GlobalIndicator from '@baifendian/adherev-ui-globalindicator';
 import Util from '@baifendian/adherev-util';
 import intl from '@baifendian/adherev-util-intl';
-import { notification } from 'ant-design-vue';
+
 import { IConfig, ISendArg, ISendPrepareArg } from './types';
 
 // 是否触发过402

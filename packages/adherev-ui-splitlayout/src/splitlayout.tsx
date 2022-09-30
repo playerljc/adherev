@@ -1,8 +1,9 @@
-import FlexLayout from '@baifendian/adherev-ui-flexlayout';
 import classNames from 'classnames';
+import { MouseEvent } from 'react';
 import { defineComponent, inject, onMounted, onUpdated, ref } from 'vue';
 import { number, oneOfType, string } from 'vue-types';
-import { MouseEvent } from 'react';
+
+import FlexLayout from '@baifendian/adherev-ui-flexlayout';
 
 const { selectorPrefix: flexlayoutSelectorPrefix } = FlexLayout;
 

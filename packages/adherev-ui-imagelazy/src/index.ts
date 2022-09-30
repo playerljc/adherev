@@ -1,4 +1,5 @@
 import Util from '@baifendian/adherev-util';
+
 import ImageLazy from './imagelazy';
 import { IComponent } from './types';
 

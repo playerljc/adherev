@@ -9,7 +9,7 @@ function initBasicDict() {
   // @ts-ignore
   const requireComponent = require.context('./dict', false, /.*\.(js)$/);
 
-  requireComponent.keys().forEach(path => {
+  requireComponent.keys().forEach((path) => {
     const dict = requireComponent(path).default;
 
     if (dict && Util.isObject?.(dict)) {

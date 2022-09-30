@@ -1,6 +1,7 @@
-import Resource from '@baifendian/adherev-util-resource';
 import { defineComponent } from 'vue';
 import { bool, number, string } from 'vue-types';
+
+import Resource from '@baifendian/adherev-util-resource';
 
 const selectorPrefix = 'adherev-ui-spin';
 

@@ -1,4 +1,5 @@
 import { defineComponent } from 'vue';
+
 import OLMap from './olmap';
 import { IHeatMapData, IHeatMapSelf } from './types';
 import Util from './util';
@@ -16,7 +17,7 @@ export default defineComponent({
     addLayer(heatMapLayerConfig = {}) {
       const { layer, vectorSource } = Util.createHeatMapLayer(heatMapLayerConfig || {});
 
-      const { $data } = (this as unknown) as IHeatMapSelf;
+      const { $data } = this as unknown as IHeatMapSelf;
 
       $data.$layer = layer;
       $data.$vectorSource = vectorSource;

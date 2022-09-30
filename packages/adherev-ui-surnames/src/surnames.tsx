@@ -1,7 +1,8 @@
-import Util from '@baifendian/adherev-util';
 import classNames from 'classnames';
 import { computed, defineComponent, onBeforeUnmount, onMounted, onUpdated, ref } from 'vue';
 import { array, string } from 'vue-types';
+
+import Util from '@baifendian/adherev-util';
 
 const selectorPrefix = 'adherev-ui-surnames';
 

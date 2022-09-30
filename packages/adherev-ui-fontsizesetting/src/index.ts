@@ -1,5 +1,7 @@
-import Util from '@baifendian/adherev-util';
 import { Slider } from 'ant-design-vue';
+
+import Util from '@baifendian/adherev-util';
+
 import FontSizeSetting from './fontsizesetting';
 import { IComponent } from './types';
 

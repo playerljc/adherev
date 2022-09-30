@@ -1,9 +1,10 @@
 import classNames from 'classnames';
-import { computed, CSSProperties, defineComponent, inject } from 'vue';
+import { CSSProperties, computed, defineComponent, inject } from 'vue';
 import { array, object, string } from 'vue-types';
+
+import { ContextReturnType } from './ContextMenu';
 import MenuItem from './MenuItem';
 import { IData } from './types';
-import { ContextReturnType } from './ContextMenu';
 
 const selectorPrefix = 'adherev-ui-contextmenu-submenu';
 

@@ -27,7 +27,7 @@ export default {
    */
   remove(type: string, handler: Function) {
     if (events[type]) {
-      const index = events[type].handlers.findIndex(item => {
+      const index = events[type].handlers.findIndex((item) => {
         return item === handler;
       });
 
@@ -45,7 +45,7 @@ export default {
   trigger(type: string, ...params: any[]) {
     let result;
     if (events[type]) {
-      events[type].handlers.forEach(handler => {
+      events[type].handlers.forEach((handler) => {
         result = handler(...params);
       });
     }

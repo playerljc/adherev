@@ -1,6 +1,7 @@
 import classNames from 'classnames';
 import { CSSProperties, defineComponent, ref, watch } from 'vue';
 import { object, string } from 'vue-types';
+
 import useSlide, { slideProps } from './slide';
 import { slider } from './slidelayout';
 
@@ -89,7 +90,7 @@ export default defineComponent({
 
     watch(
       () => props.zIndex,
-      val => {
+      (val) => {
         (pMasterEl.value as HTMLElement).style.zIndex = `${val - 1}`;
 
         (getElRef().value as HTMLElement).style.zIndex = `${val}`;

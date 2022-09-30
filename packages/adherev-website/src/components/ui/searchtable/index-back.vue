@@ -706,8 +706,8 @@
   </div>
 </template>
 <script>
-import Table from './table';
 import FewTable from './fewTable';
+import Table from './table';
 
 export default {
   components: {

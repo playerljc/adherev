@@ -1,6 +1,8 @@
-import Resource from '@baifendian/adherev-util-resource';
 import { Fill, Stroke, Style, Text } from 'ol/style.js';
 import { defineComponent } from 'vue';
+
+import Resource from '@baifendian/adherev-util-resource';
+
 import Constent from './constent';
 import { IOLMapData, IOLMapSelf } from './types';
 import Util from './util';

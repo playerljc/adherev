@@ -1,5 +1,6 @@
-import { defineComponent, nextTick, provide, ref, VNode, watch } from 'vue';
+import { VNode, defineComponent, nextTick, provide, ref, watch } from 'vue';
 import { string } from 'vue-types';
+
 const selectorPrefix = 'adherev-ui-playground-simple-tabs';
 
 const tabProps = {
@@ -54,7 +55,7 @@ export default defineComponent({
 
     watch(
       () => props.defaultActiveKey,
-      newValue => (activeKey.value = newValue),
+      (newValue) => (activeKey.value = newValue),
     );
 
     provide('getActiveKey', getActiveKey);

@@ -1,7 +1,8 @@
-import Intl from '@baifendian/adherev-util-intl';
 import { Button, Modal } from 'ant-design-vue';
 import { defineComponent, toRaw } from 'vue';
 import { any, bool, func } from 'vue-types';
+
+import Intl from '@baifendian/adherev-util-intl';
 
 export const selectorPrefix = 'adherev-ui-messagedialog';
 

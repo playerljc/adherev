@@ -1,9 +1,10 @@
 // @ts-ignore
+import { defineComponent } from 'vue';
+import { func, number, string } from 'vue-types';
+
 import MessageDialog from '@baifendian/adherev-ui-messagedialog';
 import intl from '@baifendian/adherev-util-intl';
 import Resource from '@baifendian/adherev-util-resource';
-import { defineComponent } from 'vue';
-import { func, number, string } from 'vue-types';
 
 const selectorPrefix = 'adherev-ui-importantconfirm';
 const icon =

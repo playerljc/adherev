@@ -13,7 +13,7 @@ import Footer from '@/lib/Footer';
 
 export default {
   components: {
-    Footer
+    Footer,
   },
 };
 </script>

@@ -1,7 +1,7 @@
 import Util from '@baifendian/adherev-util';
 
-import JdCategoryTab from './jdcategorytab';
 import JdCategoryTabItem from './item';
+import JdCategoryTab from './jdcategorytab';
 
 const {
   _util: { withInstall, withVue },

@@ -2120,12 +2120,11 @@
   </div>
 </template>
 <script>
-import { Vector as VectorSource } from 'ol/source';
+import icon from './区控-图例.svg';
+import { Resource, OLMap } from '@baifendian/adherev';
 import GeoJSON from 'ol/format/GeoJSON';
 import { fromLonLat } from 'ol/proj.js';
-
-import { Resource, OLMap } from '@baifendian/adherev';
-import icon from './区控-图例.svg';
+import { Vector as VectorSource } from 'ol/source';
 
 const { TitleLayer, Util, AnimationManager } = OLMap;
 

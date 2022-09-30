@@ -1,5 +1,5 @@
-import { Table } from 'ant-design-vue';
 import { Suspense } from '@baifendian/adherev';
+import { Table } from 'ant-design-vue';
 
 /**
  * table - 使用渲染函数 + JSX实现

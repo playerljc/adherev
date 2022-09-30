@@ -1,7 +1,8 @@
-// @ts-ignore
-import ConditionalRender from '@baifendian/adherev-ui-conditionalrender';
 import { defineComponent, nextTick, onMounted, ref } from 'vue';
 import { bool, number, object, string } from 'vue-types';
+
+import ConditionalRender from '@baifendian/adherev-ui-conditionalrender';
+
 import { IConfig, IPoint } from './types';
 
 const selectorPrefix = 'adhere-ui-bmap';
@@ -51,7 +52,7 @@ export default defineComponent({
       }
       // 内部引入bmap.js
       else {
-        importBMapJS().then(BMap => {
+        importBMapJS().then((BMap) => {
           BMap = BMap;
 
           (window as any).BMap = BMap;
@@ -69,7 +70,7 @@ export default defineComponent({
 
     const importBMapJS = () => {
       function importReal(src: string | null) {
-        return new Promise<any>(resolve => {
+        return new Promise<any>((resolve) => {
           const script = document.createElement('script');
 
           script.onload = () => {
@@ -85,10 +86,10 @@ export default defineComponent({
         });
       }
 
-      return new Promise(resolve => {
+      return new Promise((resolve) => {
         const preWrite = document.write;
 
-        document.write = html => {
+        document.write = (html) => {
           const el = document.createElement('div');
           el.innerHTML = html;
           const first = el.firstElementChild;
@@ -97,7 +98,7 @@ export default defineComponent({
             first?.tagName.toLowerCase() === 'script' &&
             first?.getAttribute('src')?.indexOf('http://api.map.baidu.com') !== -1
           ) {
-            importReal(first.getAttribute('src')).then(res => {
+            importReal(first.getAttribute('src')).then((res) => {
               resolve(res);
             });
           } else {

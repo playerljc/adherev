@@ -1520,6 +1520,7 @@
 
 <script>
 import FunctionProps from '@/lib/FunctionProps';
+
 export default {
   components: { FunctionProps },
 };

@@ -1,9 +1,11 @@
-import StickupLayout from '@baifendian/adherev-ui-stickuplayout';
-import Util from '@baifendian/adherev-util';
 import classNames from 'classnames';
 import IScroll from 'iscroll/build/iscroll-probe';
-import { computed, CSSProperties, defineComponent, h, onMounted, onUpdated, ref } from 'vue';
+import { CSSProperties, computed, defineComponent, h, onMounted, onUpdated, ref } from 'vue';
 import { array, number, object, oneOfType, string } from 'vue-types';
+
+import StickupLayout from '@baifendian/adherev-ui-stickuplayout';
+import Util from '@baifendian/adherev-util';
+
 import { IColumnConfig, IIndicatorTableConfig, IMasterItem } from './types';
 
 const selectorPrefix = 'adherev-ui-cascadecompared';

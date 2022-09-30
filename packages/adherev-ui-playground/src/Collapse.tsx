@@ -1,7 +1,15 @@
-import ConditionalRender from '@baifendian/adherev-ui-conditionalrender';
 import classNames from 'classnames';
-import { CSSProperties, defineComponent, ref, VNode, watch /*PropType*/ } from 'vue';
+import {
+  CSSProperties,
+  VNode,
+  defineComponent,
+  ref,
+  watch,
+  /*PropType*/
+} from 'vue';
 import { bool, object, oneOfType, string } from 'vue-types';
+
+import ConditionalRender from '@baifendian/adherev-ui-conditionalrender';
 
 const selectorPrefix = 'adherev-ui-playground-collapse';
 

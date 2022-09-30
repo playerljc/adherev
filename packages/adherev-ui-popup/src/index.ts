@@ -1,5 +1,6 @@
-import Popup from './popup';
 import BfdUtil from '@baifendian/adherev-util';
+
+import Popup from './popup';
 
 const {
   _util: { withVue },

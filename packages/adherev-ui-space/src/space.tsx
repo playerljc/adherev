@@ -1,4 +1,4 @@
-import { computed, CSSProperties, defineComponent } from 'vue';
+import { CSSProperties, computed, defineComponent } from 'vue';
 import { number, object, string } from 'vue-types';
 
 const selectorPrefix = 'adherev-ui-space';

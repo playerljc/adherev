@@ -1,23 +1,24 @@
 // import 'vue3-highlightjs/lib/allLanguages';
 import 'highlight.js/lib/common';
-import hljsVuePlugin from '@highlightjs/vue-plugin';
+
 // @ts-ignore
 import BfdUtil from '@baifendian/adherev-util';
+import hljsVuePlugin from '@highlightjs/vue-plugin';
 
-import Props from './Props';
-import FunctionProps from './FunctionProps';
+import AnchorNavigation from './AnchorNavigation';
+import CodeBoxPanel from './CodeBoxPanel';
 import CodePanel from './CodePanel';
 import CodeTabPanel from './CodeTabPanel';
-import CodeBoxPanel from './CodeBoxPanel';
+import FunctionProps from './FunctionProps';
 import PlayGround from './PlayGround';
-import PlayGroundTab from './PlayGroundTab';
 import PlayGroundMulit from './PlayGroundMulit';
 import PlayGroundPage from './PlayGroundPage';
 import CodeBoxSection from './PlayGroundPage/CodeBoxSection';
 import FunctionPropsSection from './PlayGroundPage/FunctionPropsSection';
 import PropsSection from './PlayGroundPage/PropsSection';
 import Section from './PlayGroundPage/Section';
-import AnchorNavigation from './AnchorNavigation';
+import PlayGroundTab from './PlayGroundTab';
+import Props from './Props';
 
 const {
   _util: { withInstall, withVue },

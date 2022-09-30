@@ -1,6 +1,7 @@
-import Resource from '@baifendian/adherev-util-resource';
 import { defineComponent, onBeforeUnmount, onMounted, ref } from 'vue';
 import { integer, number, oneOfType, string } from 'vue-types';
+
+import Resource from '@baifendian/adherev-util-resource';
 
 const selectorPrefix = 'adherev-ui-backtopanimation';
 

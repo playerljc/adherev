@@ -1,23 +1,20 @@
-import { createApp } from 'vue';
-// import { Result } from 'ant-design-vue';
-import NProgress from 'nprogress';
-import { Intl, Util, Resource, MessageDialog } from '@baifendian/adherev';
-
-import ComponentRegisterConfig from '@/config/component.register.config.js';
-import Router from './lib/Router';
-import Main from './main';
-
-import en_US from './locales/en_US';
-import zh_CN from './locales/zh_CN';
-import pt_PT from './locales/pt_PT';
-
-import 'font-awesome/less/font-awesome.less';
-import 'highlight.js/styles/agate.css';
-import 'nprogress/nprogress.css';
-// TODO:umd umd需要注释掉
-import '@baifendian/adherev/lib/css.less';
 // import 'ant-design-vue/dist/antd.less'
 import './index.less';
+import Router from './lib/Router';
+import en_US from './locales/en_US';
+import pt_PT from './locales/pt_PT';
+import zh_CN from './locales/zh_CN';
+import Main from './main';
+import ComponentRegisterConfig from '@/config/component.register.config.js';
+import { Intl, Util, Resource, MessageDialog } from '@baifendian/adherev';
+// TODO:umd umd需要注释掉
+import '@baifendian/adherev/lib/css.less';
+import 'font-awesome/less/font-awesome.less';
+import 'highlight.js/styles/agate.css';
+// import { Result } from 'ant-design-vue';
+import NProgress from 'nprogress';
+import 'nprogress/nprogress.css';
+import { createApp } from 'vue';
 
 // 获取当前语言
 const lang = Util.getLang?.();

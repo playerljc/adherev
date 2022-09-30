@@ -49,10 +49,10 @@
 </template>
 
 <script>
-import classNames from 'classnames';
 import SubMenu from './SubMenu';
-import Footer from '@/lib/Footer';
 import Util from './Util';
+import Footer from '@/lib/Footer';
+import classNames from 'classnames';
 
 export default {
   components: {

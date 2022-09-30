@@ -8,6 +8,7 @@
 
 <script>
 import { Resource, Util } from '@baifendian/adherev';
+
 // 获取当前语言
 const lang = Util.getLang?.();
 

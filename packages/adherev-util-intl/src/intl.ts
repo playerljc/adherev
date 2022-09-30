@@ -1,5 +1,7 @@
+import { I18nOptions, Locale, Path, TranslateResult, createI18n } from 'vue-i18n';
+
 import Intl from '@baifendian/adhere-util-intl';
-import { createI18n, I18nOptions, Locale, Path, TranslateResult } from 'vue-i18n';
+
 import en_US from './locales/en_US';
 import pt_PT from './locales/pt_PT';
 import zh_CN from './locales/zh_CN';

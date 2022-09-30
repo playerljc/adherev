@@ -1,7 +1,8 @@
+import { ExtractPropTypes, defineComponent, onBeforeMount, onMounted, ref, watch } from 'vue';
+import { array, object, string } from 'vue-types';
+
 import ConditionalRender from '@baifendian/adherev-ui-conditionalrender';
 import Util from '@baifendian/adherev-util';
-import { defineComponent, ExtractPropTypes, onBeforeMount, onMounted, ref, watch } from 'vue';
-import { array, object, string } from 'vue-types';
 
 const selectPrefix = 'adherev-ui-playground-anchor-navigation';
 

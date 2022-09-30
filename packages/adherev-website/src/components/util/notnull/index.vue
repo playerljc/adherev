@@ -20,7 +20,7 @@
 </template>
 
 <script>
-  import { NotNull } from '@baifendian/adherev';
+import { NotNull } from '@baifendian/adherev';
 
 export default {
   data() {

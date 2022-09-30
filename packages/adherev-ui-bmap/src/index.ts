@@ -2,7 +2,6 @@ import OriginBMap from '@baifendian/adhere-ui-bmap';
 import Util from '@baifendian/adherev-util';
 
 import BMapComponent from './bmap';
-
 import { IComponent } from './types';
 
 const {
