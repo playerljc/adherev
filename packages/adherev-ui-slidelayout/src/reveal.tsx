@@ -1,5 +1,5 @@
-import { Fragment } from 'vue-fragment';
 import classNames from 'classnames';
+import { Fragment } from 'vue-fragment';
 
 import SlideLayout from './slide';
 import { slider } from './slidelayout';

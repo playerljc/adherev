@@ -389,12 +389,11 @@
 </template>
 
 <script>
-import { v1 } from 'uuid';
-import { BMap, MessageDialog } from '@baifendian/adherev';
-
 import citys from './data/citys.json';
 import isoline from './data/isoline';
 import icon from './站点.svg';
+import { BMap, MessageDialog } from '@baifendian/adherev';
+import { v1 } from 'uuid';
 
 const {
   BMapWindLayer,

@@ -1,5 +1,6 @@
-import Util from '@baifendian/adherev-util';
 import classNames from 'classnames';
+
+import Util from '@baifendian/adherev-util';
 
 const selectorPrefix = 'adherev-ui-surnames';
 

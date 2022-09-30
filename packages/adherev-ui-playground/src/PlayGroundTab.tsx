@@ -1,8 +1,8 @@
 import ConditionalRender from '@baifendian/adherev-ui-conditionalrender';
 
 import Card from './Card';
-import PlayGroundMixins, { PlaygroundMixinsProps } from './PlayGroundMixins';
 import CodeTabPanel, { CodeTabPanelDefaultProps } from './CodeTabPanel';
+import PlayGroundMixins, { PlaygroundMixinsProps } from './PlayGroundMixins';
 
 // const selectPrefix = 'adherev-ui-playground-tab';
 

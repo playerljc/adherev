@@ -1,7 +1,8 @@
 import { VNode } from 'vue';
-import Resource from '@baifendian/adherev-util-resource';
+
 import MessageDialog from '@baifendian/adherev-ui-messagedialog';
 import intl from '@baifendian/adherev-util-intl';
+import Resource from '@baifendian/adherev-util-resource';
 
 const selectorPrefix = 'adherev-ui-importantconfirm';
 const icon =

@@ -1,7 +1,7 @@
 import Space from '@baifendian/adherev-ui-space';
 
-import Section, { SectionPropTypes } from './Section';
 import FunctionProps from '../FunctionProps';
+import Section, { SectionPropTypes } from './Section';
 
 export default {
   name: 'adv-playground-page-function-props-section',

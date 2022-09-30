@@ -1,5 +1,5 @@
-import { CreateElement } from 'vue';
 import classNames from 'classnames';
+import { CreateElement } from 'vue';
 
 const selectorPrefix = 'adherev-ui-searchform-label';
 

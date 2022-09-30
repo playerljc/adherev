@@ -1,5 +1,7 @@
-import { Push, Overlay, Revolving } from './slidelayout';
 import BfdUtil from '@baifendian/adherev-util';
+
+import { Overlay, Push, Revolving } from './slidelayout';
+
 const {
   _util: { withInstall, withVue },
 } = BfdUtil;

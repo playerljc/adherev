@@ -1,10 +1,11 @@
-import Vue, { CreateElement, PropType } from 'vue';
 import { Checkbox } from 'ant-design-vue';
+import Vue, { CreateElement, PropType } from 'vue';
 import Draggable from 'vuedraggable';
+
 import Intl from '@baifendian/adherev-util-intl';
 
-import { IColumnSetting } from '../../types';
 import { selectorPrefix } from '../../searchtable';
+import { IColumnSetting } from '../../types';
 
 export default Vue.extend({
   props: {

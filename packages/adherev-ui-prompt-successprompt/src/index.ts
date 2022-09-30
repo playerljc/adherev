@@ -1,5 +1,7 @@
-import SuccessPrompt from './successprompt';
 import BfdUtil from '@baifendian/adherev-util';
+
+import SuccessPrompt from './successprompt';
+
 const {
   _util: { withVue },
 } = BfdUtil;

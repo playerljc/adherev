@@ -1,4 +1,5 @@
 import Util from '@baifendian/adhere-util';
+
 import * as _util from './_util';
 
 // @ts-ignore

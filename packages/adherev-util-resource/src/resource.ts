@@ -1,5 +1,4 @@
 import Util from '@baifendian/adherev-util';
-
 import Dict from '@baifendian/adherev-util-dict';
 
 /**

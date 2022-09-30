@@ -21,9 +21,7 @@
         .config.js的文件，我们需要去初始化字典，这里用到了webpack提供的required.context函数去自动遍历指定目录下的.js文件
       </template>
 
-      <template #p3>
-        字典的使用分为静态字典的使用和异步字典的使用
-      </template>
+      <template #p3> 字典的使用分为静态字典的使用和异步字典的使用 </template>
 
       <template #p4>
         字典返回的是函数，字典会对函数值做memoized的操作,只有当函数的参数个数和参数的值发生改变的时候才会重新调用函数

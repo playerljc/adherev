@@ -1,5 +1,6 @@
-import Teleport from './teleport';
 import Util from '@baifendian/adherev-util';
+
+import Teleport from './teleport';
 
 const {
   _util: { withInstall, withVue },

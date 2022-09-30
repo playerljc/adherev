@@ -1,7 +1,8 @@
-import { PropType, VNode } from 'vue';
 import classNames from 'classnames';
 import IScroll from 'iscroll/build/iscroll-probe';
+import { PropType, VNode } from 'vue';
 import { Fragment } from 'vue-fragment';
+
 import StickupLayout from '@baifendian/adherev-ui-stickuplayout';
 import Util from '@baifendian/adherev-util';
 

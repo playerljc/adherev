@@ -1,6 +1,7 @@
-import Ajax from './ajax';
 // @ts-ignore
 import BfdUtil from '@baifendian/adherev-util';
+
+import Ajax from './ajax';
 
 const {
   _util: { withVue },

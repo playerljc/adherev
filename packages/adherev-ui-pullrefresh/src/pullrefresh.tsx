@@ -1,7 +1,8 @@
-import Intl from '@baifendian/adherev-util-intl';
-import Resource from '@baifendian/adherev-util-resource';
 import classNames from 'classnames';
 import moment from 'moment';
+
+import Intl from '@baifendian/adherev-util-intl';
+import Resource from '@baifendian/adherev-util-resource';
 
 const selectorPrefix = 'adherev-ui-pullrefresh';
 const defaultImg =

@@ -1,4 +1,5 @@
 import { VNode } from 'vue';
+
 import Resource from '@baifendian/adherev-util-resource';
 
 const selectorPrefix = 'adherev-ui-backtopanimation';

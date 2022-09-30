@@ -1,11 +1,9 @@
 import { notification } from 'ant-design-vue';
 
+import GlobalIndicator from '@baifendian/adherev-ui-globalindicator';
 // @ts-ignore
 import Util from '@baifendian/adherev-util';
-
 import intl from '@baifendian/adherev-util-intl';
-
-import GlobalIndicator from '@baifendian/adherev-ui-globalindicator';
 
 import { IConfig, ISendArg, ISendPrepareArg } from './types';
 

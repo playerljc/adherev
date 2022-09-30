@@ -1,5 +1,6 @@
 import classNames from 'classnames';
 import copy from 'copy-to-clipboard';
+
 import Intl from '@baifendian/adherev-util-intl';
 
 import Card from './Card';

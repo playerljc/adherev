@@ -326,8 +326,8 @@
 </template>
 
 <script>
-import { Popup } from '@baifendian/adherev';
 import PopupInner from './popup';
+import { Popup } from '@baifendian/adherev';
 
 export default {
   computed: {

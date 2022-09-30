@@ -1,5 +1,5 @@
-import Table from './table';
 import { oneFew } from './mock';
+import Table from './table';
 import { Ajax } from '@baifendian/adherev';
 
 // @ts-ignore

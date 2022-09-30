@@ -5,10 +5,9 @@
 </template>
 
 <script>
-import marked from 'marked';
-
-import ScrollFooterPanel from '@/lib/ScrollFooterPanel';
 import changeLog from '../../adherev/changelog/CHANGELOG.md';
+import ScrollFooterPanel from '@/lib/ScrollFooterPanel';
+import marked from 'marked';
 
 export default {
   components: {

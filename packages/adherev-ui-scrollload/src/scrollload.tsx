@@ -1,6 +1,7 @@
-import Intl from '@baifendian/adherev-util-intl';
 import classNames from 'classnames';
 import { VNode } from 'vue';
+
+import Intl from '@baifendian/adherev-util-intl';
 
 const selectorPrefix = 'adherev-ui-scrollload';
 

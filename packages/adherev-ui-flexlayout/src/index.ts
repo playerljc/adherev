@@ -1,7 +1,7 @@
 import Util from '@baifendian/adherev-util';
 
-import Fixed from './fixed';
 import Auto from './auto';
+import Fixed from './fixed';
 import FlexLayout, { selectorPrefix } from './flexlayout';
 
 const {

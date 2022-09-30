@@ -1,5 +1,6 @@
-import Vue from 'vue';
 import debounce from 'lodash/debounce';
+import Vue from 'vue';
+
 import Util from '@baifendian/adherev-util';
 
 export default {

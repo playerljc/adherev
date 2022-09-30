@@ -1,7 +1,9 @@
 // @ts-ignore
 import FlexLayout from '@baifendian/adherev-ui-flexlayout';
-import SplitLayout from './splitlayout';
 import BfdUtil from '@baifendian/adherev-util';
+
+import SplitLayout from './splitlayout';
+
 const {
   _util: { withInstall, withVue },
 } = BfdUtil;

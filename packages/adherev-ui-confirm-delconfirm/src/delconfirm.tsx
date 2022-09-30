@@ -1,7 +1,8 @@
-import Resource from '@baifendian/adherev-util-resource';
+import { VNode } from 'vue';
+
 import MessageDialog from '@baifendian/adherev-ui-messagedialog';
 import intl from '@baifendian/adherev-util-intl';
-import { VNode } from 'vue';
+import Resource from '@baifendian/adherev-util-resource';
 
 const selectorPrefix = 'adherev-ui-delconfirm';
 

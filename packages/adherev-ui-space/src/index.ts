@@ -1,6 +1,7 @@
+import BfdUtil from '@baifendian/adherev-util';
+
 import Space, { SpaceGroup } from './space';
 
-import BfdUtil from '@baifendian/adherev-util';
 const {
   _util: { withInstall, withVue },
 } = BfdUtil;

@@ -1,6 +1,7 @@
 // @ts-ignore
-import FlexLayout from '@baifendian/adherev-ui-flexlayout';
 import classNames from 'classnames';
+
+import FlexLayout from '@baifendian/adherev-ui-flexlayout';
 
 const { selectorPrefix: flexlayoutSelectorPrefix } = FlexLayout;
 

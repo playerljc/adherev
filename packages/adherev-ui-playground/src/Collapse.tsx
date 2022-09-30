@@ -1,5 +1,7 @@
 import classNames from 'classnames';
+
 import ConditionalRender from '@baifendian/adherev-ui-conditionalrender';
+
 import { propTypes } from './types';
 
 const selectorPrefix = 'adherev-ui-playground-collapse';

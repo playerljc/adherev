@@ -1,4 +1,4 @@
-import { VNode, PropType } from 'vue';
+import { PropType, VNode } from 'vue';
 
 const selectorPrefix = 'adherev-ui-imagelazy';
 

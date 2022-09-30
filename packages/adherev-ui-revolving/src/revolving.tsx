@@ -1,6 +1,6 @@
-import { VNode } from 'vue';
 import classNames from 'classnames';
 import Swiper from 'swiper';
+import { VNode } from 'vue';
 
 const selectorPrefix = 'adherev-ui-revolving';
 

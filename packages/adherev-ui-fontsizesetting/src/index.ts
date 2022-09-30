@@ -1,4 +1,5 @@
 import { Slider } from 'ant-design-vue';
+
 import Util from '@baifendian/adherev-util';
 
 import FontSizeSetting from './fontsizesetting';

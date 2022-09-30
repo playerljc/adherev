@@ -1,6 +1,7 @@
+import BfdUtil from '@baifendian/adherev-util';
+
 import Spin from './spin';
 
-import BfdUtil from '@baifendian/adherev-util';
 const {
   _util: { withInstall, withVue },
 } = BfdUtil;

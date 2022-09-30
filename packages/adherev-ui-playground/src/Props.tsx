@@ -1,7 +1,7 @@
 import Intl from '@baifendian/adherev-util-intl';
 
-import Table from './Table';
 import Collapse from './Collapse';
+import Table from './Table';
 import { propTypes } from './types';
 
 const selectPrefix = 'adherev-ui-playground-props';

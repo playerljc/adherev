@@ -1,4 +1,5 @@
 import Space from '@baifendian/adherev-ui-space';
+
 import AnchorNavigation, { AnchorNavigationPropTypes } from '../AnchorNavigation';
 
 const selectPrefix = 'adherev-ui-playground-page';

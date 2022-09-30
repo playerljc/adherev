@@ -1,5 +1,7 @@
-import { Spin, Skeleton } from 'ant-design-vue';
+import { Skeleton, Spin } from 'ant-design-vue';
+
 import BfdUtil from '@baifendian/adherev-util';
+
 import Suspense from './suspense';
 
 const {

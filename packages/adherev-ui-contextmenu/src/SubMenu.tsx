@@ -1,9 +1,8 @@
-import { VNode, PropType } from 'vue';
 import classNames from 'classnames';
-
-import { IData } from './types';
+import { PropType, VNode } from 'vue';
 
 import MenuItem from './MenuItem';
+import { IData } from './types';
 
 const selectorPrefix = 'adherev-ui-contextmenu-submenu';
 

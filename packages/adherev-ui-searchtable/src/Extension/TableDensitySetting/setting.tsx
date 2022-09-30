@@ -1,5 +1,6 @@
-import Intl from '@baifendian/adherev-util-intl';
 import { CreateElement } from 'vue';
+
+import Intl from '@baifendian/adherev-util-intl';
 
 import { selectorPrefix } from '../../searchtable';
 import { TableDensity } from '../../types';

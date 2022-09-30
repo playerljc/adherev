@@ -1,5 +1,7 @@
-import SliderScale from './sliderscale';
 import BfdUtil from '@baifendian/adherev-util';
+
+import SliderScale from './sliderscale';
+
 const {
   _util: { withInstall, withVue },
 } = BfdUtil;

@@ -1,7 +1,8 @@
-import Util from '@baifendian/adherev-util';
-import Intl from '@baifendian/adherev-util-intl';
 import { Button, Modal } from 'ant-design-vue';
 import { CreateElement } from 'vue';
+
+import Util from '@baifendian/adherev-util';
+import Intl from '@baifendian/adherev-util-intl';
 
 // import Actions from './actions';
 // import Emitter from './emitter';

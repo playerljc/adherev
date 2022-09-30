@@ -1,8 +1,10 @@
+import { Button, ConfigProvider } from 'ant-design-vue';
+import Vue from 'vue';
+
 import Util from '@baifendian/adherev-util';
 import Intl from '@baifendian/adherev-util-intl';
 import Resource from '@baifendian/adherev-util-resource';
-import { Button, ConfigProvider } from 'ant-design-vue';
-import Vue from 'vue';
+
 import ModalDialog from './modal';
 import { IAlertArgv, IConfig, IConfirmArgv, IPromptConfig } from './types';
 

@@ -1,5 +1,3 @@
-import { VNode, CreateElement } from 'vue';
-import type { Column } from 'ant-design-vue/types/table/column';
 import {
   ColumnType,
   FilterValue,
@@ -8,6 +6,8 @@ import {
   TablePaginationConfig,
   TableRowSelection,
 } from 'ant-design-vue/lib/table/interface';
+import type { Column } from 'ant-design-vue/types/table/column';
+import { CreateElement, VNode } from 'vue';
 
 /**
  * IOverview

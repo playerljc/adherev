@@ -111,7 +111,9 @@
       <template #p3>
         <fragment>
           <adv-space-group direction="horizontal">
-            <a-button type="primary" @click="$refs.ref1.scrollToAnimation('Z')">滚动到底部</a-button>
+            <a-button type="primary" @click="$refs.ref1.scrollToAnimation('Z')"
+              >滚动到底部</a-button
+            >
             <a-button @click="$refs.ref1.scrollToAnimation('A')">滚动到顶部</a-button>
           </adv-space-group>
 
@@ -132,7 +134,9 @@
               </template>
               <template v-slot:content="props">
                 <ul>
-                  <li v-for="(t, index) in 10" :key="index + 1">{{ props.index }}{{ index + 1 }}</li>
+                  <li v-for="(t, index) in 10" :key="index + 1">
+                    {{ props.index }}{{ index + 1 }}
+                  </li>
                 </ul>
               </template>
             </adv-surnames>

@@ -1,5 +1,6 @@
-import SwipeOut from './swipeout';
 import BfdUtil from '@baifendian/adherev-util';
+
+import SwipeOut from './swipeout';
 
 const {
   _util: { withInstall, withVue },

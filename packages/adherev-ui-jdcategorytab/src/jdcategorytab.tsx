@@ -1,6 +1,6 @@
-import { VNode, PropType } from 'vue';
 import classNames from 'classnames';
 import IScroll from 'iscroll/build/iscroll';
+import { PropType, VNode } from 'vue';
 
 import { IMenuDataItem } from './types';
 

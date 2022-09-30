@@ -1,5 +1,5 @@
-import { VNode } from 'vue';
 import { Slider } from 'ant-design-vue';
+import { VNode } from 'vue';
 
 const selectorPrefix = 'adherev-ui-fontsizesetting';
 

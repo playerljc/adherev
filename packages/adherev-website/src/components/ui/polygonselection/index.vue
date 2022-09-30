@@ -20,12 +20,11 @@
     </adv-playground-page-code-box-section>
 
     <adv-playground-page-function-props-section title="API" :config="apiConfig" />
-
   </adv-playground-page>
 </template>
 
 <script>
-  import ImageSelect from './ImageSelect';
+import ImageSelect from './ImageSelect';
 
 export default {
   components: {

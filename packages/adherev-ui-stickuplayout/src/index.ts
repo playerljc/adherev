@@ -1,6 +1,8 @@
-import StickupLayout from './stickuplayout';
-import StickupLayoutItem from './item';
 import BfdUtil from '@baifendian/adherev-util';
+
+import StickupLayoutItem from './item';
+import StickupLayout from './stickuplayout';
+
 const {
   _util: { withInstall, withVue },
 } = BfdUtil;

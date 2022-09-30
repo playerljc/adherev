@@ -1,7 +1,8 @@
 import ConditionalRender from '@baifendian/adherev-ui-conditionalrender';
+
+import CodePanel from './CodePanel';
 import SimpleTabs from './SimpleTabs';
 import TabPanel from './SimpleTabs/TabPanel';
-import CodePanel from './CodePanel';
 
 const selectPrefix = 'adherev-ui-playground-code-tab-panel';
 

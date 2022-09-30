@@ -70,8 +70,8 @@
 </template>
 
 <script>
-import packageJSON from '../../../../../package.json';
 import lernaJSON from '../../../../../lerna.json';
+import packageJSON from '../../../../../package.json';
 import SearchBar from '../SearchBar';
 
 const MenuItemsConfig = [

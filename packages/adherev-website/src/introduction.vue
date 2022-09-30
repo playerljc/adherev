@@ -76,7 +76,7 @@ import ScrollFooterPanel from '@/lib/ScrollFooterPanel';
 
 export default {
   components: {
-    ScrollFooterPanel
+    ScrollFooterPanel,
   },
   data() {
     return {

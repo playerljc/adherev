@@ -1,8 +1,6 @@
-import { Vector as VectorLayer } from 'ol/layer';
-
-import { Vector as VectorSource } from 'ol/source';
-
 import GeoJSON from 'ol/format/GeoJSON';
+import { Vector as VectorLayer } from 'ol/layer';
+import { Vector as VectorSource } from 'ol/source';
 
 import Resource from '@baifendian/adherev-util-resource';
 

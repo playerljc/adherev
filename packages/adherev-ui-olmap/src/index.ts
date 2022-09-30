@@ -1,11 +1,12 @@
-import OLMap from './olmap';
-import HeatMap from './heatmap';
+import BfdUtil from '@baifendian/adherev-util';
+
+import AnimationManager from './animationmanager';
 import GeoLayer from './geolayer';
+import HeatMap from './heatmap';
+import OLMap from './olmap';
 import * as TitleLayer from './titlelayer';
 import Util from './util';
-import AnimationManager from './animationmanager';
 
-import BfdUtil from '@baifendian/adherev-util';
 const {
   _util: { withInstall, withVue },
 } = BfdUtil;

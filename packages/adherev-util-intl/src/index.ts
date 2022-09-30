@@ -1,4 +1,5 @@
 import VueI18n from 'vue-i18n';
+
 import Intl, { extend, getLocal } from './intl';
 
 // @ts-ignore

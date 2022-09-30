@@ -2,7 +2,6 @@ import BfdUtil from '@baifendian/adherev-util';
 
 import PullRefresh from './pullrefresh';
 
-
 const {
   _util: { withInstall, withVue },
 } = BfdUtil;

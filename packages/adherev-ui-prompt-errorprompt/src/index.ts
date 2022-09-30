@@ -1,5 +1,7 @@
-import ErrorPrompt from './errorprompt';
 import BfdUtil from '@baifendian/adherev-util';
+
+import ErrorPrompt from './errorprompt';
+
 const {
   _util: { withVue },
 } = BfdUtil;

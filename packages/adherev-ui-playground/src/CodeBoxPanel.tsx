@@ -1,10 +1,10 @@
-import ConditionalRender from '@baifendian/adherev-ui-conditionalrender';
 import { Fragment } from 'vue-fragment';
+
+import ConditionalRender from '@baifendian/adherev-ui-conditionalrender';
 
 import PlayGround from './PlayGround';
 import PlayGroundMulit from './PlayGroundMulit';
 import PlayGroundTab from './PlayGroundTab';
-
 import Constant from './constant';
 
 const selectPrefix = 'adherev-ui-playground-code-box';

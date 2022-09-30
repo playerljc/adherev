@@ -1,6 +1,7 @@
-import { Permission, setPermission, checkPermission, getPermission } from './permission';
-
 import BfdUtil from '@baifendian/adherev-util';
+
+import { Permission, checkPermission, getPermission, setPermission } from './permission';
+
 const {
   _util: { withInstall, withVue },
 } = BfdUtil;

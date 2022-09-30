@@ -49,8 +49,8 @@
 </template>
 
 <script>
-import { MessageDialog } from '@baifendian/adherev';
 import icon from './icon.svg';
+import { MessageDialog } from '@baifendian/adherev';
 
 export default {
   data() {

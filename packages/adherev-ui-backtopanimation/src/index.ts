@@ -1,5 +1,6 @@
-import BackTopAnimation from './backtopanimation';
 import Util from '@baifendian/adherev-util';
+
+import BackTopAnimation from './backtopanimation';
 
 const {
   _util: { withInstall, withVue },

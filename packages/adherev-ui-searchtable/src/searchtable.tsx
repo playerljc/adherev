@@ -1,19 +1,18 @@
-import Vue, { CreateElement } from 'vue';
-import { Table, Button } from 'ant-design-vue';
+import { Button, Table } from 'ant-design-vue';
 import classNames from 'classnames';
+import Vue, { CreateElement } from 'vue';
 
-import Suspense from '@baifendian/adherev-ui-suspense';
+import ConditionalRender from '@baifendian/adherev-ui-conditionalrender';
 // @ts-ignore
 import FlexLayout from '@baifendian/adherev-ui-flexlayout';
-import ConditionalRender from '@baifendian/adherev-ui-conditionalrender';
+import Suspense from '@baifendian/adherev-ui-suspense';
 import Intl from '@baifendian/adherev-util-intl';
 import Mixins from '@baifendian/adherev-util-mixins';
 
 import ColumnResizable, {
-  SearchTableResizableTitle,
   SearchTableResizableObserver,
+  SearchTableResizableTitle,
 } from './Extension/ColumnResizable';
-
 import { TableDensity } from './types';
 
 export const selectorPrefix = 'adherev-ui-searchtable';

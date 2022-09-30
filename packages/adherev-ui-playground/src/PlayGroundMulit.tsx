@@ -3,10 +3,9 @@ import ConditionalRender from '@baifendian/adherev-ui-conditionalrender';
 import ContextMenu from '@baifendian/adherev-ui-contextmenu';
 
 import Card from './Card';
-
-import PlayGroundMixins, { PlaygroundMixinsProps } from './PlayGroundMixins';
 import CodePanel from './CodePanel';
 import CodeTabPanel from './CodeTabPanel';
+import PlayGroundMixins, { PlaygroundMixinsProps } from './PlayGroundMixins';
 
 const selectPrefix = 'adherev-ui-playground-mulit';
 

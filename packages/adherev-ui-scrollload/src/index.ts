@@ -1,5 +1,6 @@
 import BfdUtil from '@baifendian/adherev-util';
-import ScrollLoad, { ERROR, EMPTY, NORMAL } from './scrollload';
+
+import ScrollLoad, { EMPTY, ERROR, NORMAL } from './scrollload';
 
 const {
   _util: { withInstall, withVue },

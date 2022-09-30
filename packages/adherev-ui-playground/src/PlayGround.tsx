@@ -1,8 +1,8 @@
 import ConditionalRender from '@baifendian/adherev-ui-conditionalrender';
 
 import Card from './Card';
-import PlayGroundMixins, { PlaygroundMixinsProps } from './PlayGroundMixins';
 import CodePanel, { CodePanelPropTypes } from './CodePanel';
+import PlayGroundMixins, { PlaygroundMixinsProps } from './PlayGroundMixins';
 
 export const PlayGroundPropTypes = {
   ...PlaygroundMixinsProps,

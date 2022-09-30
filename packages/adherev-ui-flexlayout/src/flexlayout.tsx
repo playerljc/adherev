@@ -1,5 +1,5 @@
-import { VNode } from 'vue';
 import classNames from 'classnames';
+import { VNode } from 'vue';
 
 export const selectorPrefix = 'adherev-ui-flexlayout';
 

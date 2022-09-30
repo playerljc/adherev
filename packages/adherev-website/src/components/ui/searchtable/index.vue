@@ -193,12 +193,12 @@
 </template>
 
 <script>
-import Table from './table';
+import ColumnResizableTable from './columnResizeTable';
+import ColumnSettingTable from './columnSettingTable';
 import FewTable from './fewTable';
 import RowSelectedContinuous from './rowSelectedContinuous';
 import RowSelectedNormal from './rowSelectedNormal';
-import ColumnResizableTable from './columnResizeTable';
-import ColumnSettingTable from './columnSettingTable';
+import Table from './table';
 import TableDensitySetting from './tableDensitySetting';
 
 export default {

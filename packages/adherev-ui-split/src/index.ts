@@ -1,6 +1,7 @@
+import BfdUtil from '@baifendian/adherev-util';
+
 import Split, { SplitGroup } from './split';
 
-import BfdUtil from '@baifendian/adherev-util';
 const {
   _util: { withInstall, withVue },
 } = BfdUtil;

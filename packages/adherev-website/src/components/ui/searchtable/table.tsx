@@ -1,6 +1,6 @@
-import moment from 'moment';
-import { Input, Select, InputNumber, DatePicker } from 'ant-design-vue';
 import { SearchTable, Resource, Ajax } from '@baifendian/adherev';
+import { Input, Select, InputNumber, DatePicker } from 'ant-design-vue';
+import moment from 'moment';
 
 // @ts-ignore
 const request = new Ajax('');

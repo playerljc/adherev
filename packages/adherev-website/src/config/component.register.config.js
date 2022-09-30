@@ -1,37 +1,10 @@
-import Vue from 'vue';
-import { Plugin } from 'vue-fragment';
-import {
-  Breadcrumb,
-  Button,
-  Card,
-  Col,
-  ConfigProvider,
-  DatePicker,
-  Empty,
-  Form,
-  FormModel,
-  Icon,
-  Input,
-  InputNumber,
-  Menu,
-  Modal,
-  Radio,
-  Result,
-  Row,
-  Slider,
-  Table,
-  Tabs,
-  Tooltip,
-  List,
-  Avatar,
-  Tag,
-  Divider,
-  Select,
-  Switch,
-} from 'ant-design-vue';
-
-import VueHighlightJS from 'vue-highlight.js';
-
+import FunctionProps from '@/lib/FunctionProps';
+import Playground from '@/lib/Playground';
+import PlaygroundMulit from '@/lib/PlaygroundMulit';
+import Props from '@/lib/Props';
+import en_US from '@/locales/en_US';
+import pt_PT from '@/locales/pt_PT';
+import zh_CN from '@/locales/zh_CN';
 import {
   ConditionalRender,
   DelConfirm,
@@ -85,15 +58,38 @@ import {
   WatchMemoized,
   Util,
 } from '@baifendian/adherev';
-
-import Playground from '@/lib/Playground';
-import PlaygroundMulit from '@/lib/PlaygroundMulit';
-import FunctionProps from '@/lib/FunctionProps';
-import Props from '@/lib/Props';
-
-import en_US from '@/locales/en_US';
-import zh_CN from '@/locales/zh_CN';
-import pt_PT from '@/locales/pt_PT';
+import {
+  Breadcrumb,
+  Button,
+  Card,
+  Col,
+  ConfigProvider,
+  DatePicker,
+  Empty,
+  Form,
+  FormModel,
+  Icon,
+  Input,
+  InputNumber,
+  Menu,
+  Modal,
+  Radio,
+  Result,
+  Row,
+  Slider,
+  Table,
+  Tabs,
+  Tooltip,
+  List,
+  Avatar,
+  Tag,
+  Divider,
+  Select,
+  Switch,
+} from 'ant-design-vue';
+import Vue from 'vue';
+import { Plugin } from 'vue-fragment';
+import VueHighlightJS from 'vue-highlight.js';
 
 const register = [
   () => {

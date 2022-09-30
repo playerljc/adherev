@@ -1,11 +1,11 @@
-import { VNode, PropType } from 'vue';
 import classNames from 'classnames';
+import { PropType, VNode } from 'vue';
+
 import ConditionalRender from '@baifendian/adherev-ui-conditionalrender';
 import Util from '@baifendian/adherev-util';
 
-import { IMenuItemProps } from './types';
-
 import SubMenu from './SubMenu';
+import { IMenuItemProps } from './types';
 
 const selectorPrefix = 'adherev-ui-contextmenu-menuitem';
 

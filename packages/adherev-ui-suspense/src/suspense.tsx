@@ -1,5 +1,5 @@
+import { Skeleton, Spin } from 'ant-design-vue';
 import Vue, { VNode } from 'vue';
-import { Spin, Skeleton } from 'ant-design-vue';
 
 const selectorPrefix = 'adherev-ui-suspense';
 

@@ -1,5 +1,5 @@
-import { VNode } from 'vue';
 import classNames from 'classnames';
+import { VNode } from 'vue';
 
 import { selectorPrefix as parentSelectorPrefix } from './flexlayout';
 

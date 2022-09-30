@@ -1,7 +1,7 @@
-import Vue, { VNode, PropType } from 'vue';
+import Vue, { PropType, VNode } from 'vue';
 
-import { IData, IConfig, ContextMenuType } from './types';
 import Menu from './Menu';
+import { ContextMenuType, IConfig, IData } from './types';
 
 const selectorPrefix = 'adherev-ui-contextmenu';
 

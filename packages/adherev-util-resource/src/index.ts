@@ -1,5 +1,6 @@
-import Resource from './resource';
 import BfdUtil from '@baifendian/adherev-util';
+
+import Resource from './resource';
 
 const {
   _util: { withVue },

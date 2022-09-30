@@ -1,11 +1,13 @@
-import Vue, { CreateElement, VNode } from 'vue';
-// @ts-ignore
-import { mapState, mapMutations, mapActions, cleanMixin } from '@ctsj/vuexgenerator';
 import { TableRowSelection } from 'ant-design-vue/lib/table/interface';
+import Vue, { CreateElement, VNode } from 'vue';
+
+// @ts-ignore
+import { cleanMixin, mapActions, mapMutations, mapState } from '@ctsj/vuexgenerator';
+
 import SearchTable, {
-  ROW_SELECTION_NORMAL_MODE,
-  ROW_SELECTION_CONTINUOUS_MODE,
   NUMBER_GENERATOR_RULE_CONTINUITY,
+  ROW_SELECTION_CONTINUOUS_MODE,
+  ROW_SELECTION_NORMAL_MODE,
 } from './searchtable';
 
 const selectorPrefix = 'adherev-ui-searchtableimplement';
@@ -203,10 +205,7 @@ export default (serviceName) =>
 
             if (selected) {
               // add
-              self.selectedRowKeys = [
-                ...self.selectedRowKeys,
-                ...records.map((r) => r[rowKey]),
-              ];
+              self.selectedRowKeys = [...self.selectedRowKeys, ...records.map((r) => r[rowKey])];
               self.selectedRows = [...self.selectedRows, ...records];
             } else {
               // remove

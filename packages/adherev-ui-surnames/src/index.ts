@@ -1,5 +1,7 @@
-import Surnames from './surnames';
 import BfdUtil from '@baifendian/adherev-util';
+
+import Surnames from './surnames';
+
 const {
   _util: { withInstall, withVue },
 } = BfdUtil;

@@ -1,11 +1,11 @@
 import VueI18n from 'vue-i18n';
-import { I18nOptions, Path, TranslateResult, Locale, IVueI18n } from 'vue-i18n/types';
+import { I18nOptions, IVueI18n, Locale, Path, TranslateResult } from 'vue-i18n/types';
 
 import Intl from '@baifendian/adhere-util-intl';
 
 import en_US from './locales/en_US';
-import zh_CN from './locales/zh_CN';
 import pt_PT from './locales/pt_PT';
+import zh_CN from './locales/zh_CN';
 
 // 组件的国际化文件
 const finallyLocales = {
