@@ -36,13 +36,7 @@ const Space = defineComponent({
       };
     });
 
-    return () => (
-      <div
-        // @ts-ignore
-        class={selectorPrefix}
-        style={getStyle.value}
-      />
-    );
+    return () => <div class={selectorPrefix} style={getStyle.value} />;
   },
 });
 
@@ -76,7 +70,6 @@ export const SpaceGroup = defineComponent({
               style: props.style,
             };
 
-            // @ts-ignore
             JSXS.push(<Space {...spaceProps} />);
           }
 
@@ -84,14 +77,7 @@ export const SpaceGroup = defineComponent({
         }
       }
 
-      return (
-        <div
-          // @ts-ignore
-          class={`${selectorPrefix}-group ${props.direction}`}
-        >
-          {JSXS}
-        </div>
-      );
+      return <div class={`${selectorPrefix}-group ${props.direction}`}>{JSXS}</div>;
     };
   },
 });

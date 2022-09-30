@@ -98,9 +98,7 @@ export class Popup {
 
     if (!config) return;
 
-    // @ts-ignore
     if (config[hookName]) {
-      // @ts-ignore
       return config[hookName]();
     }
   }

@@ -43,57 +43,24 @@ export default defineComponent({
 
         if ((i + 1) % props.interval === 0) {
           itemJSX = (
-            <div
-              key={i}
-              // @ts-ignore
-              class={`${selectorPrefix}-scale-item ${selectorPrefix}-scale-item-point`}
-            >
-              <span
-                // @ts-ignore
-                class={`${selectorPrefix}-scale-item-value`}
-              >
-                {i + 1}
-              </span>
+            <div key={i} class={`${selectorPrefix}-scale-item ${selectorPrefix}-scale-item-point`}>
+              <span class={`${selectorPrefix}-scale-item-value`}>{i + 1}</span>
             </div>
           );
         } else if (i === props.min) {
           itemJSX = (
-            <div
-              key={i}
-              // @ts-ignore
-              class={`${selectorPrefix}-scale-item`}
-            >
-              <span
-                // @ts-ignore
-                class={`${selectorPrefix}-scale-item-value`}
-              >
-                {props.min}
-              </span>
+            <div key={i} class={`${selectorPrefix}-scale-item`}>
+              <span class={`${selectorPrefix}-scale-item-value`}>{props.min}</span>
             </div>
           );
         } else if ((i + 1) % props.interval !== 0 && i === props.max - 1) {
           itemJSX = (
-            <div
-              key={i}
-              // @ts-ignore
-              class={`${selectorPrefix}-scale-item`}
-            >
-              <span
-                // @ts-ignore
-                class={`${selectorPrefix}-scale-item-value`}
-              >
-                {i + 1}
-              </span>
+            <div key={i} class={`${selectorPrefix}-scale-item`}>
+              <span class={`${selectorPrefix}-scale-item-value`}>{i + 1}</span>
             </div>
           );
         } else {
-          itemJSX = (
-            <div
-              key={i}
-              // @ts-ignore
-              class={`${selectorPrefix}-scale-item`}
-            />
-          );
+          itemJSX = <div key={i} class={`${selectorPrefix}-scale-item`} />;
         }
 
         itResult.push(itemJSX);
@@ -103,22 +70,9 @@ export default defineComponent({
 
       if (props.min === props.max) {
         result.push(
-          <div
-            key={0}
-            // @ts-ignore
-            class={`${selectorPrefix}-scale-item`}
-          >
-            <span
-              // @ts-ignore
-              class={`${selectorPrefix}-scale-item-value`}
-            >
-              0
-            </span>
-            <span
-              // @ts-ignore
-              class={`${selectorPrefix}-scale-item-value`}
-              style={{ right: 0, left: 'auto' }}
-            >
+          <div key={0} class={`${selectorPrefix}-scale-item`}>
+            <span class={`${selectorPrefix}-scale-item-value`}>0</span>
+            <span class={`${selectorPrefix}-scale-item-value`} style={{ right: 0, left: 'auto' }}>
               {props.max}
             </span>
           </div>,
@@ -126,22 +80,9 @@ export default defineComponent({
       } else {
         if (props.max - 1 === props.min) {
           result.push(
-            <div
-              key={props.min}
-              // @ts-ignore
-              class={`${selectorPrefix}-scale-item`}
-            >
-              <span
-                // @ts-ignore
-                class={`${selectorPrefix}-scale-item-value`}
-              >
-                {props.min}
-              </span>
-              <span
-                // @ts-ignore
-                class={`${selectorPrefix}-scale-item-value`}
-                style={{ right: 0, left: 'auto' }}
-              >
+            <div key={props.min} class={`${selectorPrefix}-scale-item`}>
+              <span class={`${selectorPrefix}-scale-item-value`}>{props.min}</span>
+              <span class={`${selectorPrefix}-scale-item-value`} style={{ right: 0, left: 'auto' }}>
                 {props.max}
               </span>
             </div>,
@@ -168,26 +109,19 @@ export default defineComponent({
     );
 
     return () => (
-      <div
-        // @ts-ignore
-        class={selectorPrefix}
-      >
-        <div
-          // @ts-ignore
-          class={`${selectorPrefix}-scale`}
-        >
-          {renderScale()}
-        </div>
+      <div class={selectorPrefix}>
+        <div class={`${selectorPrefix}-scale`}>{renderScale()}</div>
 
         <input
-          // @ts-ignore
           ref={rangeEl}
           class={`${selectorPrefix}-range`}
           type="range"
           min={props.min}
           max={props.max}
           step={props.step}
+          // @ts-ignore
           onMousemove={onMousemove}
+          // @ts-ignore
           onTouchmove={onTouchmove}
         />
       </div>

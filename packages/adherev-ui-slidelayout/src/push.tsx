@@ -100,15 +100,10 @@ export default defineComponent({
     );
 
     return () => (
-      <div
-        class={`${selectorPrefix}-master`}
-        // @ts-ignore
-        ref={pMasterEl}
-      >
+      <div class={`${selectorPrefix}-master`} ref={pMasterEl}>
         <div
           class={classNames(selectorPrefix, props.direction, props.className.split(/\s+/))}
           style={props.style}
-          // @ts-ignore
           ref={getElRef()}
         >
           {slots?.slide?.()}
@@ -117,7 +112,6 @@ export default defineComponent({
         <div
           class={classNames(`${selectorPrefix}-slave`, (props.slaveClassName || '').split(/\s+/))}
           style={props.slaveStyle}
-          // @ts-ignore
           ref={pSlaveEl}
         >
           {slots?.master?.()}

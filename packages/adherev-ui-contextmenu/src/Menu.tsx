@@ -1,6 +1,7 @@
 import classNames from 'classnames';
-import { computed, CSSProperties, defineComponent, inject, ref } from 'vue';
+import { CSSProperties, computed, defineComponent, inject, ref } from 'vue';
 import { array, object, string } from 'vue-types';
+
 import { ContextReturnType } from './ContextMenu';
 import MenuItem from './MenuItem';
 import { IData } from './types';
@@ -50,15 +51,12 @@ export default defineComponent({
         y = clientHeight - menuHeight;
       }
 
-      // @ts-ignore
-      el.value?.style?.left = `${x}px`;
+      (el.value as HTMLElement).style.left = `${x}px`;
 
-      // @ts-ignore
-      el.value?.style?.top = `${y}px`;
+      (el.value as HTMLElement).style.top = `${y}px`;
     };
 
     const renderItems = (): JSX.Element[] =>
-      // @ts-ignore
       props.data.map((item) => <MenuItem key={item.id} data={item} />);
 
     expose({
@@ -66,7 +64,6 @@ export default defineComponent({
     });
 
     return () => (
-      // @ts-ignore
       <ul class={getClass.value} style={getStyle.value} ref={el}>
         {renderItems()}
       </ul>

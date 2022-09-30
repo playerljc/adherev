@@ -55,9 +55,9 @@ export default defineComponent({
                   `${selectorPrefix}-header-column`,
                   (className || '').split(/\s+/),
                 )}
+                // @ts-ignore
                 style={{
                   ...style,
-                  // @ts-ignore
                   textAlign: align || 'left',
                 }}
               >
@@ -87,8 +87,8 @@ export default defineComponent({
                     key={column.key}
                     // @ts-ignore
                     valign={valign || 'top'}
+                    // @ts-ignore
                     style={{
-                      // @ts-ignore
                       textAlign: align || 'left',
                     }}
                   >

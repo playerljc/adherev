@@ -51,7 +51,6 @@ export default defineComponent({
       }
 
       return (
-        // @ts-ignore
         <PlayGroundBase
           {..._playGroundBaseProps}
           defaultExpand={expand.value}
@@ -62,7 +61,6 @@ export default defineComponent({
             default: () => slots?.default?.(),
             codeView: () => (
               <ConditionalRender.Show conditional={expand.value}>
-                {/*@ts-ignore*/}
                 <Card>
                   {/*@ts-ignore**/}
                   <CodeTabPanel

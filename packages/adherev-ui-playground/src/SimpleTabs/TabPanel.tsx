@@ -17,10 +17,7 @@ export default defineComponent({
       const activeKey = (inject('getActiveKey') as () => string)();
 
       return (
-        <div
-          // @ts-ignore
-          class={classNames(selectorPrefix, activeKey === props.index ? `active` : '')}
-        >
+        <div class={classNames(selectorPrefix, activeKey === props.index ? `active` : '')}>
           {slots?.default?.()}
         </div>
       );

@@ -5,7 +5,8 @@
     "baseUrl": "./",
     "jsx": "preserve",
     "module": "esnext",
-    "noImplicitAny": false
+    "noImplicitAny": false,
+    "types": ["vue"]
   },
   "exclude": ["node_modules"],
   "include": ["src/**/*"]

@@ -41,7 +41,6 @@ export default defineComponent({
     },
   },
   mounted() {
-    // @ts-ignore
     this.fetchData();
   },
   methods: {
@@ -56,14 +55,7 @@ export default defineComponent({
         result.push(<Skeleton key={i + 1} loading active avatar />);
       }
 
-      return (
-        <div
-          // @ts-ignore
-          class={`${selectorPrefix}-loading`}
-        >
-          {result}
-        </div>
-      );
+      return <div class={`${selectorPrefix}-loading`}>{result}</div>;
     },
     /**
      * renderFirstLoading
@@ -73,7 +65,6 @@ export default defineComponent({
       const { $slots } = this;
 
       if ($slots.firstLoading) {
-        // @ts-ignore
         return $slots.firstLoading();
       }
 
@@ -85,12 +76,8 @@ export default defineComponent({
      */
     renderNormal(): JSX.Element {
       return (
-        // @ts-ignore
         <Spin size="large" spinning={this.showLoading()}>
-          {
-            // @ts-ignore
-            this.renderInner()
-          }
+          {this.renderInner()}
         </Spin>
       );
     },
@@ -99,7 +86,6 @@ export default defineComponent({
      * @param h
      */
     renderDispatch(): JSX.Element {
-      // @ts-ignore
       const loading = this.showLoading();
 
       if (this.isFirst && !this.isFirstLoading && loading) {
@@ -124,14 +110,7 @@ export default defineComponent({
      * @param h
      */
     renderSuspense(): JSX.Element {
-      return (
-        <div
-          // @ts-ignore
-          class={selectorPrefix}
-        >
-          {this.renderDispatch()}
-        </div>
-      );
+      return <div class={selectorPrefix}>{this.renderDispatch()}</div>;
     },
   },
   /**

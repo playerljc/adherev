@@ -37,13 +37,7 @@ const Split = defineComponent({
       };
     });
 
-    return () => (
-      <div
-        // @ts-ignore
-        class={selectorPrefix}
-        style={getStyle.value}
-      />
-    );
+    return () => <div class={selectorPrefix} style={getStyle.value} />;
   },
 });
 
@@ -77,7 +71,6 @@ export const SplitGroup = defineComponent({
               style: props.style,
             };
 
-            // @ts-ignore
             JSXS.push(<Split {..._props} />);
           }
 
@@ -85,14 +78,7 @@ export const SplitGroup = defineComponent({
         }
       }
 
-      return (
-        <div
-          // @ts-ignore
-          class={`${selectorPrefix}-group ${props.direction}`}
-        >
-          {JSXS}
-        </div>
-      );
+      return <div class={`${selectorPrefix}-group ${props.direction}`}>{JSXS}</div>;
     };
   },
 });

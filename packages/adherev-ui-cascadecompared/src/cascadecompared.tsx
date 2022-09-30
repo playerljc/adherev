@@ -204,7 +204,6 @@ export default defineComponent({
       return (
         <>
           <div
-            // @ts-ignore
             class={getFixedWrapClassName.value(fixedWrapClassName)}
             style={getFixedWrapStyle.value(
               fixedWrapStyle,
@@ -212,13 +211,8 @@ export default defineComponent({
             )}
           >
             {dataSource.map((record, index) => (
-              <div
-                key={index}
-                // @ts-ignore
-                class={`${selectorPrefix}-item`}
-              >
+              <div key={index} class={`${selectorPrefix}-item`}>
                 <div
-                  // @ts-ignore
                   class={getCellClassName.value(fixedColumnConfig)}
                   style={fixedColumnConfig?.style}
                 >
@@ -227,28 +221,15 @@ export default defineComponent({
               </div>
             ))}
           </div>
-          <div
-            // @ts-ignore
-            class={getAutoWrapClassName.value(autoWrapClassName)}
-            style={autoWrapStyle}
-          >
-            <div
-              // @ts-ignore
-              class={getAutoInnerClassName.value(autoInnerClassName)}
-              style={autoInnerStyle}
-            >
+          <div class={getAutoWrapClassName.value(autoWrapClassName)} style={autoWrapStyle}>
+            <div class={getAutoInnerClassName.value(autoInnerClassName)} style={autoInnerStyle}>
               {dataSource.map((record, index) => (
-                <div
-                  key={index}
-                  // @ts-ignore
-                  class={`${selectorPrefix}-item`}
-                >
+                <div key={index} class={`${selectorPrefix}-item`}>
                   {columns
                     .filter((column) => column !== fixedColumnConfig)
                     .map((column) => (
                       <div
                         key={column.dataIndex}
-                        // @ts-ignore
                         class={getCellClassName.value(column)}
                         style={getFixedWrapStyle.value(column.style, column?.width)}
                       >
@@ -284,25 +265,16 @@ export default defineComponent({
       const fixedColumnConfig = getFixedColumnConfig(props.indicator.columns);
 
       return (
-        <div
-          // @ts-ignore
-          class={getIndicatorClassName.value}
-          style={props.indicatorStyle}
-        >
+        <div class={getIndicatorClassName.value} style={props.indicatorStyle}>
           <div
-            // @ts-ignore
             class={getFixedWrapClassName.value(props.indicatorFixedWrapClassName)}
             style={getFixedWrapStyle.value(
               props.indicatorFixedWrapStyle,
               fixedColumnConfig ? fixedColumnConfig?.width : 0,
             )}
           >
-            <div
-              // @ts-ignore
-              class={`${selectorPrefix}-item`}
-            >
+            <div class={`${selectorPrefix}-item`}>
               <div
-                // @ts-ignore
                 class={getCellClassName.value(fixedColumnConfig)}
                 style={fixedColumnConfig?.style}
               >
@@ -311,20 +283,15 @@ export default defineComponent({
             </div>
           </div>
           <div
-            // @ts-ignore
             class={getAutoWrapClassName.value(props.indicatorAutoWrapClassName)}
             style={props.indicatorAutoWrapStyle}
           >
-            <div
-              // @ts-ignore
-              class={`${selectorPrefix}-item`}
-            >
+            <div class={`${selectorPrefix}-item`}>
               {props.indicator.columns
                 .filter((column) => column !== fixedColumnConfig)
                 .map((column) => (
                   <div
                     key={column.dataIndex}
-                    // @ts-ignore
                     class={getCellClassName.value(column)}
                     style={getFixedWrapStyle.value(column.style, column.width)}
                   >
@@ -339,9 +306,7 @@ export default defineComponent({
 
     const renderMaster = () => {
       return (
-        // @ts-ignore
         <div class={getMasterClassName.value} style={props.masterStyle}>
-          {/*@ts-ignore*/}
           <StickupLayout
             ref={stickup}
             class={getMasterInnerClassName.value}
@@ -350,6 +315,7 @@ export default defineComponent({
             fixedStyle={props.masterStickFixedStyle}
             innerClassName={getInnerClassName.value}
             innerStyle={props.masterStickInnerStyle}
+            // @ts-ignore
             onChange={() => {
               emit('stick-change');
             }}
@@ -411,7 +377,6 @@ export default defineComponent({
     });
 
     return () => (
-      // @ts-ignore
       <div class={selectorPrefix} ref={el}>
         {renderIndicator()}
         {renderMaster()}

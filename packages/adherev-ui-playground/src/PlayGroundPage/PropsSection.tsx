@@ -1,4 +1,3 @@
-// @ts-ignore
 import { defineComponent } from 'vue';
 import { array } from 'vue-types';
 
@@ -17,11 +16,9 @@ export default defineComponent({
   props: propsSectionProps,
   setup(props) {
     return () => (
-      // @ts-ignore
       <Section title={props.title} extra={props.extra}>
         <Space.Group direction="vertical">
           {(props.config || []).map((c, index) => (
-            // @ts-ignore
             <Props key={index + 1} {...c} />
           ))}
         </Space.Group>

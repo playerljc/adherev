@@ -15,31 +15,12 @@ export default defineComponent({
   props: sectionProps,
   setup(props, { slots }) {
     return () => (
-      // @ts-ignore
       <div class={selectPrefix}>
-        <div
-          // @ts-ignore
-          class={`${selectPrefix}-header`}
-        >
-          <div
-            // @ts-ignore
-            class={`${selectPrefix}-header-title`}
-          >
-            {props.title}
-          </div>
-          <div
-            // @ts-ignore
-            class={`${selectPrefix}-header-extra`}
-          >
-            {props.extra}
-          </div>
+        <div class={`${selectPrefix}-header`}>
+          <div class={`${selectPrefix}-header-title`}>{props.title}</div>
+          <div class={`${selectPrefix}-header-extra`}>{props.extra}</div>
         </div>
-        <div
-          // @ts-ignore
-          class={`${selectPrefix}-body`}
-        >
-          {slots?.default?.()}
-        </div>
+        <div class={`${selectPrefix}-body`}>{slots?.default?.()}</div>
       </div>
     );
   },

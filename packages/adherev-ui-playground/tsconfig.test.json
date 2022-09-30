@@ -5,7 +5,8 @@
     "outDir": "./lib",
     "baseUrl": "./",
     "module": "esnext",
-    "jsx": "preserve"
+    "jsx": "preserve",
+    "types": ["vue"]
   },
   "exclude": ["node_modules"],
   "include": ["src/**/*"]

@@ -67,38 +67,24 @@ export default defineComponent({
 
     const renderIcon = (): JSX.Element =>
       slots.icon ? (
-        <div
-          // @ts-ignore
-          class={`${selectorPrefix}-trigger-icon`}
-        >
-          <div
-            class={`${selectorPrefix}-trigger-icon-inner`}
-            // @ts-ignore
-            ref={iconElRef}
-          >
+        <div class={`${selectorPrefix}-trigger-icon`}>
+          <div class={`${selectorPrefix}-trigger-icon-inner`} ref={iconElRef}>
             {slots.icon()}
           </div>
         </div>
       ) : (
-        <div
-          // @ts-ignore
-          class={`${selectorPrefix}-trigger-icon`}
-        >
+        <div class={`${selectorPrefix}-trigger-icon`}>
           <img
             class={`${selectorPrefix}-trigger-icon-inner`}
             src={defaultImg}
             alt=""
-            // @ts-ignore
             ref={iconElRef}
           />
         </div>
       );
 
     const renderLabel = (): JSX.Element => (
-      <p
-        // @ts-ignore
-        class={`${selectorPrefix}-trigger-label`}
-      >
+      <p class={`${selectorPrefix}-trigger-label`}>
         {isCan
           ? slots.canLabel || <span>{Intl.tv('松开刷新')}</span>
           : slots.label || <span>{Intl.tv('下拉刷新')}</span>}
@@ -107,15 +93,9 @@ export default defineComponent({
 
     const renderUpdateTime = (): JSX.Element | null =>
       props.isShowUpdateTime ? (
-        <p
-          // @ts-ignore
-          class={`${selectorPrefix}-trigger-update`}
-        >
+        <p class={`${selectorPrefix}-trigger-update`}>
           {Intl.tv('更新时间')}：
-          <span
-            // @ts-ignore
-            class={`${selectorPrefix}-trigger-update-label`}
-          >
+          <span class={`${selectorPrefix}-trigger-update-label`}>
             {moment(preUpdateTime).format(props.updateTimeFormat)}
           </span>
         </p>
@@ -128,7 +108,6 @@ export default defineComponent({
             `${selectorPrefix}-trigger-refresh`,
             ...(props.loadingAnimation || '').split(/\s+/),
           )}
-          // @ts-ignore
           ref={refreshElRef}
         >
           <div></div>
@@ -138,11 +117,7 @@ export default defineComponent({
           <div></div>
         </div>
       ) : (
-        <div
-          class={`${selectorPrefix}-trigger-refresh`}
-          // @ts-ignore
-          ref={refreshElRef}
-        >
+        <div class={`${selectorPrefix}-trigger-refresh`} ref={refreshElRef}>
           {slots?.loadingAnimation?.()}
         </div>
       );
@@ -312,6 +287,11 @@ export default defineComponent({
       }
     };
 
+    const translateY = (el: HTMLElement, y: string, duration = 0) => {
+      el.style.transition = el.style.webkitTransition = `transform ${duration}ms ease`;
+      el.style.transform = el.style.webkitTransform = `translate3d(0,${y},0)`;
+    };
+
     const onScroll = (e?: { target: { scrollTop: number } }) => {
       if (e?.target.scrollTop === 0) {
         isTop = true;
@@ -326,11 +306,6 @@ export default defineComponent({
 
         scrollEl?.removeEventListener('mousedown', onTouchStart);
       }
-    };
-
-    const translateY = (el: HTMLElement, y: string, duration = 0) => {
-      el.style.transition = el.style.webkitTransition = `transform ${duration}ms ease`;
-      el.style.transform = el.style.webkitTransform = `translate3d(0,${y},0)`;
     };
 
     const rotateIcon = (el: HTMLElement, distance: number, duration = 0) => {
@@ -426,28 +401,13 @@ export default defineComponent({
     renderMask();
 
     return () => (
-      <div
-        // @ts-ignore
-        class={selectorPrefix}
-      >
-        <div
-          class={getScrollClassName.value}
-          // @ts-ignore
-          ref={scrollElRef}
-        >
+      <div class={selectorPrefix}>
+        <div class={getScrollClassName.value} ref={scrollElRef}>
           {slots?.default?.()}
         </div>
 
-        <div
-          class={`${selectorPrefix}-trigger`}
-          // @ts-ignore
-          ref={elRef}
-        >
-          <div
-            class={`${selectorPrefix}-trigger-inner`}
-            // @ts-ignore
-            ref={triggerInnerElRef}
-          >
+        <div class={`${selectorPrefix}-trigger`} ref={elRef}>
+          <div class={`${selectorPrefix}-trigger-inner`} ref={triggerInnerElRef}>
             {renderIcon()}
             {renderLabel()}
             {renderUpdateTime()}

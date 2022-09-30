@@ -59,30 +59,17 @@ export default defineComponent({
       }
 
       return (
-        // @ts-ignore
         <Collapse {..._collapseProps}>
-          <div
-            // @ts-ignore
-            class={selectPrefix}
-          >
-            {/*@ts-ignore*/}
+          <div class={selectPrefix}>
             <Table
               columns={columns}
               dataSource={props.data.map((t, i) => ({ ...t, id: `${i + 1}` }))}
               rowKey="id"
             >
               {{
-                // @ts-ignore
                 bodyCell: ({ text, column }) => {
                   if (column.dataIndex === 'type') {
-                    return (
-                      <code
-                        // @ts-ignore
-                        class={`${selectPrefix}-highlight`}
-                      >
-                        {text}
-                      </code>
-                    );
+                    return <code class={`${selectPrefix}-highlight`}>{text}</code>;
                   }
 
                   if (column.dataIndex === 'defaultVal') {

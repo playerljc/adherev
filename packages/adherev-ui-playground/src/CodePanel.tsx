@@ -17,10 +17,7 @@ export default defineComponent({
     return () => {
       const VueHighlightJS = hljsVuePlugin.component;
 
-      return (
-        // @ts-ignore
-        <VueHighlightJS language={props.lang} code={props.codeText} />
-      );
+      return <VueHighlightJS language={props.lang} code={props.codeText} />;
     };
   },
 });

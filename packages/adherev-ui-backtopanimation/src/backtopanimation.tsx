@@ -138,7 +138,6 @@ export default defineComponent({
 
     return () => (
       <div
-        // @ts-ignore
         ref={root}
         class={selectorPrefix}
         onClick={() => {

@@ -95,7 +95,6 @@ export default defineComponent({
           <div
             class={classNames(`${selectorPrefix}-load`, (props.loadClassName || '').split(/\s+/))}
             style={props.loadStyle}
-            // @ts-ignore
             ref={loadEl}
           >
             {slots?.loading?.()}
@@ -111,7 +110,6 @@ export default defineComponent({
             (props.loadClassName || '').split(/\s+/),
           )}
           style={props.loadStyle}
-          // @ts-ignore
           ref={loadEl}
         >
           {Intl.tv('数据加载中')}
@@ -125,7 +123,6 @@ export default defineComponent({
           <div
             class={classNames(`${selectorPrefix}-empty`, (props.emptyClassName || '').split(/\s+/))}
             style={props.emptyStyle}
-            // @ts-ignore
             ref={emptyEl}
           >
             {slots?.empty?.()}
@@ -137,7 +134,6 @@ export default defineComponent({
         <div
           class={classNames(`${selectorPrefix}-empty`, (props.emptyClassName || '').split(/\s+/))}
           style={props.emptyStyle}
-          // @ts-ignore
           ref={emptyEl}
         >
           ~{Intl.tv('没有更多')}
@@ -151,7 +147,6 @@ export default defineComponent({
           <div
             class={classNames(`${selectorPrefix}-error`, (props.errorClassName || '').split(/\s+/))}
             style={props.errorStyle}
-            // @ts-ignore
             ref={errorEl}
           >
             {slots?.error?.()}
@@ -163,7 +158,6 @@ export default defineComponent({
         <div
           class={classNames(`${selectorPrefix}-error`, (props.errorClassName || '').split(/\s+/))}
           style={props.errorStyle}
-          // @ts-ignore
           ref={errorEl}
         >
           {Intl.tv('出现错误')}
@@ -186,11 +180,7 @@ export default defineComponent({
     });
 
     return () => (
-      <div
-        class={selectorPrefix}
-        // @ts-ignore
-        ref={el}
-      >
+      <div class={selectorPrefix} ref={el}>
         {slots?.default?.()}
         {renderLoading()}
         {renderEmpty()}

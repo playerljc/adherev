@@ -35,20 +35,11 @@ let globalConfig: IConfig | null = null;
  */
 function renderByIcon({ icon, text }: { icon: any; text: any }) {
   return (
-    <div
-      // @ts-ignore
-      class={`${selectorPrefix}-renderByIcon`}
-    >
-      <div
-        // @ts-ignore
-        class={`${selectorPrefix}-renderByIcon-fixed`}
-      >
+    <div class={`${selectorPrefix}-renderByIcon`}>
+      <div class={`${selectorPrefix}-renderByIcon-fixed`}>
         {Util?.isFunction?.(icon) ? icon() : icon}
       </div>
-      <div
-        // @ts-ignore
-        class={`${selectorPrefix}-renderByIcon-auto`}
-      >
+      <div class={`${selectorPrefix}-renderByIcon-auto`}>
         {Util?.isFunction?.(text) ? text() : text}
       </div>
     </div>
@@ -83,7 +74,6 @@ const MessageDialogFactory: IMessageDialogFactory = {
         zIndex,
         footer: () => {
           return [
-            // @ts-ignore
             <Button
               key="submit"
               type="primary"
@@ -108,8 +98,7 @@ const MessageDialogFactory: IMessageDialogFactory = {
       local,
       children: icon
         ? () => renderByIcon({ icon, text })
-        : // @ts-ignore
-          () => (Util.isFunction(text) ? text() : text),
+        : () => (Util?.isFunction?.(text) ? (text as Function)() : text),
     });
   },
   /**
@@ -129,7 +118,6 @@ const MessageDialogFactory: IMessageDialogFactory = {
       config.option.resetBtn = false;
     }
 
-    // @ts-ignore
     const { /*vm,*/ rootRef, close } = this.Modal({
       config: {
         title,
@@ -139,7 +127,6 @@ const MessageDialogFactory: IMessageDialogFactory = {
         zIndex,
         footer: () => {
           return [
-            // @ts-ignore
             <Button
               key="submit"
               type="primary"
@@ -314,8 +301,7 @@ const MessageDialogFactory: IMessageDialogFactory = {
       local,
       children: icon
         ? () => renderByIcon({ icon, text })
-        : // @ts-ignore
-          () => (Util.isFunction(text) ? text() : text),
+        : () => (Util?.isFunction?.(text) ? (text as Function)() : text),
     });
   },
   /**
@@ -447,7 +433,6 @@ const MessageDialogFactory: IMessageDialogFactory = {
           }
 
           return (
-            // @ts-ignore
             <ConfigProvider locale={LOCAL[local || DEFAULT_LOCAL]}>
               {/*@ts-ignore*/}
               <ModalDialog

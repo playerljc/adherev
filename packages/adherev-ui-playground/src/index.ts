@@ -1,7 +1,6 @@
 // import 'vue3-highlightjs/lib/allLanguages';
 import 'highlight.js/lib/common';
 
-// @ts-ignore
 import BfdUtil from '@baifendian/adherev-util';
 import hljsVuePlugin from '@highlightjs/vue-plugin';
 

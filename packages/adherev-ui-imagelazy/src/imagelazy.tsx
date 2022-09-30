@@ -73,7 +73,6 @@ export default defineComponent({
     );
 
     return () => (
-      // @ts-ignore
       <div class={selectorPrefix} ref={root}>
         <img src={props.imgArgs.originSrc || placeholder} />
       </div>

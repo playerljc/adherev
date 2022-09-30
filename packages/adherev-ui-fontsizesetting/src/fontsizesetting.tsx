@@ -36,43 +36,23 @@ export default defineComponent({
     );
 
     return () => (
-      // @ts-ignore
       <div class={selectorPrefix} ref="el">
-        <div
-          // @ts-ignore
-          class={`${selectorPrefix}-rangeWrap`}
-        >
-          <div
-            // @ts-ignore
-            class={`${selectorPrefix}-separatedtool`}
-          >
-            <div
-              // @ts-ignore
-              class={`${selectorPrefix}-separated`}
-            >
+        <div class={`${selectorPrefix}-rangeWrap`}>
+          <div class={`${selectorPrefix}-separatedtool`}>
+            <div class={`${selectorPrefix}-separated`}>
               <span>{Intl.tv('小')}</span>
             </div>
-            <div
-              // @ts-ignore
-              class={`${selectorPrefix}-separated`}
-            >
+            <div class={`${selectorPrefix}-separated`}>
               <span>{Intl.tv('中')}</span>
             </div>
-            <div
-              // @ts-ignore
-              class={`${selectorPrefix}-separated`}
-            >
+            <div class={`${selectorPrefix}-separated`}>
               <span>{Intl.tv('大')}</span>
             </div>
-            <div
-              // @ts-ignore
-              class={`${selectorPrefix}-separated`}
-            >
+            <div class={`${selectorPrefix}-separated`}>
               <span>{Intl.tv('特大')}</span>
             </div>
           </div>
 
-          {/*@ts-ignore*/}
           <Slider
             min={props.min}
             max={props.max}

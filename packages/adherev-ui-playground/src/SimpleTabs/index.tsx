@@ -38,7 +38,6 @@ export default defineComponent({
       return (
         <li
           key={index}
-          // @ts-ignore
           class={activeKey.value === index ? 'active' : ''}
           onClick={() => {
             activeKey.value = index;
@@ -61,22 +60,9 @@ export default defineComponent({
     provide('getActiveKey', getActiveKey);
 
     return () => (
-      <div
-        // @ts-ignore
-        class={selectorPrefix}
-      >
-        <ul
-          // @ts-ignore
-          class={`${selectorPrefix}-head`}
-        >
-          {renderHead()}
-        </ul>
-        <div
-          // @ts-ignore
-          class={`${selectorPrefix}-body`}
-        >
-          {slots?.default?.()}
-        </div>
+      <div class={selectorPrefix}>
+        <ul class={`${selectorPrefix}-head`}>{renderHead()}</ul>
+        <div class={`${selectorPrefix}-body`}>{slots?.default?.()}</div>
       </div>
     );
   },

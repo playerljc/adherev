@@ -200,7 +200,6 @@ export default defineComponent({
     },
   },
   render() {
-    // @ts-ignore
     return <div class={selectorPrefix} ref="ref" />;
   },
 });

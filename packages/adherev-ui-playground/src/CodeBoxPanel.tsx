@@ -67,6 +67,7 @@ export default defineComponent({
         // @ts-ignore
         <PlayGround
           {...playGroundProps}
+          // @ts-ignore
           id={id}
           isActive={activeAnchor.value === id}
           defaultExpand={expandAll.value}
@@ -101,6 +102,7 @@ export default defineComponent({
         // @ts-ignore
         <PlayGroundTab
           {...playGroundTabProps}
+          // @ts-ignore
           id={id}
           isActive={activeAnchor.value === id}
           defaultExpand={expandAll.value}
@@ -135,6 +137,7 @@ export default defineComponent({
         // @ts-ignore
         <PlayGroundMulit
           {...playGroundProps}
+          // @ts-ignore
           id={id}
           isActive={activeAnchor.value === id}
           defaultExpand={expandAll.value}

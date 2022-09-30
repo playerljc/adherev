@@ -7,22 +7,9 @@ export default defineComponent({
   slots: ['title'],
   setup(props, { slots }) {
     return () => (
-      <div
-        // @ts-ignore
-        class={selectorPrefix}
-      >
-        <div
-          // @ts-ignore
-          class={`${selectorPrefix}-header`}
-        >
-          {slots?.title?.()}
-        </div>
-        <div
-          // @ts-ignore
-          class={`${selectorPrefix}-content`}
-        >
-          {slots?.default?.()}
-        </div>
+      <div class={selectorPrefix}>
+        <div class={`${selectorPrefix}-header`}>{slots?.title?.()}</div>
+        <div class={`${selectorPrefix}-content`}>{slots?.default?.()}</div>
       </div>
     );
   },

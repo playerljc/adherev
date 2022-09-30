@@ -1,4 +1,3 @@
-// @ts-ignore
 import { VNode, computed, defineComponent } from 'vue';
 
 import { Util } from '@baifendian/adherev';
@@ -44,11 +43,7 @@ export default defineComponent({
     });
 
     return () => (
-      <div
-        // @ts-ignore
-        class={selectPrefix}
-      >
-        {/*@ts-ignore*/}
+      <div class={selectPrefix}>
         <AnchorNavigation
           anchors={getAnchors.value}
           defaultActiveAnchor={props.defaultActiveAnchor}

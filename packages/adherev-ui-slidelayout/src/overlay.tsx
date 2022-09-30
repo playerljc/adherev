@@ -139,11 +139,7 @@ export default defineComponent({
     );
 
     return () => (
-      <div
-        class={classNames(selectorPrefix, props.direction)}
-        // @ts-ignore
-        ref={getElRef()}
-      >
+      <div class={classNames(selectorPrefix, props.direction)} ref={getElRef()}>
         {slots?.default?.()}
       </div>
     );

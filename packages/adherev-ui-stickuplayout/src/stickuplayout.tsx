@@ -268,21 +268,15 @@ export default defineComponent({
     });
 
     return () => (
-      <div
-        class={selectorPrefix}
-        // @ts-ignore
-        ref={root}
-      >
+      <div class={selectorPrefix} ref={root}>
         <div
           class={classNames(`${selectorPrefix}-fixed`, props.fixedClassName.split(/\s+/))}
           style={props.fixedStyle}
-          // @ts-ignore
           ref={fixedEl}
         />
         <div
           class={classNames(`${selectorPrefix}-inner`, props.innerClassName.split(/\s+/))}
           style={props.innerStyle}
-          // @ts-ignore
           ref={innerEl}
         >
           {slots?.default?.()}

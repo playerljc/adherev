@@ -62,12 +62,9 @@ const ContextMenuComponent = defineComponent({
       <div
         class={selectorPrefix}
         style={getStyle.value}
-        // @ts-ignore
         onClick={onClick}
-        // @ts-ignore
-        onContextMenu={onContextMenu}
+        onContextmenu={onContextMenu}
       >
-        {/*@ts-ignore*/}
         <Menu
           data={props.data}
           className={props.config.className}
@@ -119,7 +116,6 @@ const ContextMenu: IComponent = {
 
         provide('root', {
           unmount() {
-            console.log('app', app, parentEl);
             try {
               // @ts-ignore
               app.unmount();
@@ -129,7 +125,6 @@ const ContextMenu: IComponent = {
           },
         });
 
-        // @ts-ignore
         return () => <ContextMenuComponent ref={root} data={data} config={config} el={parentEl} />;
       },
     }).mount(parentEl);

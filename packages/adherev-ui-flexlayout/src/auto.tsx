@@ -25,7 +25,6 @@ export default defineComponent({
 
     return () => (
       <div
-        // @ts-ignore
         ref={root}
         class={classNames(
           selectorPrefix,

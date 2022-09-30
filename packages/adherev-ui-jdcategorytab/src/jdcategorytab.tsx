@@ -1,5 +1,4 @@
 import classNames from 'classnames';
-// @ts-ignore
 import IScroll from 'iscroll/build/iscroll';
 import {
   CSSProperties,
@@ -112,7 +111,6 @@ export default defineComponent({
 
     const renderMenu = () => {
       return props.menuData.map((data) => (
-        // @ts-ignore
         <li key={data.key} class={getMenuItemClassName.value(data.key)} style={props.menuItemStyle}>
           <a
             onClick={() => {
@@ -143,30 +141,13 @@ export default defineComponent({
     });
 
     return () => (
-      <div
-        // @ts-ignore
-        class={selectorPrefix}
-      >
-        <div
-          class={getMenuClassName.value}
-          style={props.menuStyle}
-          // @ts-ignore
-          ref={menuEl}
-        >
-          <ul
-            class={getMenuInnerClassName.value}
-            style={props.menuInnerStyle}
-            // @ts-ignore
-            ref={menuInnerEl}
-          >
+      <div class={selectorPrefix}>
+        <div class={getMenuClassName.value} style={props.menuStyle} ref={menuEl}>
+          <ul class={getMenuInnerClassName.value} style={props.menuInnerStyle} ref={menuInnerEl}>
             {renderMenu()}
           </ul>
         </div>
-        <ul
-          // @ts-ignore
-          class={getTabClassName.value}
-          style={props.tabStyle}
-        >
+        <ul class={getTabClassName.value} style={props.tabStyle}>
           {slots.default ? slots.default() : null}
         </ul>
       </div>

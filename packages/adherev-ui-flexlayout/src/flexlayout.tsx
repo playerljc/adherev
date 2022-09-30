@@ -18,7 +18,6 @@ export default defineComponent({
     provide('direction', props.direction);
 
     return () => (
-      // @ts-ignore
       <div class={classNames(selectorPrefix, `${selectorPrefix}-${props.direction}`)}>
         {slots.default ? slots.default() : null}
       </div>

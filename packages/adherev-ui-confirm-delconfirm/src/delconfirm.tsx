@@ -1,4 +1,3 @@
-// @ts-ignore
 import { defineComponent } from 'vue';
 import { func, number, string } from 'vue-types';
 
@@ -57,7 +56,6 @@ export default defineComponent({
       });
 
     return () => (
-      // @ts-ignore
       <div class={selectorPrefix} onClick={onClick}>
         {slots.default ? slots.default() : null}
       </div>

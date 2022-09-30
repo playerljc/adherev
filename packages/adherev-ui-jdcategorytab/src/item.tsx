@@ -17,12 +17,11 @@ export default defineComponent({
     const getClassName = computed(() =>
       classNames(
         `${selectorPrefix}-tab-item`,
-        // @ts-ignore
-        activeKey.value == props.id ? 'active' : null,
+
+        (activeKey as any).value == props.id ? 'active' : null,
       ),
     );
 
-    // @ts-ignore
     return () => <li class={getClassName.value}>{slots.default ? slots.default() : null}</li>;
   },
 });

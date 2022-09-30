@@ -49,10 +49,7 @@ export default defineComponent({
       [
         codeType.CodePanel,
         {
-          render: (config): JSX.Element => (
-            // @ts-ignore
-            <CodePanel {...config} />
-          ),
+          render: (config): JSX.Element => <CodePanel {...config} />,
           getCodeText: (config) => config.codeText,
         },
       ],
@@ -60,12 +57,10 @@ export default defineComponent({
         codeType.CodeTabPanel,
         {
           render: (_config, index: number) => (
-            // @ts-ignore
             <CodeTabPanel
               {..._config}
               onChange={(key: any) => {
-                // @ts-ignore
-                config.value[index].active = key;
+                (config.value[index] as any).active = key;
               }}
             />
           ),
@@ -77,21 +72,9 @@ export default defineComponent({
 
     const renderCodePanelView = (config: ConfigItem, index: number): JSX.Element => {
       return (
-        <div
-          key={`${index}`}
-          // @ts-ignore
-          class={`${selectPrefix}-codeviewwrap`}
-        >
-          <div
-            // @ts-ignore
-            class={`${selectPrefix}-codeviewwrap-title`}
-          >
-            {config.title}
-          </div>
-          <div
-            // @ts-ignore
-            class={`${selectPrefix}-codeviewwrap-inner`}
-          >
+        <div key={`${index}`} class={`${selectPrefix}-codeviewwrap`}>
+          <div class={`${selectPrefix}-codeviewwrap-title`}>{config.title}</div>
+          <div class={`${selectPrefix}-codeviewwrap-inner`}>
             {configMap
               .get(config.type || codeType.CodePanel)
               ?.render(omit(config, ['title', 'type']), index)}
@@ -112,6 +95,7 @@ export default defineComponent({
             },
             children: [],
           })),
+
           // @ts-ignore
           {
             width: 200,
@@ -155,7 +139,6 @@ export default defineComponent({
       }
 
       return (
-        // @ts-ignore
         <PlayGroundBase
           {..._playGroundBaseProps}
           defaultExpand={expand.value}
@@ -166,7 +149,6 @@ export default defineComponent({
             default: () => slots?.default?.(),
             codeView: () => (
               <ConditionalRender.Show conditional={expand.value}>
-                {/*@ts-ignore*/}
                 <Card>{(config.value || []).map((c, index) => renderCodePanelView(c, index))}</Card>
               </ConditionalRender.Show>
             ),

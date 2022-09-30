@@ -1,7 +1,7 @@
 import classNames from 'classnames';
 import copy from 'copy-to-clipboard';
 import { computed, defineComponent } from 'vue';
-import { bool, func, object, string } from 'vue-types';
+import { bool, func, object } from 'vue-types';
 
 import Intl from '@baifendian/adherev-util-intl';
 
@@ -40,31 +40,22 @@ export default defineComponent({
 
     return () => {
       return (
-        <div
-          // @ts-ignore
-          className={classNames(selectPrefix, props.isActive ? `${selectPrefix}-active` : '')}
-        >
-          {/*@ts-ignore*/}
+        <div class={classNames(selectPrefix, props.isActive ? `${selectPrefix}-active` : '')}>
           <Card actions={['copy', 'expand']} {...(props.cardProps || {})}>
             {{
               default: () => slots?.default?.(),
               copy: () => (
                 <img
-                  // @ts-ignore
-                  className={`${selectPrefix}-action-btn`}
+                  class={`${selectPrefix}-action-btn`}
                   src={Constant.CopyOutlined}
-                  // @ts-ignore
                   alt={Intl.v('复制')}
-                  // @ts-ignore
                   onClick={onCopy}
                 />
               ),
               expand: () => (
                 <img
-                  // @ts-ignore
-                  className={`${selectPrefix}-action-btn`}
+                  class={`${selectPrefix}-action-btn`}
                   src={expandIcon.value}
-                  // @ts-ignore
                   alt={expandAlt.value}
                   onClick={() => {
                     emit('expand', props.defaultExpand);

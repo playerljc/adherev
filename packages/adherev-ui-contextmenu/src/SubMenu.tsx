@@ -32,11 +32,9 @@ export default defineComponent({
     });
 
     const renderItems = (): JSX.Element[] =>
-      // @ts-ignore
       props.data.map((item) => <MenuItem key={item.id} data={item} />);
 
     return () => (
-      // @ts-ignore
       <ul class={getClass.value} style={getStyle.value}>
         {renderItems()}
       </ul>

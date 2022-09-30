@@ -1,5 +1,4 @@
 import classNames from 'classnames';
-// @ts-ignore
 import Swiper from 'swiper';
 import { CSSProperties, computed, defineComponent, onMounted, onUpdated, ref } from 'vue';
 import { bool, number, object, string } from 'vue-types';
@@ -88,17 +87,8 @@ export default defineComponent({
     });
 
     return () => (
-      <div
-        class={classNames(selectorPrefix, 'swiper-container')}
-        // @ts-ignore
-        ref={el}
-      >
-        <div
-          class={getWrapperClass.value}
-          style={props.wrapperStyle}
-          // @ts-ignore
-          ref={wrapperEl}
-        >
+      <div class={classNames(selectorPrefix, 'swiper-container')} ref={el}>
+        <div class={getWrapperClass.value} style={props.wrapperStyle} ref={wrapperEl}>
           {slots?.default?.()}
         </div>
       </div>

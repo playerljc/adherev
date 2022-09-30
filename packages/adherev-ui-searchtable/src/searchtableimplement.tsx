@@ -2,6 +2,7 @@
 import { TableRowSelection } from 'ant-design-vue/lib/table/interface';
 import { VNode, defineComponent } from 'vue';
 
+// @ts-ignore
 import { cleanMixin, mapActions, mapMutations, mapState } from '@ctsj/vuexgenerator';
 
 import SearchTable, {

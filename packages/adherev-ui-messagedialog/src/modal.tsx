@@ -24,10 +24,9 @@ export default defineComponent({
 
     const renderCloseBtn = (): JSX.Element => {
       return (
-        // @ts-ignore
         <Button
           key="close"
-          type={!props.config.footerJSX ? 'primary' : ''}
+          type={!props.config.footerJSX ? 'primary' : undefined}
           title={Intl.tv('取消')}
           onClick={() => {
             if (!!props.onClose) {
@@ -74,7 +73,6 @@ export default defineComponent({
       const { footer, centered, title, ...other } = toRaw(props.config);
 
       return (
-        // @ts-ignore
         <Modal
           {...other}
           centered={centered === undefined || centered === null ? true : centered}

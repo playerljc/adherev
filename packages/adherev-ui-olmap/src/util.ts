@@ -19,14 +19,12 @@ import { fromLonLat, toLonLat, transform, transformExtent } from 'ol/proj.js';
 import { Vector as VectorSource } from 'ol/source.js';
 import { Circle as CircleStyle, Fill, Icon, RegularShape, Stroke, Style } from 'ol/style.js';
 import Text from 'ol/style/Text';
-// @ts-ignore
 import { v4 } from 'uuid';
 
 import Resource from '@baifendian/adherev-util-resource';
 
 import GeoLayer from './geolayer';
 import * as TitleLayer from './titlelayer';
-// @ts-ignore
 import WindLayer from './windlayer';
 
 const EARTH_RADIUS = Resource.Dict.value.ResourceGisEarthRadius.value; // 单位M
@@ -54,9 +52,6 @@ function transformLonLat(point: Array<number>) {
   );
 }
 
-// @ts-ignore
-// @ts-ignore
-// @ts-ignore
 export default {
   SHOWBASESTATION_MINZOOM: 5,
   /**
@@ -385,9 +380,8 @@ export default {
    * @param propertys
    */
   drawCircle({
-    // @ts-ignore
     center,
-    // @ts-ignore
+
     radius,
     color = 'rgba(23,136,243,.2)',
     strokeColor = DEFAULT_COLOE,
@@ -429,7 +423,6 @@ export default {
    * @param propertys
    */
   drawPolygon({
-    // @ts-ignore
     points,
     color = 'rgba(23,136,243,.2)',
     strokeColor = DEFAULT_COLOE,
@@ -473,9 +466,8 @@ export default {
    * @param propertys
    */
   drawCirclePoint({
-    // @ts-ignore
     id,
-    // @ts-ignore
+
     pos,
     fillOpt = {
       color: 'rgba(23,136,243,.2)',
@@ -532,9 +524,8 @@ export default {
    * @param others
    */
   drawRegularShapePoint({
-    // @ts-ignore
     id,
-    // @ts-ignore
+
     pos,
     fillOpt = { color: 'rgba(23,136,243,.2)' },
     strokeOpt = {
@@ -562,19 +553,17 @@ export default {
 
     point.setStyle(
       new Style({
-        image: new RegularShape(
-          // @ts-ignore
-          {
-            fill: new Fill(fillOpt),
-            stroke: new Stroke(strokeOpt),
-            ...others,
-            // points,
-            // radius,
-            // radius2,
-            // rotation,
-            // angle,
-          },
-        ),
+        // @ts-ignore
+        image: new RegularShape({
+          fill: new Fill(fillOpt),
+          stroke: new Stroke(strokeOpt),
+          ...others,
+          // points,
+          // radius,
+          // radius2,
+          // rotation,
+          // angle,
+        }),
         text: new Text({
           text,
           textAlign: 'center',
@@ -762,9 +751,9 @@ export default {
         stroke: new Stroke({
           width,
           color,
-          // @ts-ignore
+
           lineCap,
-          // @ts-ignore
+
           lineJoin,
         }),
       }),

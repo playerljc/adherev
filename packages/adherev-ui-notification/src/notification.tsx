@@ -1,4 +1,3 @@
-// @ts-ignore
 import { v1 } from 'uuid';
 import { createApp, h } from 'vue';
 
@@ -118,7 +117,6 @@ export class Notification {
 
     self.key = true;
 
-    // @ts-ignore
     const n = self.notifications[id];
 
     function transitionendAction() {
@@ -168,24 +166,14 @@ export class Notification {
         render() {
           return (
             <>
-              <div
-                // @ts-ignore
-                class="info"
-              >
+              <div class="info">
                 {Util.isObject?.(children)
-                  ? // @ts-ignore
-                    h(children)
+                  ? h(children as any)
                   : Util.isFunction?.(children)
-                  ? // @ts-ignore
-                    children()
+                  ? (children as Function)()
                   : children || ''}
               </div>
-              {closed ? (
-                <span
-                  // @ts-ignore
-                  class="closeBtn"
-                />
-              ) : null}
+              {closed ? <span class="closeBtn" /> : null}
             </>
           );
         },
@@ -225,61 +213,32 @@ export class Notification {
         render() {
           return (
             <>
-              <div
-                // @ts-ignore
-                class="info"
-              >
-                <div
-                  // @ts-ignore
-                  class={`${selectorPrefix}-standard-header`}
-                >
-                  <div
-                    // @ts-ignore
-                    class={`${selectorPrefix}-standard-header-icon`}
-                  >
+              <div class="info">
+                <div class={`${selectorPrefix}-standard-header`}>
+                  <div class={`${selectorPrefix}-standard-header-icon`}>
                     {headerIcon ? <img src={headerIcon} alt="" /> : null}
                   </div>
-                  <div
-                    // @ts-ignore
-                    class={`${selectorPrefix}-standard-header-label`}
-                  >
+                  <div class={`${selectorPrefix}-standard-header-label`}>
                     {Util.isObject?.(headerLabel)
                       ? h(headerLabel)
                       : Util.isFunction?.(headerLabel)
-                      ? // @ts-ignore
-                        headerLabel()
+                      ? (headerLabel as Function)()
                       : headerLabel || ''}
                   </div>
                 </div>
-                <div
-                  // @ts-ignore
-                  class={`${selectorPrefix}-standard-content`}
-                >
-                  <div
-                    // @ts-ignore
-                    class={`${selectorPrefix}-standard-content-media-l`}
-                  >
+                <div class={`${selectorPrefix}-standard-content`}>
+                  <div class={`${selectorPrefix}-standard-content-media-l`}>
                     {icon ? <img src={icon} alt="" /> : null}
                   </div>
-                  <div
-                    // @ts-ignore
-                    class={`${selectorPrefix}-standard-content-row`}
-                  >
-                    <div
-                      // @ts-ignore
-                      class={`${selectorPrefix}-standard-content-row-title`}
-                    >
+                  <div class={`${selectorPrefix}-standard-content-row`}>
+                    <div class={`${selectorPrefix}-standard-content-row-title`}>
                       {Util.isObject?.(title)
                         ? h(title)
                         : Util.isFunction?.(title)
-                        ? // @ts-ignore
-                          title()
+                        ? (title as Function)()
                         : title || ''}
                     </div>
-                    <div
-                      // @ts-ignore
-                      class={`${selectorPrefix}-standard-content-row-text`}
-                    >
+                    <div class={`${selectorPrefix}-standard-content-row-text`}>
                       {Util.isObject?.(text)
                         ? h(text)
                         : Util.isFunction?.(text)
@@ -287,25 +246,16 @@ export class Notification {
                         : text || ''}
                     </div>
                   </div>
-                  <div
-                    // @ts-ignore
-                    class={`${selectorPrefix}-standard-content-media-r`}
-                  >
+                  <div class={`${selectorPrefix}-standard-content-media-r`}>
                     {Util.isObject?.(datetime)
                       ? h(datetime)
                       : Util.isFunction?.(datetime)
-                      ? // @ts-ignore
-                        datetime()
+                      ? (datetime as Function)()
                       : datetime || ''}
                   </div>
                 </div>
               </div>
-              {closed ? (
-                <span
-                  // @ts-ignore
-                  class="closeBtn"
-                />
-              ) : null}
+              {closed ? <span class="closeBtn" /> : null}
             </>
           );
         },
@@ -323,7 +273,6 @@ export class Notification {
   private build(id: string, n: HTMLLIElement): string {
     const self = this;
 
-    // @ts-ignore
     this.notifications[id] = n;
 
     this?.notificationContainer?.appendChild(n);
@@ -365,9 +314,7 @@ export class Notification {
    * @private
    */
   private trigger(action: string, params?: any): void {
-    // @ts-ignore
     if (this.config[action]) {
-      // @ts-ignore
       this.config[action](params);
     }
   }

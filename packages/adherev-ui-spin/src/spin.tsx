@@ -17,27 +17,15 @@ export default defineComponent({
   setup(props) {
     return () =>
       props.spinning ? (
-        <div
-          // @ts-ignore
-          class={selectorPrefix}
-          style={{ zIndex: props.zIndex }}
-        >
-          <span
-            // @ts-ignore
-            class={`${selectorPrefix}-dot`}
-          >
+        <div class={selectorPrefix} style={{ zIndex: props.zIndex }}>
+          <span class={`${selectorPrefix}-dot`}>
             <i></i>
             <i></i>
             <i></i>
             <i></i>
           </span>
 
-          <div
-            // @ts-ignore
-            class={`${selectorPrefix}-text`}
-          >
-            {props.text}
-          </div>
+          <div class={`${selectorPrefix}-text`}>{props.text}</div>
         </div>
       ) : null;
   },

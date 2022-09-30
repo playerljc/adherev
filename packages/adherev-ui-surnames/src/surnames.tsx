@@ -396,12 +396,7 @@ export default defineComponent({
     const renderIndex = (): JSX.Element[] =>
       props.indexes.map((index) => {
         return (
-          <a
-            key={index.index}
-            // @ts-ignore
-            class={`${selectorPrefix}-index-item`}
-            data-name={index.index}
-          >
+          <a key={index.index} class={`${selectorPrefix}-index-item`} data-name={index.index}>
             {slots.index ? slots?.index?.(index) : index.index}
           </a>
         );
@@ -410,22 +405,11 @@ export default defineComponent({
     const renderContent = () => {
       return props.dataSource.map((record) => {
         return (
-          <div
-            key={record.index}
-            // @ts-ignore
-            class={`${selectorPrefix}-group`}
-          >
-            <a
-              // @ts-ignore
-              class={`${selectorPrefix}-group-title`}
-              data-name={record.index}
-            >
+          <div key={record.index} class={`${selectorPrefix}-group`}>
+            <a class={`${selectorPrefix}-group-title`} data-name={record.index}>
               {slots.title ? slots?.title?.(record) : record.index}
             </a>
-            <div
-              // @ts-ignore
-              class={`${selectorPrefix}-group-inner`}
-            >
+            <div class={`${selectorPrefix}-group-inner`}>
               {slots.content ? slots?.content?.(record) : null}
             </div>
           </div>
@@ -457,35 +441,15 @@ export default defineComponent({
     });
 
     return () => (
-      <div
-        class={getClassName.value}
-        // @ts-ignore
-        ref={root}
-      >
-        <div
-          class={`${selectorPrefix}-highlighted`}
-          // @ts-ignore
-          ref={highlightedEl}
-        />
+      <div class={getClassName.value} ref={root}>
+        <div class={`${selectorPrefix}-highlighted`} ref={highlightedEl} />
 
-        <div
-          class={`${selectorPrefix}-content`}
-          // @ts-ignore
-          ref={contentEl}
-        >
+        <div class={`${selectorPrefix}-content`} ref={contentEl}>
           {renderContent()}
         </div>
 
-        <div
-          class={`${selectorPrefix}-index`}
-          // @ts-ignore
-          ref={indexEl}
-        >
-          <div
-            class={`${selectorPrefix}-index-inner`}
-            // @ts-ignore
-            ref={indexInnerEl}
-          >
+        <div class={`${selectorPrefix}-index`} ref={indexEl}>
+          <div class={`${selectorPrefix}-index-inner`} ref={indexInnerEl}>
             {renderIndex()}
           </div>
         </div>
