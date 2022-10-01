@@ -1,0 +1,2 @@
+import"core-js/modules/es.number.constructor.js";import classNames from"classnames";var selectorPrefix="adherev-ui-playground-simple-tabs-panel";export default{name:"adv-playground-simple-tabs-tab-panel",props:{title:{type:String,default:""},index:{type:[String,Number],default:""}},inject:["getActiveKey"],render:function(e){var t=this,s=t.index,r=t.$slots,t=t.getActiveKey;return e("div",{class:classNames(selectorPrefix,t()===s?"active":"")},[r.default])}};
+//# sourceMappingURL=TabPanel.js.map

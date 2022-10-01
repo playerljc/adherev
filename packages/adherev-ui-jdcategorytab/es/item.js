@@ -1,0 +1,2 @@
+import classNames from"classnames";var selectorPrefix="adherev-ui-jdcategorytab";export default{name:"adv-jdcategorytab-item",props:{id:{type:String,default:""}},computed:{getClassName:function(){var e=this.id,t=(0,this.getActiveKey)();return classNames(selectorPrefix+"-tab-item",t===e?"active":null)}},inject:["getActiveKey"],render:function(e){var t=this.$slots;return e("li",{class:this.getClassName},[t.default])}};
+//# sourceMappingURL=item.js.map

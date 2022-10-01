@@ -1,0 +1,2 @@
+var propTypes={headerClassName:{type:String,default:""},headerStyle:{type:String,default:""},bodyClassName:{type:String,default:""},bodyStyle:{type:String,default:""},title:{type:[String,Object],default:""},extra:{type:Object,default:function(){return null}},defaultCollapse:{type:Boolean,default:function(){return!1}},border:{type:Boolean,default:function(){return!1}},scrollY:{type:Boolean,default:function(){return!1}},fixedHeaderScrollBody:{type:Boolean,default:function(){return!1}}};export{propTypes};
+//# sourceMappingURL=types.js.map

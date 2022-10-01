@@ -1,0 +1,2 @@
+import BfdUtil from"@baifendian/adherev-util";import RevolvingItem from"./item";import Revolving from"./revolving";var _a=BfdUtil._util,withInstall=_a.withInstall,withVue=_a.withVue;withInstall(Revolving),withInstall(RevolvingItem),Revolving.Item=RevolvingItem,Revolving.isUse=function(){return!0},Revolving.use=function(i){i.use(Revolving),i.use(RevolvingItem),withVue(i,"Revolving",Revolving)};export default Revolving;
+//# sourceMappingURL=index.js.map

@@ -1,0 +1,1 @@
+{"version":3,"file":"index.js","sources":["index.js"],"sourcesContent":["import updatedEx from './updatedEx';\nexport default {\n  isUse: function isUse() {\n    return false;\n  },\n  updatedEx: updatedEx\n};"],"names":["updatedEx","isUse"],"mappings":"OAAOA,0CACQ,CACbC,MAAO,WACL,OAAO,GAETD,UAAWA"}

@@ -1,0 +1,2 @@
+var __assign=this&&this.__assign||function(){return(__assign=Object.assign||function(i){for(var t,n=1,s=arguments.length;n<s;n++)for(var r in t=arguments[n])Object.prototype.hasOwnProperty.call(t,r)&&(i[r]=t[r]);return i}).apply(this,arguments)};import Util from"@baifendian/adhere-util";import*as _util from"./_util";Util.isUse=function(){return!0},Util.use=function(i){_util.withVue(i,"Util",Util)};export default __assign(__assign({},Util),{_util:__assign({},_util)});
+//# sourceMappingURL=index.js.map

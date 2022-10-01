@@ -1,0 +1,2 @@
+import Util from"@baifendian/adherev-util";import JdCategoryTabItem from"./item";import _JdCategoryTab from"./jdcategorytab";var _a=Util._util,withInstall=_a.withInstall,withVue=_a.withVue,JdCategoryTab=_JdCategoryTab;withInstall(JdCategoryTab),withInstall(JdCategoryTabItem),JdCategoryTab.Item=JdCategoryTabItem,JdCategoryTab.isUse=function(){return!0},JdCategoryTab.use=function(t){t.use(JdCategoryTab),t.use(JdCategoryTabItem),withVue(t,"JdCategoryTab",JdCategoryTab)};export default JdCategoryTab;
+//# sourceMappingURL=index.js.map

@@ -53,44 +53,44 @@ export default {
     };
   },
   methods: {
-    importBMapJS() {
-      function importReal(src) {
-        return new Promise((resolve) => {
-          const script = document.createElement('script');
-          script.onload = () => {
-            // @ts-ignore
-            resolve(window.BMap);
-          };
-          script.src = src;
-          document.querySelector('head')?.appendChild(script);
-        });
-      }
-
-      return new Promise((resolve) => {
-        const preWrite = document.write;
-
-        document.write = (html) => {
-          const el = document.createElement('div');
-          el.innerHTML = html;
-          const first = el.firstElementChild;
-
-          if (
-            first?.tagName.toLowerCase() === 'script' &&
-            first?.getAttribute('src')?.indexOf('http://api.map.baidu.com') !== -1
-          ) {
-            importReal(first.getAttribute('src')).then((res) => {
-              resolve(res);
-            });
-          } else {
-            preWrite(html);
-          }
-        };
-
-        const script = document.createElement('script');
-        script.src = `http://api.map.baidu.com/api?v=3.0&ak=${this.props.ak}`;
-        document?.querySelector('head')?.appendChild(script);
-      });
-    },
+    // importBMapJS() {
+    //   function importReal(src) {
+    //     return new Promise((resolve) => {
+    //       const script = document.createElement('script');
+    //       script.onload = () => {
+    //         // @ts-ignore
+    //         resolve(window.BMap);
+    //       };
+    //       script.src = src;
+    //       document.querySelector('head')?.appendChild(script);
+    //     });
+    //   }
+    //
+    //   return new Promise((resolve) => {
+    //     const preWrite = document.write;
+    //
+    //     document.write = (html) => {
+    //       const el = document.createElement('div');
+    //       el.innerHTML = html;
+    //       const first = el.firstElementChild;
+    //
+    //       if (
+    //         first?.tagName.toLowerCase() === 'script' &&
+    //         first?.getAttribute('src')?.indexOf('http://api.map.baidu.com') !== -1
+    //       ) {
+    //         importReal(first.getAttribute('src')).then((res) => {
+    //           resolve(res);
+    //         });
+    //       } else {
+    //         preWrite(html);
+    //       }
+    //     };
+    //
+    //     const script = document.createElement('script');
+    //     script.src = `http://api.map.baidu.com/api?v=3.0&ak=${this.props.ak}`;
+    //     document?.querySelector('head')?.appendChild(script);
+    //   });
+    // },
     initMap() {
       const { $BMap } = this.$data;
 
@@ -114,8 +114,7 @@ export default {
         logoEl && logoEl?.parentElement?.removeChild(logoEl);
 
         setTimeout(() => {
-          // @ts-ignore
-          this?.$refs?.ref?.style?.background = `url("${loadGridIcon}") repeat #fff;`;
+          this.$refs.ref.style.background = `url("${loadGridIcon}") repeat #fff;`;
         }, 2000);
       });
 
@@ -141,41 +140,40 @@ export default {
     },
   },
   mounted() {
-    const { externalImportBMapScript } = this;
+    // const { externalImportBMapScript } = this;
+    //
+    // // 外部载入bmap.js
+    // if (externalImportBMapScript) {
+    // @ts-ignore
+    this.$data.$BMap = window.BMap;
 
-    // 外部载入bmap.js
-    if (externalImportBMapScript) {
-      // @ts-ignore
-      this.$data.$BMap = window.BMap;
-
-      this.isReady = true;
-      this.$nextTick(() => {
-        this.initMap();
-      });
-    }
-    // 内部引入bmap.js
-    else {
-      this.importBMapJS().then((BMap) => {
-        this.$data.$BMap = BMap;
-
-        // @ts-ignore
-        window.BMap = BMap;
-
-        this.$emit('onBMapScriptReady');
-
-        this.isReady = true;
-
-        this.$nextTick(() => {
-          this.initMap();
-        });
-      });
-    }
+    this.isReady = true;
+    this.$nextTick(() => {
+      this.initMap();
+    });
+    // }
+    // // 内部引入bmap.js
+    // else {
+    //   this.importBMapJS().then((BMap) => {
+    //     this.$data.$BMap = BMap;
+    //
+    //     // @ts-ignore
+    //     window.BMap = BMap;
+    //
+    //     this.$emit('onBMapScriptReady');
+    //
+    //     this.isReady = true;
+    //
+    //     this.$nextTick(() => {
+    //       this.initMap();
+    //     });
+    //   });
+    // }
   },
   render(h) {
     const { isReady } = this;
     return (
       <ConditionalRender conditional={isReady}>
-        {/*@ts-ignore*/}
         <div class={selectorPrefix} ref="ref" />
         <div slot="noMatch">loading</div>
       </ConditionalRender>

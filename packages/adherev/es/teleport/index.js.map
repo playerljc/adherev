@@ -1,0 +1,1 @@
+{"version":3,"file":"index.js","sources":["teleport/index.js"],"sourcesContent":["import Model from '@baifendian/adherev-ui-teleport/es';\r\nexport default Model;\r\n"],"names":["Model"],"mappings":"OAAOA,8DACQA"}

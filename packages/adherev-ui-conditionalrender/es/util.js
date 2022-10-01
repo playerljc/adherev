@@ -1,0 +1,2 @@
+import"core-js/modules/es.object.to-string.js";import"core-js/modules/web.dom-collections.for-each.js";function deal(t){var a=t.conditional,e=t.rule,l=t.ruleVisibleValue,o=t.ruleHideValue,t=t.slots;t.default.forEach(function(t){t.data?"staticStyle"in t.data||(t.data.staticStyle={}):t.data={staticStyle:{}},t.data.staticStyle[e]=a?l:o}),t.noMatch&&t.noMatch.forEach(function(t){t.data?"staticStyle"in t.data||(t.data.staticStyle={}):t.data={staticStyle:{}},t.data.staticStyle[e]=a?o:l})}export{deal};
+//# sourceMappingURL=util.js.map

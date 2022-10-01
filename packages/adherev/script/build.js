@@ -53,7 +53,7 @@ const namedMap = new Map([
   ['@baifendian/adherev-ui-jdcategorytab', 'JdCategoryTab'],
   ['@baifendian/adherev-ui-imagelazy', 'ImageLazy'],
   ['@baifendian/adherev-ui-polygonselection', 'PolygonSelection'],
-  // ['@baifendian/adherev-ui-bmap', 'BMap'],
+  ['@baifendian/adherev-ui-bmap', 'BMap'],
   ['@baifendian/adherev-ui-playground', 'PlayGround'],
   ['@baifendian/adherev-ui-teleport', 'Teleport'],
   ['@baifendian/adherev-util', 'Util'],
@@ -173,6 +173,7 @@ fs.writeFileSync(indexLessPath, `${lessContent}\r\n${indexLessContent.join('')}`
 const indexJsPath = path.join(__dirname, '../src', 'index.ts');
 indexJsExportContent.push('};\r\n');
 indexJsExportDefaultContent.push(`},\r\n};`);
+
 fs.writeFileSync(
   indexJsPath,
   `${indexJsContent.join('')}\r\n${indexJsExportContent.join(

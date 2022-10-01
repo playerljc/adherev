@@ -1,0 +1,2 @@
+import FlexLayout from"@baifendian/adherev-ui-flexlayout";import BfdUtil from"@baifendian/adherev-util";import SplitLayout from"./splitlayout";var _a=BfdUtil._util,withInstall=_a.withInstall,withVue=_a.withVue,Component=withInstall(SplitLayout);Component.isUse=function(){return!0},Component.use=function(t){FlexLayout.use(t),t.use(Component),withVue(t,"SplitLayout",Component)};export default Component;
+//# sourceMappingURL=index.js.map

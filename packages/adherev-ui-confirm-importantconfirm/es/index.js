@@ -1,0 +1,2 @@
+import Util from"@baifendian/adherev-util";import ImportantConfirm,{open}from"./importantconfirm";var _a=Util._util,withInstall=_a.withInstall,withVue=_a.withVue,Component=withInstall(ImportantConfirm);Component.open=open,Component.isUse=function(){return!0},Component.use=function(n){n.use(Component),withVue(n,"ImportantConfirm",Component)};export default Component;
+//# sourceMappingURL=index.js.map

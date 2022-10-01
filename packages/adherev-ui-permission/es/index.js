@@ -1,0 +1,2 @@
+import BfdUtil from"@baifendian/adherev-util";import{Permission,checkPermission,getPermission,setPermission}from"./permission";var _a=BfdUtil._util,withInstall=_a.withInstall,withVue=_a.withVue,Component=withInstall(Permission);export default{Permission:Component,setPermission:setPermission,checkPermission:checkPermission,getPermission:getPermission,isUse:function(){return!0},use:function(i){i.use(Component),withVue(i,"Permission",Component)}};
+//# sourceMappingURL=index.js.map
