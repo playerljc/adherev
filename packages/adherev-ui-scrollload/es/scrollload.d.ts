@@ -21,13 +21,23 @@ declare const _default: {
             type: NumberConstructor;
             default: number;
         };
+        getScrollContainer: {
+            type: FunctionConstructor;
+            default: () => null;
+        };
     };
     data(): {
         $lock: boolean;
     };
     mounted(): void;
+    beforeMount(): void;
+    computed: {
+        scrollContainer(): any;
+        wrapStyle(): string;
+    };
     methods: {
         initEvents(): void;
+        beforeMount(): void;
         onScroll(): void;
         onEmptyClick(): void;
         onErrorClick(): void;

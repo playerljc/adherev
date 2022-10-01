@@ -1,4 +1,3 @@
-// @ts-ignore
 import classNames from 'classnames';
 
 import FlexLayout from '@baifendian/adherev-ui-flexlayout';

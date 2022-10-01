@@ -16,7 +16,6 @@ function handleResize({ context, key, columnsWidth }, { x, y, width, height }) {
   context.$forceUpdate();
 }
 
-// @ts-ignore
 export default ({
   columnsWidth,
   context,

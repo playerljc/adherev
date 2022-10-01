@@ -28,3 +28,17 @@ export declare const Permission: {
     };
     render(h: any): any;
 };
+/**
+ * PermissionFun - 函数方式实现
+ * @param allPermission
+ * @param permissions
+ * @param match
+ * @param noMatch
+ * @constructor
+ */
+export declare function PermissionFun({ allPermission, permissions, match, noMatch }: {
+    allPermission?: any;
+    permissions: any;
+    match: any;
+    noMatch: any;
+}): any;

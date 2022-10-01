@@ -65,4 +65,13 @@ Component.conditionalArr = function (arr: any[]): any[] {
   });
 };
 
+/**
+ * conditionalNotEmptyArr
+ * @deprecated 去除null和undefined值
+ * @param arr
+ */
+Component.conditionalNotEmptyArr = function (arr: any[]): any[] {
+  return arr.filter((t) => !(t === null || t === undefined));
+};
+
 export default Component;

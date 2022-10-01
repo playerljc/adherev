@@ -1,3 +1,5 @@
+import ConditionalRender from '@baifendian/adherev-ui-conditionalrender';
+
 // 所有的权限
 let permissions = [];
 
@@ -59,3 +61,19 @@ export const Permission = {
       : null;
   },
 };
+
+/**
+ * PermissionFun - 函数方式实现
+ * @param allPermission
+ * @param permissions
+ * @param match
+ * @param noMatch
+ * @constructor
+ */
+export function PermissionFun({ allPermission = getPermission(), permissions, match, noMatch }) {
+  return ConditionalRender.conditionalRender({
+    conditional: checkPermission(allPermission, permissions),
+    match,
+    noMatch,
+  });
+}

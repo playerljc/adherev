@@ -42,8 +42,7 @@ export function createMask(zIndex: number | string, closeCallback: Function): HT
 
   const maskEl = el.firstElementChild;
 
-  // @ts-ignore
-  (maskEl as HTMLElement).style.zIndex = `${parseInt(zIndex) - 1}`;
+  (maskEl as HTMLElement).style.zIndex = `${parseInt(zIndex as string) - 1}`;
 
   (maskEl as HTMLElement).addEventListener('click', () => {
     closeCallback();

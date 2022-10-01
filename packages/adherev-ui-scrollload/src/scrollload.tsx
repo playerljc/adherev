@@ -28,6 +28,10 @@ export default {
       type: Number,
       default: 50,
     },
+    getScrollContainer: {
+      type: Function,
+      default: () => null,
+    },
     // onScrollBottom: {
     //   type: Function,
     // },
@@ -46,22 +50,46 @@ export default {
   mounted() {
     this.initEvents();
   },
+  beforeMount() {
+    this.removeEvents();
+  },
+  computed: {
+    scrollContainer() {
+      return this.getScrollContainer ? this.getScrollContainer() : this.$refs.el;
+    },
+    wrapStyle() {
+      return `${this.style};overflow-y: ${
+        this.getScrollContainer() === this.$refs.el ? 'auto' : 'initial'
+      }`;
+    },
+  },
   methods: {
     initEvents() {
       const { $refs } = this;
 
-      $refs.el.addEventListener('scroll', this.onScroll);
+      this.scrollContainer.addEventListener('scroll', this.onScroll);
 
       $refs.emptyEl.addEventListener('click', this.onEmptyClick);
 
       $refs.errorEl.addEventListener('click', this.onErrorClick);
     },
+    beforeMount() {
+      const { $refs } = this;
+
+      this.scrollContainer.removeEventListener('scroll', this.onScroll);
+
+      $refs.emptyEl.removeEventListener('click', this.onEmptyClick);
+
+      $refs.errorEl.removeEventListener('click', this.onErrorClick);
+    },
     onScroll() {
       const {
-        $refs: { el, loadEl, errorEl, emptyEl },
+        $refs: { loadEl, errorEl, emptyEl },
         $data,
         distance,
       } = this;
+
+      const el = this.scrollContainer;
 
       const bottomHeight = el.scrollHeight - el.offsetHeight;
 
@@ -193,7 +221,7 @@ export default {
     const { $slots } = this;
 
     return (
-      <div class={selectorPrefix} ref="el">
+      <div class={selectorPrefix} style={this.wrapStyle} ref="el">
         {$slots.default}
         {this.renderLoading(h)}
         {this.renderEmpty(h)}

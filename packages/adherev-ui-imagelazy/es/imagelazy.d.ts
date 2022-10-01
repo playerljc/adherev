@@ -1,3 +1,5 @@
+import 'lazysizes';
+import 'lazysizes/plugins/parent-fit/ls.parent-fit';
 import { PropType, VNode } from 'vue';
 declare const _default: {
     name: string;
@@ -18,13 +20,6 @@ declare const _default: {
                 targetSrc: string;
             };
         };
-    };
-    watch: {
-        'imgArgs.targetSrc': () => void;
-    };
-    mounted(): void;
-    methods: {
-        update(): void;
     };
     render(h: any): VNode;
 };

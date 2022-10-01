@@ -1,10 +1,12 @@
-# 1.0.5
+# 1.0.1
 
 ***
 
-2021-11-09
+2022-10-01
 
-* 加入混入到Vue.prototype的操作
+* close的BUG修改
+* 添加showClosePrePopup
+* bug修改
 
 # 1.0.0
 
