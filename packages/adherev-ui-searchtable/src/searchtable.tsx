@@ -3,7 +3,6 @@ import classNames from 'classnames';
 import Vue, { CreateElement } from 'vue';
 
 import ConditionalRender from '@baifendian/adherev-ui-conditionalrender';
-// @ts-ignore
 import FlexLayout from '@baifendian/adherev-ui-flexlayout';
 import Suspense from '@baifendian/adherev-ui-suspense';
 import Intl from '@baifendian/adherev-util-intl';
@@ -31,7 +30,7 @@ export const ROW_SELECTION_NORMAL_MODE = Symbol();
 // 全选的规则 - 可以跨页
 export const ROW_SELECTION_CONTINUOUS_MODE = Symbol();
 
-export default Vue.extend({
+const SearchTable: any = Vue.extend({
   // @overview
   mixins: [Suspense, updatedEx],
   props: {
@@ -640,3 +639,5 @@ export default Vue.extend({
     return this.renderSearchTable(h);
   },
 });
+
+export default SearchTable;

@@ -9,7 +9,7 @@ export const EMPTY = 'empty';
 export const ERROR = 'error';
 export const NORMAL = 'normal';
 
-export default {
+const ScrollLoad: any = {
   name: 'adv-scrollload',
   props: {
     loadClassName: {
@@ -230,3 +230,5 @@ export default {
     );
   },
 };
+
+export default ScrollLoad;

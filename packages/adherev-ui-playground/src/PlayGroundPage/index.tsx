@@ -8,7 +8,7 @@ export const PlayGroundPagePropTypes = {
   ...AnchorNavigationPropTypes,
 };
 
-export default {
+const PlayGroundPage: any = {
   name: 'adv-playground-page',
   props: { ...PlayGroundPagePropTypes },
   computed: {
@@ -33,7 +33,6 @@ export default {
   render(h) {
     return (
       <div class={selectPrefix}>
-        {/*@ts-ignore*/}
         <AnchorNavigation
           anchors={this.getAnchors}
           defaultActiveAnchor={this.defaultActiveAnchor}
@@ -46,3 +45,5 @@ export default {
     );
   },
 };
+
+export default PlayGroundPage;

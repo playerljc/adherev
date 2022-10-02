@@ -2,7 +2,7 @@ import classNames from 'classnames';
 
 const selectorPrefix = 'adherev-ui-playground-simple-tabs-panel';
 
-export default {
+const SimpleTabPanel: any = {
   name: 'adv-playground-simple-tabs-tab-panel',
   props: {
     title: {
@@ -25,3 +25,5 @@ export default {
     );
   },
 };
+
+export default SimpleTabPanel;

@@ -2,7 +2,7 @@ import Resource from '@baifendian/adherev-util-resource';
 
 const selectorPrefix = 'adherev-ui-spin';
 
-export default {
+const Spin: any = {
   name: 'adv-spin',
   props: {
     spinning: {
@@ -38,3 +38,5 @@ export default {
     ) : null;
   },
 };
+
+export default Spin;

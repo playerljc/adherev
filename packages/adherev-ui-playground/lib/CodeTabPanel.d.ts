@@ -8,18 +8,5 @@ export declare const CodeTabPanelDefaultProps: {
         default: () => never[];
     };
 };
-declare const _default: {
-    name: string;
-    props: {
-        active: {
-            type: StringConstructor;
-            default: string;
-        };
-        config: {
-            type: ArrayConstructor;
-            default: () => never[];
-        };
-    };
-    render(h: any): any;
-};
-export default _default;
+declare const CodeTabPanel: any;
+export default CodeTabPanel;

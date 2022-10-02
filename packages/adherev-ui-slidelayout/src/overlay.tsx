@@ -5,7 +5,7 @@ import { slider } from './slidelayout';
 
 const selectorPrefix = 'adherev-ui-slidelayout-overlay';
 
-export default {
+const Overlay: any = {
   name: 'adv-slidelayout-overlay',
   mixins: [SlideLayout],
   watch: {
@@ -148,3 +148,5 @@ export default {
     );
   },
 };
+
+export default Overlay;

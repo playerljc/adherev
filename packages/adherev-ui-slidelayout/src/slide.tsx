@@ -1,6 +1,6 @@
 import { createMask } from './slidelayout';
 
-export default {
+const Slide: any = {
   props: {
     width: {
       type: [String, Number],
@@ -172,3 +172,5 @@ export default {
     },
   },
 };
+
+export default Slide;

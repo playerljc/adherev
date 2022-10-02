@@ -1,0 +1,51 @@
+{
+  "name": "@baifendian/adherev-ui-datedisplay",
+  "version": "1.0.0",
+  "description": "时间显示组件",
+  "main": "lib/index.js",
+  "module": "es/index.js",
+  "files": [
+    "lib",
+    "es",
+    "umd"
+  ],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "buildpackage:cjs": "ctbuildv buildpackagets -c ctbuildv.package.ts.cjs.config.js -o lib",
+    "buildpackage:es": "ctbuildv buildpackagets -c ctbuildv.package.ts.esm.config.js -o es",
+    "buildpackage": "npm-run-all --parallel buildpackage:cjs buildpackage:es",
+    "buildumd": "ctbuildv buildumd --config ctbuildv.config.umd.js --packagename AdherevDateDisplay --define alias=@,evnVars=true",
+    "generatorchangelog": "bd changelog/CHANGELOG.html"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://gitee.com/playerljc/adherev"
+  },
+  "resolutions": {},
+  "author": "playerljc",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://gitee.com/playerljc/adherev/issues"
+  },
+  "homepage": "https://gitee.com/playerljc/adherev",
+  "publishConfig": {
+    "access": "public"
+  },
+  "devDependencies": {
+    "@babel/runtime": "^7.7.4",
+    "@ctsj/buildv": "^2.0.9",
+    "npm-run-all": "^4.1.5",
+    "typescript": "^4.6.2"
+  },
+  "dependencies": {
+    "@baifendian/adherev-ui-conditionalrender": "^1.0.11",
+    "@baifendian/adherev-util-resource": "^1.0.11",
+    "@baifendian/adherev-util": "^1.0.11",
+    "classnames": "^2.2.6",
+    "dayjs": "^1.11.4",
+    "vue": "^2.6.14",
+    "vue-fragment": "^1.5.2",
+    "vue-hoc": "^0.4.7"
+  },
+  "gitHead": "2e23d8b8d13e6a97f5326e4e5d257c9903cd108d"
+}

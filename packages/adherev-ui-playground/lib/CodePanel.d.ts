@@ -4,14 +4,5 @@ export declare const CodePanelPropTypes: {
         default: string;
     };
 };
-declare const _default: {
-    name: string;
-    props: {
-        lang: {
-            type: StringConstructor;
-            default: string;
-        };
-    };
-    render(h: any): any;
-};
-export default _default;
+declare const CodePanel: any;
+export default CodePanel;

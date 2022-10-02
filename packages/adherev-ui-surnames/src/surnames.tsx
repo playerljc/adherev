@@ -6,7 +6,7 @@ const selectorPrefix = 'adherev-ui-surnames';
 
 const DURATION = 100;
 
-export default {
+const Surnames: any = {
   name: 'adv-surnames',
   props: {
     position: {
@@ -474,3 +474,5 @@ export default {
     );
   },
 };
+
+export default Surnames;

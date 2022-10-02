@@ -3,7 +3,7 @@ import { VNode } from 'vue';
 
 export const selectorPrefix = 'adherev-ui-flexlayout';
 
-export default {
+const FlexLayout: any = {
   name: 'adv-flexlayout',
   props: {
     direction: {
@@ -34,3 +34,5 @@ export default {
     );
   },
 };
+
+export default FlexLayout;

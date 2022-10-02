@@ -497,7 +497,7 @@
               required: '',
             },
             {
-              name: 'defaultCloneBtn',
+              name: 'defaultCloseBtn',
               desc: '是否缺省有关闭按钮',
               type: 'boolean',
               defaultVal: 'true',
@@ -828,7 +828,7 @@ export default {
                 \`,
               },
             },
-            defaultCloneBtn: false,
+            defaultCloseBtn: false,
             children: {
               template: \`
                 <a-result title="Your operation has been executed">
@@ -882,7 +882,7 @@ export default {
           },
           // title: '提示 '
         },
-        defaultCloneBtn: false,
+        defaultCloseBtn: false,
         // children: (h)=> {
         //   return (
         //     <Result title="Your operation has been executed">

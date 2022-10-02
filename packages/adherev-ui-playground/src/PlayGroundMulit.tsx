@@ -1,5 +1,4 @@
 import ConditionalRender from '@baifendian/adherev-ui-conditionalrender';
-// @ts-ignore
 import ContextMenu from '@baifendian/adherev-ui-contextmenu';
 
 import Card from './Card';
@@ -17,7 +16,7 @@ export const PlayGroundMulitPropTypes = {
   },
 };
 
-export default {
+const PlaygroundMulit: any = {
   name: 'adv-playground-mulit',
   mixins: [PlayGroundMixins],
   props: {
@@ -121,10 +120,11 @@ export default {
 
       return (
         <ConditionalRender.Show conditional={expand}>
-          {/*@ts-ignore*/}
           <Card>{(config || []).map((c, index) => this.renderCodePanelView(h, c, index))}</Card>
         </ConditionalRender.Show>
       );
     },
   },
 };
+
+export default PlaygroundMulit;

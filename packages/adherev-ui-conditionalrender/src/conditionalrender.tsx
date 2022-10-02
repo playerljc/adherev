@@ -1,7 +1,8 @@
 /**
  * ConditionalRender
  */
-export default {
+
+const ConditionalRender: any = {
   name: 'adv-conditionalrender',
   props: {
     conditional: {
@@ -15,3 +16,5 @@ export default {
     return conditional ? $slots.default : $slots.noMatch ? $slots.noMatch : null;
   },
 };
+
+export default ConditionalRender;

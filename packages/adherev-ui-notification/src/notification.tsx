@@ -348,10 +348,11 @@ class Notification {
   }
 }
 
-/**
- * NotificationFactory
- */
-export default {
+const NotificationFactory: {
+  isUse?: () => boolean;
+  use?: (vue: Vue) => void;
+  build: (container: HTMLElement, config: IConfig) => Notification;
+} = {
   /**
    * build
    * @param container
@@ -362,3 +363,8 @@ export default {
     return new Notification(container, config);
   },
 };
+
+/**
+ * NotificationFactory
+ */
+export default NotificationFactory;

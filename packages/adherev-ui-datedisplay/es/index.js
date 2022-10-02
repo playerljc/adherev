@@ -1,0 +1,2 @@
+import"core-js/modules/es.object.to-string.js";import"core-js/modules/web.dom-collections.for-each.js";import"core-js/modules/es.object.keys.js";import"core-js/modules/es.function.name.js";import Util from"@baifendian/adherev-util";import DateDisplay from"./datedisplay";var _a=Util._util,withInstall=_a.withInstall,withVue=_a.withVue;DateDisplay.isUse=function(){return!0},DateDisplay.use=function(t){Object.keys(DateDisplay).forEach(function(e){e=withInstall(DateDisplay[e]);t.use(e),withVue(t,e.name,e)})};export default DateDisplay;
+//# sourceMappingURL=index.js.map

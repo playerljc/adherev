@@ -6,7 +6,7 @@ import { propTypes } from './types';
 
 const selectorPrefix = 'adherev-ui-playground-collapse';
 
-export default {
+const Collapse: any = {
   name: 'adv-playground-collapse',
   props: {
     ...propTypes,
@@ -93,3 +93,5 @@ export default {
     );
   },
 };
+
+export default Collapse;

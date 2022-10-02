@@ -9,7 +9,7 @@ import { IMenuItemProps } from './types';
 
 const selectorPrefix = 'adherev-ui-contextmenu-menuitem';
 
-export default {
+const MenuItem: any = {
   props: {
     data: {
       type: Object as PropType<IMenuItemProps>,
@@ -136,3 +136,5 @@ export default {
     );
   },
 };
+
+export default MenuItem;

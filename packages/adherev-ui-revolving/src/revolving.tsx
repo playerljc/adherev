@@ -4,7 +4,7 @@ import { VNode } from 'vue';
 
 const selectorPrefix = 'adherev-ui-revolving';
 
-export default {
+const Revolving: any = {
   name: 'adv-revolving',
   props: {
     classNameWrapper: {
@@ -141,3 +141,5 @@ export default {
     );
   },
 };
+
+export default Revolving;

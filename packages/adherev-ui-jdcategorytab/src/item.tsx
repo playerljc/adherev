@@ -2,7 +2,7 @@ import classNames from 'classnames';
 
 const selectorPrefix = 'adherev-ui-jdcategorytab';
 
-export default {
+const Item: any = {
   name: 'adv-jdcategorytab-item',
   props: {
     id: {
@@ -26,3 +26,5 @@ export default {
     return <li class={getClassName}>{$slots.default}</li>;
   },
 };
+
+export default Item;

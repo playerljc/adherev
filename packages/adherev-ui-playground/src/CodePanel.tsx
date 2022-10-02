@@ -7,7 +7,7 @@ export const CodePanelPropTypes = {
   },
 };
 
-export default {
+const CodePanel: any = {
   name: 'adv-playground-code-panel',
   props: {
     ...CodePanelPropTypes,
@@ -20,3 +20,5 @@ export default {
     return <VueHighlightJS lang={lang}>{$slots.default}</VueHighlightJS>;
   },
 };
+
+export default CodePanel;

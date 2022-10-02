@@ -6,7 +6,7 @@ import { slider } from './slidelayout';
 
 const selectorPrefix = 'adherev-ui-slidelayout-reveal';
 
-export default {
+const Reveal: any = {
   name: 'adv-slidelayout-reveal',
   mixins: [SlideLayout],
   props: {
@@ -156,3 +156,5 @@ export default {
     );
   },
 };
+
+export default Reveal;

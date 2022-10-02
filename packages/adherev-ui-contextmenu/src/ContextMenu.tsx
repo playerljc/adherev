@@ -10,7 +10,7 @@ const selectorPrefix = 'adherev-ui-contextmenu';
  * @class ContextMenuComponent
  * @classdesc ContextMenuComponent
  */
-const ContextMenuComponent = {
+const ContextMenuComponent: any = {
   props: {
     data: {
       type: Array as PropType<IData[]>,
@@ -74,7 +74,6 @@ const ContextMenuComponent = {
         onClick={this.onClick}
         onContextMenu={this.onContextMenu}
       >
-        {/*@ts-ignore*/}
         <Menu data={data} className={config.className} styleName={config.styleName} ref="menuIns" />
       </div>
     );

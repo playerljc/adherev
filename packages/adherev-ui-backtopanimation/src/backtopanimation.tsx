@@ -4,7 +4,7 @@ import Resource from '@baifendian/adherev-util-resource';
 
 const selectorPrefix = 'adherev-ui-backtopanimation';
 
-export default {
+const BackTopAnimation: any = {
   name: 'adv-backtopanimation',
   props: {
     className: {
@@ -156,3 +156,5 @@ export default {
     );
   },
 };
+
+export default BackTopAnimation;

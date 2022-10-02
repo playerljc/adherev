@@ -2570,7 +2570,7 @@ export default {
         config: {
           title: '设置数据',
         },
-        defaultCloneBtn: false,
+        defaultCloseBtn: false,
         children: {
           computed: {
             localData() {

@@ -11,7 +11,7 @@ export const SectionPropTypes = {
   },
 };
 
-export default {
+const Section: any = {
   name: 'adv-playground-page-section',
   props: {
     ...SectionPropTypes,
@@ -30,3 +30,5 @@ export default {
     );
   },
 };
+
+export default Section;

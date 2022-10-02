@@ -6,4 +6,6 @@ const options = {
   name: 'adv-playground-page-code-box-section',
 };
 
-export default createHOC(CodeBoxPanel, options, null);
+const CodeBoxSection: any = createHOC(CodeBoxPanel, options, null);
+
+export default CodeBoxSection;

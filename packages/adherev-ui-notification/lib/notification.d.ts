@@ -1,3 +1,4 @@
+import Vue from 'vue';
 import { IConfig, IShowConfig, IShowStandardConfig } from './types';
 /**
  * Notification
@@ -81,16 +82,12 @@ declare class Notification {
      */
     close(id: any): void;
 }
-declare const _default: {
-    /**
-     * build
-     * @param container
-     * @param config
-     * @return Notification
-     */
-    build(container: HTMLElement, config: IConfig): Notification;
+declare const NotificationFactory: {
+    isUse?: () => boolean;
+    use?: (vue: Vue) => void;
+    build: (container: HTMLElement, config: IConfig) => Notification;
 };
 /**
  * NotificationFactory
  */
-export default _default;
+export default NotificationFactory;

@@ -341,9 +341,9 @@ const MessageDialogFactory = {
    *  @param {Boolean} - closable 是否显示关闭 默认true
    *  @param {Function} - footer
    *  @param {Function} - children
-   *  @param defaultCloneBtn
+   *  @param defaultCloseBtn
    */
-  Modal({ config = {}, children = Function, defaultCloneBtn = true, local = DEFAULT_LOCAL }) {
+  Modal({ config = {}, children = Function, defaultCloseBtn = true, local = DEFAULT_LOCAL }) {
     /**
      * renderDefault
      * @param h
@@ -448,10 +448,9 @@ const MessageDialogFactory = {
         return (
           // @ts-ignore
           <ConfigProvider locale={LOCAL[local || DEFAULT_LOCAL]}>
-            {/* @ts-ignore */}
             <ModalDialog
               config={modalConfig}
-              closeBtn={defaultCloneBtn}
+              closeBtn={defaultCloseBtn}
               onClose={() => {
                 close();
               }}

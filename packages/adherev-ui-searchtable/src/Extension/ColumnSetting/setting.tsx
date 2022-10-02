@@ -7,7 +7,7 @@ import Intl from '@baifendian/adherev-util-intl';
 import { selectorPrefix } from '../../searchtable';
 import { IColumnSetting } from '../../types';
 
-export default Vue.extend({
+const Setting: any = Vue.extend({
   props: {
     columns: {
       type: Array as PropType<IColumnSetting[]>,
@@ -90,3 +90,5 @@ export default Vue.extend({
     );
   },
 });
+
+export default Setting;

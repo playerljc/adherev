@@ -29,7 +29,7 @@ function toPoint(percent: string) {
   return Number.parseInt(str) / 100;
 }
 
-export default {
+const SplitLayout: any = {
   name: 'adv-splitlayout',
   props: {
     className: {
@@ -414,3 +414,5 @@ export default {
     );
   },
 };
+
+export default SplitLayout;

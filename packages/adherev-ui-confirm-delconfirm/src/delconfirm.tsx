@@ -35,7 +35,7 @@ export function open({ success, ...params }) {
   });
 }
 
-export default {
+const DelConfirm: any = {
   name: 'adv-delconfirm',
   props: {
     zIndex: {
@@ -83,3 +83,5 @@ export default {
     );
   },
 };
+
+export default DelConfirm;

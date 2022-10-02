@@ -24,7 +24,7 @@ export const PlaygroundMixinsProps = {
   },
 };
 
-export default {
+const PlayGroundMixins: any = {
   props: PlaygroundMixinsProps,
   data() {
     return {
@@ -60,7 +60,6 @@ export default {
 
     return (
       <div class={classNames(selectPrefix, isActive ? `${selectPrefix}-active` : '')}>
-        {/*@ts-ignore*/}
         <Card actions={['copy', 'expand']} {...{ props: cardProps || {} }}>
           <img
             class={`${selectPrefix}-action-btn`}
@@ -90,3 +89,5 @@ export default {
     );
   },
 };
+
+export default PlayGroundMixins;

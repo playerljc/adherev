@@ -15,19 +15,7 @@ export declare const getPermission: () => any;
  * @return boolean
  */
 export declare const checkPermission: (allPermission: any, currentPermissions: any) => boolean;
-export declare const Permission: {
-    name: string;
-    props: {
-        allPermission: {
-            type: ArrayConstructor;
-            default: () => never[];
-        };
-        permissions: {
-            type: (ArrayConstructor | StringConstructor)[];
-        };
-    };
-    render(h: any): any;
-};
+export declare const Permission: any;
 /**
  * PermissionFun - 函数方式实现
  * @param allPermission

@@ -14,7 +14,7 @@ export const PropsPropTypes = {
   },
 };
 
-export default {
+const Props: any = {
   name: 'adv-playground-props',
   props: {
     ...PropsPropTypes,
@@ -67,10 +67,8 @@ export default {
     }
 
     return (
-      // @ts-ignore
       <Collapse {...{ props }}>
         <div class={selectPrefix}>
-          {/*@ts-ignore*/}
           <Table
             scopedSlots={scopedSlots}
             columns={this.columns}
@@ -82,3 +80,5 @@ export default {
     );
   },
 };
+
+export default Props;

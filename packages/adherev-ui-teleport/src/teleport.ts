@@ -3,7 +3,7 @@ import Vue from 'vue';
 
 import Util from '@baifendian/adherev-util';
 
-export default {
+const Teleport: any = {
   name: 'adv-teleport',
   props: {
     // 传送的元素
@@ -113,3 +113,5 @@ export default {
     return null;
   },
 };
+
+export default Teleport;

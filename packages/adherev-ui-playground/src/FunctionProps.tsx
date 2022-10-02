@@ -16,7 +16,7 @@ export const FunctionPropsPropTypes = {
   },
 };
 
-export default {
+const FunctionProps: any = {
   name: 'adv-playground-functionprops',
   props: {
     ...FunctionPropsPropTypes,
@@ -33,7 +33,6 @@ export default {
     }
 
     return (
-      // @ts-ignore
       <Collapse {...{ props }}>
         <div class={selectorPrefix}>
           <table class={`${selectorPrefix}-inner`}>
@@ -125,3 +124,5 @@ export default {
     );
   },
 };
+
+export default FunctionProps;

@@ -13,7 +13,7 @@ const {
 
 export const selectorPrefix = 'adherev-ui-messagedialog';
 
-export default {
+const ModalConfig: any = {
   props: {
     config: {
       type: Object,
@@ -159,3 +159,5 @@ export default {
     );
   },
 };
+
+export default ModalConfig;

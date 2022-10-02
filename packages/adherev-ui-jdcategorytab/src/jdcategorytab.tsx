@@ -6,7 +6,7 @@ import { IMenuDataItem } from './types';
 
 const selectorPrefix = 'adherev-ui-jdcategorytab';
 
-export default {
+const JdCategoryTab: any = {
   name: 'adv-jdcategorytab',
   props: {
     className: {
@@ -207,3 +207,5 @@ export default {
     );
   },
 };
+
+export default JdCategoryTab;

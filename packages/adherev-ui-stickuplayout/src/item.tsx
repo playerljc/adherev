@@ -1,6 +1,6 @@
 const selectorPrefix = 'adherev-ui-stickuplayout-item';
 
-export default {
+const Item: any = {
   name: 'adv-stickuplayout-item',
   render(h) {
     const { $slots } = this;
@@ -13,3 +13,5 @@ export default {
     );
   },
 };
+
+export default Item;

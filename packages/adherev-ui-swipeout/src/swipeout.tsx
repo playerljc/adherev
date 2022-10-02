@@ -5,7 +5,7 @@ import { ISwipeOutProps } from './types';
 
 const selectorPrefix = 'adherev-ui-swipeout';
 
-export default {
+const SwiperOut: any = {
   name: 'adv-swipeout',
   props: {
     className: {
@@ -193,3 +193,5 @@ export default {
     );
   },
 };
+
+export default SwiperOut;

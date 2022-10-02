@@ -1,6 +1,6 @@
 const selectorPrefix = 'adherev-ui-playground-simple-tabs';
 
-export default {
+const SimpleTabs: any = {
   name: 'adv-playground-simple-tabs',
   props: {
     defaultActiveKey: {
@@ -67,3 +67,5 @@ export default {
     );
   },
 };
+
+export default SimpleTabs;

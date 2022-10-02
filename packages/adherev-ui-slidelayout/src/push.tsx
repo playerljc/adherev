@@ -5,7 +5,7 @@ import { slider } from './slidelayout';
 
 const selectorPrefix = 'adherev-ui-slidelayout-push';
 
-export default {
+const Push: any = {
   name: 'adv-slidelayout-push',
   mixins: [SlideLayout],
   props: {
@@ -148,3 +148,5 @@ export default {
     );
   },
 };
+
+export default Push;

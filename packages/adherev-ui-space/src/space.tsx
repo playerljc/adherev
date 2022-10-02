@@ -5,7 +5,7 @@ const selectorPrefix = 'adherev-ui-space';
 /**
  * Space
  */
-const Space = {
+const Space: any = {
   name: 'adv-space',
   props: {
     direction: {
@@ -48,7 +48,7 @@ const Space = {
 /**
  * SpaceGroup
  */
-export const SpaceGroup = {
+export const SpaceGroup: any = {
   name: 'adv-space-group',
   props: {
     direction: {
@@ -85,7 +85,6 @@ export const SpaceGroup = {
             class: className,
           };
 
-          // @ts-ignore
           JSXS.push(<Space {...props} key={i} />);
         }
 

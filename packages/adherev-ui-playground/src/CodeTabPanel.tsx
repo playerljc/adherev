@@ -17,7 +17,7 @@ export const CodeTabPanelDefaultProps = {
   },
 };
 
-export default {
+const CodeTabPanel: any = {
   name: 'adv-playground-code-tab-panel',
   props: { ...CodeTabPanelDefaultProps },
   render(h) {
@@ -25,21 +25,16 @@ export default {
 
     return (
       <div class={selectPrefix}>
-        {/*@ts-ignore*/}
         <SimpleTabs
           defaultActiveKey={active}
           onChange={(key) => {
-            // this.active = key;
-
             this.$emit('change', key);
           }}
         >
           {config.map(({ key, title, codeText, ...codePanelConfig }) => {
             return (
-              // @ts-ignore
               <TabPanel title={title} key={key} index={key}>
                 <ConditionalRender conditional={active === key}>
-                  {/*@ts-ignore*/}
                   <CodePanel {...{ props: codePanelConfig }}>{codeText}</CodePanel>
                 </ConditionalRender>
               </TabPanel>
@@ -50,3 +45,5 @@ export default {
     );
   },
 };
+
+export default CodeTabPanel;

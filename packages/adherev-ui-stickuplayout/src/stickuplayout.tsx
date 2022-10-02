@@ -2,7 +2,7 @@ import classNames from 'classnames';
 
 const selectorPrefix = 'adherev-ui-stickuplayout';
 
-export default {
+const StickUpLayout: any = {
   name: 'adv-stickuplayout',
   props: {
     fixedClassName: {
@@ -291,3 +291,5 @@ export default {
     );
   },
 };
+
+export default StickUpLayout;

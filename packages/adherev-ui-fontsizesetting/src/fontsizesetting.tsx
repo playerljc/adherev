@@ -3,7 +3,7 @@ import { VNode } from 'vue';
 
 const selectorPrefix = 'adherev-ui-fontsizesetting';
 
-export default {
+const FontSizeSetting: any = {
   name: 'adv-fontsizesetting',
   props: {
     min: {
@@ -70,3 +70,5 @@ export default {
     );
   },
 };
+
+export default FontSizeSetting;

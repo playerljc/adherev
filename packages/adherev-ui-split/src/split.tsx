@@ -5,7 +5,7 @@ const selectorPrefix = 'adherev-ui-split';
 /**
  * Split
  */
-const Split = {
+const Split: any = {
   name: 'adv-split',
   props: {
     direction: {
@@ -50,7 +50,7 @@ const Split = {
 /**
  * SplitGroup
  */
-export const SplitGroup = {
+export const SplitGroup: any = {
   name: 'adv-split-group',
   props: {
     direction: {

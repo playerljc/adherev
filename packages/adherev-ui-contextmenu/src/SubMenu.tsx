@@ -6,7 +6,7 @@ import { IData } from './types';
 
 const selectorPrefix = 'adherev-ui-contextmenu-submenu';
 
-export default {
+const SubMenu: any = {
   props: {
     data: {
       type: Array as PropType<IData[]>,
@@ -52,3 +52,5 @@ export default {
     );
   },
 };
+
+export default SubMenu;

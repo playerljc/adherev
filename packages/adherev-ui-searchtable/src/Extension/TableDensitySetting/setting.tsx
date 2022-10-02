@@ -5,7 +5,7 @@ import Intl from '@baifendian/adherev-util-intl';
 import { selectorPrefix } from '../../searchtable';
 import { TableDensity } from '../../types';
 
-export default {
+const Setting: any = {
   props: {
     density: {
       type: String,
@@ -62,3 +62,5 @@ export default {
     );
   },
 };
+
+export default Setting;

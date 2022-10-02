@@ -8,18 +8,5 @@ export declare const SectionPropTypes: {
         default: () => null;
     };
 };
-declare const _default: {
-    name: string;
-    props: {
-        title: {
-            type: (StringConstructor | ObjectConstructor)[];
-            default: string;
-        };
-        extra: {
-            type: ObjectConstructor;
-            default: () => null;
-        };
-    };
-    render(h: any): any;
-};
-export default _default;
+declare const Section: any;
+export default Section;

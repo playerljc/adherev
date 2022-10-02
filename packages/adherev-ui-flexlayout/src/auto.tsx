@@ -5,7 +5,7 @@ import { selectorPrefix as parentSelectorPrefix } from './flexlayout';
 
 const selectorPrefix = `${parentSelectorPrefix}-auto`;
 
-export default {
+const Auto: any = {
   name: 'adv-flexlayout-auto',
   props: {
     autoFixed: {
@@ -39,3 +39,5 @@ export default {
     );
   },
 };
+
+export default Auto;

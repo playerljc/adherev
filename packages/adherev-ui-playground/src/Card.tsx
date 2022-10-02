@@ -48,7 +48,7 @@ export const cardPropTypes = {
   },
 };
 
-export default {
+const Card: any = {
   name: 'adv-playground-card',
   props: {
     ...cardPropTypes,
@@ -121,3 +121,5 @@ export default {
     );
   },
 };
+
+export default Card;

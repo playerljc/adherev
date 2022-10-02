@@ -2,7 +2,7 @@ import classNames from 'classnames';
 
 const selectorPrefix = 'adherev-ui-revolving-item';
 
-export default {
+const Item: any = {
   name: 'adv-revolving-item',
   computed: {
     getClassName() {
@@ -13,3 +13,5 @@ export default {
     return <div class={this.getClassName}>{this.$slots.default}</div>;
   },
 };
+
+export default Item;

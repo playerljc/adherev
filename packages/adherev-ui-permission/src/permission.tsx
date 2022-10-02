@@ -40,7 +40,7 @@ export const checkPermission = (allPermission = getPermission(), currentPermissi
   return allPermission.indexOf(currentPermissions) !== -1;
 };
 
-export const Permission = {
+export const Permission: any = {
   name: 'adv-permission',
   props: {
     allPermission: {

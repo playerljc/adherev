@@ -1,7 +1,7 @@
 import OLMap from './olmap';
 import Util from './util';
 
-export default {
+const OLMapHeatMap: any = {
   name: 'adv-olmap-heatmap',
   data() {
     return {
@@ -26,3 +26,5 @@ export default {
     },
   },
 };
+
+export default OLMapHeatMap;

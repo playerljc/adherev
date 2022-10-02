@@ -2,7 +2,7 @@ import { VNode } from 'vue';
 
 const selectorPrefix = 'adherev-ui-sliderscale';
 
-export default {
+const SliderScale: any = {
   name: 'adv-sliderscale',
   props: {
     min: {
@@ -147,3 +147,5 @@ export default {
     );
   },
 };
+
+export default SliderScale;

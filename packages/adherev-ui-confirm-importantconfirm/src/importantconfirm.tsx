@@ -33,7 +33,7 @@ export function open({ success, ...params }) {
   });
 }
 
-export default {
+const ImportantConfirm: any = {
   name: 'adv-importantconfirm',
   props: {
     zIndex: {
@@ -87,3 +87,5 @@ export default {
     );
   },
 };
+
+export default ImportantConfirm;

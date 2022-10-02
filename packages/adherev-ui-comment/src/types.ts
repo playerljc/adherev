@@ -1,0 +1,112 @@
+import type { VNode } from 'vue';
+
+export type Local =
+  | 'ar'
+  | 'de'
+  | 'en'
+  | 'es'
+  | 'fa'
+  | 'fr'
+  | 'it'
+  | 'ja'
+  | 'nl'
+  | 'pl'
+  | 'pt'
+  | 'ru'
+  | 'uk'
+  | 'zh'
+  | string;
+
+export interface CommentProps {
+  getScrollWrapContainer?: () => HTMLElement;
+  fetchCommentData?: () => Promise<any>;
+  commentDataKeys?: {
+    current: string;
+    totalPage: string;
+    list: string;
+    totalCount: string;
+  };
+  commentLimit?: number;
+  commentKeyProp?: string;
+  replyDataKeys?: {
+    current: string;
+    totalPage: string;
+    list: string;
+    totalCount: string;
+  };
+  replyLimit?: number;
+  replyKeyProp?: string;
+  listProps?: any;
+  isMoreProp?: string;
+  flexLayoutProps?: FlexLayoutProps;
+  local?: Local;
+  emojiPickerProps?: any;
+}
+
+export interface ReplyProps {
+  local?: Local;
+  emojiPickerProps?: any;
+}
+
+export interface ListStandardProps {
+  getScrollWrapContainer?: () => HTMLElement;
+  flexLayoutProps?: FlexLayoutProps;
+  listProps?: ListProps;
+  limit?: number;
+  renderList?: (params?: any) => ReactNode;
+  renderEmpty?: () => ReactElement | null;
+  renderFirstLoading?: () => ReactNode;
+  fetchData?: (params?: any) => Promise<any>;
+  renderLoading?: () => ReactNode | null;
+  dataKeys?: {
+    current: string;
+    totalPage: string;
+    list: string;
+    totalCount: string;
+  };
+}
+
+export interface ListProps {
+  getScrollWrapContainer?: () => HTMLElement;
+  className?: string;
+  style?: CSSProperties;
+  isLoading?: boolean;
+  hasMore?: boolean;
+  onLoadMore?: (handle?: (status?: string) => void) => void;
+  renderFirstLoading?: () => ReactNode | null;
+  scrollLoadProps?: ScrollLoadProps;
+  children?: any;
+}
+
+export interface NodeProps {
+  isReply?: boolean;
+  data?: {
+    key: string;
+  };
+  dataKeys?: {
+    current: string;
+    totalPage: string;
+    list: string;
+    totalCount: string;
+  };
+  renderLoading?: () => ReactNode | null;
+  limit?: number;
+  fetchData?: (params?: any) => Promise<any> | undefined;
+  fetchReply?: (params?: any) => Promise<any>;
+  keyProp?: string;
+  isMoreProp?: string;
+  renderActions?: (params: any, callback: (data?: any) => void) => ReactNode[] | null;
+  renderAuthor?: (params?: any) => ReactNode | null;
+  renderAvatar?: (params?: any) => ReactNode | null;
+  renderContent?: (params?: any) => ReactNode | null;
+  renderDateTime?: (params?: any) => ReactNode | null;
+  children?: any;
+  showReplyText?: string | Function;
+  hideReplyText?: string | Function;
+  loadMoreReplyText?: string | Function;
+  showReplyTextIcon?: ReactNode | Function;
+  hideReplyTextIcon?: ReactNode | Function;
+  loadMoreCollapseTextIcon?: ReactNode | Function;
+  local?: Local;
+  emojiPickerProps?: any;
+}

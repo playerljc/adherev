@@ -3,7 +3,7 @@ import { CreateElement } from 'vue';
 
 const selectorPrefix = 'adherev-ui-searchform-row';
 
-export default {
+const SearchFormRow: any = {
   name: 'adv-searchtable-searchform-row',
   props: {
     className: {
@@ -21,3 +21,5 @@ export default {
     );
   },
 };
+
+export default SearchFormRow;

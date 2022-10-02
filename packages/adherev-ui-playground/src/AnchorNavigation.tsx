@@ -25,7 +25,7 @@ export const AnchorNavigationPropTypes = {
 
 const selectPrefix = 'adherev-ui-playground-anchor-navigation';
 
-export default {
+const AnchorNavigation: any = {
   name: 'adv-playground-anchor-navigation',
   props: {
     ...AnchorNavigationPropTypes,
@@ -186,3 +186,5 @@ export default {
     );
   },
 };
+
+export default AnchorNavigation;

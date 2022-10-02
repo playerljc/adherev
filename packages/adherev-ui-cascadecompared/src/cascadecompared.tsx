@@ -50,7 +50,7 @@ function initTouch() {
 
 initTouch();
 
-export default {
+const CascadeCompared: any = {
   name: 'adv-cascadecompared',
   props: {
     className: {
@@ -312,7 +312,6 @@ export default {
       const { renderMasterGroupTitle, renderMasterGroupContent } = this;
 
       return (
-        // @ts-ignore
         <StickupLayout.Item
           key={index}
           class={classNames((className || '').split(/\s+/))}
@@ -320,7 +319,6 @@ export default {
         >
           {renderMasterGroupTitle(h, title)}
           {renderMasterGroupContent(h, config)}
-          {/*@ts-ignore*/}
         </StickupLayout.Item>
       );
     },
@@ -392,7 +390,6 @@ export default {
 
       return (
         <div class={getMasterClassName} style={masterStyle}>
-          {/*@ts-ignore*/}
           <StickupLayout
             ref="stickup"
             class={getMasterInnerClassName}
@@ -481,3 +478,5 @@ export default {
     );
   },
 };
+
+export default CascadeCompared;

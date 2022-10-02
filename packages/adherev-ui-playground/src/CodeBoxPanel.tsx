@@ -36,7 +36,7 @@ export const CodeBoxPanelPropTypes = {
   },
 };
 
-export default {
+const CodeBoxPanel: any = {
   name: 'adv-playground-code-box-panel',
   props: {
     ...CodeBoxPanelPropTypes,
@@ -252,3 +252,5 @@ export default {
     );
   },
 };
+
+export default CodeBoxPanel;

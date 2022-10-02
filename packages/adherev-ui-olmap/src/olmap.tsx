@@ -7,7 +7,7 @@ import Util from './util';
 
 const selectorPrefix = 'adherev-ui-olmap';
 
-export default {
+const OLMap: any = {
   name: 'adv-olmap',
   props: {
     type: {
@@ -201,3 +201,5 @@ export default {
     return <div class={selectorPrefix} ref="ref" />;
   },
 };
+
+export default OLMap;

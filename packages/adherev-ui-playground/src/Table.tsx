@@ -4,7 +4,7 @@ import ConditionalRender from '@baifendian/adherev-ui-conditionalrender';
 
 const selectorPrefix = 'adherev-ui-playground-table';
 
-export default {
+const Table: any = {
   name: 'adv-playground-table',
   props: {
     tableClassName: {
@@ -115,3 +115,5 @@ export default {
     );
   },
 };
+
+export default Table;

@@ -11,7 +11,7 @@ const {
   _util: { withInstall, withVue },
 } = BfdUtil;
 
-const Component = {
+const Component: any = {
   AnimationManager,
   GeoLayer,
   TitleLayer,
@@ -20,10 +20,8 @@ const Component = {
   Util,
 };
 
-// @ts-ignore
 Component.isUse = () => true;
 
-// @ts-ignore
 Component.use = (Vue) => {
   Vue.use(Component.OLMap);
 
