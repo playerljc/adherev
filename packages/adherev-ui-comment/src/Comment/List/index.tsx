@@ -1,142 +1,131 @@
-import { Skeleton } from 'antd';
-import classnames from 'classnames';
-import React, { FC, ReactElement, memo, useRef } from 'react';
-import ReactDOM from 'react-dom';
+import { Skeleton } from 'ant-design-vue';
+import { VNode } from 'vue';
 
-import BackTopAnimation from '@baifendian/adhere-ui-backtopanimation';
-import ConditionalRender from '@baifendian/adhere-ui-conditionalrender';
-import ScrollLoad from '@baifendian/adhere-ui-scrollload';
+import BackTopAnimation from '@baifendian/adherev-ui-backtopanimation';
+import ConditionalRender from '@baifendian/adherev-ui-conditionalrender';
+import ScrollLoad from '@baifendian/adherev-ui-scrollload';
+import Teleport from '@baifendian/adherev-ui-teleport';
 
-import { ListProps } from '../../types';
+import { selectorPrefix } from '../index';
 
-const selectorPrefix = 'adhere-ui-comment-inner-list';
-
-/**
- * CommentList
- * @constructor
- * @classdesc 评论列表
- */
-const CommentList: FC<ListProps> = (props) => {
-  const {
-    className = '',
-    style = {},
-    isLoading = false,
-    hasMore = false,
-    onLoadMore,
-    scrollLoadProps = {},
-    renderFirstLoading,
-    getScrollWrapContainer,
-    children,
-  } = props;
-
-  // 第一次
-  const isFirst = useRef(true);
-
-  // 第一次加载
-  const isFirstLoading = useRef(false);
-
-  const wrapRef = useRef<HTMLDivElement>(null);
-
-  /**
-   * renderDispatch
-   * @description 渲染的一个分配
-   * @return {*}
-   */
-  function renderDispatch() {
-    const loading = isLoading;
-
-    if (isFirst.current && !isFirstLoading.current && loading) {
-      isFirstLoading.current = true;
-    }
-
-    if (isFirst.current && isFirstLoading.current && !loading) {
-      isFirst.current = false;
-      isFirstLoading.current = false;
-    }
-
-    if (isFirst.current) {
-      return _renderFirstLoading();
-    }
-
-    return renderNormal();
-  }
-
-  /**
-   * _renderFirstLoading
-   * @description 渲染第一次的UI
-   * @return {JSX.Element}
-   */
-  function _renderFirstLoading() {
-    if (renderFirstLoading) {
-      return renderFirstLoading();
-    }
-
-    const result: ReactElement[] = [];
-
-    for (let i = 0; i < 7; i++) {
-      result.push(<Skeleton key={i + 1} loading avatar />);
-    }
-
-    return <div className={`${selectorPrefix}-first-loading-wrap`}>{result}</div>;
-  }
-
-  /**
-   * renderNormal
-   * @description 渲染真正的UI
-   * @return {JSX.Element}
-   */
-  function renderNormal() {
-    const defaultScrollLoadProps = {
-      getScrollContainer: () => getScrollWrapContainer?.()?.firstElementChild as HTMLElement,
-      onScrollBottom: onLoadMore!,
+const List: any = {
+  name: `${selectorPrefix}-list`,
+  props: {
+    isLoading: {
+      type: Boolean,
+      default: false,
+    },
+    hasMore: {
+      type: Boolean,
+      default: false,
+    },
+    scrollLoadProps: {
+      type: Object,
+      default: () => ({}),
+    },
+    getScrollWrapContainer: {
+      type: Function,
+      default: () => null,
+    },
+  },
+  slots: ['renderFirstLoading', 'default'],
+  emits: ['load-more'],
+  data() {
+    return {
+      $isFirst: true,
+      $isFirstLoading: true,
     };
+  },
+  methods: {
+    $renderDispatch(h) {
+      const loading = this.isLoading;
 
-    return (
-      <ConditionalRender conditional={hasMore}>
-        {() => (
-          <div className={`${selectorPrefix}-normal-wrap`}>
+      const {
+        $data: { $isFirst, $isFirstLoading },
+      } = this;
+
+      if ($isFirst && !$isFirstLoading && loading) {
+        this.$data.$isFirstLoading = true;
+      }
+
+      if ($isFirst && $isFirstLoading && !loading) {
+        this.$isFirst = false;
+        this.$isFirstLoading = false;
+      }
+
+      if ($isFirst) {
+        return this.$renderFirstLoading(h);
+      }
+
+      return this.$renderNormal(h);
+    },
+    $renderFirstLoading(h) {
+      if (this.$slots.renderFirstLoading) {
+        return this.$slots.renderFirstLoading;
+      }
+
+      const result: VNode[] = [];
+
+      for (let i = 0; i < 7; i++) {
+        // @ts-ignore
+        result.push(<Skeleton key={i + 1} loading avatar />);
+      }
+
+      return <div class={`${selectorPrefix}-first-loading-wrap`}>{result}</div>;
+    },
+    $renderNormal(h) {
+      const defaultScrollLoadProps = {
+        getScrollContainer: () => this.getScrollWrapContainer?.()?.firstElementChild,
+        scrollBottom: () => this.$emit('load-more'),
+      };
+
+      return (
+        <ConditionalRender conditional={this.hasMore}>
+          <div class={`${selectorPrefix}-normal-wrap`}>
             <ScrollLoad
-              {...defaultScrollLoadProps}
-              {...(scrollLoadProps || {})}
-              distance={scrollLoadProps?.distance || 50}
+              {...{
+                props: {
+                  ...defaultScrollLoadProps,
+                  ...(this.scrollLoadProps || {}),
+                  distance: this.scrollLoadProps?.distance || 50,
+                },
+              }}
             >
-              {children}
+              {this.$slots.default}
             </ScrollLoad>
 
             <ConditionalRender
-              conditional={!!(getScrollWrapContainer ? getScrollWrapContainer() : null)}
-              noMatch={() => (
-                <BackTopAnimation
-                  getContainer={() =>
-                    wrapRef?.current?.querySelector?.('.adhere-ui-scrollload') as HTMLElement
-                  }
-                  onTrigger={() => Promise.resolve()}
-                />
-              )}
+              conditional={!!(this.getScrollWrapContainer ? this.getScrollWrapContainer() : null)}
             >
-              {() =>
-                ReactDOM.createPortal(
-                  <BackTopAnimation
-                    getContainer={() =>
-                      getScrollWrapContainer?.()?.firstElementChild as HTMLElement
-                    }
-                    onTrigger={() => Promise.resolve()}
-                  />,
-                  getScrollWrapContainer?.() as HTMLElement,
-                )
-              }
+              <Teleport to={this.getScrollWrapContainer?.()}>
+                <BackTopAnimation
+                  target={(callback) =>
+                    callback(this.getScrollWrapContainer?.()?.firstElementChild)
+                  }
+                  trigger={(next) => next()}
+                />
+              </Teleport>
+
+              <BackTopAnimation
+                slot="noMatch"
+                target={(callback) =>
+                  callback(this.$refs.wrapRef?.querySelector?.('.adherev-ui-scrollload'))
+                }
+                trigger={(next) => next()}
+              />
             </ConditionalRender>
           </div>
-        )}
-      </ConditionalRender>
+        </ConditionalRender>
+      );
+    },
+  },
+  render(h) {
+    return (
+      <div class={selectorPrefix} ref="wrapRef">
+        {this.$renderDispatch(h)}
+      </div>
     );
-  }
-
-  return (
-    <div className={classnames(selectorPrefix, className || '')} style={style || {}} ref={wrapRef}>
-      {renderDispatch()}
-    </div>
-  );
+  },
 };
 
-export default memo(CommentList);
+export default List;

@@ -5,6 +5,7 @@
     "jsx": "preserve",
     "allowJs": true,
     "types": [
+      "vue",
       "eslint",
       "estree",
       "geojson",

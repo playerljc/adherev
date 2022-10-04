@@ -10,13 +10,10 @@ const {
 withInstall(Revolving);
 withInstall(RevolvingItem);
 
-// @ts-ignore
 Revolving.Item = RevolvingItem;
 
-// @ts-ignore
 Revolving.isUse = () => true;
 
-// @ts-ignore
 Revolving.use = (Vue) => {
   Vue.use(Revolving);
   Vue.use(RevolvingItem);

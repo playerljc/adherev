@@ -1,7 +1,5 @@
-import React, { FC, memo } from 'react';
-
 import Node from '../../Components/Node';
-import { NodeProps } from '../../types';
+import { selectorPrefix } from '../index';
 
 /**
  * CommentInfo
@@ -9,10 +7,39 @@ import { NodeProps } from '../../types';
  * @constructor
  * @classdesc 评论节点
  */
-const CommentInfo: FC<NodeProps> = (props) => (
-  <Node {...props} isReply={false}>
-    {(record) => props?.children?.(record)}
-  </Node>
-);
+const CommentInfo: any = {
+  name: `${selectorPrefix}-comment-info`,
+  props: {
+    ...Node.props,
+  },
+  computed: {
+    props() {
+      const props = {};
 
-export default memo(CommentInfo);
+      for (const p in this.$props) {
+        props[p] = this[p];
+      }
+
+      return props;
+    },
+  },
+  render(h) {
+    const scopedSlots = {
+      default: (record) => this.$scopedSlots.default(record),
+    };
+
+    return (
+      <Node
+        {...{
+          props: {
+            ...this.props,
+            isReply: false,
+          },
+        }}
+        scopedSlots={scopedSlots}
+      />
+    );
+  },
+};
+
+export default CommentInfo;

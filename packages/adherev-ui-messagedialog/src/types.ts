@@ -48,3 +48,23 @@ export interface IConfig {
   messages: object;
   getOptions(): any;
 }
+
+export interface IMessageDialogFactory {
+  setConfig: (gc: IConfig) => void;
+  Confirm: (params: IConfirmArgv) => void;
+  Prompt: (params: IPromptConfig) => void;
+  InputPrompt: (params: IPromptConfig) => void;
+  TextAreaPrompt: (params: IPromptConfig) => void;
+  PassWordPrompt: (params: IPromptConfig) => void;
+  NumberPrompt: (params: IPromptConfig) => void;
+  Alert: (params: IAlertArgv) => void;
+  Modal: (params: {
+    config: any;
+    children: Function;
+    defaultCloseBtn: boolean;
+    local: string;
+  }) => void;
+  close: (params: { _vm: any; el: HTMLElement }) => void;
+  isUse?: () => boolean;
+  use?: (Vue) => void;
+}

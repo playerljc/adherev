@@ -42,7 +42,7 @@
   resolved "https://registry.yarnpkg.com/@ant-design/icons/-/icons-2.1.1.tgz#7b9c08dffd4f5d41db667d9dbe5e0107d0bd9a4a"
   integrity sha512-jCH+k2Vjlno4YWl6g535nHR09PwCEmTBKAG6VqF+rhkrSPRLfgpU2maagwbZPLjaHuU5Jd1DFQ2KJpQuI6uG8w==
 
-"@ant-design/icons@^4.4.0":
+"@ant-design/icons@^4.4.0", "@ant-design/icons@^4.7.0":
   version "4.7.0"
   resolved "https://registry.yarnpkg.com/@ant-design/icons/-/icons-4.7.0.tgz#8c3cbe0a556ba92af5dc7d1e70c0b25b5179af0f"
   integrity sha512-aoB4Z7JA431rt6d4u+8xcNPPCrdufSRMUOpxa1ab6mz1JCQZOEVolj2WVs/tDFmN62zzK30mNelEsprLYsSF3g==
@@ -1382,6 +1382,14 @@
   resolved "https://registry.yarnpkg.com/@baifendian/adhere-util-emitter/-/adhere-util-emitter-1.0.20.tgz#f7c14fb088223c9cec0d2c70feb9e3e031ce677a"
   integrity sha512-7GSoMVckHYbNewIzbF1wuRi5YG4xMHkSv4L1UjDnxs4r1WueZR9LoFchVC7KEoWWyQUtYwcYfARtWz3Sj9ui3g==
 
+"@baifendian/adhere-util-iframeio@^1.0.21":
+  version "1.0.21"
+  resolved "https://registry.yarnpkg.com/@baifendian/adhere-util-iframeio/-/adhere-util-iframeio-1.0.21.tgz#6554802c4073925a7e765ecc6dc08a997a6f50f8"
+  integrity sha512-VzbQwqu5SwO56MIYtqjaAzy9aY+JjMxSKf7z4CsvUoC2BDRoOQALgqHbmhSOC96VLR325eVNgFWP6bmXqCMOQA==
+  dependencies:
+    "@baifendian/adhere-util" "^1.0.21"
+    uuid "^8.3.2"
+
 "@baifendian/adhere-util-intl@^1.0.21":
   version "1.0.21"
   resolved "https://registry.yarnpkg.com/@baifendian/adhere-util-intl/-/adhere-util-intl-1.0.21.tgz#c5eefcc2d8e62ef93ed4dd969858a14c107b1f7e"
@@ -1799,6 +1807,11 @@
   dependencies:
     "@jridgewell/resolve-uri" "^3.0.3"
     "@jridgewell/sourcemap-codec" "^1.4.10"
+
+"@juggle/resize-observer@^3.3.1":
+  version "3.4.0"
+  resolved "https://registry.yarnpkg.com/@juggle/resize-observer/-/resize-observer-3.4.0.tgz#08d6c5e20cf7e4cc02fd181c4b0c225cd31dbb60"
+  integrity sha512-dfLbk+PwWvFzSxwk3n5ySL0hfBog779o8h68wK/7/APo/7cgyWp5jcXockbxdk5kFRkbeXWm4Fbi9FrdN381sA==
 
 "@lerna/add@3.21.0":
   version "3.21.0"

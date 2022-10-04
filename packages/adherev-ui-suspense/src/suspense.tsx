@@ -3,13 +3,7 @@ import Vue, { VNode } from 'vue';
 
 const selectorPrefix = 'adherev-ui-suspense';
 
-/**
- * Suspense
- * @overview showLoading: boolean
- * @overview renderInner: VNode | null
- * @overview fetchData(): void
- */
-export default Vue.extend({
+const Suspense: any = Vue.extend({
   props: {
     reset: {
       type: Boolean,
@@ -121,3 +115,11 @@ export default Vue.extend({
     return this.renderSuspense(h);
   },
 });
+
+/**
+ * Suspense
+ * @overview showLoading: boolean
+ * @overview renderInner: VNode | null
+ * @overview fetchData(): void
+ */
+export default Suspense;

@@ -27,6 +27,12 @@ function initBasicDict() {
 // 初始化一些基本的字典配置
 initBasicDict();
 
-export default {
+const Resource: {
+  isUse?: () => boolean;
+  use?: (Vue) => void;
+  Dict: any;
+} = {
   Dict,
 };
+
+export default Resource;

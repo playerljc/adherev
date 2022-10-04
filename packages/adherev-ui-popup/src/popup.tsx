@@ -1,21 +1,21 @@
 import { v1 } from 'uuid';
 import Vue from 'vue';
 
-import { IConfig } from './types';
+import { IConfig, IPopupFactory } from './types';
 
 const selectorPrefix = 'adherev-ui-popup';
 
 let prePopup: Popup | null = null;
 let popups: Popup[] = [];
 let maskEl;
-let el = null;
+let el: HTMLElement | null = null;
 
 /**
  * Popup
  * @class Popup
  * @classdesc Popup
  */
-class Popup {
+export class Popup {
   private readonly id: string = '';
   private readonly config: IConfig | null = null;
 
@@ -242,7 +242,7 @@ class Popup {
 /**
  * PopupFactory
  */
-const PopupFactory = {
+const PopupFactory: IPopupFactory = {
   /**
    * create
    * @param config
@@ -353,6 +353,7 @@ const PopupFactory = {
   getEl() {
     return el || document.body;
   },
+
   /**
    * setEl
    * @param tel

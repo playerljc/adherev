@@ -1,0 +1,186 @@
+@import '~@baifendian/adherev-ui-css/lib/vars';
+@import '~@baifendian/adherev-ui-css/lib/mixin';
+
+@adherev-ui-tablegridlayout-table-row-label-color: #888;
+@adherev-ui-tablegridlayout-table-row-label-require-color: red;
+@adherev-ui-tablegridlayout-table-row-value-color: #222;
+@adherev-ui-tablegridlayout-table-row-odd-color: #fff;
+@adherev-ui-tablegridlayout-table-row-even-color: #fafafa;
+
+.adherev-ui-tablegridlayout {
+  width: 100%;
+}
+
+.adherev-ui-tablegridlayout-inner-wrap {
+  &.adherev-ui-tablegridlayout-border {
+    border-top: 1px solid @adhereborder-color;
+    border-right: 1px solid @adhere-border-color;
+    border-left: 1px solid @adhere-border-color;
+
+    .adherev-ui-tablegridlayout-table {
+      tr {
+        > td {
+          border-bottom: 1px solid @adhere-border-color;
+
+          &:not(:last-child) {
+            border-right: 1px solid @adhere-border-color;
+          }
+
+          &.adherev-ui-tablegridlayout-table-noborder {
+            border: 0;
+          }
+        }
+      }
+    }
+  }
+
+  .adherev-ui-tablegridlayout-table {
+    min-width: 100%;
+    table-layout: fixed;
+    border-collapse: collapse;
+
+    .adherev-ui-tablegridlayout-table-row {
+      > .adherev-ui-tablegridlayout-table-row-label {
+        padding-right: 10px;
+        color: @adherev-ui-tablegridlayout-table-row-label-color;
+        white-space: nowrap;
+        text-align: right;
+        word-break: keep-all;
+
+        &.require {
+          &::before {
+            margin-right: 5px;
+            color: @adherev-ui-tablegridlayout-table-row-label-require-color;
+            vertical-align: middle;
+            content: '*';
+          }
+        }
+      }
+
+      > .adherev-ui-tablegridlayout-table-row-value {
+        color: @adherev-ui-tablegridlayout-table-row-value-color;
+        white-space: normal;
+        .adherev-word-break();
+
+        .ant-checkbox-checked {
+          .ant-checkbox-inner {
+            &::after {
+              display: block !important;
+            }
+          }
+        }
+
+        .ant-form-item {
+          &.ant-form-item-has-error {
+            > .ant-form-item-control {
+              position: relative;
+              > .ant-form-item-explain {
+                &.ant-form-item-explain-connected {
+                  position: absolute;
+                  bottom: -24px;
+                  left: 0;
+                }
+              }
+            }
+          }
+
+          margin-bottom: 0;
+        }
+
+        .ant-select,
+        .ant-picker,
+        .ant-input-number {
+          width: 100%;
+        }
+      }
+    }
+
+    &.parity {
+      .adherev-ui-tablegridlayout-table-row {
+        &.odd {
+          background-color: @adherev-ui-tablegridlayout-table-row-odd-color;
+        }
+
+        &.even {
+          background-color: @adherev-ui-tablegridlayout-table-row-even-color;
+        }
+      }
+    }
+
+    &.densitydefault {
+      .adherev-ui-tablegridlayout-table-row {
+        > .adherev-ui-tablegridlayout-table-row-label {
+          padding: 20px;
+        }
+
+        > .adherev-ui-tablegridlayout-table-row-value {
+          padding: 20px;
+        }
+      }
+    }
+
+    &.densitymiddle {
+      .adherev-ui-tablegridlayout-table-row {
+        > .adherev-ui-tablegridlayout-table-row-label {
+          padding: 10px;
+        }
+
+        > .adherev-ui-tablegridlayout-table-row-value {
+          padding: 10px;
+        }
+      }
+    }
+
+    &.densitysmall {
+      .adherev-ui-tablegridlayout-table-row {
+        > .adherev-ui-tablegridlayout-table-row-label {
+          padding: 0;
+        }
+
+        > .adherev-ui-tablegridlayout-table-row-value {
+          padding: 0;
+        }
+      }
+    }
+  }
+}
+
+.adm-form {
+  > .adm-list {
+    > .adm-list-body {
+      > .adm-list-body-inner {
+        .adherev-ui-tablegridlayout-table {
+          .adherev-ui-tablegridlayout-table-row {
+            > .adherev-ui-tablegridlayout-table-row-label {
+              text-align: left;
+            }
+
+            > .adherev-ui-tablegridlayout-table-row-value {
+              padding-top: 0;
+
+              .adm-list-item.adm-form-item {
+                padding-left: 0;
+
+                > .adm-list-item-content {
+                  border-top: 0;
+
+                  > .adm-list-item-content-main {
+                    padding-top: 0;
+                  }
+                }
+              }
+            }
+
+            &:not(:last-child) {
+              > .adherev-ui-tablegridlayout-table-row-value {
+                .adm-list-item.adm-form-item {
+                  border-bottom: 1px solid @adhere-border-color;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

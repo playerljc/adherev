@@ -1,18 +1,18 @@
 import Util from '@baifendian/adherev-util';
 
-import BackTopAnimation from './backtopanimation';
+import Comment from './Comment/index';
 
 const {
   _util: { withInstall, withVue },
 } = Util;
 
-const Component = withInstall(BackTopAnimation);
+const Component = withInstall(Comment);
 
 Component.isUse = () => true;
 
 Component.use = (Vue) => {
   Vue.use(Component);
-  withVue(Vue, 'BackTopAnimation', Component);
+  withVue(Vue, 'Comment', Component);
 };
 
 export default Component;

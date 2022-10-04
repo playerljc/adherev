@@ -10,16 +10,17 @@ withInstall(Push);
 withInstall(Overlay);
 withInstall(Revolving);
 
-export default {
+const SlideLayout = {
   isUse: () => true,
   use: (Vue) => {
     Vue.use(Push);
     Vue.use(Overlay);
     Vue.use(Revolving);
-    withVue(Vue, 'SlideLayout', {
-      Push,
-      Overlay,
-      Revolving,
-    });
+    withVue(Vue, 'SlideLayout', SlideLayout);
   },
+  Push,
+  Overlay,
+  Revolving,
 };
+
+export default SlideLayout;

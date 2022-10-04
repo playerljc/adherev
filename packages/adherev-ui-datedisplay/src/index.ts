@@ -10,12 +10,14 @@ DateDisplay.isUse = () => true;
 
 DateDisplay.use = (Vue) => {
   Object.keys(DateDisplay).forEach((key) => {
+    if (key === 'dayjs') return;
+
     const Com = withInstall(DateDisplay[key]);
 
     Vue.use(Com);
-
-    withVue(Vue, Com.name, Com);
   });
+
+  withVue(Vue, 'DateDisplay', DateDisplay);
 };
 
 export default DateDisplay;

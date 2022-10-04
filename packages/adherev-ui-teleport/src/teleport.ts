@@ -23,10 +23,12 @@ const Teleport: any = {
     // 包裹元素的类名
     wrapClassName: {
       type: String,
+      default: '',
     },
     // 包裹元素的样式
     wrapStyle: {
       type: String,
+      default: '',
     },
     // 渲染频率
     rate: {

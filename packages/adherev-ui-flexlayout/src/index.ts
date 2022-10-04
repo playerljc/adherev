@@ -1,3 +1,5 @@
+import { Button } from 'ant-design-vue';
+
 import Util from '@baifendian/adherev-util';
 
 import Auto from './auto';
@@ -14,6 +16,7 @@ const {
 } = Util;
 
 const Component = withInstall(FlexLayout);
+
 Component.Fixed = withInstall(Fixed);
 Component.Auto = withInstall(Auto);
 Component.HorizontalFlexLayout = withInstall(HorizontalFlexLayout);
@@ -26,6 +29,7 @@ Component.selectorPrefix = selectorPrefix;
 Component.isUse = () => true;
 
 Component.use = (Vue) => {
+  Vue.use(Button);
   Vue.use(Component);
   Vue.use(Component.Fixed);
   Vue.use(Component.Auto);
@@ -35,14 +39,14 @@ Component.use = (Vue) => {
   Vue.use(Component.ScrollLayout);
   Vue.use(Component.ToolBarLayout);
 
-  withVue(Vue, Component.name, Component);
-  withVue(Vue, Component.Fixed.name, Component.Fixed);
-  withVue(Vue, Component.Auto.name, Component.Auto);
-  withVue(Vue, Component.HorizontalFlexLayout.name, Component.HorizontalFlexLayout);
-  withVue(Vue, Component.VerticalFlexLayout.name, Component.VerticalFlexLayout);
-  withVue(Vue, Component.BackLayout.name, Component.BackLayout);
-  withVue(Vue, Component.ScrollLayout.name, Component.ScrollLayout);
-  withVue(Vue, Component.ToolBarLayout.name, Component.ToolBarLayout);
+  withVue(Vue, 'FlexLayout', Component);
+  withVue(Vue, 'Fixed', Component.Fixed);
+  withVue(Vue, 'Auto', Component.Auto);
+  withVue(Vue, 'HorizontalFlexLayout', Component.HorizontalFlexLayout);
+  withVue(Vue, 'VerticalFlexLayout', Component.VerticalFlexLayout);
+  withVue(Vue, 'BackLayout', Component.BackLayout);
+  withVue(Vue, 'ScrollLayout', Component.ScrollLayout);
+  withVue(Vue, 'ToolBarLayout', Component.ToolBarLayout);
 };
 
 export default Component;

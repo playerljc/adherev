@@ -15,11 +15,8 @@ Component.use = (Vue) => {
   withVue(Vue, 'ScrollLoad', Component);
 };
 
-// @ts-ignore
 ScrollLoad.ERROR = ERROR;
-// @ts-ignore
 ScrollLoad.EMPTY = EMPTY;
-// @ts-ignore
 ScrollLoad.NORMAL = NORMAL;
 
 export default Component;

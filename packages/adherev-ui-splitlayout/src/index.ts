@@ -1,4 +1,3 @@
-// @ts-ignore
 import FlexLayout from '@baifendian/adherev-ui-flexlayout';
 import BfdUtil from '@baifendian/adherev-util';
 
@@ -9,7 +8,9 @@ const {
 } = BfdUtil;
 
 const Component = withInstall(SplitLayout);
+
 Component.isUse = () => true;
+
 Component.use = (Vue) => {
   FlexLayout.use(Vue);
   Vue.use(Component);

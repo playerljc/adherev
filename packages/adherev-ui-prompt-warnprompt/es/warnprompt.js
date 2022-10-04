@@ -1,2 +1,2 @@
-import{message}from"ant-design-vue";export default function(e){return message.warn(e)}
+import{message}from"ant-design-vue";var WarnPrompt=function(r){return message.warn(r)};export default WarnPrompt;
 //# sourceMappingURL=warnprompt.js.map

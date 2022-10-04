@@ -8,10 +8,8 @@ const {
   _util: { withVue },
 } = BfdUtil;
 
-// @ts-ignore
 Suspense.isUse = () => true;
 
-// @ts-ignore
 Suspense.use = (Vue) => {
   Vue.use(Spin);
   Vue.use(Skeleton);

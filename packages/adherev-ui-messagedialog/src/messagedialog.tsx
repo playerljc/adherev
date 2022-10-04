@@ -6,7 +6,7 @@ import Intl from '@baifendian/adherev-util-intl';
 import Resource from '@baifendian/adherev-util-resource';
 
 import ModalDialog from './modal';
-import { IAlertArgv, IConfig, IConfirmArgv, IPromptConfig } from './types';
+import { IAlertArgv, IConfig, IConfirmArgv, IMessageDialogFactory, IPromptConfig } from './types';
 
 export const selectorPrefix = 'adherev-ui-messagedialog';
 
@@ -51,7 +51,7 @@ function renderByIcon({ h, icon, text }) {
   );
 }
 
-const MessageDialogFactory = {
+const MessageDialogFactory: IMessageDialogFactory = {
   setConfig: (gc: IConfig) => {
     globalConfig = gc;
   },

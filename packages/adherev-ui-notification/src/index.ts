@@ -7,6 +7,7 @@ const {
 } = Util;
 
 Notification.isUse = () => true;
+
 Notification.use = (Vue) => {
   withVue(Vue, 'Notification', Notification);
 };

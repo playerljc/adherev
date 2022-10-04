@@ -38,7 +38,7 @@ export interface CommentProps {
   replyKeyProp?: string;
   listProps?: any;
   isMoreProp?: string;
-  flexLayoutProps?: FlexLayoutProps;
+  flexLayoutProps?: object;
   local?: Local;
   emojiPickerProps?: any;
 }
@@ -50,14 +50,14 @@ export interface ReplyProps {
 
 export interface ListStandardProps {
   getScrollWrapContainer?: () => HTMLElement;
-  flexLayoutProps?: FlexLayoutProps;
+  flexLayoutProps?: object;
   listProps?: ListProps;
   limit?: number;
-  renderList?: (params?: any) => ReactNode;
-  renderEmpty?: () => ReactElement | null;
-  renderFirstLoading?: () => ReactNode;
+  renderList?: (params?: any) => VNode;
+  renderEmpty?: () => VNode | null;
+  renderFirstLoading?: () => VNode;
   fetchData?: (params?: any) => Promise<any>;
-  renderLoading?: () => ReactNode | null;
+  renderLoading?: () => VNode | null;
   dataKeys?: {
     current: string;
     totalPage: string;
@@ -69,12 +69,12 @@ export interface ListStandardProps {
 export interface ListProps {
   getScrollWrapContainer?: () => HTMLElement;
   className?: string;
-  style?: CSSProperties;
+  style?: string;
   isLoading?: boolean;
   hasMore?: boolean;
   onLoadMore?: (handle?: (status?: string) => void) => void;
-  renderFirstLoading?: () => ReactNode | null;
-  scrollLoadProps?: ScrollLoadProps;
+  renderFirstLoading?: () => VNode | null;
+  scrollLoadProps?: object;
   children?: any;
 }
 
@@ -89,24 +89,24 @@ export interface NodeProps {
     list: string;
     totalCount: string;
   };
-  renderLoading?: () => ReactNode | null;
+  renderLoading?: () => VNode | null;
   limit?: number;
   fetchData?: (params?: any) => Promise<any> | undefined;
   fetchReply?: (params?: any) => Promise<any>;
   keyProp?: string;
   isMoreProp?: string;
-  renderActions?: (params: any, callback: (data?: any) => void) => ReactNode[] | null;
-  renderAuthor?: (params?: any) => ReactNode | null;
-  renderAvatar?: (params?: any) => ReactNode | null;
-  renderContent?: (params?: any) => ReactNode | null;
-  renderDateTime?: (params?: any) => ReactNode | null;
+  renderActions?: (params: any, callback: (data?: any) => void) => VNode[] | null;
+  renderAuthor?: (params?: any) => VNode | null;
+  renderAvatar?: (params?: any) => VNode | null;
+  renderContent?: (params?: any) => VNode | null;
+  renderDateTime?: (params?: any) => VNode | null;
   children?: any;
   showReplyText?: string | Function;
   hideReplyText?: string | Function;
   loadMoreReplyText?: string | Function;
-  showReplyTextIcon?: ReactNode | Function;
-  hideReplyTextIcon?: ReactNode | Function;
-  loadMoreCollapseTextIcon?: ReactNode | Function;
+  showReplyTextIcon?: VNode | Function;
+  hideReplyTextIcon?: VNode | Function;
+  loadMoreCollapseTextIcon?: VNode | Function;
   local?: Local;
   emojiPickerProps?: any;
 }

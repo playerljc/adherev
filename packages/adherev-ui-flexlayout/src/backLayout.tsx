@@ -89,7 +89,7 @@ const BackLayout: any = {
 
       const props = {};
 
-      for (const p in this.$options) {
+      for (const p in this.$props) {
         if (p in others) {
           props[p] = others[p];
         }

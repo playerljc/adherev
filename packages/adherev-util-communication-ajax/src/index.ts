@@ -1,4 +1,3 @@
-// @ts-ignore
 import BfdUtil from '@baifendian/adherev-util';
 
 import Ajax from './ajax';
@@ -8,7 +7,7 @@ const {
 } = BfdUtil;
 
 Ajax.isUse = () => true;
-// @ts-ignore
+
 Ajax.use = (Vue) => {
   withVue(Vue, 'Ajax', Ajax);
 };

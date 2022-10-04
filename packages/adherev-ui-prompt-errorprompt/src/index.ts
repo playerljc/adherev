@@ -6,9 +6,7 @@ const {
   _util: { withVue },
 } = BfdUtil;
 
-// @ts-ignore
 ErrorPrompt.isUse = () => true;
-// @ts-ignore
 ErrorPrompt.use = (Vue) => {
   withVue(Vue, 'ErrorPrompt', ErrorPrompt);
 };

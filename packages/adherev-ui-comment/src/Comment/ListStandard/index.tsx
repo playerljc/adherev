@@ -1,205 +1,191 @@
-import { Empty } from 'antd';
-import React, {
-  FC,
-  memo,
-  useCallback,
-  useEffect,
-  useLayoutEffect,
-  useMemo,
-  useRef,
-  useState,
-} from 'react';
+import { Empty } from 'ant-design-vue';
+import { Fragment } from 'vue-fragment';
 
-import ConditionalRender from '@baifendian/adhere-ui-conditionalrender';
-import FlexLayout from '@baifendian/adhere-ui-flexlayout';
-import ScrollLoad from '@baifendian/adhere-ui-scrollload';
+import ConditionalRender from '@baifendian/adherev-ui-conditionalrender';
+import FlexLayout from '@baifendian/adherev-ui-flexlayout';
+import ScrollLoad from '@baifendian/adherev-ui-scrollload';
 
-import { ListStandardProps } from '../../types';
 import CommentList from '../List';
+import { selectorPrefix } from '../index';
 
 const { VerticalFlexLayout } = FlexLayout;
 
-const selectorPrefix = 'adhere-ui-comment-list-standard';
-
-/**
- * ListStandard
- * @param props
- * @return {JSX.Element}
- * @constructor
- * @classdesc 上拉下拽
- */
-const ListStandard: FC<ListStandardProps> = (props) => {
-  const {
-    limit = 10,
-    dataKeys = {
-      current: 'current',
-      totalPage: 'totalPage',
-      list: 'list',
-      totalCount: 'totalCount',
+const ListStandard: any = {
+  name: `${selectorPrefix}-list-standard`,
+  slots: ['renderEmpty', 'renderFirstLoading'],
+  scopedSlots: ['renderList'],
+  props: {
+    getScrollWrapContainer: {
+      type: Function,
+      default: () => null,
     },
-    listProps = {},
-    flexLayoutProps = {},
-    renderFirstLoading,
-    renderEmpty = () => <Empty />,
-    renderList,
-    getScrollWrapContainer,
-  } = props;
-
-  const paging = useRef({
-    page: 1,
-    limit,
-  });
-  const callbackHandler = useRef<(params?: any) => void>();
-  const status = useRef(ScrollLoad.NORMAL);
-  const mainRef = useRef<HTMLDivElement>(null);
-
-  const [data, setData] = useState({
-    [dataKeys.current]: 1,
-    [dataKeys.totalPage]: 0,
-    [dataKeys.list]: [],
-    [dataKeys.totalCount]: 0,
-  });
-  const [loading, setLoading] = useState(true);
-
-  /**
-   * loadData
-   * @description 重新加载数据
-   * @return {*}
-   */
-  function loadData() {
-    setLoading(true);
-
-    paging.current = {
-      page: 1,
-      limit,
+    flexLayoutProps: {
+      type: Object,
+      default: () => ({}),
+    },
+    listProps: {
+      type: Object,
+      default: () => ({}),
+    },
+    limit: {
+      type: Number,
+      default: 10,
+    },
+    fetchData: {
+      type: Function,
+      default: () => null,
+    },
+    dataKeys: {
+      type: Object,
+      default: () => ({
+        current: 'current',
+        totalPage: 'totalPage',
+        list: 'list',
+        totalCount: 'totalCount',
+      }),
+    },
+  },
+  data() {
+    return {
+      loading: true,
+      data: {
+        [this.dataKeys.current]: 1,
+        [this.dataKeys.totalPage]: 0,
+        [this.dataKeys.list]: [],
+        [this.dataKeys.totalCount]: 0,
+      },
+      $paging: {
+        page: 1,
+        limit: this.limit,
+      },
+      $status: ScrollLoad.NORMAL,
+      $callbackHandler: null,
     };
+  },
+  computed: {
+    isEmpty() {
+      return (
+        this.$data.$paging.page === 1 && (this.data[this.dataKeys.list] as Array<any>).length === 0
+      );
+    },
+  },
+  methods: {
+    $loadMore(callback) {
+      if (this.$data.$status === ScrollLoad.EMPTY) {
+        this.$data.$status = ScrollLoad.EMPTY;
+        callback(ScrollLoad.EMPTY);
+        return;
+      }
 
-    return fetchData((res) => setData(res));
-  }
+      this.$data.$callbackHandler = callback;
 
-  /**
-   * appendData
-   * @description 加载更多
-   * @return {*}
-   */
-  function appendData() {
-    setLoading(true);
+      setTimeout(() => this.$appendData(), 100);
+    },
+    /**
+     * loadData
+     * @description 重新加载数据
+     * @return {*}
+     */
+    $loadData() {
+      this.loading = true;
 
-    paging.current.page = paging.current.page + 1;
+      this.$data.$paging = {
+        page: 1,
+        limit: this.limit,
+      };
 
-    const { list } = dataKeys!;
+      return this.$fetchData((res) => {
+        this.data = res;
+      });
+    },
+    /**
+     * appendData
+     * @description 加载更多
+     * @return {*}
+     */
+    $appendData() {
+      this.loading = true;
 
-    return fetchData((res) => {
-      setData((_data) => {
-        return {
+      this.$data.$paging.page = this.$data.$paging.page + 1;
+
+      const { list } = this.dataKeys;
+
+      return this.$fetchData((res) => {
+        this.data = {
           ...res,
-          [dataKeys.list]: [...(_data[list] as any), ...res[list]],
+          [this.dataKeys.list]: [...(this.data[list] as any), ...res[list]],
         };
       });
-    });
-  }
+    },
+    /**
+     * fetchData
+     * @description 调用接口
+     */
+    $fetchData(callback) {
+      return this?.fetchData?.(this.$data.$paging)
+        .then((data) => {
+          callback(data);
 
-  /**
-   * fetchData
-   * @description 调用接口
-   */
-  function fetchData(callback) {
-    return props
-      ?.fetchData?.(paging?.current)
-      .then((data) => {
-        callback(data);
+          this.loading = false;
 
-        setLoading(false);
+          return data;
+        })
+        .catch((error) => {
+          this.loading = false;
 
-        return data;
-      })
-      .catch((error) => {
-        setLoading(false);
+          if (this.$data.$callbackHandler) {
+            this.$data.$status = ScrollLoad.ERROR;
+            this.$data.$callbackHandler?.(this.$data.$status);
+          }
 
-        if (callbackHandler.current) {
-          status.current = ScrollLoad.ERROR;
-          callbackHandler?.current?.(status.current);
+          return error;
+        });
+    },
+  },
+  mounted() {
+    this.$loadData();
+  },
+  watch: {
+    data(data) {
+      this.$nextTick(function () {
+        if (this.$data.$callbackHandler) {
+          this.$data.$status =
+            this.$data.$paging.page < data[this.dataKeys.totalPage]
+              ? ScrollLoad.NORMAL
+              : ScrollLoad.EMPTY;
+          this.$data.$callbackHandler(this.$data.$status);
         }
-
-        return error;
       });
-  }
+    },
+  },
+  render() {
+    // @ts-ignore
+    return (
+      <VerticalFlexLayout class={`${selectorPrefix}`} {...{ props: this.flexLayoutProps || {} }}>
+        <div slot="renderMain" class={`${selectorPrefix}-auto`} ref="mainRef">
+          <CommentList
+            getScrollWrapContainer={this.getScrollWrapContainer}
+            isLoading={this.loading}
+            hasMore={
+              (this.data[this.dataKeys!.list] as Array<any>).length <=
+              this.data[this.dataKeys!.totalCount]
+            }
+            loadMore={() => this.$loadMore}
+            {...{ props: this.listProps || {} }}
+          >
+            {/*@ts-ignore*/}
+            <Fragment slot="renderFirstLoading">{this.$slots.renderFirstLoading}</Fragment>
 
-  /**
-   * onLoadMore
-   * @param callback
-   */
-  const onLoadMore = useCallback((callback) => {
-    if (status.current === ScrollLoad.EMPTY) {
-      status.current = ScrollLoad.EMPTY;
-      callback(ScrollLoad.EMPTY);
-      return;
-    }
-
-    callbackHandler.current = callback;
-
-    setTimeout(() => appendData(), 100);
-  }, []);
-
-  /**
-   * isEmpty
-   * @return {boolean}
-   */
-  const isEmpty = useCallback(
-    () => paging.current.page === 1 && (data[dataKeys!.list] as Array<any>).length === 0,
-    [data, dataKeys, paging.current.page],
-  );
-
-  const _CommentList = useMemo(
-    () => (
-      <CommentList
-        getScrollWrapContainer={getScrollWrapContainer}
-        isLoading={loading}
-        hasMore={(data[dataKeys!.list] as Array<any>).length <= data[dataKeys!.totalCount]}
-        onLoadMore={onLoadMore}
-        renderFirstLoading={renderFirstLoading}
-        {...(listProps || {})}
-      >
-        <ConditionalRender conditional={!isEmpty()} noMatch={() => renderEmpty()}>
-          {() => renderList?.(data)}
-        </ConditionalRender>
-      </CommentList>
-    ),
-    [
-      getScrollWrapContainer,
-      loading,
-      data,
-      dataKeys.totalCount,
-      dataKeys.list,
-      renderFirstLoading,
-      listProps,
-      renderEmpty,
-    ],
-  );
-
-  useEffect(() => {
-    loadData();
-  }, []);
-
-  useLayoutEffect(() => {
-    if (callbackHandler.current) {
-      status.current =
-        paging.current.page < data[dataKeys!.totalPage] ? ScrollLoad.NORMAL : ScrollLoad.EMPTY;
-      callbackHandler?.current(status.current);
-    }
-  }, [data]);
-
-  return (
-    <VerticalFlexLayout
-      {...(flexLayoutProps || {})}
-      className={`${selectorPrefix}`}
-      renderMain={
-        <div className={`${selectorPrefix}-auto`} ref={mainRef}>
-          {_CommentList}
+            <ConditionalRender conditional={!this.isEmpty}>
+              {this.$scopedSlots?.renderList?.(this.data)}
+              {/*@ts-ignore*/}
+              <Fragment slot="noMatch">{this.$slots.renderEmpty || <Empty />}</Fragment>
+            </ConditionalRender>
+          </CommentList>
         </div>
-      }
-    />
-  );
+      </VerticalFlexLayout>
+    );
+  },
 };
 
-export default memo(ListStandard);
+export default ListStandard;

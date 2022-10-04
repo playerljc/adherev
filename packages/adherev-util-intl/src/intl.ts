@@ -20,6 +20,18 @@ const mainLocales = {};
 
 let i18n: IVueI18n | null = null;
 
+interface I18nFactoryFunction {
+  (config: { I18nOptions: I18nOptions; prefix: string }): any;
+  tv: (zh: Path, values?: VueI18n.Values) => VueI18n.TranslateResult | undefined;
+  v: (zh: Path, values?: VueI18n.Values) => VueI18n.TranslateResult | undefined;
+  tcv: (zh: Path, choice?: VueI18n.Choice, values?: VueI18n.Values) => string | undefined;
+  tev: (zh: Path, locale?: VueI18n.Locale) => boolean | undefined;
+  isUse?: () => void;
+  use?: (Vue) => void;
+  install?: (Vue) => void;
+  getLocal?: (prefix: string, data: string[]) => object;
+}
+
 /**
  * initIntlMap - 初始化以中文为key,intl.get()为值的Map
  * @param zh_CN
@@ -89,7 +101,7 @@ export function extend(Vue: any): void {
  * @param config
  * @constructor
  */
-const I18nFactory = function (config: { I18nOptions: I18nOptions; prefix }) {
+const I18nFactory: I18nFactoryFunction = function (config) {
   const { I18nOptions, prefix = 'local' } = config;
 
   const { messages: locales = {}, locale } = I18nOptions;
@@ -112,7 +124,6 @@ const I18nFactory = function (config: { I18nOptions: I18nOptions; prefix }) {
   for (const p in masterLocales) {
     mainLocales[p] = getLocal(
       prefix,
-      // @ts-ignore
       Array.from(new Set([...masterLocales[p], ...(slaveLocales[p] || [])])),
     );
   }

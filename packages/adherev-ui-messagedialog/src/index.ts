@@ -9,9 +9,7 @@ const {
   _util: { withVue },
 } = Util;
 
-// @ts-ignore
 MessageDialog.isUse = () => true;
-// @ts-ignore
 MessageDialog.use = (Vue) => {
   Vue.use(ConfigProvider);
   Vue.use(Button);

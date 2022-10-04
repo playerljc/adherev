@@ -1,20 +1,13 @@
-import { Spin } from 'antd';
-import React, { FC, memo, useCallback } from 'react';
+import { Icon, Spin } from 'ant-design-vue';
+import { Fragment } from 'vue-fragment';
 
-import {
-  CaretDownOutlined,
-  CaretUpOutlined,
-  EnterOutlined,
-  LoadingOutlined,
-} from '@ant-design/icons';
-import Intl from '@baifendian/adhere-util-intl';
+import Intl from '@baifendian/adherev-util-intl';
 
 import ReplyInfo from '../Reply/Info';
-import type { CommentProps } from '../types';
 import CommentInfo from './Info';
 import ListStandard from './ListStandard';
 
-const selectorPrefix = 'adhere-ui-comment';
+export const selectorPrefix = 'adherev-ui-comment';
 
 /**
  * Comment
@@ -22,172 +15,219 @@ const selectorPrefix = 'adhere-ui-comment';
  * @constructor
  * @classdesc 评论
  */
-const Comment: FC<CommentProps> = (props) => {
-  const {
-    listProps,
-    commentDataKeys = {
-      current: 'current',
-      totalPage: 'totalPage',
-      list: 'list',
-      totalCount: 'totalCount',
+const Comment: any = {
+  name: selectorPrefix,
+  props: {
+    getScrollWrapContainer: {
+      type: Function,
+      default: () => null,
     },
-    commentLimit = 10,
-    flexLayoutProps,
-    getScrollWrapContainer,
-    commentKeyProp = 'id',
-    replyDataKeys = {
-      current: 'current',
-      totalPage: 'totalPage',
-      list: 'list',
-      totalCount: 'totalCount',
+    fetchCommentData: {
+      type: Function,
+      default: () => null,
     },
-    replyLimit = 10,
-    replyKeyProp = 'id',
-    isMoreProp = 'isMore',
-    fetchCommentData,
-    fetchReplyData,
-    fetchReply,
-    renderEmpty,
-    renderFirstLoading,
-    renderCommentActions,
-    renderCommentAuthor,
-    renderCommentAvatar,
-    renderCommentContent,
-    renderCommentDateTime,
-    renderCommentLoading,
-    renderReplyActions,
-    renderReplyAuthor,
-    renderReplyAvatar,
-    renderReplyContent,
-    renderReplyDateTime,
-    renderReplyLoading,
-    showReplyText = Intl.v('显示回复内容'),
-    hideReplyText = Intl.v('收起回复'),
-    loadMoreReplyText = Intl.v('加载更多回复'),
-    showReplyTextIcon = <CaretDownOutlined />,
-    hideReplyTextIcon = <CaretUpOutlined />,
-    loadMoreCollapseTextIcon = <EnterOutlined className="reply-icon" />,
-    local = 'zh',
-    emojiPickerProps,
-  } = props;
+    commentDataKeys: {
+      type: Object,
+      default: () => ({
+        current: 'current',
+        totalPage: 'totalPage',
+        list: 'list',
+        totalCount: 'totalCount',
+      }),
+    },
+    commentLimit: {
+      type: Number,
+      default: 10,
+    },
+    commentKeyProp: {
+      type: Object,
+      default: () => ({}),
+    },
+    fetchReplyData: {
+      type: Function,
+      default: () => null,
+    },
+    replyDataKeys: {
+      type: Object,
+      default: () => ({
+        current: 'current',
+        totalPage: 'totalPage',
+        list: 'list',
+        totalCount: 'totalCount',
+      }),
+    },
+    replyLimit: {
+      type: Number,
+      default: 10,
+    },
+    replyKeyProp: {
+      type: String,
+      default: 'id',
+    },
+    fetchReply: {
+      type: Function,
+      default: () => null,
+    },
+    listProps: {
+      type: Object,
+      default: () => ({}),
+    },
+    isMoreProp: {
+      type: String,
+      default: 'isMore',
+    },
+    flexLayoutProps: {
+      type: Object,
+      default: () => ({}),
+    },
+    local: {
+      type: String,
+      default: 'zh',
+    },
+    emojiPickerProps: {
+      type: Object,
+      default: () => ({}),
+    },
+  },
+  slots: [],
+  scopedSlots: [],
+  emits: [],
+  data() {
+    return {};
+  },
+  methods: {
+    $renderList(h, data) {
+      const showReplyText = this.$slots.showReplyText || Intl.v('显示回复内容');
+      const hideReplyText = this.$slots.hideReplyText || Intl.v('收起回复');
+      const loadMoreReplyText = this.$slots.loadMoreReplyText || Intl.v('加载更多回复');
 
-  const renderList = useCallback(
-    (data) => (
-      <ul className={`${selectorPrefix}-list`}>
-        {data?.list?.map?.((record) => (
-          <li className={`${selectorPrefix}-list-item`} key={record[commentKeyProp!]}>
-            <CommentInfo
-              data={record}
-              dataKeys={replyDataKeys}
-              limit={replyLimit}
-              keyProp={replyKeyProp}
-              isMoreProp={isMoreProp}
-              fetchData={fetchReplyData}
-              fetchReply={fetchReply}
-              renderActions={renderCommentActions}
-              renderAuthor={renderCommentAuthor}
-              renderAvatar={renderCommentAvatar}
-              renderContent={renderCommentContent}
-              renderDateTime={renderCommentDateTime}
-              renderLoading={renderCommentLoading || renderLoading}
-              showReplyText={showReplyText}
-              hideReplyText={hideReplyText}
-              loadMoreReplyText={loadMoreReplyText}
-              showReplyTextIcon={showReplyTextIcon}
-              hideReplyTextIcon={hideReplyTextIcon}
-              loadMoreCollapseTextIcon={loadMoreCollapseTextIcon}
-              local={local}
-              emojiPickerProps={emojiPickerProps}
-            >
-              {(record) => (
-                <ReplyInfo
-                  data={record}
-                  dataKeys={replyDataKeys}
-                  limit={replyLimit}
-                  keyProp={replyKeyProp}
-                  isMoreProp={isMoreProp}
-                  fetchData={fetchReplyData}
-                  fetchReply={fetchReply}
-                  renderActions={renderReplyActions}
-                  renderAuthor={renderReplyAuthor}
-                  renderAvatar={renderReplyAvatar}
-                  renderContent={renderReplyContent}
-                  renderDateTime={renderReplyDateTime}
-                  renderLoading={renderReplyLoading || renderLoading}
-                  showReplyText={showReplyText}
-                  hideReplyText={hideReplyText}
-                  loadMoreReplyText={loadMoreReplyText}
-                  showReplyTextIcon={showReplyTextIcon}
-                  hideReplyTextIcon={hideReplyTextIcon}
-                  loadMoreCollapseTextIcon={loadMoreCollapseTextIcon}
-                  local={local}
-                  emojiPickerProps={emojiPickerProps}
-                />
-              )}
-            </CommentInfo>
-          </li>
-        ))}
-      </ul>
-    ),
-    [
-      replyDataKeys,
-      replyLimit,
-      replyKeyProp,
-      isMoreProp,
-      fetchReplyData,
-      fetchReply,
-      renderCommentActions,
-      renderCommentAuthor,
-      renderCommentAvatar,
-      renderCommentContent,
-      renderReplyDateTime,
-      renderCommentLoading,
-      showReplyText,
-      hideReplyText,
-      loadMoreReplyText,
-      showReplyTextIcon,
-      hideReplyTextIcon,
-      loadMoreCollapseTextIcon,
-      local,
-      emojiPickerProps,
-      renderReplyContent,
-      renderReplyAvatar,
-      renderReplyAuthor,
-      renderReplyActions,
-    ],
-  );
+      // @ts-ignore
+      const showReplyTextIcon = this.$slots.showReplyTextIcon || <Icon type="caret-down" />;
+      // @ts-ignore
+      const hideReplyTextIcon = this.$slots.hideReplyTextIcon || <Icon type="caret-up" />;
 
-  const renderLoading = useCallback(
-    () => (
-      <div className={`${selectorPrefix}-loading`}>
-        <Spin
-          indicator={
-            <LoadingOutlined
-              style={{
-                fontSize: 24,
-              }}
-            />
-          }
-        />
-      </div>
-    ),
-    [],
-  );
+      const loadMoreCollapseTextIcon = this.$slots.loadMoreCollapseTextIcon || (
+        // @ts-ignore
+        <Icon type="enter" class="reply-icon" />
+      );
 
-  return (
-    <ListStandard
-      getScrollWrapContainer={getScrollWrapContainer}
-      listProps={listProps}
-      dataKeys={commentDataKeys}
-      limit={commentLimit}
-      renderList={renderList}
-      renderLoading={renderLoading}
-      fetchData={fetchCommentData}
-      renderEmpty={renderEmpty}
-      renderFirstLoading={renderFirstLoading}
-      flexLayoutProps={flexLayoutProps}
-    />
-  );
+      const scopedSlots = {
+        default: (record) => (
+          <ReplyInfo
+            data={record}
+            dataKeys={this.replyDataKeys}
+            limit={this.replyLimit}
+            keyProp={this.replyKeyProp}
+            isMoreProp={this.isMoreProp}
+            fetchData={this.fetchReplyData}
+            fetchReply={this.fetchReply}
+            local={this.local}
+            emojiPickerProps={this.emojiPickerProps}
+          >
+            {/*@ts-ignore*/}
+            <Fragment slot="renderActions">{this.$slots.renderReplyActions}</Fragment>
+            {/*@ts-ignore*/}
+            <Fragment slot="renderAuthor">{this.$slots.renderReplyAuthor}</Fragment>
+            {/*@ts-ignore*/}
+            <Fragment slot="renderAvatar">{this.$slots.renderReplyAvatar}</Fragment>
+            {/*@ts-ignore*/}
+            <Fragment slot="renderContent">{this.$slots.renderReplyContent}</Fragment>
+            {/*@ts-ignore*/}
+            <Fragment slot="renderDateTime">{this.$slots.renderReplyDateTime}</Fragment>
+            {/*@ts-ignore*/}
+            <Fragment slot="renderLoading">
+              {this.$slots.renderReplyLoading || this.$renderLoading(h)}
+            </Fragment>
+            {/*@ts-ignore*/}
+            <Fragment slot="showReplyText">{showReplyText}</Fragment>
+            {/*@ts-ignore*/}
+            <Fragment slot="hideReplyText">{hideReplyText}</Fragment>
+            {/*@ts-ignore*/}
+            <Fragment slot="loadMoreReplyText">{loadMoreReplyText}</Fragment>
+            {/*@ts-ignore*/}
+            <Fragment slot="showReplyTextIcon">{showReplyTextIcon}</Fragment>
+            {/*@ts-ignore*/}
+            <Fragment slot="hideReplyTextIcon">{hideReplyTextIcon}</Fragment>
+            {/*@ts-ignore*/}
+            <Fragment slot="loadMoreCollapseTextIcon">{loadMoreCollapseTextIcon}</Fragment>
+          </ReplyInfo>
+        ),
+      };
+
+      return (
+        <ul class={`${selectorPrefix}-list`}>
+          {data?.list?.map?.((record) => (
+            <li class={`${selectorPrefix}-list-item`} key={record[this.commentKeyProp!]}>
+              <CommentInfo
+                data={record}
+                dataKeys={this.replyDataKeys}
+                limit={this.replyLimit}
+                keyProp={this.replyKeyProp}
+                isMoreProp={this.isMoreProp}
+                fetchData={this.fetchReplyData}
+                fetchReply={this.fetchReply}
+                local={this.local}
+                emojiPickerProps={this.emojiPickerProps}
+                scopedSlots={scopedSlots}
+              >
+                {/*@ts-ignore*/}
+                <Fragment slot="renderActions">{this.$slots.renderCommentActions}</Fragment>
+                {/*@ts-ignore*/}
+                <Fragment slot="renderAuthor">{this.$slots.renderCommentAuthor}</Fragment>
+                {/*@ts-ignore*/}
+                <Fragment slot="renderAvatar">{this.$slots.renderCommentAvatar}</Fragment>
+                {/*@ts-ignore*/}
+                <Fragment slot="renderContent">{this.$slots.renderCommentContent}</Fragment>
+                {/*@ts-ignore*/}
+                <Fragment slot="renderDateTime">{this.$slots.renderCommentDateTime}</Fragment>
+                {/*@ts-ignore*/}
+                <Fragment slot="renderLoading">
+                  {this.$slots.renderCommentLoading || this.$renderLoading(h)}
+                </Fragment>
+                {/*@ts-ignore*/}
+                <Fragment slot="showReplyText">{showReplyText}</Fragment>
+                {/*@ts-ignore*/}
+                <Fragment slot="hideReplyText">{hideReplyText}</Fragment>
+                {/*@ts-ignore*/}
+                <Fragment slot="loadMoreReplyText">{loadMoreReplyText}</Fragment>
+                {/*@ts-ignore*/}
+                <Fragment slot="showReplyTextIcon">{showReplyTextIcon}</Fragment>
+                {/*@ts-ignore*/}
+                <Fragment slot="hideReplyTextIcon">{hideReplyTextIcon}</Fragment>
+                {/*@ts-ignore*/}
+                <Fragment slot="loadMoreCollapseTextIcon">{loadMoreCollapseTextIcon}</Fragment>
+              </CommentInfo>
+            </li>
+          ))}
+        </ul>
+      );
+    },
+    $renderLoading(h) {
+      return (
+        <div class={`${selectorPrefix}-loading`}>
+          {/*@ts-ignore*/}
+          <Spin indicator={<Icon type="loading" style="font-size: 24px" />} />
+        </div>
+      );
+    },
+  },
+  render(h) {
+    const scopedSlots = {
+      renderList: (data) => this.$renderList(h, data),
+    };
+
+    return (
+      <ListStandard
+        getScrollWrapContainer={this.getScrollWrapContainer}
+        listProps={this.listProps}
+        dataKeys={this.commentDataKeys}
+        limit={this.commentLimit}
+        fetchData={this.fetchCommentData}
+        flexLayoutProps={this.flexLayoutProps}
+        scopedSlots={scopedSlots}
+      />
+    );
+  },
 };
 
-export default memo(Comment);
+export default Comment;

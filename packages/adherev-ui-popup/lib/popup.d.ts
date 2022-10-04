@@ -1,10 +1,10 @@
-import { IConfig } from './types';
+import { IConfig, IPopupFactory } from './types';
 /**
  * Popup
  * @class Popup
  * @classdesc Popup
  */
-declare class Popup {
+export declare class Popup {
     private readonly id;
     private readonly config;
     private isShow;
@@ -67,52 +67,5 @@ declare class Popup {
 /**
  * PopupFactory
  */
-declare const PopupFactory: {
-    /**
-     * create
-     * @param config
-     * @return Popup
-     */
-    create(config: IConfig): Popup;
-    /**
-     * show - 显示一个popup
-     * @param popup
-     * @return boolean
-     */
-    show(popup: Popup): boolean;
-    /**
-     * showClosePrePopup
-     * @description 关闭之前的显示
-     * @param popup
-     * @return boolean
-     */
-    showClosePrePopup(popup: Popup): boolean;
-    /**
-     * close - 关闭一个popup
-     * @param {Popup} popup
-     * @return boolean
-     */
-    close(popup: Popup): boolean;
-    /**
-     * closeAll - 关闭所有
-     * @return boolean
-     */
-    closeAll(): boolean;
-    /**
-     * destroy - 销毁一个popup
-     * @param {Popup} popup
-     * @return bool
-     */
-    destroy(popup: any): any;
-    /**
-     * getEl
-     * @return {HTMLElement}
-     */
-    getEl(): HTMLElement;
-    /**
-     * setEl
-     * @param tel
-     */
-    setEl(tel: any): void;
-};
+declare const PopupFactory: IPopupFactory;
 export default PopupFactory;

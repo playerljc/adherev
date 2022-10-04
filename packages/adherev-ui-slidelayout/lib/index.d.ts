@@ -1,5 +1,8 @@
-declare const _default: {
+declare const SlideLayout: {
     isUse: () => boolean;
     use: (Vue: any) => void;
+    Push: any;
+    Overlay: any;
+    Revolving: any;
 };
-export default _default;
+export default SlideLayout;
