@@ -9,7 +9,7 @@
 
     <adv-playground-page-code-box-section title="代码演示" :config="codeBoxPanelConfig">
       <template #p1>
-        <adv-pullrefresh :class-name="$style.Wrap" @pull-refresh="onCode1Refresh">
+        <adv-pullrefresh :class="$style.Wrap" @pull-refresh="onCode1Refresh">
           <a-list item-layout="horizontal" :data-source="data">
             <a-list-item slot="renderItem" slot-scope="item, index">
               <a-list-item-meta
@@ -28,7 +28,7 @@
 
       <template #p2>
         <fragment>
-          <adv-pullrefresh ref="ref" :class-name="$style.Wrap" @pull-refresh="onCode2Refresh">
+          <adv-pullrefresh ref="ref" :class="$style.Wrap" @pull-refresh="onCode2Refresh">
             <a-list item-layout="horizontal" :data-source="data">
               <a-list-item slot="renderItem" slot-scope="item, index">
                 <a-list-item-meta
@@ -50,7 +50,7 @@
 
       <template #p3>
         <adv-pullrefresh
-          :class-name="$style.Wrap"
+          :class="$style.Wrap"
           :is-show-update-time="false"
           :loading-animation="false"
           @pull-refresh="onCode3Refresh"

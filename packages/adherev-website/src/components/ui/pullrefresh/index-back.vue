@@ -170,7 +170,7 @@
 
     <h2>基本使用</h2>
     <playground :code-text="code1">
-      <adv-pullrefresh :class-name="$style.Wrap" @pull-refresh="onCode1Refresh">
+      <adv-pullrefresh :class="$style.Wrap" @pull-refresh="onCode1Refresh">
         <a-list item-layout="horizontal" :data-source="data">
           <a-list-item slot="renderItem" slot-scope="item, index">
             <a-list-item-meta
@@ -191,7 +191,7 @@
 
     <h2>Api触发刷新</h2>
     <playground :code-text="code2">
-      <adv-pullrefresh ref="ref" :class-name="$style.Wrap" @pull-refresh="onCode2Refresh">
+      <adv-pullrefresh ref="ref" :class="$style.Wrap" @pull-refresh="onCode2Refresh">
         <a-list item-layout="horizontal" :data-source="data">
           <a-list-item slot="renderItem" slot-scope="item, index">
             <a-list-item-meta
@@ -215,7 +215,7 @@
     <h2>自定义图标和文本(1)</h2>
     <playground-mulit :defaultConfig="code3">
       <adv-pullrefresh
-        :class-name="$style.Wrap"
+        :class="$style.Wrap"
         :is-show-update-time="false"
         :loading-animation="false"
         @pull-refresh="onCode3Refresh"

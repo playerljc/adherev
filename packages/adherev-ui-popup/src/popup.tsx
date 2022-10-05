@@ -229,6 +229,7 @@ export class Popup {
       prePopup = null;
 
       (this.popupEl as HTMLElement).style.display = 'none';
+      maskEl.style.display = 'none';
 
       this.trigger('onAfterClose');
     } else {

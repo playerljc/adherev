@@ -38,6 +38,7 @@ const PullRefresh: any = {
     loadingAnimation: {
       type: String,
       default: 'la-ball-circus la-dark',
+      isRequired: false,
     },
   },
   data() {
@@ -111,7 +112,7 @@ const PullRefresh: any = {
     },
     renderLoadingAnimation(h) {
       const { $slots, loadingAnimation } = this;
-      return loadingAnimation ? (
+      return !!loadingAnimation ? (
         <div
           class={classNames(
             `${selectorPrefix}-trigger-refresh`,

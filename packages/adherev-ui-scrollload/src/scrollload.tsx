@@ -50,12 +50,12 @@ const ScrollLoad: any = {
   mounted() {
     this.initEvents();
   },
-  beforeMount() {
+  beforeDestroy() {
     this.removeEvents();
   },
   computed: {
     scrollContainer() {
-      return this.getScrollContainer ? this.getScrollContainer() : this.$refs.el;
+      return this.getScrollContainer ? this.getScrollContainer() || this.$refs.el : this.$refs.el;
     },
     wrapStyle() {
       return `${this.style};overflow-y: ${
@@ -73,7 +73,7 @@ const ScrollLoad: any = {
 
       $refs.errorEl.addEventListener('click', this.onErrorClick);
     },
-    beforeMount() {
+    removeEvents() {
       const { $refs } = this;
 
       this.scrollContainer.removeEventListener('scroll', this.onScroll);
