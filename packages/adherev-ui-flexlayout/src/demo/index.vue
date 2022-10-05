@@ -2,43 +2,43 @@
   <div>
     <adv-flexlayout style="height: 200px; border: 1px solid #ccc">
       <adv-flexlayout-fixed>
-        <div style="padding: 15px 20px; border-bottom: 1px solid #ccc; text-align: center">Top</div>
+        <div style="padding: 15px 20px; text-align: center; border-bottom: 1px solid #ccc">Top</div>
       </adv-flexlayout-fixed>
 
-      <adv-flexlayout-auto style="justify-content: center; align-items: center"
+      <adv-flexlayout-auto style="align-items: center; justify-content: center"
         >Center</adv-flexlayout-auto
       >
 
       <adv-flexlayout-fixed>
-        <div style="padding: 15px 20px; border-top: 1px solid #ccc; text-align: center">Bottom</div>
+        <div style="padding: 15px 20px; text-align: center; border-top: 1px solid #ccc">Bottom</div>
       </adv-flexlayout-fixed>
     </adv-flexlayout>
 
     <adv-flexlayout style="height: 200px; border: 1px solid #ccc">
       <adv-flexlayout-fixed>
-        <div style="padding: 15px 20px; border-bottom: 1px solid #ccc; text-align: center">Top</div>
+        <div style="padding: 15px 20px; text-align: center; border-bottom: 1px solid #ccc">Top</div>
       </adv-flexlayout-fixed>
       <adv-flexlayout-auto>
         <adv-flexlayout direction="horizontal">
           <adv-flexlayout-fixed
             style="
+              align-items: center;
+              justify-content: center;
               padding: 0 20px;
               border-right: 1px solid #ccc;
-              justify-content: center;
-              align-items: center;
             "
           >
             left
           </adv-flexlayout-fixed>
-          <adv-flexlayout-auto style="justify-content: center; align-items: center">
+          <adv-flexlayout-auto style="align-items: center; justify-content: center">
             Center
           </adv-flexlayout-auto>
           <adv-flexlayout-fixed
             style="
+              align-items: center;
+              justify-content: center;
               padding: 0 20px;
               border-left: 1px solid #ccc;
-              justify-content: center;
-              align-items: center;
             "
           >
             Right
@@ -46,17 +46,17 @@
         </adv-flexlayout>
       </adv-flexlayout-auto>
       <adv-flexlayout-fixed>
-        <div style="padding: 15px 20px; border-top: 1px solid #ccc; text-align: center">Bottom</div>
+        <div style="padding: 15px 20px; text-align: center; border-top: 1px solid #ccc">Bottom</div>
       </adv-flexlayout-fixed>
     </adv-flexlayout>
 
     <adv-flexlayout direction="horizontal" style="height: 200px; border: 1px solid #ccc">
       <adv-flexlayout-fixed
         style="
-          border-right: 1px solid #ccc;
-          padding: 0 15px;
-          justify-content: center;
           align-items: center;
+          justify-content: center;
+          padding: 0 15px;
+          border-right: 1px solid #ccc;
         "
       >
         Left
@@ -65,23 +65,23 @@
         <adv-flexlayout>
           <adv-flexlayout-fixed
             style="
+              align-items: center;
+              justify-content: center;
               padding: 15px 0;
               border-bottom: 1px solid #ccc;
-              justify-content: center;
-              align-items: center;
             "
           >
             Top
           </adv-flexlayout-fixed>
-          <adv-flexlayout-auto style="justify-content: center; align-items: center">
+          <adv-flexlayout-auto style="align-items: center; justify-content: center">
             Center
           </adv-flexlayout-auto>
           <adv-flexlayout-fixed
             style="
+              align-items: center;
+              justify-content: center;
               padding: 15px 0;
               border-top: 1px solid #ccc;
-              justify-content: center;
-              align-items: center;
             "
           >
             Bottom
@@ -90,10 +90,10 @@
       </adv-flexlayout-auto>
       <adv-flexlayout-fixed
         style="
-          border-left: 1px solid #ccc;
-          padding: 0 15px;
-          justify-content: center;
           align-items: center;
+          justify-content: center;
+          padding: 0 15px;
+          border-left: 1px solid #ccc;
         "
         >Right</adv-flexlayout-fixed
       >
@@ -135,7 +135,7 @@
 
     <adv-flexlayout
       direction="horizontal"
-      style="overflow: auto; height: 100px; border: 1px solid #ccc"
+      style="height: 100px; overflow: auto; border: 1px solid #ccc"
     >
       <adv-flexlayout-fixed>Left</adv-flexlayout-fixed>
       <adv-flexlayout-auto :fit="false" :auto-fixed="false">
