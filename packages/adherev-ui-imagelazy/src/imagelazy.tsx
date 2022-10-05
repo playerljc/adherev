@@ -96,7 +96,7 @@ const ImageLazy: any = {
       <img
         src={originSrc || placeholder}
         data-src={targetSrc}
-        className={classNames('lazyload', className || '')}
+        class={classNames('lazyload', className || '')}
         alt=""
       />
     );

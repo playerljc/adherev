@@ -100,7 +100,6 @@ const MenuItem: any = {
 
       return (
         <ConditionalRender conditional={children.length !== 0}>
-          {/*@ts-ignore*/}
           <SubMenu data={children} className={subMenuClassName} styleName={subMenuStyle} />
         </ConditionalRender>
       );

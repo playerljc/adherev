@@ -13,8 +13,9 @@
               :img-args="{
                 width: 272,
                 alt: 'logo',
+                originSrc: 'https://dss2.bdstatic.com/8_V1bjqh_Q23odCf/pacific/1989213037.jpg',
                 targetSrc:
-                  'https://img2.baidu.com/it/u=1697432864,1600199787&fm=26&fmt=auto&gp=0.jpg',
+                  'https://dss2.bdstatic.com/8_V1bjqh_Q23odCf/pacific/1989213037.jpg',
               }"
             />
             <a-list-item-meta :description="item.description">
@@ -36,7 +37,7 @@
                 alt: 'logo',
                 originSrc: 'https://dss2.bdstatic.com/8_V1bjqh_Q23odCf/pacific/1989213037.jpg',
                 targetSrc:
-                  'https://img2.baidu.com/it/u=1697432864,1600199787&fm=26&fmt=auto&gp=0.jpg',
+                  'https://dss2.bdstatic.com/8_V1bjqh_Q23odCf/pacific/1989213037.jpg',
               }"
             />
             <a-list-item-meta :description="item.description">
@@ -79,7 +80,7 @@ export default {
                   width: 272,
                   alt: 'logo',
                   targetSrc:
-                    'https://img2.baidu.com/it/u=1697432864,1600199787&fm=26&fmt=auto&gp=0.jpg',
+                    'https://dss2.bdstatic.com/8_V1bjqh_Q23odCf/pacific/1989213037.jpg',
                 }"
               />
               <a-list-item-meta :description="item.description">
@@ -138,7 +139,7 @@ export default {
                   alt: 'logo',
                   originSrc: 'https://dss2.bdstatic.com/8_V1bjqh_Q23odCf/pacific/1989213037.jpg',
                   targetSrc:
-                    'https://img2.baidu.com/it/u=1697432864,1600199787&fm=26&fmt=auto&gp=0.jpg',
+                    'https://dss2.bdstatic.com/8_V1bjqh_Q23odCf/pacific/1989213037.jpg',
                 }"
               />
               <a-list-item-meta :description="item.description">
