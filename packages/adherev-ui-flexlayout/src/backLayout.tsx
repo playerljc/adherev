@@ -70,6 +70,10 @@ const BackLayout: any = {
       type: Array,
       default: () => [],
     },
+    bottomToolBarSlotNames: {
+      type: Array,
+      default: () => [],
+    },
     backPath: {
       type: String,
       default: '/',
@@ -85,14 +89,12 @@ const BackLayout: any = {
   },
   computed: {
     otherProps() {
-      const { isShowBack, backPath, enforceBackPath, ...others } = this;
+      const { isShowBack, backPath, enforceBackPath, ...others } = this.$props;
 
       const props = {};
 
-      for (const p in this.$props) {
-        if (p in others) {
-          props[p] = others[p];
-        }
+      for (const p in others) {
+        props[p] = this[p];
       }
 
       return props;
@@ -109,7 +111,7 @@ const BackLayout: any = {
         items.push(
           <Button
             // @ts-ignore
-            slot="back"
+            slot="$back"
             onClick={() => {
               if (this.enforceBackPath) {
                 this.$router.replace(this.enforceBackPath);
@@ -125,12 +127,26 @@ const BackLayout: any = {
 
       return items;
     },
+    renderBottomToolBarItems(h) {
+      return (this.bottomToolBarSlotNames || []).map((slotName) => (
+        // @ts-ignore
+        <Fragment slot={slotName}>{this.$slots[slotName]}</Fragment>
+      ));
+    },
   },
   render(h): VNode {
     return (
-      <ToolBarLayout {...{ props: this.otherProps }}>
+      <ToolBarLayout
+        {...{
+          props: {
+            ...(this.otherProps || {}),
+            topToolBarSlotNames: [...(this.topToolBarSlotNames || []), '$back'],
+          },
+        }}
+      >
         {this.$slots.default}
         {this.renderToolBarItems(h)}
+        {this.renderBottomToolBarItems(h)}
       </ToolBarLayout>
     );
   },

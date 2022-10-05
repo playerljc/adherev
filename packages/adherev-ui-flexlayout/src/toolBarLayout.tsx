@@ -2,8 +2,6 @@ import classNames from 'classnames';
 import { VNode } from 'vue';
 import { Fragment } from 'vue-fragment';
 
-import ConditionalRender from '@baifendian/adherev-ui-conditionalrender';
-
 import { selectorPrefix as _selectorPrefix } from './flexlayout';
 import VerticalFlexLayout from './verticalFlexLayout';
 
@@ -116,6 +114,7 @@ const ToolBarLayout: any = {
 
     return (
       <VerticalFlexLayout
+        class={selectorPrefix}
         topClassName={classNames(
           (topToolBarSlotNames || []).length ? `${selectorPrefix}-top` : null,
           topClassName || '',
@@ -132,27 +131,26 @@ const ToolBarLayout: any = {
         bottomProps={this._bottomProps}
         {...{ props: this.otherProps }}
       >
-        <ConditionalRender slot="renderTop" conditional={!!(topToolBarSlotNames || []).length}>
-          {topToolBarSlotNames.map((slotName, index) => (
-            <div key={index} className={`${selectorPrefix}-toolbar-item`}>
+        {/*@ts-ignore*/}
+        <Fragment slot="renderTop">
+          {(topToolBarSlotNames || []).map((slotName, index) => (
+            <div key={index} class={`${selectorPrefix}-toolbar-item`}>
               {this.$slots[slotName]}
             </div>
           ))}
-        </ConditionalRender>
+        </Fragment>
 
         {/*@ts-ignore*/}
         <Fragment slot="renderMain">{this.$slots.default}</Fragment>
 
-        <ConditionalRender
-          slot="renderBottom"
-          conditional={!!(bottomToolBarSlotNames || []).length}
-        >
-          {bottomToolBarSlotNames.map((slotName, index) => (
-            <div key={index} className={`${selectorPrefix}-toolbar-item`}>
+        {/*@ts-ignore*/}
+        <Fragment slot="renderBottom">
+          {(bottomToolBarSlotNames || []).map((slotName, index) => (
+            <div key={index} class={`${selectorPrefix}-toolbar-item`}>
               {this.$slots[slotName]}
             </div>
           ))}
-        </ConditionalRender>
+        </Fragment>
       </VerticalFlexLayout>
     );
   },

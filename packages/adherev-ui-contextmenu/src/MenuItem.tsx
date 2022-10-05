@@ -1,5 +1,6 @@
 import classNames from 'classnames';
 import { PropType, VNode } from 'vue';
+import { Fragment } from 'vue-fragment';
 
 import ConditionalRender from '@baifendian/adherev-ui-conditionalrender';
 import Util from '@baifendian/adherev-util';
@@ -36,15 +37,21 @@ const MenuItem: any = {
         <ConditionalRender conditional={Util.isString(icon)}>
           <span class={classNames(`${selectorPrefix}-icon`, icon)} />
 
-          <ConditionalRender slot="noMatch" conditional={Util.isObject(icon)}>
-            <span class={classNames(`${selectorPrefix}-icon`)}>{h(icon)}</span>
+          {/*@ts-ignore*/}
+          <Fragment slot="noMatch">
+            <ConditionalRender conditional={Util.isObject(icon)}>
+              <span class={classNames(`${selectorPrefix}-icon`)}>{h(icon)}</span>
 
-            <ConditionalRender slot="noMatch" conditional={Util.isFunction(icon)}>
-              <span class={classNames(`${selectorPrefix}-icon`)}>
-                {Util.isFunction(icon) ? icon(h) : null}
-              </span>
+              {/*@ts-ignore*/}
+              <Fragment slot="noMatch">
+                <ConditionalRender conditional={Util.isFunction(icon)}>
+                  <span class={classNames(`${selectorPrefix}-icon`)}>
+                    {Util.isFunction(icon) ? icon(h) : null}
+                  </span>
+                </ConditionalRender>
+              </Fragment>
             </ConditionalRender>
-          </ConditionalRender>
+          </Fragment>
         </ConditionalRender>
       );
     },
@@ -57,15 +64,21 @@ const MenuItem: any = {
         <ConditionalRender conditional={Util.isString(name)}>
           <span class={classNames(`${selectorPrefix}-name`)}>{name}</span>
 
-          <ConditionalRender slot="noMatch" conditional={Util.isObject(name)}>
-            {<span class={classNames(`${selectorPrefix}-name`)}>{h(name)}</span>}
+          {/*@ts-ignore*/}
+          <Fragment slot="noMatch">
+            <ConditionalRender conditional={Util.isObject(name)}>
+              {<span class={classNames(`${selectorPrefix}-name`)}>{h(name)}</span>}
 
-            <ConditionalRender slot="noMatch" conditional={Util.isFunction(name)}>
-              <span class={classNames(`${selectorPrefix}-name`)}>
-                {Util.isFunction(name) ? name(h) : null}
-              </span>
+              {/*@ts-ignore*/}
+              <Fragment slot="noMatch">
+                <ConditionalRender conditional={Util.isFunction(name)}>
+                  <span class={classNames(`${selectorPrefix}-name`)}>
+                    {Util.isFunction(name) ? name(h) : null}
+                  </span>
+                </ConditionalRender>
+              </Fragment>
             </ConditionalRender>
-          </ConditionalRender>
+          </Fragment>
         </ConditionalRender>
       );
     },

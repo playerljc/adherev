@@ -5,7 +5,7 @@ import { selectorPrefix as _selectorPrefix } from './flexlayout';
 const selectorPrefix = `${_selectorPrefix}-scrolllayout`;
 
 const ScrollLayout: any = {
-  name: 'adv-flexlayout-scrolllayout',
+  name: 'adv-flexlayout-scroll',
   props: {
     scrollY: {
       type: Boolean,

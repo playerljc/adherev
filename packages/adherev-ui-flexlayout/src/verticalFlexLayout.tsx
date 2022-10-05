@@ -140,12 +140,12 @@ const VerticalFlexLayout: any = {
           >
             <FlexLayout
               direction="horizontal"
-              className={mainWrapClassName || ''}
+              class={mainWrapClassName || ''}
               style={mainWrapStyle || ''}
             >
               <ConditionalRender conditional={!!renderLeft}>
                 <Fixed
-                  className={leftClassName || ''}
+                  class={leftClassName || ''}
                   style={leftStyle || ''}
                   fit
                   {...{ props: leftProps || {} }}
@@ -157,7 +157,7 @@ const VerticalFlexLayout: any = {
               <Auto
                 autoFixed
                 fit
-                className={mainClassName || ''}
+                class={mainClassName || ''}
                 style={mainStyle || ''}
                 {...{ props: mainProps || {} }}
               >
@@ -166,7 +166,7 @@ const VerticalFlexLayout: any = {
 
               <ConditionalRender conditional={!!renderRight}>
                 <Fixed
-                  className={rightClassName || ''}
+                  class={rightClassName || ''}
                   style={rightStyle || ''}
                   fit
                   {...{ props: rightProps || {} }}
@@ -180,7 +180,7 @@ const VerticalFlexLayout: any = {
 
         <ConditionalRender conditional={!!renderBottom}>
           <Fixed
-            className={bottomClassName || ''}
+            class={bottomClassName || ''}
             style={bottomStyle || ''}
             fit
             {...{ props: bottomProps || {} }}
