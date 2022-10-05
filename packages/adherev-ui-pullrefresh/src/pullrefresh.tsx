@@ -33,7 +33,7 @@ const PullRefresh: any = {
     },
     updateTimeFormat: {
       type: String,
-      default: Resource.Dict.value.ResourceMomentFormatFull.value,
+      default: Resource.Dict.value.ResourceMomentFormat18.value,
     },
     loadingAnimation: {
       type: String,
