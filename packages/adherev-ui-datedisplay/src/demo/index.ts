@@ -1,11 +1,11 @@
 import Vue from 'vue';
 
-import ContourBlock from '../index';
+import DateDisplay from '../index';
 import App from './index.vue';
 
 import '../index.less';
 
-ContourBlock.use(Vue);
+DateDisplay.use(Vue);
 
 new Vue({
   el: '#app',

@@ -6,18 +6,27 @@ const {
   _util: { withInstall, withVue },
 } = Util;
 
-DateDisplay.isUse = () => true;
+const Component = withInstall({
+  name: 'adv-datedisplay',
+  ...DateDisplay,
+});
 
-DateDisplay.use = (Vue) => {
+Object.keys(DateDisplay).forEach((key) => {
+  if (key === 'dayjs') return;
+
+  withInstall(DateDisplay[key]);
+});
+
+Component.isUse = () => true;
+
+Component.use = (Vue) => {
   Object.keys(DateDisplay).forEach((key) => {
     if (key === 'dayjs') return;
 
-    const Com = withInstall(DateDisplay[key]);
-
-    Vue.use(Com);
+    Vue.use(DateDisplay[key]);
   });
 
   withVue(Vue, 'DateDisplay', DateDisplay);
 };
 
-export default DateDisplay;
+export default Component;

@@ -32,13 +32,15 @@ keys.forEach((key) => {
     name: `adv-datedisplay-${name}`,
     props: {
       value: {
-        type: Object,
+        type: [Object, Number, String],
       },
       split1: {
         type: String,
+        default: '-',
       },
       split2: {
         type: String,
+        default: ':',
       },
     },
     render(h): VNode {
@@ -66,7 +68,7 @@ Components[`DateDisplayFromNow`] = {
   name: `adv-datedisplay-fromnow`,
   props: {
     value: {
-      type: Object,
+      type: [Object, Number, String],
     },
     locale: {
       type: String,
@@ -95,7 +97,7 @@ Components[`DateDisplayToNow`] = {
   name: `adv-datedisplay-tonow`,
   props: {
     value: {
-      type: Object,
+      type: [Object, Number, String],
     },
     locale: {
       type: String,
@@ -123,7 +125,7 @@ Components[`DateDisplay`] = {
   name: `adv-datedisplay`,
   props: {
     value: {
-      type: Object,
+      type: [Object, Number, String],
     },
     locale: {
       type: String,
@@ -145,7 +147,7 @@ Components[`DateDisplay`] = {
 // 本地
 ['LT', 'LTS', 'L', 'LL', 'LLL', 'LLLL', 'l', 'll', 'lll', 'llll'].forEach((format) => {
   const options = {
-    name: `adv-datadisplay-${format}`,
+    name: `adv-datedisplay-${format}`,
   };
 
   const Com = Components['DateDisplay'];
