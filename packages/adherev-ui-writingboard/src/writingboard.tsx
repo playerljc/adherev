@@ -43,9 +43,9 @@ const BackTopAnimation: any = {
   },
   methods: {
     drawStack() {
-      for (let i = 0; i < this.$data.$stack.current.length; i++) {
+      for (let i = 0; i < this.$data.$stack.length; i++) {
         const item = this.$data.$stack[i];
-        this.$data.$config.current.get(item.shape).drawStack(item);
+        this.$data.$config.get(item.shape).drawStack(item);
       }
     },
     style({ lineWidth, strokeStyle }) {
@@ -114,6 +114,16 @@ const BackTopAnimation: any = {
       const entry = this.$data.$config.get(this.$data.$curShape);
       entry.draw({ sourcePoint, targetPoint });
     },
+    onMousedown(e) {
+      this.start(e);
+    },
+    onTouchstart(e) {
+      this.start({
+        ...e,
+        clientX: e.targetTouches[0].clientX,
+        clientY: e.targetTouches[0].clientY,
+      });
+    },
     onMousemove(e) {
       this.move(e);
     },
@@ -152,7 +162,7 @@ const BackTopAnimation: any = {
       const { clientX, clientY } = e;
 
       const point = this.devicePointToCanvasPoint({ clientX, clientY });
-      this.draw({ sourcePoint: this.$data.$prePoint.current, targetPoint: point });
+      this.draw({ sourcePoint: this.$data.$prePoint, targetPoint: point });
       this.$data.$prePoint = point;
     },
     end(e) {
@@ -192,7 +202,7 @@ const BackTopAnimation: any = {
       this.$refs.canvasRef.toDataURL('image/png', 1.0);
     },
   },
-  beforeCreate() {
+  created() {
     this.$data.$curShape = this.defaultMode;
     this.$data.$lineWidth = this.defaultLineWidth;
     this.$data.$strokeStyle = this.defaultStrokeStyle;
@@ -202,7 +212,7 @@ const BackTopAnimation: any = {
       [
         Mode.FREE,
         {
-          draw({ sourcePoint, targetPoint }) {
+          draw: ({ sourcePoint, targetPoint }) => {
             const ctx = this.$data.$ctx as CanvasRenderingContext2D;
 
             ctx.beginPath();
@@ -223,7 +233,7 @@ const BackTopAnimation: any = {
             // 描边
             ctx.stroke();
           },
-          drawStack(item) {
+          drawStack: (item) => {
             const ctx = this.$data.$ctx as CanvasRenderingContext2D;
 
             ctx.beginPath();
@@ -237,7 +247,7 @@ const BackTopAnimation: any = {
 
             ctx.stroke();
           },
-          mouseup(point) {
+          mouseup: (point) => {
             this.draw({ sourcePoint: this.$data.$prePoint, targetPoint: point });
           },
         },
@@ -246,7 +256,7 @@ const BackTopAnimation: any = {
       [
         Mode.LINE,
         {
-          draw({ targetPoint }) {
+          draw: ({ targetPoint }) => {
             const ctx = this.$data.$ctx as CanvasRenderingContext2D;
 
             // 清除画布
@@ -264,7 +274,7 @@ const BackTopAnimation: any = {
             // 描边
             ctx.stroke();
           },
-          drawStack(item) {
+          drawStack: (item) => {
             const ctx = this.$data.$ctx as CanvasRenderingContext2D;
 
             ctx.beginPath();
@@ -278,7 +288,7 @@ const BackTopAnimation: any = {
 
             ctx.stroke();
           },
-          mouseup(point) {
+          mouseup: (point) => {
             this.$data.$stack.push({
               shape: this.$data.$curShape,
               lineWidth: this.$data.$ctx.lineWidth,
@@ -293,7 +303,7 @@ const BackTopAnimation: any = {
       [
         Mode.RECTANGLE,
         {
-          draw({ targetPoint }) {
+          draw: ({ targetPoint }) => {
             const ctx = this.$data.$ctx as CanvasRenderingContext2D;
 
             // 清除画布
@@ -318,7 +328,7 @@ const BackTopAnimation: any = {
             // 描边
             ctx.stroke();
           },
-          drawStack(item) {
+          drawStack: (item) => {
             const ctx = this.$data.$ctx as CanvasRenderingContext2D;
 
             ctx.beginPath();
@@ -331,7 +341,7 @@ const BackTopAnimation: any = {
 
             ctx.stroke();
           },
-          mouseup(point) {
+          mouseup: (point) => {
             const rectStart = this.getPoint({
               startPoint: this.$data.$startPoint,
               targetPoint: point,
@@ -353,7 +363,7 @@ const BackTopAnimation: any = {
       [
         Mode.CIRCLE,
         {
-          draw({ targetPoint }) {
+          draw: ({ targetPoint }) => {
             const ctx = this.$data.$ctx as CanvasRenderingContext2D;
 
             // 清除画布
@@ -385,7 +395,7 @@ const BackTopAnimation: any = {
             // 描边
             ctx.stroke();
           },
-          drawStack(item) {
+          drawStack: (item) => {
             const ctx = this.$data.$ctx as CanvasRenderingContext2D;
 
             ctx.beginPath();
@@ -406,7 +416,7 @@ const BackTopAnimation: any = {
 
             ctx.stroke();
           },
-          mouseup(point) {
+          mouseup: (point) => {
             const center = this.getPoint({
               startPoint: this.$data.$startPoint,
               targetPoint: point,
@@ -434,7 +444,7 @@ const BackTopAnimation: any = {
       [
         Mode.TRIANGLE,
         {
-          draw({ targetPoint }) {
+          draw: ({ targetPoint }) => {
             const ctx = this.$data.$ctx as CanvasRenderingContext2D;
 
             // 清除画布
@@ -456,7 +466,7 @@ const BackTopAnimation: any = {
             // 描边
             ctx.stroke();
           },
-          drawStack(item) {
+          drawStack: (item) => {
             const ctx = this.$data.$ctx as CanvasRenderingContext2D;
 
             ctx.beginPath();
@@ -472,7 +482,7 @@ const BackTopAnimation: any = {
 
             ctx.stroke();
           },
-          mouseup(point) {
+          mouseup: (point) => {
             const points = this.triangle({
               startPoint: this.$data.$startPoint,
               targetPoint: point,
@@ -491,7 +501,7 @@ const BackTopAnimation: any = {
       [
         Mode.RUBBER,
         {
-          draw({ sourcePoint, targetPoint }) {
+          draw: ({ sourcePoint, targetPoint }) => {
             const ctx = this.$data.$ctx as CanvasRenderingContext2D;
 
             ctx.beginPath();
@@ -510,7 +520,7 @@ const BackTopAnimation: any = {
             ctx.lineJoin = 'round';
             ctx.stroke();
           },
-          drawStack(item) {
+          drawStack: (item) => {
             const ctx = this.$data.$ctx as CanvasRenderingContext2D;
 
             ctx.beginPath();
@@ -523,7 +533,7 @@ const BackTopAnimation: any = {
             ctx.lineJoin = 'round';
             ctx.stroke();
           },
-          mouseup(point) {
+          mouseup: (point) => {
             this.draw({ sourcePoint: this.$data.$prePoint, targetPoint: point });
           },
         },
@@ -532,17 +542,14 @@ const BackTopAnimation: any = {
   },
   mounted() {
     this.$data.$ctx = this.$refs.canvasRef.getContext('2d')!;
+    this.$refs.canvasRef.width = this.$refs.containerRef.offsetWidth;
+    this.$refs.canvasRef.height = this.$refs.containerRef.offsetHeight;
 
     const onResize = debounce(() => {
-      (this.$refs.canvasRef as HTMLCanvasElement).width = this.$refs.offsetWidth;
-      (this.$refs.canvasRef as HTMLCanvasElement).height = this.$refs.offsetHeight;
+      this.$refs.canvasRef.width = this.$refs.containerRef.offsetWidth;
+      this.$refs.canvasRef.height = this.$refs.containerRef.offsetHeight;
 
-      this.$data.$ctx.clearRect(
-        0,
-        0,
-        this.$refs.canvasRef.width,
-        this.$refs.canvasRef.current.height,
-      );
+      this.$data.$ctx.clearRect(0, 0, this.$refs.canvasRef.width, this.$refs.canvasRef.height);
 
       this.drawStack();
     }, this.resizeTime);
