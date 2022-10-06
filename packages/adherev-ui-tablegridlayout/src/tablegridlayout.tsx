@@ -1,7 +1,6 @@
 import classNames from 'classnames';
 import { CreateElement, PropType, VNode } from 'vue';
 import { Fragment } from 'vue-fragment';
-import { createHOC } from 'vue-hoc';
 
 import ConditionalRender from '@baifendian/adherev-ui-conditionalrender';
 
@@ -26,7 +25,7 @@ const selectorPrefix = 'adherev-ui-tablegridlayout';
      detail: GroupRenderDetail;
  * }
  */
-const renderHorizontal: RenderHorizontal = (h: CreateElement, params) => {
+const renderHorizontal: RenderHorizontal = (h: CreateElement, context, params) => {
   const {
     data: { columnCount: _columnCount, data: _data },
     rowCountRef,
@@ -50,12 +49,13 @@ const renderHorizontal: RenderHorizontal = (h: CreateElement, params) => {
 
       if (columnsCount !== columnCount) {
         if (
+          item &&
           item.data &&
-          item.data.props &&
-          'colSpan' in item.data.props &&
-          typeof item.data.props.colSpan === 'number'
+          item.data.attrs &&
+          'colspan' in item.data.attrs &&
+          ['number', 'string'].includes(typeof item.data.attrs.colspan)
         ) {
-          columnsCount += item!.data!.props.colSpan;
+          columnsCount += parseInt(`${item.data.attrs.colspan}`);
         } else {
           columnsCount = columnsCount + 1;
         }
@@ -115,18 +115,28 @@ const renderHorizontal: RenderHorizontal = (h: CreateElement, params) => {
   const flatData: VNode[] = [];
 
   (_data || []).forEach((t) => {
-    let label = t.label;
+    let label = context.$slots[t.label];
+    let value = context.$slots[t.value];
 
-    if ('require' in t && !!t.require) {
-      label = createHOC(label, null, {
-        class(classnames) {
-          return classNames(`${selectorPrefix}-table-row-label`, 'require', classnames || '');
-        },
-      });
+    label = Array.isArray(label) && !!label.length ? label[0] : label;
+    value = Array.isArray(value) && !!value.length ? value[0] : value;
+
+    if ('require' in t && !!t.require && label) {
+      // label = createHOC(label, null, {
+      //   // class(classnames) {
+      //   //   return classNames(`${selectorPrefix}-table-row-label`, 'require', classnames || '');
+      //   // },
+      //   class: classNames(`${selectorPrefix}-table-row-label`, 'require', label?.data?.class || ''),
+      // });
+      label.data.class = classNames(
+        `${selectorPrefix}-table-row-label`,
+        'require',
+        label?.data?.class || '',
+      );
     }
 
     flatData.push(label);
-    flatData.push(t.value);
+    flatData.push(value);
   });
 
   // 迭代的索引
@@ -137,7 +147,8 @@ const renderHorizontal: RenderHorizontal = (h: CreateElement, params) => {
   createRow();
 
   return {
-    element: rowJSXChildren,
+    // @ts-ignore
+    element: <Fragment>{rowJSXChildren}</Fragment>,
     detail,
   };
 };
@@ -147,10 +158,11 @@ const renderHorizontal: RenderHorizontal = (h: CreateElement, params) => {
  * @description 渲染纵向布局
  * @return VNode[]
  * @param h
+ * @param context
  * @param data
  * @param rowCountRef
  */
-const renderVertical: RenderVertical = (h: CreateElement, data, rowCountRef) => {
+const renderVertical: RenderVertical = (h: CreateElement, context, data, rowCountRef) => {
   const { columnCount: _columnCount, data: _data } = data;
 
   /**
@@ -172,16 +184,24 @@ const renderVertical: RenderVertical = (h: CreateElement, data, rowCountRef) => 
 
     while (_index < (_data || []).length) {
       const item = (_data || [])[_index];
+      let label = typeof item.label === 'string' ? context.$slots[item.label] : item.label;
+      let value = context.$slots[item.value];
+
+      label = Array.isArray(label) && !!label.length ? label[0] : label;
+      value = Array.isArray(value) && !!value.length ? value[0] : value;
 
       if (columnsCount !== columnCount) {
-        if ('colSpan' in item.value.props && typeof item.value.props.colSpan === 'number') {
-          columnsCount += item.value.props.colSpan;
+        if (
+          'colspan' in (value?.data?.attrs || {}) &&
+          ['number', 'string'].includes(typeof value?.data?.attrs?.colspan)
+        ) {
+          columnsCount += parseInt(`${value?.data?.attrs?.colspan}`);
         } else {
           columnsCount = columnsCount + 1;
         }
 
-        tdLabelJSXS.push(item.label);
-        tdValueJSXS.push(item.value);
+        tdLabelJSXS.push(label);
+        tdValueJSXS.push(value);
         _index++;
       } else {
         break;
@@ -227,14 +247,22 @@ const renderVertical: RenderVertical = (h: CreateElement, data, rowCountRef) => 
   const columnCount = _columnCount as number;
 
   (_data || []).forEach((t) => {
-    let label = t.label;
+    let label = context.$slots[t.label];
 
-    if ('require' in t && !!t.require) {
-      t.label = createHOC(label, null, {
-        class(classnames) {
-          return classNames(`${selectorPrefix}-table-row-label`, 'require', classnames);
-        },
-      });
+    label = Array.isArray(label) && !!label.length ? label[0] : label;
+
+    if ('require' in t && !!t.require && label) {
+      // t.label = createHOC(label, null, {
+      //   // class(classnames) {
+      //   //   return classNames(`${selectorPrefix}-table-row-label`, 'require', classnames);
+      //   // },
+      //   class: classNames(`${selectorPrefix}-table-row-label`, 'require', label?.data?.class || ''),
+      // });
+      label.data.class = classNames(
+        `${selectorPrefix}-table-row-label`,
+        'require',
+        label?.data?.class || '',
+      );
     }
   });
 
@@ -245,17 +273,26 @@ const renderVertical: RenderVertical = (h: CreateElement, data, rowCountRef) => 
   createRow();
 
   return {
-    element: rowJSXChildren,
+    // @ts-ignore
+    element: <Fragment>{rowJSXChildren}</Fragment>,
     detail,
   };
 };
+
+// const renderHorizontal1 = (h) => {
+//   return (
+//     <Fragment>
+//       <div key="1">11111111111</div>,<div key="2">11111111111</div>,<div key="3">11111111111</div>,
+//     </Fragment>
+//   );
+// };
 
 /**
  * renderGridSearchForm
  * @description 渲染一个Table
  * @return {VNode}
  */
-const renderGridSearchForm: RenderGridSearchForm = (h, params) => {
+const renderGridSearchForm: RenderGridSearchForm = (h, context, params) => {
   const {
     data: {
       className,
@@ -300,10 +337,14 @@ const renderGridSearchForm: RenderGridSearchForm = (h, params) => {
       style={`width:${_width + 'px' ? _width + 'px' : '100%'}${';' + style || ''}`}
     >
       <colgroup>{colgroupJSX}</colgroup>
+
       <ConditionalRender conditional={layout === 'horizontal'}>
-        {renderHorizontal(h, params).element}
+        {renderHorizontal(h, context, params).element}
+
         {/*@ts-ignore*/}
-        <Fragment slot="noMatch">{renderVertical(h, params.data, rowCountRef).element}</Fragment>
+        <Fragment slot="noMatch">
+          {renderVertical(h, context, params.data, rowCountRef).element}
+        </Fragment>
       </ConditionalRender>
     </table>
   );
@@ -311,6 +352,7 @@ const renderGridSearchForm: RenderGridSearchForm = (h, params) => {
 
 const renderGridSearchFormGroup = (
   h: CreateElement,
+  context: { $slots: any },
   data?: DataItem[],
   props?: Omit<TableGridLayoutProps, 'data'>,
 ) => {
@@ -335,15 +377,16 @@ const renderGridSearchFormGroup = (
       {(data || []).map((g, index) => (
         <ConditionalRender key={g.name || index} conditional={index !== 0}>
           <div>
-            {renderGridSearchForm(h, {
+            {renderGridSearchForm(h, context, {
               data: g,
               rowCountRef,
               ...renderGridSearchFormProps,
             })}
           </div>
+
           {/*@ts-ignore*/}
           <Fragment slot="noMatch">
-            {renderGridSearchForm(h, {
+            {renderGridSearchForm(h, context, {
               data: g,
               rowCountRef,
               ...renderGridSearchFormProps,
@@ -359,12 +402,14 @@ const renderGridSearchFormGroup = (
  * getRenderDetail
  * @description 获取渲染细节
  * @param h
+ * @param context
  * @param data - 组数据
  * @param props - 配置
  * @return RenderDetail
  */
 const getRenderDetail = (
   h: CreateElement,
+  context: { $slots: any },
   data: DataItem[],
   props: Omit<TableGridLayoutProps, 'data'>,
 ): RenderDetail => {
@@ -389,9 +434,9 @@ const getRenderDetail = (
     let detail: GroupRenderDetail = [];
 
     if (props.layout === 'horizontal') {
-      detail = renderHorizontal(h, params).detail;
+      detail = renderHorizontal(h, context, params).detail;
     } else {
-      detail = renderVertical(h, params.data, rowCountRef).detail;
+      detail = renderVertical(h, context, params.data, rowCountRef).detail;
     }
 
     result.rowCount += rowCountRef.current;
@@ -482,7 +527,7 @@ const TableGridLayout: any = {
 
     return (
       <div class={classNames(selectorPrefix)}>
-        {renderGridSearchFormGroup(h, data, this.otherProps)}
+        {renderGridSearchFormGroup(h, { $slots: this.$slots }, data, this.otherProps)}
       </div>
     );
   },

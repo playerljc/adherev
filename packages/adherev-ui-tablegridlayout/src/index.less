@@ -13,7 +13,7 @@
 
 .adherev-ui-tablegridlayout-inner-wrap {
   &.adherev-ui-tablegridlayout-border {
-    border-top: 1px solid @adhereborder-color;
+    border-top: 1px solid @adhere-border-color;
     border-right: 1px solid @adhere-border-color;
     border-left: 1px solid @adhere-border-color;
 
@@ -60,8 +60,9 @@
       > .adherev-ui-tablegridlayout-table-row-value {
         color: @adherev-ui-tablegridlayout-table-row-value-color;
         white-space: normal;
-        .adherev-word-break();
+        .adhere-word-break();
 
+        // antd-design-vue
         .ant-checkbox-checked {
           .ant-checkbox-inner {
             &::after {
@@ -71,11 +72,10 @@
         }
 
         .ant-form-item {
-          &.ant-form-item-has-error {
-            > .ant-form-item-control {
-              position: relative;
-              > .ant-form-item-explain {
-                &.ant-form-item-explain-connected {
+          &.ant-form-item-with-help {
+            > .ant-form-item-control-wrapper {
+              > .ant-form-item-control.has-error {
+                > .ant-form-explain {
                   position: absolute;
                   bottom: -24px;
                   left: 0;
@@ -87,11 +87,13 @@
           margin-bottom: 0;
         }
 
+        .ant-calendar-picker,
         .ant-select,
         .ant-picker,
         .ant-input-number {
           width: 100%;
         }
+        // antd-design-vue
       }
     }
 

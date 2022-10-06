@@ -12,7 +12,11 @@ export interface RowCountRef {
  * RenderHorizontal
  */
 export interface RenderHorizontal {
-  (h: CreateElement, params: { data: DataItem; rowCountRef?: RowCountRef }): {
+  (
+    h: CreateElement,
+    context: { $slots: any },
+    params: { data: DataItem; rowCountRef?: RowCountRef },
+  ): {
     element: VNode[];
     detail: GroupRenderDetail;
   };
@@ -22,7 +26,7 @@ export interface RenderHorizontal {
  * RenderVertical
  */
 export interface RenderVertical {
-  (h: CreateElement, data: DataItem, rowCountRef): {
+  (h: CreateElement, context: { $slots: any }, data: DataItem, rowCountRef): {
     element: VNode[];
     detail: GroupRenderDetail;
   };
@@ -34,6 +38,7 @@ export interface RenderVertical {
 export interface RenderGridSearchForm {
   (
     h: CreateElement,
+    context: { $slots: any },
     params: {
       data: DataItem;
       rowCountRef?: RowCountRef;
@@ -74,7 +79,6 @@ export interface TableGridLayoutProps {
   innerClassName?: string;
   innerStyle?: string;
   data?: DataItem[];
-  //
   className?: string;
   style?: string;
   layout: 'horizontal' | 'vertical';
@@ -111,12 +115,4 @@ export interface RenderDetail {
     // 细节
     detail: GroupRenderDetail;
   }[];
-}
-
-export interface getRenderDetailFunction {
-  (h: CreateElement, data: DataItem[], props: Omit<TableGridLayoutProps, 'data'>): RenderDetail;
-}
-
-export interface renderGridSearchFormGroupFunction {
-  (h: CreateElement, data?: DataItem[], props?: Omit<TableGridLayoutProps, 'data'>): VNode;
 }

@@ -7,35 +7,27 @@ import {
   getRenderDetail,
   renderGridSearchFormGroup,
 } from './tablegridlayout';
-import { getRenderDetailFunction, renderGridSearchFormGroupFunction } from './types';
 
 const {
   _util: { withInstall, withVue },
 } = Util;
 
-const Component: {
-  isUse?: () => boolean;
-  use?: (vue) => void;
-  getRenderDetail?: getRenderDetailFunction;
-  renderGridSearchFormGroup?: renderGridSearchFormGroupFunction;
-} = {};
-
+const Component = withInstall(TableGridLayout);
 withInstall(Label);
 withInstall(Value);
-withInstall(TableGridLayout);
+
+Component.getRenderDetail = getRenderDetail;
+Component.renderGridSearchFormGroup = renderGridSearchFormGroup;
+Component.Label = Label;
+Component.Value = Value;
 
 Component.isUse = () => true;
 
 Component.use = (Vue) => {
+  Vue.use(TableGridLayout);
   Vue.use(Label);
   Vue.use(Value);
-  Vue.use(TableGridLayout);
-  withVue(Vue, Label.name, Label);
-  withVue(Vue, Value.name, Value);
-  withVue(Vue, TableGridLayout.name, TableGridLayout);
+  withVue(Vue, 'TableGridLayout', Component);
 };
-
-Component.getRenderDetail = getRenderDetail;
-Component.renderGridSearchFormGroup = renderGridSearchFormGroup;
 
 export default Component;

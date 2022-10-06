@@ -203,9 +203,11 @@ const BackTopAnimation: any = {
         Mode.FREE,
         {
           draw({ sourcePoint, targetPoint }) {
-            this.$data.$ctx.beginPath();
-            this.$data.$ctx.moveTo(sourcePoint.x, sourcePoint.y);
-            this.$data.$ctx.lineTo(targetPoint.x, targetPoint.y);
+            const ctx = this.$data.$ctx as CanvasRenderingContext2D;
+
+            ctx.beginPath();
+            ctx.moveTo(sourcePoint.x, sourcePoint.y);
+            ctx.lineTo(targetPoint.x, targetPoint.y);
 
             this.$data.$stack.push({
               shape: this.$data.$curShape,
@@ -219,19 +221,21 @@ const BackTopAnimation: any = {
             });
 
             // 描边
-            this.$data.$ctx.stroke();
+            ctx.stroke();
           },
           drawStack(item) {
-            this.$data.$ctx.beginPath();
-            this.$data.$ctx.moveTo(item.sourcePoint.x, item.sourcePoint.y);
-            this.$data.$ctx.lineTo(item.targetPoint.x, item.targetPoint.y);
+            const ctx = this.$data.$ctx as CanvasRenderingContext2D;
+
+            ctx.beginPath();
+            ctx.moveTo(item.sourcePoint.x, item.sourcePoint.y);
+            ctx.lineTo(item.targetPoint.x, item.targetPoint.y);
 
             this.style({
               lineWidth: item.lineWidth,
               strokeStyle: item.strokeStyle,
             });
 
-            this.$data.$ctx.stroke();
+            ctx.stroke();
           },
           mouseup(point) {
             this.draw({ sourcePoint: this.$data.$prePoint, targetPoint: point });
@@ -243,17 +247,14 @@ const BackTopAnimation: any = {
         Mode.LINE,
         {
           draw({ targetPoint }) {
+            const ctx = this.$data.$ctx as CanvasRenderingContext2D;
+
             // 清除画布
-            this.$data.$ctx.clearRect(
-              0,
-              0,
-              this.$refs.canvasRef.width,
-              this.$refs.canvasRef.height,
-            );
+            ctx.clearRect(0, 0, this.$refs.canvasRef.width, this.$refs.canvasRef.height);
             this.drawStack();
-            this.$data.$ctx.beginPath();
-            this.$data.$ctx.moveTo(this.$data.$startPoint.x!, this.$data.$startPoint.y!);
-            this.$data.$ctx.lineTo(targetPoint.x, targetPoint.y);
+            ctx.beginPath();
+            ctx.moveTo(this.$data.$startPoint.x!, this.$data.$startPoint.y!);
+            ctx.lineTo(targetPoint.x, targetPoint.y);
 
             this.style({
               lineWidth: this.$data.$lineWidth,
@@ -261,19 +262,21 @@ const BackTopAnimation: any = {
             });
 
             // 描边
-            this.$data.$ctx.stroke();
+            ctx.stroke();
           },
           drawStack(item) {
-            this.$data.$ctx.beginPath();
-            this.$data.$ctx.moveTo(item.sourcePoint.x, item.sourcePoint.y);
-            this.$data.$ctx.lineTo(item.targetPoint.x, item.targetPoint.y);
+            const ctx = this.$data.$ctx as CanvasRenderingContext2D;
+
+            ctx.beginPath();
+            ctx.moveTo(item.sourcePoint.x, item.sourcePoint.y);
+            ctx.lineTo(item.targetPoint.x, item.targetPoint.y);
 
             this.style({
               lineWidth: item.lineWidth,
               strokeStyle: item.strokeStyle,
             });
 
-            this.$data.$ctx.stroke();
+            ctx.stroke();
           },
           mouseup(point) {
             this.$data.$stack.push({
@@ -291,19 +294,16 @@ const BackTopAnimation: any = {
         Mode.RECTANGLE,
         {
           draw({ targetPoint }) {
+            const ctx = this.$data.$ctx as CanvasRenderingContext2D;
+
             // 清除画布
-            this.$data.$ctx.clearRect(
-              0,
-              0,
-              this.$refs.canvasRef.width,
-              this.$refs.canvasRef.height,
-            );
+            ctx.clearRect(0, 0, this.$refs.canvasRef.width, this.$refs.canvasRef.height);
             this.drawStack();
-            this.$data.$ctx.beginPath();
+            ctx.beginPath();
 
             // 判断target在start的四个方向
             const rectStart = this.getPoint({ startPoint: this.$data.$startPoint, targetPoint });
-            this.$data.$ctx.rect(
+            ctx.rect(
               rectStart.x,
               rectStart.y,
               Math.abs(targetPoint.x - this.$data.$startPoint.x!),
@@ -316,18 +316,20 @@ const BackTopAnimation: any = {
             });
 
             // 描边
-            this.$data.$ctx.stroke();
+            ctx.stroke();
           },
           drawStack(item) {
-            this.$data.$ctx.beginPath();
-            this.$data.$ctx.rect(item.x, item.y, item.width, item.height);
+            const ctx = this.$data.$ctx as CanvasRenderingContext2D;
+
+            ctx.beginPath();
+            ctx.rect(item.x, item.y, item.width, item.height);
 
             this.style({
               lineWidth: item.lineWidth,
               strokeStyle: item.strokeStyle,
             });
 
-            this.$data.$ctx.stroke();
+            ctx.stroke();
           },
           mouseup(point) {
             const rectStart = this.getPoint({
@@ -352,23 +354,20 @@ const BackTopAnimation: any = {
         Mode.CIRCLE,
         {
           draw({ targetPoint }) {
+            const ctx = this.$data.$ctx as CanvasRenderingContext2D;
+
             // 清除画布
-            this.$data.$ctx.clearRect(
-              0,
-              0,
-              this.$refs.canvasRef.width,
-              this.$refs.canvasRef.height,
-            );
+            ctx.clearRect(0, 0, this.$refs.canvasRef.width, this.$refs.canvasRef.height);
             this.drawStack();
 
-            this.$data.$ctx.beginPath();
+            ctx.beginPath();
             // 判断target在start的四个方向
             const rectStart = this.getPoint({ startPoint: this.$data.$startPoint, targetPoint });
             const radius = this.getDistanceByBetweenPoint({
               p2: targetPoint,
               p1: this.$data.$startPoint,
             });
-            this.$data.$ctx.ellipse(
+            ctx.ellipse(
               rectStart.x,
               rectStart.y,
               radius,
@@ -384,11 +383,13 @@ const BackTopAnimation: any = {
             });
 
             // 描边
-            this.$data.$ctx.stroke();
+            ctx.stroke();
           },
           drawStack(item) {
-            this.$data.$ctx.beginPath();
-            this.$data.$ctx.ellipse(
+            const ctx = this.$data.$ctx as CanvasRenderingContext2D;
+
+            ctx.beginPath();
+            ctx.ellipse(
               item.x,
               item.y,
               item.radiusX,
@@ -403,7 +404,7 @@ const BackTopAnimation: any = {
               strokeStyle: item.strokeStyle,
             });
 
-            this.$data.$ctx.stroke();
+            ctx.stroke();
           },
           mouseup(point) {
             const center = this.getPoint({
@@ -434,21 +435,18 @@ const BackTopAnimation: any = {
         Mode.TRIANGLE,
         {
           draw({ targetPoint }) {
+            const ctx = this.$data.$ctx as CanvasRenderingContext2D;
+
             // 清除画布
-            this.$data.$ctx.clearRect(
-              0,
-              0,
-              this.$refs.canvasRef.width,
-              this.$refs.canvasRef.height,
-            );
+            ctx.clearRect(0, 0, this.$refs.canvasRef.width, this.$refs.canvasRef.height);
             this.drawStack();
-            this.$data.$ctx.beginPath();
+            ctx.beginPath();
 
             const points = this.triangle({ startPoint: this.$data.$startPoint, targetPoint });
-            this.$data.$ctx.moveTo(points[0].x, points[0].y);
-            this.$data.$ctx.lineTo(points[1].x, points[1].y);
-            this.$data.$ctx.lineTo(points[2].x, points[2].y);
-            this.$data.$ctx.closePath();
+            ctx.moveTo(points[0].x, points[0].y);
+            ctx.lineTo(points[1].x, points[1].y);
+            ctx.lineTo(points[2].x, points[2].y);
+            ctx.closePath();
 
             this.style({
               lineWidth: this.$data.$lineWidth,
@@ -456,21 +454,23 @@ const BackTopAnimation: any = {
             });
 
             // 描边
-            this.$data.$ctx.stroke();
+            ctx.stroke();
           },
           drawStack(item) {
-            this.$data.$ctx.beginPath();
-            this.$data.$ctx.moveTo(item.points[0].x, item.points[0].y);
-            this.$data.$ctx.lineTo(item.points[1].x, item.points[1].y);
-            this.$data.$ctx.lineTo(item.points[2].x, item.points[2].y);
-            this.$data.$ctx.closePath();
+            const ctx = this.$data.$ctx as CanvasRenderingContext2D;
+
+            ctx.beginPath();
+            ctx.moveTo(item.points[0].x, item.points[0].y);
+            ctx.lineTo(item.points[1].x, item.points[1].y);
+            ctx.lineTo(item.points[2].x, item.points[2].y);
+            ctx.closePath();
 
             this.style({
               lineWidth: item.lineWidth,
               strokeStyle: item.strokeStyle,
             });
 
-            this.$data.$ctx.stroke();
+            ctx.stroke();
           },
           mouseup(point) {
             const points = this.triangle({
@@ -492,9 +492,11 @@ const BackTopAnimation: any = {
         Mode.RUBBER,
         {
           draw({ sourcePoint, targetPoint }) {
-            this.$data.$ctx.beginPath();
-            this.$data.$ctx.moveTo(sourcePoint.x, sourcePoint.y);
-            this.$data.$ctx.lineTo(targetPoint.x, targetPoint.y);
+            const ctx = this.$data.$ctx as CanvasRenderingContext2D;
+
+            ctx.beginPath();
+            ctx.moveTo(sourcePoint.x, sourcePoint.y);
+            ctx.lineTo(targetPoint.x, targetPoint.y);
 
             this.$data.$stack.push({
               shape: this.$data.$curShape,
@@ -502,22 +504,24 @@ const BackTopAnimation: any = {
               targetPoint,
             });
 
-            (this.$data.$ctx as CanvasRenderingContext2D).lineWidth = 15;
-            (this.$data.$ctx as CanvasRenderingContext2D).strokeStyle = '#fff';
-            (this.$data.$ctx as CanvasRenderingContext2D).lineCap = 'round';
-            (this.$data.$ctx as CanvasRenderingContext2D).lineJoin = 'round';
-            this.$data.$ctx.stroke();
+            ctx.lineWidth = 15;
+            ctx.strokeStyle = '#fff';
+            ctx.lineCap = 'round';
+            ctx.lineJoin = 'round';
+            ctx.stroke();
           },
           drawStack(item) {
-            this.$data.$ctx.beginPath();
-            this.$data.$ctx.moveTo(item.sourcePoint.x, item.sourcePoint.y);
-            this.$data.$ctx.lineTo(item.targetPoint.x, item.targetPoint.y);
+            const ctx = this.$data.$ctx as CanvasRenderingContext2D;
 
-            (this.$data.$ctx as CanvasRenderingContext2D).lineWidth = 15;
-            (this.$data.$ctx as CanvasRenderingContext2D).strokeStyle = '#fff';
-            (this.$data.$ctx as CanvasRenderingContext2D).lineCap = 'round';
-            (this.$data.$ctx as CanvasRenderingContext2D).lineJoin = 'round';
-            this.$data.$ctx.stroke();
+            ctx.beginPath();
+            ctx.moveTo(item.sourcePoint.x, item.sourcePoint.y);
+            ctx.lineTo(item.targetPoint.x, item.targetPoint.y);
+
+            ctx.lineWidth = 15;
+            ctx.strokeStyle = '#fff';
+            ctx.lineCap = 'round';
+            ctx.lineJoin = 'round';
+            ctx.stroke();
           },
           mouseup(point) {
             this.draw({ sourcePoint: this.$data.$prePoint, targetPoint: point });
