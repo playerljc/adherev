@@ -199,7 +199,7 @@ const BackTopAnimation: any = {
       this.$data.$lineWidth = width;
     },
     toDataURL() {
-      this.$refs.canvasRef.toDataURL('image/png', 1.0);
+      return this.$refs.canvasRef.toDataURL('image/png', 1.0);
     },
   },
   created() {
