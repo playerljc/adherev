@@ -156,6 +156,7 @@ const ListStandard: any = {
       const result: VNode[] = [];
 
       for (let i = 0; i < 7; i++) {
+        // @ts-ignore
         result.push(<Skeleton key={i + 1} loading avatar />);
       }
 
@@ -197,6 +198,7 @@ const ListStandard: any = {
             <ConditionalRender conditional={!this.isEmpty}>
               {this.$scopedSlots?.renderList?.(this.data)}
 
+              {/*@ts-ignore*/}
               <Fragment slot="noMatch">{this.$slots.renderEmpty || <Empty />}</Fragment>
             </ConditionalRender>
           </CommentList>

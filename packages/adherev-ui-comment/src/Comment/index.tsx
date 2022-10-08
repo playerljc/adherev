@@ -220,6 +220,7 @@ const Comment: any = {
       return (
         <div class={`${selectorPrefix}-loading`}>
           <Spin>
+            {/*@ts-ignore*/}
             <Icon slot="indicator" type="loading" style="font-size: 24px;" />
           </Spin>
         </div>

@@ -1,56 +1,16 @@
 import { Button, Input, Popover } from 'ant-design-vue';
-import { Picker } from 'emoji-mart-vue';
 
 import Intl from '@baifendian/adherev-util-intl';
-// @ts-ignore
-import data from '@emoji-mart/data';
-// @ts-ignore
-import ar from '@emoji-mart/data/i18n/ar.json';
-// @ts-ignore
-import de from '@emoji-mart/data/i18n/de.json';
-// @ts-ignore
-import en from '@emoji-mart/data/i18n/en.json';
-// @ts-ignore
-import es from '@emoji-mart/data/i18n/es.json';
-// @ts-ignore
-import fa from '@emoji-mart/data/i18n/fa.json';
-// @ts-ignore
-import fr from '@emoji-mart/data/i18n/fr.json';
-// @ts-ignore
-import it from '@emoji-mart/data/i18n/it.json';
-// @ts-ignore
-import ja from '@emoji-mart/data/i18n/ja.json';
-// @ts-ignore
-import nl from '@emoji-mart/data/i18n/nl.json';
-// @ts-ignore
-import pl from '@emoji-mart/data/i18n/pl.json';
-// @ts-ignore
-import pt from '@emoji-mart/data/i18n/pt.json';
-// @ts-ignore
-import ru from '@emoji-mart/data/i18n/ru.json';
-// @ts-ignore
-import uk from '@emoji-mart/data/i18n/uk.json';
-// @ts-ignore
-import zh from '@emoji-mart/data/i18n/zh.json';
 
+import Emoji from '../../Components/Emoji';
+import en from '../../Components/Emoji/locales/en';
+import zh from '../../Components/Emoji/locales/zh';
 import EmojiIcon from './emoji';
 
 const { TextArea } = Input;
 
 const LOCAL_MAP = new Map<string, any>([
-  ['ar', ar],
-  ['de', de],
   ['en', en],
-  ['es', es],
-  ['fa', fa],
-  ['fr', fr],
-  ['it', it],
-  ['ja', ja],
-  ['nl', nl],
-  ['pl', pl],
-  ['pt', pt],
-  ['ru', ru],
-  ['uk', uk],
   ['zh', zh],
 ]);
 
@@ -76,9 +36,9 @@ const Reply: any = {
     };
   },
   methods: {
-    onEmojiSelect({ native }) {
+    $onEmojiSelect({ native }) {
       // 获取textarea的dom
-      const textareaEl = this.$refs.textAreaRef.querySelector('textarea') as HTMLTextAreaElement;
+      const textareaEl = this.$refs.textAreaRef.querySelector('textarea');
 
       // 光标开始索引
       const { selectionStart } = textareaEl;
@@ -96,6 +56,26 @@ const Reply: any = {
         );
       });
     },
+    $onDocBodyClick(e) {
+      const target = e.target;
+
+      const textareaEl = this.$refs.textAreaRef;
+
+      if (![textareaEl.querySelector('textarea')].includes(target)) {
+        this.emojiIconWrapVisible = false;
+      }
+    },
+    $onEmojiWrapClick(e) {
+      e.stopPropagation();
+    },
+  },
+  mounted() {
+    document.body.addEventListener('click', this.$onDocBodyClick);
+    this.$refs.emojiWrapRef.addEventListener?.('click', this.$onEmojiWrapClick);
+  },
+  beforeDestroy() {
+    document.body.removeEventListener('click', this.$onDocBodyClick);
+    this.$refs.emojiWrapRef.removeEventListener?.('click', this.$onEmojiWrapClick);
   },
   render(h) {
     return (
@@ -110,12 +90,11 @@ const Reply: any = {
             onChange={(e) => {
               this.value = e.target.value;
             }}
-            showCount
             maxLength={100}
           />
         </div>
 
-        <div ref="emojiWrapRef" class={`${selectorPrefix}-emoji-wrap`} />
+        <div ref="emojiWrapRef" class={`${selectorPrefix}-toolbar-emoji-wrap`} />
 
         <div class={`${selectorPrefix}-toolbar`}>
           <Popover
@@ -123,10 +102,10 @@ const Reply: any = {
             placement="bottomLeft"
             getPopupContainer={() => this.$refs.emojiWrapRef}
             content={
-              <Picker
-                data={data}
+              <Emoji
+                set="emojione"
                 i18n={LOCAL_MAP.get(this.local || 'zh')}
-                onSelect={this.onEmojiSelect}
+                onSelect={this.$onEmojiSelect}
                 {...{ props: this.emojiPickerProps || {} }}
               />
             }
@@ -153,11 +132,8 @@ const Reply: any = {
               {Intl.v('添加')}
             </Button>
 
-            <Button
-              // @ts-ignore
-              class={`${selectorPrefix}-toolbar-item`}
-              onClick={() => this.$emit('cancel')}
-            >
+            {/*@ts-ignore*/}
+            <Button class={`${selectorPrefix}-toolbar-item`} onClick={() => this.$emit('cancel')}>
               {Intl.v('取消')}
             </Button>
           </div>

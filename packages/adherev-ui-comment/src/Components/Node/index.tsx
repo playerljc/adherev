@@ -322,13 +322,10 @@ const Node: any = {
             </FlexLayout.Fixed>
 
             <ConditionalRender conditional={this.showReply}>
-              <FlexLayout.Fixed style={{ marginTop: 15 }}>
+              <FlexLayout.Fixed style="margin-top:15px;">
                 <ReplySubmit
                   onCancel={() => (this.showReply = false)}
                   onResult={(reply) => {
-                    debugger;
-                    console.log('onResult', reply, this.fetchReply);
-
                     this.fetchReply?.({
                       id: this.data?.[this.keyProp!],
                       record: { ...this.data },
