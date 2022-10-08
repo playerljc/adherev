@@ -1,15 +1,12 @@
-import { Skeleton } from 'ant-design-vue';
-import { VNode } from 'vue';
-
 import BackTopAnimation from '@baifendian/adherev-ui-backtopanimation';
 import ConditionalRender from '@baifendian/adherev-ui-conditionalrender';
 import ScrollLoad from '@baifendian/adherev-ui-scrollload';
 import Teleport from '@baifendian/adherev-ui-teleport';
 
-import { selectorPrefix } from '../index';
+const selectorPrefix = 'adherev-ui-comment-inner-list';
 
 const List: any = {
-  name: `${selectorPrefix}-list`,
+  name: `adv-comment-list`,
   props: {
     isLoading: {
       type: Boolean,
@@ -40,49 +37,36 @@ const List: any = {
     $renderDispatch(h) {
       const loading = this.isLoading;
 
-      const {
-        $data: { $isFirst, $isFirstLoading },
-      } = this;
-
-      if ($isFirst && !$isFirstLoading && loading) {
+      if (this.$data.$isFirst && !this.$data.$isFirstLoading && loading) {
         this.$data.$isFirstLoading = true;
       }
 
-      if ($isFirst && $isFirstLoading && !loading) {
-        this.$isFirst = false;
-        this.$isFirstLoading = false;
+      if (this.$data.$isFirst && this.$data.$isFirstLoading && !loading) {
+        this.$data.$isFirst = false;
+        this.$data.$isFirstLoading = false;
       }
 
-      if ($isFirst) {
+      if (this.$data.$isFirst) {
         return this.$renderFirstLoading(h);
       }
 
       return this.$renderNormal(h);
     },
     $renderFirstLoading(h) {
-      if (this.$slots.renderFirstLoading) {
-        return this.$slots.renderFirstLoading;
-      }
-
-      const result: VNode[] = [];
-
-      for (let i = 0; i < 7; i++) {
-        // @ts-ignore
-        result.push(<Skeleton key={i + 1} loading avatar />);
-      }
-
-      return <div class={`${selectorPrefix}-first-loading-wrap`}>{result}</div>;
+      return (
+        <div class={`${selectorPrefix}-first-loading-wrap`}>{this.$slots.renderFirstLoading}</div>
+      );
     },
     $renderNormal(h) {
       const defaultScrollLoadProps = {
         getScrollContainer: () => this.getScrollWrapContainer?.()?.firstElementChild,
-        scrollBottom: () => this.$emit('load-more'),
       };
 
       return (
         <ConditionalRender conditional={this.hasMore}>
           <div class={`${selectorPrefix}-normal-wrap`}>
             <ScrollLoad
+              onScrollBottom={(callback) => this.$emit('loadMore', callback)}
               {...{
                 props: {
                   ...defaultScrollLoadProps,
@@ -99,19 +83,19 @@ const List: any = {
             >
               <Teleport to={this.getScrollWrapContainer?.()}>
                 <BackTopAnimation
-                  target={(callback) =>
+                  onTarget={(callback) =>
                     callback(this.getScrollWrapContainer?.()?.firstElementChild)
                   }
-                  trigger={(next) => next()}
+                  onTrigger={(next) => next()}
                 />
               </Teleport>
 
               <BackTopAnimation
                 slot="noMatch"
-                target={(callback) =>
+                onTarget={(callback) =>
                   callback(this.$refs.wrapRef?.querySelector?.('.adherev-ui-scrollload'))
                 }
-                trigger={(next) => next()}
+                onTrigger={(next) => next()}
               />
             </ConditionalRender>
           </div>

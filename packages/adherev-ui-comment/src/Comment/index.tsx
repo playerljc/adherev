@@ -16,7 +16,7 @@ export const selectorPrefix = 'adherev-ui-comment';
  * @classdesc 评论
  */
 const Comment: any = {
-  name: selectorPrefix,
+  name: 'adv-comment',
   props: {
     getScrollWrapContainer: {
       type: Function,
@@ -40,8 +40,8 @@ const Comment: any = {
       default: 10,
     },
     commentKeyProp: {
-      type: Object,
-      default: () => ({}),
+      type: String,
+      default: 'id',
     },
     fetchReplyData: {
       type: Function,
@@ -89,8 +89,28 @@ const Comment: any = {
       default: () => ({}),
     },
   },
-  slots: [],
-  scopedSlots: [],
+  slots: [
+    'renderReplyLoading',
+    'renderCommentLoading',
+    'showReplyText',
+    'showReplyTextIcon',
+    'hideReplyText',
+    'hideReplyTextIcon',
+    'loadMoreReplyText',
+    'loadMoreCollapseTextIcon',
+  ],
+  scopedSlots: [
+    'renderCommentActions',
+    'renderCommentAuthor',
+    'renderCommentAvatar',
+    'renderCommentContent',
+    'renderCommentDateTime',
+    'renderReplyActions',
+    'renderReplyAuthor',
+    'renderReplyAvatar',
+    'renderReplyContent',
+    'renderReplyDateTime',
+  ],
   emits: [],
   data() {
     return {};
@@ -112,46 +132,51 @@ const Comment: any = {
       );
 
       const scopedSlots = {
-        default: (record) => (
-          <ReplyInfo
-            data={record}
-            dataKeys={this.replyDataKeys}
-            limit={this.replyLimit}
-            keyProp={this.replyKeyProp}
-            isMoreProp={this.isMoreProp}
-            fetchData={this.fetchReplyData}
-            fetchReply={this.fetchReply}
-            local={this.local}
-            emojiPickerProps={this.emojiPickerProps}
-          >
-            {/*@ts-ignore*/}
-            <Fragment slot="renderActions">{this.$slots.renderReplyActions}</Fragment>
-            {/*@ts-ignore*/}
-            <Fragment slot="renderAuthor">{this.$slots.renderReplyAuthor}</Fragment>
-            {/*@ts-ignore*/}
-            <Fragment slot="renderAvatar">{this.$slots.renderReplyAvatar}</Fragment>
-            {/*@ts-ignore*/}
-            <Fragment slot="renderContent">{this.$slots.renderReplyContent}</Fragment>
-            {/*@ts-ignore*/}
-            <Fragment slot="renderDateTime">{this.$slots.renderReplyDateTime}</Fragment>
-            {/*@ts-ignore*/}
-            <Fragment slot="renderLoading">
-              {this.$slots.renderReplyLoading || this.$renderLoading(h)}
-            </Fragment>
-            {/*@ts-ignore*/}
-            <Fragment slot="showReplyText">{showReplyText}</Fragment>
-            {/*@ts-ignore*/}
-            <Fragment slot="hideReplyText">{hideReplyText}</Fragment>
-            {/*@ts-ignore*/}
-            <Fragment slot="loadMoreReplyText">{loadMoreReplyText}</Fragment>
-            {/*@ts-ignore*/}
-            <Fragment slot="showReplyTextIcon">{showReplyTextIcon}</Fragment>
-            {/*@ts-ignore*/}
-            <Fragment slot="hideReplyTextIcon">{hideReplyTextIcon}</Fragment>
-            {/*@ts-ignore*/}
-            <Fragment slot="loadMoreCollapseTextIcon">{loadMoreCollapseTextIcon}</Fragment>
-          </ReplyInfo>
-        ),
+        default: (record) => {
+          const scopedSlots = {
+            renderActions: (params) => this.$scopedSlots.renderReplyActions(params),
+            renderAuthor: (params) => this.$scopedSlots.renderReplyAuthor(params),
+            renderAvatar: (params) => this.$scopedSlots.renderReplyAvatar(params),
+            renderContent: (params) => this.$scopedSlots.renderReplyContent(params),
+            renderDateTime: (params) => this.$scopedSlots.renderReplyDateTime(params),
+          };
+
+          return (
+            <ReplyInfo
+              defaultData={record}
+              dataKeys={this.replyDataKeys}
+              limit={this.replyLimit}
+              keyProp={this.replyKeyProp}
+              isMoreProp={this.isMoreProp}
+              fetchData={this.fetchReplyData}
+              fetchReply={this.fetchReply}
+              local={this.local}
+              emojiPickerProps={this.emojiPickerProps}
+              scopedSlots={scopedSlots}
+            >
+              <div slot="renderLoading">
+                {this.$slots.renderReplyLoading || this.$renderLoading(h)}
+              </div>
+              {/*@ts-ignore*/}
+              <Fragment slot="showReplyText">{showReplyText}</Fragment>
+              {/*@ts-ignore*/}
+              <Fragment slot="hideReplyText">{hideReplyText}</Fragment>
+              {/*@ts-ignore*/}
+              <Fragment slot="loadMoreReplyText">{loadMoreReplyText}</Fragment>
+              {/*@ts-ignore*/}
+              <Fragment slot="showReplyTextIcon">{showReplyTextIcon}</Fragment>
+              {/*@ts-ignore*/}
+              <Fragment slot="hideReplyTextIcon">{hideReplyTextIcon}</Fragment>
+              {/*@ts-ignore*/}
+              <Fragment slot="loadMoreCollapseTextIcon">{loadMoreCollapseTextIcon}</Fragment>
+            </ReplyInfo>
+          );
+        },
+        renderActions: (params) => this.$scopedSlots.renderCommentActions(params),
+        renderAuthor: (params) => this.$scopedSlots.renderCommentAuthor(params),
+        renderAvatar: (params) => this.$scopedSlots.renderCommentAvatar(params),
+        renderContent: (params) => this.$scopedSlots.renderCommentContent(params),
+        renderDateTime: (params) => this.$scopedSlots.renderCommentDateTime(params),
       };
 
       return (
@@ -159,7 +184,7 @@ const Comment: any = {
           {data?.list?.map?.((record) => (
             <li class={`${selectorPrefix}-list-item`} key={record[this.commentKeyProp!]}>
               <CommentInfo
-                data={record}
+                defaultData={record}
                 dataKeys={this.replyDataKeys}
                 limit={this.replyLimit}
                 keyProp={this.replyKeyProp}
@@ -170,20 +195,9 @@ const Comment: any = {
                 emojiPickerProps={this.emojiPickerProps}
                 scopedSlots={scopedSlots}
               >
-                {/*@ts-ignore*/}
-                <Fragment slot="renderActions">{this.$slots.renderCommentActions}</Fragment>
-                {/*@ts-ignore*/}
-                <Fragment slot="renderAuthor">{this.$slots.renderCommentAuthor}</Fragment>
-                {/*@ts-ignore*/}
-                <Fragment slot="renderAvatar">{this.$slots.renderCommentAvatar}</Fragment>
-                {/*@ts-ignore*/}
-                <Fragment slot="renderContent">{this.$slots.renderCommentContent}</Fragment>
-                {/*@ts-ignore*/}
-                <Fragment slot="renderDateTime">{this.$slots.renderCommentDateTime}</Fragment>
-                {/*@ts-ignore*/}
-                <Fragment slot="renderLoading">
+                <div slot="renderLoading">
                   {this.$slots.renderCommentLoading || this.$renderLoading(h)}
-                </Fragment>
+                </div>
                 {/*@ts-ignore*/}
                 <Fragment slot="showReplyText">{showReplyText}</Fragment>
                 {/*@ts-ignore*/}
@@ -205,8 +219,9 @@ const Comment: any = {
     $renderLoading(h) {
       return (
         <div class={`${selectorPrefix}-loading`}>
-          {/*@ts-ignore*/}
-          <Spin indicator={<Icon type="loading" style="font-size: 24px" />} />
+          <Spin>
+            <Icon slot="indicator" type="loading" style="font-size: 24px;" />
+          </Spin>
         </div>
       );
     },

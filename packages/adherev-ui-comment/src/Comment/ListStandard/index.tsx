@@ -1,4 +1,6 @@
 import { Empty } from 'ant-design-vue';
+import { Skeleton } from 'ant-design-vue';
+import { VNode } from 'vue';
 import { Fragment } from 'vue-fragment';
 
 import ConditionalRender from '@baifendian/adherev-ui-conditionalrender';
@@ -6,12 +8,13 @@ import FlexLayout from '@baifendian/adherev-ui-flexlayout';
 import ScrollLoad from '@baifendian/adherev-ui-scrollload';
 
 import CommentList from '../List';
-import { selectorPrefix } from '../index';
+
+const selectorPrefix = 'adherev-ui-comment-list-standard';
 
 const { VerticalFlexLayout } = FlexLayout;
 
 const ListStandard: any = {
-  name: `${selectorPrefix}-list-standard`,
+  name: `adv-comment-list-standard`,
   slots: ['renderEmpty', 'renderFirstLoading'],
   scopedSlots: ['renderList'],
   props: {
@@ -70,7 +73,7 @@ const ListStandard: any = {
     },
   },
   methods: {
-    $loadMore(callback) {
+    onLoadMore(callback) {
       if (this.$data.$status === ScrollLoad.EMPTY) {
         this.$data.$status = ScrollLoad.EMPTY;
         callback(ScrollLoad.EMPTY);
@@ -141,6 +144,23 @@ const ListStandard: any = {
           return error;
         });
     },
+    /**
+     * $renderFirstLoading
+     * @param h
+     */
+    $renderFirstLoading(h) {
+      if (this.$slots.renderFirstLoading) {
+        return this.$slots.renderFirstLoading;
+      }
+
+      const result: VNode[] = [];
+
+      for (let i = 0; i < 7; i++) {
+        result.push(<Skeleton key={i + 1} loading avatar />);
+      }
+
+      return result;
+    },
   },
   mounted() {
     this.$loadData();
@@ -158,8 +178,7 @@ const ListStandard: any = {
       });
     },
   },
-  render() {
-    // @ts-ignore
+  render(h) {
     return (
       <VerticalFlexLayout class={`${selectorPrefix}`} {...{ props: this.flexLayoutProps || {} }}>
         <div slot="renderMain" class={`${selectorPrefix}-auto`} ref="mainRef">
@@ -167,18 +186,17 @@ const ListStandard: any = {
             getScrollWrapContainer={this.getScrollWrapContainer}
             isLoading={this.loading}
             hasMore={
-              (this.data[this.dataKeys!.list] as Array<any>).length <=
+              (this.data[this.dataKeys!.list] as any[]).length <=
               this.data[this.dataKeys!.totalCount]
             }
-            loadMore={() => this.$loadMore}
+            onLoadMore={this.onLoadMore}
             {...{ props: this.listProps || {} }}
           >
-            {/*@ts-ignore*/}
-            <Fragment slot="renderFirstLoading">{this.$slots.renderFirstLoading}</Fragment>
+            <div slot="renderFirstLoading">{this.$renderFirstLoading(h)}</div>
 
             <ConditionalRender conditional={!this.isEmpty}>
               {this.$scopedSlots?.renderList?.(this.data)}
-              {/*@ts-ignore*/}
+
               <Fragment slot="noMatch">{this.$slots.renderEmpty || <Empty />}</Fragment>
             </ConditionalRender>
           </CommentList>

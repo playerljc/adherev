@@ -5,7 +5,8 @@
  * @classdesc 标签符号Icon
  */
 const EmojiIcon: any = {
-  return(h) {
+  name: `adv-comment-reply-submit-emoji`,
+  render(h) {
     return (
       <svg
         xmlns="http://www.w3.org/2000/svg"

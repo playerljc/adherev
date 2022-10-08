@@ -33,7 +33,6 @@ import uk from '@emoji-mart/data/i18n/uk.json';
 // @ts-ignore
 import zh from '@emoji-mart/data/i18n/zh.json';
 
-import { selectorPrefix } from '../../Comment';
 import EmojiIcon from './emoji';
 
 const { TextArea } = Input;
@@ -55,8 +54,10 @@ const LOCAL_MAP = new Map<string, any>([
   ['zh', zh],
 ]);
 
+const selectorPrefix = 'adherev-ui-comment-reply';
+
 const Reply: any = {
-  name: `${selectorPrefix}-reply`,
+  name: `adv-comment-reply`,
   props: {
     local: {
       type: String,
@@ -67,7 +68,7 @@ const Reply: any = {
       default: () => ({}),
     },
   },
-  emits: ['onResult', 'onCancel'],
+  emits: ['result', 'cancel'],
   data() {
     return {
       value: '',
@@ -125,7 +126,7 @@ const Reply: any = {
               <Picker
                 data={data}
                 i18n={LOCAL_MAP.get(this.local || 'zh')}
-                select={this.onEmojiSelect}
+                onSelect={this.onEmojiSelect}
                 {...{ props: this.emojiPickerProps || {} }}
               />
             }
@@ -147,9 +148,7 @@ const Reply: any = {
               type="primary"
               class={`${selectorPrefix}-toolbar-item`}
               disabled={!this.value}
-              onClick={() => {
-                this.$emit('onResult', this.value.trim());
-              }}
+              onClick={() => this.$emit('result', this.value.trim())}
             >
               {Intl.v('添加')}
             </Button>
@@ -157,9 +156,7 @@ const Reply: any = {
             <Button
               // @ts-ignore
               class={`${selectorPrefix}-toolbar-item`}
-              onClick={() => {
-                this.$emit('onCancel');
-              }}
+              onClick={() => this.$emit('cancel')}
             >
               {Intl.v('取消')}
             </Button>

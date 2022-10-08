@@ -1,2 +1,2 @@
-import DateDisplay from './datedisplay';
-export default DateDisplay;
+declare const Component: any;
+export default Component;

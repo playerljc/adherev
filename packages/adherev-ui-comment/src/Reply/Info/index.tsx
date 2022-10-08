@@ -1,4 +1,5 @@
-import { selectorPrefix } from '../../Comment';
+import { createHOC } from 'vue-hoc';
+
 import Node from '../../Components/Node';
 
 /**
@@ -7,34 +8,19 @@ import Node from '../../Components/Node';
  * @constructor
  * @classdesc 回复节点
  */
-const ReplyInfo: any = {
-  name: `${selectorPrefix}-reply-info`,
-  props: {
-    ...Node.props,
+const ReplyInfo: any = createHOC(
+  Node,
+  {
+    name: `adv-comment-reply-info`,
   },
-  computed: {
-    props() {
-      const props = {};
-
-      for (const p in this.$props) {
-        props[p] = this[p];
-      }
-
-      return props;
+  {
+    props(props) {
+      return {
+        ...props,
+        isReply: true,
+      };
     },
   },
-  render(h) {
-    return (
-      <Node
-        {...{
-          props: {
-            ...this.props,
-            isReply: true,
-          },
-        }}
-      />
-    );
-  },
-};
+);
 
 export default ReplyInfo;

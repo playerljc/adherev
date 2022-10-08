@@ -42,6 +42,7 @@ const ScrollLoad: any = {
     //   type: Function,
     // },
   },
+  emits: ['scrollBottom', 'emptyClick', 'errorClick'],
   data() {
     return {
       $lock: false,
@@ -112,7 +113,7 @@ const ScrollLoad: any = {
          * @param {string} status [empty(没有数据) | error(有错误) | normal(正常)]
          */
 
-        this.$emit('scroll-bottom', (status) => {
+        this.$emit('scrollBottom', (status) => {
           loadEl.style.display = 'none';
 
           if (status === EMPTY) {
@@ -126,10 +127,10 @@ const ScrollLoad: any = {
       }
     },
     onEmptyClick() {
-      this.$emit('empty-click');
+      this.$emit('emptyClick');
     },
     onErrorClick() {
-      this.$emit('error-click');
+      this.$emit('errorClick');
     },
     renderLoading(h): VNode {
       const { $slots, loadClassName } = this;

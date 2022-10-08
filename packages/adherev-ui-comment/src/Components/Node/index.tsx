@@ -1,13 +1,15 @@
 import classNames from 'classnames';
+import type { VNode } from 'vue';
 import { Fragment } from 'vue-fragment';
 
 import ConditionalRender from '@baifendian/adherev-ui-conditionalrender';
 import FlexLayout from '@baifendian/adherev-ui-flexlayout';
 import Intl from '@baifendian/adherev-util-intl';
 
-import { selectorPrefix } from '../../Comment';
 import ReplyInfo from '../../Reply/Info';
 import ReplySubmit from '../../Reply/Submit';
+
+const selectorPrefix = 'adherev-ui-comment-node';
 
 /**
  * Node
@@ -16,7 +18,7 @@ import ReplySubmit from '../../Reply/Submit';
  * @classdesc 节点(评论 | 回复)
  */
 const Node: any = {
-  name: `${selectorPrefix}-reply-node`,
+  name: `adv-comment-reply-node`,
   props: {
     isReply: {
       type: Boolean,
@@ -61,8 +63,12 @@ const Node: any = {
       type: Object,
       default: () => ({}),
     },
+    comId: {
+      type: [String, Number],
+      default: '',
+    },
   },
-  scopedSlots: ['renderAvatar', 'renderAuthor', 'renderDateTime', 'renderContent'],
+  scopedSlots: ['renderActions', 'renderAuthor', 'renderAvatar', 'renderContent', 'renderDateTime'],
   slots: [
     'renderLoading',
     'loadMoreCollapseTextIcon',
@@ -104,25 +110,27 @@ const Node: any = {
   },
   methods: {
     $renderActions(h) {
-      const actions = [
-        ...(
-          this?.renderActions?.({ ...this.data }, (_data) => {
-            this.data = _data;
-          }) || []
-        ).map((action, index) =>
-          ConditionalRender.conditionalRender({
-            conditional: !(action as any)?.data.class?.endsWith('-actions-action'),
-            noMatch: action,
-            match: (
-              <li key={index} class={`${selectorPrefix}-actions-action`}>
-                {action}
-              </li>
-            ),
-          }),
-        ),
-      ];
+      const actions: VNode[] =
+        this.$scopedSlots
+          ?.renderActions?.({
+            record: { ...this.data },
+            callback: (_data) => {
+              this.data = _data;
+            },
+          })
+          ?.map((node, index) =>
+            ConditionalRender.conditionalRender({
+              conditional: !node?.data?.class?.endsWith?.('-actions-action'),
+              noMatch: node,
+              match: (
+                <li key={index} class={`${selectorPrefix}-actions-action`}>
+                  {node}
+                </li>
+              ),
+            }),
+          ) || [];
 
-      if (!actions.find((t) => t?.children?.[0]?.key === 'reply')) {
+      if (!actions.find((node) => node?.key === 'reply')) {
         actions.push(
           <li
             key="reply"
@@ -130,9 +138,7 @@ const Node: any = {
               `${selectorPrefix}-actions-action`,
               `${selectorPrefix}-actions-action-reply-btn`,
             )}
-            onClick={() => {
-              this.showReply = true;
-            }}
+            onClick={() => (this.showReply = true)}
           >
             {Intl.v('回复')}
           </li>,
@@ -143,29 +149,38 @@ const Node: any = {
     },
     $renderChildren(h) {
       const scopedSlots = {
-        renderAuthor: (params) => this.$slots.renderAuthor(params),
-        renderAvatar: (params) => this.$slots.renderAvatar(params),
-        renderContent: (params) => this.$slots.renderContent(params),
-        renderDateTime: (params) => this.$slots.renderDateTime(params),
+        renderActions: (params) => this.$scopedSlots.renderActions(params),
+        renderAuthor: (params) => this.$scopedSlots.renderAuthor(params),
+        renderAvatar: (params) => this.$scopedSlots.renderAvatar(params),
+        renderContent: (params) => this.$scopedSlots.renderContent(params),
+        renderDateTime: (params) => this.$scopedSlots.renderDateTime(params),
       };
 
       return (
         <ul class={`${selectorPrefix}-children`}>
           {((this.listData[this.dataKeys.list] as []) || [])?.map?.((record) => (
-            <li class={`${selectorPrefix}-children-item`} key={record[this.keyProp!]}>
-              <ConditionalRender conditional={!this.$scopedSlots.default}>
+            <li
+              class={`${selectorPrefix}-children-item`}
+              key={record[this.keyProp]}
+              id={record[this.keyProp]}
+            >
+              <ConditionalRender conditional={!this?.$scopedSlots?.default}>
                 <ReplyInfo
+                  comId={record[this.keyProp]}
                   isReply
-                  data={record}
+                  defaultData={record}
+                  dataKeys={this.dataKeys}
+                  limit={this.limit}
                   keyProp={this.keyProp}
                   isMoreProp={this.isMoreProp}
-                  fetchData={this.$fetchData}
+                  fetchData={this.fetchData}
+                  fetchReply={this.fetchReply}
+                  local={this.local}
+                  emojiPickerProps={this.emojiPickerProps}
                   scopedSlots={scopedSlots}
                 >
-                  {/*@ts-ignore*/}
-                  <Fragment slot="renderActions">{this.$slots.renderActions}</Fragment>
-                  {/*@ts-ignore*/}
-                  <Fragment slot="renderLoading">{this.$slots.renderLoading}</Fragment>
+                  <div slot="renderLoading">{this.$slots.renderLoading}</div>
+
                   {/*@ts-ignore*/}
                   <Fragment slot="showReplyText">{this.$slots.showReplyText}</Fragment>
                   {/*@ts-ignore*/}
@@ -181,8 +196,9 @@ const Node: any = {
                     {this.$slots.loadMoreCollapseTextIcon}
                   </Fragment>
                 </ReplyInfo>
+
                 {/*@ts-ignore*/}
-                <Fragment slot="noMatch">{this.$scopedSlots.default(record)}</Fragment>
+                <Fragment slot="noMatch">{this?.$scopedSlots?.default?.(record)}</Fragment>
               </ConditionalRender>
             </li>
           ))}
@@ -209,11 +225,9 @@ const Node: any = {
                 return;
               }
 
-              this.$loadData()?.then(() => {
-                this.$nextTick(() => {
-                  this.collapse = true;
-                });
-              });
+              console.log('renderMore加载回复', 'comId:' + this.comId);
+
+              this.$loadData()?.then(() => (this.collapse = true));
             }}
           >
             <span>{this.$slots.showReplyTextIcon}</span>
@@ -223,9 +237,7 @@ const Node: any = {
           <a
             slot="noMatch"
             class={`${selectorPrefix}-collapse`}
-            onClick={() => {
-              this.collapse = false;
-            }}
+            onClick={() => (this.collapse = false)}
           >
             <span>{this.$slots.hideReplyTextIcon}</span>
             <span>{this.$slots.hideReplyText}</span>
@@ -241,8 +253,10 @@ const Node: any = {
         limit: this.limit,
       };
 
-      return this.fetchData()?.then((res) => {
-        this.data = res;
+      console.log('$loadData', 'comId:' + this.comId);
+
+      return this.$fetchData().then((res) => {
+        this.listData = res;
       });
     },
     $appendData() {
@@ -252,14 +266,16 @@ const Node: any = {
 
       const { list } = this.dataKeys;
 
-      return this.fetchData()?.then((res) => {
-        this.data = {
+      return this.$fetchData().then((res) => {
+        this.listData = {
           ...res,
-          [this.dataKeys.list]: [...(this.data[list] as any), ...res[list]],
+          [this.dataKeys.list]: [...(this.listData[list] as any), ...res[list]],
         };
       });
     },
     $fetchData() {
+      // console.log('$fetchData', '页码:' + this.$data.$paging.page, 'comId:' + this.comId);
+
       return this?.fetchData?.({
         ...this.$data.$paging,
         record: { ...this.data },
@@ -277,33 +293,28 @@ const Node: any = {
     },
   },
   render(h) {
-    const {
-      $scopedSlots: { renderAvatar, renderAuthor, renderDateTime, renderContent },
-      $slots: { renderLoading },
-    } = this;
-
     return (
       <FlexLayout
         direction="horizontal"
-        class={classNames(selectorPrefix, this.isReply ? `${selectorPrefix}-reply` : null)}
+        class={classNames(selectorPrefix, this.isReply ? `${selectorPrefix}-reply` : '')}
       >
         <FlexLayout.Fixed class={`${selectorPrefix}-avatar-wrap`}>
-          {renderAvatar?.({ ...this.data })}
+          {this.$scopedSlots?.renderAvatar?.({ ...this.data })}
         </FlexLayout.Fixed>
 
         <FlexLayout.Auto autoFixed fit>
           <FlexLayout direction="vertical">
             <FlexLayout.Fixed class={`${selectorPrefix}-title-row`} fit={false}>
               <div class={`${selectorPrefix}-title-row-author`}>
-                {renderAuthor?.({ ...this.data })}
+                {this.$scopedSlots?.renderAuthor?.({ ...this.data })}
               </div>
               <div class={`${selectorPrefix}-title-row-date-time`}>
-                {renderDateTime?.({ ...this.data })}
+                {this.$scopedSlots?.renderDateTime?.({ ...this.data })}
               </div>
             </FlexLayout.Fixed>
 
             <FlexLayout.Auto class={`${selectorPrefix}-content-wrap`}>
-              {renderContent?.({ ...this.data })}
+              {this.$scopedSlots?.renderContent?.({ ...this.data })}
             </FlexLayout.Auto>
 
             <FlexLayout.Fixed>
@@ -313,10 +324,11 @@ const Node: any = {
             <ConditionalRender conditional={this.showReply}>
               <FlexLayout.Fixed style={{ marginTop: 15 }}>
                 <ReplySubmit
-                  onCancel={() => {
-                    this.showReply = false;
-                  }}
+                  onCancel={() => (this.showReply = false)}
                   onResult={(reply) => {
+                    debugger;
+                    console.log('onResult', reply, this.fetchReply);
+
                     this.fetchReply?.({
                       id: this.data?.[this.keyProp!],
                       record: { ...this.data },
@@ -333,18 +345,19 @@ const Node: any = {
             </ConditionalRender>
 
             <ConditionalRender conditional={this.data?.[this.isMoreProp]}>
-              {/*@ts-ignore*/}
-              <Fragment>
+              <div>
                 <ConditionalRender conditional={!this.loading}>
                   {this.$renderMore(h)}
                 </ConditionalRender>
 
-                <ConditionalRender conditional={this.collapse}>
+                <ConditionalRender.Show conditional={this.collapse}>
                   {this.$renderChildren(h)}
-                </ConditionalRender>
+                </ConditionalRender.Show>
 
-                <ConditionalRender conditional={this.loading}>{renderLoading}</ConditionalRender>
-              </Fragment>
+                <ConditionalRender conditional={this.loading}>
+                  {this.$slots.renderLoading}
+                </ConditionalRender>
+              </div>
             </ConditionalRender>
           </FlexLayout>
         </FlexLayout.Auto>

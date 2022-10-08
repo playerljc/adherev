@@ -32,7 +32,7 @@ keys.forEach((key) => {
     name: `adv-datedisplay-${name}`,
     props: {
       value: {
-        type: [Object, Number, String],
+        type: [Object, Number, String, Date],
       },
       split1: {
         type: String,
@@ -68,7 +68,7 @@ Components[`DateDisplayFromNow`] = {
   name: `adv-datedisplay-fromnow`,
   props: {
     value: {
-      type: [Object, Number, String],
+      type: [Object, Number, String, Date],
     },
     locale: {
       type: String,
@@ -97,7 +97,7 @@ Components[`DateDisplayToNow`] = {
   name: `adv-datedisplay-tonow`,
   props: {
     value: {
-      type: [Object, Number, String],
+      type: [Object, Number, String, Date],
     },
     locale: {
       type: String,
@@ -125,7 +125,7 @@ Components[`DateDisplay`] = {
   name: `adv-datedisplay`,
   props: {
     value: {
-      type: [Object, Number, String],
+      type: [Object, Number, String, Date],
     },
     locale: {
       type: String,

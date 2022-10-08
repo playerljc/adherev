@@ -6,7 +6,7 @@
 
     <adv-playground-page-code-box-section title="代码演示" :config="codeBoxPanelConfig">
       <template #p1>
-        <adv-scrollload style="width: 400px; height: 600px" @scroll-bottom="onCode1ScrollBottom">
+        <adv-scrollload style="width: 400px; height: 600px" @scrollBottom="onCode1ScrollBottom">
           <a-list item-layout="horizontal" :data-source="data">
             <a-list-item slot="renderItem" slot-scope="item, index">
               <a-list-item-meta
@@ -26,8 +26,8 @@
       <template #p2>
         <adv-scrollload
           style="width: 400px; height: 600px"
-          @scroll-bottom="onCode2ScrollBottom"
-          @empty-click="onCode2EmptyClick"
+          @scrollBottom="onCode2ScrollBottom"
+          @emptyClick="onCode2EmptyClick"
         >
           <a-list item-layout="horizontal" :data-source="code2Data">
             <a-list-item slot="renderItem" slot-scope="item, index">
@@ -48,8 +48,8 @@
       <template #p3>
         <adv-scrollload
           style="width: 400px; height: 600px"
-          @scroll-bottom="onCode3ScrollBottom"
-          @error-click="onCode3ErrorClick"
+          @scrollBottom="onCode3ScrollBottom"
+          @errorClick="onCode3ErrorClick"
         >
           <a-list item-layout="horizontal" :data-source="code2Data">
             <a-list-item slot="renderItem" slot-scope="item, index">
@@ -68,7 +68,7 @@
       </template>
 
       <template #p4>
-        <adv-scrollload style="width: 400px; height: 400px" @scroll-bottom="onCode4ScrollBottom">
+        <adv-scrollload style="width: 400px; height: 400px" @scrollBottom="onCode4ScrollBottom">
           <a-list item-layout="horizontal" :data-source="code2Data">
             <a-list-item slot="renderItem" slot-scope="item, index">
               <a-list-item-meta
@@ -149,7 +149,7 @@ export default {
           codeText: `
         <h2>基本使用</h2>
         <template>
-          <adv-scrollload style="width: 400px; height: 600px" @scroll-bottom="onCode1ScrollBottom">
+          <adv-scrollload style="width: 400px; height: 600px" @scrollBottom="onCode1ScrollBottom">
             <a-list item-layout="horizontal" :data-source="data">
               <a-list-item slot="renderItem" slot-scope="item, index">
                 <a-list-item-meta
@@ -223,7 +223,7 @@ export default {
           codeText: `
         <template>
           <h2>没有数据的显示</h2>
-          <adv-scrollload style="width: 400px; height: 600px" @scroll-bottom="onCode2ScrollBottom" @empty-click="onCode2EmptyClick">
+          <adv-scrollload style="width: 400px; height: 600px" @scrollBottom="onCode2ScrollBottom" @emptyClick="onCode2EmptyClick">
             <a-list item-layout="horizontal" :data-source="code2Data">
               <a-list-item slot="renderItem" slot-scope="item, index">
                 <a-list-item-meta
@@ -285,7 +285,7 @@ export default {
           codeText: `
         <template>
           <h2>错误的显示</h2>
-          <adv-scrollload style="width: 400px; height: 600px" @scroll-bottom="onCode3ScrollBottom" @error-click="onCode3ErrorClick">
+          <adv-scrollload style="width: 400px; height: 600px" @scrollBottom="onCode3ScrollBottom" @errorClick="onCode3ErrorClick">
             <a-list item-layout="horizontal" :data-source="code2Data">
               <a-list-item slot="renderItem" slot-scope="item, index">
                 <a-list-item-meta
@@ -347,7 +347,7 @@ export default {
           codeText: `
         <template>
           <h2>自定义loading和empty</h2>
-          <adv-scrollload style="width: 400px; height: 400px" @scroll-bottom="onCode4ScrollBottom">
+          <adv-scrollload style="width: 400px; height: 400px" @scrollBottom="onCode4ScrollBottom">
             <a-list item-layout="horizontal" :data-source="code2Data">
               <a-list-item slot="renderItem" slot-scope="item, index">
                 <a-list-item-meta
