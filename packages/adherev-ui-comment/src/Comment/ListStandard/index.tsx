@@ -1,5 +1,4 @@
-import { Empty } from 'ant-design-vue';
-import { Skeleton } from 'ant-design-vue';
+import { Empty, Skeleton } from 'ant-design-vue';
 import { VNode } from 'vue';
 import { Fragment } from 'vue-fragment';
 
@@ -67,9 +66,7 @@ const ListStandard: any = {
   },
   computed: {
     isEmpty() {
-      return (
-        this.$data.$paging.page === 1 && (this.data[this.dataKeys.list] as Array<any>).length === 0
-      );
+      return this.$data.$paging.page === 1 && (this.data[this.dataKeys.list] as any[]).length === 0;
     },
   },
   methods: {

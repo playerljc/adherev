@@ -225,8 +225,6 @@ const Node: any = {
                 return;
               }
 
-              console.log('renderMore加载回复', 'comId:' + this.comId);
-
               this.$loadData()?.then(() => (this.collapse = true));
             }}
           >
@@ -252,8 +250,6 @@ const Node: any = {
         page: 1,
         limit: this.limit,
       };
-
-      console.log('$loadData', 'comId:' + this.comId);
 
       return this.$fetchData().then((res) => {
         this.listData = res;
