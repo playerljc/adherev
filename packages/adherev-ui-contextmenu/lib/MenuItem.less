@@ -1,5 +1,7 @@
 @import '~@baifendian/adherev-ui-css/lib/vars.less';
 
+@adherev-ui-contextmenu-menuitem-more-color: #ccc;
+
 .adherev-ui-contextmenu-menuitem() {
   position: relative;
   display: flex;
@@ -17,20 +19,20 @@
     }
 
     > .adherev-ui-contextmenu-menuitem-icon {
-      color: rgba(0, 0, 0, 0.1);
+      color: @adhere-border-color;
     }
 
     > .adherev-ui-contextmenu-menuitem-name {
-      color: rgba(0, 0, 0, 0.1);
+      color: @adhere-border-color;
     }
 
     > .adherev-ui-contextmenu-menuitem-more {
-      color: rgba(0, 0, 0, 0.1);
+      color: @adhere-border-color;
     }
   }
 
   &:hover {
-    background-color: rgba(0, 122, 255, 0.5);
+    background-color: rgba(@adhere-primary-color, 0.5);
     border-color: rgba(@adhere-primary-color, 0.4);
 
     > .adherev-ui-contextmenu-submenu {
@@ -52,7 +54,7 @@
     flex-grow: 1;
     min-width: 0;
     overflow: hidden;
-    color: rgba(#000, 0.85);
+    color: rgba(@adhere-black-color, 0.85);
     white-space: nowrap;
     text-overflow: ellipsis;
   }
@@ -60,8 +62,8 @@
   > .adherev-ui-contextmenu-menuitem-more {
     flex-shrink: 0;
     margin-right: 5px;
-    color: #ccc;
-    font-size: 12px;
+    color: @adherev-ui-contextmenu-menuitem-more-color;
+    font-size: @adhere-small-font-size;
   }
 
   > .adherev-ui-contextmenu-submenu {
@@ -74,5 +76,5 @@
 .adherev-ui-contextmenu-menuitem-separation() {
   height: 1px;
   margin: 5px 0;
-  background-color: rgba(0, 0, 0, 0.1);
+  background-color: @adhere-border-color;
 }

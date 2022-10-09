@@ -39,6 +39,7 @@
   },
   "dependencies": {
     "@baifendian/adherev-util": "^1.0.11",
+    "@baifendian/adherev-ui-css": "^1.0.9",
     "classnames": "^2.2.6",
     "omit.js": "^2.0.2",
     "uuid": "^8.3.2",

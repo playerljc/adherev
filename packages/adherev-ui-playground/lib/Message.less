@@ -1,3 +1,9 @@
+@import '~@baifendian/adherev-ui-css/lib/vars';
+
+@adherev-ui-playground-message-notice-content-box-shadow: 0 3px 6px -4px #0000001f,
+0 6px 16px #00000014, 0 9px 28px 8px #0000000d;
+@adherev-ui-playground-message-success-color: #52c41a;
+
 .adherev-ui-playground-message {
   position: fixed;
   top: 8px;
@@ -7,8 +13,8 @@
   width: 100%;
   margin: 0;
   padding: 0;
-  color: #000000d9;
-  font-size: 14px;
+  color: @adhere-black-color;
+  font-size: @adhere-base-font-size;
   font-variant: tabular-nums;
   line-height: 1.5715;
   list-style: none;
@@ -29,8 +35,9 @@
       padding: 10px 16px;
       background: #fff;
       border-radius: 2px;
-      box-shadow: 0 3px 6px -4px #0000001f, 0 6px 16px #00000014, 0 9px 28px 8px #0000000d;
+      box-shadow: @adherev-ui-playground-message-notice-content-box-shadow;
       pointer-events: all;
+
       > .adherev-ui-playground-message-success {
         margin: 0;
         padding: 0;
@@ -38,8 +45,8 @@
           position: relative;
           top: 1px;
           margin-right: 8px;
-          color: #52c41a;
-          font-size: 16px;
+          color: @adherev-ui-playground-message-success-color;
+          font-size: @adhere-large-font-size;
         }
       }
     }

@@ -12,6 +12,9 @@
 @import './Extension/ColumnSetting/setting.less';
 @import './Extension/TableDensitySetting/setting.less';
 
+@adherev-ui-searchtable-searchfooteritem-search-btn-icon-color: #fff;
+@adherev-ui-searchtable-background-color: #f0f2f5;
+
 .adherev-ui-searchtable-wrap {
   display: flex;
   width: 100%;
@@ -22,7 +25,7 @@
     .adherev-ui-searchtable {
       position: relative;
       padding: 24px;
-      background-color: #f0f2f5;
+      background-color: @adherev-ui-searchtable-background-color;
 
       .adherev-ui-searchtable-tablewrapper {
         > .ant-table-wrapper {

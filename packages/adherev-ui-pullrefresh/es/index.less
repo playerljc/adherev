@@ -1,6 +1,9 @@
 @import '~@baifendian/adherev-ui-css/lib/vars.less';
 @import './load-awesome.less';
 
+@adherev-ui-pullrefresh-trigger-label-color: #999;
+@adherev-ui-pullrefresh-trigger-update-color: #ccc;
+
 .adherev-ui-pullrefresh {
   position: relative;
   overflow: hidden;
@@ -62,13 +65,13 @@
       }
 
       > .adherev-ui-pullrefresh-trigger-label {
-        color: #999;
-        font-size: 16px;
+        color: @adherev-ui-pullrefresh-trigger-label-color;
+        font-size: @adhere-large-font-size;
       }
 
       > .adherev-ui-pullrefresh-trigger-update {
-        color: #ccc;
-        font-size: 14px;
+        color: @adherev-ui-pullrefresh-trigger-update-color;
+        font-size: @adhere-base-font-size;
       }
     }
 
