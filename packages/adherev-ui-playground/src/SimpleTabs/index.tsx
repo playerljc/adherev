@@ -8,6 +8,7 @@ const SimpleTabs: any = {
       default: '',
     },
   },
+  emits: ['change'],
   data() {
     return {
       activeKey: this.defaultActiveKey,

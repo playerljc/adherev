@@ -1,2 +1,2 @@
-import Polygonselection from '@baifendian/adhere-ui-polygonselection';
-export default Polygonselection;
+declare const Component: any;
+export default Component;

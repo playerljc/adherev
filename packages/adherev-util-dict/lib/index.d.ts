@@ -1,2 +1,2 @@
-import Dict from '@baifendian/adhere-util-dict';
-export default Dict;
+declare const Component: any;
+export default Component;

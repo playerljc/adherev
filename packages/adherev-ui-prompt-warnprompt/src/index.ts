@@ -7,6 +7,7 @@ const {
 } = BfdUtil;
 
 WarnPrompt.isUse = () => true;
+
 WarnPrompt.use = (Vue) => {
   withVue(Vue, 'WarnPrompt', WarnPrompt);
 };

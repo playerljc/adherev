@@ -132,6 +132,8 @@ const CascadeCompared: any = {
       default: defaultCellWidth,
     },
   },
+  emits: ['stickChange'],
+  scopedSlots: ['masterGroupTitle', 'cell'],
   data() {
     return {
       $scrolls: [],
@@ -141,49 +143,42 @@ const CascadeCompared: any = {
     getIndicatorClassName() {
       const { indicatorClassName = '' } = this;
 
-      return classNames(`${selectorPrefix}-indicator`, (indicatorClassName || '').split(/\s+/));
+      return classNames(`${selectorPrefix}-indicator`, indicatorClassName || '');
     },
     getFixedWrapClassName() {
-      return (className) =>
-        classNames(`${selectorPrefix}-fixedWrap`, (className || '').split(/\s+/));
+      return (className) => classNames(`${selectorPrefix}-fixedWrap`, className || '');
     },
     getFixedWrapStyle() {
       return (style, width) => `${style};width:${width || defaultCellWidth}px`;
     },
     getCellClassName() {
-      return (column) =>
-        classNames(`${selectorPrefix}-cell`, (column.className || '').split(/\s+/));
+      return (column) => classNames(`${selectorPrefix}-cell`, column.className || '');
     },
     getAutoWrapClassName() {
-      return (className) =>
-        classNames(`${selectorPrefix}-autoWrap`, (className || '').split(/\s+/));
+      return (className) => classNames(`${selectorPrefix}-autoWrap`, className || '');
     },
     getAutoInnerClassName() {
-      return (className) =>
-        classNames(`${selectorPrefix}-autoInner`, (className || '').split(/\s+/));
+      return (className) => classNames(`${selectorPrefix}-autoInner`, className || '');
     },
     getMasterClassName() {
       const { masterClassName = '' } = this;
 
-      return classNames(`${selectorPrefix}-master`, (masterClassName || '').split(/\s+/));
+      return classNames(`${selectorPrefix}-master`, masterClassName || '');
     },
     getMasterInnerClassName() {
       const { masterInnerClassName = '' } = this;
 
-      return classNames(
-        `${selectorPrefix}-master-inner`,
-        (masterInnerClassName || '').split(/\s+/),
-      );
+      return classNames(`${selectorPrefix}-master-inner`, masterInnerClassName || '');
     },
     getFixedClassName() {
       const { masterStickFixedClassName = '' } = this;
 
-      return classNames((masterStickFixedClassName || '').split(/\s+/));
+      return classNames(masterStickFixedClassName || '');
     },
     getInnerClassName() {
       const { masterStickInnerClassName = '' } = this;
 
-      return classNames((masterStickInnerClassName || '').split(/\s+/));
+      return classNames(masterStickInnerClassName || '');
     },
   },
   methods: {
@@ -221,31 +216,74 @@ const CascadeCompared: any = {
         });
       }
     },
-    getFixedColumnConfig(columns: Array<IColumnConfig>): IColumnConfig | null {
+    getFixedColumnConfig(columns: IColumnConfig[]): IColumnConfig | null {
       const config = columns.find((t) => t.isFixed);
 
       if (config) return config;
 
       return columns.length ? columns[0] : null;
     },
-    renderCell(h, config: IColumnConfig, dataSource: any): VNode {
-      if (config.render) {
-        // @ts-ignore
-        return config.render(h, dataSource[config.dataIndex], dataSource);
+    renderCell(
+      h,
+      config: IColumnConfig,
+      dataSource: any,
+      groupIndex: number,
+      rowIndex: number,
+      columnIndex: number,
+    ): VNode {
+      // if (config.render) {
+      //   // @ts-ignore
+      //   return config.render(h, dataSource[config.dataIndex], dataSource);
+      // }
+
+      console.log('rowIndex', rowIndex, config, dataSource, this.$scopedSlots.cell);
+
+      if (this.$scopedSlots.cell) {
+        console.log(
+          '$scopedSlots渲染',
+          this.$scopedSlots.cell({ config, dataSource, groupIndex, rowIndex, columnIndex }),
+        );
+        return this.$scopedSlots.cell({ config, dataSource, groupIndex, rowIndex, columnIndex });
       }
 
+      console.log('字符串渲染', dataSource[config.dataIndex]);
       return dataSource[config.dataIndex];
     },
-    renderMasterGroupTitle(h, title): VNode {
-      return Util.isObject(title) ? (
+    /**
+     * renderMasterGroupTitle
+     * @description 渲染每一行的master
+     * @param h
+     * @param config
+     * @param groupIndex
+     */
+    renderMasterGroupTitle(h, config: IMasterItem, groupIndex: number): VNode {
+      /*return Util.isObject(title) ? (
         <div slot="title">{h(title)}</div>
       ) : Util.isFunction(title) ? (
         <div slot="title">{title(h)}</div>
       ) : (
         <span slot="title">{title}</span>
-      );
+      );*/
+
+      const { title } = config;
+
+      if (title && Util.isString(title)) {
+        return <div slot="title">{title}</div>;
+      }
+
+      if (this.$scopedSlots.masterGroupTitle) {
+        return <div slot="title">{this.$scopedSlots.masterGroupTitle({ config, groupIndex })}</div>;
+      }
+
+      return <div slot="title">{title}</div>;
     },
-    renderMasterGroupContent(h, masterItem: IMasterItem): VNode {
+    /**
+     * renderMasterGroupContent
+     * @param h
+     * @param masterItem
+     * @param groupIndex
+     */
+    renderMasterGroupContent(h, masterItem: IMasterItem, groupIndex: number): VNode {
       const {
         dataSource = [],
         columns = [],
@@ -276,27 +314,28 @@ const CascadeCompared: any = {
             class={getFixedWrapClassName(fixedWrapClassName)}
             style={getFixedWrapStyle(fixedWrapStyle, fixedColumnConfig?.width)}
           >
-            {dataSource.map((record, index) => (
-              <div key={index} class={`${selectorPrefix}-item`}>
+            {dataSource.map((record, rowIndex) => (
+              <div key={rowIndex} class={`${selectorPrefix}-item`}>
                 <div class={getCellClassName(fixedColumnConfig)} style={fixedColumnConfig.style}>
-                  {renderCell(h, fixedColumnConfig, record)}
+                  {renderCell(h, fixedColumnConfig, record, groupIndex, rowIndex, -1)}
                 </div>
               </div>
             ))}
           </div>
+
           <div class={getAutoWrapClassName(autoWrapClassName)} style={autoWrapStyle}>
             <div class={getAutoInnerClassName(autoInnerClassName)} style={autoInnerStyle}>
-              {dataSource.map((record, index) => (
-                <div key={index} class={`${selectorPrefix}-item`}>
+              {dataSource.map((record, rowIndex) => (
+                <div key={rowIndex} class={`${selectorPrefix}-item`}>
                   {columns
                     .filter((column) => column !== fixedColumnConfig)
-                    .map((column) => (
+                    .map((column, columnIndex) => (
                       <div
                         key={column.dataIndex}
                         class={getCellClassName(column)}
                         style={getFixedWrapStyle(column.style, column?.width)}
                       >
-                        {renderCell(h, column, record)}
+                        {renderCell(h, column, record, groupIndex, rowIndex, columnIndex)}
                       </div>
                     ))}
                 </div>
@@ -306,19 +345,21 @@ const CascadeCompared: any = {
         </Fragment>
       );
     },
-    renderMasterGroup(h, config: IMasterItem, index): VNode {
-      const { title = null, className = '', style = '' } = config;
+    /**
+     * renderMasterGroup
+     * @param h
+     * @param config
+     * @param groupIndex
+     */
+    renderMasterGroup(h, config: IMasterItem, groupIndex): VNode {
+      const { className = '', style = '' } = config;
 
       const { renderMasterGroupTitle, renderMasterGroupContent } = this;
 
       return (
-        <StickupLayout.Item
-          key={index}
-          class={classNames((className || '').split(/\s+/))}
-          style={style}
-        >
-          {renderMasterGroupTitle(h, title)}
-          {renderMasterGroupContent(h, config)}
+        <StickupLayout.Item key={groupIndex} class={className || ''} style={style}>
+          {renderMasterGroupTitle(h, config, groupIndex)}
+          {renderMasterGroupContent(h, config, groupIndex)}
         </StickupLayout.Item>
       );
     },
@@ -349,7 +390,7 @@ const CascadeCompared: any = {
           >
             <div class={`${selectorPrefix}-item`}>
               <div class={getCellClassName(fixedColumnConfig)} style={fixedColumnConfig.style}>
-                {renderCell(h, fixedColumnConfig, dataSource)}
+                {renderCell(h, fixedColumnConfig, dataSource, -1, -1, -1)}
               </div>
             </div>
           </div>
@@ -360,13 +401,13 @@ const CascadeCompared: any = {
             <div class={`${selectorPrefix}-item`}>
               {columns
                 .filter((column) => column !== fixedColumnConfig)
-                .map((column) => (
+                .map((column, columnIndex) => (
                   <div
                     key={column.dataIndex}
                     class={getCellClassName(column)}
                     style={getFixedWrapStyle(column.style, column.width)}
                   >
-                    {renderCell(h, column, dataSource)}
+                    {renderCell(h, column, dataSource, -1, -1, columnIndex)}
                   </div>
                 ))}
             </div>
@@ -398,9 +439,7 @@ const CascadeCompared: any = {
             fixedStyle={masterStickFixedStyle}
             innerClassName={getInnerClassName}
             innerStyle={masterStickInnerStyle}
-            onChange={() => {
-              this.$emit('stick-change');
-            }}
+            onChange={() => this.$emit('stickChange')}
           >
             {master.map((config, index) => renderMasterGroup(h, config, index))}
           </StickupLayout>

@@ -99,7 +99,7 @@
                 ref="winLayerRef"
                 :zoom="2"
                 :externalImportBMapScript="true"
-                @onBMapInitReady="onWindMapInitReady"
+                @bMapInitReady="onWindMapInitReady"
               />
             </div>
           </fragment>
@@ -114,7 +114,7 @@
                 ref="hotLayerRef"
                 :zoom="5"
                 :externalImportBMapScript="true"
-                @onBMapInitReady="onHotMapInitReady"
+                @bMapInitReady="onHotMapInitReady"
               />
             </div>
           </fragment>
@@ -129,7 +129,7 @@
                 ref="airPressureRef"
                 :zoom="2"
                 :externalImportBMapScript="true"
-                @onBMapInitReady="onAirPressureMapInitReady"
+                @bMapInitReady="onAirPressureMapInitReady"
               />
             </div>
           </fragment>
@@ -140,7 +140,7 @@
               ref="geoJSONRef"
               :zoom="5"
               :externalImportBMapScript="true"
-              @onBMapInitReady="onGeoJSONPressureMapInitReady"
+              @bMapInitReady="onGeoJSONPressureMapInitReady"
             />
           </div>
         </template>
@@ -167,7 +167,7 @@
                 ref="interactionRef"
                 :zoom="5"
                 :externalImportBMapScript="true"
-                @onBMapInitReady="onInteractionMapInitReady"
+                @bMapInitReady="onInteractionMapInitReady"
               />
             </div>
           </fragment>
@@ -182,7 +182,7 @@
                 ref="rangingRef"
                 :zoom="5"
                 :externalImportBMapScript="true"
-                @onBMapInitReady="onRangingMapInitReady"
+                @bMapInitReady="onRangingMapInitReady"
               />
             </div>
           </fragment>
@@ -201,7 +201,7 @@
                 ref="trajectoryRef"
                 :zoom="5"
                 :externalImportBMapScript="true"
-                @onBMapInitReady="onTrajectoryMapInitReady"
+                @bMapInitReady="onTrajectoryMapInitReady"
               />
             </div>
           </fragment>
@@ -216,7 +216,11 @@
           <fragment>
             <div :class="$style.ToolBar">
               <span>点的类型：</span>
-              <a-select style="width: 200px" v-model="pointType" @change="onPointTypeChange($event)">
+              <a-select
+                style="width: 200px"
+                v-model="pointType"
+                @change="onPointTypeChange($event)"
+              >
                 <a-select-option value="-1">请选择</a-select-option>
                 <a-select-option value="circle">圆形点</a-select-option>
                 <a-select-option value="image">image</a-select-option>
@@ -233,7 +237,7 @@
                 ref="pointLayerRef"
                 :zoom="12"
                 :externalImportBMapScript="true"
-                @onBMapInitReady="onPointLayerMapInitReady"
+                @bMapInitReady="onPointLayerMapInitReady"
               />
             </div>
           </fragment>
@@ -263,7 +267,7 @@
                 ref="mulitPointLayerRef"
                 :zoom="5"
                 :externalImportBMapScript="true"
-                @onBMapInitReady="onMulitPointLayerMapInitReady"
+                @bMapInitReady="onMulitPointLayerMapInitReady"
               />
             </div>
           </fragment>
@@ -274,7 +278,7 @@
               ref="geometryLayerRef"
               :zoom="5"
               :externalImportBMapScript="true"
-              @onBMapInitReady="onGeometryMapInitReady"
+              @bMapInitReady="onGeometryMapInitReady"
             />
           </div>
         </template>
@@ -284,7 +288,7 @@
               ref="polygonLayerRef"
               :zoom="5"
               :externalImportBMapScript="true"
-              @onBMapInitReady="onPolygonMapInitReady"
+              @bMapInitReady="onPolygonMapInitReady"
             />
           </div>
         </template>
@@ -294,7 +298,7 @@
               ref="mulitPolygonLayerRef"
               :zoom="5"
               :externalImportBMapScript="true"
-              @onBMapInitReady="onMulitPolygonMapInitReady"
+              @bMapInitReady="onMulitPolygonMapInitReady"
             />
           </div>
         </template>
@@ -318,7 +322,7 @@
                 ref="lineStringRef"
                 :zoom="5"
                 :externalImportBMapScript="true"
-                @onBMapInitReady="onLineStringMapInitReady"
+                @bMapInitReady="onLineStringMapInitReady"
               />
             </div>
           </fragment>
@@ -343,7 +347,7 @@
                 ref="regularPolygonRef"
                 :zoom="5"
                 :externalImportBMapScript="true"
-                @onBMapInitReady="onRegularPolygonMapInitReady"
+                @bMapInitReady="onRegularPolygonMapInitReady"
               />
             </div>
           </fragment>
@@ -351,7 +355,11 @@
         <template #g8>
           <fragment>
             <div :class="$style.ToolBar">
-              <a-select style="width: 200px" v-model="leafCount" @change="onLeafCountChange($event)">
+              <a-select
+                style="width: 200px"
+                v-model="leafCount"
+                @change="onLeafCountChange($event)"
+              >
                 <a-select-option value="-1">请选择</a-select-option>
                 <a-select-option value="6">6</a-select-option>
                 <a-select-option value="7">7</a-select-option>
@@ -365,7 +373,7 @@
                 ref="leafRef"
                 :zoom="5"
                 :externalImportBMapScript="true"
-                @onBMapInitReady="onLeafMapInitReady"
+                @bMapInitReady="onLeafMapInitReady"
               />
             </div>
           </fragment>
@@ -373,7 +381,11 @@
         <template #g9>
           <fragment>
             <div :class="$style.ToolBar">
-              <a-select style="width: 200px" v-model="textCount" @change="onTextCountChange($event)">
+              <a-select
+                style="width: 200px"
+                v-model="textCount"
+                @change="onTextCountChange($event)"
+              >
                 <a-select-option value="-1">请选择</a-select-option>
                 <a-select-option value="text">文字</a-select-option>
                 <a-select-option value="geomText">几何图形中的文字</a-select-option>
@@ -384,7 +396,7 @@
                 ref="textRef"
                 :zoom="5"
                 :externalImportBMapScript="true"
-                @onBMapInitReady="onTextMapInitReady"
+                @bMapInitReady="onTextMapInitReady"
               />
             </div>
           </fragment>
@@ -392,7 +404,6 @@
       </adv-playground-page-code-box-section>
     </adv-playground-page>
   </adv-conditionalrender>
-
 </template>
 
 <script>
@@ -506,7 +517,7 @@ let LeafGeometry;
 let TextGeometry;
 let Util;
 
-let interactionModifyTypeActionMap;/* = new Map([
+let interactionModifyTypeActionMap; /* = new Map([
   ['Polygon', PolygonModifyAction],
   ['Circle', CircleModifyAction],
   ['Rectangle', RectangleModifyAction],
@@ -515,7 +526,7 @@ let interactionModifyTypeActionMap;/* = new Map([
   ['Start', StartModifyAction],
 ]);*/
 
-let interactionDrawTypeActionMap;/* = new Map([
+let interactionDrawTypeActionMap; /* = new Map([
   ['Polygon', PolygonDrawAction],
   ['Circle', CircleDrawAction],
   ['Rectangle', RectangleDrawAction],
@@ -676,7 +687,7 @@ export default {
         ref="mulitPointLayerRef"
         :zoom="5"
         :externalImportBMapScript="true"
-        @onBMapInitReady="onMulitPointLayerMapInitReady"
+        @bMapInitReady="onMulitPointLayerMapInitReady"
       />
     </div>
   </template>
@@ -840,7 +851,7 @@ export default {
         ref="hotLayerRef"
         :zoom="5"
         :externalImportBMapScript="true"
-        @onBMapInitReady="onHotMapInitReady"
+        @bMapInitReady="onHotMapInitReady"
       />
     </div>
   </template>
@@ -932,7 +943,7 @@ export default {
         ref="airPressureRef"
         :zoom="2"
         :externalImportBMapScript="true"
-        @onBMapInitReady="onAirPressureMapInitReady"
+        @bMapInitReady="onAirPressureMapInitReady"
       />
     </div>
   </template>
@@ -1034,7 +1045,7 @@ export default {
         ref="geoJSONRef"
         :zoom="5"
         :externalImportBMapScript="true"
-        @onBMapInitReady="onGeoJSONPressureMapInitReady"
+        @bMapInitReady="onGeoJSONPressureMapInitReady"
       />
     </div>
   </template>
@@ -1182,7 +1193,7 @@ export default {
         ref="interactionRef"
         :zoom="5"
         :externalImportBMapScript="true"
-        @onBMapInitReady="onInteractionMapInitReady"
+        @bMapInitReady="onInteractionMapInitReady"
       />
     </div>
   </template>
@@ -1411,7 +1422,7 @@ export default {
         ref="rangingRef"
         :zoom="5"
         :externalImportBMapScript="true"
-        @onBMapInitReady="onRangingMapInitReady"
+        @bMapInitReady="onRangingMapInitReady"
       />
     </div>
   </template>
@@ -1519,7 +1530,7 @@ export default {
         ref="trajectoryRef"
         :zoom="5"
         :externalImportBMapScript="true"
-        @onBMapInitReady="onTrajectoryMapInitReady"
+        @bMapInitReady="onTrajectoryMapInitReady"
       />
     </div>
   </template>
@@ -1682,7 +1693,7 @@ export default {
         ref="pointLayerRef"
         :zoom="12"
         :externalImportBMapScript="true"
-        @onBMapInitReady="onPointLayerMapInitReady"
+        @bMapInitReady="onPointLayerMapInitReady"
       />
     </div>
   </template>
@@ -1852,7 +1863,7 @@ export default {
         ref="mulitPointLayerRef"
         :zoom="5"
         :externalImportBMapScript="true"
-        @onBMapInitReady="onMulitPointLayerMapInitReady"
+        @bMapInitReady="onMulitPointLayerMapInitReady"
       />
     </div>
   </template>
@@ -2013,7 +2024,7 @@ export default {
         ref="geometryLayerRef"
         :zoom="5"
         :externalImportBMapScript="true"
-        @onBMapInitReady="onGeometryMapInitReady"
+        @bMapInitReady="onGeometryMapInitReady"
       />
     </div>
   </template>
@@ -2226,7 +2237,7 @@ export default {
         ref="polygonLayerRef"
         :zoom="5"
         :externalImportBMapScript="true"
-        @onBMapInitReady="onPolygonMapInitReady"
+        @bMapInitReady="onPolygonMapInitReady"
       />
     </div>
   </template>
@@ -2356,7 +2367,7 @@ export default {
         ref="mulitPolygonLayerRef"
         :zoom="5"
         :externalImportBMapScript="true"
-        @onBMapInitReady="onMulitPolygonMapInitReady"
+        @bMapInitReady="onMulitPolygonMapInitReady"
       />
     </div>
   </template>
@@ -2542,7 +2553,7 @@ export default {
         ref="lineStringRef"
         :zoom="5"
         :externalImportBMapScript="true"
-        @onBMapInitReady="onLineStringMapInitReady"
+        @bMapInitReady="onLineStringMapInitReady"
       />
     </div>
   </template>
@@ -2745,7 +2756,7 @@ export default {
         ref="regularPolygonRef"
         :zoom="5"
         :externalImportBMapScript="true"
-        @onBMapInitReady="onRegularPolygonMapInitReady"
+        @bMapInitReady="onRegularPolygonMapInitReady"
       />
     </div>
   </template>
@@ -2881,7 +2892,7 @@ export default {
         ref="leafRef"
         :zoom="5"
         :externalImportBMapScript="true"
-        @onBMapInitReady="onLeafMapInitReady"
+        @bMapInitReady="onLeafMapInitReady"
       />
     </div>
   </template>
@@ -3016,7 +3027,7 @@ export default {
         ref="textRef"
         :zoom="5"
         :externalImportBMapScript="true"
-        @onBMapInitReady="onTextMapInitReady"
+        @bMapInitReady="onTextMapInitReady"
       />
     </div>
   </template>
@@ -3157,7 +3168,7 @@ export default {
           childrenSlot: 'g9',
         },
       ],
-      isLoad: false
+      isLoad: false,
     };
   },
   mounted() {

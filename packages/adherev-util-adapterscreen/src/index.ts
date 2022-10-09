@@ -5,11 +5,11 @@ const {
   _util: { withVue },
 } = BfdUtil;
 
-// @ts-ignore
-AdapterScreen.isUse = () => true;
-// @ts-ignore
-AdapterScreen.use = (Vue) => {
-  withVue(Vue, 'AdapterScreen', AdapterScreen);
+const Component: any = AdapterScreen;
+
+Component.isUse = () => true;
+Component.use = (Vue) => {
+  withVue(Vue, 'AdapterScreen', Component);
 };
 
-export default AdapterScreen;
+export default Component;

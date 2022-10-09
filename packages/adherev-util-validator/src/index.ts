@@ -5,9 +5,12 @@ const {
   _util: { withVue },
 } = BfdUtil;
 
-Validator.isUse = () => true;
-Validator.use = (Vue) => {
-  withVue(Vue, 'Validator', Validator);
+const Component: any = Validator;
+
+Component.isUse = () => true;
+
+Component.use = (Vue) => {
+  withVue(Vue, 'Validator', Component);
 };
 
-export default Validator;
+export default Component;

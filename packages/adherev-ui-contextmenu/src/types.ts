@@ -1,5 +1,7 @@
+import type { VNode } from 'vue';
+
 export interface IMenuProps {
-  data: Array<IData>;
+  data: IData[];
   className: string;
   styleName: string;
 }
@@ -10,15 +12,15 @@ export interface IMenuItemProps {
 
 export type ISubMenuProps = IMenuProps;
 
-export type ContextMenuType = {
-  isUse?(): boolean;
-  use?(Vue: any): void;
-  open(data: IData, config: IConfig): void;
-  close(params: { vm: any; el: HTMLElement });
-};
+export interface ContextMenuType {
+  isUse?: () => boolean;
+  use?: (Vue: any) => void;
+  open: (data: IData, config: IConfig) => void;
+  close: (params: { vm: any; el: HTMLElement }) => void;
+}
 
 export interface IContextMenuComponentProps {
-  data: Array<IData>;
+  data: IData[];
   config: IData;
   el: HTMLElement;
 }
@@ -33,13 +35,13 @@ export interface IConfig {
 }
 
 export interface IData {
-  name: string | Object | Function; // 名字
-  icon: string | Object | Function; // 图标
+  name: string | object | Function; // 名字
+  icon: string | object | Function; // 图标
   id: string; // 唯一的id
   disabled: boolean; // 不可用
   separation: boolean; // 分割线
-  attribute: Object; // 自定义属性
-  children: Array<IData>; // 孩子
+  attribute: any; // 自定义属性
+  children: IData[]; // 孩子
   className: string;
   styleName: string;
   subMenuClassName: string;

@@ -5,20 +5,10 @@ const selectorPrefix = 'adherev-ui-searchform-row';
 
 const SearchFormRow: any = {
   name: 'adv-searchtable-searchform-row',
-  props: {
-    className: {
-      type: String,
-      default: '',
-    },
-  },
   render(h: CreateElement) {
-    const { $slots, className } = this;
+    const { $slots } = this;
 
-    return (
-      <tr class={classNames(selectorPrefix, ...(className || '').split(/\s+/))}>
-        {$slots.default}
-      </tr>
-    );
+    return <tr class={classNames(selectorPrefix)}>{$slots.default}</tr>;
   },
 };
 

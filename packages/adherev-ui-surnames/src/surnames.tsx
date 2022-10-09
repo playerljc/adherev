@@ -1,6 +1,9 @@
 import classNames from 'classnames';
+import { PropType } from 'vue';
 
 import Util from '@baifendian/adherev-util';
+
+import { IndexConfig, Record } from './types';
 
 const selectorPrefix = 'adherev-ui-surnames';
 
@@ -10,21 +13,22 @@ const Surnames: any = {
   name: 'adv-surnames',
   props: {
     position: {
-      type: String,
+      type: String as PropType<'top' | 'right' | 'bottom' | 'left'>,
       default: 'right',
       validator(val) {
         return ['top', 'right', 'bottom', 'left'].indexOf(val) !== -1;
       },
     },
     indexes: {
-      type: Array,
+      type: Array as PropType<IndexConfig[]>,
       default: () => [],
     },
     dataSource: {
-      type: Array,
+      type: Array as PropType<Record[]>,
       default: () => [],
     },
   },
+  emits: ['scroll', 'before-scroll'],
   data() {
     return {
       $key: false,

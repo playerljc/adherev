@@ -1574,11 +1574,6 @@
   dependencies:
     vuex "^3.6.2"
 
-"@emoji-mart/data@^1.0.3":
-  version "1.0.6"
-  resolved "https://registry.yarnpkg.com/@emoji-mart/data/-/data-1.0.6.tgz#68f71be5e023653a3f9f73f4beadfd50848e2131"
-  integrity sha512-8wu3ec/kLCB0Y3K+pOKyY6Ob+xtQu3XhZvntdrpOTUQZ/PO6FW5PpFw7RE1kQ/up1fsVSJBl5mZ8Gs4SPwTYeg==
-
 "@eslint/eslintrc@^0.4.3":
   version "0.4.3"
   resolved "https://registry.yarnpkg.com/@eslint/eslintrc/-/eslintrc-0.4.3.tgz#9e42981ef035beb3dd49add17acb96e8ff6f394c"
@@ -16450,6 +16445,16 @@ uglify-js@^3.0.5, uglify-js@^3.1.4:
   version "3.14.5"
   resolved "https://registry.yarnpkg.com/uglify-js/-/uglify-js-3.14.5.tgz#cdabb7d4954231d80cb4a927654c4655e51f4859"
   integrity sha512-qZukoSxOG0urUTvjc2ERMTcAy+BiFh3weWAkeurLwjrCba73poHmG3E36XEjd/JGukMzwTL7uCxZiAexj8ppvQ==
+
+uglify-js@^3.14.1:
+  version "3.17.3"
+  resolved "https://registry.yarnpkg.com/uglify-js/-/uglify-js-3.17.3.tgz#f0feedf019c4510f164099e8d7e72ff2d7304377"
+  integrity sha512-JmMFDME3iufZnBpyKL+uS78LRiC+mK55zWfM5f/pWBJfpOttXAqYfdDGRukYhJuyRinvPVAtUhvy7rlDybNtFg==
+
+uglifycss@0.0.29:
+  version "0.0.29"
+  resolved "https://registry.yarnpkg.com/uglifycss/-/uglifycss-0.0.29.tgz#abe49531155d146e75dd2fdf933d371bc1180054"
+  integrity sha512-J2SQ2QLjiknNGbNdScaNZsXgmMGI0kYNrXaDlr4obnPW9ni1jljb1NeEVWAiTgZ8z+EBWP2ozfT9vpy03rjlMQ==
 
 uid-number@0.0.6:
   version "0.0.6"

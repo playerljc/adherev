@@ -1,2 +1,2 @@
-import AdapterScreen from '@baifendian/adhere-util-adapterscreen';
-export default AdapterScreen;
+declare const Component: any;
+export default Component;

@@ -7,7 +7,23 @@
     <adv-playground-page-code-box-section title="代码演示" :config="codeBoxPanelConfig">
       <template #p1>
         <div style="width: 320px; height: 548px; border: 1px solid rgba(0, 0, 0, 0.1)">
-          <adv-cascadecompared :indicator="indicator" :master="master" />
+          <adv-cascadecompared :indicator="indicator" :master="master">
+            <template v-slot:masterGroupTitle="props">
+              <h2
+                style="
+                  padding: 15px 0 15px 15px;
+                  margin: 0;
+                  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+                "
+              >
+                header{{ props.groupIndex + 1 }}
+              </h2>
+            </template>
+
+            <template v-slot:cell="props">
+              <h4>厂家指导价{{ props.columnIndex + 1 }}</h4>
+            </template>
+          </adv-cascadecompared>
         </div>
       </template>
 
@@ -18,7 +34,23 @@
           <adv-space />
 
           <div style="width: 320px; height: 548px; border: 1px solid rgba(0, 0, 0, 0.1)">
-            <adv-cascadecompared ref="ref1" :indicator="indicator" :master="data1" />
+            <adv-cascadecompared ref="ref1" :indicator="indicator" :master="data1">
+              <template v-slot:masterGroupTitle="props">
+                <h2
+                  style="
+                    padding: 15px 0 15px 15px;
+                    margin: 0;
+                    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+                  "
+                >
+                  header{{ props.groupIndex + 1 }}
+                </h2>
+              </template>
+
+              <template v-slot:cell="props">
+                <h4>厂家指导价{{ props.columnIndex + 1 }}</h4>
+              </template>
+            </adv-cascadecompared>
           </div>
         </fragment>
       </template>
@@ -36,7 +68,23 @@
           <adv-space />
 
           <div style="width: 320px; height: 548px; border: 1px solid rgba(0, 0, 0, 0.1)">
-            <adv-cascadecompared ref="ref2" :indicator="indicator" :master="master" />
+            <adv-cascadecompared ref="ref2" :indicator="indicator" :master="master">
+              <template v-slot:masterGroupTitle="props">
+                <h2
+                  style="
+                    padding: 15px 0 15px 15px;
+                    margin: 0;
+                    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+                  "
+                >
+                  header{{ props.groupIndex + 1 }}
+                </h2>
+              </template>
+
+              <template v-slot:cell="props">
+                <h4>厂家指导价{{ props.columnIndex + 1 }}</h4>
+              </template>
+            </adv-cascadecompared>
           </div>
         </fragment>
       </template>
@@ -51,7 +99,23 @@
           <adv-space />
 
           <div style="width: 320px; height: 548px; border: 1px solid rgba(0, 0, 0, 0.1)">
-            <adv-cascadecompared ref="ref3" :indicator="indicator" :master="master" />
+            <adv-cascadecompared ref="ref3" :indicator="indicator" :master="master">
+              <template v-slot:masterGroupTitle="props">
+                <h2
+                  style="
+                    padding: 15px 0 15px 15px;
+                    margin: 0;
+                    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+                  "
+                >
+                  header{{ props.groupIndex + 1 }}
+                </h2>
+              </template>
+
+              <template v-slot:cell="props">
+                <h4>厂家指导价{{ props.columnIndex + 1 }}</h4>
+              </template>
+            </adv-cascadecompared>
           </div>
         </fragment>
       </template>
@@ -74,16 +138,11 @@ data.fill(0);
 
 function getMaster() {
   return data.map((t, i) => ({
-    title: (h) => (
-      <h2 style="padding: 15px 0 15px 15px; margin: 0; border-bottom: 1px solid rgba(0,0,0,.1);">{`header${
-        i + 1
-      }`}</h2>
-    ),
     columns: columns.map((c, j) => ({
-      dataIndex: `column${j + 1}`,
+      dataIndex: `columns${j + 1}`,
       isFixed: j === 0,
       width: 120,
-      render: (h) => <h4>{`厂家指导价${j + 1}`}</h4>,
+      // render: (h) => <h4>{`厂家指导价${j + 1}`}</h4>,
     })),
     dataSource: [
       {
@@ -131,7 +190,7 @@ export default {
     indicator() {
       return {
         columns: columns.map((t, i) => ({
-          dataIndex: `column${i + 1}`,
+          dataIndex: `columns${i + 1}`,
           isFixed: i === 0,
           width: 120,
           render: (h) => <h2>{`指标${i + 1}`}</h2>,
@@ -188,9 +247,6 @@ export default {
 
           function getMaster() {
             return data.map((t, i) => ({
-              title: (h) => (
-                <h2 style="padding: 15px 0 15px 15px; margin: 0; border-bottom: 1px solid rgba(0,0,0,.1);">{\`header\${i + 1}\`}</h2>
-              ),
               columns: columns.map((c, j) => ({
                 dataIndex: \`column\${j + 1}\`,
                 isFixed: j === 0,
@@ -303,9 +359,6 @@ export default {
 
           function getMaster() {
             return data.map((t, i) => ({
-              title: (h) => (
-                <h2 style="padding: 15px 0 15px 15px; margin: 0; border-bottom: 1px solid rgba(0,0,0,.1);">{\`header\${i + 1}\`}</h2>
-              ),
               columns: columns.map((c, j) => ({
                 dataIndex: \`column\${j + 1}\`,
                 isFixed: j === 0,
@@ -395,15 +448,6 @@ export default {
                 this.data1 = [
                   ...this.data1,
                   {
-                    title: (h) => (
-                      <h2
-                        style={{
-                          padding: '15px 0 15px 15px',
-                          margin: 0,
-                          borderBottom: '1px solid rgba(0,0,0,.1)',
-                        }}
-                      >{\`header\${length + 1}\`}</h2>
-                    ),
                     columns: columns.map((c, j) => ({
                       dataIndex: \`column\${j + 1}\`,
                       isFixed: j === 0,
@@ -493,9 +537,6 @@ export default {
 
           function getMaster() {
             return data.map((t, i) => ({
-              title: (h) => (
-                <h2 style="padding: 15px 0 15px 15px; margin: 0; border-bottom: 1px solid rgba(0,0,0,.1);">{\`header\${i + 1}\`}</h2>
-              ),
               columns: columns.map((c, j) => ({
                 dataIndex: \`column\${j + 1}\`,
                 isFixed: j === 0,
@@ -612,9 +653,6 @@ export default {
 
             function getMaster() {
               return data.map((t, i) => ({
-                title: (h) => (
-                  <h2 style="padding: 15px 0 15px 15px; margin: 0; border-bottom: 1px solid rgba(0,0,0,.1);">{\`header\${i + 1}\`}</h2>
-                ),
                 columns: columns.map((c, j) => ({
                   dataIndex: \`column\${j + 1}\`,
                   isFixed: j === 0,
@@ -1039,20 +1077,11 @@ export default {
       this.data1 = [
         ...this.data1,
         {
-          title: (h) => (
-            <h2
-              style={{
-                padding: '15px 0 15px 15px',
-                margin: 0,
-                borderBottom: '1px solid rgba(0,0,0,.1)',
-              }}
-            >{`header${length + 1}`}</h2>
-          ),
           columns: columns.map((c, j) => ({
-            dataIndex: `column${j + 1}`,
+            dataIndex: `columns${j + 1}`,
             isFixed: j === 0,
             width: 120,
-            render: (h) => <h4>{`厂家指导价${j + 1}`}</h4>,
+            // render: (h) => <h4>{`厂家指导价${j + 1}`}</h4>,
           })),
           dataSource: [
             {

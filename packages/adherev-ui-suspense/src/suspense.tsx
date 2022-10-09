@@ -1,5 +1,5 @@
 import { Skeleton, Spin } from 'ant-design-vue';
-import Vue, { VNode } from 'vue';
+import Vue, { PropType, VNode } from 'vue';
 
 const selectorPrefix = 'adherev-ui-suspense';
 
@@ -9,7 +9,13 @@ const Suspense: any = Vue.extend({
       type: Boolean,
       default: false,
     },
+    renderFirstLoading: {
+      type: Object as PropType<VNode>,
+      default: () => null,
+    },
   },
+  // @ts-ignore
+  slots: ['firstLoading'],
   data() {
     return {
       // 第一次
@@ -54,11 +60,11 @@ const Suspense: any = Vue.extend({
      * renderFirstLoading
      * @param h
      */
-    renderFirstLoading(h): VNode | null {
+    $renderFirstLoading(h): VNode | null {
       const { $slots } = this;
 
-      if ($slots.firstLoading) {
-        return $slots.firstLoading;
+      if ($slots.firstLoading || this.renderFirstLoading) {
+        return $slots.firstLoading || this.renderFirstLoading;
       }
 
       return this.renderNormalFirstLoading(h);
@@ -93,7 +99,7 @@ const Suspense: any = Vue.extend({
       }
 
       if (this.isFirst) {
-        return this.renderFirstLoading(h);
+        return this.$renderFirstLoading(h);
       }
 
       return this.renderNormal(h);

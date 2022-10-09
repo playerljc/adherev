@@ -94,7 +94,7 @@
           ref="winLayerRef"
           :zoom="2"
           :externalImportBMapScript="true"
-          @onBMapInitReady="onWindMapInitReady"
+          @bMapInitReady="onWindMapInitReady"
         />
       </div>
     </playground>
@@ -109,7 +109,7 @@
           ref="hotLayerRef"
           :zoom="5"
           :externalImportBMapScript="true"
-          @onBMapInitReady="onHotMapInitReady"
+          @bMapInitReady="onHotMapInitReady"
         />
       </div>
     </playground>
@@ -124,7 +124,7 @@
           ref="airPressureRef"
           :zoom="2"
           :externalImportBMapScript="true"
-          @onBMapInitReady="onAirPressureMapInitReady"
+          @bMapInitReady="onAirPressureMapInitReady"
         />
       </div>
     </playground>
@@ -156,7 +156,7 @@
               ref="pointLayerRef"
               :zoom="12"
               :externalImportBMapScript="true"
-              @onBMapInitReady="onPointLayerMapInitReady"
+              @bMapInitReady="onPointLayerMapInitReady"
             />
           </div>
         </playground>
@@ -186,7 +186,7 @@
               ref="mulitPointLayerRef"
               :zoom="5"
               :externalImportBMapScript="true"
-              @onBMapInitReady="onMulitPointLayerMapInitReady"
+              @bMapInitReady="onMulitPointLayerMapInitReady"
             />
           </div>
         </playground>
@@ -198,7 +198,7 @@
               ref="geometryLayerRef"
               :zoom="5"
               :externalImportBMapScript="true"
-              @onBMapInitReady="onGeometryMapInitReady"
+              @bMapInitReady="onGeometryMapInitReady"
             />
           </div>
         </playground>
@@ -210,7 +210,7 @@
               ref="polygonLayerRef"
               :zoom="5"
               :externalImportBMapScript="true"
-              @onBMapInitReady="onPolygonMapInitReady"
+              @bMapInitReady="onPolygonMapInitReady"
             />
           </div>
         </playground>
@@ -222,7 +222,7 @@
               ref="mulitPolygonLayerRef"
               :zoom="5"
               :externalImportBMapScript="true"
-              @onBMapInitReady="onMulitPolygonMapInitReady"
+              @bMapInitReady="onMulitPolygonMapInitReady"
             />
           </div>
         </playground>
@@ -247,7 +247,7 @@
               ref="lineStringRef"
               :zoom="5"
               :externalImportBMapScript="true"
-              @onBMapInitReady="onLineStringMapInitReady"
+              @bMapInitReady="onLineStringMapInitReady"
             />
           </div>
         </playground>
@@ -272,7 +272,7 @@
               ref="regularPolygonRef"
               :zoom="5"
               :externalImportBMapScript="true"
-              @onBMapInitReady="onRegularPolygonMapInitReady"
+              @bMapInitReady="onRegularPolygonMapInitReady"
             />
           </div>
         </playground>
@@ -294,7 +294,7 @@
               ref="leafRef"
               :zoom="5"
               :externalImportBMapScript="true"
-              @onBMapInitReady="onLeafMapInitReady"
+              @bMapInitReady="onLeafMapInitReady"
             />
           </div>
         </playground>
@@ -313,7 +313,7 @@
               ref="textRef"
               :zoom="5"
               :externalImportBMapScript="true"
-              @onBMapInitReady="onTextMapInitReady"
+              @bMapInitReady="onTextMapInitReady"
             />
           </div>
         </playground>
@@ -327,7 +327,7 @@
           ref="geoJSONRef"
           :zoom="5"
           :externalImportBMapScript="true"
-          @onBMapInitReady="onGeoJSONPressureMapInitReady"
+          @bMapInitReady="onGeoJSONPressureMapInitReady"
         />
       </div>
     </playground>
@@ -355,7 +355,7 @@
           ref="interactionRef"
           :zoom="5"
           :externalImportBMapScript="true"
-          @onBMapInitReady="onInteractionMapInitReady"
+          @bMapInitReady="onInteractionMapInitReady"
         />
       </div>
     </playground>
@@ -370,7 +370,7 @@
           ref="rangingRef"
           :zoom="5"
           :externalImportBMapScript="true"
-          @onBMapInitReady="onRangingMapInitReady"
+          @bMapInitReady="onRangingMapInitReady"
         />
       </div>
     </playground>
@@ -389,7 +389,7 @@
           ref="trajectoryRef"
           :zoom="5"
           :externalImportBMapScript="true"
-          @onBMapInitReady="onTrajectoryMapInitReady"
+          @bMapInitReady="onTrajectoryMapInitReady"
         />
       </div>
     </playground>
@@ -595,7 +595,7 @@ export default {
         ref="winLayerRef"
         :zoom="2"
         :externalImportBMapScript="true"
-        @onBMapInitReady="onWindMapInitReady"
+        @bMapInitReady="onWindMapInitReady"
       />
     </div>
   </template>
@@ -663,7 +663,7 @@ export default {
         ref="hotLayerRef"
         :zoom="5"
         :externalImportBMapScript="true"
-        @onBMapInitReady="onHotMapInitReady"
+        @bMapInitReady="onHotMapInitReady"
       />
     </div>
   </template>
@@ -745,7 +745,7 @@ export default {
         ref="airPressureRef"
         :zoom="2"
         :externalImportBMapScript="true"
-        @onBMapInitReady="onAirPressureMapInitReady"
+        @bMapInitReady="onAirPressureMapInitReady"
       />
     </div>
   </template>
@@ -851,7 +851,7 @@ export default {
         ref="pointLayerRef"
         :zoom="12"
         :externalImportBMapScript="true"
-        @onBMapInitReady="onPointLayerMapInitReady"
+        @bMapInitReady="onPointLayerMapInitReady"
       />
     </div>
   </template>
@@ -1011,7 +1011,7 @@ export default {
         ref="mulitPointLayerRef"
         :zoom="5"
         :externalImportBMapScript="true"
-        @onBMapInitReady="onMulitPointLayerMapInitReady"
+        @bMapInitReady="onMulitPointLayerMapInitReady"
       />
     </div>
   </template>
@@ -1162,7 +1162,7 @@ export default {
         ref="geometryLayerRef"
         :zoom="5"
         :externalImportBMapScript="true"
-        @onBMapInitReady="onGeometryMapInitReady"
+        @bMapInitReady="onGeometryMapInitReady"
       />
     </div>
   </template>
@@ -1365,7 +1365,7 @@ export default {
         ref="polygonLayerRef"
         :zoom="5"
         :externalImportBMapScript="true"
-        @onBMapInitReady="onPolygonMapInitReady"
+        @bMapInitReady="onPolygonMapInitReady"
       />
     </div>
   </template>
@@ -1485,7 +1485,7 @@ export default {
         ref="mulitPolygonLayerRef"
         :zoom="5"
         :externalImportBMapScript="true"
-        @onBMapInitReady="onMulitPolygonMapInitReady"
+        @bMapInitReady="onMulitPolygonMapInitReady"
       />
     </div>
   </template>
@@ -1661,7 +1661,7 @@ export default {
         ref="lineStringRef"
         :zoom="5"
         :externalImportBMapScript="true"
-        @onBMapInitReady="onLineStringMapInitReady"
+        @bMapInitReady="onLineStringMapInitReady"
       />
     </div>
   </template>
@@ -1854,7 +1854,7 @@ export default {
         ref="regularPolygonRef"
         :zoom="5"
         :externalImportBMapScript="true"
-        @onBMapInitReady="onRegularPolygonMapInitReady"
+        @bMapInitReady="onRegularPolygonMapInitReady"
       />
     </div>
   </template>
@@ -1980,7 +1980,7 @@ export default {
         ref="leafRef"
         :zoom="5"
         :externalImportBMapScript="true"
-        @onBMapInitReady="onLeafMapInitReady"
+        @bMapInitReady="onLeafMapInitReady"
       />
     </div>
   </template>
@@ -2105,7 +2105,7 @@ export default {
         ref="textRef"
         :zoom="5"
         :externalImportBMapScript="true"
-        @onBMapInitReady="onTextMapInitReady"
+        @bMapInitReady="onTextMapInitReady"
       />
     </div>
   </template>
@@ -2253,7 +2253,7 @@ export default {
         ref="geoJSONRef"
         :zoom="5"
         :externalImportBMapScript="true"
-        @onBMapInitReady="onGeoJSONPressureMapInitReady"
+        @bMapInitReady="onGeoJSONPressureMapInitReady"
       />
     </div>
   </template>
@@ -2391,7 +2391,7 @@ export default {
         ref="interactionRef"
         :zoom="5"
         :externalImportBMapScript="true"
-        @onBMapInitReady="onInteractionMapInitReady"
+        @bMapInitReady="onInteractionMapInitReady"
       />
     </div>
   </template>
@@ -2610,7 +2610,7 @@ export default {
         ref="rangingRef"
         :zoom="5"
         :externalImportBMapScript="true"
-        @onBMapInitReady="onRangingMapInitReady"
+        @bMapInitReady="onRangingMapInitReady"
       />
     </div>
   </template>
@@ -2708,7 +2708,7 @@ export default {
         ref="trajectoryRef"
         :zoom="5"
         :externalImportBMapScript="true"
-        @onBMapInitReady="onTrajectoryMapInitReady"
+        @bMapInitReady="onTrajectoryMapInitReady"
       />
     </div>
   </template>

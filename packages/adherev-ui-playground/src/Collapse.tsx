@@ -54,7 +54,7 @@ const Collapse: any = {
           class={classNames(
             `${selectorPrefix}-header`,
             border ? `${selectorPrefix}-header-border` : '',
-            headerClassName.split(/\s+/),
+            headerClassName || '',
           )}
           style={headerStyle}
           onClick={this.onClickHeader}
@@ -81,7 +81,7 @@ const Collapse: any = {
             class={classNames(
               `${selectorPrefix}-body`,
               border ? `${selectorPrefix}-body-border` : '',
-              bodyClassName.split(/\s+/),
+              bodyClassName || '',
               !!title || !!extra ? `${selectorPrefix}-body-exists-header` : '',
             )}
             style={bodyStyle}

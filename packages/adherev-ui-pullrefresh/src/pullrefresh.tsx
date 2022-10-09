@@ -1,5 +1,6 @@
 import classNames from 'classnames';
 import moment from 'moment';
+import type { PropType, VNode } from 'vue';
 
 import Intl from '@baifendian/adherev-util-intl';
 import Resource from '@baifendian/adherev-util-resource';
@@ -40,7 +41,24 @@ const PullRefresh: any = {
       default: 'la-ball-circus la-dark',
       isRequired: false,
     },
+    renderIcon: {
+      type: Object as PropType<VNode>,
+      default: () => null,
+    },
+    renderCanLabel: {
+      type: Object as PropType<VNode>,
+      default: () => null,
+    },
+    renderLabel: {
+      type: Object as PropType<VNode>,
+      default: () => null,
+    },
+    renderLoadingAnimation: {
+      type: Object as PropType<VNode>,
+      default: () => null,
+    },
   },
+  slots: ['icon', 'canLabel', 'label', 'loadingAnimation'],
   data() {
     return {
       isCan: false,
@@ -60,20 +78,32 @@ const PullRefresh: any = {
     getScrollClassName() {
       const { scrollClassName } = this;
 
-      return classNames(`${selectorPrefix}-scroll`, ...scrollClassName.split(/\s+/));
+      return classNames(`${selectorPrefix}-scroll`, scrollClassName || '');
     },
   },
   methods: {
-    renderIcon(h) {
-      const { $slots } = this;
-
-      return $slots.icon ? (
-        <div class={`${selectorPrefix}-trigger-icon`}>
-          <div class={`${selectorPrefix}-trigger-icon-inner`} ref="iconElRef">
-            {$slots.icon}
+    $renderIcon(h) {
+      if (this.$slots.icon) {
+        return (
+          <div class={`${selectorPrefix}-trigger-icon`}>
+            <div class={`${selectorPrefix}-trigger-icon-inner`} ref="iconElRef">
+              {this.$slots.icon}
+            </div>
           </div>
-        </div>
-      ) : (
+        );
+      }
+
+      if (this.renderIcon) {
+        return (
+          <div class={`${selectorPrefix}-trigger-icon`}>
+            <div class={`${selectorPrefix}-trigger-icon-inner`} ref="iconElRef">
+              {this.renderIcon}
+            </div>
+          </div>
+        );
+      }
+
+      return (
         <div class={`${selectorPrefix}-trigger-icon`}>
           <img
             class={`${selectorPrefix}-trigger-icon-inner`}
@@ -83,22 +113,34 @@ const PullRefresh: any = {
           />
         </div>
       );
-    },
-    renderLabel(h) {
-      const { $slots, isCan } = this;
 
+      // return $slots.icon ? (
+      //   <div class={`${selectorPrefix}-trigger-icon`}>
+      //     <div class={`${selectorPrefix}-trigger-icon-inner`} ref="iconElRef">
+      //       {$slots.icon}
+      //     </div>
+      //   </div>
+      // ) : (
+      //   <div class={`${selectorPrefix}-trigger-icon`}>
+      //     <img
+      //       class={`${selectorPrefix}-trigger-icon-inner`}
+      //       src={defaultImg}
+      //       alt=""
+      //       ref="iconElRef"
+      //     />
+      //   </div>
+      // );
+    },
+    $renderLabel(h) {
       return (
         <p class={`${selectorPrefix}-trigger-label`}>
-          {isCan
-            ? $slots.canLabel || h({ template: `<span>${Intl.tv('松开刷新')}</span>` })
-            : $slots.label ||
-              h({
-                template: `<span>${Intl.tv('下拉刷新')}</span>`,
-              })}
+          {this.isCan
+            ? this.$slots.canLabel || this.renderCanLabel || <span>{Intl.tv('松开刷新')}</span>
+            : this.$slots.label || this.renderLabel || <span>{Intl.tv('下拉刷新')}</span>}
         </p>
       );
     },
-    renderUpdateTime(h) {
+    $renderUpdateTime(h) {
       const { isShowUpdateTime, updateTimeFormat, preUpdateTime } = this;
 
       return isShowUpdateTime ? (
@@ -110,33 +152,31 @@ const PullRefresh: any = {
         </p>
       ) : null;
     },
-    renderLoadingAnimation(h) {
+    $renderLoadingAnimation(h) {
       const { $slots, loadingAnimation } = this;
-      return !!loadingAnimation ? (
-        <div
-          class={classNames(
-            `${selectorPrefix}-trigger-refresh`,
-            ...(loadingAnimation || '').split(/\s+/),
-          )}
-          ref="refreshElRef"
-        >
-          <div></div>
 
-          <div></div>
+      if (!!loadingAnimation) {
+        return (
+          <div
+            class={classNames(`${selectorPrefix}-trigger-refresh`, loadingAnimation || '')}
+            ref="refreshElRef"
+          >
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+          </div>
+        );
+      }
 
-          <div></div>
-
-          <div></div>
-
-          <div></div>
-        </div>
-      ) : (
+      return (
         <div class={`${selectorPrefix}-trigger-refresh`} ref="refreshElRef">
-          {$slots.loadingAnimation}
+          {$slots.loadingAnimation || this.renderLoadingAnimation}
         </div>
       );
     },
-    renderMask() {
+    $renderMask() {
       const { $data } = this;
 
       $data.$maskEl = document.querySelector(`.${selectorPrefix}-mask`);
@@ -428,7 +468,7 @@ const PullRefresh: any = {
     },
   },
   created() {
-    this.renderMask();
+    this.$renderMask();
   },
   mounted() {
     const { $data, $refs } = this;
@@ -453,14 +493,12 @@ const PullRefresh: any = {
 
         <div class={`${selectorPrefix}-trigger`} ref="elRef">
           <div class={`${selectorPrefix}-trigger-inner`} ref="triggerInnerElRef">
-            {this.renderIcon(h)}
-
-            {this.renderLabel(h)}
-
-            {this.renderUpdateTime(h)}
+            {this.$renderIcon(h)}
+            {this.$renderLabel(h)}
+            {this.$renderUpdateTime(h)}
           </div>
 
-          {this.renderLoadingAnimation(h)}
+          {this.$renderLoadingAnimation(h)}
         </div>
       </div>
     );

@@ -22,7 +22,7 @@ const Fixed: any = {
     const { $slots, fit } = this;
 
     return (
-      <div ref="ref" class={classNames(selectorPrefix, `${fit ? selectorPrefix + '-fit' : ''}`)}>
+      <div ref="ref" class={classNames(selectorPrefix, `${fit ? `${selectorPrefix}-fit` : ''}`)}>
         {$slots.default}
       </div>
     );

@@ -55,11 +55,7 @@ const Revolving: any = {
     getWrapperClass() {
       const { classNameWrapper } = this;
 
-      return classNames(
-        `${selectorPrefix}-wrapper`,
-        'swiper-wrapper',
-        classNameWrapper.split(/\s+/),
-      );
+      return classNames(`${selectorPrefix}-wrapper`, 'swiper-wrapper', classNameWrapper || '');
     },
     getWrapperStyle() {
       return this.styleWrapper;

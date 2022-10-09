@@ -72,7 +72,7 @@ const Card: any = {
       <div class={selectorPrefix}>
         <ConditionalRender conditional={!!title || !!extra}>
           <div
-            class={classNames(`${selectorPrefix}-header`, headerClassName.split(/\s+/))}
+            class={classNames(`${selectorPrefix}-header`, headerClassName || '')}
             style={headerStyle}
           >
             <ConditionalRender conditional={!!title}>
@@ -86,10 +86,7 @@ const Card: any = {
         </ConditionalRender>
 
         <ConditionalRender conditional={!!$slots.default}>
-          <div
-            class={classNames(`${selectorPrefix}-body`, bodyClassName.split(/\s+/))}
-            style={bodyStyle}
-          >
+          <div class={classNames(`${selectorPrefix}-body`, bodyClassName)} style={bodyStyle}>
             {$slots.default}
           </div>
         </ConditionalRender>
@@ -106,10 +103,7 @@ const Card: any = {
         </ConditionalRender>
 
         <ConditionalRender conditional={!!(actions && actions.length)}>
-          <ul
-            class={classNames(`${selectorPrefix}-action`, actionClassName.split(/\s+/))}
-            style={actionStyle}
-          >
+          <ul class={classNames(`${selectorPrefix}-action`, actionClassName)} style={actionStyle}>
             {actions.map((action, index) => (
               <li key={`${index + 1}`} class={`${selectorPrefix}-action-item`}>
                 {$slots[action]}

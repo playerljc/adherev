@@ -5,11 +5,12 @@ const {
   _util: { withVue },
 } = BfdUtil;
 
-// @ts-ignore
-Emitter.isUse = () => true;
-// @ts-ignore
-Emitter.use = (Vue) => {
-  withVue(Vue, 'Emitter', Emitter);
+const Component: any = Emitter;
+
+Component.isUse = () => true;
+
+Component.use = (Vue) => {
+  withVue(Vue, 'Emitter', Component);
 };
 
-export default Emitter;
+export default Component;

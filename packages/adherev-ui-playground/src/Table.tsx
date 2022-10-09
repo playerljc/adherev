@@ -46,10 +46,7 @@ const Table: any = {
               return (
                 <th
                   {...{ props }}
-                  class={classNames(
-                    `${selectorPrefix}-header-column`,
-                    (className || '').split(/\s+/),
-                  )}
+                  class={classNames(`${selectorPrefix}-header-column`, className || '')}
                   style={`text-align:${align || 'left'};${style}`}
                 >
                   {column.title || '-'}
@@ -105,7 +102,7 @@ const Table: any = {
     return (
       <div class={selectorPrefix}>
         <table
-          class={classNames(`${selectorPrefix}-inner`, tableClassName.split(/\s+/))}
+          class={classNames(`${selectorPrefix}-inner`, tableClassName || '')}
           style={tableStyle}
         >
           {this.renderHeader(h)}

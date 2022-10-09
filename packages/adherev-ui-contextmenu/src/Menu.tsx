@@ -83,7 +83,7 @@ const Menu: any = {
     getClass(): string {
       const { className } = this;
 
-      return classNames(selectorPrefix, (className || '').split(/\s+/));
+      return classNames(selectorPrefix, className || '');
     },
   },
   render(h): VNode {

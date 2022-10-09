@@ -20,6 +20,7 @@ export const CodeTabPanelDefaultProps = {
 const CodeTabPanel: any = {
   name: 'adv-playground-code-tab-panel',
   props: { ...CodeTabPanelDefaultProps },
+  emits: ['change'],
   render(h) {
     const { active, config } = this;
 

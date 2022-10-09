@@ -5,11 +5,12 @@ const {
   _util: { withVue },
 } = BfdUtil;
 
-// @ts-ignore
-Polygonselection.isUse = () => true;
-// @ts-ignore
-Polygonselection.use = (Vue) => {
-  withVue(Vue, 'Polygonselection', Polygonselection);
+const Component: any = Polygonselection;
+
+Component.isUse = () => true;
+
+Component.use = (Vue) => {
+  withVue(Vue, 'Polygonselection', Component);
 };
 
-export default Polygonselection;
+export default Component;

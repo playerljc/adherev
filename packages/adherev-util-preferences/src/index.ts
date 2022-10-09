@@ -5,11 +5,12 @@ const {
   _util: { withVue },
 } = BfdUtil;
 
-// @ts-ignore
-Preferences.isUse = () => true;
-// @ts-ignore
-Preferences.use = (Vue) => {
-  withVue(Vue, 'Preferences', Preferences);
+const Component: any = Preferences;
+
+Component.isUse = () => true;
+
+Component.use = (Vue) => {
+  withVue(Vue, 'Preferences', Component);
 };
 
-export default Preferences;
+export default Component;

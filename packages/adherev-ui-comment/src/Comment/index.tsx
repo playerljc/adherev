@@ -1,4 +1,5 @@
 import { Icon, Spin } from 'ant-design-vue';
+import { PropType, VNode } from 'vue';
 import { Fragment } from 'vue-fragment';
 
 import Intl from '@baifendian/adherev-util-intl';
@@ -19,11 +20,11 @@ const Comment: any = {
   name: 'adv-comment',
   props: {
     getScrollWrapContainer: {
-      type: Function,
+      type: Function as PropType<() => HTMLElement | null>,
       default: () => null,
     },
     fetchCommentData: {
-      type: Function,
+      type: Function as PropType<(params?: any) => Promise<any>>,
       default: () => null,
     },
     commentDataKeys: {
@@ -44,7 +45,7 @@ const Comment: any = {
       default: 'id',
     },
     fetchReplyData: {
-      type: Function,
+      type: Function as PropType<(params?: any) => Promise<any>>,
       default: () => null,
     },
     replyDataKeys: {
@@ -65,7 +66,7 @@ const Comment: any = {
       default: 'id',
     },
     fetchReply: {
-      type: Function,
+      type: Function as PropType<(params?: any) => Promise<any>>,
       default: () => null,
     },
     listProps: {
@@ -87,6 +88,79 @@ const Comment: any = {
     emojiPickerProps: {
       type: Object,
       default: () => ({}),
+    },
+    renderReplyLoading: {
+      type: Object as PropType<VNode>,
+      default: () => null,
+    },
+    renderCommentLoading: {
+      type: Object as PropType<VNode>,
+      default: () => null,
+    },
+    showReplyText: {
+      type: Object as PropType<VNode>,
+      default: () => null,
+    },
+    showReplyTextIcon: {
+      type: Object as PropType<VNode>,
+      default: () => null,
+    },
+    hideReplyText: {
+      type: Object as PropType<VNode>,
+      default: () => null,
+    },
+    hideReplyTextIcon: {
+      type: Object as PropType<VNode>,
+      default: () => null,
+    },
+    loadMoreReplyText: {
+      type: Object as PropType<VNode>,
+      default: () => null,
+    },
+    loadMoreCollapseTextIcon: {
+      type: Object as PropType<VNode>,
+      default: () => null,
+    },
+
+    renderCommentActions: {
+      type: Function as PropType<(params?: any) => VNode | null>,
+      default: () => null,
+    },
+    renderCommentAuthor: {
+      type: Function as PropType<(params?: any) => VNode | null>,
+      default: () => null,
+    },
+    renderCommentAvatar: {
+      type: Function as PropType<(params?: any) => VNode | null>,
+      default: () => null,
+    },
+    renderCommentContent: {
+      type: Function as PropType<(params?: any) => VNode | null>,
+      default: () => null,
+    },
+    renderCommentDateTime: {
+      type: Function as PropType<(params?: any) => VNode | null>,
+      default: () => null,
+    },
+    renderReplyActions: {
+      type: Function as PropType<(params?: any) => VNode | null>,
+      default: () => null,
+    },
+    renderReplyAuthor: {
+      type: Function as PropType<(params?: any) => VNode | null>,
+      default: () => null,
+    },
+    renderReplyAvatar: {
+      type: Function as PropType<(params?: any) => VNode | null>,
+      default: () => null,
+    },
+    renderReplyContent: {
+      type: Function as PropType<(params?: any) => VNode | null>,
+      default: () => null,
+    },
+    renderReplyDateTime: {
+      type: Function as PropType<(params?: any) => VNode | null>,
+      default: () => null,
     },
   },
   slots: [
@@ -117,28 +191,42 @@ const Comment: any = {
   },
   methods: {
     $renderList(h, data) {
-      const showReplyText = this.$slots.showReplyText || Intl.v('显示回复内容');
-      const hideReplyText = this.$slots.hideReplyText || Intl.v('收起回复');
-      const loadMoreReplyText = this.$slots.loadMoreReplyText || Intl.v('加载更多回复');
+      const showReplyText =
+        this.$slots.showReplyText || this.showReplyText || Intl.v('显示回复内容');
+      const hideReplyText = this.$slots.hideReplyText || this.hideReplyText || Intl.v('收起回复');
+      const loadMoreReplyText =
+        this.$slots.loadMoreReplyText || this.loadMoreReplyText || Intl.v('加载更多回复');
 
-      // @ts-ignore
-      const showReplyTextIcon = this.$slots.showReplyTextIcon || <Icon type="caret-down" />;
-      // @ts-ignore
-      const hideReplyTextIcon = this.$slots.hideReplyTextIcon || <Icon type="caret-up" />;
-
-      const loadMoreCollapseTextIcon = this.$slots.loadMoreCollapseTextIcon || (
+      const showReplyTextIcon = this.$slots.showReplyTextIcon || this.showReplyTextIcon || (
         // @ts-ignore
-        <Icon type="enter" class="reply-icon" />
+        <Icon type="caret-down" />
       );
+
+      const hideReplyTextIcon = this.$slots.hideReplyTextIcon || this.hideReplyTextIcon || (
+        // @ts-ignore
+        <Icon type="caret-up" />
+      );
+
+      const loadMoreCollapseTextIcon = this.$slots.loadMoreCollapseTextIcon ||
+        this.loadMoreCollapseTextIcon || (
+          // @ts-ignore
+          <Icon type="enter" class="reply-icon" />
+        );
 
       const scopedSlots = {
         default: (record) => {
           const scopedSlots = {
-            renderActions: (params) => this.$scopedSlots.renderReplyActions(params),
-            renderAuthor: (params) => this.$scopedSlots.renderReplyAuthor(params),
-            renderAvatar: (params) => this.$scopedSlots.renderReplyAvatar(params),
-            renderContent: (params) => this.$scopedSlots.renderReplyContent(params),
-            renderDateTime: (params) => this.$scopedSlots.renderReplyDateTime(params),
+            renderActions: (params) =>
+              this.$scopedSlots?.renderReplyActions?.(params) || this?.renderReplyActions?.(params),
+            renderAuthor: (params) =>
+              this.$scopedSlots?.renderReplyAuthor?.(params) || this?.renderReplyAuthor?.(params),
+            renderAvatar: (params) =>
+              this.$scopedSlots?.renderReplyAvatar?.(params) || this?.renderReplyAvatar?.(params),
+            renderContent: (params) =>
+              this.$scopedSlots?.renderReplyContent?.(params) || this?.renderReplyContent?.(params),
+            renderDateTime: (params) =>
+              this.$scopedSlots?.renderReplyDateTime?.(params) ||
+              this?.renderReplyDateTime?.(params),
           };
 
           return (
@@ -155,7 +243,9 @@ const Comment: any = {
               scopedSlots={scopedSlots}
             >
               <div slot="renderLoading">
-                {this.$slots.renderReplyLoading || this.$renderLoading(h)}
+                {this.$slots.renderReplyLoading ||
+                  this.renderReplyLoading ||
+                  this.$renderLoading(h)}
               </div>
               {/*@ts-ignore*/}
               <Fragment slot="showReplyText">{showReplyText}</Fragment>
@@ -172,11 +262,17 @@ const Comment: any = {
             </ReplyInfo>
           );
         },
-        renderActions: (params) => this.$scopedSlots.renderCommentActions(params),
-        renderAuthor: (params) => this.$scopedSlots.renderCommentAuthor(params),
-        renderAvatar: (params) => this.$scopedSlots.renderCommentAvatar(params),
-        renderContent: (params) => this.$scopedSlots.renderCommentContent(params),
-        renderDateTime: (params) => this.$scopedSlots.renderCommentDateTime(params),
+        renderActions: (params) =>
+          this.$scopedSlots?.renderCommentActions?.(params) || this?.renderCommentActions?.(params),
+        renderAuthor: (params) =>
+          this.$scopedSlots?.renderCommentAuthor?.(params) || this?.renderCommentAuthor?.(params),
+        renderAvatar: (params) =>
+          this.$scopedSlots?.renderCommentAvatar?.(params) || this?.renderCommentAvatar?.(params),
+        renderContent: (params) =>
+          this.$scopedSlots?.renderCommentContent?.(params) || this?.renderCommentContent?.(params),
+        renderDateTime: (params) =>
+          this.$scopedSlots?.renderCommentDateTime?.(params) ||
+          this?.renderCommentDateTime?.(params),
       };
 
       return (
@@ -196,7 +292,9 @@ const Comment: any = {
                 scopedSlots={scopedSlots}
               >
                 <div slot="renderLoading">
-                  {this.$slots.renderCommentLoading || this.$renderLoading(h)}
+                  {this.$slots?.renderCommentLoading ||
+                    this?.renderCommentLoading ||
+                    this.$renderLoading(h)}
                 </div>
                 {/*@ts-ignore*/}
                 <Fragment slot="showReplyText">{showReplyText}</Fragment>

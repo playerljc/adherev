@@ -1,2 +1,2 @@
-import Domain from"@baifendian/adhere-util-domain";import BfdUtil from"@baifendian/adherev-util";var withVue=BfdUtil._util.withVue;Domain.isUse=function(){return!0},Domain.use=function(i){withVue(i,"Domain",Domain)};export default Domain;
+import Domain from"@baifendian/adhere-util-domain";import BfdUtil from"@baifendian/adherev-util";var withVue=BfdUtil._util.withVue,Component=Domain;Component.isUse=function(){return!0},Component.use=function(n){withVue(n,"Domain",Component)};export default Component;
 //# sourceMappingURL=index.js.map

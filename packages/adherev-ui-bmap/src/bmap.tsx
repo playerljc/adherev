@@ -1,4 +1,8 @@
+import { PropType } from 'vue';
+
 import ConditionalRender from '@baifendian/adherev-ui-conditionalrender';
+
+import { IConfig, IPoint } from './types';
 
 const selectorPrefix = 'adhere-ui-bmap';
 
@@ -17,14 +21,14 @@ const BMap: any = {
       default: 5,
     },
     center: {
-      type: Object,
+      type: Object as PropType<IPoint>,
       default: () => ({
         lon: 116.404,
         lat: 39.915,
       }),
     },
     config: {
-      type: Object,
+      type: Object as PropType<IConfig>,
       default: () => ({
         minZoom: 2,
         maxZoom: 20,
@@ -44,6 +48,7 @@ const BMap: any = {
       default: false,
     },
   },
+  emits: ['bMapInitReady'],
   data() {
     return {
       isReady: false,
@@ -118,7 +123,7 @@ const BMap: any = {
         }, 2000);
       });
 
-      this.$emit('onBMapInitReady');
+      this.$emit('bMapInitReady');
     },
     initMapControl() {
       const { $BMap, $map } = this.$data;
@@ -172,6 +177,7 @@ const BMap: any = {
   },
   render(h) {
     const { isReady } = this;
+
     return (
       <ConditionalRender conditional={isReady}>
         <div class={selectorPrefix} ref="ref" />

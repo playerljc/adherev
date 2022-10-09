@@ -105,7 +105,6 @@ const MessageDialogFactory: IMessageDialogFactory = {
         },
       },
       local,
-
       children: icon
         ? (h) => renderByIcon({ h, icon, text })
         : (h) =>
@@ -473,6 +472,7 @@ const MessageDialogFactory: IMessageDialogFactory = {
   },
   /**
    * close
+   * @param _vm
    * @param el
    */
   close({ _vm, el }: { _vm: any; el: HTMLElement }) {

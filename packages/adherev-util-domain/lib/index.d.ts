@@ -1,2 +1,2 @@
-import Domain from '@baifendian/adhere-util-domain';
-export default Domain;
+declare const Component: any;
+export default Component;

@@ -1,21 +1,21 @@
+import { VNode } from 'vue';
 export interface IColumnConfig {
     dataIndex: string;
     isFixed: boolean;
     width: string | number;
-    render: Function | Object;
     className: string;
     style: string;
 }
 export interface ITableConfig {
-    columns: Array<IColumnConfig>;
-    dataSource: Array<object>;
+    columns: IColumnConfig[];
+    dataSource: object[];
 }
 export interface IIndicatorTableConfig {
-    columns: Array<IColumnConfig>;
+    columns: IColumnConfig[];
     dataSource: object;
 }
 export interface IMasterItem extends ITableConfig {
-    title: Function | Object;
+    title: string | VNode;
     className: string;
     style: string;
     fixedWrapClassName: string;
@@ -46,6 +46,6 @@ export interface ICascadeComparedProps {
     masterStickInnerClassName?: string;
     masterStickInnerStyle?: string;
     indicator: IIndicatorTableConfig;
-    master: Array<IMasterItem>;
+    master: IMasterItem[];
     defaultCellWidth: number | string;
 }

@@ -1,5 +1,6 @@
 import classNames from 'classnames';
 import Swiper from 'swiper';
+import { PropType, VNode } from 'vue';
 
 import { ISwipeOutProps } from './types';
 
@@ -52,6 +53,14 @@ const SwiperOut: any = {
       type: Number,
       default: 0,
     },
+    renderBefore: {
+      type: Object as PropType<VNode>,
+      default: () => null,
+    },
+    renderAfter: {
+      type: Object as PropType<VNode>,
+      default: () => null,
+    },
     // onInit: {
     //   type: Function,
     //   default: () => null,
@@ -65,6 +74,8 @@ const SwiperOut: any = {
     //   default: () => null,
     // },
   },
+  emits: ['init', 'slide-change-transition-start', 'slide-change-transition-end'],
+  slots: ['before', 'after'],
   data() {
     return {
       $swiper: null,
@@ -105,7 +116,7 @@ const SwiperOut: any = {
     getContainerClassName() {
       const { className } = this;
 
-      return classNames(selectorPrefix, 'swiper-container', className.split(/\s+/));
+      return classNames(selectorPrefix, 'swiper-container', className || '');
     },
     getWrapperClassName() {
       return `swiper-wrapper`;
@@ -113,17 +124,17 @@ const SwiperOut: any = {
     getBeforeClassName() {
       const { beforeClassName } = this;
 
-      return classNames('swiper-slide', `${selectorPrefix}-before`, beforeClassName.split(/\s+/));
+      return classNames('swiper-slide', `${selectorPrefix}-before`, beforeClassName || '');
     },
     getContentClassName() {
       const { contentClassName } = this;
 
-      return classNames('swiper-slide', `${selectorPrefix}-content`, contentClassName.split(/\s+/));
+      return classNames('swiper-slide', `${selectorPrefix}-content`, contentClassName || '');
     },
     getAfterClassName() {
       const { afterClassName } = this;
 
-      return classNames('swiper-slide', `${selectorPrefix}-after`, afterClassName.split(/\s+/));
+      return classNames('swiper-slide', `${selectorPrefix}-after`, afterClassName || '');
     },
   },
   methods: {
@@ -180,13 +191,13 @@ const SwiperOut: any = {
       <div class={this.getContainerClassName} ref="ref">
         <div class={this.getWrapperClassName}>
           <div class={this.getBeforeClassName} style={beforeStyle}>
-            {$slots.before}
+            {$slots.before || this.renderBefore}
           </div>
           <div class={this.getContentClassName} style={contentStyle}>
             {$slots.default}
           </div>
           <div class={this.getAfterClassName} style={afterStyle}>
-            {$slots.after}
+            {$slots.after || this.renderAfter}
           </div>
         </div>
       </div>

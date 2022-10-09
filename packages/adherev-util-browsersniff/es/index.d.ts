@@ -1,2 +1,2 @@
-import Browsersniff from '@baifendian/adhere-util-browsersniff';
-export default Browsersniff;
+declare const Component: any;
+export default Component;

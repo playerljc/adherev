@@ -7,6 +7,7 @@ const {
 } = BfdUtil;
 
 ErrorPrompt.isUse = () => true;
+
 ErrorPrompt.use = (Vue) => {
   withVue(Vue, 'ErrorPrompt', ErrorPrompt);
 };

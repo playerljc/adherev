@@ -1,2 +1,2 @@
-import IframeIO from '@baifendian/adhere-util-iframeio';
-export default IframeIO;
+declare const Component: any;
+export default Component;

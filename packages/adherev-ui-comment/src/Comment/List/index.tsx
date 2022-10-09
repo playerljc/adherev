@@ -1,3 +1,5 @@
+import type { PropType, VNode } from 'vue';
+
 import BackTopAnimation from '@baifendian/adherev-ui-backtopanimation';
 import ConditionalRender from '@baifendian/adherev-ui-conditionalrender';
 import ScrollLoad from '@baifendian/adherev-ui-scrollload';
@@ -21,12 +23,16 @@ const List: any = {
       default: () => ({}),
     },
     getScrollWrapContainer: {
-      type: Function,
+      type: Function as PropType<() => HTMLElement | null>,
+      default: () => null,
+    },
+    renderFirstLoading: {
+      type: Object as PropType<VNode>,
       default: () => null,
     },
   },
   slots: ['renderFirstLoading', 'default'],
-  emits: ['load-more'],
+  emits: ['loadMore'],
   data() {
     return {
       $isFirst: true,
@@ -54,7 +60,11 @@ const List: any = {
     },
     $renderFirstLoading(h) {
       return (
-        <div class={`${selectorPrefix}-first-loading-wrap`}>{this.$slots.renderFirstLoading}</div>
+        <div class={`${selectorPrefix}-first-loading-wrap`}>
+          {this.$slots.renderFirstLoading
+            ? this.$slots.renderFirstLoading
+            : this.renderFirstLoading}
+        </div>
       );
     },
     $renderNormal(h) {

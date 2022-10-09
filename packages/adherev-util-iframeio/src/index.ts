@@ -5,11 +5,12 @@ const {
   _util: { withVue },
 } = BfdUtil;
 
-// @ts-ignore
-IframeIO.isUse = () => true;
-// @ts-ignore
-IframeIO.use = (Vue) => {
-  withVue(Vue, 'IframeIO', IframeIO);
+const Component: any = IframeIO;
+
+Component.isUse = () => true;
+
+Component.use = (Vue) => {
+  withVue(Vue, 'IframeIO', Component);
 };
 
-export default IframeIO;
+export default Component;

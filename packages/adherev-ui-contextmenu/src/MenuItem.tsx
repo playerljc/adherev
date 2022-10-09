@@ -1,7 +1,7 @@
 import classNames from 'classnames';
 import { PropType, VNode } from 'vue';
-import { Fragment } from 'vue-fragment';
 
+// import { Fragment } from 'vue-fragment';
 import ConditionalRender from '@baifendian/adherev-ui-conditionalrender';
 import Util from '@baifendian/adherev-util';
 
@@ -24,25 +24,39 @@ const MenuItem: any = {
         data: { disabled = false, className },
       } = this;
 
-      return classNames(selectorPrefix, disabled ? 'disabled' : '', (className || '').split(/\s+/));
+      return classNames(selectorPrefix, disabled ? 'disabled' : '', className || '');
     },
   },
   methods: {
-    renderIcon(h): VNode {
+    renderIcon(h): VNode | null {
       const {
         data: { icon },
       } = this;
 
-      return (
+      if (icon && Util.isString(icon)) {
+        return <span class={classNames(`${selectorPrefix}-icon`, icon)} />;
+      }
+
+      if (icon && Util.isObject(icon)) {
+        return <span class={classNames(`${selectorPrefix}-icon`)}>{h(icon)}</span>;
+      }
+
+      if (icon && Util.isFunction) {
+        return <span class={classNames(`${selectorPrefix}-icon`)}>{icon(h, ...this.data)}</span>;
+      }
+
+      return null;
+
+      /*return (
         <ConditionalRender conditional={Util.isString(icon)}>
           <span class={classNames(`${selectorPrefix}-icon`, icon)} />
 
-          {/*@ts-ignore*/}
+          {/!*@ts-ignore*!/}
           <Fragment slot="noMatch">
             <ConditionalRender conditional={Util.isObject(icon)}>
               <span class={classNames(`${selectorPrefix}-icon`)}>{h(icon)}</span>
 
-              {/*@ts-ignore*/}
+              {/!*@ts-ignore*!/}
               <Fragment slot="noMatch">
                 <ConditionalRender conditional={Util.isFunction(icon)}>
                   <span class={classNames(`${selectorPrefix}-icon`)}>
@@ -53,23 +67,37 @@ const MenuItem: any = {
             </ConditionalRender>
           </Fragment>
         </ConditionalRender>
-      );
+      );*/
     },
-    renderName(h): VNode {
+    renderName(h): VNode | null {
       const {
         data: { name },
       } = this;
 
-      return (
+      if (name && Util.isString(name)) {
+        return <span class={classNames(`${selectorPrefix}-name`)}>{name}</span>;
+      }
+
+      if (name && Util.isObject(name)) {
+        return <span class={classNames(`${selectorPrefix}-name`)}>{h(name)}</span>;
+      }
+
+      if (name && Util.isFunction(name)) {
+        return <span class={classNames(`${selectorPrefix}-name`)}>{name(h, ...this.data)}</span>;
+      }
+
+      return null;
+
+      /*return (
         <ConditionalRender conditional={Util.isString(name)}>
           <span class={classNames(`${selectorPrefix}-name`)}>{name}</span>
 
-          {/*@ts-ignore*/}
+          {/!*@ts-ignore*!/}
           <Fragment slot="noMatch">
             <ConditionalRender conditional={Util.isObject(name)}>
               {<span class={classNames(`${selectorPrefix}-name`)}>{h(name)}</span>}
 
-              {/*@ts-ignore*/}
+              {/!*@ts-ignore*!/}
               <Fragment slot="noMatch">
                 <ConditionalRender conditional={Util.isFunction(name)}>
                   <span class={classNames(`${selectorPrefix}-name`)}>
@@ -80,7 +108,7 @@ const MenuItem: any = {
             </ConditionalRender>
           </Fragment>
         </ConditionalRender>
-      );
+      );*/
     },
     renderMore(h): VNode {
       const {

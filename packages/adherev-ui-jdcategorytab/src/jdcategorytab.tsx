@@ -57,6 +57,7 @@ const JdCategoryTab: any = {
       type: Function,
     },
   },
+  emits: ['change'],
   data() {
     return {
       activeKey: this.defaultActiveKey,
@@ -68,16 +69,16 @@ const JdCategoryTab: any = {
     getMenuClassName(): string {
       const { menuClassName } = this;
 
-      return classNames(`${selectorPrefix}-menu`, menuClassName.split(/\s+/));
+      return classNames(`${selectorPrefix}-menu`, menuClassName || '');
     },
     getMenuInnerClassName(): string {
       const { menuInnerClassName } = this;
-      return classNames(`${selectorPrefix}-menu-inner`, menuInnerClassName.split(/\s+/));
+      return classNames(`${selectorPrefix}-menu-inner`, menuInnerClassName || '');
     },
     getTabClassName(): string {
       const { tabClassName } = this;
 
-      return classNames(`${selectorPrefix}-tab`, tabClassName.split(/\s+/));
+      return classNames(`${selectorPrefix}-tab`, tabClassName || '');
     },
     getMenuItemClassName() {
       return (curKey: string): string => {
@@ -86,7 +87,7 @@ const JdCategoryTab: any = {
         return classNames(
           `${selectorPrefix}-menu-item`,
           activeKey === curKey ? 'active' : null,
-          menuItemClassName.split(/\s+/),
+          menuItemClassName || '',
         );
       };
     },

@@ -1,5 +1,5 @@
 import classNames from 'classnames';
-import type { VNode } from 'vue';
+import type { PropType, VNode } from 'vue';
 import { Fragment } from 'vue-fragment';
 
 import ConditionalRender from '@baifendian/adherev-ui-conditionalrender';
@@ -42,10 +42,10 @@ const Node: any = {
       default: 10,
     },
     fetchData: {
-      type: Function,
+      type: Function as PropType<(params?: any) => Promise<any>>,
     },
     fetchReply: {
-      type: Function,
+      type: Function as PropType<(params?: any) => Promise<any>>,
     },
     keyProp: {
       type: String,
@@ -66,6 +66,55 @@ const Node: any = {
     comId: {
       type: [String, Number],
       default: '',
+    },
+
+    renderLoading: {
+      type: Object as PropType<VNode>,
+      default: () => null,
+    },
+    loadMoreCollapseTextIcon: {
+      type: Object as PropType<VNode>,
+      default: () => null,
+    },
+    loadMoreReplyText: {
+      type: Object as PropType<VNode>,
+      default: () => null,
+    },
+    showReplyTextIcon: {
+      type: Object as PropType<VNode>,
+      default: () => null,
+    },
+    showReplyText: {
+      type: Object as PropType<VNode>,
+      default: () => null,
+    },
+    hideReplyTextIcon: {
+      type: Object as PropType<VNode>,
+      default: () => null,
+    },
+    hideReplyText: {
+      type: Object as PropType<VNode>,
+      default: () => null,
+    },
+    renderActions: {
+      type: Function as PropType<(params?: any) => VNode | null>,
+      default: () => null,
+    },
+    renderAuthor: {
+      type: Function as PropType<(params?: any) => VNode | null>,
+      default: () => null,
+    },
+    renderAvatar: {
+      type: Function as PropType<(params?: any) => VNode | null>,
+      default: () => null,
+    },
+    renderContent: {
+      type: Function as PropType<(params?: any) => VNode | null>,
+      default: () => null,
+    },
+    renderDateTime: {
+      type: Function as PropType<(params?: any) => VNode | null>,
+      default: () => null,
     },
   },
   scopedSlots: ['renderActions', 'renderAuthor', 'renderAvatar', 'renderContent', 'renderDateTime'],
@@ -111,24 +160,22 @@ const Node: any = {
   methods: {
     $renderActions(h) {
       const actions: VNode[] =
-        this.$scopedSlots
-          ?.renderActions?.({
-            record: { ...this.data },
-            callback: (_data) => {
-              this.data = _data;
-            },
-          })
-          ?.map((node, index) =>
-            ConditionalRender.conditionalRender({
-              conditional: !node?.data?.class?.endsWith?.('-actions-action'),
-              noMatch: node,
-              match: (
-                <li key={index} class={`${selectorPrefix}-actions-action`}>
-                  {node}
-                </li>
-              ),
-            }),
-          ) || [];
+        (this.$scopedSlots?.renderActions || this.renderActions)?.({
+          record: { ...this.data },
+          callback: (_data) => {
+            this.data = _data;
+          },
+        })?.map((node, index) =>
+          ConditionalRender.conditionalRender({
+            conditional: !node?.data?.class?.endsWith?.('-actions-action'),
+            noMatch: node,
+            match: (
+              <li key={index} class={`${selectorPrefix}-actions-action`}>
+                {node}
+              </li>
+            ),
+          }),
+        ) || [];
 
       if (!actions.find((node) => node?.key === 'reply')) {
         actions.push(
@@ -149,11 +196,16 @@ const Node: any = {
     },
     $renderChildren(h) {
       const scopedSlots = {
-        renderActions: (params) => this.$scopedSlots.renderActions(params),
-        renderAuthor: (params) => this.$scopedSlots.renderAuthor(params),
-        renderAvatar: (params) => this.$scopedSlots.renderAvatar(params),
-        renderContent: (params) => this.$scopedSlots.renderContent(params),
-        renderDateTime: (params) => this.$scopedSlots.renderDateTime(params),
+        renderActions: (params) =>
+          this.$scopedSlots?.renderActions?.(params) || this?.renderActions?.(params),
+        renderAuthor: (params) =>
+          this.$scopedSlots?.renderAuthor?.(params) || this?.renderAuthor?.(params),
+        renderAvatar: (params) =>
+          this.$scopedSlots?.renderAvatar?.(params) || this?.renderAvatar?.(params),
+        renderContent: (params) =>
+          this.$scopedSlots?.renderContent?.(params) || this?.renderContent?.(params),
+        renderDateTime: (params) =>
+          this.$scopedSlots?.renderDateTime?.(params) || this?.renderDateTime?.(params),
       };
 
       return (
@@ -179,21 +231,31 @@ const Node: any = {
                   emojiPickerProps={this.emojiPickerProps}
                   scopedSlots={scopedSlots}
                 >
-                  <div slot="renderLoading">{this.$slots.renderLoading}</div>
+                  <div slot="renderLoading">{this.$slots.renderLoading || this.renderLoading}</div>
 
                   {/*@ts-ignore*/}
-                  <Fragment slot="showReplyText">{this.$slots.showReplyText}</Fragment>
+                  <Fragment slot="showReplyText">
+                    {this.$slots.showReplyText || this.showReplyText}
+                  </Fragment>
                   {/*@ts-ignore*/}
-                  <Fragment slot="hideReplyText">{this.$slots.hideReplyText}</Fragment>
+                  <Fragment slot="hideReplyText">
+                    {this.$slots.hideReplyText || this.hideReplyText}
+                  </Fragment>
                   {/*@ts-ignore*/}
-                  <Fragment slot="loadMoreReplyText">{this.$slots.loadMoreReplyText}</Fragment>
+                  <Fragment slot="loadMoreReplyText">
+                    {this.$slots.loadMoreReplyText || this.loadMoreReplyText}
+                  </Fragment>
                   {/*@ts-ignore*/}
-                  <Fragment slot="showReplyTextIcon">{this.$slots.showReplyTextIcon}</Fragment>
+                  <Fragment slot="showReplyTextIcon">
+                    {this.$slots.showReplyTextIcon || this.showReplyTextIcon}
+                  </Fragment>
                   {/*@ts-ignore*/}
-                  <Fragment slot="hideReplyTextIcon">{this.$slots.hideReplyTextIcon}</Fragment>
+                  <Fragment slot="hideReplyTextIcon">
+                    {this.$slots.hideReplyTextIcon || this.hideReplyTextIcon}
+                  </Fragment>
                   {/*@ts-ignore*/}
                   <Fragment slot="loadMoreCollapseTextIcon">
-                    {this.$slots.loadMoreCollapseTextIcon}
+                    {this.$slots.loadMoreCollapseTextIcon || this.loadMoreCollapseTextIcon}
                   </Fragment>
                 </ReplyInfo>
 
@@ -206,8 +268,8 @@ const Node: any = {
           <ConditionalRender conditional={!this.loading && this.hasMore}>
             <li class={classNames(`${selectorPrefix}-children-item`, 'more')}>
               <a onClick={this.$appendData}>
-                <span>{this.$slots.loadMoreCollapseTextIcon}</span>
-                <span>{this.$slots.loadMoreReplyText}</span>
+                <span>{this.$slots.loadMoreCollapseTextIcon || this.loadMoreCollapseTextIcon}</span>
+                <span>{this.$slots.loadMoreReplyText || this.loadMoreReplyText}</span>
               </a>
             </li>
           </ConditionalRender>
@@ -228,8 +290,8 @@ const Node: any = {
               this.$loadData()?.then(() => (this.collapse = true));
             }}
           >
-            <span>{this.$slots.showReplyTextIcon}</span>
-            <span>{this.$slots.showReplyText}</span>
+            <span>{this.$slots.showReplyTextIcon || this.showReplyTextIcon}</span>
+            <span>{this.$slots.showReplyText || this.showReplyText}</span>
           </a>
 
           <a
@@ -237,8 +299,8 @@ const Node: any = {
             class={`${selectorPrefix}-collapse`}
             onClick={() => (this.collapse = false)}
           >
-            <span>{this.$slots.hideReplyTextIcon}</span>
-            <span>{this.$slots.hideReplyText}</span>
+            <span>{this.$slots.hideReplyTextIcon || this.hideReplyTextIcon}</span>
+            <span>{this.$slots.hideReplyText || this.hideReplyText}</span>
           </a>
         </ConditionalRender>
       );
@@ -295,22 +357,22 @@ const Node: any = {
         class={classNames(selectorPrefix, this.isReply ? `${selectorPrefix}-reply` : '')}
       >
         <FlexLayout.Fixed class={`${selectorPrefix}-avatar-wrap`}>
-          {this.$scopedSlots?.renderAvatar?.({ ...this.data })}
+          {(this.$scopedSlots?.renderAvatar || this?.renderAvatar)?.({ ...this.data })}
         </FlexLayout.Fixed>
 
         <FlexLayout.Auto autoFixed fit>
           <FlexLayout direction="vertical">
             <FlexLayout.Fixed class={`${selectorPrefix}-title-row`} fit={false}>
               <div class={`${selectorPrefix}-title-row-author`}>
-                {this.$scopedSlots?.renderAuthor?.({ ...this.data })}
+                {(this.$scopedSlots?.renderAuthor || this?.renderAuthor)?.({ ...this.data })}
               </div>
               <div class={`${selectorPrefix}-title-row-date-time`}>
-                {this.$scopedSlots?.renderDateTime?.({ ...this.data })}
+                {(this.$scopedSlots?.renderDateTime || this?.renderDateTime)?.({ ...this.data })}
               </div>
             </FlexLayout.Fixed>
 
             <FlexLayout.Auto class={`${selectorPrefix}-content-wrap`}>
-              {this.$scopedSlots?.renderContent?.({ ...this.data })}
+              {(this.$scopedSlots?.renderContent || this?.renderContent)?.({ ...this.data })}
             </FlexLayout.Auto>
 
             <FlexLayout.Fixed>
@@ -348,7 +410,7 @@ const Node: any = {
                 </ConditionalRender.Show>
 
                 <ConditionalRender conditional={this.loading}>
-                  {this.$slots.renderLoading}
+                  {this.$slots.renderLoading || this.renderLoading}
                 </ConditionalRender>
               </div>
             </ConditionalRender>

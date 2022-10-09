@@ -1,2 +1,0 @@
-"use strict";var __importDefault=this&&this.__importDefault||function(t){return t&&t.__esModule?t:{default:t}};Object.defineProperty(exports,"__esModule",{value:!0});var adherev_util_1=__importDefault(require("@baifendian/adherev-util")),warnprompt_1=__importDefault(require("./warnprompt")),withVue=adherev_util_1.default._util.withVue;warnprompt_1.default.isUse=function(){return!0},warnprompt_1.default.use=function(t){withVue(t,"WarnPrompt",warnprompt_1.default)},exports.default=warnprompt_1.default;
-//# sourceMappingURL=index.js.map

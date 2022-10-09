@@ -25,11 +25,8 @@ const Spin: any = {
       <div class={selectorPrefix} style={{ zIndex }}>
         <span class={`${selectorPrefix}-dot`}>
           <i></i>
-
           <i></i>
-
           <i></i>
-
           <i></i>
         </span>
 

@@ -1,5 +1,5 @@
 import classNames from 'classnames';
-import { VNode } from 'vue';
+import { PropType, VNode } from 'vue';
 
 import Intl from '@baifendian/adherev-util-intl';
 
@@ -29,7 +29,19 @@ const ScrollLoad: any = {
       default: 50,
     },
     getScrollContainer: {
-      type: Function,
+      type: Function as PropType<() => HTMLElement | null>,
+      default: () => null,
+    },
+    renderLoading: {
+      type: Object as PropType<VNode>,
+      default: () => null,
+    },
+    renderEmpty: {
+      type: Object as PropType<VNode>,
+      default: () => null,
+    },
+    renderError: {
+      type: Object as PropType<VNode>,
       default: () => null,
     },
     // onScrollBottom: {
@@ -42,6 +54,7 @@ const ScrollLoad: any = {
     //   type: Function,
     // },
   },
+  slots: ['loading', 'empty', 'error'],
   emits: ['scrollBottom', 'emptyClick', 'errorClick'],
   data() {
     return {
@@ -65,6 +78,60 @@ const ScrollLoad: any = {
     },
   },
   methods: {
+    $renderLoading(h): VNode {
+      const { $slots, loadClassName } = this;
+
+      if ($slots.loading || this.renderLoading) {
+        return (
+          <div class={classNames(`${selectorPrefix}-load`, loadClassName || '')} ref="loadEl">
+            {$slots.loading || this.renderLoading}
+          </div>
+        );
+      }
+
+      return (
+        <div
+          class={classNames(`${selectorPrefix}-load`, 'standard', loadClassName || '')}
+          ref="loadEl"
+        >
+          {Intl.tv('数据加载中')}
+        </div>
+      );
+    },
+    $renderEmpty(h): VNode {
+      const { $slots, emptyClassName } = this;
+
+      if ($slots.empty || this.renderEmpty) {
+        return (
+          <div class={classNames(`${selectorPrefix}-empty`, emptyClassName || '')} ref="emptyEl">
+            {$slots.empty || this.renderEmpty}
+          </div>
+        );
+      }
+
+      return (
+        <div class={classNames(`${selectorPrefix}-empty`, emptyClassName || '')} ref="emptyEl">
+          ~{Intl.tv('没有更多')}
+        </div>
+      );
+    },
+    $renderError(h): VNode {
+      const { $slots, errorClassName } = this;
+
+      if ($slots.error || this.renderError) {
+        return (
+          <div class={classNames(`${selectorPrefix}-error`, errorClassName || '')} ref="errorEl">
+            {$slots.error || this.renderError}
+          </div>
+        );
+      }
+
+      return (
+        <div class={classNames(`${selectorPrefix}-error`, errorClassName || '')} ref="errorEl">
+          {Intl.tv('出现错误')}
+        </div>
+      );
+    },
     initEvents() {
       const { $refs } = this;
 
@@ -132,79 +199,6 @@ const ScrollLoad: any = {
     onErrorClick() {
       this.$emit('errorClick');
     },
-    renderLoading(h): VNode {
-      const { $slots, loadClassName } = this;
-
-      if ($slots.loading) {
-        return (
-          <div
-            class={classNames(
-              `${selectorPrefix}-load`,
-
-              loadClassName.split(/\s+/),
-            )}
-            ref="loadEl"
-          >
-            {$slots.loading}
-          </div>
-        );
-      }
-
-      return (
-        <div
-          class={classNames(`${selectorPrefix}-load`, 'standard', loadClassName.split(/\s+/))}
-          ref="loadEl"
-        >
-          {Intl.tv('数据加载中')}
-        </div>
-      );
-    },
-    renderEmpty(h): VNode {
-      const { $slots, emptyClassName } = this;
-
-      if ($slots.empty) {
-        return (
-          <div
-            class={classNames(`${selectorPrefix}-empty`, emptyClassName.split(/\s+/))}
-            ref="emptyEl"
-          >
-            {$slots.empty}
-          </div>
-        );
-      }
-
-      return (
-        <div
-          class={classNames(`${selectorPrefix}-empty`, emptyClassName.split(/\s+/))}
-          ref="emptyEl"
-        >
-          ~{Intl.tv('没有更多')}
-        </div>
-      );
-    },
-    renderError(h): VNode {
-      const { $slots, errorClassName } = this;
-
-      if ($slots.error) {
-        return (
-          <div
-            class={classNames(`${selectorPrefix}-error`, errorClassName.split(/\s+/))}
-            ref="errorEl"
-          >
-            {$slots.error}
-          </div>
-        );
-      }
-
-      return (
-        <div
-          class={classNames(`${selectorPrefix}-error`, errorClassName.split(/\s+/))}
-          ref="errorEl"
-        >
-          {Intl.tv('出现错误')}
-        </div>
-      );
-    },
     /**
      * hideAll
      */
@@ -224,9 +218,9 @@ const ScrollLoad: any = {
     return (
       <div class={selectorPrefix} style={this.wrapStyle} ref="el">
         {$slots.default}
-        {this.renderLoading(h)}
-        {this.renderEmpty(h)}
-        {this.renderError(h)}
+        {this.$renderLoading(h)}
+        {this.$renderEmpty(h)}
+        {this.$renderError(h)}
       </div>
     );
   },

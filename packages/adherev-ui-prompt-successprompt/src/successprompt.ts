@@ -10,6 +10,7 @@ const SuccessPrompt: {
 } = (content) => {
   return message.success(content ? content : Intl.tv('操作成功'));
 };
+
 /**
  * 成功的提示
  * @param content - {string| VNode |(h) => VNode}

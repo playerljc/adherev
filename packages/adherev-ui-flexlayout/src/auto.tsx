@@ -30,8 +30,8 @@ const Auto: any = {
         ref="ref"
         class={classNames(
           selectorPrefix,
-          `${autoFixed ? selectorPrefix + '-autoFixed' : ''}`,
-          `${fit ? selectorPrefix + '-fit' : ''}`,
+          `${autoFixed ? `${selectorPrefix}-autoFixed` : ''}`,
+          `${fit ? `${selectorPrefix}-fit` : ''}`,
         )}
       >
         {$slots.default}

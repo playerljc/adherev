@@ -26,6 +26,7 @@ const SliderScale: any = {
       default: 5,
     },
   },
+  emits: ['change'],
   data() {
     return {
       $preValue: null,

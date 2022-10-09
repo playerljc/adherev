@@ -4,12 +4,12 @@ const selectorPrefix = 'adherev-ui-globalindicator';
 
 const MAX_ZINDEX = Resource.Dict.value.ResourceNormalMaxZIndex.value;
 
-export type GlobalIndicatorType = {
-  isUse?(): boolean;
-  use?(Vue: any): void;
-  show(parent: HTMLElement, text: string, zIndex: number): HTMLElement;
-  hide(indicatorDom: HTMLElement);
-};
+export interface GlobalIndicatorType {
+  isUse?: () => boolean;
+  use?: (Vue: any) => void;
+  show?: (parent: HTMLElement, text: string, zIndex: number) => HTMLElement;
+  hide?: (indicatorDom: HTMLElement) => void;
+}
 
 const GlobalIndicator: GlobalIndicatorType = {
   /**

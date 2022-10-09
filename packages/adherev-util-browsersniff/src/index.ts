@@ -5,11 +5,11 @@ const {
   _util: { withVue },
 } = BfdUtil;
 
-// @ts-ignore
-Browsersniff.isUse = () => true;
-// @ts-ignore
-Browsersniff.use = (Vue) => {
-  withVue(Vue, 'Browsersniff', Browsersniff);
+const Component: any = Browsersniff;
+
+Component.isUse = () => true;
+Component.use = (Vue) => {
+  withVue(Vue, 'Browsersniff', Component);
 };
 
-export default Browsersniff;
+export default Component;

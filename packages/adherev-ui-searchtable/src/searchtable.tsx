@@ -1,6 +1,6 @@
 import { Button, Table } from 'ant-design-vue';
 import classNames from 'classnames';
-import Vue, { CreateElement } from 'vue';
+import Vue, { CreateElement, PropType, VNode } from 'vue';
 
 import ConditionalRender from '@baifendian/adherev-ui-conditionalrender';
 import FlexLayout from '@baifendian/adherev-ui-flexlayout';
@@ -101,7 +101,17 @@ const SearchTable: any = Vue.extend({
       type: Boolean,
       default: false,
     },
+    renderTableHeader: {
+      type: Object as PropType<VNode>,
+      default: () => null,
+    },
+    renderTableFooter: {
+      type: Object as PropType<VNode>,
+      default: () => null,
+    },
   },
+  // @ts-ignore
+  slots: ['tableHeader', 'tableFooter'],
   data() {
     return {
       page: 1,
@@ -109,7 +119,6 @@ const SearchTable: any = Vue.extend({
       expand: this.defaultExpandSearchCollapse,
       scrollY: 0,
       // 列设置
-      // @ts-ignore
       columnSetting: [],
       // 表格密度
       // 表格密度设置
@@ -263,15 +272,12 @@ const SearchTable: any = Vue.extend({
           class={classNames(
             selectorPrefix,
             fixedTableSpaceBetween ? 'fixedtablespacebetween' : '',
-            ...(className || '').split(/\s+/),
+            className || '',
           )}
         >
           <Fixed
             style={searchStyle || ''}
-            class={classNames(
-              `${selectorPrefix}-searchwrapper`,
-              ...(searchClassName || '').split(/\s+/),
-            )}
+            class={classNames(`${selectorPrefix}-searchwrapper`, searchClassName || '')}
             fit={fitSearch}
           >
             <FlexLayout direction="vertical">
@@ -285,15 +291,15 @@ const SearchTable: any = Vue.extend({
             </FlexLayout>
           </Fixed>
 
-          <ConditionalRender conditional={!!this.$slots.tableHeader}>
-            <Fixed>{this.$slots.tableHeader}</Fixed>
+          <ConditionalRender conditional={!!this.$slots.tableHeader || !!this.renderTableHeader}>
+            <Fixed>{this.$slots.tableHeader || this.renderTableHeader}</Fixed>
           </ConditionalRender>
 
           <Auto
             style={tableStyle || ''}
             class={classNames(
               `${selectorPrefix}-autowrapper`,
-              ...(tableClassName || '').split(/\s+/),
+              tableClassName || '',
               autoFixed ? 'autofixed' : '',
             )}
             fit={fitTable}
@@ -304,8 +310,8 @@ const SearchTable: any = Vue.extend({
             </div>
           </Auto>
 
-          <ConditionalRender conditional={!!this.$slots.tableFooter}>
-            <Fixed>{this.$slots.tableFooter}</Fixed>
+          <ConditionalRender conditional={!!this.$slots.tableFooter || !!this.renderTableFooter}>
+            <Fixed>{this.$slots.tableFooter || this.renderTableFooter}</Fixed>
           </ConditionalRender>
         </FlexLayout>
       );

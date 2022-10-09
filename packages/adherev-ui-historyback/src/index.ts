@@ -6,8 +6,8 @@ const {
 } = Util;
 
 const HistoryBack: {
-  isUse?(): boolean;
-  use?(Vue: any): void;
+  isUse?: () => boolean;
+  use?: (Vue: any) => void;
   (history: any, routePath?: string): void;
 } = _HistoryBack;
 

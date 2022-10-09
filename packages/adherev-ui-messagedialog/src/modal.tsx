@@ -1,8 +1,10 @@
 import { Button, Modal } from 'ant-design-vue';
-import { CreateElement } from 'vue';
+import { CreateElement, PropType } from 'vue';
 
 import Util from '@baifendian/adherev-util';
 import Intl from '@baifendian/adherev-util-intl';
+
+import { IConfig } from './types';
 
 // import Actions from './actions';
 // import Emitter from './emitter';
@@ -16,7 +18,7 @@ export const selectorPrefix = 'adherev-ui-messagedialog';
 const ModalConfig: any = {
   props: {
     config: {
-      type: Object,
+      type: Object as PropType<IConfig>,
     },
     closeBtn: {
       type: Boolean,
@@ -30,6 +32,7 @@ const ModalConfig: any = {
   // beforeDestroy() {
   //   Emitter.remove(Actions.close, this.onEmitterClose);
   // },
+  slots: ['title'],
   methods: {
     // onEmitterClose() {
     //   const {
@@ -129,7 +132,6 @@ const ModalConfig: any = {
   render(h) {
     const {
       config,
-
       $listeners: { close },
     } = this;
 

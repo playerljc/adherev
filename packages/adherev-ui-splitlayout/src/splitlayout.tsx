@@ -45,6 +45,7 @@ const SplitLayout: any = {
       default: 10,
     },
   },
+  emits: ['canDrag', 'dragStarted', 'dragFinished', 'dragFinished', 'change'],
   data() {
     return {
       $fixedEl: null,
@@ -405,11 +406,7 @@ const SplitLayout: any = {
     return (
       <div
         ref="ref"
-        class={classNames(
-          selectorPrefix,
-          `${selectorPrefix}-${getDirection()}`,
-          className.split(/\s+/),
-        )}
+        class={classNames(selectorPrefix, `${selectorPrefix}-${getDirection()}`, className || '')}
       />
     );
   },

@@ -8,6 +8,7 @@ const selectorPrefix = 'adherev-ui-slidelayout-overlay';
 const Overlay: any = {
   name: 'adv-slidelayout-overlay',
   mixins: [SlideLayout],
+  emits: ['after-show', 'after-close'],
   watch: {
     zIndex(val) {
       this.$refs.el.style.zIndex = val;

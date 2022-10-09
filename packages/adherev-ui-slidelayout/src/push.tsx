@@ -1,4 +1,5 @@
 import classNames from 'classnames';
+import { PropType, VNode } from 'vue';
 
 import SlideLayout from './slide';
 import { slider } from './slidelayout';
@@ -21,7 +22,17 @@ const Push: any = {
       type: String,
       default: '',
     },
+    renderSlide: {
+      type: Object as PropType<VNode>,
+      default: () => null,
+    },
+    renderMaster: {
+      type: Object as PropType<VNode>,
+      default: () => null,
+    },
   },
+  slots: ['slide', 'master'],
+  emits: ['after-show', 'after-close'],
   watch: {
     zIndex(val) {
       this.$refs.pMasterEl.style.zIndex = val - 1;
@@ -130,19 +141,13 @@ const Push: any = {
     const { $slots, masterClassName, className, slaveClassName, direction } = this;
 
     return (
-      <div
-        class={classNames(`${selectorPrefix}-master`, masterClassName.split(/\s+/))}
-        ref="pMasterEl"
-      >
-        <div class={classNames(selectorPrefix, direction, className.split(/\s+/))} ref="el">
-          {$slots.slide}
+      <div class={classNames(`${selectorPrefix}-master`, masterClassName || '')} ref="pMasterEl">
+        <div class={classNames(selectorPrefix, direction, className || '')} ref="el">
+          {$slots.slide || this.renderSlide}
         </div>
 
-        <div
-          class={classNames(`${selectorPrefix}-slave`, slaveClassName.split(/\s+/))}
-          ref="pSlaveEl"
-        >
-          {$slots.master}
+        <div class={classNames(`${selectorPrefix}-slave`, slaveClassName || '')} ref="pSlaveEl">
+          {$slots.master || this.renderMaster}
         </div>
       </div>
     );

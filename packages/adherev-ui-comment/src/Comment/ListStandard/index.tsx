@@ -1,11 +1,12 @@
 import { Empty, Skeleton } from 'ant-design-vue';
-import { VNode } from 'vue';
+import { PropType, VNode } from 'vue';
 import { Fragment } from 'vue-fragment';
 
 import ConditionalRender from '@baifendian/adherev-ui-conditionalrender';
 import FlexLayout from '@baifendian/adherev-ui-flexlayout';
 import ScrollLoad from '@baifendian/adherev-ui-scrollload';
 
+import { ListProps } from '../../types';
 import CommentList from '../List';
 
 const selectorPrefix = 'adherev-ui-comment-list-standard';
@@ -18,7 +19,7 @@ const ListStandard: any = {
   scopedSlots: ['renderList'],
   props: {
     getScrollWrapContainer: {
-      type: Function,
+      type: Function as PropType<() => HTMLElement | null>,
       default: () => null,
     },
     flexLayoutProps: {
@@ -26,7 +27,7 @@ const ListStandard: any = {
       default: () => ({}),
     },
     listProps: {
-      type: Object,
+      type: Object as PropType<ListProps>,
       default: () => ({}),
     },
     limit: {
@@ -34,7 +35,7 @@ const ListStandard: any = {
       default: 10,
     },
     fetchData: {
-      type: Function,
+      type: Function as PropType<(prams?: any) => Promise<any>>,
       default: () => null,
     },
     dataKeys: {
@@ -45,6 +46,18 @@ const ListStandard: any = {
         list: 'list',
         totalCount: 'totalCount',
       }),
+    },
+    renderEmpty: {
+      type: Object as PropType<VNode | null>,
+      default: () => null,
+    },
+    renderFirstLoading: {
+      type: Object as PropType<VNode | null>,
+      default: () => null,
+    },
+    renderList: {
+      type: Function as PropType<(params?: any) => VNode | null>,
+      default: () => null,
     },
   },
   data() {
@@ -150,6 +163,10 @@ const ListStandard: any = {
         return this.$slots.renderFirstLoading;
       }
 
+      if (this.renderFirstLoading) {
+        return this.renderFirstLoading;
+      }
+
       const result: VNode[] = [];
 
       for (let i = 0; i < 7; i++) {
@@ -159,9 +176,6 @@ const ListStandard: any = {
 
       return result;
     },
-  },
-  mounted() {
-    this.$loadData();
   },
   watch: {
     data(data) {
@@ -175,6 +189,9 @@ const ListStandard: any = {
         }
       });
     },
+  },
+  mounted() {
+    this.$loadData();
   },
   render(h) {
     return (
@@ -193,10 +210,14 @@ const ListStandard: any = {
             <div slot="renderFirstLoading">{this.$renderFirstLoading(h)}</div>
 
             <ConditionalRender conditional={!this.isEmpty}>
-              {this.$scopedSlots?.renderList?.(this.data)}
+              {this.$scopedSlots.renderList
+                ? this.$scopedSlots?.renderList?.(this.data)
+                : this?.renderList?.(this.data)}
 
               {/*@ts-ignore*/}
-              <Fragment slot="noMatch">{this.$slots.renderEmpty || <Empty />}</Fragment>
+              <Fragment slot="noMatch">
+                {this.$slots.renderEmpty || this.renderEmpty || <Empty />}
+              </Fragment>
             </ConditionalRender>
           </CommentList>
         </div>

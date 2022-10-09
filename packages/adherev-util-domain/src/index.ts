@@ -5,11 +5,12 @@ const {
   _util: { withVue },
 } = BfdUtil;
 
-// @ts-ignore
-Domain.isUse = () => true;
-// @ts-ignore
-Domain.use = (Vue) => {
-  withVue(Vue, 'Domain', Domain);
+const Component: any = Domain;
+
+Component.isUse = () => true;
+
+Component.use = (Vue) => {
+  withVue(Vue, 'Domain', Component);
 };
 
-export default Domain;
+export default Component;

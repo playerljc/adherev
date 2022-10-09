@@ -34,6 +34,7 @@ const Slide: any = {
       default: false,
     },
   },
+  emits: ['before-show', 'before-close'],
   data() {
     return {
       $positionConfig: {},

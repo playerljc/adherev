@@ -1,4 +1,5 @@
 import classNames from 'classnames';
+import { PropType, VNode } from 'vue';
 import { Fragment } from 'vue-fragment';
 
 import SlideLayout from './slide';
@@ -22,7 +23,17 @@ const Reveal: any = {
       type: String,
       default: '',
     },
+    renderSlide: {
+      type: Object as PropType<VNode>,
+      default: () => null,
+    },
+    renderMaster: {
+      type: Object as PropType<VNode>,
+      default: () => null,
+    },
   },
+  slots: ['slide', 'master'],
+  emits: ['after-show', 'after-close'],
   watch: {
     zIndex(val) {
       this.$refs.el.style.zIndex = val;
@@ -139,18 +150,12 @@ const Reveal: any = {
     return (
       // @ts-ignore
       <Fragment>
-        <div
-          class={classNames(`${selectorPrefix}`, direction, slaveClassName.split(/\s+/))}
-          ref="el"
-        >
-          {$slots.slide}
+        <div class={classNames(`${selectorPrefix}`, direction, slaveClassName || '')} ref="el">
+          {$slots.slide || this.renderSlide}
         </div>
 
-        <div
-          class={classNames(`${selectorPrefix}-master`, masterClassName.split(/\s+/))}
-          ref="rMasterEl"
-        >
-          {$slots.master}
+        <div class={classNames(`${selectorPrefix}-master`, masterClassName || '')} ref="rMasterEl">
+          {$slots.master || this.renderMaster}
         </div>
       </Fragment>
     );

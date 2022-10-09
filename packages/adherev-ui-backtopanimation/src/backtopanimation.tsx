@@ -7,10 +7,6 @@ const selectorPrefix = 'adherev-ui-backtopanimation';
 const BackTopAnimation: any = {
   name: 'adv-backtopanimation',
   props: {
-    className: {
-      type: String,
-      default: '',
-    },
     zIndex: {
       type: [String, Number],
       default: Resource.Dict.value.ResourceNormalMaxZIndex.value,
@@ -20,6 +16,7 @@ const BackTopAnimation: any = {
       default: 300,
     },
   },
+  emits: ['target', 'trigger', 'scrollTop'],
   data() {
     return {
       $maskEl: null,

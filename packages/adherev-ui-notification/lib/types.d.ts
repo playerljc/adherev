@@ -16,7 +16,7 @@ export interface IConfig {
  */
 export interface IShowConfig {
     closed: boolean;
-    children: Object | Function | string;
+    children: object | Function | string;
 }
 /**
  * IShowStandardConfig
@@ -24,10 +24,10 @@ export interface IShowConfig {
  */
 export interface IShowStandardConfig {
     closed: boolean;
-    headerLabel: Object | Function | string;
+    headerLabel: object | Function | string;
     headerIcon: string;
-    title: Object | Function | string;
-    text: Object | Function | string;
+    title: object | Function | string;
+    text: object | Function | string;
     icon: string;
-    datetime: Object | Function | string;
+    datetime: object | Function | string;
 }

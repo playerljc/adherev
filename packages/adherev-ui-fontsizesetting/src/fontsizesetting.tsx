@@ -20,6 +20,7 @@ const FontSizeSetting: any = {
       default: 14,
     },
   },
+  emits: ['change'],
   data() {
     return {
       value: this.defaultValue,

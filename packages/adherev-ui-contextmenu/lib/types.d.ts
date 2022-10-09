@@ -1,5 +1,5 @@
 export interface IMenuProps {
-    data: Array<IData>;
+    data: IData[];
     className: string;
     styleName: string;
 }
@@ -7,17 +7,17 @@ export interface IMenuItemProps {
     data: IData;
 }
 export declare type ISubMenuProps = IMenuProps;
-export declare type ContextMenuType = {
-    isUse?(): boolean;
-    use?(Vue: any): void;
-    open(data: IData, config: IConfig): void;
-    close(params: {
+export interface ContextMenuType {
+    isUse?: () => boolean;
+    use?: (Vue: any) => void;
+    open: (data: IData, config: IConfig) => void;
+    close: (params: {
         vm: any;
         el: HTMLElement;
-    }): any;
-};
+    }) => void;
+}
 export interface IContextMenuComponentProps {
-    data: Array<IData>;
+    data: IData[];
     config: IData;
     el: HTMLElement;
 }
@@ -30,13 +30,13 @@ export interface IConfig {
     className: string;
 }
 export interface IData {
-    name: string | Object | Function;
-    icon: string | Object | Function;
+    name: string | object | Function;
+    icon: string | object | Function;
     id: string;
     disabled: boolean;
     separation: boolean;
-    attribute: Object;
-    children: Array<IData>;
+    attribute: any;
+    children: IData[];
     className: string;
     styleName: string;
     subMenuClassName: string;

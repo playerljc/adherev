@@ -1,6 +1,5 @@
 const path = require('path');
 const fs = require('fs');
-
 const args = require('./commandArgs');
 const packageJSON = require('../package.json');
 
@@ -138,7 +137,7 @@ for (const packageName in dependencies) {
     indexJsContent.push(`import ${exportName} from '${packageName}';\r\n`);
     indexJsExportContent.push(`  ${exportName},\r\n`);
     indexJsExportDefaultContent.push(
-      `if(\r\n\r\n${exportName}.isUse()){ \r\n\r\n${exportName}.use(Vue); }\r\n\t\t`,
+      `if(\r\n\r\n(${exportName} as any)?.isUse()){ \r\n\r\n(${exportName} as any)?.use(Vue); }\r\n\t\t`,
     );
     // 查看packages中是否存在antd.less
     // if (fs.existsSync(path.join(packagesPath, name, 'src', 'antd.less'))) {
@@ -168,7 +167,7 @@ for (const packageName in dependencies) {
 
 const indexLessPath = path.join(__dirname, '../src', 'index.less');
 const lessContent = fs.readFileSync(indexLessPath);
-fs.writeFileSync(indexLessPath, `${lessContent}\r\n${indexLessContent.join('')}`);
+fs.writeFileSync(indexLessPath, `${lessContent}\r\n${indexLessContent.join('')}`, 'utf-8');
 
 const indexJsPath = path.join(__dirname, '../src', 'index.ts');
 indexJsExportContent.push('};\r\n');
@@ -179,4 +178,5 @@ fs.writeFileSync(
   `${indexJsContent.join('')}\r\n${indexJsExportContent.join(
     '',
   )}\r\n${indexJsExportDefaultContent.join('')}`,
+  'utf-8',
 );

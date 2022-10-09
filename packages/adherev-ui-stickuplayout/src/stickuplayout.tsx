@@ -10,18 +10,19 @@ const StickUpLayout: any = {
       default: '',
     },
     fixedStyle: {
-      type: Object,
-      default: () => ({}),
+      type: String,
+      default: '',
     },
     innerClassName: {
       type: String,
       default: '',
     },
     innerStyle: {
-      type: Object,
-      default: () => ({}),
+      type: String,
+      default: '',
     },
   },
+  emits: ['change'],
   data() {
     return {
       $key: false,
@@ -240,7 +241,10 @@ const StickUpLayout: any = {
           break;
         }
       }
-      if (!item) return false;
+
+      if (!item) {
+        item = $index[$index.length - 1];
+      }
 
       this.scrollTo(item, duration);
     },
@@ -265,7 +269,10 @@ const StickUpLayout: any = {
           break;
         }
       }
-      if (!item) return false;
+
+      if (!item) {
+        item = $index[$index.length - 1];
+      }
 
       this.scrollTo(item, duration);
     },
@@ -276,12 +283,12 @@ const StickUpLayout: any = {
     return (
       <div class={selectorPrefix} ref="el">
         <div
-          class={classNames(`${selectorPrefix}-fixed`, fixedClassName.split(/\s+/))}
+          class={classNames(`${selectorPrefix}-fixed`, fixedClassName || '')}
           style={fixedStyle}
           ref="fixedEl"
         />
         <div
-          class={classNames(`${selectorPrefix}-inner`, innerClassName.split(/\s+/))}
+          class={classNames(`${selectorPrefix}-inner`, innerClassName || '')}
           style={innerStyle}
           ref="innerEl"
         >

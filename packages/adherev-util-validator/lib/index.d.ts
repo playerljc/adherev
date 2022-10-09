@@ -1,2 +1,2 @@
-import Validator from '@baifendian/adhere-util-validator';
-export default Validator;
+declare const Component: any;
+export default Component;
