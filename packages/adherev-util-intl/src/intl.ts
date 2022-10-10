@@ -201,14 +201,14 @@ import zh_CN from './locales/zh_CN';
  * @param Vue
  */
 export function extend(Vue: any): void {
-  if (!Vue.prototype.hasOwnProperty('$i18n')) {
-    // $FlowFixMe
-    Object.defineProperty(Vue.prototype, '$i18n', {
-      get() {
-        return this._i18n;
-      },
-    });
-  }
+  // if (!Vue.prototype.hasOwnProperty('$i18n')) {
+  //   // $FlowFixMe
+  //   Object.defineProperty(Vue.prototype, '$i18n', {
+  //     get() {
+  //       return this._i18n;
+  //     },
+  //   });
+  // }
 
   Vue.prototype.$tv = function (key: string, variables?: object | null): string {
     return IntlV.v(key, variables);

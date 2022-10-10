@@ -17,8 +17,7 @@
 // Intl.getLocal = getLocal;
 //
 // export default Intl;
-import VueI18n from 'vue-i18n';
-
+// import VueI18n from 'vue-i18n';
 import IntlV, { extend } from './intl';
 
 IntlV.install = function (Vue: any) {
@@ -30,7 +29,7 @@ IntlV.isUse = () => true;
 
 IntlV.use = (Vue) => {
   Vue.use(IntlV);
-  Vue.use(VueI18n);
+  // Vue.use(VueI18n);
 };
 
 export default IntlV;

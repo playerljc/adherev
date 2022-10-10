@@ -6,7 +6,13 @@ import Intl from '@baifendian/adherev-util-intl';
 import Resource from '@baifendian/adherev-util-resource';
 
 import ModalDialog from './modal';
-import { IAlertArgv, IConfig, IConfirmArgv, IMessageDialogFactory, IPromptConfig } from './types';
+import {
+  IAlertArgv,
+  /*IConfig,*/
+  IConfirmArgv,
+  IMessageDialogFactory,
+  IPromptConfig,
+} from './types';
 
 export const selectorPrefix = 'adherev-ui-messagedialog';
 
@@ -19,7 +25,7 @@ const {
 } = Util;
 
 // MessageDialog的配置
-let globalConfig: IConfig | null = null;
+// let globalConfig: IConfig | null = null;
 
 /**
  * renderByIcon
@@ -52,9 +58,9 @@ function renderByIcon({ h, icon, text }) {
 }
 
 const MessageDialogFactory: IMessageDialogFactory = {
-  setConfig: (gc: IConfig) => {
-    globalConfig = gc;
-  },
+  // setConfig: (gc: IConfig) => {
+  //   globalConfig = gc;
+  // },
   /**
    * Confirm
    * @param title {String | Function}
@@ -428,15 +434,15 @@ const MessageDialogFactory: IMessageDialogFactory = {
     const el = document.createElement('div');
 
     const _vm = new Vue({
-      ...(globalConfig?.getOptions?.() || {}),
-      i18n: Intl({
-        I18nOptions: {
-          // @ts-ignore
-          messages: (globalConfig || {}).messages,
-          locale: local || DEFAULT_LOCAL,
-        },
-        prefix: 'local',
-      }),
+      // ...(globalConfig?.getOptions?.() || {}),
+      // i18n: Intl({
+      //   I18nOptions: {
+      //     // @ts-ignore
+      //     messages: (globalConfig || {}).messages,
+      //     locale: local || DEFAULT_LOCAL,
+      //   },
+      //   prefix: 'local',
+      // }),
       render(h) {
         const footerJSX = renderFooter({ config, h });
 

@@ -19,13 +19,13 @@ import VueI18n from 'vue-i18n';
 // 获取当前语言
 const lang = Util.getLang();
 
-MessageDialog.setConfig({
-  messages: {
-    en_US,
-    zh_CN,
-    pt_PT,
-  },
-});
+// MessageDialog.setConfig({
+//   messages: {
+//     en_US,
+//     zh_CN,
+//     pt_PT,
+//   },
+// });
 
 Intl.init(
   {

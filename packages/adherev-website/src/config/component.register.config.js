@@ -2,9 +2,9 @@ import FunctionProps from '@/lib/FunctionProps';
 import Playground from '@/lib/Playground';
 import PlaygroundMulit from '@/lib/PlaygroundMulit';
 import Props from '@/lib/Props';
-import en_US from '@/locales/en_US';
-import pt_PT from '@/locales/pt_PT';
-import zh_CN from '@/locales/zh_CN';
+// import en_US from '@/locales/en_US';
+// import pt_PT from '@/locales/pt_PT';
+// import zh_CN from '@/locales/zh_CN';
 import {
   ConditionalRender,
   DelConfirm,
@@ -128,13 +128,13 @@ const register = [
     ImportantConfirm.use(Vue);
     Permission.use(Vue);
     Intl.use(Vue);
-    MessageDialog.use(Vue, {
+    MessageDialog.use(Vue/*, {
       messages: {
         en_US,
         zh_CN,
         pt_PT,
       },
-    });
+    }*/);
     Space.use(Vue);
     Spin.use(Vue);
     Split.use(Vue);

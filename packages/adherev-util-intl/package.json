@@ -39,8 +39,7 @@
   },
   "dependencies": {
     "@baifendian/adhere-util-intl": "^1.0.21",
-    "@baifendian/adherev-util": "^1.0.11",
-    "vue-i18n": "^8.24.4"
+    "@baifendian/adherev-util": "^1.0.11"
   },
   "gitHead": "2e23d8b8d13e6a97f5326e4e5d257c9903cd108d"
 }

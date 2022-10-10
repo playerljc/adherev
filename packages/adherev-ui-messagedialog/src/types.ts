@@ -50,7 +50,7 @@ export interface IConfig {
 }
 
 export interface IMessageDialogFactory {
-  setConfig: (gc: IConfig) => void;
+  // setConfig: (gc: IConfig) => void;
   Confirm: (params: IConfirmArgv) => void;
   Prompt: (params: IPromptConfig) => void;
   InputPrompt: (params: IPromptConfig) => void;
