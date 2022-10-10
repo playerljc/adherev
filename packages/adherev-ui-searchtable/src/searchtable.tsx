@@ -34,11 +34,11 @@ const SearchTable: any = Vue.extend({
   // @overview
   mixins: [Suspense, updatedEx],
   props: {
-    wrapStyle: {
+    className: {
       type: String,
       default: '',
     },
-    className: {
+    wrapStyle: {
       type: String,
       default: '',
     },
@@ -63,7 +63,7 @@ const SearchTable: any = Vue.extend({
       default: true,
     },
     antdTableProps: {
-      type: Object,
+      type: Object as PropType<Table>,
       default: () => ({}),
     },
     // 是否有展开和收缩的功能
@@ -98,6 +98,11 @@ const SearchTable: any = Vue.extend({
     },
     // 两端固定(表格的头始终在上方，分页始终在下方)
     fixedTableSpaceBetween: {
+      type: Boolean,
+      default: false,
+    },
+    // 是否显示列设置
+    showColumnSetting: {
       type: Boolean,
       default: false,
     },
@@ -144,6 +149,15 @@ const SearchTable: any = Vue.extend({
       getContext: this.getContext,
     };
   },
+  created() {
+    this.columnSetting = this.getTableColumns().map((column, index) => ({
+      ...column,
+      sort: index,
+      display: true,
+    }));
+
+    this.tableDensity = this.getTableDensity();
+  },
   // @ts-ignore
   updatedEx(prevState) {
     if (!this.$refs.tableWrapRef) return;
@@ -189,15 +203,6 @@ const SearchTable: any = Vue.extend({
     if (fixedHeaderAutoTable) {
       this.getScrollBodyEl()?.removeEventListener('scroll', this.onScrollBodyScroll);
     }
-  },
-  created() {
-    this.columnSetting = this.getTableColumns().map((column, index) => ({
-      ...column,
-      sort: index,
-      display: true,
-    }));
-
-    this.tableDensity = this.getTableDensity();
   },
   methods: {
     getContext() {
