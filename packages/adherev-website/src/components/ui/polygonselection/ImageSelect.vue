@@ -48,12 +48,13 @@
 </template>
 
 <script>
+import { message } from 'ant-design-vue';
+
 import {
+  MessageDialog,
   PolygonSelection as PolygonSelectionModule,
   Preferences,
-  MessageDialog,
 } from '@baifendian/adherev';
-import { message } from 'ant-design-vue';
 
 const {
   PolygonSelection,

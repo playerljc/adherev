@@ -1,96 +1,98 @@
-import FunctionProps from '@/lib/FunctionProps';
-import Playground from '@/lib/Playground';
-import PlaygroundMulit from '@/lib/PlaygroundMulit';
-import Props from '@/lib/Props';
-// import en_US from '@/locales/en_US';
-// import pt_PT from '@/locales/pt_PT';
-// import zh_CN from '@/locales/zh_CN';
 import {
-  ConditionalRender,
-  DelConfirm,
-  FlexLayout,
-  ImportantConfirm,
-  Intl,
-  MessageDialog,
-  OLMap,
-  Permission,
-  SearchTable,
-  Space,
-  Spin,
-  Split,
-  Suspense,
-  BackTopAnimation,
-  SplitLayout,
-  ScrollLoad,
-  SlideLayout,
-  SuccessPrompt,
-  ErrorPrompt,
-  WarnPrompt,
-  PullRefresh,
-  Revolving,
-  SliderScale,
-  StickupLayout,
-  Surnames,
-  CascadeCompared,
-  SwipeOut,
-  FontSizeSetting,
-  JdCategoryTab,
-  ImageLazy,
-  BMap,
-  PlayGround,
-  ContextMenu,
-  GlobalIndicator,
-  HistoryBack,
-  Notification,
-  PolygonSelection,
-  Popup,
-  Teleport,
-  AdapterScreen,
-  Browsersniff,
-  Ajax,
-  Dict,
-  Domain,
-  Emitter,
-  NotNull,
-  Preferences,
-  Resource,
-  Validator,
-  WatchMemoized,
-  Util,
-} from '@baifendian/adherev';
-import {
+  Avatar,
   Breadcrumb,
   Button,
   Card,
   Col,
   ConfigProvider,
   DatePicker,
+  Divider,
   Empty,
   Form,
   FormModel,
   Icon,
   Input,
   InputNumber,
+  List,
   Menu,
   Modal,
   Radio,
   Result,
   Row,
+  Select,
   Slider,
+  Switch,
   Table,
   Tabs,
-  Tooltip,
-  List,
-  Avatar,
   Tag,
-  Divider,
-  Select,
-  Switch,
+  Tooltip,
 } from 'ant-design-vue';
 import Vue from 'vue';
 import { Plugin } from 'vue-fragment';
 import VueHighlightJS from 'vue-highlight.js';
 import VueI18n from 'vue-i18n';
+
+// import en_US from '@/locales/en_US';
+// import pt_PT from '@/locales/pt_PT';
+// import zh_CN from '@/locales/zh_CN';
+import {
+  AdapterScreen,
+  Ajax,
+  BMap,
+  BackTopAnimation,
+  Browsersniff,
+  CascadeCompared,
+  ConditionalRender,
+  ContextMenu,
+  DelConfirm,
+  Dict,
+  Domain,
+  Emitter,
+  ErrorPrompt,
+  FlexLayout,
+  FontSizeSetting,
+  GlobalIndicator,
+  HistoryBack,
+  ImageLazy,
+  ImportantConfirm,
+  Intl,
+  JdCategoryTab,
+  MessageDialog,
+  NotNull,
+  Notification,
+  OLMap,
+  Permission,
+  PlayGround,
+  PolygonSelection,
+  Popup,
+  Preferences,
+  PullRefresh,
+  Resource,
+  Revolving,
+  ScrollLoad,
+  SearchTable,
+  SlideLayout,
+  SliderScale,
+  Space,
+  Spin,
+  Split,
+  SplitLayout,
+  StickupLayout,
+  SuccessPrompt,
+  Surnames,
+  Suspense,
+  SwipeOut,
+  Teleport,
+  Util,
+  Validator,
+  WarnPrompt,
+  WatchMemoized,
+} from '@baifendian/adherev';
+
+import FunctionProps from '@/lib/FunctionProps';
+import Playground from '@/lib/Playground';
+import PlaygroundMulit from '@/lib/PlaygroundMulit';
+import Props from '@/lib/Props';
 
 const register = [
   () => {
@@ -128,13 +130,15 @@ const register = [
     ImportantConfirm.use(Vue);
     Permission.use(Vue);
     Intl.use(Vue);
-    MessageDialog.use(Vue/*, {
+    MessageDialog.use(
+      Vue /*, {
       messages: {
         en_US,
         zh_CN,
         pt_PT,
       },
-    }*/);
+    }*/,
+    );
     Space.use(Vue);
     Spin.use(Vue);
     Split.use(Vue);

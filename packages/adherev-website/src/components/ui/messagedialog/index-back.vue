@@ -584,8 +584,9 @@
   </div>
 </template>
 <script>
-import icon from './icon.svg';
 import { MessageDialog } from '@baifendian/adherev';
+
+import icon from './icon.svg';
 
 export default {
   computed: {

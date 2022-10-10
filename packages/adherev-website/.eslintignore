@@ -1,5 +1,10 @@
-/lambda/
-/scripts
-/config
-/public
-.history
+node_modules/
+/packages/**/*node_modules/
+**/*.spec.*
+**/style/
+*.html
+/components/test/*
+es/
+lib/
+_site/
+dist/

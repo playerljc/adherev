@@ -14,8 +14,7 @@
                 width: 272,
                 alt: 'logo',
                 originSrc: 'https://dss2.bdstatic.com/8_V1bjqh_Q23odCf/pacific/1989213037.jpg',
-                targetSrc:
-                  'https://dss2.bdstatic.com/8_V1bjqh_Q23odCf/pacific/1989213037.jpg',
+                targetSrc: 'https://dss2.bdstatic.com/8_V1bjqh_Q23odCf/pacific/1989213037.jpg',
               }"
             />
             <a-list-item-meta :description="item.description">
@@ -36,8 +35,7 @@
                 width: 272,
                 alt: 'logo',
                 originSrc: 'https://dss2.bdstatic.com/8_V1bjqh_Q23odCf/pacific/1989213037.jpg',
-                targetSrc:
-                  'https://dss2.bdstatic.com/8_V1bjqh_Q23odCf/pacific/1989213037.jpg',
+                targetSrc: 'https://dss2.bdstatic.com/8_V1bjqh_Q23odCf/pacific/1989213037.jpg',
               }"
             />
             <a-list-item-meta :description="item.description">

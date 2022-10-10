@@ -1,20 +1,26 @@
 // import 'ant-design-vue/dist/antd.less'
-import './index.less';
+import NProgress from 'nprogress';
+import Vue from 'vue';
+import 'vue-highlight.js/lib/allLanguages';
+import VueI18n from 'vue-i18n';
+
+import { Intl, Resource, Util } from '@baifendian/adherev';
+
+import '@/config/component.register.config.js';
+
 import Router from './lib/Router';
 import en_US from './locales/en_US';
 import pt_PT from './locales/pt_PT';
 import zh_CN from './locales/zh_CN';
-import '@/config/component.register.config.js';
-import { Intl, Util, Resource, MessageDialog } from '@baifendian/adherev';
-// TODO:umd umd需要注释掉
-import '@baifendian/adherev/lib/css.less';
+
 import 'font-awesome/less/font-awesome.less';
 import 'highlight.js/styles/agate.css';
-import NProgress from 'nprogress';
 import 'nprogress/nprogress.css';
-import Vue from 'vue';
-import 'vue-highlight.js/lib/allLanguages';
-import VueI18n from 'vue-i18n';
+
+// TODO:umd umd需要注释掉
+import '@baifendian/adherev/lib/css.less';
+
+import './index.less';
 
 // 获取当前语言
 const lang = Util.getLang();
