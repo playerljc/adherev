@@ -317,7 +317,7 @@ function resolveData({ show, data, indicator, xhr }): {
 } {
   return {
     ...{ xhr, data },
-    ...(show ? { hideIndicator: () => GlobalIndicator.hide(indicator) } : {}),
+    ...(show ? { hideIndicator: () => (GlobalIndicator as any).hide(indicator) } : {}),
   };
 }
 
@@ -410,7 +410,7 @@ function onreadystatechange({
 
       // 取消遮罩
       if (show && indicator) {
-        GlobalIndicator.hide(indicator);
+        (GlobalIndicator as any).hide(indicator);
       }
     }
   }
@@ -473,7 +473,11 @@ function sendPrepare(
 
   // 显示loading
   if (show) {
-    indicator = GlobalIndicator.show(el || document.body, text || defaultLoadingText, 1000);
+    indicator = (GlobalIndicator as any).show(
+      el || document.body,
+      text || defaultLoadingText,
+      1000,
+    );
   }
 
   // 如果是mock数据
@@ -483,7 +487,7 @@ function sendPrepare(
         resolve({
           data: path,
           hideIndicator: () => {
-            GlobalIndicator.hide(indicator);
+            (GlobalIndicator as any).hide(indicator);
           },
         });
       } else {

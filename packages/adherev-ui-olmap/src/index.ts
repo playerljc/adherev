@@ -20,6 +20,9 @@ const Component: any = {
   Util,
 };
 
+Component.OLMap = withInstall(Component.OLMap);
+Component.HeatMap = withInstall(Component.HeatMap);
+
 Component.isUse = () => true;
 
 Component.use = (Vue) => {
@@ -29,8 +32,5 @@ Component.use = (Vue) => {
 
   withVue(Vue, 'OLMap', Component);
 };
-
-Component.OLMap = withInstall(Component.OLMap);
-Component.HeatMap = withInstall(Component.HeatMap);
 
 export default Component;

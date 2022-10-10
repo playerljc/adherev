@@ -1,2 +1,2 @@
-import VueI18n from"vue-i18n";import Intl,{extend,getLocal}from"./intl";Intl.install=function(t){extend(t)},Intl.use=function(t){t.use(VueI18n),t.use(Intl)},Intl.isUse=function(){return!0},Intl.getLocal=getLocal;export default Intl;
+import VueI18n from"vue-i18n";import IntlV,{extend}from"./intl";IntlV.install=function(n){extend(n)},IntlV.isUse=function(){return!0},IntlV.use=function(n){n.use(IntlV),n.use(VueI18n)};export default IntlV;
 //# sourceMappingURL=index.js.map

@@ -43,7 +43,7 @@ const FontSizeSetting: any = {
   render(h): VNode {
     return (
       <div class={selectorPrefix} ref="el">
-        <div class={`${selectorPrefix}-rangeWrap`}>
+        <div class={`${selectorPrefix}-rangewrap`}>
           <div class={`${selectorPrefix}-separatedtool`}>
             <div class={`${selectorPrefix}-separated`}>
               <span>{this.$tv('小')}</span>

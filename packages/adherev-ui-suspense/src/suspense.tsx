@@ -46,7 +46,7 @@ const Suspense: any = Vue.extend({
     /**
      * renderNormalFirstLoading
      */
-    renderNormalFirstLoading(h): VNode | null {
+    $renderNormalFirstLoading(h): VNode | null {
       const result: VNode[] = [];
 
       for (let i = 0; i < 7; i++) {
@@ -67,13 +67,13 @@ const Suspense: any = Vue.extend({
         return $slots.firstLoading || this.renderFirstLoading;
       }
 
-      return this.renderNormalFirstLoading(h);
+      return this.$renderNormalFirstLoading(h);
     },
     /**
      * renderNormal
      * @param h
      */
-    renderNormal(h: VNode | null) {
+    $renderNormal(h: VNode | null) {
       return (
         // @ts-ignore
         <Spin size="large" spinning={this.showLoading()}>
@@ -85,7 +85,7 @@ const Suspense: any = Vue.extend({
      * renderDispatch
      * @param h
      */
-    renderDispatch(h) {
+    $renderDispatch(h) {
       const loading = this.showLoading();
 
       if (this.isFirst && !this.isFirstLoading && loading) {
@@ -102,15 +102,15 @@ const Suspense: any = Vue.extend({
         return this.$renderFirstLoading(h);
       }
 
-      return this.renderNormal(h);
+      return this.$renderNormal(h);
     },
     /**
      * renderSuspense
      * @description - renderSuspense
      * @param h
      */
-    renderSuspense(h) {
-      return <div class={selectorPrefix}>{this.renderDispatch(h)}</div>;
+    $renderSuspense(h) {
+      return <div class={selectorPrefix}>{this.$renderDispatch(h)}</div>;
     },
   },
   /**
@@ -118,7 +118,7 @@ const Suspense: any = Vue.extend({
    * @param h
    */
   render(h) {
-    return this.renderSuspense(h);
+    return this.$renderSuspense(h);
   },
 });
 

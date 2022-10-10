@@ -638,7 +638,7 @@ const SearchTable: any = Vue.extend({
      * @param h
      */
     renderSearchTable(h) {
-      return <div class={`${selectorPrefix}-wrap`}>{this.renderSuspense(h)}</div>;
+      return <div class={`${selectorPrefix}-wrap`}>{this.$renderSuspense(h)}</div>;
     },
   },
   render(h) {

@@ -12,7 +12,7 @@ const Component = withInstall(SplitLayout);
 Component.isUse = () => true;
 
 Component.use = (Vue) => {
-  FlexLayout.use(Vue);
+  FlexLayout.isUse() && FlexLayout.use(Vue);
   Vue.use(Component);
   withVue(Vue, 'SplitLayout', Component);
 };

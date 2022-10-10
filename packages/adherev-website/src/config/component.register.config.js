@@ -90,6 +90,7 @@ import {
 import Vue from 'vue';
 import { Plugin } from 'vue-fragment';
 import VueHighlightJS from 'vue-highlight.js';
+import VueI18n from 'vue-i18n';
 
 const register = [
   () => {
@@ -189,6 +190,7 @@ const register = [
     Vue.use(Props);
   },
   () => {
+    Vue.use(VueI18n);
     Vue.use(Plugin);
   },
 ];
