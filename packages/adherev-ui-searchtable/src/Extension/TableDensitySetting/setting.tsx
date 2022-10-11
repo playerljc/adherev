@@ -12,6 +12,7 @@ const Setting: any = {
       default: TableDensity.DEFAULT,
     },
   },
+  emits: ['reset', 'change'],
   data() {
     return {
       $config: [
@@ -34,13 +35,7 @@ const Setting: any = {
     return (
       <div class={`${selectorPrefix}-table-density-setting`}>
         <div class={`${selectorPrefix}-table-density-setting-header`}>
-          <a
-            onClick={() => {
-              this.$emit('reset');
-            }}
-          >
-            {Intl.tv('重置')}
-          </a>
+          <a onClick={() => this.$emit('reset')}>{Intl.tv('重置')}</a>
         </div>
 
         <div class={`${selectorPrefix}-table-density-setting-body`}>
@@ -49,9 +44,7 @@ const Setting: any = {
               <li
                 key={t.value}
                 class={this.density === t.value ? 'active' : ''}
-                onClick={() => {
-                  this.$emit('change', t.value);
-                }}
+                onClick={() => this.$emit('change', t.value)}
               >
                 {t.label}
               </li>

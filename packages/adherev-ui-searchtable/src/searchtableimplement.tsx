@@ -1,4 +1,5 @@
-import { TableRowSelection } from 'ant-design-vue/lib/table/interface';
+import { Column } from 'ant-design-vue/types/table/column';
+import { TableRowSelection } from 'ant-design-vue/types/table/table';
 import Vue, { CreateElement, VNode } from 'vue';
 
 // @ts-ignore
@@ -47,6 +48,7 @@ export default (serviceName) =>
         getFetchListPropName(): string {
           return '';
         },
+
         /**
          * getFetchListPropNameToFirstUpper
          * @override
@@ -62,6 +64,7 @@ export default (serviceName) =>
 
           return fetchListPropName;
         },
+
         // ------------ 不需要重写(override)的方法 start ------------------
         /**
          * onSelectChange
@@ -72,6 +75,7 @@ export default (serviceName) =>
         onSelectChange(property: string, v: string): void {
           this[property] = v;
         },
+
         /**
          * onInputChange
          * @description - onInputChange
@@ -81,6 +85,7 @@ export default (serviceName) =>
         onInputChange(property: string, e): void {
           this[property] = e.target.value.trim();
         },
+
         /**
          * onDateTimeRangeChange
          * @description - onDateTimeRangeChange
@@ -92,6 +97,7 @@ export default (serviceName) =>
           this[propertys[1]] = moments && moments.length ? moments[1] : null;
         },
         // ------------ 不需要重写(override)的方法 end ------------------
+
         /**
          * getParams
          * @override
@@ -100,6 +106,7 @@ export default (serviceName) =>
         getParams(): object {
           return {};
         },
+
         /**
          * getServiceName
          * @override
@@ -108,6 +115,7 @@ export default (serviceName) =>
         getServiceName(): string {
           return serviceName;
         },
+
         /**
          * getFetchDataParams
          * @override
@@ -116,6 +124,7 @@ export default (serviceName) =>
         getFetchDataParams(): object {
           return {};
         },
+
         /**
          * isShowNumber
          * @description - 是否线上序号列
@@ -125,6 +134,7 @@ export default (serviceName) =>
         isShowNumber(): boolean {
           return true;
         },
+
         /**
          * getNumberGeneratorRule
          * @override
@@ -133,12 +143,14 @@ export default (serviceName) =>
         getNumberGeneratorRule(): Symbol {
           return NUMBER_GENERATOR_RULE_CONTINUITY;
         },
+
         /**
          * getNumberGeneratorRule - 获取符号列的生成规则
          */
         getRowSelectionMode(): Symbol {
           return ROW_SELECTION_NORMAL_MODE;
         },
+
         /**
          * getTableNumberColumnWidth
          * @override
@@ -147,6 +159,7 @@ export default (serviceName) =>
         getTableNumberColumnWidth(): number {
           return 80;
         },
+
         /**
          * getRowKey
          * @override
@@ -155,6 +168,7 @@ export default (serviceName) =>
         getRowKey(): string {
           return 'id';
         },
+
         /**
          * getDataKey
          * @description - 获取数据的key
@@ -163,6 +177,7 @@ export default (serviceName) =>
         getDataKey(): string {
           return 'list';
         },
+
         /**
          * getTotalKey
          * @description - 获取total的key
@@ -171,6 +186,7 @@ export default (serviceName) =>
         getTotalKey(): string {
           return 'totalCount';
         },
+
         /**
          * getData
          * @description - Table的数据(Table的dataSource字段)
@@ -182,6 +198,7 @@ export default (serviceName) =>
             this.getDataKey()
           ];
         },
+
         /**
          * getTotal
          * @description - Table数据的总条数
@@ -192,12 +209,13 @@ export default (serviceName) =>
             this.getTotalKey()
           ];
         },
+
         /**
          * getRowSelection
          * @override
          * @description - 获取表格行选择对象
          */
-        getRowSelection(): TableRowSelection<object> {
+        getRowSelection(): TableRowSelection {
           const self = this;
 
           function filter(this: any, selected: boolean, records: Array<any>): void {
@@ -205,14 +223,21 @@ export default (serviceName) =>
 
             if (selected) {
               // add
-              self.selectedRowKeys = [...self.selectedRowKeys, ...records.map((r) => r[rowKey])];
-              self.selectedRows = [...self.selectedRows, ...records];
+
+              self.selectedRowKeys = [
+                ...(self.selectedRowKeys || []),
+                ...records.map((r) => r[rowKey]),
+              ];
+
+              self.selectedRows = [...(self.selectedRows || []), ...records];
             } else {
               // remove
-              self.selectedRows = self.selectedRows.filter(
+
+              self.selectedRows = (self.selectedRows || []).filter(
                 (row) => !records.find((r) => r[rowKey] === row[rowKey]),
               );
-              self.selectedRowKeys = self.selectedRowKeys.filter(
+
+              self.selectedRowKeys = (self.selectedRowKeys || []).filter(
                 (key) => !records.find((r) => r[rowKey] === key),
               );
             }
@@ -238,6 +263,7 @@ export default (serviceName) =>
             },
           };
         },
+
         /**
          * renderSearchForm
          * @override
@@ -246,6 +272,11 @@ export default (serviceName) =>
         renderSearchForm(h: CreateElement): VNode | null {
           return null;
         },
+
+        /**
+         * renderSearchTableImplementInner
+         * @param h
+         */
         renderSearchTableImplementInner(h: CreateElement): VNode | null {
           const innerVNode = this.renderSearchTableInner(h);
 
@@ -255,6 +286,16 @@ export default (serviceName) =>
             </div>
           );
         },
+
+        /**
+         * renderSearchTableImplement
+         * @description - renderSearchTableImplement
+         * @param h
+         */
+        renderSearchTableImplement(h) {
+          return this.renderSearchTable(h);
+        },
+
         /**
          * renderInner
          * @override
@@ -263,6 +304,7 @@ export default (serviceName) =>
         renderInner(h: CreateElement): VNode | null {
           return this.renderSearchTableImplementInner(h);
         },
+
         /**
          * renderSearchFooterItems
          * @description - 渲染表格的工具栏
@@ -271,6 +313,7 @@ export default (serviceName) =>
         renderSearchFooterItems(): Array<any> {
           return [];
         },
+
         /**
          * getOrderFieldProp
          * @description - 获取排序字段
@@ -279,6 +322,7 @@ export default (serviceName) =>
         getOrderFieldProp(): string {
           return 'orderField';
         },
+
         /**
          * getOrderFieldValue
          * @description - 获取默认排序字段的值
@@ -288,6 +332,7 @@ export default (serviceName) =>
         getOrderFieldValue(): string {
           return '';
         },
+
         /**
          * getOrderProp
          * @description - 获取排序方式
@@ -295,6 +340,7 @@ export default (serviceName) =>
         getOrderProp(): string {
           return 'order';
         },
+
         /**
          * getOrderPropValue
          * @override
@@ -304,12 +350,13 @@ export default (serviceName) =>
         getOrderPropValue(): 'descend' | 'ascend' {
           return 'descend';
         },
+
         /**
          * clear
          * @description - 清空查询条件
          * @override
          */
-        clear(): Promise<any> {
+        clear(): Promise<void> {
           return new Promise<void>((resolve) => {
             Object.assign(this, {
               ...this.getParams(),
@@ -320,6 +367,7 @@ export default (serviceName) =>
                 ...this.getParams(),
               },
               selectedRowKeys: [],
+              selectedRows: [],
             });
 
             this.$nextTick(() => {
@@ -327,6 +375,7 @@ export default (serviceName) =>
             });
           });
         },
+
         /**
          * showLoading
          * @description - 是否显示遮罩
@@ -335,6 +384,7 @@ export default (serviceName) =>
         showLoading(): boolean {
           return this.loading[`${serviceName}/${this.getFetchListPropName()}`];
         },
+
         /**
          * getSearchParams
          * @description - 获取查询参数
@@ -343,17 +393,23 @@ export default (serviceName) =>
         getSearchParams(): any {
           const { page, limit, searchParams } = this;
 
+          const order = this[this.getOrderProp()];
+
           return {
             ...{
               page,
               limit,
               ...searchParams,
-              [this.getOrderFieldProp()]: this.getOrderFieldValue(),
-              [this.getOrderProp()]: this.getOrderPropValue() || 'descend',
+              // [this.getOrderFieldProp()]: this.getOrderFieldValue(),
+              // [this.getOrderProp()]: this.getOrderPropValue() || 'descend',
+              [this.getOrderProp()]: order === 'descend' ? 'desc' : 'asc',
+
+              [this.getOrderFieldProp()]: this[this.getOrderFieldProp()],
               ...this.getFetchDataParams(),
             },
           };
         },
+
         /**
          * fetchData
          * @description - 加载数据
@@ -362,6 +418,7 @@ export default (serviceName) =>
         fetchData(): Promise<any> {
           return this.fetchDataExecute(this.getSearchParams());
         },
+
         /**
          * fetchDataExecute
          * @description - 真正的执行获取列表数据的接口
@@ -373,6 +430,7 @@ export default (serviceName) =>
             searchParams,
           );
         },
+
         /**
          * onSearch
          * @description - 点击查询
@@ -399,13 +457,27 @@ export default (serviceName) =>
             });
           });
         },
-        /**
-         * renderSearchTableImplement
-         * @description - renderSearchTableImplement
-         * @param h
-         */
-        renderSearchTableImplement(h) {
-          return this.renderSearchTable(h);
+
+        getColumns(): Array<Column> {
+          return [];
+        },
+
+        onSubTableChange(): void {},
+
+        renderSearchFormAfter(h): VNode | null {
+          return null;
+        },
+
+        renderSearchFormBefore(h): VNode | null {
+          return null;
+        },
+
+        renderTableFooter(h): VNode | null {
+          return null;
+        },
+
+        renderTableHeader(h): VNode | null {
+          return null;
         },
       },
       serviceName

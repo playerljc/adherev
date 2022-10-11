@@ -7,6 +7,9 @@ import Intl from '@baifendian/adherev-util-intl';
 import { selectorPrefix } from '../../searchtable';
 import { IColumnSetting } from '../../types';
 
+/**
+ * Setting
+ */
 const Setting: any = Vue.extend({
   props: {
     columns: {
@@ -14,6 +17,8 @@ const Setting: any = Vue.extend({
       default: () => [],
     },
   },
+  // @ts-ignore
+  emits: ['showColumns', 'reset', 'sortEnd', 'displayColumn'],
   computed: {
     showColumns() {
       return this.columns.every((column) => column.display);

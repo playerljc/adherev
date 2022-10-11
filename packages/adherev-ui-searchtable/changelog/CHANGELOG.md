@@ -1,3 +1,21 @@
+# 1.0.11
+
+***
+
+2022-10-11
+
+* table样式修改
+* 加入onSearchPanelCollapseBefore和onSearchPanelCollapseAfter钩子
+* searchfooteritem加入key
+* onTableChange的BUG修改
+* 加入renderSearchFormBefore和renderSearchFormAfter方法
+* onClear加入Promise
+* 加入getLimit方法
+* 重置的修改
+* SearchForm的children位置修改
+* ColumnSetting修改
+* 去掉SearchFrom组件，改用TableGridLayout
+
 # 1.0.10
 
 ***
