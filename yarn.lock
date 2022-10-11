@@ -1308,16 +1308,16 @@
     "@babel/helper-validator-identifier" "^7.19.1"
     to-fast-properties "^2.0.0"
 
-"@baifendian/adhere-ui-bmap@^1.0.21":
-  version "1.0.21"
-  resolved "https://registry.yarnpkg.com/@baifendian/adhere-ui-bmap/-/adhere-ui-bmap-1.0.21.tgz#27c083cae8edf0ed66d453dfd71797122ebe9aff"
-  integrity sha512-mRA+f6+2RovCbav8lGfVziNhSgKa2Yji5DBirXNnAQ9tHbOSQcE5zF93Wy0Z83xQQL1YF4VPHLoZjIS1QB2MTQ==
+"@baifendian/adhere-ui-bmap@^1.0.21-fix.1":
+  version "1.0.21-fix.1"
+  resolved "https://registry.yarnpkg.com/@baifendian/adhere-ui-bmap/-/adhere-ui-bmap-1.0.21-fix.1.tgz#548f9f7666e47d1828eec81f30fb25a858fe139f"
+  integrity sha512-//d/E8q27VtiQqPOVHX9Hyl6pHaNHfdG92fYiK9lUyuFDlPz8h/hNs6ce+UKNu2KxXV990lZxNM/kHsOZBf2ng==
   dependencies:
     "@baifendian/adhere-ui-conditionalrender" "^1.0.21"
     "@baifendian/adhere-ui-css" "^1.0.21"
     "@baifendian/adhere-util" "^1.0.21"
     "@baifendian/adhere-util-emitter" "^1.0.20"
-    "@baifendian/adhere-util-intl" "^1.0.21"
+    "@baifendian/adhere-util-intl" "^1.0.21-fix.1"
     "@turf/turf" "^6.5.0"
     "@types/react" "^17.0.0"
     "@types/react-dom" "^17.0.0"
@@ -1382,18 +1382,18 @@
   resolved "https://registry.yarnpkg.com/@baifendian/adhere-util-emitter/-/adhere-util-emitter-1.0.20.tgz#f7c14fb088223c9cec0d2c70feb9e3e031ce677a"
   integrity sha512-7GSoMVckHYbNewIzbF1wuRi5YG4xMHkSv4L1UjDnxs4r1WueZR9LoFchVC7KEoWWyQUtYwcYfARtWz3Sj9ui3g==
 
-"@baifendian/adhere-util-iframeio@^1.0.21":
-  version "1.0.21"
-  resolved "https://registry.yarnpkg.com/@baifendian/adhere-util-iframeio/-/adhere-util-iframeio-1.0.21.tgz#6554802c4073925a7e765ecc6dc08a997a6f50f8"
-  integrity sha512-VzbQwqu5SwO56MIYtqjaAzy9aY+JjMxSKf7z4CsvUoC2BDRoOQALgqHbmhSOC96VLR325eVNgFWP6bmXqCMOQA==
+"@baifendian/adhere-util-iframeio@^1.0.21-fix.1":
+  version "1.0.21-fix.1"
+  resolved "https://registry.yarnpkg.com/@baifendian/adhere-util-iframeio/-/adhere-util-iframeio-1.0.21-fix.1.tgz#d004962a2e94a845164248a5df5bfe7708523e36"
+  integrity sha512-C1KL6TJo96BDQpcMENqfpFp5MTC+GhZksiVu6eEjqTHKTsuFWrHz8Zfa9H93sgNwTZs8O4kSnAZLGcdalDcKTg==
   dependencies:
     "@baifendian/adhere-util" "^1.0.21"
     uuid "^8.3.2"
 
-"@baifendian/adhere-util-intl@^1.0.21":
-  version "1.0.21"
-  resolved "https://registry.yarnpkg.com/@baifendian/adhere-util-intl/-/adhere-util-intl-1.0.21.tgz#c5eefcc2d8e62ef93ed4dd969858a14c107b1f7e"
-  integrity sha512-CbJ3FCrQxZwOC32tmLIe/BoMD2X/atEAVB0UwBp3XW2LO97aoiDAX2GNScMh4vAY+m6v1mPmCnRjcjabV+tL5g==
+"@baifendian/adhere-util-intl@^1.0.21-fix.1":
+  version "1.0.21-fix.1"
+  resolved "https://registry.yarnpkg.com/@baifendian/adhere-util-intl/-/adhere-util-intl-1.0.21-fix.1.tgz#f39507e277b7ff8a78cd8cdb51cab80aaa611dd6"
+  integrity sha512-X/4W1lfWmV1WnHTQfRzuGtWLaAKvsi9EfnbgPbwgMdYcr9gXz/n7yvsEIel9TVrHqjoVRdoi83XEhI4R7V+RNw==
   dependencies:
     react "^17.0.1"
     react-dom "^17.0.1"

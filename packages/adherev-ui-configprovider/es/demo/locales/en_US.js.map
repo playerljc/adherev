@@ -1,0 +1,1 @@
+{"version":3,"file":"en_US.js","sources":["demo/locales/en_US.js"],"sourcesContent":["export default ['Name', 'Gender', 'Birthdate', 'Address'];"],"names":[],"mappings":"cAAe,CAAC,OAAQ,SAAU,YAAa"}

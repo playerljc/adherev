@@ -1,0 +1,1 @@
+{"version":3,"file":"pt_PT.js","sources":["demo/locales/pt_PT.js"],"sourcesContent":["export default ['Nome', 'Sexo', 'Data de nascimento', 'Endereço'];"],"names":[],"mappings":"cAAe,CAAC,OAAQ,OAAQ,qBAAsB"}
