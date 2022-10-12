@@ -33,7 +33,7 @@
 <script>
 import FileSaver from 'file-saver';
 
-import Iframe from '../index';
+import { IframeIO } from '@baifendian/adherev';
 
 const sourceOrigin = 'http://localhost:8080';
 const whiteList = [sourceOrigin];
@@ -49,7 +49,7 @@ export default {
     };
   },
   created() {
-    this.$data.$router = new Iframe.Router();
+    this.$data.$router = new IframeIO.Router();
 
     this.$data.$router
       /**

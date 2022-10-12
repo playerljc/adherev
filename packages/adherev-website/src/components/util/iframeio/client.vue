@@ -47,7 +47,7 @@
 <script>
 import { v4 } from 'uuid';
 
-import Iframe from '../index';
+import { IframeIO } from '@baifendian/adherev';
 
 const sourceOrigin = 'http://localhost:8080';
 const targetOrigin = 'http://localhost:8080';
@@ -62,7 +62,7 @@ export default {
     };
   },
   created() {
-    this.$data.$fetch = new Iframe.Fetch(window, sourceOrigin);
+    this.$data.$fetch = new IframeIO.Fetch(window, sourceOrigin);
   },
   methods: {
     onSend() {
