@@ -32,18 +32,19 @@ import { Plugin } from 'vue-fragment';
 import VueHighlightJS from 'vue-highlight.js';
 import VueI18n from 'vue-i18n';
 
-// import en_US from '@/locales/en_US';
-// import pt_PT from '@/locales/pt_PT';
-// import zh_CN from '@/locales/zh_CN';
 import {
   AdapterScreen,
+  ConfigProvider as AdherevConfigProvider,
   Ajax,
   BMap,
   BackTopAnimation,
   Browsersniff,
   CascadeCompared,
+  Comment,
   ConditionalRender,
   ContextMenu,
+  ContourBlock,
+  DateDisplay,
   DelConfirm,
   Dict,
   Domain,
@@ -53,6 +54,7 @@ import {
   FontSizeSetting,
   GlobalIndicator,
   HistoryBack,
+  IframeIO,
   ImageLazy,
   ImportantConfirm,
   Intl,
@@ -82,11 +84,13 @@ import {
   Surnames,
   Suspense,
   SwipeOut,
+  TableGridLayout,
   Teleport,
   Util,
   Validator,
   WarnPrompt,
   WatchMemoized,
+  WritingBoard,
 } from '@baifendian/adherev';
 
 import FunctionProps from '@/lib/FunctionProps';
@@ -130,15 +134,7 @@ const register = [
     ImportantConfirm.use(Vue);
     Permission.use(Vue);
     Intl.use(Vue);
-    MessageDialog.use(
-      Vue /*, {
-      messages: {
-        en_US,
-        zh_CN,
-        pt_PT,
-      },
-    }*/,
-    );
+    MessageDialog.use(Vue);
     Space.use(Vue);
     Spin.use(Vue);
     Split.use(Vue);
@@ -184,6 +180,14 @@ const register = [
     Validator.use(Vue);
     WatchMemoized.use(Vue);
     Util.use(Vue);
+
+    Comment.use(Vue);
+    AdherevConfigProvider.use(Vue);
+    ContourBlock.use(Vue);
+    DateDisplay.use(Vue);
+    TableGridLayout.use(Vue);
+    WritingBoard.use(Vue);
+    IframeIO.use(Vue);
   },
   () => {
     Vue.use(VueHighlightJS);

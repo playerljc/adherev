@@ -102,8 +102,20 @@ const ImageLazy = () =>
 const BMap = () => lazy(import(/* webpackChunkName: "bmap" */ '@/components/ui/bmap'));
 const PolygonSelection = () =>
   lazy(import(/* webpackChunkName: "polygonselection" */ '@/components/ui/polygonselection'));
-
 const Teleport = () => lazy(import(/* webpackChunkName: "teleport" */ '@/components/ui/teleport'));
+const Comment = () => lazy(import(/* webpackChunkName: "comment" */ '@/components/ui/comment'));
+const ConfigProvider = () =>
+  lazy(import(/* webpackChunkName: "configprovider" */ '@/components/ui/configprovider'));
+const ContourBlock = () =>
+  lazy(import(/* webpackChunkName: "contourblock" */ '@/components/ui/contourblock'));
+const DateDisplay = () =>
+  lazy(import(/* webpackChunkName: "datedisplay" */ '@/components/ui/datedisplay'));
+const TableGridLayout = () =>
+  lazy(import(/* webpackChunkName: "tablegridlayout" */ '@/components/ui/tablegridlayout'));
+const WritingBoard = () =>
+  lazy(import(/* webpackChunkName: "writingboard" */ '@/components/ui/writingboard'));
+
+const Demo = () => lazy(import(/* webpackChunkName: "demo" */ '@/components/ui/demo'));
 
 const Mixins = () => lazy(import(/* webpackChunkName: "mixins" */ '@/components/util/mixins'));
 const Domain = () => lazy(import(/* webpackChunkName: "domain" */ '@/components/util/domain'));
@@ -113,10 +125,13 @@ const Browsersniff = () =>
   lazy(import(/* webpackChunkName: "browsersniff" */ '@/components/util/browsersniff'));
 const Validator = () =>
   lazy(import(/* webpackChunkName: "validator" */ '@/components/util/validator'));
-const Demo = () => lazy(import(/* webpackChunkName: "demo" */ '@/components/ui/demo'));
+const IframeIO = () =>
+  lazy(import(/* webpackChunkName: "iframeio" */ '@/components/util/iframeio'));
 
 const Echarts = () =>
   lazy(import(/* webpackChunkName: "echarts" */ '@/components/gallery/echarts'));
+
+import IframeServer from '@/components/util/iframeio/server';
 
 export default () => [
   {
@@ -383,6 +398,37 @@ export default () => [
                 name: 'Teleport',
                 component: Teleport,
               },
+
+              {
+                path: '/adherev/component/ui/comment',
+                name: 'Comment',
+                component: Comment,
+              },
+              {
+                path: '/adherev/component/ui/configprovider',
+                name: 'ConfigProvider',
+                component: ConfigProvider,
+              },
+              {
+                path: '/adherev/component/ui/contourblock',
+                name: 'ContourBlock',
+                component: ContourBlock,
+              },
+              {
+                path: '/adherev/component/ui/datedisplay',
+                name: 'DateDisplay',
+                component: DateDisplay,
+              },
+              {
+                path: '/adherev/component/ui/tablegridlayout',
+                name: 'TableGridLayout',
+                component: TableGridLayout,
+              },
+              {
+                path: '/adherev/component/ui/writingboard',
+                name: 'WritingBoard',
+                component: WritingBoard,
+              },
             ],
           },
           {
@@ -468,6 +514,11 @@ export default () => [
                 name: 'Validator',
                 component: Validator,
               },
+              {
+                path: '/adherev/component/util/iframeio',
+                name: 'IframeIO',
+                component: IframeIO,
+              },
             ],
           },
           // {
@@ -503,5 +554,9 @@ export default () => [
         ],
       },
     ],
+  },
+  {
+    path: '/iframeServer',
+    component: IframeServer,
   },
 ];

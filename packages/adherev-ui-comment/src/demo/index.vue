@@ -137,7 +137,6 @@ export default {
       });
     },
     fetchReply(params) {
-      debugger;
       const { id, record, reply } = params;
       const indicator = GlobalIndicator.show(document.body, '');
       return new Promise((resolve) => {

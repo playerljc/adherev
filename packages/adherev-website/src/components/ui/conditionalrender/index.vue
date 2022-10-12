@@ -483,6 +483,22 @@ export default {
               returnType: 'any[]',
               returnDesc: '',
             },
+            {
+              name: 'conditionalNotEmptyArr',
+              desc: '去除null和undefined值',
+              modifier: 'static',
+              params: [
+                {
+                  name: 'arr',
+                  desc: '',
+                  type: 'any[]',
+                  defaultVal: '',
+                  required: '',
+                },
+              ],
+              returnType: 'any[]',
+              returnDesc: '',
+            },
           ],
         },
       ],

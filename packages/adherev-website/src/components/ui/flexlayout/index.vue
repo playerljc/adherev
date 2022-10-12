@@ -173,6 +173,115 @@
           </adv-flexlayout>
         </fragment>
       </template>
+
+      <template #p4>
+        <adv-flexlayout-horizontal
+          style="width: 100%; height: 300px; border: 1px solid #ccc"
+          leftStyle="border-right: 1px solid #ccc; width: 100px;"
+          rightStyle="border-left: 1px solid #ccc; width: 100px;"
+        >
+          <template v-slot:renderLeft><div>Left</div></template>
+          <template v-slot:renderMain><div>Main</div></template>
+          <template v-slot:renderRight><div>Right</div></template>
+        </adv-flexlayout-horizontal>
+      </template>
+
+      <template #p5>
+        <adv-flexlayout-vertical
+          style="width: 100%; height: 300px; border: 1px solid #ccc"
+          topStyle="border-bottom: 1px solid #ccc; height: 80px;"
+          bottomStyle="border-top: 1px solid #ccc; height: 80px"
+        >
+          <template v-slot:renderTop><div>Top</div></template>
+          <template v-slot:renderMain><div>Main</div></template>
+          <template v-slot:renderBottom><div>Bottom</div></template>
+        </adv-flexlayout-vertical>
+      </template>
+
+      <template #p6>
+        <adv-flexlayout-horizontal
+          style="width: 100%; border: 1px solid #ccc"
+          leftStyle="border-right: 1px solid #ccc; width: 100px;"
+          rightStyle="border-left: 1px solid #ccc; width: 100px;"
+        >
+          <template v-slot:renderLeft><div>Left</div></template>
+          <template v-slot:renderMain>
+            <adv-flexlayout-vertical
+              style="width: 100%; height: 300px"
+              topStyle="border-bottom: 1px solid #ccc; height: 80px;"
+              bottomStyle="border-top: 1px solid #ccc; height: 80px"
+            >
+              <template v-slot:renderTop><div>Top</div></template>
+              <template v-slot:renderMain><div>Main</div></template>
+              <template v-slot:renderBottom><div>Bottom</div></template>
+            </adv-flexlayout-vertical>
+          </template>
+          <template v-slot:renderRight><div>Right</div></template>
+        </adv-flexlayout-horizontal>
+      </template>
+
+      <template #p7>
+        <adv-flexlayout-toolbar
+          :topToolBarSlotNames="['topAdd', 'topRemove', 'topUpdate']"
+          :bottomToolBarSlotNames="['bottomAdd', 'bottomRemove', 'bottomUpdate']"
+        >
+          <template v-slot:topAdd>
+            <a-button type="primary" key="add">添加</a-button>
+          </template>
+          <template v-slot:topRemove>
+            <a-button type="primary" key="remove">删除</a-button>
+          </template>
+          <template v-slot:topUpdate>
+            <a-button type="primary" key="update">修改</a-button>
+          </template>
+          <template v-slot:bottomAdd>
+            <a-button type="primary" key="add">添加</a-button>
+          </template>
+          <template v-slot:bottomRemove>
+            <a-button type="primary" key="remove">删除</a-button>
+          </template>
+          <template v-slot:bottomUpdate>
+            <a-button type="primary" key="update">修改</a-button>
+          </template>
+          Main
+        </adv-flexlayout-toolbar>
+      </template>
+
+      <template #p8>
+        <adv-flexlayout-back
+          :topToolBarSlotNames="['topAdd', 'topAdd1']"
+          :bottomToolBarSlotNames="['bottomAdd', 'bottomUpdate', 'bottomRemove']"
+        >
+          <template v-slot:backTitle>返回</template>
+          <template v-slot:topAdd>
+            <a-button type="primary" key="add1">添加1</a-button>
+          </template>
+          <template v-slot:topAdd1>
+            <a-button type="primary" key="add2">添加2</a-button>
+          </template>
+
+          <template v-slot:bottomAdd>
+            <a-button type="primary" key="add">添加</a-button>
+          </template>
+          <template v-slot:bottomRemove>
+            <a-button type="primary" key="remove">删除</a-button>
+          </template>
+          <template v-slot:bottomUpdate>
+            <a-button type="primary" key="update">修改</a-button>
+          </template>
+          Main
+        </adv-flexlayout-back>
+      </template>
+
+      <template #p9>
+        <div style="height: 500px">
+          <adv-flexlayout-scroll :scrollY="true">
+            <adv-space-group direction="vertical">
+              <FormItemWrap v-for="(item, index) in formItemWrapData" :key="index + 1" />
+            </adv-space-group>
+          </adv-flexlayout-scroll>
+        </div>
+      </template>
     </adv-playground-page-code-box-section>
 
     <adv-playground-page-props-section title="Props" :config="propsConfig" />
@@ -180,9 +289,13 @@
 </template>
 
 <script>
+import FormItemWrap from './FormItemWrap';
+
 export default {
   data() {
     return {
+      data: Array.from({ length: 30 }),
+      formItemWrapData: Array.from({ length: 20 }),
       scrollEl: null,
       codeBoxPanelConfig: [
         {
@@ -390,6 +503,181 @@ export default {
       `,
           childrenSlot: 'p3',
         },
+        {
+          id: 'p4',
+          name: `横向的快捷布局(HorizontalFlexLayout)`,
+          type: 'PlayGround',
+          cardProps: {
+            description: {
+              title: 'HorizontalFlexLayout',
+              info: '分为Left、Main和Right',
+            },
+          },
+          codeText: `
+          <adv-flexlayout-horizontal
+            style="width: 100%; height: 300px; border: 1px solid #ccc"
+            leftStyle="border-right: 1px solid #ccc; width: 100px;"
+            rightStyle="border-left: 1px solid #ccc; width: 100px;"
+          >
+            <template v-slot:renderLeft><div>Left</div></template>
+            <template v-slot:renderMain><div>Main</div></template>
+            <template v-slot:renderRight><div>Right</div></template>
+          </adv-flexlayout-horizontal>
+        `,
+          childrenSlot: 'p4',
+        },
+        {
+          id: 'p5',
+          name: `纵向的快捷布局(VerticalFlexLayout)`,
+          type: 'PlayGround',
+          cardProps: {
+            description: {
+              title: 'HorizontalFlexLayout',
+              info: '分为Top、Main和Bottom',
+            },
+          },
+          codeText: `
+          <adv-flexlayout-vertical
+            style="width: 100%; height: 300px; border: 1px solid #ccc"
+            topStyle="border-bottom: 1px solid #ccc; height: 80px;"
+            bottomStyle="border-top: 1px solid #ccc; height: 80px"
+          >
+            <template v-slot:renderTop><div>Top</div></template>
+            <template v-slot:renderMain><div>Main</div></template>
+            <template v-slot:renderBottom><div>Bottom</div></template>
+          </adv-flexlayout-vertical>
+        `,
+          childrenSlot: 'p5',
+        },
+        {
+          id: 'p6',
+          name: `嵌套(HorizontalFlexLayout,VerticalFlexLayout)`,
+          type: 'PlayGround',
+          cardProps: {
+            description: {
+              title: 'HorizontalFlexLayout，HorizontalFlexLayout',
+              info: '组合嵌套',
+            },
+          },
+          codeText: `
+          <adv-flexlayout-horizontal
+            style="width: 100%; border: 1px solid #ccc"
+            leftStyle="border-right: 1px solid #ccc; width: 100px;"
+            rightStyle="border-left: 1px solid #ccc; width: 100px;"
+          >
+            <template v-slot:renderLeft><div>Left</div></template>
+            <template v-slot:renderMain>
+              <adv-flexlayout-vertical
+                style="width: 100%; height: 300px"
+                topStyle="border-bottom: 1px solid #ccc; height: 80px;"
+                bottomStyle="border-top: 1px solid #ccc; height: 80px"
+              >
+                <template v-slot:renderTop><div>Top</div></template>
+                <template v-slot:renderMain><div>Main</div></template>
+                <template v-slot:renderBottom><div>Bottom</div></template>
+              </adv-flexlayout-vertical>
+            </template>
+            <template v-slot:renderRight><div>Right</div></template>
+          </adv-flexlayout-horizontal>
+        `,
+          childrenSlot: 'p6',
+        },
+        {
+          id: 'p7',
+          name: `ToolBarLayout`,
+          type: 'PlayGround',
+          cardProps: {
+            description: {
+              title: 'ToolBarLayout',
+              info: '包含上下的工具栏',
+            },
+          },
+          codeText: `
+          <adv-flexlayout-toolbar
+            :topToolBarSlotNames="['topAdd', 'topRemove', 'topUpdate']"
+            :bottomToolBarSlotNames="['bottomAdd', 'bottomRemove', 'bottomUpdate']"
+          >
+            <template v-slot:topAdd>
+              <a-button type="primary" key="add">添加</a-button>
+            </template>
+            <template v-slot:topRemove>
+              <a-button type="primary" key="remove">删除</a-button>
+            </template>
+            <template v-slot:topUpdate>
+              <a-button type="primary" key="update">修改</a-button>
+            </template>
+            <template v-slot:bottomAdd>
+              <a-button type="primary" key="add">添加</a-button>
+            </template>
+            <template v-slot:bottomRemove>
+              <a-button type="primary" key="remove">删除</a-button>
+            </template>
+            <template v-slot:bottomUpdate>
+              <a-button type="primary" key="update">修改</a-button>
+            </template>
+            Main
+          </adv-flexlayout-toolbar>
+        `,
+          childrenSlot: 'p7',
+        },
+        {
+          id: 'p8',
+          name: `BackLayout`,
+          type: 'PlayGround',
+          cardProps: {
+            description: {
+              title: 'BackLayout',
+              info: '带有返回操作的布局',
+            },
+          },
+          codeText: `
+          <adv-flexlayout-back
+            :topToolBarSlotNames="['topAdd', 'topAdd1']"
+            :bottomToolBarSlotNames="['bottomAdd', 'bottomUpdate', 'bottomRemove']"
+          >
+            <template v-slot:backTitle>返回</template>
+            <template v-slot:topAdd>
+              <a-button type="primary" key="add1">添加1</a-button>
+            </template>
+            <template v-slot:topAdd1>
+              <a-button type="primary" key="add2">添加2</a-button>
+            </template>
+
+            <template v-slot:bottomAdd>
+              <a-button type="primary" key="add">添加</a-button>
+            </template>
+            <template v-slot:bottomRemove>
+              <a-button type="primary" key="remove">删除</a-button>
+            </template>
+            <template v-slot:bottomUpdate>
+              <a-button type="primary" key="update">修改</a-button>
+            </template>
+            Main
+          </adv-flexlayout-back>
+        `,
+          childrenSlot: 'p8',
+        },
+        {
+          id: 'p9',
+          name: `ScrollLayout`,
+          type: 'PlayGround',
+          cardProps: {
+            description: {
+              title: '可以滚动的布局',
+              info: '一般用在路由组件的外层，作为带有getPopupContainer的FormItem的parent',
+            },
+          },
+          codeText: `
+          <div style="height: 500px">
+            <adv-flexlayout-scroll :scrollY="true">
+              <adv-space-group direction="vertical">
+                <FormItemWrap v-for="(item, index) in formItemWrapData" :key="index + 1" />
+              </adv-space-group>
+            </adv-flexlayout-scroll>
+          </div>
+          `,
+          childrenSlot: 'p9',
+        },
       ],
       propsConfig: [
         {
@@ -470,8 +758,486 @@ export default {
             },
           ],
         },
+        {
+          border: true,
+          title: 'FlexLayout.HorizontalFlexLayout',
+          data: [
+            {
+              params: 'leftClassName',
+              desc: 'left的className',
+              type: 'string',
+              defaultVal: '',
+            },
+            {
+              params: 'leftStyle',
+              desc: 'left的style',
+              type: 'React.CSSProperties',
+              defaultVal: '',
+            },
+            {
+              params: 'rightClassName',
+              desc: 'right的className',
+              type: 'string',
+              defaultVal: '',
+            },
+            {
+              params: 'rightStyle',
+              desc: 'right的style',
+              type: 'React.CSSProperties',
+              defaultVal: '',
+            },
+            {
+              params: 'mainClassName',
+              desc: 'main的className',
+              type: 'string',
+              defaultVal: '',
+            },
+            {
+              params: 'mainStyle',
+              desc: 'main的style',
+              type: 'React.CSSProperties',
+              defaultVal: '',
+            },
+            {
+              params: 'mainAutoWrapClassName',
+              desc: 'mainAuto的className',
+              type: 'string',
+              defaultVal: '',
+            },
+            {
+              params: 'mainAutoStyle',
+              desc: 'mainAuto的style',
+              type: 'React.CSSProperties',
+              defaultVal: '',
+            },
+            {
+              params: 'mainWrapClassName',
+              desc: 'mainWrap的className',
+              type: 'string',
+              defaultVal: '',
+            },
+            {
+              params: 'mainWrapStyle',
+              desc: 'mainWrap的style',
+              type: 'React.CSSProperties',
+              defaultVal: '',
+            },
+            {
+              params: 'renderLeft',
+              desc: 'left的渲染',
+              type: 'JSX.Element',
+              defaultVal: '',
+            },
+            {
+              params: 'renderMain',
+              desc: 'main的渲染',
+              type: 'JSX.Element',
+              defaultVal: '',
+            },
+            {
+              params: 'renderRight',
+              desc: 'right的渲染',
+              type: 'JSX.Element',
+              defaultVal: '',
+            },
+            {
+              params: 'leftProps',
+              desc: 'left的props',
+              type: 'object',
+              defaultVal: '',
+            },
+            {
+              params: 'rightProps',
+              desc: 'right的props',
+              type: 'object',
+              defaultVal: '',
+            },
+            {
+              params: 'mainProps',
+              desc: 'main的props',
+              type: 'object',
+              defaultVal: '',
+            },
+            {
+              params: 'mainAutoWrapProps',
+              desc: 'mainAutoWrap的props',
+              type: 'object',
+              defaultVal: '',
+            },
+          ],
+        },
+        {
+          border: true,
+          title: 'FlexLayout.VerticalFlexLayout',
+          data: [
+            {
+              params: 'topClassName',
+              desc: 'top的className',
+              type: 'string',
+              defaultVal: '',
+            },
+            {
+              params: 'topStyle',
+              desc: 'top的style',
+              type: 'React.CSSProperties',
+              defaultVal: '',
+            },
+            {
+              params: 'bottomClassName',
+              desc: 'bottom的className',
+              type: 'string',
+              defaultVal: '',
+            },
+            {
+              params: 'bottomStyle',
+              desc: 'bottom的style',
+              type: 'React.CSSProperties',
+              defaultVal: '',
+            },
+            {
+              params: 'mainClassName',
+              desc: 'main的className',
+              type: 'string',
+              defaultVal: '',
+            },
+            {
+              params: 'mainStyle',
+              desc: 'main的style',
+              type: 'React.CSSProperties',
+              defaultVal: '',
+            },
+            {
+              params: 'mainAutoWrapClassName',
+              desc: 'mainAuto的className',
+              type: 'string',
+              defaultVal: '',
+            },
+            {
+              params: 'mainAutoStyle',
+              desc: 'mainAuto的style',
+              type: 'React.CSSProperties',
+              defaultVal: '',
+            },
+            {
+              params: 'mainWrapClassName',
+              desc: 'mainWrap的className',
+              type: 'string',
+              defaultVal: '',
+            },
+            {
+              params: 'mainWrapStyle',
+              desc: 'mainWrap的style',
+              type: 'React.CSSProperties',
+              defaultVal: '',
+            },
+            {
+              params: 'renderLeft',
+              desc: 'top的渲染',
+              type: 'JSX.Element',
+              defaultVal: '',
+            },
+            {
+              params: 'renderMain',
+              desc: 'main的渲染',
+              type: 'JSX.Element',
+              defaultVal: '',
+            },
+            {
+              params: 'renderRight',
+              desc: 'bottom的渲染',
+              type: 'JSX.Element',
+              defaultVal: '',
+            },
+            {
+              params: 'topProps',
+              desc: 'top的props',
+              type: 'object',
+              defaultVal: '',
+            },
+            {
+              params: 'bottomProps',
+              desc: 'bottom的props',
+              type: 'object',
+              defaultVal: '',
+            },
+            {
+              params: 'mainProps',
+              desc: 'main的props',
+              type: 'object',
+              defaultVal: '',
+            },
+            {
+              params: 'mainAutoWrapProps',
+              desc: 'mainAutoWrap的props',
+              type: 'object',
+              defaultVal: '',
+            },
+          ],
+        },
+        {
+          border: true,
+          title: 'FlexLayout.ToolBarLayout',
+          data: [
+            {
+              params: 'topClassName',
+              desc: 'top的className',
+              type: 'string',
+              defaultVal: '',
+            },
+            {
+              params: 'topStyle',
+              desc: 'top的style',
+              type: 'React.CSSProperties',
+              defaultVal: '',
+            },
+            {
+              params: 'bottomClassName',
+              desc: 'bottom的className',
+              type: 'string',
+              defaultVal: '',
+            },
+            {
+              params: 'bottomStyle',
+              desc: 'bottom的style',
+              type: 'React.CSSProperties',
+              defaultVal: '',
+            },
+            {
+              params: 'mainClassName',
+              desc: 'main的className',
+              type: 'string',
+              defaultVal: '',
+            },
+            {
+              params: 'mainStyle',
+              desc: 'main的style',
+              type: 'React.CSSProperties',
+              defaultVal: '',
+            },
+            {
+              params: 'mainAutoWrapClassName',
+              desc: 'mainAuto的className',
+              type: 'string',
+              defaultVal: '',
+            },
+            {
+              params: 'mainAutoStyle',
+              desc: 'mainAuto的style',
+              type: 'React.CSSProperties',
+              defaultVal: '',
+            },
+            {
+              params: 'mainWrapClassName',
+              desc: 'mainWrap的className',
+              type: 'string',
+              defaultVal: '',
+            },
+            {
+              params: 'mainWrapStyle',
+              desc: 'mainWrap的style',
+              type: 'React.CSSProperties',
+              defaultVal: '',
+            },
+            {
+              params: 'renderMain',
+              desc: 'main的渲染',
+              type: 'JSX.Element',
+              defaultVal: '',
+            },
+            {
+              params: 'topProps',
+              desc: 'top的props',
+              type: 'object',
+              defaultVal: '',
+            },
+            {
+              params: 'bottomProps',
+              desc: 'bottom的props',
+              type: 'object',
+              defaultVal: '',
+            },
+            {
+              params: 'mainProps',
+              desc: 'main的props',
+              type: 'object',
+              defaultVal: '',
+            },
+            {
+              params: 'mainAutoWrapProps',
+              desc: 'mainAutoWrap的props',
+              type: 'object',
+              defaultVal: '',
+            },
+            {
+              params: 'topToolBarItems',
+              desc: '上方工具栏',
+              type: 'JSX.Element[]',
+              defaultVal: '[]',
+            },
+            {
+              params: 'bottomToolBarItems',
+              desc: '下方工具栏',
+              type: 'JSX.Element[]',
+              defaultVal: '[]',
+            },
+          ],
+        },
+        {
+          border: true,
+          title: 'FlexLayout.BackLayout',
+          data: [
+            {
+              params: 'topClassName',
+              desc: 'top的className',
+              type: 'string',
+              defaultVal: '',
+            },
+            {
+              params: 'topStyle',
+              desc: 'top的style',
+              type: 'React.CSSProperties',
+              defaultVal: '',
+            },
+            {
+              params: 'bottomClassName',
+              desc: 'bottom的className',
+              type: 'string',
+              defaultVal: '',
+            },
+            {
+              params: 'bottomStyle',
+              desc: 'bottom的style',
+              type: 'React.CSSProperties',
+              defaultVal: '',
+            },
+            {
+              params: 'mainClassName',
+              desc: 'main的className',
+              type: 'string',
+              defaultVal: '',
+            },
+            {
+              params: 'mainStyle',
+              desc: 'main的style',
+              type: 'React.CSSProperties',
+              defaultVal: '',
+            },
+            {
+              params: 'mainAutoWrapClassName',
+              desc: 'mainAuto的className',
+              type: 'string',
+              defaultVal: '',
+            },
+            {
+              params: 'mainAutoStyle',
+              desc: 'mainAuto的style',
+              type: 'React.CSSProperties',
+              defaultVal: '',
+            },
+            {
+              params: 'mainWrapClassName',
+              desc: 'mainWrap的className',
+              type: 'string',
+              defaultVal: '',
+            },
+            {
+              params: 'mainWrapStyle',
+              desc: 'mainWrap的style',
+              type: 'React.CSSProperties',
+              defaultVal: '',
+            },
+            {
+              params: 'renderMain',
+              desc: 'main的渲染',
+              type: 'JSX.Element',
+              defaultVal: '',
+            },
+            {
+              params: 'topProps',
+              desc: 'top的props',
+              type: 'object',
+              defaultVal: '',
+            },
+            {
+              params: 'bottomProps',
+              desc: 'bottom的props',
+              type: 'object',
+              defaultVal: '',
+            },
+            {
+              params: 'mainProps',
+              desc: 'main的props',
+              type: 'object',
+              defaultVal: '',
+            },
+            {
+              params: 'mainAutoWrapProps',
+              desc: 'mainAutoWrap的props',
+              type: 'object',
+              defaultVal: '',
+            },
+            {
+              params: 'topToolBarItems',
+              desc: '上方工具栏',
+              type: 'JSX.Element[]',
+              defaultVal: '[]',
+            },
+            {
+              params: 'bottomToolBarItems',
+              desc: '下方工具栏',
+              type: 'JSX.Element[]',
+              defaultVal: '[]',
+            },
+
+            {
+              params: 'backPath',
+              desc: '没有历史的时候回退的路由地址',
+              type: 'string',
+              defaultVal: '',
+            },
+            {
+              params: 'enforceBackPath',
+              desc: '强制执行的路由地址',
+              type: 'string',
+              defaultVal: '',
+            },
+            {
+              params: 'isShowBack',
+              desc: '是否显示返回按钮',
+              type: 'boolean',
+              defaultVal: 'true',
+            },
+            {
+              params: 'history',
+              desc: '路由对象',
+              type: 'object',
+              defaultVal: '',
+            },
+            {
+              params: 'backTitle',
+              desc: '返回按钮的文本',
+              type: 'string | JSX.Element',
+              defaultVal: '返回',
+            },
+          ],
+        },
+        {
+          border: true,
+          title: 'FlexLayout.ScrollLayout',
+          data: [
+            {
+              params: 'scrollY',
+              desc: '是否可以滚动',
+              type: 'boolean',
+              defaultVal: 'true',
+            },
+          ],
+        },
       ],
     };
+  },
+  components: {
+    FormItemWrap,
   },
   mounted() {
     this.scrollEl = this?.$refs?.ref?.$el?.parentElement?.parentElement;

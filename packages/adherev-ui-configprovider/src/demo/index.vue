@@ -24,8 +24,6 @@
 </template>
 
 <script>
-import Intl from '@baifendian/adherev-util-intl';
-
 import en_US from './locales/en_US';
 import pt_PT from './locales/pt_PT';
 import zh_CN from './locales/zh_CN';

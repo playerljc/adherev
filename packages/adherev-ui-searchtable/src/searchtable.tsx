@@ -417,36 +417,39 @@ const SearchTable: any = Vue.extend({
 
         return [
           {
-            title: Intl.tv('序号'),
-            key: '_number',
-            align: 'center',
-            width: getTableNumberColumnWidth || 80,
-            customRender: (text, row, index) => {
-              // const numberGeneratorRule =
-              //   this.getNumberGeneratorRule() || NUMBER_GENERATOR_RULE_ALONE;
-              //
-              // const { page = 0, limit = 10 } = this;
-              return (
-                <ConditionalRender
-                  conditional={numberGeneratorRule === NUMBER_GENERATOR_RULE_ALONE}
-                >
-                  <span slot="default">
-                    {this.renderTableNumberColumn(h, index + 1, {
-                      value: text,
-                      record: row,
-                      index,
-                    })}
-                  </span>
+            ...(this.getTableNumberColumnProps ? this.getTableNumberColumnProps() || {} : {}),
+            ...{
+              title: Intl.tv('序号'),
+              key: '_number',
+              align: 'center',
+              width: getTableNumberColumnWidth || 80,
+              customRender: (text, row, index) => {
+                // const numberGeneratorRule =
+                //   this.getNumberGeneratorRule() || NUMBER_GENERATOR_RULE_ALONE;
+                //
+                // const { page = 0, limit = 10 } = this;
+                return (
+                  <ConditionalRender
+                    conditional={numberGeneratorRule === NUMBER_GENERATOR_RULE_ALONE}
+                  >
+                    <span slot="default">
+                      {this.renderTableNumberColumn(h, index + 1, {
+                        value: text,
+                        record: row,
+                        index,
+                      })}
+                    </span>
 
-                  <span slot="noMatch">
-                    {this.renderTableNumberColumn(h, (page - 1) * limit + (index + 1), {
-                      value: text,
-                      record: row,
-                      index,
-                    })}
-                  </span>
-                </ConditionalRender>
-              );
+                    <span slot="noMatch">
+                      {this.renderTableNumberColumn(h, (page - 1) * limit + (index + 1), {
+                        value: text,
+                        record: row,
+                        index,
+                      })}
+                    </span>
+                  </ConditionalRender>
+                );
+              },
             },
           },
         ].concat(columns);
