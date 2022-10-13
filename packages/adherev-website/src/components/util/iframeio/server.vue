@@ -1,5 +1,5 @@
 <template>
-  <div class="Wrap" ref="ref">
+  <div :class="$style.Wrap" ref="ref">
     <a-space :direction="'vertical'" :size="'middle'" style="display: flex">
       <a-card :title="'将输入框值设置到iframe里'">
         <div>{{ displayValue }}</div>
@@ -127,7 +127,7 @@ export default {
         next();
       });
 
-    this.$data.$server = new Iframe.Server(whiteList, window, sourceOrigin);
+    this.$data.$server = new IframeIO.Server(whiteList, window, sourceOrigin);
 
     // //
     // server.current.use((ctx, next) => {
@@ -181,7 +181,7 @@ export default {
 };
 </script>
 
-<style lang="less" scoped>
+<style lang="less" module>
 .Wrap {
   width: 100%;
   height: 100%;

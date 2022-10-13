@@ -1,8 +1,7 @@
 <template>
   <adv-playground-page :scrollEl="scrollEl" ref="ref">
-    <adv-playground-page-section title="vue-i18n的国际化组件">
+    <adv-playground-page-section title="国际化组件">
       <ul>
-        <li>- 支持vue-i18n所有的方法</li>
         <li>- 支持按中文获取国际化词条</li>
         <li>- 支持自动生成词条的key</li>
       </ul>
@@ -38,36 +37,37 @@ export default {
 
         Intl.use(Vue);
 
+      Intl.init(
+        {
+          prefix: 'local',
+          currentLocale: 'zh_CN',
+          locales: {
+            zh_CN: require('./zh_CN.js').default,
+            pt_PT: require('./pt_PT.js').default,
+            en_US: require('./en_US.js').default
+          },
+        },
+        Intl.isInit(),
+      ).then(() => {
         new Vue({
           el: '#container',
-          i18n: Intl({
-            Ii8nOptions:{
-            locale: 'zh_CN',
-              messages:{
-                zh_CN: require('./zh_CN.js').default,
-                pt_PT: require('./pt_PT.js').default,
-                en_US: require('./en_US.js').default
-              }
-            },
-            prefix: 'local',
-          }),
         });
+      });
 
+      // zh_CN.js文件
+      export default [
+        'XXX系统',
+      ];
 
-        // zh_CN.js文件
-        export default [
-          'XXX系统',
-        ];
+      // pt_PT.js文件
+      export default [
+        'XXX系统',
+      ];
 
-        // pt_PT.js文件
-        export default [
-          'XXX系统',
-        ];
-
-        // en_US.js文件
-        export default [
-          'XXX系统',
-        ];
+      // en_US.js文件
+      export default [
+        'XXX系统',
+      ];
       `,
         },
       ],
@@ -99,52 +99,6 @@ export default {
               returnType: 'string',
               returnDesc: '国际化后的值',
             },
-            {
-              name: 'tcv',
-              desc: '',
-              modifier: 'public',
-              params: [
-                {
-                  name: 'Path',
-                  desc: '词条中的key',
-                  type: 'String',
-                  defaultVal: '',
-                  required: 'true',
-                },
-                {
-                  name: '...values',
-                  desc: '其他参数',
-                  type: 'object',
-                  defaultVal: 'string',
-                  required: '国际化后的值',
-                },
-              ],
-              returnType: 'string',
-              returnDesc: '国际化后的值',
-            },
-            {
-              name: 'tev',
-              desc: '',
-              modifier: 'public',
-              params: [
-                {
-                  name: 'Path',
-                  desc: '词条中的key',
-                  type: 'String',
-                  defaultVal: '',
-                  required: 'true',
-                },
-                {
-                  name: '...values',
-                  desc: '其他参数',
-                  type: 'object',
-                  defaultVal: 'string',
-                  required: '国际化后的值',
-                },
-              ],
-              returnType: 'string',
-              returnDesc: '国际化后的值',
-            },
           ],
         },
         {
@@ -153,52 +107,6 @@ export default {
           data: [
             {
               name: '$tv',
-              desc: '',
-              modifier: 'public',
-              params: [
-                {
-                  name: 'Path',
-                  desc: '词条中的key',
-                  type: 'String',
-                  defaultVal: '',
-                  required: 'true',
-                },
-                {
-                  name: '...values',
-                  desc: '其他参数',
-                  type: 'object',
-                  defaultVal: 'string',
-                  required: '国际化后的值',
-                },
-              ],
-              returnType: 'string',
-              returnDesc: '国际化后的值',
-            },
-            {
-              name: '$tcv',
-              desc: '',
-              modifier: 'public',
-              params: [
-                {
-                  name: 'Path',
-                  desc: '词条中的key',
-                  type: 'String',
-                  defaultVal: '',
-                  required: 'true',
-                },
-                {
-                  name: '...values',
-                  desc: '其他参数',
-                  type: 'object',
-                  defaultVal: 'string',
-                  required: '国际化后的值',
-                },
-              ],
-              returnType: 'string',
-              returnDesc: '国际化后的值',
-            },
-            {
-              name: '$tev',
               desc: '',
               modifier: 'public',
               params: [

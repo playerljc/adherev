@@ -22,10 +22,12 @@ import {
   Select,
   Slider,
   Switch,
+  Space as AntdSpace,
   Table,
   Tabs,
   Tag,
   Tooltip,
+  Progress,
 } from 'ant-design-vue';
 import Vue from 'vue';
 import { Plugin } from 'vue-fragment';
@@ -127,6 +129,8 @@ const register = [
     Vue.use(Divider);
     Vue.use(Select);
     Vue.use(Switch);
+    Vue.use(AntdSpace);
+    Vue.use(Progress);
   },
   () => {
     ConditionalRender.use(Vue);

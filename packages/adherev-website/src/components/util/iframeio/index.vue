@@ -174,13 +174,13 @@ export default {
                     item.status = 'success';
                     this.uploadList = list;
 
-                    console.log(\`文件${file.name}上传完成!\`);
+                    console.log(\`文件\${file.name}上传完成!\`);
                     return;
                   }
 
                   const uploadBuffer = buffer.slice(index * segmentSize, (index + 1) * segmentSize);
 
-                  console.log(\`第${index + 1}次上传开始\`);
+                  console.log(\`第\${index + 1}次上传开始\`);
 
                   this.$data.$fetch
                     .get(this.$refs.iframeRef.contentWindow, targetOrigin, '/progressUploadFile', {
@@ -197,7 +197,7 @@ export default {
                     .then((res) => {
                       // 更新进度
                       const list = [...this.uploadList];
-                      console.log(\`第${index + 1}次上传结束\`);
+                      console.log(\`第\${index + 1}次上传结束\`);
                       const item = list.find((t) => t.fileId === fileId);
                       item.status = 'active';
                       item.completeSize = (index + 1) * segmentSize;

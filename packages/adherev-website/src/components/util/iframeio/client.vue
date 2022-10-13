@@ -1,13 +1,13 @@
 <template>
-  <div class="Wrap">
+  <div :class="$style.Wrap">
     <template v-if="iframeReady">
-      <div class="Inner">
+      <div :class="$style.Inner">
         <a-space :direction="'vertical'" :size="'middle'" style="display: flex">
           <a-card :title="'将输入框值设置到iframe里'">
             <a-input-group :compact="true">
               <a-input v-model="value" style="width: calc(100% - 200px)" />
+              <a-button :type="'primary'" @click="onSend">发送</a-button>
             </a-input-group>
-            <a-button :type="'primary'" @click="onSend">发送</a-button>
           </a-card>
 
           <a-card :title="'获取iframe文档内容'">
@@ -37,9 +37,15 @@
       </div>
     </template>
 
-    <div class="IframeWrap">
+    <div :class="$style.IframeWrap">
       <h1 style="text-align: center">Iframe</h1>
-      <iframe name="server" ref="iframeRef" class="Iframe" src="/server" @load="onIframeLoad" />
+      <iframe
+        name="server"
+        ref="iframeRef"
+        :class="$style.Iframe"
+        src="/iframeServer"
+        @load="onIframeLoad"
+      />
     </div>
   </div>
 </template>
@@ -80,7 +86,6 @@ export default {
         });
     },
     onUploadChange(e) {
-      debugger;
       const fileEl = e.target;
 
       const file = fileEl.files[0];
@@ -181,7 +186,7 @@ export default {
 };
 </script>
 
-<style lang="less" scoped>
+<style lang="less" module>
 .Wrap {
   border: 1px solid #ccc;
 
