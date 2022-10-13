@@ -298,18 +298,6 @@ export default {
           title: 'PlayGroundPage',
           data: [
             {
-              params: 'className',
-              desc: '样式',
-              type: 'string',
-              defaultVal: '',
-            },
-            {
-              params: 'style',
-              desc: '样式',
-              type: 'object',
-              defaultVal: '',
-            },
-            {
               params: 'anchorPosition',
               desc: '锚点的位置',
               type: '{top:string,width:string}',
@@ -321,18 +309,6 @@ export default {
           border: true,
           title: 'PlayGroundPage.Section',
           data: [
-            {
-              params: 'className',
-              desc: '样式',
-              type: 'string',
-              defaultVal: '',
-            },
-            {
-              params: 'style',
-              desc: '样式',
-              type: 'object',
-              defaultVal: '',
-            },
             {
               params: 'title',
               desc: '标题',
@@ -351,18 +327,6 @@ export default {
           border: true,
           title: 'PlayGroundPage.PropsSection',
           data: [
-            {
-              params: 'className',
-              desc: '样式',
-              type: 'string',
-              defaultVal: '',
-            },
-            {
-              params: 'style',
-              desc: '样式',
-              type: 'object',
-              defaultVal: '',
-            },
             {
               params: 'title',
               desc: '标题',
@@ -387,18 +351,6 @@ export default {
           border: true,
           title: 'PlayGroundPage.FunctionPropsSection',
           data: [
-            {
-              params: 'className',
-              desc: '样式',
-              type: 'string',
-              defaultVal: '',
-            },
-            {
-              params: 'style',
-              desc: '样式',
-              type: 'object',
-              defaultVal: '',
-            },
             {
               params: 'title',
               desc: '标题',

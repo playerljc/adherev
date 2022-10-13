@@ -811,18 +811,6 @@ export default {
           title: 'CascadeCompared',
           data: [
             {
-              params: 'className',
-              desc: '附加的样式表',
-              type: 'string',
-              defaultVal: '',
-            },
-            {
-              params: 'style',
-              desc: '附加的样式',
-              type: 'String',
-              defaultVal: '',
-            },
-            {
               params: 'indicatorClassName',
               desc: 'indicator附加的样式表',
               type: 'string',

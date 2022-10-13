@@ -47,12 +47,6 @@ export default {
           title: '属性',
           data: [
             {
-              params: 'className',
-              desc: '附加的样式',
-              type: 'string',
-              defaultVal: '',
-            },
-            {
               params: 'min',
               desc: '最小值',
               type: 'number',

@@ -142,18 +142,6 @@ export default {
           title: 'SliderScale',
           data: [
             {
-              params: 'className',
-              desc: '附加的样式表',
-              type: 'string',
-              defaultVal: '',
-            },
-            {
-              params: 'style',
-              desc: '附加的样式',
-              type: 'String',
-              defaultVal: '',
-            },
-            {
               params: 'min',
               desc: '最小值',
               type: 'number',

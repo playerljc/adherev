@@ -533,18 +533,6 @@ export default {
           title: 'Overlay',
           data: [
             {
-              params: 'className',
-              desc: '附加的样式表',
-              type: 'string',
-              defaultVal: '',
-            },
-            {
-              params: 'style',
-              desc: '附加的样式',
-              type: 'String',
-              defaultVal: '',
-            },
-            {
               params: 'width',
               desc: '宽度',
               type: 'string',

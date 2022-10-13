@@ -506,18 +506,6 @@ export default {
           title: 'Surnames',
           data: [
             {
-              params: 'className',
-              desc: '附加的样式表',
-              type: 'string',
-              defaultVal: '',
-            },
-            {
-              params: 'style',
-              desc: '附加的样式',
-              type: 'String',
-              defaultVal: '',
-            },
-            {
               params: 'position',
               desc: '显示的位置 top, right, bottom, left',
               type: 'string',

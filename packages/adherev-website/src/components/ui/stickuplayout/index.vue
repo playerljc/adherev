@@ -1515,18 +1515,6 @@ export default {
           title: 'SplitLayout',
           data: [
             {
-              params: 'className',
-              desc: '附加的样式表',
-              type: 'string',
-              defaultVal: '',
-            },
-            {
-              params: 'style',
-              desc: '附加的样式',
-              type: 'String',
-              defaultVal: '',
-            },
-            {
               params: 'fixedClassName',
               desc: '固定头附加的样式表',
               type: 'string',
@@ -1554,24 +1542,6 @@ export default {
               params: 'onChange',
               desc: '滚动到固定区域',
               type: 'Function',
-              defaultVal: '',
-            },
-          ],
-        },
-        {
-          border: true,
-          title: 'SplitLayout.Item',
-          data: [
-            {
-              params: 'className',
-              desc: '附加的样式表',
-              type: 'string',
-              defaultVal: '',
-            },
-            {
-              params: 'style',
-              desc: '附加的样式',
-              type: 'String',
               defaultVal: '',
             },
           ],

@@ -831,12 +831,6 @@ export default {
           title: 'JdCategoryTab',
           data: [
             {
-              params: 'className',
-              desc: '附加的样式表',
-              type: 'string',
-              defaultVal: '',
-            },
-            {
               params: 'menuClassName',
               desc: 'menu附加的样式表',
               type: 'string',

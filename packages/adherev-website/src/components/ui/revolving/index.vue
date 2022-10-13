@@ -398,12 +398,6 @@ export default {
           title: 'Revolving',
           data: [
             {
-              params: 'className',
-              desc: '附加的样式表',
-              type: 'string',
-              defaultVal: '',
-            },
-            {
               params: 'classNameWrapper',
               desc: 'wrapper附加的样式表',
               type: 'string',

@@ -424,18 +424,6 @@ export default {
           title: 'ScrollLoad',
           data: [
             {
-              params: 'className',
-              desc: '附加的样式表',
-              type: 'string',
-              defaultVal: '',
-            },
-            {
-              params: 'style',
-              desc: '附加的样式',
-              type: 'String',
-              defaultVal: '',
-            },
-            {
               params: 'loadClassName',
               desc: 'load附加的样式表',
               type: 'string',

@@ -6,54 +6,56 @@
 
     <adv-playground-page-code-box-section title="代码演示" :config="codeBoxPanelConfig">
       <template #p1>
-        <a-radio-group
-          :value="lang"
-          :options="[
-            { label: '中文', value: 'zh_CN' },
-            { label: '英文', value: 'en_US' },
-            { label: '葡语', value: 'pt_PT' },
-          ]"
-          @change="change"
-        />
+        <div>
+          <a-radio-group
+            :value="lang"
+            :options="[
+              { label: '中文', value: 'zh_CN' },
+              { label: '英文', value: 'en_US' },
+              { label: '葡语', value: 'pt_PT' },
+            ]"
+            @change="change"
+          />
 
-        <adv-configprovider :intl="intl">
-          <template v-slot:default>
-            <adv-tablegridlayout :data="data">
-              <template v-slot:default v-if="true"></template>
+          <adv-configprovider :intl="intl">
+            <template v-slot:default>
+              <adv-tablegridlayout :data="data">
+                <template v-slot:default v-if="true"></template>
 
-              <template v-slot:UserNameLabel>
-                <adv-tablegridlayout-label>{{ $tv('姓名') }}：</adv-tablegridlayout-label>
-              </template>
+                <template v-slot:UserNameLabel>
+                  <adv-tablegridlayout-label>{{ $tv('姓名') }}：</adv-tablegridlayout-label>
+                </template>
 
-              <template v-slot:UserNameValue>
-                <adv-tablegridlayout-value> 张三 </adv-tablegridlayout-value>
-              </template>
+                <template v-slot:UserNameValue>
+                  <adv-tablegridlayout-value> 张三 </adv-tablegridlayout-value>
+                </template>
 
-              <template v-slot:SexLabel>
-                <adv-tablegridlayout-label>{{ $tv('性别') }}：</adv-tablegridlayout-label>
-              </template>
-              <template v-slot:SexValue>
-                <adv-tablegridlayout-value> 男 </adv-tablegridlayout-value>
-              </template>
+                <template v-slot:SexLabel>
+                  <adv-tablegridlayout-label>{{ $tv('性别') }}：</adv-tablegridlayout-label>
+                </template>
+                <template v-slot:SexValue>
+                  <adv-tablegridlayout-value> 男 </adv-tablegridlayout-value>
+                </template>
 
-              <template v-slot:BirthdayLabel>
-                <adv-tablegridlayout-label>{{ $tv('出生年月') }}：</adv-tablegridlayout-label>
-              </template>
-              <template v-slot:BirthdayValue>
-                <adv-tablegridlayout-value> 2020-10-09 </adv-tablegridlayout-value>
-              </template>
+                <template v-slot:BirthdayLabel>
+                  <adv-tablegridlayout-label>{{ $tv('出生年月') }}：</adv-tablegridlayout-label>
+                </template>
+                <template v-slot:BirthdayValue>
+                  <adv-tablegridlayout-value> 2020-10-09 </adv-tablegridlayout-value>
+                </template>
 
-              <template v-slot:AddressLabel>
-                <adv-tablegridlayout-label>{{ $tv('详细地址') }}：</adv-tablegridlayout-label>
-              </template>
-              <template v-slot:AddressValue>
-                <adv-tablegridlayout-value>
-                  No. 18, Wantang Road, Xihu District, Hangzhou, Zhejiang, China
-                </adv-tablegridlayout-value>
-              </template>
-            </adv-tablegridlayout>
-          </template>
-        </adv-configprovider>
+                <template v-slot:AddressLabel>
+                  <adv-tablegridlayout-label>{{ $tv('详细地址') }}：</adv-tablegridlayout-label>
+                </template>
+                <template v-slot:AddressValue>
+                  <adv-tablegridlayout-value>
+                    No. 18, Wantang Road, Xihu District, Hangzhou, Zhejiang, China
+                  </adv-tablegridlayout-value>
+                </template>
+              </adv-tablegridlayout>
+            </template>
+          </adv-configprovider>
+        </div>
       </template>
     </adv-playground-page-code-box-section>
 
@@ -227,12 +229,6 @@ export default {
                   locales: {},
                   prefix: 'local',
                 }`,
-            },
-            {
-              params: 'children',
-              desc: 'children',
-              type: '() => React.ReactNode',
-              defaultVal: 'null',
             },
           ],
         },

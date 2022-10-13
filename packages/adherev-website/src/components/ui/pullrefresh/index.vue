@@ -122,7 +122,7 @@ export default {
           codeText: `
         <template>
           <h2>基本使用</h2>
-          <adv-pullrefresh :className="$style.Wrap" @pull-refresh="onCode1Refresh">
+          <adv-pullrefresh :class="$style.Wrap" @pull-refresh="onCode1Refresh">
             <a-list item-layout="horizontal" :data-source="data">
               <a-list-item slot="renderItem" slot-scope="item, index">
                 <a-list-item-meta
@@ -175,7 +175,7 @@ export default {
           codeText: `
         <template>
           <h2>Api触发刷新</h2>
-          <adv-pullrefresh :className="$style.Wrap" ref="ref" @pull-refresh="onCode2Refresh">
+          <adv-pullrefresh :class="$style.Wrap" ref="ref" @pull-refresh="onCode2Refresh">
             <a-list item-layout="horizontal" :data-source="data">
               <a-list-item slot="renderItem" slot-scope="item, index">
                 <a-list-item-meta
@@ -238,7 +238,7 @@ export default {
               codeText: `
             <template>
               <h2>自定义图标和文本(1)</h2>
-              <adv-pullrefresh :className="$style.Wrap" :isShowUpdateTime="false" :loadingAnimation="false" @pull-refresh="onCode3Refresh">
+              <adv-pullrefresh :class="$style.Wrap" :isShowUpdateTime="false" :loadingAnimation="false" @pull-refresh="onCode3Refresh">
                 <template v-slot:icon>
                   <div>
                     <img :src="refreshIcon" alt="" />
@@ -390,18 +390,6 @@ export default {
           border: true,
           title: 'PullRefresh',
           data: [
-            {
-              params: 'className',
-              desc: '附加的样式表',
-              type: 'string',
-              defaultVal: '',
-            },
-            {
-              params: 'style',
-              desc: '附加的样式',
-              type: 'String',
-              defaultVal: '',
-            },
             {
               params: 'scrollClassName',
               desc: '附加的样式表',
