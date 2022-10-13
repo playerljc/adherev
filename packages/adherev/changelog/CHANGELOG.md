@@ -1,11 +1,34 @@
-# 1.0.11
+# 1.0.12
 
 ***
 
-2022-5-9
+2022-10-13
 
-* **adherev-ui-teleport**
-  - 加入代码
+* **加入新组件**
+  - 加入adherev-ui-comment
+  - 加入adherev-ui-configprovider
+  - 加入adherev-ui-contourblock
+  - 加入adherev-ui-datedisplay
+  - 加入adherev-ui-tablegridlayout
+  - 加入adherev-ui-writingboard
+  - 加入adherev-util-iframeio
+* **@baifendian/adherev-ui-flexlayout修改**
+  - 加入HorizontalFlexLayout布局
+  - 加入VerticalFlexLayout布局
+  - 加入ToolBarLayout布局
+  - 加入BackLayout布局
+  - 加入ScrollLayout布局
+* **@baifendian/adherev-ui-imagelazy重构**
+  - 使用lazysizes进行重构
+* **@baifendian/adherev-ui-popup重构**
+  - close的BUG修改
+  - 添加showClosePrePopup
+  - bug修改
+* **@baifendian/adherev-util-intl重构**
+  - 去掉i18n
+* **@baifendian/adherev-util-mixins修改**
+  - 加入watchEffect配置
+* **已知问题的修改*
 
 # 1.0.10
 
