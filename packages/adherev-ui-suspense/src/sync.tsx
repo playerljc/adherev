@@ -11,16 +11,16 @@ const SuspenseSync: any = {
   name: 'adv-suspense-sync',
   mixins: [Suspense],
   props: {
+    data: {
+      type: Object as PropType<any>,
+      default: () => null,
+    },
     isEmpty: {
-      type: Boolean,
+      type: Function as PropType<(params?: any) => boolean>,
       default: false,
     },
     renderEmpty: {
       type: Function as PropType<(params?: any) => VNode | null>,
-      default: () => null,
-    },
-    data: {
-      type: Object,
       default: () => null,
     },
   },

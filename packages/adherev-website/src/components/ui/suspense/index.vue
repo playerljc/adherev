@@ -29,6 +29,14 @@
           </suspense-table>
         </fragment>
       </template>
+
+      <template #p3>
+        <Sync />
+      </template>
+
+      <template #p4>
+        <ASync />
+      </template>
     </adv-playground-page-code-box-section>
 
     <adv-playground-page-function-props-section title="API" :config="apiConfig" />
@@ -38,11 +46,15 @@
 </template>
 
 <script>
+import ASync from './async';
+import Sync from './sync';
 import Table from './table';
 
 export default {
   components: {
     'suspense-table': Table,
+    Sync,
+    ASync,
   },
   data() {
     return {
@@ -256,6 +268,40 @@ export default {
       `,
           childrenSlot: 'p2',
         },
+        {
+          id: 'p3',
+          name: '不调用接口值传递数据',
+          cardProps: {
+            description: {
+              title: '不调用接口值传递数据',
+              info: '不调用接口值传递数据',
+            },
+          },
+          type: 'PlayGround',
+          codeText: `
+        <template>
+          <Sync />
+        </template>
+      `,
+          childrenSlot: 'p3',
+        },
+        {
+          id: 'p4',
+          name: '调用接口传递数据',
+          cardProps: {
+            description: {
+              title: '调用接口传递数据',
+              info: '调用接口传递数据',
+            },
+          },
+          type: 'PlayGround',
+          codeText: `
+        <template>
+          <ASync />
+        </template>
+      `,
+          childrenSlot: 'p4',
+        },
       ],
       apiConfig: [
         {
@@ -288,6 +334,42 @@ export default {
             },
           ],
         },
+        {
+          border: true,
+          title: 'Sync',
+          data: [
+            {
+              name: 'resetAsync',
+              desc: '重置',
+              modifier: 'public',
+              params: [],
+              returnType: 'void',
+              returnDesc: '',
+            },
+            {
+              name: 'fetchData',
+              desc: '加载数据',
+              modifier: 'public',
+              params: [],
+              returnType: 'void',
+              returnDesc: '',
+            },
+          ],
+        },
+        {
+          border: true,
+          title: 'ASync',
+          data: [
+            {
+              name: 'resetSync',
+              desc: '重置',
+              modifier: 'public',
+              params: [],
+              returnType: 'void',
+              returnDesc: '',
+            },
+          ],
+        },
       ],
       propsConfig: [
         {
@@ -301,10 +383,58 @@ export default {
               defaultVal: 'false',
             },
             {
-              params: 'firstLoading',
+              params: 'renderFirstLoading',
               desc: '自定义firstLoading',
               type: 'VNode | null',
               defaultVal: 'null',
+            },
+          ],
+        },
+        {
+          border: true,
+          title: 'SuspenseSyncProps',
+          data: [
+            {
+              params: 'data',
+              desc: '数据',
+              type: 'any',
+              defaultVal: '{}',
+            },
+            {
+              params: 'isEmpty',
+              desc: '是否是空数据',
+              type: '() => boolean',
+              defaultVal: '',
+            },
+            {
+              params: 'renderEmpty',
+              desc: '渲染空数据',
+              type: '() => VNode',
+              defaultVal: '',
+            },
+          ],
+        },
+        {
+          border: true,
+          title: 'SuspenseASyncProps',
+          data: [
+            {
+              params: 'isEmpty',
+              desc: '是否是空数据',
+              type: '() => boolean',
+              defaultVal: '',
+            },
+            {
+              params: 'renderEmpty',
+              desc: '渲染空数据',
+              type: '() => VNode',
+              defaultVal: '',
+            },
+            {
+              params: 'fetchAsyncData',
+              desc: '加载数据',
+              type: '(params?:any) => Promise<void>',
+              defaultVal: '',
             },
           ],
         },

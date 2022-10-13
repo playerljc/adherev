@@ -12,8 +12,8 @@ const SuspenseAsync: any = {
   mixins: [Suspense],
   props: {
     isEmpty: {
-      type: Boolean,
-      default: false,
+      type: Function as PropType<(params?: any) => boolean>,
+      default: () => true,
     },
     renderEmpty: {
       type: Function as PropType<(params?: any) => VNode | null>,

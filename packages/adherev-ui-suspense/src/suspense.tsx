@@ -40,7 +40,10 @@ const Suspense: any = Vue.extend({
     },
   },
   mounted() {
-    this.fetchData();
+    if (this.fetchData) {
+      this.fetchData();
+    }
+    // this?.fetchData?.();
   },
   methods: {
     /**
