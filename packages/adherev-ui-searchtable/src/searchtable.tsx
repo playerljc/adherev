@@ -116,7 +116,20 @@ const SearchTable: any = extend({
     },
   },
   // @ts-ignore
-  scopedSlots: ['searchFormBefore', 'searchFormAfter', 'searchForm', 'tableHeader', 'tableFooter'],
+  scopedSlots: [
+    'searchFormBefore',
+    'searchFormAfter',
+    'searchForm',
+    'tableHeader',
+    'tableFooter',
+    'tableNumberColumn',
+    'columnSetting',
+    'tableDensitySetting',
+    'searchFooter',
+    'table',
+    'inner',
+    'searchTable',
+  ],
   data() {
     return {
       page: 1,
@@ -496,14 +509,18 @@ const SearchTable: any = extend({
       number = '',
       params: { value: any; record: object; index: number },
     ) {
-      return <span>{number}</span>;
+      return (
+        this.$scopedSlots?.tableNumberColumn?.({ context: this.getContext(), number }) || (
+          <span>{number}</span>
+        )
+      );
     },
     /**
      * renderColumnSetting
      * @description 创建列设置组件
      */
     renderColumnSetting(h): VNode {
-      const columns = [...(this.columnSetting as Array<any>)];
+      const columns = [...(this.columnSetting as any[])];
 
       columns.sort((c1, c2) => {
         if (c1.sort > c2.sort) return 1;
@@ -512,64 +529,66 @@ const SearchTable: any = extend({
       });
 
       return (
-        // @ts-ignore
-        <ColumnSetting
-          columns={columns}
-          onShowColumns={(checked) => {
-            this.columnSetting = (this.columnSetting || [])?.map((column) => ({
-              ...column,
-              display: checked,
-            }));
+        this.$scopedSlots?.columnSetting?.({ context: this.getContext(), columns }) || (
+          // @ts-ignore
+          <ColumnSetting
+            columns={columns}
+            onShowColumns={(checked) => {
+              this.columnSetting = (this.columnSetting || [])?.map((column) => ({
+                ...column,
+                display: checked,
+              }));
 
-            // this.setState(({ columnSetting }) => ({
-            //   columnSetting: (columnSetting || [])?.map((column) => ({
-            //     ...column,
-            //     display: checked,
-            //   })),
-            // }));
-          }}
-          onReset={() => {
-            this.columnSetting = this.getTableColumns(h).map((column, index) => ({
-              ...column,
-              display: true,
-              sort: index,
-            }));
+              // this.setState(({ columnSetting }) => ({
+              //   columnSetting: (columnSetting || [])?.map((column) => ({
+              //     ...column,
+              //     display: checked,
+              //   })),
+              // }));
+            }}
+            onReset={() => {
+              this.columnSetting = this.getTableColumns(h).map((column, index) => ({
+                ...column,
+                display: true,
+                sort: index,
+              }));
 
-            // this.setState(() => ({
-            //   columnSetting: this.getTableColumns().map((column, index) => ({
-            //     ...column,
-            //     display: true,
-            //     sort: index,
-            //   })),
-            // }));
-          }}
-          onDisplayColumn={(column, checked) => {
-            this.columnSetting = (this.columnSetting || [])?.map((_column) => ({
-              ..._column,
-              display: _column.key === column.key ? checked : _column.display,
-            }));
+              // this.setState(() => ({
+              //   columnSetting: this.getTableColumns().map((column, index) => ({
+              //     ...column,
+              //     display: true,
+              //     sort: index,
+              //   })),
+              // }));
+            }}
+            onDisplayColumn={(column, checked) => {
+              this.columnSetting = (this.columnSetting || [])?.map((_column) => ({
+                ..._column,
+                display: _column.key === column.key ? checked : _column.display,
+              }));
 
-            // this.setState(({ columnSetting }) => ({
-            //   columnSetting: (columnSetting || [])?.map((_column) => ({
-            //     ..._column,
-            //     display: _column.key === column.key ? checked : _column.display,
-            //   })),
-            // }));
-          }}
-          onSortEnd={(map) => {
-            this.columnSetting = (this.columnSetting || [])?.map((column) => ({
-              ...column,
-              sort: map.get(column.key),
-            }));
+              // this.setState(({ columnSetting }) => ({
+              //   columnSetting: (columnSetting || [])?.map((_column) => ({
+              //     ..._column,
+              //     display: _column.key === column.key ? checked : _column.display,
+              //   })),
+              // }));
+            }}
+            onSortEnd={(map) => {
+              this.columnSetting = (this.columnSetting || [])?.map((column) => ({
+                ...column,
+                sort: map.get(column.key),
+              }));
 
-            // this.setState(({ columnSetting }) => ({
-            //   columnSetting: (columnSetting || [])?.map((column) => ({
-            //     ...column,
-            //     sort: map.get(column.key),
-            //   })),
-            // }));
-          }}
-        />
+              // this.setState(({ columnSetting }) => ({
+              //   columnSetting: (columnSetting || [])?.map((column) => ({
+              //     ...column,
+              //     sort: map.get(column.key),
+              //   })),
+              // }));
+            }}
+          />
+        )
       );
     },
     /**
@@ -578,23 +597,25 @@ const SearchTable: any = extend({
      */
     renderTableDensitySetting(): VNode {
       return (
-        // @ts-ignore
-        <TableDensitySetting
-          density={this.tableDensity}
-          onChange={(density) => {
-            this.tableDensity = density;
-            // this.setState({
-            //   tableDensity: density,
-            // });
-          }}
-          onReset={() => {
-            this.tableDensity = this.getTableDensity();
+        this.$scopedSlots?.tableDensitySetting?.(this) || (
+          // @ts-ignore
+          <TableDensitySetting
+            density={this.tableDensity}
+            onChange={(density) => {
+              this.tableDensity = density;
+              // this.setState({
+              //   tableDensity: density,
+              // });
+            }}
+            onReset={() => {
+              this.tableDensity = this.getTableDensity();
 
-            // this.setState({
-            //   tableDensity: this.getTableDensity(),
-            // });
-          }}
-        />
+              // this.setState({
+              //   tableDensity: this.getTableDensity(),
+              // });
+            }}
+          />
+        )
       );
     },
     /**
@@ -708,11 +729,12 @@ const SearchTable: any = extend({
 
       return (
         <div class={`${selectorPrefix}-searchfooterwrapper`}>
-          {items.map((t, index) => (
-            <div key={index} class={`${selectorPrefix}-searchfooteritem`}>
-              {t}
-            </div>
-          ))}
+          {this.$scopedSlots?.searchFooter?.({ context: this.getContext(), items }) ||
+            items.map((t, index) => (
+              <div key={index} class={`${selectorPrefix}-searchfooteritem`}>
+                {t}
+              </div>
+            ))}
         </div>
       );
     },
@@ -722,6 +744,10 @@ const SearchTable: any = extend({
      * @protected
      */
     renderTable(h: CreateElement) {
+      if (this.$scopedSlots?.table) {
+        return this.$scopedSlots?.table?.(this);
+      }
+
       const { antdTableProps, fixedHeaderAutoTable } = this;
 
       // 作用域插槽
@@ -802,6 +828,10 @@ const SearchTable: any = extend({
      * @param h
      */
     renderInner(h: CreateElement) {
+      if (this.$scopedSlots?.inner) {
+        return this.$scopedSlots?.inner?.(this);
+      }
+
       const {
         className,
         wrapStyle,
@@ -896,7 +926,11 @@ const SearchTable: any = extend({
      * @param h
      */
     renderSearchTable(h) {
-      return <div class={`${selectorPrefix}-wrap`}>{this.$renderSuspense(h)}</div>;
+      return (
+        this.$scopedSlots?.searchTable?.(this) || (
+          <div class={`${selectorPrefix}-wrap`}>{this.$renderSuspense(h)}</div>
+        )
+      );
     },
   },
   render(h) {
