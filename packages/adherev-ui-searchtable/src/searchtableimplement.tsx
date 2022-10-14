@@ -1,7 +1,8 @@
 import { Column } from 'ant-design-vue/types/table/column';
 import { TableRowSelection } from 'ant-design-vue/types/table/table';
-import Vue, { CreateElement, VNode } from 'vue';
+import { CreateElement, VNode } from 'vue';
 
+import Util from '@baifendian/adherev-util';
 // @ts-ignore
 import { cleanMixin, mapActions, mapMutations, mapState } from '@ctsj/vuexgenerator';
 
@@ -13,8 +14,13 @@ import SearchTable, {
 
 const selectorPrefix = 'adherev-ui-searchtableimplement';
 
+const {
+  _util: { extend },
+} = Util;
+
 export default (serviceName) =>
-  Vue.extend({
+  extend({
+    className: 'SearchTableImpl',
     mixins: serviceName ? [SearchTable, cleanMixin([serviceName])] : [SearchTable],
     data() {
       return {
@@ -280,28 +286,14 @@ export default (serviceName) =>
           return null;
         },
 
-        /**
-         * renderSearchTableImplementInner
-         * @param h
-         */
-        renderSearchTableImplementInner(h: CreateElement): VNode | null {
-          const innerVNode = this.renderSearchTableInner(h);
-
-          return (
-            <div ref="innerWrapRef" class={`${selectorPrefix}-tablewrapper`}>
-              {innerVNode}
-            </div>
-          );
-        },
-
-        /**
-         * renderSearchTableImplement
-         * @description - renderSearchTableImplement
-         * @param h
-         */
-        renderSearchTableImplement(h) {
-          return this.renderSearchTable(h);
-        },
+        // /**
+        //  * renderSearchTableImplement
+        //  * @description - renderSearchTableImplement
+        //  * @param h
+        //  */
+        // renderSearchTableImplement(h) {
+        //   return this.renderSearchTable(h);
+        // },
 
         /**
          * renderInner
@@ -309,7 +301,13 @@ export default (serviceName) =>
          * @description - 渲染主体
          */
         renderInner(h: CreateElement): VNode | null {
-          return this.renderSearchTableImplementInner(h);
+          const innerVNode = this.$renderInnerSearchTable(h);
+
+          return (
+            <div ref="innerWrapRef" class={`${selectorPrefix}-tablewrapper`}>
+              {innerVNode}
+            </div>
+          );
         },
 
         /**
@@ -494,7 +492,7 @@ export default (serviceName) =>
           }
         : {},
     ),
-    render(h) {
-      return this.renderSearchTableImplement(h);
-    },
+    // render(h) {
+    //   return this.renderSearchTableImplement(h);
+    // },
   });

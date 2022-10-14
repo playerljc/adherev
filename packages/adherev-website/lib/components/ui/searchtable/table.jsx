@@ -244,8 +244,9 @@ export default {
         },
         getPagination() {
             const { pagination } = this;
+
             if (pagination) {
-                return this.getSearchTablePagination();
+              return this.$getSearchTablePaginationSearchTableImpl();
             }
             return false;
         },

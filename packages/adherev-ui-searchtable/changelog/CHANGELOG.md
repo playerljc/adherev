@@ -15,6 +15,7 @@
 * SearchForm的children位置修改
 * ColumnSetting修改
 * 去掉SearchFrom组件，改用TableGridLayout
+* 加入extend可以调用父类方法
 
 # 1.0.10
 

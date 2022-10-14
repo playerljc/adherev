@@ -1,4 +1,5 @@
 import {
+  Space as AntdSpace,
   Avatar,
   Breadcrumb,
   Button,
@@ -16,18 +17,18 @@ import {
   List,
   Menu,
   Modal,
+  Progress,
   Radio,
   Result,
   Row,
   Select,
   Slider,
+  Statistic,
   Switch,
-  Space as AntdSpace,
   Table,
   Tabs,
   Tag,
   Tooltip,
-  Progress,
 } from 'ant-design-vue';
 import Vue from 'vue';
 import { Plugin } from 'vue-fragment';
@@ -102,6 +103,7 @@ import Props from '@/lib/Props';
 
 const register = [
   () => {
+    Vue.use(Statistic);
     Vue.use(Menu);
     Vue.use(Button);
     Vue.use(Card);

@@ -28,6 +28,8 @@
   - 去掉i18n
 * **@baifendian/adherev-util-mixins修改**
   - 加入watchEffect配置
+* **@baifendian/adherev-util**
+  - 加入extend方法
 * **已知问题的修改*
 
 # 1.0.10

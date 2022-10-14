@@ -1,10 +1,11 @@
 import { Button, Table } from 'ant-design-vue';
 import classNames from 'classnames';
-import Vue, { CreateElement, PropType, VNode } from 'vue';
+import { CreateElement, PropType, VNode } from 'vue';
 
 import ConditionalRender from '@baifendian/adherev-ui-conditionalrender';
 import FlexLayout from '@baifendian/adherev-ui-flexlayout';
 import Suspense from '@baifendian/adherev-ui-suspense';
+import Util from '@baifendian/adherev-util';
 import Intl from '@baifendian/adherev-util-intl';
 import Mixins from '@baifendian/adherev-util-mixins';
 
@@ -22,6 +23,10 @@ const { updatedEx, watchEffect } = Mixins;
 
 const { Fixed, Auto } = FlexLayout;
 
+const {
+  _util: { extend },
+} = Util;
+
 // 单独模式
 export const NUMBER_GENERATOR_RULE_ALONE = Symbol();
 // 连续模式
@@ -32,7 +37,8 @@ export const ROW_SELECTION_NORMAL_MODE = Symbol();
 // 全选的规则 - 可以跨页
 export const ROW_SELECTION_CONTINUOUS_MODE = Symbol();
 
-const SearchTable: any = Vue.extend({
+const SearchTable: any = extend({
+  className: 'SearchTable',
   // @overview
   mixins: [Suspense, updatedEx, watchEffect],
   props: {
@@ -110,7 +116,7 @@ const SearchTable: any = Vue.extend({
     },
   },
   // @ts-ignore
-  slots: ['searchFormBefore', 'searchFormAfter', 'tableHeader', 'tableFooter'],
+  scopedSlots: ['searchFormBefore', 'searchFormAfter', 'searchForm', 'tableHeader', 'tableFooter'],
   data() {
     return {
       page: 1,
@@ -133,7 +139,7 @@ const SearchTable: any = Vue.extend({
     components() {
       return {
         header: {
-          cell: SearchTableResizableTitle(this.getSearchTableTableColumns(this.$createElement)),
+          cell: SearchTableResizableTitle(this.getTableColumns(this.$createElement)),
         },
       };
     },
@@ -144,7 +150,7 @@ const SearchTable: any = Vue.extend({
     };
   },
   created() {
-    this.columnSetting = this.getTableColumns().map((column, index) => ({
+    this.columnSetting = this.getTableColumns(this.$createElement).map((column, index) => ({
       ...column,
       sort: index,
       display: true,
@@ -336,12 +342,9 @@ const SearchTable: any = Vue.extend({
       return 10;
     },
     /**
-     * getPagination - 获取分页信息
+     * getPagination
      */
-    /**
-     * getSearchTablePagination
-     */
-    getSearchTablePagination() {
+    getPagination() {
       return {
         onChange: (page, limit) => {
           this.page = page;
@@ -376,19 +379,16 @@ const SearchTable: any = Vue.extend({
       };
     },
     /**
-     * getPagination
-     */
-    getPagination() {
-      return this.getSearchTablePagination();
-    },
-    /**
      * getTableDensity
      * @description 表格密度
      */
     getTableDensity() {
       return TableDensity.DEFAULT;
     },
-    getSearchTableTableColumns(h: CreateElement): any[] {
+    /**
+     * onTableChange - 表格change
+     */
+    getTableColumns(h: CreateElement): Array<any> {
       const isShowNumber = this.isShowNumber();
       const getTableNumberColumnWidth = this.getTableNumberColumnWidth();
 
@@ -456,12 +456,6 @@ const SearchTable: any = Vue.extend({
       }
 
       return columns;
-    },
-    /**
-     * onTableChange - 表格change
-     */
-    getTableColumns(h: CreateElement): Array<any> {
-      return this.getSearchTableTableColumns(h);
     },
 
     getSortColumnSetting() {
@@ -604,10 +598,10 @@ const SearchTable: any = Vue.extend({
       );
     },
     /**
-     * renderSearchTableSearchFooter
+     * renderSearchFooter
      * @param h
      */
-    renderSearchTableSearchFooter(h: CreateElement) {
+    renderSearchFooter(h: CreateElement) {
       const { isShowExpandSearch } = this;
 
       const defaultItems = [
@@ -723,17 +717,11 @@ const SearchTable: any = Vue.extend({
       );
     },
     /**
-     * renderSearchFooter
-     * @param h
+     * renderTable
+     * @description - 认选表格体
+     * @protected
      */
-    renderSearchFooter(h: CreateElement) {
-      return this.renderSearchTableSearchFooter(h);
-    },
-    /**
-     * renderSearchTableTable
-     * @param h
-     */
-    renderSearchTableTable(h: CreateElement) {
+    renderTable(h: CreateElement) {
       const { antdTableProps, fixedHeaderAutoTable } = this;
 
       // 作用域插槽
@@ -810,14 +798,10 @@ const SearchTable: any = Vue.extend({
       return <Table {...tableProps} />;
     },
     /**
-     * renderTable
-     * @description - 认选表格体
-     * @protected
+     * renderInner
+     * @param h
      */
-    renderTable(h: CreateElement) {
-      return this.renderSearchTableTable(h);
-    },
-    renderSearchTableInner(h: CreateElement) {
+    renderInner(h: CreateElement) {
       const {
         className,
         wrapStyle,
@@ -848,33 +832,37 @@ const SearchTable: any = Vue.extend({
           >
             <FlexLayout direction="vertical">
               <ConditionalRender
-                conditional={this.$slots.searchFormBefore || !!this.renderSearchFormBefore}
+                conditional={this.$scopedSlots.searchFormBefore || !!this.renderSearchFormBefore}
               >
                 <Fixed slot="default">
-                  {this.$slots.searchFormBefore || this.renderSearchFormBefore(h)}
+                  {this.$scopedSlots?.searchFormBefore?.(this) || this.renderSearchFormBefore(h)}
                 </Fixed>
               </ConditionalRender>
 
               <Fixed>
                 <ConditionalRender conditional={this.expand}>
-                  {this.renderSearchForm(h)}
+                  {this.$scopedSlots?.searchForm?.(this) || this.renderSearchForm(h)}
                 </ConditionalRender>
               </Fixed>
 
               <Fixed>{this.renderSearchFooter(h)}</Fixed>
 
               <ConditionalRender
-                conditional={this.$slots.searchFormAfter || !!this.renderSearchFormAfter}
+                conditional={this.$scopedSlots.searchFormAfter || !!this.renderSearchFormAfter}
               >
                 <Fixed slot="default">
-                  {this.$slots.searchFormAfter || this.renderSearchFormAfter(h)}
+                  {this.$scopedSlots?.searchFormAfter?.(this) || this.renderSearchFormAfter(h)}
                 </Fixed>
               </ConditionalRender>
             </FlexLayout>
           </Fixed>
 
-          <ConditionalRender conditional={!!this.$slots.tableHeader || !!this.renderTableHeader}>
-            <Fixed slot="default">{this.$slots.tableHeader || this.renderTableHeader(h)}</Fixed>
+          <ConditionalRender
+            conditional={!!this.$scopedSlots.tableHeader || !!this.renderTableHeader}
+          >
+            <Fixed slot="default">
+              {this.$scopedSlots?.tableHeader?.(this) || this.renderTableHeader(h)}
+            </Fixed>
           </ConditionalRender>
 
           <Auto
@@ -892,18 +880,15 @@ const SearchTable: any = Vue.extend({
             </div>
           </Auto>
 
-          <ConditionalRender conditional={!!this.$slots.tableFooter || !!this.renderTableFooter}>
-            <Fixed slot="default">{this.$slots.tableFooter || this.renderTableFooter(h)}</Fixed>
+          <ConditionalRender
+            conditional={!!this.$scopedSlots.tableFooter || !!this.renderTableFooter}
+          >
+            <Fixed slot="default">
+              {this.$scopedSlots?.tableFooter?.(this) || this.renderTableFooter(h)}
+            </Fixed>
           </ConditionalRender>
         </FlexLayout>
       );
-    },
-    /**
-     * renderInner
-     * @param h
-     */
-    renderInner(h: CreateElement) {
-      return this.renderSearchTableInner(h);
     },
     /**
      * renderSearchTable

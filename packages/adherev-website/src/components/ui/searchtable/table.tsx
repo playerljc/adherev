@@ -299,7 +299,7 @@ export default {
       const { pagination } = this;
 
       if (pagination) {
-        return this.getSearchTablePagination();
+        return this.$getPaginationSearchTable();
       }
 
       return false;

@@ -173,7 +173,7 @@
             :isShowExpandSearch="true"
             :defaultExpandSearchCollapse="false"
           >
-            <template v-slot:tableHeader>
+            <template v-slot:tableHeader="context">
               <div :class="$style.Header">
                 <h3>查询表格</h3>
                 <div>
@@ -182,6 +182,46 @@
               </div>
             </template>
           </TableDensitySetting>
+        </div>
+      </template>
+
+      <template #p12>
+        <div style="display: flex; height: 700px">
+          <TableSearchBetweenTable
+            :wrapStyle="'height: 100%'"
+            :isShowExpandSearch="true"
+            :defaultExpandSearchCollapse="false"
+          >
+            <template v-slot:searchFormBefore="context">
+              <a-row :gutter="16">
+                <a-col :span="12">
+                  <a-statistic title="Active Users" :value="112893" />
+                </a-col>
+                <a-col :span="12">
+                  <a-statistic title="Account Balance (CNY)" :value="112893" :precision="2" />
+                  <a-button style="margin-top: 16px" type="primary">Recharge</a-button>
+                </a-col>
+                <a-col :span="12">
+                  <a-statistic title="Active Users" value="112893" :loading="true" />
+                </a-col>
+              </a-row>
+            </template>
+
+            <template v-slot:searchFormAfter="context">
+              <a-row :gutter="16">
+                <a-col :span="12">
+                  <a-statistic title="Active Users" :value="112893" />
+                </a-col>
+                <a-col :span="12">
+                  <a-statistic title="Account Balance (CNY)" :value="112893" :precision="2" />
+                  <a-button style="margin-top: 16px" type="primary">Recharge</a-button>
+                </a-col>
+                <a-col :span="12">
+                  <a-statistic title="Active Users" :value="112893" :loading="true" />
+                </a-col>
+              </a-row>
+            </template>
+          </TableSearchBetweenTable>
         </div>
       </template>
     </adv-playground-page-code-box-section>
@@ -196,6 +236,7 @@
 import ColumnResizableTable from './columnResizeTable';
 import ColumnSettingTable from './columnSettingTable';
 import FewTable from './fewTable';
+import TableSearchBetweenTable from './renderSearchBetweenTable';
 import RowSelectedContinuous from './rowSelectedContinuous';
 import RowSelectedNormal from './rowSelectedNormal';
 import Table from './table';
@@ -210,6 +251,7 @@ export default {
     ColumnResizableTable,
     ColumnSettingTable,
     TableDensitySetting,
+    TableSearchBetweenTable,
   },
   data() {
     return {
@@ -884,6 +926,61 @@ export default {
   };
           `,
           childrenSlot: 'p11',
+        },
+        {
+          id: 'p12',
+          name: '查询面板两端的渲染',
+          cardProps: {
+            description: {
+              title: '查询面板两端的渲染',
+              info: '查询面板两端的渲染',
+            },
+          },
+          type: 'PlayGround',
+          codeText: `
+  import TableSearchBetweenTable from './renderSearchBetweenTable';
+
+  <TableSearchBetweenTable
+    :wrapStyle="'height: 100%'"
+    :isShowExpandSearch="true"
+    :defaultExpandSearchCollapse="false"
+  >
+    <template v-slot:searchFormBefore="context">
+      <a-row :gutter="16">
+        <a-col :span="12">
+          <a-statistic title="Active Users" :value="112893" />
+        </a-col>
+        <a-col :span="12">
+          <a-statistic title="Account Balance (CNY)" :value="112893" :precision="2" />
+          <a-button style="margin-top: 16px" type="primary">Recharge</a-button>
+        </a-col>
+        <a-col :span="12">
+          <a-statistic title="Active Users" value="112893" :loading="true" />
+        </a-col>
+      </a-row>
+    </template>
+
+    <template v-slot:searchFormAfter="context">
+      <a-row :gutter="16">
+        <a-col :span="12">
+          <a-statistic title="Active Users" :value="112893" />
+        </a-col>
+        <a-col span="{12}">
+          <a-statistic title="Account Balance (CNY)" :value="112893" :precision="2" />
+          <a-button style="margin-top: 16px" type="primary">Recharge</a-button>
+        </a-col>
+        <a-col :span="{12}">
+          <a-statistic title="Active Users" :value="112893" :loading="true" />
+        </a-col>
+      </a-row>
+    </template>
+  </TableSearchBetweenTable>
+
+  export default {
+    mixins: [Table],
+  };
+          `,
+          childrenSlot: 'p12',
         },
       ],
       apiConfig: [
