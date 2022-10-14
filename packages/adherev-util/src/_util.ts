@@ -55,9 +55,6 @@ export const extend = (options: ExtendFunction<any>): Omit<ExtendFunction<any>, 
 
   const classNames = !Array.isArray(className) ? [className] : className;
 
-  console.log('methodKeys', methodKeys);
-  console.log('classNames', classNames);
-
   for (let i = 0; i < methodKeys.length; i++) {
     const methodKey = methodKeys[i];
 
@@ -71,8 +68,6 @@ export const extend = (options: ExtendFunction<any>): Omit<ExtendFunction<any>, 
       };
     }
   }
-
-  console.log('');
 
   return vueOptions;
 };
