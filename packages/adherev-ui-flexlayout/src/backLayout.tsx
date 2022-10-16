@@ -87,6 +87,7 @@ const BackLayout: any = {
       default: true,
     },
   },
+  slots: ['backTitle'],
   computed: {
     otherProps() {
       const { isShowBack, backPath, enforceBackPath, ...others } = this.$props;

@@ -90,6 +90,7 @@ const VerticalFlexLayout: any = {
       default: () => ({}),
     },
   },
+  slots: ['renderLeft', 'renderMain', 'renderTop', 'renderBottom', 'renderRight'],
   render(h): VNode {
     const {
       leftClassName,

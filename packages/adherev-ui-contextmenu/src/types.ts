@@ -1,5 +1,3 @@
-import type { VNode } from 'vue';
-
 export interface IMenuProps {
   data: IData[];
   className: string;

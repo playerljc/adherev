@@ -235,18 +235,10 @@ const CascadeCompared: any = {
       //   // @ts-ignore
       //   return config.render(h, dataSource[config.dataIndex], dataSource);
       // }
-
-      console.log('rowIndex', rowIndex, config, dataSource, this.$scopedSlots.cell);
-
       if (this.$scopedSlots.cell) {
-        console.log(
-          '$scopedSlots渲染',
-          this.$scopedSlots.cell({ config, dataSource, groupIndex, rowIndex, columnIndex }),
-        );
         return this.$scopedSlots.cell({ config, dataSource, groupIndex, rowIndex, columnIndex });
       }
 
-      console.log('字符串渲染', dataSource[config.dataIndex]);
       return dataSource[config.dataIndex];
     },
     /**

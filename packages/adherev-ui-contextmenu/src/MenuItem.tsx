@@ -41,7 +41,7 @@ const MenuItem: any = {
         return <span class={classNames(`${selectorPrefix}-icon`)}>{h(icon)}</span>;
       }
 
-      if (icon && Util.isFunction) {
+      if (icon && Util.isFunction(icon)) {
         return <span class={classNames(`${selectorPrefix}-icon`)}>{icon(h, ...this.data)}</span>;
       }
 
@@ -83,7 +83,9 @@ const MenuItem: any = {
       }
 
       if (name && Util.isFunction(name)) {
-        return <span class={classNames(`${selectorPrefix}-name`)}>{name(h, ...this.data)}</span>;
+        return (
+          <span class={classNames(`${selectorPrefix}-name`)}>{name(h, { ...this.data })}</span>
+        );
       }
 
       return null;
