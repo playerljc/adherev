@@ -59,6 +59,7 @@ const PullRefresh: any = {
     },
   },
   slots: ['icon', 'canLabel', 'label', 'loadingAnimation'],
+  emits: ['pull-start', 'pull-can-refresh', 'pull-bottom', 'pull-rebound', 'pull-refresh'],
   data() {
     return {
       isCan: false,

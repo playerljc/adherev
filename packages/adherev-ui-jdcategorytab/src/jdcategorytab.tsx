@@ -57,6 +57,7 @@ const JdCategoryTab: any = {
       type: Function,
     },
   },
+  slots: ['menuItem'],
   emits: ['change'],
   data() {
     return {

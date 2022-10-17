@@ -1,3 +1,4 @@
+import ConditionalRender from '@baifendian/adherev-ui-conditionalrender';
 import BfdUtil from '@baifendian/adherev-util';
 
 import {
@@ -22,6 +23,7 @@ export default {
   getPermission,
   isUse: () => true,
   use: (Vue) => {
+    ConditionalRender.isUse() && ConditionalRender.use(Vue);
     Vue.use(Component);
     withVue(Vue, 'Permission', Component);
   },

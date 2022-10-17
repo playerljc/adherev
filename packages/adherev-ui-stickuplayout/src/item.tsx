@@ -2,6 +2,7 @@ const selectorPrefix = 'adherev-ui-stickuplayout-item';
 
 const Item: any = {
   name: 'adv-stickuplayout-item',
+  slots: ['title'],
   render(h) {
     const { $slots } = this;
 

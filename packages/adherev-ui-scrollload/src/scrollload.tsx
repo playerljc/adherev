@@ -72,9 +72,7 @@ const ScrollLoad: any = {
       return this.getScrollContainer ? this.getScrollContainer() || this.$refs.el : this.$refs.el;
     },
     wrapStyle() {
-      return `${this.style};overflow-y: ${
-        this.getScrollContainer() === this.$refs.el ? 'auto' : 'initial'
-      }`;
+      return `overflow-y: ${this.getScrollContainer() === this.$refs.el ? 'auto' : 'initial'}`;
     },
   },
   methods: {

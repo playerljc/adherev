@@ -45,7 +45,7 @@ const SplitLayout: any = {
       default: 10,
     },
   },
-  emits: ['canDrag', 'dragStarted', 'dragFinished', 'dragFinished', 'change'],
+  emits: ['canDrag', 'dragStarted', 'dragFinished', 'change'],
   data() {
     return {
       $fixedEl: null,

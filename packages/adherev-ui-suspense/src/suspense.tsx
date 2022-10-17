@@ -43,7 +43,6 @@ const Suspense: any = Vue.extend({
     if (this.fetchData) {
       this.fetchData();
     }
-    // this?.fetchData?.();
   },
   methods: {
     /**

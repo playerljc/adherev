@@ -1,4 +1,3 @@
-import classNames from 'classnames';
 import 'lazysizes';
 import 'lazysizes/plugins/parent-fit/ls.parent-fit';
 import { PropType, VNode } from 'vue';
@@ -14,10 +13,6 @@ const error =
 const ImageLazy: any = {
   name: 'adv-imagelazy',
   props: {
-    className: {
-      type: String,
-      default: '',
-    },
     imgArgs: {
       type: Object as PropType<{
         originSrc: string;
@@ -86,19 +81,13 @@ const ImageLazy: any = {
   render(h): VNode {
     const {
       imgArgs: { originSrc, targetSrc },
-      className,
     } = this;
 
     return (
       // <div class={`${selectorPrefix} ${className}`} ref="el">
       //   <img src={originSrc || placeholder} />
       // </div>
-      <img
-        src={originSrc || placeholder}
-        data-src={targetSrc}
-        class={classNames('lazyload', className || '')}
-        alt=""
-      />
+      <img class="lazyload" src={originSrc || placeholder} data-src={targetSrc} alt="" />
     );
   },
 };

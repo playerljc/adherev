@@ -32,7 +32,7 @@ const ModalConfig: any = {
   // beforeDestroy() {
   //   Emitter.remove(Actions.close, this.onEmitterClose);
   // },
-  slots: ['title'],
+  slots: ['title', 'footer'],
   methods: {
     // onEmitterClose() {
     //   const {
