@@ -5,11 +5,12 @@ const {
   _util: { withVue },
 } = BfdUtil;
 
-// @ts-ignore
-Validator.isUse = () => true;
-// @ts-ignore
-Validator.use = (Vue: any) => {
-  withVue(Vue, 'Validator', Validator);
+const Component: any = Validator;
+
+Component.isUse = () => true;
+
+Component.use = (Vue) => {
+  withVue(Vue, 'Validator', Component);
 };
 
-export default Validator;
+export default Component;

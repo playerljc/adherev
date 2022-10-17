@@ -1,13 +1,13 @@
 import Util from '@baifendian/adherev-util';
 
 import BackTopAnimation from './backtopanimation';
-import { IComponent } from './types';
+import { Component } from './types';
 
 const {
   _util: { withInstall, withVue },
 } = Util;
 
-const Component: IComponent = withInstall(BackTopAnimation);
+const Component: Component = withInstall(BackTopAnimation);
 
 Component.isUse = () => true;
 

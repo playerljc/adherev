@@ -77,9 +77,9 @@ const props = {
 export default defineComponent({
   name: 'adv-cascadecompared',
   props,
-  slots: ['title'],
-  emits: ['stick-change'],
-  setup: function (props, { emit, expose }) {
+  slots: ['masterGroupTitle', 'cell'],
+  emits: ['stickChange'],
+  setup: function (props, { emit, expose, slots }) {
     const el = ref<HTMLDivElement | null>(null);
 
     const stickup = ref<any>(null);
@@ -87,12 +87,11 @@ export default defineComponent({
     let scrolls: any[] = [];
 
     const getIndicatorClassName = computed(() =>
-      classNames(`${selectorPrefix}-indicator`, (props.indicatorClassName || '').split(/\s+/)),
+      classNames(`${selectorPrefix}-indicator`, props.indicatorClassName || ''),
     );
 
     const getFixedWrapClassName = computed(
-      () => (className: string) =>
-        classNames(`${selectorPrefix}-fixedWrap`, (className || '').split(/\s+/)),
+      () => (className: string) => classNames(`${selectorPrefix}-fixedWrap`, className || ''),
     );
 
     const getFixedWrapStyle = computed(() => (style: CSSProperties, width: number | string) => ({
@@ -102,34 +101,28 @@ export default defineComponent({
 
     const getCellClassName = computed(
       () => (column: IColumnConfig | null) =>
-        classNames(`${selectorPrefix}-cell`, (column?.className || '').split(/\s+/)),
+        classNames(`${selectorPrefix}-cell`, column?.className || ''),
     );
 
     const getAutoWrapClassName = computed(
-      () => (className: string) =>
-        classNames(`${selectorPrefix}-autoWrap`, (className || '').split(/\s+/)),
+      () => (className: string) => classNames(`${selectorPrefix}-autoWrap`, className || ''),
     );
 
     const getAutoInnerClassName = computed(
-      () => (className: string) =>
-        classNames(`${selectorPrefix}-autoInner`, (className || '').split(/\s+/)),
+      () => (className: string) => classNames(`${selectorPrefix}-autoInner`, className || ''),
     );
 
     const getMasterClassName = computed(() =>
-      classNames(`${selectorPrefix}-master`, (props.masterClassName || '').split(/\s+/)),
+      classNames(`${selectorPrefix}-master`, props.masterClassName || ''),
     );
 
     const getMasterInnerClassName = computed(() =>
-      classNames(`${selectorPrefix}-master-inner`, (props.masterInnerClassName || '').split(/\s+/)),
+      classNames(`${selectorPrefix}-master-inner`, props.masterInnerClassName || ''),
     );
 
-    const getFixedClassName = computed(() =>
-      classNames((props.masterStickFixedClassName || '').split(/\s+/)),
-    );
+    const getFixedClassName = computed(() => classNames(props.masterStickFixedClassName || ''));
 
-    const getInnerClassName = computed(() =>
-      classNames((props.masterStickInnerClassName || '').split(/\s+/)),
-    );
+    const getInnerClassName = computed(() => classNames(props.masterStickInnerClassName || ''));
 
     const initScroll = () => {
       const wrapEls = (el.value as HTMLDivElement).querySelectorAll(`.${selectorPrefix}-autoWrap`);
@@ -161,7 +154,7 @@ export default defineComponent({
       }
     };
 
-    const getFixedColumnConfig = (columns: Array<IColumnConfig>): IColumnConfig | null => {
+    const getFixedColumnConfig = (columns: IColumnConfig[]): IColumnConfig | null => {
       const config = columns.find((t) => t.isFixed);
 
       if (config) return config;
@@ -169,25 +162,50 @@ export default defineComponent({
       return columns.length ? columns[0] : null;
     };
 
-    const renderCell = (config: IColumnConfig, dataSource: any): (object | JSX.Element)[] => {
-      if (config.render) {
-        return config.render(dataSource[config.dataIndex], dataSource);
+    const renderCell = (
+      config: IColumnConfig,
+      dataSource: any,
+      groupIndex: string | number,
+      rowIndex: number,
+      columnIndex: number,
+    ): (object | JSX.Element)[] => {
+      // if (config.render) {
+      //   return config.render(dataSource[config.dataIndex], dataSource);
+      // }
+
+      if (slots.cell) {
+        return slots.cell({ config, dataSource, groupIndex, rowIndex, columnIndex });
       }
 
       return dataSource[config.dataIndex];
     };
 
-    const renderMasterGroupTitle = (title: object | Function): JSX.Element => {
-      return Util.isObject?.(title) ? (
-        <div>{h(title as object)}</div>
-      ) : Util.isFunction?.(title) ? (
-        <div>{(title as Function)()}</div>
-      ) : (
-        <span>{title}</span>
-      );
+    const renderMasterGroupTitle = (config: IMasterItem, groupIndex: string | number): any => {
+      // return Util.isObject?.(title) ? (
+      //   <div>{h(title as object)}</div>
+      // ) : Util.isFunction?.(title) ? (
+      //   <div>{(title as Function)()}</div>
+      // ) : (
+      //   <span>{title}</span>
+      // );
+
+      const { title } = config;
+
+      if (title && Util?.isString?.(title)) {
+        return title;
+      }
+
+      if (slots.masterGroupTitle) {
+        return slots.masterGroupTitle({ config, groupIndex });
+      }
+
+      return title;
     };
 
-    const renderMasterGroupContent = (masterItem: IMasterItem): JSX.Element => {
+    const renderMasterGroupContent = (
+      masterItem: IMasterItem,
+      groupIndex: string | number,
+    ): JSX.Element => {
       const {
         dataSource = [],
         columns = [],
@@ -210,30 +228,31 @@ export default defineComponent({
               fixedColumnConfig ? fixedColumnConfig?.width : 0,
             )}
           >
-            {dataSource.map((record, index) => (
-              <div key={index} class={`${selectorPrefix}-item`}>
+            {dataSource.map((record, rowIndex) => (
+              <div key={rowIndex} class={`${selectorPrefix}-item`}>
                 <div
                   class={getCellClassName.value(fixedColumnConfig)}
                   style={fixedColumnConfig?.style}
                 >
-                  {renderCell(fixedColumnConfig as IColumnConfig, record)}
+                  {renderCell(fixedColumnConfig as IColumnConfig, record, groupIndex, rowIndex, -1)}
                 </div>
               </div>
             ))}
           </div>
+
           <div class={getAutoWrapClassName.value(autoWrapClassName)} style={autoWrapStyle}>
             <div class={getAutoInnerClassName.value(autoInnerClassName)} style={autoInnerStyle}>
-              {dataSource.map((record, index) => (
-                <div key={index} class={`${selectorPrefix}-item`}>
+              {dataSource.map((record, rowIndex) => (
+                <div key={rowIndex} class={`${selectorPrefix}-item`}>
                   {columns
                     .filter((column) => column !== fixedColumnConfig)
-                    .map((column) => (
+                    .map((column, columnIndex) => (
                       <div
                         key={column.dataIndex}
                         class={getCellClassName.value(column)}
                         style={getFixedWrapStyle.value(column.style, column?.width)}
                       >
-                        {renderCell(column, record)}
+                        {renderCell(column, record, groupIndex, rowIndex, columnIndex)}
                       </div>
                     ))}
                 </div>
@@ -244,18 +263,14 @@ export default defineComponent({
       );
     };
 
-    const renderMasterGroup = (config: IMasterItem, index: string | number): JSX.Element => {
-      const { title, className = '', style = '' } = config;
+    const renderMasterGroup = (config: IMasterItem, groupIndex: string | number): JSX.Element => {
+      const { className = '', style = '' } = config;
 
       return (
-        <StickupLayout.Item
-          key={index}
-          class={classNames((className || '').split(/\s+/))}
-          style={style}
-        >
+        <StickupLayout.Item key={groupIndex} class={classNames(className || '')} style={style}>
           {{
-            default: () => renderMasterGroupContent(config),
-            title: () => renderMasterGroupTitle(title),
+            default: () => renderMasterGroupContent(config, groupIndex),
+            title: () => renderMasterGroupTitle(config, groupIndex),
           }}
         </StickupLayout.Item>
       );
@@ -278,10 +293,17 @@ export default defineComponent({
                 class={getCellClassName.value(fixedColumnConfig)}
                 style={fixedColumnConfig?.style}
               >
-                {renderCell(fixedColumnConfig as IColumnConfig, props.indicator.dataSource)}
+                {renderCell(
+                  fixedColumnConfig as IColumnConfig,
+                  props.indicator.dataSource,
+                  -1,
+                  -1,
+                  -1,
+                )}
               </div>
             </div>
           </div>
+
           <div
             class={getAutoWrapClassName.value(props.indicatorAutoWrapClassName)}
             style={props.indicatorAutoWrapStyle}
@@ -289,13 +311,13 @@ export default defineComponent({
             <div class={`${selectorPrefix}-item`}>
               {props.indicator.columns
                 .filter((column) => column !== fixedColumnConfig)
-                .map((column) => (
+                .map((column, columnIndex) => (
                   <div
                     key={column.dataIndex}
                     class={getCellClassName.value(column)}
                     style={getFixedWrapStyle.value(column.style, column.width)}
                   >
-                    {renderCell(column, props.indicator.dataSource)}
+                    {renderCell(column, props.indicator.dataSource, -1, -1, columnIndex)}
                   </div>
                 ))}
             </div>
@@ -316,9 +338,7 @@ export default defineComponent({
             innerClassName={getInnerClassName.value}
             innerStyle={props.masterStickInnerStyle}
             // @ts-ignore
-            onChange={() => {
-              emit('stick-change');
-            }}
+            onChange={() => emit('stickChange')}
           >
             {props.master.map((config, index) => renderMasterGroup(config, index))}
           </StickupLayout>

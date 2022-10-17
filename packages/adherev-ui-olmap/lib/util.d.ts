@@ -376,7 +376,7 @@ declare const _default: {
      * @param config
      * @param div
      */
-    addOverlay: (map: any, config: any, div?: HTMLDivElement | null | undefined) => Overlay;
+    addOverlay: (map: any, config: any, div?: HTMLDivElement | null) => Overlay;
     /**
      * getRad
      * @param d

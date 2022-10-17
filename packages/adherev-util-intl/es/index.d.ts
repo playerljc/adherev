@@ -1,2 +1,2 @@
-import Intl from './intl';
-export default Intl;
+import IntlV from './intl';
+export default IntlV;

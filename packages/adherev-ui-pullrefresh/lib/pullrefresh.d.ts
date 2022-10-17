@@ -1,10 +1,7 @@
-import { CSSProperties, ExtractPropTypes } from 'vue';
+import { ExtractPropTypes, VNode } from 'vue';
 declare const pullRefreshProps: {
     scrollClassName: import("vue-types").VueTypeValidableDef<string> & {
         default: string;
-    };
-    scrollStyle: import("vue-types").VueTypeValidableDef<CSSProperties> & {
-        default: () => CSSProperties;
     };
     pullHeight: import("vue-types").VueTypeValidableDef<number> & {
         default: number;
@@ -21,15 +18,24 @@ declare const pullRefreshProps: {
     loadingAnimation: import("vue-types").VueTypeValidableDef<string> & {
         default: string;
     };
+    renderIcon: import("vue-types").VueTypeValidableDef<VNode<import("vue").RendererNode, import("vue").RendererElement, {
+        [key: string]: any;
+    }>>;
+    renderCanLabel: import("vue-types").VueTypeValidableDef<VNode<import("vue").RendererNode, import("vue").RendererElement, {
+        [key: string]: any;
+    }>>;
+    renderLabel: import("vue-types").VueTypeValidableDef<VNode<import("vue").RendererNode, import("vue").RendererElement, {
+        [key: string]: any;
+    }>>;
+    renderLoadingAnimation: import("vue-types").VueTypeValidableDef<VNode<import("vue").RendererNode, import("vue").RendererElement, {
+        [key: string]: any;
+    }>>;
 };
 export declare type PullRefreshProps = Partial<ExtractPropTypes<typeof pullRefreshProps>>;
 declare const _default: import("vue").DefineComponent<{
     scrollClassName: import("vue-types").VueTypeValidableDef<string> & {
         default: string;
     };
-    scrollStyle: import("vue-types").VueTypeValidableDef<CSSProperties> & {
-        default: () => CSSProperties;
-    };
     pullHeight: import("vue-types").VueTypeValidableDef<number> & {
         default: number;
     };
@@ -45,13 +51,22 @@ declare const _default: import("vue").DefineComponent<{
     loadingAnimation: import("vue-types").VueTypeValidableDef<string> & {
         default: string;
     };
+    renderIcon: import("vue-types").VueTypeValidableDef<VNode<import("vue").RendererNode, import("vue").RendererElement, {
+        [key: string]: any;
+    }>>;
+    renderCanLabel: import("vue-types").VueTypeValidableDef<VNode<import("vue").RendererNode, import("vue").RendererElement, {
+        [key: string]: any;
+    }>>;
+    renderLabel: import("vue-types").VueTypeValidableDef<VNode<import("vue").RendererNode, import("vue").RendererElement, {
+        [key: string]: any;
+    }>>;
+    renderLoadingAnimation: import("vue-types").VueTypeValidableDef<VNode<import("vue").RendererNode, import("vue").RendererElement, {
+        [key: string]: any;
+    }>>;
 }, () => JSX.Element, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, ("pull-start" | "pull-can-refresh" | "pull-bottom" | "pull-rebound" | "pull-refresh")[], "pull-start" | "pull-can-refresh" | "pull-bottom" | "pull-rebound" | "pull-refresh", import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<ExtractPropTypes<{
     scrollClassName: import("vue-types").VueTypeValidableDef<string> & {
         default: string;
     };
-    scrollStyle: import("vue-types").VueTypeValidableDef<CSSProperties> & {
-        default: () => CSSProperties;
-    };
     pullHeight: import("vue-types").VueTypeValidableDef<number> & {
         default: number;
     };
@@ -67,6 +82,18 @@ declare const _default: import("vue").DefineComponent<{
     loadingAnimation: import("vue-types").VueTypeValidableDef<string> & {
         default: string;
     };
+    renderIcon: import("vue-types").VueTypeValidableDef<VNode<import("vue").RendererNode, import("vue").RendererElement, {
+        [key: string]: any;
+    }>>;
+    renderCanLabel: import("vue-types").VueTypeValidableDef<VNode<import("vue").RendererNode, import("vue").RendererElement, {
+        [key: string]: any;
+    }>>;
+    renderLabel: import("vue-types").VueTypeValidableDef<VNode<import("vue").RendererNode, import("vue").RendererElement, {
+        [key: string]: any;
+    }>>;
+    renderLoadingAnimation: import("vue-types").VueTypeValidableDef<VNode<import("vue").RendererNode, import("vue").RendererElement, {
+        [key: string]: any;
+    }>>;
 }>> & {
     "onPull-start"?: ((...args: any[]) => any) | undefined;
     "onPull-can-refresh"?: ((...args: any[]) => any) | undefined;
@@ -75,7 +102,6 @@ declare const _default: import("vue").DefineComponent<{
     "onPull-refresh"?: ((...args: any[]) => any) | undefined;
 }, {
     scrollClassName: string;
-    scrollStyle: CSSProperties;
     pullHeight: number;
     isShowUpdateTime: boolean;
     updateTime: number;

@@ -1,21 +1,2 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-var tslib_1 = require("tslib");
-var adherev_util_1 = (0, tslib_1.__importDefault)(require("@baifendian/adherev-util"));
-var auto_1 = (0, tslib_1.__importDefault)(require("./auto"));
-var fixed_1 = (0, tslib_1.__importDefault)(require("./fixed"));
-var flexlayout_1 = (0, tslib_1.__importStar)(require("./flexlayout"));
-var _a = adherev_util_1.default._util, withInstall = _a.withInstall, withVue = _a.withVue;
-var Component = withInstall(flexlayout_1.default);
-Component.isUse = function () { return true; };
-Component.use = function (Vue) {
-    Vue.use(Component);
-    Vue.use(Component.Fixed);
-    Vue.use(Component.Auto);
-    withVue(Vue, 'FlexLayout', Component);
-};
-Component.Fixed = withInstall(fixed_1.default);
-Component.Auto = withInstall(auto_1.default);
-Component.selectorPrefix = flexlayout_1.selectorPrefix;
-exports.default = Component;
+"use strict";require("core-js/modules/es.object.define-property.js"),Object.defineProperty(exports,"__esModule",{value:!0});var tslib_1=require("tslib"),ant_design_vue_1=require("ant-design-vue"),adherev_util_1=tslib_1.__importDefault(require("@baifendian/adherev-util")),auto_1=tslib_1.__importDefault(require("./auto")),backLayout_1=tslib_1.__importDefault(require("./backLayout")),fixed_1=tslib_1.__importDefault(require("./fixed")),flexlayout_1=tslib_1.__importStar(require("./flexlayout")),horizontalFlexLayout_1=tslib_1.__importDefault(require("./horizontalFlexLayout")),scrollLayout_1=tslib_1.__importDefault(require("./scrollLayout")),toolBarLayout_1=tslib_1.__importDefault(require("./toolBarLayout")),verticalFlexLayout_1=tslib_1.__importDefault(require("./verticalFlexLayout")),_a=adherev_util_1.default._util,withInstall=_a.withInstall,withVue=_a.withVue,Component=withInstall(flexlayout_1.default);Component.Fixed=withInstall(fixed_1.default),Component.Auto=withInstall(auto_1.default),Component.HorizontalFlexLayout=withInstall(horizontalFlexLayout_1.default),Component.VerticalFlexLayout=withInstall(verticalFlexLayout_1.default),Component.BackLayout=withInstall(backLayout_1.default),Component.ScrollLayout=withInstall(scrollLayout_1.default),Component.ToolBarLayout=withInstall(toolBarLayout_1.default),Component.selectorPrefix=flexlayout_1.selectorPrefix,Component.isUse=function(){return!0},Component.use=function(t){t.use(ant_design_vue_1.Button),t.use(Component),t.use(Component.Fixed),t.use(Component.Auto),t.use(Component.HorizontalFlexLayout),t.use(Component.VerticalFlexLayout),t.use(Component.BackLayout),t.use(Component.ScrollLayout),t.use(Component.ToolBarLayout),withVue(t,"FlexLayout",Component),withVue(t,"Fixed",Component.Fixed),withVue(t,"Auto",Component.Auto),withVue(t,"HorizontalFlexLayout",Component.HorizontalFlexLayout),withVue(t,"VerticalFlexLayout",Component.VerticalFlexLayout),withVue(t,"BackLayout",Component.BackLayout),withVue(t,"ScrollLayout",Component.ScrollLayout),withVue(t,"ToolBarLayout",Component.ToolBarLayout)},exports.default=Component;
 //# sourceMappingURL=index.js.map

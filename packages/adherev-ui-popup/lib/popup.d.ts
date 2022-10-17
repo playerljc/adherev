@@ -36,6 +36,11 @@ export declare class Popup {
      */
     show(): boolean;
     /**
+     * show - 显示一个popup
+     * @return boolean
+     */
+    showClosePrePopup(): boolean;
+    /**
      * close - 关闭一个popup
      * @return boolean
      */
@@ -58,10 +63,6 @@ export declare class Popup {
      * onInnerElTransitionend
      */
     onInnerElTransitionend(): void;
-    /**
-     * onMaskElTransitionend
-     */
-    onMaskElTransitionend(): void;
 }
 /**
  * PopupFactory

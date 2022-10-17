@@ -5,11 +5,12 @@ const {
   _util: { withVue },
 } = BfdUtil;
 
-// @ts-ignore
-NotNull.isUse = () => true;
-// @ts-ignore
-NotNull.use = (Vue: any) => {
-  withVue(Vue, 'NotNull', NotNull);
+const Component: any = NotNull;
+
+Component.isUse = () => true;
+
+Component.use = (Vue) => {
+  withVue(Vue, 'NotNull', Component);
 };
 
-export default NotNull;
+export default Component;

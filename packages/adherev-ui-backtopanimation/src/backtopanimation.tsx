@@ -140,6 +140,7 @@ export default defineComponent({
       <div
         ref={root}
         class={selectorPrefix}
+        // @ts-ignore
         onClick={() => {
           trigger();
         }}

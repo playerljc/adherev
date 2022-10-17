@@ -1,10 +1,10 @@
 import enUS from 'ant-design-vue/es/locale/en_US';
 import ptPT from 'ant-design-vue/es/locale/pt_PT';
 import zhCN from 'ant-design-vue/es/locale/zh_CN';
-import dayjs from 'dayjs';
-import 'dayjs/locale/en-ca';
-import 'dayjs/locale/pt';
-import 'dayjs/locale/zh-cn';
+import moment from 'moment';
+import 'moment/locale/en-ca';
+import 'moment/locale/pt';
+import 'moment/locale/zh-cn';
 
 import Dict from '@baifendian/adherev-util-dict';
 
@@ -27,13 +27,13 @@ export default {
     // moment国际化
     Dict.handlers.LocalsMoment = () => ({
       zh_CN: () => {
-        dayjs.locale('zh-cn');
+        moment.locale('zh-cn');
       },
       en_US: () => {
-        dayjs.locale('en-ca');
+        moment.locale('en-ca');
       },
       pt_PT: () => {
-        dayjs.locale('pt');
+        moment.locale('pt');
       },
     });
   },

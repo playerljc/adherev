@@ -1,4 +1,4 @@
-import { CSSProperties } from 'vue';
+import { CSSProperties, VNode } from 'vue';
 export declare const EMPTY = "empty";
 export declare const ERROR = "error";
 export declare const NORMAL = "normal";
@@ -24,7 +24,17 @@ declare const _default: import("vue").DefineComponent<{
     distance: import("vue-types").VueTypeValidableDef<number> & {
         default: number;
     };
-}, () => JSX.Element, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, ("scroll-bottom" | "empty-click" | "error-click")[], "scroll-bottom" | "empty-click" | "error-click", import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<import("vue").ExtractPropTypes<{
+    getScrollContainer: import("vue-types").VueTypeValidableDef<() => HTMLElement | null>;
+    renderLoading: import("vue-types").VueTypeValidableDef<VNode<import("vue").RendererNode, import("vue").RendererElement, {
+        [key: string]: any;
+    }>>;
+    renderEmpty: import("vue-types").VueTypeValidableDef<VNode<import("vue").RendererNode, import("vue").RendererElement, {
+        [key: string]: any;
+    }>>;
+    renderError: import("vue-types").VueTypeValidableDef<VNode<import("vue").RendererNode, import("vue").RendererElement, {
+        [key: string]: any;
+    }>>;
+}, () => JSX.Element, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, ("scrollBottom" | "emptyClick" | "errorClick")[], "scrollBottom" | "emptyClick" | "errorClick", import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<import("vue").ExtractPropTypes<{
     loadClassName: import("vue-types").VueTypeValidableDef<string> & {
         default: string;
     };
@@ -46,10 +56,20 @@ declare const _default: import("vue").DefineComponent<{
     distance: import("vue-types").VueTypeValidableDef<number> & {
         default: number;
     };
+    getScrollContainer: import("vue-types").VueTypeValidableDef<() => HTMLElement | null>;
+    renderLoading: import("vue-types").VueTypeValidableDef<VNode<import("vue").RendererNode, import("vue").RendererElement, {
+        [key: string]: any;
+    }>>;
+    renderEmpty: import("vue-types").VueTypeValidableDef<VNode<import("vue").RendererNode, import("vue").RendererElement, {
+        [key: string]: any;
+    }>>;
+    renderError: import("vue-types").VueTypeValidableDef<VNode<import("vue").RendererNode, import("vue").RendererElement, {
+        [key: string]: any;
+    }>>;
 }>> & {
-    "onScroll-bottom"?: ((...args: any[]) => any) | undefined;
-    "onEmpty-click"?: ((...args: any[]) => any) | undefined;
-    "onError-click"?: ((...args: any[]) => any) | undefined;
+    onScrollBottom?: ((...args: any[]) => any) | undefined;
+    onEmptyClick?: ((...args: any[]) => any) | undefined;
+    onErrorClick?: ((...args: any[]) => any) | undefined;
 }, {
     loadClassName: string;
     loadStyle: CSSProperties;

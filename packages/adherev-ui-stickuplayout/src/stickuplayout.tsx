@@ -21,6 +21,7 @@ type IndexItemType = {
 export default defineComponent({
   name: 'adv-stickuplayout',
   props: stickupLayoutProps,
+  emits: ['change'],
   setup(props, { slots, emit, expose }) {
     const root = ref<HTMLElement>();
     const fixedEl = ref<HTMLElement>();
@@ -220,7 +221,10 @@ export default defineComponent({
           break;
         }
       }
-      if (!item) return false;
+
+      if (!item) {
+        item = index[index.length - 1];
+      }
 
       scrollTo(item, duration);
     };
@@ -242,7 +246,10 @@ export default defineComponent({
           break;
         }
       }
-      if (!item) return false;
+
+      if (!item) {
+        item = index[index.length - 1];
+      }
 
       scrollTo(item, duration);
     };
@@ -270,12 +277,12 @@ export default defineComponent({
     return () => (
       <div class={selectorPrefix} ref={root}>
         <div
-          class={classNames(`${selectorPrefix}-fixed`, props.fixedClassName.split(/\s+/))}
+          class={classNames(`${selectorPrefix}-fixed`, props.fixedClassName || '')}
           style={props.fixedStyle}
           ref={fixedEl}
         />
         <div
-          class={classNames(`${selectorPrefix}-inner`, props.innerClassName.split(/\s+/))}
+          class={classNames(`${selectorPrefix}-inner`, props.innerClassName || '')}
           style={props.innerStyle}
           ref={innerEl}
         >

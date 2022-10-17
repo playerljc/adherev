@@ -1,2 +1,2 @@
-import Preferences from '@baifendian/adhere-util-preferences';
-export default Preferences;
+declare const Component: any;
+export default Component;

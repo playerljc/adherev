@@ -1,6 +1,14 @@
 import classNames from 'classnames';
-import { CSSProperties, defineComponent, onMounted, ref } from 'vue';
-import { number, object, string } from 'vue-types';
+import {
+  CSSProperties,
+  VNode,
+  computed,
+  defineComponent,
+  onBeforeUnmount,
+  onMounted,
+  ref,
+} from 'vue';
+import { func, number, object, string } from 'vue-types';
 
 import Intl from '@baifendian/adherev-util-intl';
 
@@ -18,12 +26,17 @@ const scrollLoadProps = {
   errorClassName: string().def(''),
   errorStyle: object<CSSProperties>().def({}),
   distance: number().def(50),
+  getScrollContainer: func<() => HTMLElement | null>(),
+  renderLoading: object<VNode>(),
+  renderEmpty: object<VNode>(),
+  renderError: object<VNode>(),
 };
 
 export default defineComponent({
   name: 'adv-scrollload',
   props: scrollLoadProps,
-  emits: ['scroll-bottom', 'empty-click', 'error-click'],
+  slots: ['loading', 'empty', 'error'],
+  emits: ['scrollBottom', 'emptyClick', 'errorClick'],
   setup(props, { emit, slots, expose }) {
     const el = ref<HTMLElement>();
     const emptyEl = ref<HTMLElement>();
@@ -32,18 +45,32 @@ export default defineComponent({
 
     let lock = false;
 
-    onMounted(() => initEvents());
+    const scrollContainer = computed(() =>
+      props.getScrollContainer ? props.getScrollContainer() || el.value : el.value,
+    );
+
+    const wrapStyle = computed(
+      () => `overflow-y: ${props?.getScrollContainer?.() === el.value ? 'auto' : 'initial'}`,
+    );
 
     const initEvents = () => {
-      el?.value?.addEventListener('scroll', onScroll);
+      scrollContainer?.value?.addEventListener('scroll', onScroll);
 
       emptyEl?.value?.addEventListener('click', onEmptyClick);
 
       errorEl?.value?.addEventListener('click', onErrorClick);
     };
 
+    const removeEvents = () => {
+      scrollContainer?.value?.removeEventListener('scroll', onScroll);
+
+      emptyEl?.value?.removeEventListener('click', onEmptyClick);
+
+      errorEl?.value?.removeEventListener('click', onErrorClick);
+    };
+
     const onScroll = () => {
-      const $el = el.value as HTMLElement;
+      const $el = scrollContainer.value as HTMLElement;
       const $loadEl = loadEl.value as HTMLElement;
       const $emptyEl = emptyEl.value as HTMLElement;
       const $errorEl = errorEl.value as HTMLElement;
@@ -67,7 +94,7 @@ export default defineComponent({
          * 完成
          * @param {string} status [empty(没有数据) | error(有错误) | normal(正常)]
          */
-        emit('scroll-bottom', (status: string) => {
+        emit('scrollBottom', (status: string) => {
           $loadEl.style.display = 'none';
 
           if (status === EMPTY) {
@@ -81,34 +108,26 @@ export default defineComponent({
       }
     };
 
-    const onEmptyClick = () => {
-      emit('empty-click');
-    };
+    const onEmptyClick = () => emit('emptyClick');
 
-    const onErrorClick = () => {
-      emit('error-click');
-    };
+    const onErrorClick = () => emit('errorClick');
 
     const renderLoading = (): JSX.Element => {
-      if (slots.loading) {
+      if (slots.loading || props.renderLoading) {
         return (
           <div
-            class={classNames(`${selectorPrefix}-load`, (props.loadClassName || '').split(/\s+/))}
+            class={classNames(`${selectorPrefix}-load`, props.loadClassName || '')}
             style={props.loadStyle}
             ref={loadEl}
           >
-            {slots?.loading?.()}
+            {slots?.loading?.() || props.renderLoading}
           </div>
         );
       }
 
       return (
         <div
-          class={classNames(
-            `${selectorPrefix}-load`,
-            'standard',
-            (props.loadClassName || '').split(/\s+/),
-          )}
+          class={classNames(`${selectorPrefix}-load`, 'standard', props.loadClassName || '')}
           style={props.loadStyle}
           ref={loadEl}
         >
@@ -118,21 +137,21 @@ export default defineComponent({
     };
 
     const renderEmpty = (): JSX.Element => {
-      if (slots.empty) {
+      if (slots.empty || props.renderEmpty) {
         return (
           <div
-            class={classNames(`${selectorPrefix}-empty`, (props.emptyClassName || '').split(/\s+/))}
+            class={classNames(`${selectorPrefix}-empty`, props.emptyClassName || '')}
             style={props.emptyStyle}
             ref={emptyEl}
           >
-            {slots?.empty?.()}
+            {slots?.empty?.() || props.renderEmpty}
           </div>
         );
       }
 
       return (
         <div
-          class={classNames(`${selectorPrefix}-empty`, (props.emptyClassName || '').split(/\s+/))}
+          class={classNames(`${selectorPrefix}-empty`, props.emptyClassName || '')}
           style={props.emptyStyle}
           ref={emptyEl}
         >
@@ -142,21 +161,21 @@ export default defineComponent({
     };
 
     const renderError = (): JSX.Element => {
-      if (slots.error) {
+      if (slots.error || props.renderError) {
         return (
           <div
-            class={classNames(`${selectorPrefix}-error`, (props.errorClassName || '').split(/\s+/))}
+            class={classNames(`${selectorPrefix}-error`, props.errorClassName || '')}
             style={props.errorStyle}
             ref={errorEl}
           >
-            {slots?.error?.()}
+            {slots?.error?.() || props.renderError}
           </div>
         );
       }
 
       return (
         <div
-          class={classNames(`${selectorPrefix}-error`, (props.errorClassName || '').split(/\s+/))}
+          class={classNames(`${selectorPrefix}-error`, props.errorClassName || '')}
           style={props.errorStyle}
           ref={errorEl}
         >
@@ -179,8 +198,12 @@ export default defineComponent({
       hideAll,
     });
 
+    onBeforeUnmount(() => removeEvents());
+
+    onMounted(() => initEvents());
+
     return () => (
-      <div class={selectorPrefix} ref={el}>
+      <div class={selectorPrefix} style={wrapStyle.value} ref={el}>
         {slots?.default?.()}
         {renderLoading()}
         {renderEmpty()}

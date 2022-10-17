@@ -5,11 +5,12 @@ const {
   _util: { withVue },
 } = BfdUtil;
 
-// @ts-ignore
-WatchMemoized.isUse = () => true;
-// @ts-ignore
-WatchMemoized.use = (Vue: any) => {
-  withVue(Vue, 'WatchMemoized', WatchMemoized);
+const Component: any = WatchMemoized;
+
+Component.isUse = () => true;
+
+Component.use = (Vue) => {
+  withVue(Vue, 'WatchMemoized', Component);
 };
 
-export default WatchMemoized;
+export default Component;

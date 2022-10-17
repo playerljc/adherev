@@ -1,2 +1,2 @@
-import NotNull from '@baifendian/adhere-util-notnull';
-export default NotNull;
+declare const Component: any;
+export default Component;

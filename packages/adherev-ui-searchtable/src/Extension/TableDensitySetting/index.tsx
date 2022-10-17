@@ -2,11 +2,16 @@ import { Popover } from 'ant-design-vue';
 import { defineComponent } from 'vue';
 
 import { TableDensity } from '../../types';
-// @ts-ignore
 import Setting from './setting';
 
 export default defineComponent({
   name: 'adv-searchtable-tabledensity',
+  props: {
+    density: {
+      type: String,
+      default: TableDensity.DEFAULT,
+    },
+  },
   emits: ['reset', 'change'],
   inject: ['getContext'],
   methods: {
@@ -31,7 +36,7 @@ export default defineComponent({
         }
         placement="bottomRight"
         trigger="click"
-        getPopupContainer={(el) => el.parentElement}
+        getPopupContainer={(el) => el?.parentElement as HTMLElement}
       >
         <a>
           <img

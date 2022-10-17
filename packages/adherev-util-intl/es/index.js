@@ -1,2 +1,2 @@
-import Intl,{extend,getLocal}from"./intl";Intl.install=function(t){console.log("intlInstall"),extend(t)},Intl.isUse=function(){return!0},Intl.use=function(t){t.use(Intl)},Intl.getLocal=getLocal;export default Intl;
+import IntlV,{extend}from"./intl";IntlV.install=function(n){extend(n)},IntlV.isUse=function(){return!0},IntlV.use=function(n){n.use(IntlV)};export default IntlV;
 //# sourceMappingURL=index.js.map

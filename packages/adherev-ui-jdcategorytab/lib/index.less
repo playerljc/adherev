@@ -1,3 +1,8 @@
+@import '~@baifendian/adherev-ui-css/lib/vars';
+
+@adherev-ui-jdcategorytab-menu-item-active-color: #f15353;
+@adherev-ui-jdcategorytab-menu-item-background-color: #f3f4f6;
+
 /* 京东的分类面板 */
 .adherev-ui-jdcategorytab {
   position: relative;
@@ -31,13 +36,13 @@
 
         &:not(:last-child) {
           > a {
-            border-bottom: 1px solid #e0e0e0;
+            border-bottom: 1px solid @adhere-border-color;
           }
         }
 
         &.active {
           > a {
-            color: #f15353;
+            color: @adherev-ui-jdcategorytab-menu-item-active-color;
             background: #fff;
             border-right: 1px solid #fff;
           }
@@ -48,15 +53,15 @@
           box-sizing: border-box;
           width: 100%;
           height: 3rem;
-          font-size: 14px;
+          font-size: @adhere-base-font-size;
           line-height: 3rem;
           white-space: nowrap;
           text-align: center;
           text-overflow: ellipsis;
           word-wrap: break-word;
           word-break: break-all;
-          background: #f3f4f6;
-          border-right: 1px solid #e0e0e0;
+          background: @adherev-ui-jdcategorytab-menu-item-background-color;
+          border-right: 1px solid @adhere-border-color;
         }
       }
     }

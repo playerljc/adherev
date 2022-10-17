@@ -1,4 +1,4 @@
-import { CSSProperties } from 'vue';
+import { CSSProperties, VNode } from 'vue';
 declare const _default: import("vue").DefineComponent<{
     beforeClassName: import("vue-types").VueTypeValidableDef<string> & {
         default: string;
@@ -30,6 +30,12 @@ declare const _default: import("vue").DefineComponent<{
     duration: import("vue-types").VueTypeValidableDef<number> & {
         default: number;
     };
+    renderBefore: import("vue-types").VueTypeValidableDef<VNode<import("vue").RendererNode, import("vue").RendererElement, {
+        [key: string]: any;
+    }>>;
+    renderAfter: import("vue-types").VueTypeValidableDef<VNode<import("vue").RendererNode, import("vue").RendererElement, {
+        [key: string]: any;
+    }>>;
 }, () => JSX.Element, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, ("init" | "slide-change-transition-start" | "slide-change-transition-end")[], "init" | "slide-change-transition-start" | "slide-change-transition-end", import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<import("vue").ExtractPropTypes<{
     beforeClassName: import("vue-types").VueTypeValidableDef<string> & {
         default: string;
@@ -61,6 +67,12 @@ declare const _default: import("vue").DefineComponent<{
     duration: import("vue-types").VueTypeValidableDef<number> & {
         default: number;
     };
+    renderBefore: import("vue-types").VueTypeValidableDef<VNode<import("vue").RendererNode, import("vue").RendererElement, {
+        [key: string]: any;
+    }>>;
+    renderAfter: import("vue-types").VueTypeValidableDef<VNode<import("vue").RendererNode, import("vue").RendererElement, {
+        [key: string]: any;
+    }>>;
 }>> & {
     onInit?: ((...args: any[]) => any) | undefined;
     "onSlide-change-transition-start"?: ((...args: any[]) => any) | undefined;

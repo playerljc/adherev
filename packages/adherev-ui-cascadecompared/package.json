@@ -40,6 +40,7 @@
   "dependencies": {
     "@baifendian/adherev-ui-stickuplayout": "^2.0.4-alpha",
     "@baifendian/adherev-util": "^2.0.4-alpha",
+    "@baifendian/adherev-ui-css": "^2.0.4-alpha",
     "classnames": "^2.3.1",
     "iscroll": "^5.2.0",
     "vue": "^3.2.31",

@@ -1,7 +1,10 @@
 // import 'vue3-highlightjs/lib/allLanguages';
 import 'highlight.js/lib/common';
 
+import ContextMenu from '@baifendian/adherev-ui-contextmenu';
+import Space from '@baifendian/adherev-ui-space';
 import BfdUtil from '@baifendian/adherev-util';
+import Intl from '@baifendian/adherev-util-intl';
 import hljsVuePlugin from '@highlightjs/vue-plugin';
 
 import AnchorNavigation from './AnchorNavigation';
@@ -41,6 +44,10 @@ Component.PlayGroundPage.Section = withInstall(Section);
 Component.isUse = () => true;
 
 Component.use = (Vue: any) => {
+  (ContextMenu as any).isUse() && (ContextMenu as any).use(Vue);
+  (Space as any).isUse() && (Space as any).use(Vue);
+  (Intl as any).isUse() && (Intl as any).use(Vue);
+
   Vue.use(Component);
   Vue.use(Component.FunctionProps);
   Vue.use(Component.Props);

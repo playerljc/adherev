@@ -1,2 +1,2 @@
-import WatchMemoized from '@baifendian/adhere-util-watchmemoized';
-export default WatchMemoized;
+declare const Component: any;
+export default Component;

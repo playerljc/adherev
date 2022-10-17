@@ -36,8 +36,6 @@ const ContextMenuComponent = defineComponent({
       zIndex: 9999 * 2,
     }));
 
-    onMounted(() => mount());
-
     const onClick = (e: MouseEvent) => {
       e.stopPropagation();
 
@@ -58,11 +56,15 @@ const ContextMenuComponent = defineComponent({
       mount,
     });
 
+    onMounted(() => mount());
+
     return () => (
       <div
         class={selectorPrefix}
         style={getStyle.value}
+        // @ts-ignore
         onClick={onClick}
+        // @ts-ignore
         onContextmenu={onContextMenu}
       >
         <Menu

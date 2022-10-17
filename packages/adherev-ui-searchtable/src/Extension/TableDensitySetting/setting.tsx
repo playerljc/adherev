@@ -33,30 +33,20 @@ export default defineComponent({
   },
   render() {
     return (
-      // @ts-ignore
       <div class={`${selectorPrefix}-table-density-setting`}>
-        {/*@ts-ignore*/}
         <div class={`${selectorPrefix}-table-density-setting-header`}>
-          <a
-            onClick={() => {
-              this.$emit('reset');
-            }}
-          >
-            {Intl.tv('重置')}
-          </a>
+          {/*@ts-ignore*/}
+          <a onClick={() => this.$emit('reset')}>{Intl.tv('重置')}</a>
         </div>
 
-        {/*@ts-ignore*/}
         <div class={`${selectorPrefix}-table-density-setting-body`}>
           <ul>
             {this.$data.$config.map((t) => (
               <li
                 key={t.value}
-                // @ts-ignore
                 class={this.density === t.value ? 'active' : ''}
-                onClick={() => {
-                  this.$emit('change', t.value);
-                }}
+                // @ts-ignore
+                onClick={() => this.$emit('change', t.value)}
               >
                 {t.label}
               </li>

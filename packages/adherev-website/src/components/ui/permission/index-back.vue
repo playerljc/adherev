@@ -135,8 +135,9 @@
 </template>
 
 <script>
-import { Permission, MessageDialog } from '@baifendian/adherev';
 import { Button } from 'ant-design-vue';
+
+import { MessageDialog, Permission } from '@baifendian/adherev';
 
 const { setPermission, getPermission } = Permission;
 

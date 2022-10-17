@@ -1,5 +1,6 @@
-import { Util } from '@baifendian/adherev';
 import faker from 'faker';
+
+import { Util } from '@baifendian/adherev';
 
 const data = [];
 data.length = 100;

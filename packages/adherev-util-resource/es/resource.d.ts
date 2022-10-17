@@ -1,8 +1,6 @@
-declare const _default: {
-    Dict: {
-        handlers: object;
-        value: any;
-        init: import("@baifendian/adhere-util-dict/lib/types").InitFunc;
-    };
+declare const Resource: {
+    isUse?: () => boolean;
+    use?: (Vue: any) => void;
+    Dict: any;
 };
-export default _default;
+export default Resource;

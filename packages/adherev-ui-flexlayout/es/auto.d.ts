@@ -5,7 +5,7 @@ declare const _default: import("vue").DefineComponent<{
     fit: import("vue-types").VueTypeValidableDef<boolean> & {
         default: boolean;
     };
-}, () => JSX.Element, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, Record<string, any>, string, import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<import("vue").ExtractPropTypes<{
+}, () => JSX.Element, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {}, string, import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<import("vue").ExtractPropTypes<{
     autoFixed: import("vue-types").VueTypeValidableDef<boolean> & {
         default: boolean;
     };

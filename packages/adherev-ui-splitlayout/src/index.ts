@@ -9,9 +9,11 @@ const {
 } = BfdUtil;
 
 const Component: IComponent = withInstall(SplitLayout);
+
 Component.isUse = () => true;
+
 Component.use = (Vue: any) => {
-  FlexLayout.use(Vue);
+  FlexLayout.isUse() && FlexLayout.use(Vue);
   Vue.use(Component);
   withVue(Vue, 'SplitLayout', Component);
 };

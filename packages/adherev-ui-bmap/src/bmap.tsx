@@ -30,7 +30,7 @@ const props = {
 export default defineComponent({
   name: 'adv-bmap',
   props,
-  emits: ['onBMapInitReady', 'onBMapScriptReady'],
+  emits: ['bMapInitReady'],
   setup(props, { emit, expose }) {
     const root = ref<HTMLDivElement | null>(null);
 
@@ -39,78 +39,49 @@ export default defineComponent({
     let map: any;
     let isLoad: boolean = false;
 
-    onMounted(() => {
-      // 外部载入bmap.js
-      if (props.externalImportBMapScript) {
-        BMap = (window as any).BMap;
-
-        isReady = true;
-
-        nextTick(() => {
-          initMap();
-        });
-      }
-      // 内部引入bmap.js
-      else {
-        importBMapJS().then((BMap) => {
-          BMap = BMap;
-
-          (window as any).BMap = BMap;
-
-          emit('onBMapScriptReady');
-
-          isReady = true;
-
-          nextTick(() => {
-            initMap();
-          });
-        });
-      }
-    });
-
-    const importBMapJS = () => {
-      function importReal(src: string | null) {
-        return new Promise<any>((resolve) => {
-          const script = document.createElement('script');
-
-          script.onload = () => {
-            resolve((window as any).BMap);
-          };
-          if (typeof src === 'string') {
-            script.src = src;
-          }
-
-          if (document) {
-            document.querySelector('head')?.appendChild(script);
-          }
-        });
-      }
-
-      return new Promise((resolve) => {
-        const preWrite = document.write;
-
-        document.write = (html) => {
-          const el = document.createElement('div');
-          el.innerHTML = html;
-          const first = el.firstElementChild;
-
-          if (
-            first?.tagName.toLowerCase() === 'script' &&
-            first?.getAttribute('src')?.indexOf('http://api.map.baidu.com') !== -1
-          ) {
-            importReal(first.getAttribute('src')).then((res) => {
-              resolve(res);
-            });
-          } else {
-            preWrite(html);
-          }
-        };
-
-        const script = document.createElement('script');
-        script.src = `http://api.map.baidu.com/api?v=3.0&ak=${props.ak}`;
-        document?.querySelector('head')?.appendChild(script);
-      });
-    };
+    // const importBMapJS = () => {
+    //   function importReal(src: string | null) {
+    //     return new Promise<any>((resolve) => {
+    //       const script = document.createElement('script');
+    //
+    //       script.onload = () => {
+    //         resolve((window as any).BMap);
+    //       };
+    //       if (typeof src === 'string') {
+    //         script.src = src;
+    //       }
+    //
+    //       if (document) {
+    //         document.querySelector('head')?.appendChild(script);
+    //       }
+    //     });
+    //   }
+    //
+    //   return new Promise((resolve) => {
+    //     const preWrite = document.write;
+    //
+    //     document.write = (html) => {
+    //       const el = document.createElement('div');
+    //       el.innerHTML = html;
+    //       const first = el.firstElementChild;
+    //
+    //       if (
+    //         first?.tagName.toLowerCase() === 'script' &&
+    //         first?.getAttribute('src')?.indexOf('http://api.map.baidu.com') !== -1
+    //       ) {
+    //         importReal(first.getAttribute('src')).then((res) => {
+    //           resolve(res);
+    //         });
+    //       } else {
+    //         preWrite(html);
+    //       }
+    //     };
+    //
+    //     const script = document.createElement('script');
+    //     script.src = `http://api.map.baidu.com/api?v=3.0&ak=${props.ak}`;
+    //     document?.querySelector('head')?.appendChild(script);
+    //   });
+    // };
 
     const initMap = () => {
       map = new BMap.Map(root.value, {
@@ -135,7 +106,7 @@ export default defineComponent({
         }, 2000);
       });
 
-      emit('onBMapInitReady');
+      emit('bMapInitReady');
     };
 
     const initMapControl = () => {
@@ -158,11 +129,48 @@ export default defineComponent({
       getMap,
     });
 
+    onMounted(() => {
+      // 外部载入bmap.js
+      // if (props.externalImportBMapScript) {
+      //   BMap = (window as any).BMap;
+      //
+      //   isReady = true;
+      //
+      //   nextTick(() => {
+      //     initMap();
+      //   });
+      // }
+      // // 内部引入bmap.js
+      // else {
+      //   importBMapJS().then((BMap) => {
+      //     BMap = BMap;
+      //
+      //     (window as any).BMap = BMap;
+      //
+      //     emit('onBMapScriptReady');
+      //
+      //     isReady = true;
+      //
+      //     nextTick(() => {
+      //       initMap();
+      //     });
+      //   });
+      // }
+
+      // @ts-ignore
+      BMap = window.BMap;
+
+      isReady = true;
+
+      nextTick(() => {
+        initMap();
+      });
+    });
+
     return () => (
       // @ts-ignore
       <ConditionalRender conditional={isReady}>
         {{
-          // @ts-ignore
           default: () => <div class={selectorPrefix} ref={root} />,
           noMatch: () => <div>loading</div>,
         }}

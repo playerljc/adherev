@@ -6,10 +6,7 @@ export default defineComponent({
   name: 'adv-searchtable-searchform',
   setup(props, { slots }) {
     return () => (
-      <table
-        // @ts-ignore
-        class={selectorPrefix}
-      >
+      <table class={selectorPrefix}>
         <tbody>{slots?.default?.()}</tbody>
       </table>
     );

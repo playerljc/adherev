@@ -5,13 +5,6 @@ const selectorPrefix = 'adherev-ui-searchform-row';
 export default defineComponent({
   name: 'adv-searchtable-searchform-row',
   setup(props, { slots }) {
-    return () => (
-      <tr
-        // @ts-ignore
-        class={selectorPrefix}
-      >
-        {slots?.default?.()}
-      </tr>
-    );
+    return () => <tr class={selectorPrefix}>{slots?.default?.()}</tr>;
   },
 });

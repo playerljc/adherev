@@ -17,7 +17,7 @@ declare const _default: import("vue").DefineComponent<{
     externalImportBMapScript: import("vue-types").VueTypeValidableDef<boolean> & {
         default: boolean;
     };
-}, () => JSX.Element, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, ("onBMapInitReady" | "onBMapScriptReady")[], "onBMapInitReady" | "onBMapScriptReady", import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<import("vue").ExtractPropTypes<{
+}, () => JSX.Element, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, "bMapInitReady"[], "bMapInitReady", import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<import("vue").ExtractPropTypes<{
     ak: import("vue-types").VueTypeValidableDef<string> & {
         default: string;
     };
@@ -36,8 +36,7 @@ declare const _default: import("vue").DefineComponent<{
         default: boolean;
     };
 }>> & {
-    onOnBMapInitReady?: ((...args: any[]) => any) | undefined;
-    onOnBMapScriptReady?: ((...args: any[]) => any) | undefined;
+    onBMapInitReady?: ((...args: any[]) => any) | undefined;
 }, {
     ak: string;
     zoom: number;

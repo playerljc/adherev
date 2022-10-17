@@ -1,11 +1,11 @@
 import HistoryBack from '@baifendian/adhere-ui-historyback';
-import Util from '@baifendian/adherev-util';
+import BfdUtil from '@baifendian/adherev-util';
 
 import { IComponent } from './types';
 
 const {
   _util: { withVue },
-} = Util;
+} = BfdUtil;
 
 (HistoryBack as IComponent).isUse = () => true;
 

@@ -937,7 +937,6 @@ export default defineComponent({
     return (
       <div
         style={this.style}
-        // @ts-ignore
         class={[
           {
             [this.classNameActive]: this.enabled,
@@ -954,13 +953,14 @@ export default defineComponent({
         {this.actualHandles.map((handle) => (
           <div
             key={handle}
-            // @ts-ignore
             class={[this.classNameHandle, this.classNameHandle + '-' + handle]}
             style={{ display: this.enabled ? 'block' : 'none' }}
+            // @ts-ignore
             onMousedown={(e) => {
               e.stopPropagation();
               this.handleDown(handle, e);
             }}
+            // @ts-ignore
             onTouchstart={(e) => {
               e.stopPropagation();
               this.handleTouchDown(handle, e);

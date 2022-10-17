@@ -54,7 +54,7 @@ declare const _default: import("vue").DefineComponent<{
     config: import("vue-types").VueTypeValidableDef<ConfigItemType[]> & {
         default: () => ConfigItemType[];
     };
-}, () => JSX.Element, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, Record<string, any>, string, import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<ExtractPropTypes<{
+}, () => JSX.Element, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {}, string, import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<ExtractPropTypes<{
     title: import("vue-types").VueTypeDef<string | VNode<import("vue").RendererNode, import("vue").RendererElement, {
         [key: string]: any;
     }>>;
@@ -74,9 +74,9 @@ declare const _default: import("vue").DefineComponent<{
         default: () => ConfigItemType[];
     };
 }>>, {
-    columnCount: number;
     config: ConfigItemType[];
     isShowExpandAllBtn: boolean;
+    columnCount: number;
     defaultExpandAll: boolean;
 }>;
 export default _default;

@@ -24,9 +24,8 @@ export default defineComponent({
 
     return () => (
       <div
-        // @ts-ignore
         ref={root}
-        class={classNames(selectorPrefix, `${props.fit ? selectorPrefix + '-fit' : ''}`)}
+        class={classNames(selectorPrefix, `${props.fit ? `${selectorPrefix}-fit` : ''}`)}
       >
         {slots.default ? slots.default() : null}
       </div>

@@ -137,7 +137,7 @@ for (const packageName in dependencies) {
     indexJsContent.push(`import ${exportName} from '${packageName}';\r\n`);
     indexJsExportContent.push(`  ${exportName},\r\n`);
     indexJsExportDefaultContent.push(
-      `if(\r\n\r\n${exportName}.isUse()){ \r\n\r\n${exportName}.use(Vue); }\r\n\t\t`,
+      `if(\r\n\r\n(${exportName} as any)?.isUse()){ \r\n\r\n(${exportName} as any)?.use(Vue); }\r\n\t\t`,
     );
     // 查看packages中是否存在antd.less
     // if (fs.existsSync(path.join(packagesPath, name, 'src', 'antd.less'))) {

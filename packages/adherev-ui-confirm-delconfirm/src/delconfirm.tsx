@@ -56,7 +56,11 @@ export default defineComponent({
       });
 
     return () => (
-      <div class={selectorPrefix} onClick={onClick}>
+      <div
+        class={selectorPrefix}
+        // @ts-ignore
+        onClick={onClick}
+      >
         {slots.default ? slots.default() : null}
       </div>
     );

@@ -1,3 +1,12 @@
+import { ComponentOptions } from 'vue';
+
+/**
+ * ExtendFunction
+ */
+interface ExtendFunction<P> extends ComponentOptions<any> {
+  className?: string | string[];
+}
+
 /**
  * withInstall
  * @param comp
@@ -20,6 +29,45 @@ export const withInstall = (comp: any) => {
 export const withVue = (app: any, p: string, val: any) => {
   app.config.globalProperties.$adv = app.config.globalProperties.$adv || {};
   app.config.globalProperties.$adv[p] = val;
+};
+
+/**
+ * extend
+ * @description - 实现Vue的继承使得可以实现调用父类的方法
+ * 例如 类名A有一个renderInner方法，则父类的方法是$renderInnerA
+ * @param options
+ * @return Omit<ExtendFunction<any>, 'className'>
+ */
+export const extend = (options: ExtendFunction<any>): Omit<ExtendFunction<any>, 'className'> => {
+  const { className, ...vueOptions } = options;
+
+  if (!vueOptions) return {};
+
+  const { methods } = vueOptions;
+
+  if (!methods || !className) return vueOptions;
+
+  const methodKeys = Object.keys(methods).filter((methodKey) =>
+    ['$', '_'].every((prefix) => !methodKey.startsWith(prefix)),
+  );
+
+  const classNames = !Array.isArray(className) ? [className] : className;
+
+  for (let i = 0; i < methodKeys.length; i++) {
+    const methodKey = methodKeys[i];
+
+    for (let j = 0; j < classNames.length; j++) {
+      const superMethodKey = `$${methodKey}${classNames[j]}`;
+
+      vueOptions.methods![superMethodKey] = vueOptions.methods![methodKey];
+
+      vueOptions.methods![methodKey] = function (...params) {
+        return this[superMethodKey].apply(this, params || []);
+      };
+    }
+  }
+
+  return vueOptions;
 };
 
 /**

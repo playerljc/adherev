@@ -4,7 +4,6 @@
  */
 export default {
   created() {
-    // @ts-ignore
     const { $data, $props } = this;
 
     // 在$data中创建$preProps属性用来存放pre的值
@@ -15,7 +14,6 @@ export default {
     // 枚举data中的属性，用watch进行监控
     for (const p in $data) {
       if (!p.startsWith('$') && !p.startsWith('_')) {
-        // @ts-ignore
         this.$watch(p, function (newVal, oldVal) {
           $data.$preProps[p] = oldVal;
         });
@@ -25,7 +23,6 @@ export default {
     // 枚举props中的属性，用watch进行监控
     for (const p in $props) {
       if (!p.startsWith('$') && !p.startsWith('_')) {
-        // @ts-ignore
         this.$watch(p, function (newVal, oldVal) {
           $data.$preProps[p] = oldVal;
         });
@@ -33,7 +30,6 @@ export default {
     }
   },
   updated() {
-    // @ts-ignore
     const { $options, $data } = this;
 
     // 在updated中调用updatedEx的hook

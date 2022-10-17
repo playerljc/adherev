@@ -14,13 +14,14 @@ export interface IConfig {
     zIndex: number;
 }
 export interface IPopupFactory {
-    create(config: IConfig): Popup;
-    show(popup: Popup): void;
-    close(popup: Popup): void;
-    closeAll(): void;
-    destroy(popup: Popup): void;
-    getEl(): HTMLElement;
-    setEl(tel: HTMLElement): void;
+    create: (config: IConfig) => Popup;
+    show: (popup: Popup) => boolean;
+    showClosePrePopup: (popup: Popup) => boolean;
+    close: (popup: Popup) => boolean;
+    closeAll: () => void;
+    destroy: (popup: Popup) => boolean;
+    getEl: () => HTMLElement;
+    setEl: (el: HTMLElement) => void;
 }
 export interface IComponent extends IPopupFactory {
     isUse?(): boolean;

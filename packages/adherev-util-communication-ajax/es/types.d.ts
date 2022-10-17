@@ -63,6 +63,7 @@ export interface IConfig {
     codeKey?: number | string;
     codeSuccess?: number;
     showWarn?: boolean;
+    responseType?: XMLHttpRequestResponseType;
 }
 /**
  * ISendArg
@@ -85,3 +86,4 @@ export interface ISendArg extends IConfig {
 export interface ISendPrepareArg extends ISendArg {
     method: 'get' | 'post' | 'put' | 'path' | 'delete';
 }
+export declare type Method = 'get' | 'post' | 'put' | 'path' | 'delete';

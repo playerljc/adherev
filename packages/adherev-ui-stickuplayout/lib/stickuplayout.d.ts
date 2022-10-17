@@ -12,7 +12,7 @@ declare const _default: import("vue").DefineComponent<{
     innerStyle: import("vue-types").VueTypeValidableDef<CSSProperties> & {
         default: () => CSSProperties;
     };
-}, () => JSX.Element, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, Record<string, any>, string, import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<import("vue").ExtractPropTypes<{
+}, () => JSX.Element, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, "change"[], "change", import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<import("vue").ExtractPropTypes<{
     fixedClassName: import("vue-types").VueTypeValidableDef<string> & {
         default: string;
     };
@@ -25,7 +25,9 @@ declare const _default: import("vue").DefineComponent<{
     innerStyle: import("vue-types").VueTypeValidableDef<CSSProperties> & {
         default: () => CSSProperties;
     };
-}>>, {
+}>> & {
+    onChange?: ((...args: any[]) => any) | undefined;
+}, {
     fixedClassName: string;
     fixedStyle: CSSProperties;
     innerClassName: string;

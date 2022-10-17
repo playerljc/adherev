@@ -5,11 +5,12 @@ const {
   _util: { withVue },
 } = BfdUtil;
 
-// @ts-ignore
-Dict.isUse = () => true;
-// @ts-ignore
-Dict.use = (Vue: any) => {
-  withVue(Vue, 'Dict', Dict);
+const Component: any = Dict;
+
+Component.isUse = () => true;
+
+Component.use = (Vue) => {
+  withVue(Vue, 'Dict', Component);
 };
 
-export default Dict;
+export default Component;

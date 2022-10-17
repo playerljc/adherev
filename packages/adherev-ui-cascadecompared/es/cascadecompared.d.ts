@@ -55,7 +55,7 @@ declare const _default: import("vue").DefineComponent<{
     defaultCellWidth: import("vue-types").VueTypeDef<string | number> & {
         default: string | number;
     };
-}, () => JSX.Element, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, "stick-change"[], "stick-change", import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<import("vue").ExtractPropTypes<{
+}, () => JSX.Element, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, "stickChange"[], "stickChange", import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<import("vue").ExtractPropTypes<{
     className: import("vue-types").VueTypeValidableDef<string> & {
         default: string;
     };
@@ -111,7 +111,7 @@ declare const _default: import("vue").DefineComponent<{
         default: string | number;
     };
 }>> & {
-    "onStick-change"?: ((...args: any[]) => any) | undefined;
+    onStickChange?: ((...args: any[]) => any) | undefined;
 }, {
     className: string;
     indicatorClassName: string;

@@ -1,11 +1,12 @@
 import { Skeleton, Spin } from 'ant-design-vue';
-import { defineComponent } from 'vue';
-import { bool } from 'vue-types';
+import { VNode, defineComponent } from 'vue';
+import { bool, object } from 'vue-types';
 
 const selectorPrefix = 'adherev-ui-suspense';
 
 const suspenseProps = {
   reset: bool().def(false),
+  renderFirstLoading: object<VNode>(),
 };
 
 /**
@@ -41,13 +42,15 @@ export default defineComponent({
     },
   },
   mounted() {
-    this.fetchData();
+    if (this.fetchData) {
+      this.fetchData();
+    }
   },
   methods: {
     /**
      * renderNormalFirstLoading
      */
-    renderNormalFirstLoading(): JSX.Element {
+    $renderNormalFirstLoading(): JSX.Element {
       const result = [];
 
       for (let i = 0; i < 7; i++) {
@@ -61,20 +64,20 @@ export default defineComponent({
      * renderFirstLoading
      * @param h
      */
-    renderFirstLoading(): JSX.Element {
+    $renderFirstLoading(): JSX.Element {
       const { $slots } = this;
 
-      if ($slots.firstLoading) {
-        return $slots.firstLoading();
+      if ($slots.firstLoading || this.renderFirstLoading) {
+        return $slots.firstLoading || this.renderFirstLoading;
       }
 
-      return this.renderNormalFirstLoading();
+      return this.$renderNormalFirstLoading();
     },
     /**
      * renderNormal
      * @param h
      */
-    renderNormal(): JSX.Element {
+    $renderNormal(): JSX.Element {
       return (
         <Spin size="large" spinning={this.showLoading()}>
           {this.renderInner()}
@@ -85,7 +88,7 @@ export default defineComponent({
      * renderDispatch
      * @param h
      */
-    renderDispatch(): JSX.Element {
+    $renderDispatch(): JSX.Element {
       const loading = this.showLoading();
 
       if (this.isFirst && !this.isFirstLoading && loading) {
@@ -99,24 +102,24 @@ export default defineComponent({
       }
 
       if (this.isFirst) {
-        return this.renderFirstLoading();
+        return this.$renderFirstLoading();
       }
 
-      return this.renderNormal();
+      return this.$renderNormal();
     },
     /**
      * renderSuspense
      * @description - renderSuspense
      * @param h
      */
-    renderSuspense(): JSX.Element {
-      return <div class={selectorPrefix}>{this.renderDispatch()}</div>;
+    $renderSuspense(): JSX.Element {
+      return <div class={selectorPrefix}>{this.$renderDispatch()}</div>;
     },
   },
   /**
    * render
    */
   render(): JSX.Element {
-    return this.renderSuspense();
+    return this.$renderSuspense();
   },
 });

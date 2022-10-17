@@ -43,10 +43,11 @@ declare class Ajax {
     static CONTENT_TYPE_TEXT_XML: string;
     static CONTENT_TYPE_APPLICATION_XML: string;
     static CONTENT_TYPE_TEXT_PLAIN: string;
-    private baseURL;
-    private systemManagerBaseURL;
-    private config;
+    protected baseURL: string;
+    protected systemManagerBaseURL: string;
+    protected config: IConfig;
     static isUse: () => boolean;
+    static use: (Vue: any) => void;
     /**
      * constructor
      * @param baseURL

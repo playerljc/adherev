@@ -40,6 +40,7 @@
   "dependencies": {
     "@baifendian/adherev-util": "^2.0.4-alpha",
     "@baifendian/adherev-util-resource": "^2.0.5-alpha",
+    "@baifendian/adherev-ui-css": "^2.0.4-alpha",
     "algebra.js": "^0.2.6",
     "ol": "6.5.0",
     "ol-wind": "^1.1.1-alpha.2",

@@ -1,4 +1,5 @@
 @import '~@baifendian/adherev-ui-stickuplayout/lib/index.less';
+@import '~@baifendian/adherev-ui-css/lib/vars';
 
 .adherev-ui-cascadecompared {
   display: flex;
@@ -9,7 +10,7 @@
     position: relative;
     display: flex;
     flex-shrink: 0;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid @adhere-border-color;
 
     > .adherev-ui-cascadecompared-autoWrap {
       > .adherev-ui-cascadecompared-item {
@@ -22,7 +23,7 @@
       height: 100%;
       > .adherev-ui-cascadecompared-cell {
         height: 100%;
-        border-right: 1px solid rgba(0, 0, 0, 0.1);
+        border-right: 1px solid @adhere-border-color;
       }
     }
   }
@@ -56,7 +57,7 @@
       /* 项下的单元格 */
       > .adherev-ui-cascadecompared-cell {
         width: 100%;
-        border-right: 1px solid rgba(0, 0, 0, 0.1);
+        border-right: 1px solid @adhere-border-color;
       }
     }
   }
@@ -69,7 +70,7 @@
 
     .adherev-ui-cascadecompared-item {
       > .adherev-ui-cascadecompared-cell {
-        border-right: 1px solid rgba(0, 0, 0, 0.1);
+        border-right: 1px solid @adhere-border-color;
       }
     }
 
@@ -79,14 +80,13 @@
   }
 
   .adherev-ui-cascadecompared-item {
-    //display: inline-block;
     font-size: 0;
     white-space: nowrap;
 
     /* 不是最后一行才有 */
     &:not(:last-child) {
       > .adherev-ui-cascadecompared-cell {
-        border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        border-bottom: 1px solid @adhere-border-color;
       }
     }
 
@@ -103,7 +103,7 @@
     .adherev-ui-cascadecompared-item {
       > .adherev-ui-cascadecompared-cell {
         height: 100%;
-        font-size: 16px;
+        font-size: @adhere-large-font-size;
         white-space: inherit;
         text-align: center;
         word-wrap: break-word;

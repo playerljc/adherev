@@ -11,8 +11,8 @@
   ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "buildpackage:cjs": "ctbuild buildpackagets",
-    "buildpackage:es": "ctbuild buildpackagets -p tsconfig.module.json -o es",
+    "buildpackage:cjs": "ctbuild buildpackagets -p tsconfig.cjs.json -o lib",
+    "buildpackage:es": "ctbuild buildpackagets -p tsconfig.esm.json -o es",
     "buildpackage": "npm-run-all --parallel buildpackage:cjs buildpackage:es",
     "generatorchangelog": "bd changelog/CHANGELOG.html",
     "buildumd": "ctbuild buildumd --packagename AdherevHistoryBack --define alias=@,evnVars=true"
@@ -38,7 +38,7 @@
     "typescript": "^4.5.5"
   },
   "dependencies": {
-    "@baifendian/adhere-ui-historyback": "^1.0.15",
+    "@baifendian/adhere-ui-historyback": "^1.0.18-fix.2",
     "@baifendian/adherev-util": "^2.0.4-alpha",
     "vue-types": "^4.1.1"
   }

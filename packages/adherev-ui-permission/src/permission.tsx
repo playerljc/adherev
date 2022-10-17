@@ -1,6 +1,8 @@
 import { defineComponent } from 'vue';
 import { array } from 'vue-types';
 
+import ConditionalRender from '@baifendian/adherev-ui-conditionalrender';
+
 // 所有的权限
 let permissions: any[] = [];
 
@@ -61,3 +63,19 @@ export const Permission = defineComponent({
         : null;
   },
 });
+
+/**
+ * PermissionFun - 函数方式实现
+ * @param allPermission
+ * @param permissions
+ * @param match
+ * @param noMatch
+ * @constructor
+ */
+export function PermissionFun({ allPermission = getPermission(), permissions, match, noMatch }) {
+  return ConditionalRender.conditionalRender({
+    conditional: checkPermission(allPermission, permissions),
+    match,
+    noMatch,
+  });
+}

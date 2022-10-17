@@ -11,8 +11,8 @@
   ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "buildpackage:cjs": "ctbuild buildpackagets",
-    "buildpackage:es": "ctbuild buildpackagets -p tsconfig.module.json -o es",
+    "buildpackage:cjs": "ctbuild buildpackagets -p tsconfig.cjs.json -o lib",
+    "buildpackage:es": "ctbuild buildpackagets -p tsconfig.esm.json -o es",
     "buildpackage": "npm-run-all --parallel buildpackage:cjs buildpackage:es",
     "buildumd": "ctbuild buildumd --packagename AdherevIntl --define alias=@,evnVars=true",
     "generatorchangelog": "bd changelog/CHANGELOG.html"
@@ -39,9 +39,6 @@
   },
   "dependencies": {
     "@baifendian/adhere-util-intl": "^1.0.16",
-    "@baifendian/adherev-util": "^2.0.4-alpha",
-    "vue": "^3.2.31",
-    "vue-i18n": "^9.1.9",
-    "vue-types": "^4.1.1"
+    "@baifendian/adherev-util": "^2.0.4-alpha"
   }
 }

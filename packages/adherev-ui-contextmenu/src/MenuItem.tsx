@@ -29,84 +29,53 @@ export default defineComponent({
       ),
     );
 
-    const renderIcon = (): JSX.Element => {
-      return (
-        // @ts-ignore
-        <ConditionalRender conditional={Util?.isString?.(props.data.icon)}>
-          {{
-            // @ts-ignore
-            default: () => <span class={classNames(`${selectorPrefix}-icon`, props.data.icon)} />,
-            noMatch: () => (
-              // @ts-ignore
-              <ConditionalRender conditional={Util?.isObject?.(props.data.icon)}>
-                {{
-                  default: () => (
-                    // @ts-ignore
-                    <span class={classNames(`${selectorPrefix}-icon`)}>
-                      {h(props.data.icon as object)}
-                    </span>
-                  ),
-                  noMatch: () => (
-                    // @ts-ignore
-                    <ConditionalRender conditional={Util?.isFunction?.(props.data.icon)}>
-                      {/*@ts-ignore*/}
-                      <span class={classNames(`${selectorPrefix}-icon`)}>
-                        {Util?.isFunction?.(props.data.icon)
-                          ? (props.data.icon as Function)()
-                          : null}
-                      </span>
-                    </ConditionalRender>
-                  ),
-                }}
-              </ConditionalRender>
-            ),
-          }}
-        </ConditionalRender>
-      );
+    const renderIcon = (): JSX.Element | null => {
+      if (props.data.icon && Util?.isString?.(props.data.icon)) {
+        return <span class={classNames(`${selectorPrefix}-icon`, props.data.icon as string)} />;
+      }
+
+      if (props.data.icon && Util?.isObject?.(props.data.icon)) {
+        return (
+          <span class={classNames(`${selectorPrefix}-icon`)}>{h(props.data.icon as object)}</span>
+        );
+      }
+
+      if (props.data.icon && Util?.isFunction?.(props.data.icon)) {
+        return (
+          <span class={classNames(`${selectorPrefix}-icon`)}>
+            {(props.data.icon as Function)(h, { ...props.data })}
+          </span>
+        );
+      }
+
+      return null;
     };
 
-    const renderName = (): JSX.Element => {
-      return (
-        // @ts-ignore
-        <ConditionalRender conditional={Util?.isString?.(props.data.name)}>
-          {{
-            default: () => (
-              // @ts-ignore
-              <span class={classNames(`${selectorPrefix}-name`)}>{props.data.name}</span>
-            ),
-            noMatch: () => (
-              // @ts-ignore
-              <ConditionalRender conditional={Util?.isObject?.(props.data.name)}>
-                {{
-                  default: () => (
-                    // @ts-ignore
-                    <span class={classNames(`${selectorPrefix}-name`)}>
-                      {h(props.data.name as object)}
-                    </span>
-                  ),
-                  noMatch: () => (
-                    // @ts-ignore
-                    <ConditionalRender conditional={Util?.isFunction?.(props.data.name)}>
-                      {/*@ts-ignore*/}
-                      <span class={classNames(`${selectorPrefix}-name`)}>
-                        {Util?.isFunction?.(props.data.name)
-                          ? (props.data.name as Function)()
-                          : null}
-                      </span>
-                    </ConditionalRender>
-                  ),
-                }}
-              </ConditionalRender>
-            ),
-          }}
-        </ConditionalRender>
-      );
+    const renderName = (): JSX.Element | null => {
+      if (props.data.name && Util?.isString?.(props.data.name)) {
+        return <span class={classNames(`${selectorPrefix}-name`)}>{props.data.name}</span>;
+      }
+
+      if (props.data.name && Util?.isObject?.(props.data.name)) {
+        return (
+          <span class={classNames(`${selectorPrefix}-name`)}>{h(props.data.name as object)}</span>
+        );
+      }
+
+      if (props.data.name && Util?.isFunction?.(props.data.name)) {
+        return (
+          <span class={classNames(`${selectorPrefix}-name`)}>
+            {(props.data.name as Function)(h, { ...props.data })}
+          </span>
+        );
+      }
+
+      return null;
     };
 
     const renderMore = (): JSX.Element => (
       // @ts-ignore
       <ConditionalRender conditional={props?.data?.children?.length !== 0}>
-        {/*@ts-ignore*/}
         <span class={`${selectorPrefix}-more fa fa-caret-right`} />
       </ConditionalRender>
     );
@@ -114,7 +83,6 @@ export default defineComponent({
     const renderSubMenu = (): JSX.Element => (
       // @ts-ignore
       <ConditionalRender conditional={props?.data?.children?.length !== 0}>
-        {/*@ts-ignore*/}
         <SubMenu
           data={props?.data?.children}
           className={props.data.subMenuClassName}
@@ -145,15 +113,18 @@ export default defineComponent({
       <ConditionalRender conditional={!props.data.separation}>
         {{
           default: () => (
-            // @ts-ignore
-            <li class={getClass.value} style={props.data.style} onClick={onClick}>
+            <li
+              class={getClass.value}
+              style={props.data.style}
+              // @ts-ignore
+              onClick={onClick}
+            >
               {renderIcon()}
               {renderName()}
               {renderMore()}
               {renderSubMenu()}
             </li>
           ),
-          // @ts-ignore
           noMatch: () => <li class={`${selectorPrefix}-separation`} />,
         }}
       </ConditionalRender>

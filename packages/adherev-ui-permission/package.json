@@ -33,6 +33,7 @@
   },
   "dependencies": {
     "@baifendian/adherev-util": "^2.0.4-alpha",
+    "@baifendian/adherev-ui-conditionalrender": "^2.0.4-alpha",
     "vue": "^3.2.31",
     "vue-types": "^4.1.1"
   },

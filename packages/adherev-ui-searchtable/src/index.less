@@ -7,10 +7,13 @@
 @import '~@baifendian/adherev-ui-flexlayout/lib/index.less';
 @import '~@baifendian/adherev-ui-css/lib/iconfont/iconfont.less';
 @import '~@baifendian/adherev-ui-css/lib/vars';
-@import '~vue-draggable-resizable/dist/VueDraggableResizable.css';
 
+@import '~vue-draggable-resizable/dist/VueDraggableResizable.css';
 @import './Extension/ColumnSetting/setting.less';
 @import './Extension/TableDensitySetting/setting.less';
+
+@adherev-ui-searchtable-searchfooteritem-search-btn-icon-color: #fff;
+@adherev-ui-searchtable-background-color: #f0f2f5;
 
 .adherev-ui-searchtable-wrap {
   display: flex;
@@ -22,7 +25,7 @@
     .adherev-ui-searchtable {
       position: relative;
       padding: 24px;
-      background-color: #f0f2f5;
+      background-color: @adherev-ui-searchtable-background-color;
 
       .adherev-ui-searchtable-tablewrapper {
         > .ant-table-wrapper {
@@ -39,7 +42,7 @@
               > .ant-table-empty {
                 > .ant-table-container {
                   > .ant-table-body {
-                    max-height: initial !important;
+                    max-height: initial;
                   }
                 }
               }
@@ -70,6 +73,40 @@
             &.ant-btn {
               display: flex;
             }
+
+            .adherev-ui-searchtable-searchfooteritem-search-btn-icon {
+              color: @adherev-ui-searchtable-searchfooteritem-search-btn-icon-color;
+              font-size: @adhere-base-font-size;
+            }
+
+            > .adherev-ui-searchtable-searchfooteritem-expand-search-up-btn {
+              display: flex;
+              align-items: center;
+
+              > span {
+                margin-right: 5px;
+              }
+
+              > i {
+                color: @adhere-primary-color;
+                font-size: @adhere-large-font-size;
+              }
+            }
+
+            > .adherev-ui-searchtable-searchfooteritem-expand-search-down-btn {
+              display: flex;
+              align-items: center;
+
+              > span {
+                margin-right: 5px;
+              }
+
+              > i {
+                color: @adhere-primary-color;
+                font-size: @adhere-large-font-size;
+              }
+            }
+
           }
         }
       }
@@ -121,7 +158,7 @@
                       //    > .ant-table-body {
                       //      flex-grow: 1;
                       //      min-height: 0;
-                      //      overflow-y: auto !important;
+                      //      overflow-y: auto ;
                       //    }
                       //  }
                       //}
@@ -139,25 +176,8 @@
                         > .ant-table-body {
                           flex-grow: 1;
                           min-height: 0;
-                          overflow-y: auto !important;
+                          overflow-y: auto;
                         }
-                      }
-                    }
-
-                    > .ant-table-container {
-                      display: flex;
-                      flex-direction: column;
-                      width: 100%;
-                      height: 100%;
-
-                      > .ant-table-header {
-                        flex-shrink: 0;
-                      }
-
-                      > .ant-table-body {
-                        flex-grow: 1;
-                        min-height: 0;
-                        overflow-y: auto !important;
                       }
                     }
 
@@ -173,7 +193,7 @@
                     //  > .ant-table-body {
                     //    flex-grow: 1;
                     //    min-height: 0;
-                    //    overflow-y: auto !important;
+                    //    overflow-y: auto ;
                     //  }
                     //}
                   }

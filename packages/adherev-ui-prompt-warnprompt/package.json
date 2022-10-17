@@ -11,8 +11,8 @@
   ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "buildpackage:cjs": "ctbuild buildpackagets",
-    "buildpackage:es": "ctbuild buildpackagets -p tsconfig.module.json -o es",
+    "buildpackage:cjs": "ctbuild buildpackagets -p tsconfig.cjs.json -o lib",
+    "buildpackage:es": "ctbuild buildpackagets -p tsconfig.esm.json -o es",
     "buildpackage": "npm-run-all --parallel buildpackage:cjs buildpackage:es",
     "buildumd": "ctbuild buildumd --config ctbuild.config.umd.js --packagename AdherevWarnPrompt --define alias=@,evnVars=true",
     "generatorchangelog": "bd changelog/CHANGELOG.html"

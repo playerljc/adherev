@@ -36,10 +36,7 @@ export default defineComponent({
     );
 
     return () => (
-      <div
-        // @ts-ignore
-        class={selectPrefix}
-      >
+      <div class={selectPrefix}>
         {/*@ts-ignore*/}
         <SimpleTabs
           defaultActiveKey={active.value}
@@ -53,7 +50,6 @@ export default defineComponent({
             <TabPanel title={title} key={key} index={key}>
               {/*@ts-ignore*/}
               <ConditionalRender conditional={active.value === key}>
-                {/*@ts-ignore**/}
                 <CodePanel {...codePanelConfig} />
               </ConditionalRender>
             </TabPanel>

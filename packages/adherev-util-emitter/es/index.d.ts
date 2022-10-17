@@ -1,2 +1,2 @@
-import Emitter from '@baifendian/adhere-util-emitter';
-export default Emitter;
+declare const Component: any;
+export default Component;

@@ -1,10 +1,18 @@
 import { Popover } from 'ant-design-vue';
-import { defineComponent } from 'vue';
+import { PropType, defineComponent } from 'vue';
 
+import { IColumnSetting } from '../../types';
 import Setting from './setting';
 
 export default defineComponent({
   name: 'adv-searchtable-column-setting',
+  props: {
+    columns: {
+      type: Array as PropType<IColumnSetting[]>,
+      default: () => [],
+    },
+  },
+  emits: ['showColumns', 'reset', 'sortEnd', 'displayColumn'],
   inject: ['getContext'],
   render() {
     return (
@@ -51,7 +59,7 @@ export default defineComponent({
         }
         placement="bottomRight"
         trigger="click"
-        getPopupContainer={(el) => el.parentElement}
+        getPopupContainer={(el) => el.parentElement as HTMLElement}
       >
         <a>
           <img

@@ -63,7 +63,6 @@ export interface IMessageDialogFactory extends IComponent {
         app: any;
         el: HTMLElement;
     }): void;
-    setConfig(gc: IConfig): void;
 }
 export interface IModalProps {
     config: any;

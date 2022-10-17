@@ -1,6 +1,5 @@
 import BfdUtil from '@baifendian/adherev-util';
 
-// @ts-ignore
 import AnimationManager from './animationmanager';
 import GeoLayer from './geolayer';
 import HeatMap from './heatmap';

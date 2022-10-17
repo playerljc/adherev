@@ -1,6 +1,10 @@
 import { Button, Checkbox, Popover, Table } from 'ant-design-vue';
 
+import FlexLayout from '@baifendian/adherev-ui-flexlayout';
+import Suspense from '@baifendian/adherev-ui-suspense';
 import BfdUtil from '@baifendian/adherev-util';
+import Intl from '@baifendian/adherev-util-intl';
+import Mixins from '@baifendian/adherev-util-mixins';
 
 import ColumnSetting from './Extension/ColumnSetting';
 import TableDensitySetting from './Extension/TableDensitySetting';
@@ -24,6 +28,11 @@ const {
 SearchTable.isUse = () => true;
 
 SearchTable.use = (Vue: any) => {
+  FlexLayout.isUse() && FlexLayout.use(Vue);
+  Suspense.isUse() && Suspense.use(Vue);
+  Intl.isUse() && Intl.use(Vue);
+  (Mixins as any).isUse() && (Mixins as any).use(Vue);
+
   Vue.use(SearchTable.SearchForm);
 
   Vue.use(SearchTable.SearchFormRow);

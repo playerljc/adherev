@@ -1,9 +1,11 @@
+import 'lazysizes';
+import 'lazysizes/plugins/parent-fit/ls.parent-fit';
 import { IImgArgs } from './types';
 declare const _default: import("vue").DefineComponent<{
     imgArgs: import("vue-types").VueTypeValidableDef<IImgArgs> & {
         default: () => IImgArgs;
     };
-}, () => JSX.Element, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, Record<string, any>, string, import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<import("vue").ExtractPropTypes<{
+}, () => JSX.Element, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {}, string, import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<import("vue").ExtractPropTypes<{
     imgArgs: import("vue-types").VueTypeValidableDef<IImgArgs> & {
         default: () => IImgArgs;
     };

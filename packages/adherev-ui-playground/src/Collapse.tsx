@@ -47,7 +47,6 @@ export default defineComponent({
 
     return () => (
       <div
-        // @ts-ignore
         class={classNames(
           selectorPrefix,
           props.scrollY ? `${selectorPrefix}-scroll-y` : '',
@@ -55,21 +54,16 @@ export default defineComponent({
         )}
       >
         <div
-          // @ts-ignore
           class={classNames(
             `${selectorPrefix}-header`,
             props.border ? `${selectorPrefix}-header-border` : '',
-            (props.headerClassName || '').split(/\s+/),
+            props.headerClassName || '' || '',
           )}
           style={props.headerStyle}
           onClick={onClickHeader}
         >
-          <div
-            // @ts-ignore
-            class={`${selectorPrefix}-header-collapse`}
-          >
+          <div class={`${selectorPrefix}-header-collapse`}>
             <div
-              // @ts-ignore
               class={classNames(
                 `${selectorPrefix}-header-collapse-icon`,
                 collapse.value ? '' : `${selectorPrefix}-header-collapse-icon-close`,
@@ -77,34 +71,23 @@ export default defineComponent({
             />
             {/*@ts-ignore*/}
             <ConditionalRender conditional={!!props.title}>
-              <div
-                // @ts-ignore
-                class={`${selectorPrefix}-header-title`}
-              >
-                {props.title}
-              </div>
+              <div class={`${selectorPrefix}-header-title`}>{props.title}</div>
             </ConditionalRender>
           </div>
 
           {/*@ts-ignore*/}
           <ConditionalRender conditional={!!props.extra}>
-            <div
-              // @ts-ignore
-              class={`${selectorPrefix}-header-extra`}
-            >
-              {props.extra}
-            </div>
+            <div class={`${selectorPrefix}-header-extra`}>{props.extra}</div>
           </ConditionalRender>
         </div>
 
         {/*@ts-ignore*/}
         <ConditionalRender conditional={!collapse.value}>
           <div
-            // @ts-ignore
             class={classNames(
               `${selectorPrefix}-body`,
               props.border ? `${selectorPrefix}-body-border` : '',
-              (props.bodyClassName || '').split(/\s+/),
+              props.bodyClassName || '' || '',
               !!props.title || !!props.extra ? `${selectorPrefix}-body-exists-header` : '',
             )}
             style={props.bodyStyle}

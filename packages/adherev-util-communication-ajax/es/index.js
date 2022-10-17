@@ -1,2 +1,2 @@
-import BfdUtil from"@baifendian/adherev-util";import Ajax from"./ajax";var withVue=BfdUtil._util.withVue;Ajax.isUse=function(){return!0},Ajax.use=function(i){withVue(i,"Ajax",Ajax)};export default Ajax;
+import{notification}from"ant-design-vue";import GlobalIndicator from"@baifendian/adherev-ui-globalindicator";import BfdUtil from"@baifendian/adherev-util";import Intl from"@baifendian/adherev-util-intl";import Ajax from"./ajax";var withVue=BfdUtil._util.withVue;Ajax.isUse=function(){return!0},Ajax.use=function(i){GlobalIndicator.isUse()&&GlobalIndicator.use(i),Intl.isUse()&&Intl.use(i),i.use(notification),withVue(i,"Ajax",Ajax)};export default Ajax;
 //# sourceMappingURL=index.js.map

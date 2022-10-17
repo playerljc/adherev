@@ -1,4 +1,4 @@
-import { VNode, ExtractPropTypes } from 'vue';
+import { ExtractPropTypes, VNode } from 'vue';
 export interface ICodeTabPanelItemProps {
     key: string;
     title: string | VNode;

@@ -1,17 +1,2 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-var tslib_1 = require("tslib");
-var adhere_ui_bmap_1 = (0, tslib_1.__importDefault)(require("@baifendian/adhere-ui-bmap"));
-var adherev_util_1 = (0, tslib_1.__importDefault)(require("@baifendian/adherev-util"));
-var bmap_1 = (0, tslib_1.__importDefault)(require("./bmap"));
-var _a = adherev_util_1.default._util, withInstall = _a.withInstall, withVue = _a.withVue;
-// @ts-ignore
-var BMap = (0, tslib_1.__assign)((0, tslib_1.__assign)({}, adhere_ui_bmap_1.default), { BMap: bmap_1.default });
-BMap.isUse = function () { return true; };
-BMap.use = function (Vue) {
-    Vue.use(bmap_1.default);
-    withVue(Vue, 'BMap', BMap);
-};
-withInstall(bmap_1.default);
-exports.default = BMap;
+"use strict";require("core-js/modules/es.object.define-property.js"),require("core-js/modules/es.object.to-string.js"),require("core-js/modules/es.promise.js"),Object.defineProperty(exports,"__esModule",{value:!0});var tslib_1=require("tslib"),adhere_ui_bmap_1=tslib_1.__importDefault(require("@baifendian/adhere-ui-bmap")),adherev_util_1=tslib_1.__importDefault(require("@baifendian/adherev-util")),bmap_1=tslib_1.__importDefault(require("./bmap")),_a=adherev_util_1.default._util,withInstall=_a.withInstall,withVue=_a.withVue,Wrap=(withInstall(bmap_1.default),function(e){return new Promise(function(t){(0,adhere_ui_bmap_1.default)(e).then(function(e){return t(tslib_1.__assign(tslib_1.__assign({},e),{BMap:bmap_1.default}))})})});Wrap.isUse=function(){return!0},Wrap.use=function(e){e.use(bmap_1.default),withVue(e,"BMap",bmap_1.default)},exports.default=Wrap;
 //# sourceMappingURL=index.js.map

@@ -1,2 +1,2 @@
-import BfdUtil from"@baifendian/adherev-util";import WarnPrompt from"./warnprompt";var withVue=BfdUtil._util.withVue;WarnPrompt.isUse=function(){return!0},WarnPrompt.use=function(r){withVue(r,"WarnPrompt",WarnPrompt)};export default WarnPrompt;
+import{message}from"ant-design-vue";import BfdUtil from"@baifendian/adherev-util";import Intl from"@baifendian/adherev-util-intl";import WarnPrompt from"./warnprompt";var withVue=BfdUtil._util.withVue;WarnPrompt.isUse=function(){return!0},WarnPrompt.use=function(t){Intl.isUse()&&Intl.use(t),t.use(message),withVue(t,"WarnPrompt",WarnPrompt)};export default WarnPrompt;
 //# sourceMappingURL=index.js.map

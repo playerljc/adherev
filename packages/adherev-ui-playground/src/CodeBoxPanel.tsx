@@ -64,7 +64,6 @@ export default defineComponent({
       const { type, childrenSlot, wrapSlot, id, ...playGroundProps } = props.config[index];
 
       const children = (
-        // @ts-ignore
         <PlayGround
           {...playGroundProps}
           // @ts-ignore
@@ -99,7 +98,6 @@ export default defineComponent({
       const { type, childrenSlot, wrapSlot, id, ...playGroundTabProps } = props.config[index];
 
       const children = (
-        // @ts-ignore
         <PlayGroundTab
           {...playGroundTabProps}
           // @ts-ignore
@@ -134,7 +132,6 @@ export default defineComponent({
       const { type, childrenSlot, wrapSlot, id, ...playGroundProps } = props.config[index];
 
       const children = (
-        // @ts-ignore
         <PlayGroundMulit
           {...playGroundProps}
           // @ts-ignore
@@ -193,28 +190,14 @@ export default defineComponent({
     });
 
     return () => (
-      <div
-        // @ts-ignore
-        class={selectPrefix}
-      >
-        <div
-          // @ts-ignore
-          class={`${selectPrefix}-header`}
-        >
+      <div class={selectPrefix}>
+        <div class={`${selectPrefix}-header`}>
           {/*@ts-ignore*/}
           <ConditionalRender conditional={!!props.title}>
-            <div
-              // @ts-ignore
-              class={`${selectPrefix}-header-title`}
-            >
-              {props.title}
-            </div>
+            <div class={`${selectPrefix}-header-title`}>{props.title}</div>
           </ConditionalRender>
 
-          <div
-            // @ts-ignore
-            class={`${selectPrefix}-header-extra`}
-          >
+          <div class={`${selectPrefix}-header-extra`}>
             {/*@ts-ignore*/}
             <ConditionalRender conditional={props.isShowExpandAllBtn}>
               {/*@ts-ignore**/}
@@ -222,10 +205,10 @@ export default defineComponent({
                 {{
                   default: () => (
                     <img
-                      // @ts-ignore
                       class={`${selectPrefix}-expand-code`}
                       src={Constant.CloseCodeAll}
                       alt=""
+                      // @ts-ignore
                       onClick={() => {
                         if (expandLock) return;
                         expandLock = true;
@@ -235,10 +218,10 @@ export default defineComponent({
                   ),
                   noMatch: () => (
                     <img
-                      // @ts-ignore
                       class={`${selectPrefix}-expand-code`}
                       src={Constant.ExpandCodeAll}
                       alt=""
+                      // @ts-ignore
                       onClick={() => {
                         if (expandLock) return;
                         expandLock = true;
@@ -255,23 +238,13 @@ export default defineComponent({
           </div>
         </div>
 
-        <div
-          // @ts-ignore
-          class={`${selectPrefix}-main`}
-        >
+        <div class={`${selectPrefix}-main`}>
           {column.value.map((_: any, columnIndex: number) => (
-            <div
-              // @ts-ignore
-              class={`${selectPrefix}-column`}
-            >
+            <div class={`${selectPrefix}-column`}>
               {props.config.map((item, index) => {
                 if (index % props.columnCount === columnIndex) {
                   return (
-                    <div
-                      // @ts-ignore
-                      class={`${selectPrefix}-item`}
-                      key={item.id}
-                    >
+                    <div class={`${selectPrefix}-item`} key={item.id}>
                       {renderMap?.get(item.type)?.(columnIndex, index)}
                     </div>
                   );

@@ -22,7 +22,7 @@ export declare const Permission: import("vue").DefineComponent<{
     permissions: import("vue-types").VueTypeValidableDef<(string | string[])[]>;
 }, () => import("vue").VNode<import("vue").RendererNode, import("vue").RendererElement, {
     [key: string]: any;
-}>[] | null, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, Record<string, any>, string, import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<import("vue").ExtractPropTypes<{
+}>[] | null, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {}, string, import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<import("vue").ExtractPropTypes<{
     allPermission: import("vue-types").VueTypeValidableDef<string[]> & {
         default: () => string[];
     };
@@ -30,3 +30,19 @@ export declare const Permission: import("vue").DefineComponent<{
 }>>, {
     allPermission: string[];
 }>;
+/**
+ * PermissionFun - 函数方式实现
+ * @param allPermission
+ * @param permissions
+ * @param match
+ * @param noMatch
+ * @constructor
+ */
+export declare function PermissionFun({ allPermission, permissions, match, noMatch }: {
+    allPermission?: any;
+    permissions: any;
+    match: any;
+    noMatch: any;
+}): import("vue").VNode<import("vue").RendererNode, import("vue").RendererElement, {
+    [key: string]: any;
+}> | null;

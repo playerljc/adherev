@@ -1,6 +1,6 @@
 import classNames from 'classnames';
 import moment from 'moment';
-import { CSSProperties, ExtractPropTypes, computed, defineComponent, onMounted, ref } from 'vue';
+import { ExtractPropTypes, VNode, computed, defineComponent, onMounted, ref } from 'vue';
 import { bool, number, object, string } from 'vue-types';
 
 import Intl from '@baifendian/adherev-util-intl';
@@ -12,12 +12,15 @@ const defaultImg =
 
 const pullRefreshProps = {
   scrollClassName: string().def(''),
-  scrollStyle: object<CSSProperties>().def({}),
   pullHeight: number().def(200),
   isShowUpdateTime: bool().def(true),
   updateTime: number().def(moment().valueOf()),
-  updateTimeFormat: string().def(Resource.Dict.value.ResourceMomentFormatFull.value),
+  updateTimeFormat: string().def(Resource.Dict.value.ResourceMomentFormat18.value),
   loadingAnimation: string().def('la-ball-circus la-dark'),
+  renderIcon: object<VNode>(),
+  renderCanLabel: object<VNode>(),
+  renderLabel: object<VNode>(),
+  renderLoadingAnimation: object<VNode>(),
 };
 
 export type PullRefreshProps = Partial<ExtractPropTypes<typeof pullRefreshProps>>;
@@ -25,6 +28,7 @@ export type PullRefreshProps = Partial<ExtractPropTypes<typeof pullRefreshProps>
 export default defineComponent({
   name: 'adv-pullrefresh',
   props: pullRefreshProps,
+  slots: ['icon', 'canLabel', 'label', 'loadingAnimation'],
   emits: ['pull-start', 'pull-can-refresh', 'pull-bottom', 'pull-rebound', 'pull-refresh'],
   setup(props, { slots, emit, expose }) {
     const iconElRef = ref<HTMLImageElement>();
@@ -62,32 +66,47 @@ export default defineComponent({
     let triggerInnerEl: HTMLElement | null = null;
 
     const getScrollClassName = computed(() =>
-      classNames(`${selectorPrefix}-scroll`, ...(props.scrollClassName || '').split(/\s+/)),
+      classNames(`${selectorPrefix}-scroll`, props.scrollClassName || ''),
     );
 
-    const renderIcon = (): JSX.Element =>
-      slots.icon ? (
-        <div class={`${selectorPrefix}-trigger-icon`}>
-          <div class={`${selectorPrefix}-trigger-icon-inner`} ref={iconElRef}>
-            {slots.icon()}
+    const renderIcon = (): JSX.Element => {
+      if (slots.icon) {
+        return (
+          <div class={`${selectorPrefix}-trigger-icon`}>
+            <div class={`${selectorPrefix}-trigger-icon-inner`} ref={iconElRef}>
+              {slots.icon()}
+            </div>
           </div>
-        </div>
-      ) : (
+        );
+      }
+
+      if (props.renderIcon) {
+        return (
+          <div class={`${selectorPrefix}-trigger-icon`}>
+            <div class={`${selectorPrefix}-trigger-icon-inner`} ref={iconElRef}>
+              {props.renderIcon}
+            </div>
+          </div>
+        );
+      }
+
+      return (
         <div class={`${selectorPrefix}-trigger-icon`}>
           <img
             class={`${selectorPrefix}-trigger-icon-inner`}
             src={defaultImg}
             alt=""
-            ref={iconElRef}
+            ref="iconElRef"
           />
         </div>
       );
+    };
 
     const renderLabel = (): JSX.Element => (
       <p class={`${selectorPrefix}-trigger-label`}>
         {isCan
-          ? slots.canLabel || <span>{Intl.tv('松开刷新')}</span>
-          : slots.label || <span>{Intl.tv('下拉刷新')}</span>}
+          ? slots?.canLabel?.() || props.renderCanLabel || <span>{Intl.tv('松开刷新')}</span>
+          : slots?.label?.() || props.renderLabel || <span>{Intl.tv('下拉刷新')}</span>}
       </p>
     );
 
@@ -102,23 +121,24 @@ export default defineComponent({
       ) : null;
 
     const renderLoadingAnimation = (): JSX.Element => {
-      return props.loadingAnimation ? (
-        <div
-          class={classNames(
-            `${selectorPrefix}-trigger-refresh`,
-            ...(props.loadingAnimation || '').split(/\s+/),
-          )}
-          ref={refreshElRef}
-        >
-          <div></div>
-          <div></div>
-          <div></div>
-          <div></div>
-          <div></div>
-        </div>
-      ) : (
+      if (props.loadingAnimation) {
+        return (
+          <div
+            class={classNames(`${selectorPrefix}-trigger-refresh`, props.loadingAnimation || '')}
+            ref={refreshElRef}
+          >
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+          </div>
+        );
+      }
+
+      return (
         <div class={`${selectorPrefix}-trigger-refresh`} ref={refreshElRef}>
-          {slots?.loadingAnimation?.()}
+          {slots?.loadingAnimation?.() || props.renderLoadingAnimation}
         </div>
       );
     };
@@ -391,7 +411,17 @@ export default defineComponent({
       return preUpdateTime as number;
     };
 
-    onMounted(() => {});
+    onMounted(() => {
+      el = elRef.value as HTMLElement;
+      iconEl = iconElRef.value as HTMLElement;
+      scrollEl = scrollElRef.value as HTMLElement;
+      triggerInnerEl = triggerInnerElRef.value as HTMLElement;
+
+      pullHeight = getPullHeight() as number;
+      refreshHeight = (el as HTMLElement).clientHeight;
+
+      addEvents();
+    });
 
     expose({
       resetUpdateTime,

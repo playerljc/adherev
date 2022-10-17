@@ -32,10 +32,7 @@ export default defineComponent({
   setup(props, { slots }) {
     const renderHeader = (): JSX.Element => (
       <thead>
-        <tr
-          // @ts-ignore
-          class={`${selectorPrefix}-header`}
-        >
+        <tr class={`${selectorPrefix}-header`}>
           {props.columns.map((column) => {
             const { className, style, align } = column;
 
@@ -51,10 +48,7 @@ export default defineComponent({
             return (
               <th
                 {...defaultProps}
-                class={classNames(
-                  `${selectorPrefix}-header-column`,
-                  (className || '').split(/\s+/),
-                )}
+                class={classNames(`${selectorPrefix}-header-column`, className || '' || '')}
                 // @ts-ignore
                 style={{
                   ...style,
@@ -73,11 +67,7 @@ export default defineComponent({
       <tbody>
         {props.dataSource.map((record: any, rowIndex: number) => {
           return (
-            <tr
-              // @ts-ignore
-              class={`${selectorPrefix}-row`}
-              key={record[props.rowKey]}
-            >
+            <tr class={`${selectorPrefix}-row`} key={record[props.rowKey]}>
               {props.columns.map((column, columnIndex) => {
                 const { dataIndex, slot, align, valign } = column;
 
@@ -97,8 +87,7 @@ export default defineComponent({
                       {{
                         default: () =>
                           slot && slots[slot]
-                            ? // @ts-ignore
-                              slots[slot]({
+                            ? slots?.[slot]?.({
                                 value: record[dataIndex],
                                 record,
                                 rowIndex,
@@ -118,13 +107,9 @@ export default defineComponent({
     );
 
     return () => (
-      <div
-        // @ts-ignore
-        class={selectorPrefix}
-      >
+      <div class={selectorPrefix}>
         <table
-          // @ts-ignore
-          class={classNames(`${selectorPrefix}-inner`, (props.tableClassName || '').split(/\s+/))}
+          class={classNames(`${selectorPrefix}-inner`, props.tableClassName || '' || '')}
           style={props.tableStyle}
         >
           {renderHeader()}

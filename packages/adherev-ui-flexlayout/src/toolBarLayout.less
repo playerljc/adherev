@@ -1,0 +1,32 @@
+@import '~ant-design-vue/es/button/style/index';
+@import '~@baifendian/adherev-ui-css/lib/vars';
+
+.adherev-ui-flexlayout-toolbarlayout {
+  background-color: #fff;
+
+  .adherev-ui-flexlayout-toolbarlayout-main-auto-wrap {
+    padding: 20px;
+  }
+
+  .adherev-ui-flexlayout-toolbarlayout-top,
+  .adherev-ui-flexlayout-toolbarlayout-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 20px;
+
+    > .adherev-ui-flexlayout-toolbarlayout-toolbar-item {
+      &:not(:last-child) {
+        margin-right: 15px;
+      }
+    }
+  }
+
+  .adherev-ui-flexlayout-toolbarlayout-top {
+    border-bottom: 1px solid @adhere-border-color;
+  }
+
+  .adherev-ui-flexlayout-toolbarlayout-bottom {
+    border-top: 1px solid @adhere-border-color;
+  }
+}

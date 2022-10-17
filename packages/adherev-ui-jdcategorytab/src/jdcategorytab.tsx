@@ -45,15 +45,15 @@ export default defineComponent({
     let ease = IScroll.utils.ease;
 
     const getMenuClassName = computed(() =>
-      classNames(`${selectorPrefix}-menu`, props.menuClassName.split(/\s+/)),
+      classNames(`${selectorPrefix}-menu`, props.menuClassName || ''),
     );
 
     const getMenuInnerClassName = computed(() =>
-      classNames(`${selectorPrefix}-menu-inner`, props.menuInnerClassName.split(/\s+/)),
+      classNames(`${selectorPrefix}-menu-inner`, props.menuInnerClassName || ''),
     );
 
     const getTabClassName = computed(() =>
-      classNames(`${selectorPrefix}-tab`, props.tabClassName.split(/\s+/)),
+      classNames(`${selectorPrefix}-tab`, props.tabClassName || ''),
     );
 
     const getMenuItemClassName = computed(
@@ -61,7 +61,7 @@ export default defineComponent({
         classNames(
           `${selectorPrefix}-menu-item`,
           activeKey.value === curKey ? 'active' : null,
-          props.menuItemClassName.split(/\s+/),
+          props.menuItemClassName || '',
         ),
     );
 
@@ -113,9 +113,8 @@ export default defineComponent({
       return props.menuData.map((data) => (
         <li key={data.key} class={getMenuItemClassName.value(data.key)} style={props.menuItemStyle}>
           <a
-            onClick={() => {
-              scrollTo(data.key);
-            }}
+            // @ts-ignore
+            onClick={() => scrollTo(data.key)}
           >
             {slots.menuItem ? slots.menuItem(data) : data.name}
           </a>

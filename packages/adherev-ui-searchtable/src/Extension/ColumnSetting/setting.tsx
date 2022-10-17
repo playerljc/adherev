@@ -42,9 +42,7 @@ export default defineComponent({
   },
   render() {
     return (
-      // @ts-ignore
       <div class={`${selectorPrefix}-column-setting`}>
-        {/*@ts-ignore*/}
         <div class={`${selectorPrefix}-column-setting-header`}>
           <div>
             {/*@ts-ignore*/}
@@ -58,31 +56,25 @@ export default defineComponent({
           </div>
         </div>
 
-        {/*@ts-ignore*/}
         <div class={`${selectorPrefix}-column-setting-body`}>
           {/*@ts-ignore*/}
           <Draggable
             tag="ul"
             list={this.columns}
             itemKey={(item) => item.dataIndex || item.key}
+            // @ts-ignore
             handle={`.${selectorPrefix}-column-setting-handle`}
             onEnd={this.onEnd}
             v-slots={{
               item: ({ element: column }) => (
                 <li key={column.dataIndex || column.key}>
                   <img
-                    // @ts-ignore
                     class={`${selectorPrefix}-column-setting-handle`}
                     src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiBhcmlhLWhpZGRlbj0idHJ1ZSIgcm9sZT0iaW1nIiBjbGFzcz0iaWNvbmlmeSBpY29uaWZ5LS1pYyIgd2lkdGg9IjMyIiBoZWlnaHQ9IjMyIiBwcmVzZXJ2ZUFzcGVjdFJhdGlvPSJ4TWlkWU1pZCBtZWV0IiB2aWV3Qm94PSIwIDAgMjQgMjQiPjxwYXRoIGZpbGw9IiNjY2MiIGQ9Ik0xMSAxOGMwIDEuMS0uOSAyLTIgMnMtMi0uOS0yLTJzLjktMiAyLTJzMiAuOSAyIDJ6bS0yLThjLTEuMSAwLTIgLjktMiAycy45IDIgMiAyczItLjkgMi0ycy0uOS0yLTItMnptMC02Yy0xLjEgMC0yIC45LTIgMnMuOSAyIDIgMnMyLS45IDItMnMtLjktMi0yLTJ6bTYgNGMxLjEgMCAyLS45IDItMnMtLjktMi0yLTJzLTIgLjktMiAycy45IDIgMiAyem0wIDJjLTEuMSAwLTIgLjktMiAycy45IDIgMiAyczItLjkgMi0ycy0uOS0yLTItMnptMCA2Yy0xLjEgMC0yIC45LTIgMnMuOSAyIDIgMnMyLS45IDItMnMtLjktMi0yLTJ6Ij48L3BhdGg+PC9zdmc+DQo="
                     alt=""
                   />
                   {/*@ts-ignore*/}
-                  <Checkbox
-                    checked={column.display}
-                    onChange={(e) => {
-                      this.onChange(column, e);
-                    }}
-                  >
+                  <Checkbox checked={column.display} onChange={(e) => this.onChange(column, e)}>
                     {column.title}
                   </Checkbox>
                 </li>

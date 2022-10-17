@@ -1,3 +1,5 @@
+@import '~@baifendian/adherev-ui-css/lib/vars';
+
 @adherev-ui-popup-duration: 0.4s;
 
 .adherev-ui-popup {
@@ -24,9 +26,9 @@
   display: none;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0);
+  background-color: rgba(@adhere-black-color, 0);
   transition-duration: @adherev-ui-popup-duration;
   &.modal-in {
-    background-color: rgba(0, 0, 0, 0.4);
+    background-color: rgba(@adhere-black-color, 0.4);
   }
 }

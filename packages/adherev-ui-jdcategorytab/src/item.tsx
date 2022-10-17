@@ -17,7 +17,6 @@ export default defineComponent({
     const getClassName = computed(() =>
       classNames(
         `${selectorPrefix}-tab-item`,
-
         (activeKey as any).value == props.id ? 'active' : null,
       ),
     );

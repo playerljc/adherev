@@ -62,7 +62,6 @@ export default defineComponent({
             codeView: () => (
               <ConditionalRender.Show conditional={expand.value}>
                 <Card>
-                  {/*@ts-ignore**/}
                   <CodeTabPanel
                     config={props.config}
                     active={activeKey.value}

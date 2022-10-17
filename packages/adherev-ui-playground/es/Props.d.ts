@@ -74,7 +74,7 @@ declare const _default: import("vue").DefineComponent<{
     fixedHeaderScrollBody: import("vue-types").VueTypeValidableDef<boolean> & {
         default: boolean;
     };
-}, () => JSX.Element, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, Record<string, any>, string, import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<import("vue").ExtractPropTypes<{
+}, () => JSX.Element, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {}, string, import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<import("vue").ExtractPropTypes<{
     data: import("vue-types").VueTypeValidableDef<IDataItemType[]> & {
         default: () => IDataItemType[];
     };
@@ -109,14 +109,14 @@ declare const _default: import("vue").DefineComponent<{
         default: boolean;
     };
 }>>, {
+    data: IDataItemType[];
     headerClassName: string;
     headerStyle: import("vue").CSSProperties;
     bodyClassName: string;
     bodyStyle: import("vue").CSSProperties;
-    defaultCollapse: boolean;
     border: boolean;
+    defaultCollapse: boolean;
     scrollY: boolean;
     fixedHeaderScrollBody: boolean;
-    data: IDataItemType[];
 }>;
 export default _default;

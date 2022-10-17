@@ -163,7 +163,7 @@ declare const _default: import("vue").DefineComponent<{
         default: boolean;
     };
     getClipboardText: import("vue-types").VueTypeValidableDef<(e?: any) => Promise<string>>;
-}, () => JSX.Element, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, Record<string, any>, string, import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<ExtractPropTypes<{
+}, () => JSX.Element, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {}, string, import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<ExtractPropTypes<{
     active: import("vue-types").VueTypeValidableDef<string> & {
         default: string;
     };
@@ -246,7 +246,6 @@ declare const _default: import("vue").DefineComponent<{
     getClipboardText: import("vue-types").VueTypeValidableDef<(e?: any) => Promise<string>>;
 }>>, {
     active: string;
-    config: import("./CodeTabPanel").ICodeTabPanelItemProps[];
     cardProps: Partial<ExtractPropTypes<{
         headerClassName: import("vue-types").VueTypeValidableDef<string> & {
             default: string;
@@ -282,5 +281,6 @@ declare const _default: import("vue").DefineComponent<{
     }>>;
     isActive: boolean;
     defaultExpand: boolean;
+    config: import("./CodeTabPanel").ICodeTabPanelItemProps[];
 }>;
 export default _default;

@@ -51,134 +51,61 @@ export default defineComponent({
       }
 
       return (
-        // @ts-ignore
         <Collapse {..._collapseProps}>
-          <div
-            // @ts-ignore
-            class={selectorPrefix}
-          >
-            <table
-              // @ts-ignore
-              class={`${selectorPrefix}-inner`}
-            >
+          <div class={selectorPrefix}>
+            <table class={`${selectorPrefix}-inner`}>
               {props.data.map(({ name, desc, modifier, params, returnType, returnDesc }, index) => (
                 <>
-                  <tr
-                    key={`${index}`}
-                    // @ts-ignore
-                    class={`${selectorPrefix}-item`}
-                  >
-                    <td
-                      valign="top"
-                      // @ts-ignore
-                      class={`${selectorPrefix}-item-name`}
-                    >
+                  <tr key={`${index}`} class={`${selectorPrefix}-item`}>
+                    <td valign="top" class={`${selectorPrefix}-item-name`}>
                       {/*@ts-ignore*/}
                       <ConditionalRender conditional={!!modifier}>
-                        <span
-                          // @ts-ignore
-                          class={`${selectorPrefix}-modifier`}
-                        >
-                          {modifier || 'public'} -{' '}
-                        </span>
+                        <span class={`${selectorPrefix}-modifier`}>{modifier || 'public'} - </span>
                       </ConditionalRender>
-                      <span
-                        // @ts-ignore
-                        class={`${selectorPrefix}-functionName`}
-                      >
+                      <span class={`${selectorPrefix}-functionName`}>
                         {name}(
-                        <span
-                          // @ts-ignore
-                          class={`${selectorPrefix}-highlight`}
-                        >
+                        <span class={`${selectorPrefix}-highlight`}>
                           {(params || []).map((t) => t.name).join(' , ')}
                         </span>
                         )
                       </span>
                     </td>
-                    <td
-                      valign="top"
-                      // @ts-ignore
-                      class={`${selectorPrefix}-item-info`}
-                    >
-                      <div
-                        // @ts-ignore
-                        class={`${selectorPrefix}-item-desc`}
-                      >
-                        {desc}
-                      </div>
+                    <td valign="top" class={`${selectorPrefix}-item-info`}>
+                      <div class={`${selectorPrefix}-item-desc`}>{desc}</div>
                       <dl>
-                        <dt
-                          // @ts-ignore
-                          class={`${selectorPrefix}-`}
-                        >
-                          {Intl.tv('参数说明')}：
-                        </dt>
+                        <dt class={`${selectorPrefix}-`}>{Intl.tv('参数说明')}：</dt>
                         <dd>
                           {/*@ts-ignore*/}
                           <ConditionalRender conditional={!!params && params.length !== 0}>
-                            <ul
-                              // @ts-ignore
-                              class={`${selectorPrefix}-level1`}
-                            >
+                            <ul class={`${selectorPrefix}-level1`}>
                               {params.map((param, index) => (
                                 <li key={`${index + 1}`}>
                                   <div style={{ marginBottom: 10 }}>
-                                    <span
-                                      // @ts-ignore
-                                      class={`${selectorPrefix}-highlight`}
-                                    >
-                                      {param.name}
-                                    </span>{' '}
+                                    <span class={`${selectorPrefix}-highlight`}>{param.name}</span>{' '}
                                     - {param.desc || '-'}
                                   </div>
                                   <ul
-                                    // @ts-ignore
                                     class={`${selectorPrefix}-level2`}
                                     style={{ marginBottom: 10 }}
                                   >
                                     <li>
                                       {Intl.tv('类型')}
-                                      <span
-                                        // @ts-ignore
-                                        class={`${selectorPrefix}-split`}
-                                      >
-                                        -
-                                      </span>
-                                      <span
-                                        // @ts-ignore
-                                        class={`${selectorPrefix}-highlight`}
-                                      >
+                                      <span class={`${selectorPrefix}-split`}>-</span>
+                                      <span class={`${selectorPrefix}-highlight`}>
                                         {param.type || '-'}
                                       </span>
                                     </li>
                                     <li>
                                       {Intl.tv('默认值')}
-                                      <span
-                                        // @ts-ignore
-                                        class={`${selectorPrefix}-split`}
-                                      >
-                                        -
-                                      </span>
-                                      <span
-                                        // @ts-ignore
-                                        class={`${selectorPrefix}-highlight`}
-                                      >
+                                      <span class={`${selectorPrefix}-split`}>-</span>
+                                      <span class={`${selectorPrefix}-highlight`}>
                                         {param.defaultVal || '-'}
                                       </span>
                                     </li>
                                     <li>
                                       {Intl.tv('是否必填')}
-                                      <span
-                                        // @ts-ignore
-                                        class={`${selectorPrefix}-split`}
-                                      >
-                                        -
-                                      </span>
-                                      <span
-                                        // @ts-ignore
-                                        class={`${selectorPrefix}-highlight`}
-                                      >
+                                      <span class={`${selectorPrefix}-split`}>-</span>
+                                      <span class={`${selectorPrefix}-highlight`}>
                                         {param.required || false ? Intl.tv('是') : Intl.tv('否')}
                                       </span>
                                     </li>
@@ -192,39 +119,16 @@ export default defineComponent({
                       <dl>
                         <dt>{Intl.tv('返回值')}：</dt>
                         <dd>
-                          <ul
-                            // @ts-ignore
-                            class={`${selectorPrefix}-level1`}
-                          >
+                          <ul class={`${selectorPrefix}-level1`}>
                             <li>
                               {Intl.tv('类型')}
-                              <span
-                                // @ts-ignore
-                                class={`${selectorPrefix}-split`}
-                              >
-                                -
-                              </span>
-                              <span
-                                // @ts-ignore
-                                class={`${selectorPrefix}-highlight`}
-                              >
-                                {returnType || '-'}
-                              </span>
+                              <span class={`${selectorPrefix}-split`}>-</span>
+                              <span class={`${selectorPrefix}-highlight`}>{returnType || '-'}</span>
                             </li>
                             <li>
                               {Intl.tv('说明')}
-                              <span
-                                // @ts-ignore
-                                class={`${selectorPrefix}-split`}
-                              >
-                                -
-                              </span>
-                              <span
-                                // @ts-ignore
-                                class={`${selectorPrefix}-highlight`}
-                              >
-                                {returnDesc || '-'}
-                              </span>
+                              <span class={`${selectorPrefix}-split`}>-</span>
+                              <span class={`${selectorPrefix}-highlight`}>{returnDesc || '-'}</span>
                             </li>
                           </ul>
                         </dd>
@@ -233,10 +137,7 @@ export default defineComponent({
                   </tr>
                   {/*@ts-ignore*/}
                   <ConditionalRender conditional={index !== props.data.length - 1}>
-                    <div
-                      // @ts-ignore
-                      class={`${selectorPrefix}-dividing`}
-                    />
+                    <div class={`${selectorPrefix}-dividing`} />
                   </ConditionalRender>
                 </>
               ))}

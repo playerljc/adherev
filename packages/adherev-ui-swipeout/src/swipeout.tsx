@@ -1,6 +1,6 @@
 import classNames from 'classnames';
 import Swiper from 'swiper';
-import { CSSProperties, computed, defineComponent, onMounted, ref, watch } from 'vue';
+import { CSSProperties, VNode, computed, defineComponent, onMounted, ref, watch } from 'vue';
 import { bool, number, object, string } from 'vue-types';
 
 const selectorPrefix = 'adherev-ui-swipeout';
@@ -16,13 +16,15 @@ const swiperOutProps = {
   afterShow: bool().def(false),
   direction: string().def('horizontal'),
   duration: number().def(0),
+  renderBefore: object<VNode>(),
+  renderAfter: object<VNode>(),
 };
 
 export default defineComponent({
   name: 'adv-swipeout',
   props: swiperOutProps,
-  slots: ['before', 'after'],
   emits: ['init', 'slide-change-transition-start', 'slide-change-transition-end'],
+  slots: ['before', 'after'],
   setup(props, { slots, emit }) {
     const root = ref<HTMLElement>();
 
@@ -124,13 +126,13 @@ export default defineComponent({
       <div class={getContainerClassName.value} ref={root}>
         <div class="swiper-wrapper">
           <div class={getBeforeClassName.value} style={props.beforeStyle}>
-            {slots?.before?.()}
+            {slots?.before?.() || props.renderBefore}
           </div>
           <div class={getContentClassName.value} style={props.contentStyle}>
             {slots?.default?.()}
           </div>
           <div class={getAfterClassName.value} style={props.afterStyle}>
-            {slots?.after?.()}
+            {slots?.after?.() || props.renderAfter}
           </div>
         </div>
       </div>

@@ -28,8 +28,8 @@ export default defineComponent({
         ref={root}
         class={classNames(
           selectorPrefix,
-          `${props.autoFixed ? selectorPrefix + '-autoFixed' : ''}`,
-          `${props.fit ? selectorPrefix + '-fit' : ''}`,
+          `${props.autoFixed ? `${selectorPrefix}-autoFixed` : ''}`,
+          `${props.fit ? `${selectorPrefix}-fit` : ''}`,
         )}
       >
         {slots.default ? slots.default() : null}

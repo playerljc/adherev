@@ -1,3 +1,3 @@
-import { IComponent } from './types';
-declare const Component: IComponent;
+import { Component } from './types';
+declare const Component: Component;
 export default Component;

@@ -10,8 +10,7 @@ import formCreate from '@form-create/ant-design-vue';
 // import Emitter from './emitter';
 import ModalDialog from './modal';
 import {
-  IAlertArgv,
-  IConfig,
+  IAlertArgv, // IConfig,
   IConfirmArgv,
   IMessageDialogFactory,
   IModalArg,
@@ -25,7 +24,7 @@ const DEFAULT_LOCAL = 'zh_CN';
 const LOCAL = Resource.Dict.value.LocalsAntd.value;
 
 // MessageDialog的配置
-let globalConfig: IConfig | null = null;
+// let globalConfig: IConfig | null = null;
 
 /**
  * renderByIcon
@@ -408,17 +407,6 @@ const MessageDialogFactory: IMessageDialogFactory = {
 
     const el = document.createElement('div');
 
-    const i18n = Intl({
-      I18nOptions: {
-        // @ts-ignore
-        messages: (globalConfig || {}).messages,
-        locale: local || DEFAULT_LOCAL,
-        globalInjection: true,
-        legacy: false,
-      },
-      prefix: 'local',
-    });
-
     let rootRef;
 
     const app = createApp({
@@ -464,10 +452,9 @@ const MessageDialogFactory: IMessageDialogFactory = {
       .use(Slider)
       .use(Col)
       .use(Input)
-      .use(i18n)
+      // .use(i18n)
       .use(formCreate);
 
-    // @ts-ignore
     Intl.use(app);
 
     // globalConfig?.useComponents?.forEach?.((com) => {
@@ -477,7 +464,7 @@ const MessageDialogFactory: IMessageDialogFactory = {
     //     app.use(com);
     //   }
     // });
-    globalConfig?.beforeMount?.(app);
+    // globalConfig?.beforeMount?.(app);
 
     app.mount(el);
 
@@ -502,9 +489,6 @@ const MessageDialogFactory: IMessageDialogFactory = {
     } catch (err) {
       el?.parentElement?.removeChild(el);
     }
-  },
-  setConfig(gc: IConfig) {
-    globalConfig = gc;
   },
 };
 

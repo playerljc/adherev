@@ -22,7 +22,6 @@ export default (columns) => (props, children) => {
         {...props}
         class={classNames(`${selectorPrefix}-resize-table-th`, columnAlignMap.get(col?.align))}
       >
-        {/*@ts-ignore*/}
         <span class="ant-table-header-column">{children.slots.default()}</span>
       </th>
     );

@@ -145,37 +145,17 @@ export default defineComponent({
     });
 
     return () => (
-      <div
-        // @ts-ignore
-        class={selectPrefix}
-      >
-        <div
-          // @ts-ignore
-          class={`${selectPrefix}-auto`}
-        >
-          <div
-            // @ts-ignore
-            class={`${selectPrefix}-inner`}
-          >
-            {slots?.default?.()}
-          </div>
+      <div class={selectPrefix}>
+        <div class={`${selectPrefix}-auto`}>
+          <div class={`${selectPrefix}-inner`}>{slots?.default?.()}</div>
         </div>
 
         {/*@ts-ignore*/}
         <ConditionalRender conditional={!!props.anchors.length}>
-          <div
-            // @ts-ignore
-            class={`${selectPrefix}-fixed`}
-            style={{ width: `${props.anchorPosition.width}px` }}
-          >
-            <ul
-              class={`${selectPrefix}-anchor`}
-              // @ts-ignore
-              ref={anchorRef}
-            >
+          <div class={`${selectPrefix}-fixed`} style={{ width: `${props.anchorPosition.width}px` }}>
+            <ul class={`${selectPrefix}-anchor`} ref={anchorRef}>
               {props.anchors.map((anchor) => (
                 <li
-                  // @ts-ignore
                   class={anchor.anchor === activeAnchor.value ? `${selectPrefix}-active` : ''}
                   title={anchor.name}
                 >

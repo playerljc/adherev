@@ -8,7 +8,9 @@ const {
 } = BfdUtil;
 
 const Component: IComponent = withInstall(SliderScale);
+
 Component.isUse = () => true;
+
 Component.use = (Vue: any) => {
   Vue.use(Component);
   withVue(Vue, 'SliderScale', Component);

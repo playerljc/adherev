@@ -42,7 +42,7 @@ export default defineComponent({
   emits: ['canDrag', 'dragStarted', 'dragFinished', 'change'],
   props: splitLayoutProps,
   setup(props, { emit }) {
-    const root = ref<HTMLElement>();
+    const root = ref<HTMLDivElement>();
 
     const direction = inject('direction');
 
@@ -64,54 +64,30 @@ export default defineComponent({
     ]);
 
     const initEvents = () => {
-      // @ts-ignore
       root.value?.removeEventListener('mouseenter', onMouseenter);
-      // @ts-ignore
       root.value?.removeEventListener('mousedown', onMousedown);
-      // @ts-ignore
       root.value?.removeEventListener('mouseout', onMouseout);
-      // @ts-ignore
       root.value?.removeEventListener('mousemove', onMousemove);
-      // @ts-ignore
       root.value?.removeEventListener('mouseup', onMouseup);
-      // @ts-ignore
       fixedEl?.removeEventListener('mousemove', onMousemove);
-      // @ts-ignore
       fixedEl?.removeEventListener('mouseout', onMouseout);
-      // @ts-ignore
       fixedEl?.removeEventListener('mouseup', onMouseup);
-      // @ts-ignore
       autoEl?.removeEventListener('mouseout', onMouseout);
-      // @ts-ignore
       autoEl?.removeEventListener('mousemove', onMousemove);
-      // @ts-ignore
       autoEl?.removeEventListener('mouseup', onMouseup);
-      // @ts-ignore
       containerEl?.removeEventListener('mouseleave', onMouseleave);
 
-      // @ts-ignore
       root.value?.addEventListener('mouseenter', onMouseenter);
-      // @ts-ignore
       root.value?.addEventListener('mousedown', onMousedown);
-      // @ts-ignore
       root.value?.addEventListener('mousemove', onMousemove);
-      // @ts-ignore
       root.value?.addEventListener('mouseout', onMouseout);
-      // @ts-ignore
       root.value?.addEventListener('mouseup', onMouseup);
-      // @ts-ignore
       fixedEl?.addEventListener('mousemove', onMousemove);
-      // @ts-ignore
       fixedEl?.addEventListener('mouseout', onMouseout);
-      // @ts-ignore
       fixedEl?.addEventListener('mouseup', onMouseup);
-      // @ts-ignore
       autoEl?.addEventListener('mousemove', onMousemove);
-      // @ts-ignore
       autoEl?.addEventListener('mouseout', onMouseout);
-      // @ts-ignore
       autoEl?.addEventListener('mouseup', onMouseup);
-      // @ts-ignore
       containerEl?.addEventListener('mouseleave', onMouseleave);
     };
 
@@ -169,24 +145,11 @@ export default defineComponent({
 
       const fixedEl = getFixedEl();
 
-      console.log('fixedEl', fixedEl);
-
       const autoEl = getAutoEl();
-
-      console.log('autoEl', autoEl);
 
       const { offset } = getProps();
 
-      // @ts-ignore
       maxDimension = fixedEl[offset] + autoEl[offset];
-
-      console.log('offset', offset);
-
-      console.log('fixedEl[offset]', fixedEl[offset]);
-
-      console.log('autoEl[offset]', autoEl[offset]);
-
-      console.log('maxDimension', maxDimension);
 
       return maxDimension;
     };
@@ -201,8 +164,7 @@ export default defineComponent({
     /**
      * getProps
      */
-    // @ts-ignore
-    const getProps = () => directionProp[direction];
+    const getProps = () => directionProp[direction as string];
 
     /**
      * getMaxSize
@@ -231,7 +193,6 @@ export default defineComponent({
 
       const { offset } = getProps();
 
-      // @ts-ignore
       const elSize = (root.value as HTMLElement)[offset];
 
       if (typeof props.minSize === 'string') {
@@ -243,7 +204,7 @@ export default defineComponent({
       return resultVal < elSize ? elSize : resultVal;
     };
 
-    const onMouseenter = (e: MouseEvent) => {
+    const onMouseenter = (e) => {
       root.value?.classList.add(`${selectorPrefix}-${getResizeClass()}`);
 
       isOut = false;
@@ -253,7 +214,7 @@ export default defineComponent({
       emit('canDrag', e);
     };
 
-    const onMousedown = (e: { [x: string]: number }) => {
+    const onMousedown = (e) => {
       root.value?.classList.remove(`${selectorPrefix}-${getResizeClass()}`);
 
       if (isEnter) {
@@ -261,14 +222,13 @@ export default defineComponent({
 
         startVal = e[getProps?.().page];
 
-        // @ts-ignore
         fixedValue = fixedEl?.[getProps?.().offset];
 
         emit('dragStarted', e);
       }
     };
 
-    const onMouseup = (e: MouseEvent) => {
+    const onMouseup = (e) => {
       root.value?.classList.add(`${selectorPrefix}-${getResizeClass()}`);
 
       if (isDown) {
@@ -286,7 +246,7 @@ export default defineComponent({
       }
     };
 
-    const onMouseleave = (e: MouseEvent) => {
+    const onMouseleave = (e) => {
       if (isDown) {
         isDown = false;
 
@@ -302,11 +262,10 @@ export default defineComponent({
       }
     };
 
-    const onMousemove = (e: MouseEvent) => {
+    const onMousemove = (e) => {
       if (isEnter && isDown) {
         isMove = true;
 
-        // @ts-ignore
         const end = e[getProps().page];
 
         // console.log('end', end);
@@ -355,7 +314,7 @@ export default defineComponent({
       }
     };
 
-    const onMouseout = (e: MouseEvent) => {
+    const onMouseout = (e) => {
       isOut = true;
 
       if (!isDown) {

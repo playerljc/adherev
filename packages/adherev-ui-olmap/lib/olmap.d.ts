@@ -1,7 +1,43 @@
 import { IOLMapData } from './types';
-declare const _default: import("vue").DefineComponent<Readonly<import("vue").ComponentPropsOptions<{
-    [x: string]: unknown;
-}>>, unknown, IOLMapData, {}, {
+declare const _default: import("vue").DefineComponent<{
+    type: {
+        type: StringConstructor;
+        default: string;
+        validator(val: string): boolean;
+    };
+    mapConfig: {
+        type: ObjectConstructor;
+        default: () => void;
+    };
+    maxZoom: {
+        type: (StringConstructor | NumberConstructor)[];
+        default: any;
+    };
+    zoom: {
+        type: (StringConstructor | NumberConstructor)[];
+        default: any;
+    };
+    fitZoom: {
+        type: (StringConstructor | NumberConstructor)[];
+        default: any;
+    };
+    minZoom: {
+        type: (StringConstructor | NumberConstructor)[];
+        default: any;
+    };
+    center: {
+        type: ArrayConstructor;
+        default: () => any;
+    };
+    extent: {
+        type: ArrayConstructor;
+        default: () => never[];
+    };
+    layers: {
+        type: ArrayConstructor;
+        default: () => undefined;
+    };
+}, unknown, IOLMapData, {}, {
     /**
      * addMainGeoJSONLayer - 添加主的geoJSON层
      * @param geoJSONStyle
@@ -66,9 +102,53 @@ declare const _default: import("vue").DefineComponent<Readonly<import("vue").Com
      * @return {*|Map}
      */
     getMap(): any;
-}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, Record<string, any>, string, import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, readonly string[] | Readonly<import("vue").ExtractPropTypes<Readonly<import("vue").ComponentObjectPropsOptions<{
-    [x: string]: unknown;
-}>>>>, {
-    [x: number]: string;
-} | {}>;
+}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {}, string, import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<import("vue").ExtractPropTypes<{
+    type: {
+        type: StringConstructor;
+        default: string;
+        validator(val: string): boolean;
+    };
+    mapConfig: {
+        type: ObjectConstructor;
+        default: () => void;
+    };
+    maxZoom: {
+        type: (StringConstructor | NumberConstructor)[];
+        default: any;
+    };
+    zoom: {
+        type: (StringConstructor | NumberConstructor)[];
+        default: any;
+    };
+    fitZoom: {
+        type: (StringConstructor | NumberConstructor)[];
+        default: any;
+    };
+    minZoom: {
+        type: (StringConstructor | NumberConstructor)[];
+        default: any;
+    };
+    center: {
+        type: ArrayConstructor;
+        default: () => any;
+    };
+    extent: {
+        type: ArrayConstructor;
+        default: () => never[];
+    };
+    layers: {
+        type: ArrayConstructor;
+        default: () => undefined;
+    };
+}>>, {
+    center: unknown[];
+    layers: unknown[];
+    fitZoom: string | number;
+    zoom: string | number;
+    minZoom: string | number;
+    maxZoom: string | number;
+    extent: unknown[];
+    type: string;
+    mapConfig: Record<string, any>;
+}>;
 export default _default;

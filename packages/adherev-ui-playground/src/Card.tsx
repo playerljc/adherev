@@ -29,38 +29,21 @@ export default defineComponent({
   props: cardProps,
   setup(props, { slots }) {
     return () => (
-      <div
-        // @ts-ignore
-        class={selectorPrefix}
-      >
+      <div class={selectorPrefix}>
         {/*@ts-ignore*/}
         <ConditionalRender conditional={!!props.title || !!props.extra}>
           <div
-            // @ts-ignore
-            class={classNames(
-              `${selectorPrefix}-header`,
-              (props.headerClassName || '').split(/\s+/),
-            )}
+            class={classNames(`${selectorPrefix}-header`, props.headerClassName || '' || '')}
             style={props.headerStyle}
           >
             {/*@ts-ignore*/}
             <ConditionalRender conditional={!!props.title}>
-              <div
-                // @ts-ignore
-                class={`${selectorPrefix}-header-title`}
-              >
-                {props.title}
-              </div>
+              <div class={`${selectorPrefix}-header-title`}>{props.title}</div>
             </ConditionalRender>
 
             {/*@ts-ignore*/}
             <ConditionalRender conditional={!!props.extra}>
-              <div
-                // @ts-ignore
-                class={`${selectorPrefix}-header-extra`}
-              >
-                {props.extra}
-              </div>
+              <div class={`${selectorPrefix}-header-extra`}>{props.extra}</div>
             </ConditionalRender>
           </div>
         </ConditionalRender>
@@ -68,8 +51,7 @@ export default defineComponent({
         {/*@ts-ignore*/}
         <ConditionalRender conditional={!!slots.default}>
           <div
-            // @ts-ignore
-            class={classNames(`${selectorPrefix}-body`, (props.bodyClassName || '').split(/\s+/))}
+            class={classNames(`${selectorPrefix}-body`, props.bodyClassName || '' || '')}
             style={props.bodyStyle}
           >
             {slots?.default?.()}
@@ -78,18 +60,10 @@ export default defineComponent({
 
         {/*@ts-ignore*/}
         <ConditionalRender conditional={!!props.description?.title || !!props.description?.info}>
-          <div
-            // @ts-ignore
-            class={`${selectorPrefix}-description`}
-          >
+          <div class={`${selectorPrefix}-description`}>
             {/*@ts-ignore*/}
             <ConditionalRender conditional={!!props.description?.title}>
-              <div
-                // @ts-ignore
-                class={`${selectorPrefix}-description-title`}
-              >
-                {props.description?.title}
-              </div>
+              <div class={`${selectorPrefix}-description-title`}>{props.description?.title}</div>
             </ConditionalRender>
 
             {/*@ts-ignore*/}
@@ -102,19 +76,11 @@ export default defineComponent({
         {/*@ts-ignore**/}
         <ConditionalRender conditional={!!(props.actions && props.actions.length)}>
           <ul
-            // @ts-ignore
-            class={classNames(
-              `${selectorPrefix}-action`,
-              (props.actionClassName || '').split(/\s+/),
-            )}
+            class={classNames(`${selectorPrefix}-action`, props.actionClassName || '' || '')}
             style={props.actionStyle}
           >
             {props.actions?.map((action, index) => (
-              <li
-                key={`${index + 1}`}
-                // @ts-ignore
-                class={`${selectorPrefix}-action-item`}
-              >
+              <li key={`${index + 1}`} class={`${selectorPrefix}-action-item`}>
                 {slots[action]?.()}
               </li>
             ))}

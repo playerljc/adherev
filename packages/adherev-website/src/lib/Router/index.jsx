@@ -1,10 +1,12 @@
-import BasicLayout from '../BasicLayout';
-import Util from '../BasicLayout/Util';
-import RouterConfig from '@/config/router.config';
 import { Skeleton } from 'ant-design-vue';
 import omit from 'omit.js';
-import { defineAsyncComponent, resolveComponent, h } from 'vue';
+import { defineAsyncComponent, h, resolveComponent } from 'vue';
 import { createRouter, createWebHistory } from 'vue-router';
+
+import RouterConfig from '@/config/router.config';
+
+import BasicLayout from '../BasicLayout';
+import Util from '../BasicLayout/Util';
 
 /**
  * WrapperComponent

@@ -104,155 +104,155 @@ export {
 
 export default {
   install: function (Vue) {
-    if (BackTopAnimation.isUse()) {
-      BackTopAnimation.use(Vue);
+    if ((BackTopAnimation as any)?.isUse()) {
+      (BackTopAnimation as any)?.use(Vue);
     }
-    if (CascadeCompared.isUse()) {
-      CascadeCompared.use(Vue);
+    if ((CascadeCompared as any)?.isUse()) {
+      (CascadeCompared as any)?.use(Vue);
     }
-    if (ConditionalRender.isUse()) {
-      ConditionalRender.use(Vue);
+    if ((ConditionalRender as any)?.isUse()) {
+      (ConditionalRender as any)?.use(Vue);
     }
-    if (DelConfirm.isUse()) {
-      DelConfirm.use(Vue);
+    if ((DelConfirm as any)?.isUse()) {
+      (DelConfirm as any)?.use(Vue);
     }
-    if (ImportantConfirm.isUse()) {
-      ImportantConfirm.use(Vue);
+    if ((ImportantConfirm as any)?.isUse()) {
+      (ImportantConfirm as any)?.use(Vue);
     }
-    if (ContextMenu.isUse()) {
-      ContextMenu.use(Vue);
+    if ((ContextMenu as any)?.isUse()) {
+      (ContextMenu as any)?.use(Vue);
     }
-    if (FlexLayout.isUse()) {
-      FlexLayout.use(Vue);
+    if ((FlexLayout as any)?.isUse()) {
+      (FlexLayout as any)?.use(Vue);
     }
-    if (FontSizeSetting.isUse()) {
-      FontSizeSetting.use(Vue);
+    if ((FontSizeSetting as any)?.isUse()) {
+      (FontSizeSetting as any)?.use(Vue);
     }
-    if (GlobalIndicator.isUse()) {
-      GlobalIndicator.use(Vue);
+    if ((GlobalIndicator as any)?.isUse()) {
+      (GlobalIndicator as any)?.use(Vue);
     }
-    if (HistoryBack.isUse()) {
-      HistoryBack.use(Vue);
+    if ((HistoryBack as any)?.isUse()) {
+      (HistoryBack as any)?.use(Vue);
     }
-    if (ImageLazy.isUse()) {
-      ImageLazy.use(Vue);
+    if ((ImageLazy as any)?.isUse()) {
+      (ImageLazy as any)?.use(Vue);
     }
-    if (JdCategoryTab.isUse()) {
-      JdCategoryTab.use(Vue);
+    if ((JdCategoryTab as any)?.isUse()) {
+      (JdCategoryTab as any)?.use(Vue);
     }
-    if (MessageDialog.isUse()) {
-      MessageDialog.use(Vue);
+    if ((MessageDialog as any)?.isUse()) {
+      (MessageDialog as any)?.use(Vue);
     }
-    if (Notification.isUse()) {
-      Notification.use(Vue);
+    if ((Notification as any)?.isUse()) {
+      (Notification as any)?.use(Vue);
     }
-    if (OLMap.isUse()) {
-      OLMap.use(Vue);
+    if ((OLMap as any)?.isUse()) {
+      (OLMap as any)?.use(Vue);
     }
-    if (Permission.isUse()) {
-      Permission.use(Vue);
+    if ((Permission as any)?.isUse()) {
+      (Permission as any)?.use(Vue);
     }
-    if (PlayGround.isUse()) {
-      PlayGround.use(Vue);
+    if ((PlayGround as any)?.isUse()) {
+      (PlayGround as any)?.use(Vue);
     }
-    if (PolygonSelection.isUse()) {
-      PolygonSelection.use(Vue);
+    if ((PolygonSelection as any)?.isUse()) {
+      (PolygonSelection as any)?.use(Vue);
     }
-    if (Popup.isUse()) {
-      Popup.use(Vue);
+    if ((Popup as any)?.isUse()) {
+      (Popup as any)?.use(Vue);
     }
-    if (ErrorPrompt.isUse()) {
-      ErrorPrompt.use(Vue);
+    if ((ErrorPrompt as any)?.isUse()) {
+      (ErrorPrompt as any)?.use(Vue);
     }
-    if (SuccessPrompt.isUse()) {
-      SuccessPrompt.use(Vue);
+    if ((SuccessPrompt as any)?.isUse()) {
+      (SuccessPrompt as any)?.use(Vue);
     }
-    if (WarnPrompt.isUse()) {
-      WarnPrompt.use(Vue);
+    if ((WarnPrompt as any)?.isUse()) {
+      (WarnPrompt as any)?.use(Vue);
     }
-    if (PullRefresh.isUse()) {
-      PullRefresh.use(Vue);
+    if ((PullRefresh as any)?.isUse()) {
+      (PullRefresh as any)?.use(Vue);
     }
-    if (Revolving.isUse()) {
-      Revolving.use(Vue);
+    if ((Revolving as any)?.isUse()) {
+      (Revolving as any)?.use(Vue);
     }
-    if (ScrollLoad.isUse()) {
-      ScrollLoad.use(Vue);
+    if ((ScrollLoad as any)?.isUse()) {
+      (ScrollLoad as any)?.use(Vue);
     }
-    if (SearchTable.isUse()) {
-      SearchTable.use(Vue);
+    if ((SearchTable as any)?.isUse()) {
+      (SearchTable as any)?.use(Vue);
     }
-    if (SlideLayout.isUse()) {
-      SlideLayout.use(Vue);
+    if ((SlideLayout as any)?.isUse()) {
+      (SlideLayout as any)?.use(Vue);
     }
-    if (SliderScale.isUse()) {
-      SliderScale.use(Vue);
+    if ((SliderScale as any)?.isUse()) {
+      (SliderScale as any)?.use(Vue);
     }
-    if (Space.isUse()) {
-      Space.use(Vue);
+    if ((Space as any)?.isUse()) {
+      (Space as any)?.use(Vue);
     }
-    if (Spin.isUse()) {
-      Spin.use(Vue);
+    if ((Spin as any)?.isUse()) {
+      (Spin as any)?.use(Vue);
     }
-    if (Split.isUse()) {
-      Split.use(Vue);
+    if ((Split as any)?.isUse()) {
+      (Split as any)?.use(Vue);
     }
-    if (SplitLayout.isUse()) {
-      SplitLayout.use(Vue);
+    if ((SplitLayout as any)?.isUse()) {
+      (SplitLayout as any)?.use(Vue);
     }
-    if (StickupLayout.isUse()) {
-      StickupLayout.use(Vue);
+    if ((StickupLayout as any)?.isUse()) {
+      (StickupLayout as any)?.use(Vue);
     }
-    if (Surnames.isUse()) {
-      Surnames.use(Vue);
+    if ((Surnames as any)?.isUse()) {
+      (Surnames as any)?.use(Vue);
     }
-    if (Suspense.isUse()) {
-      Suspense.use(Vue);
+    if ((Suspense as any)?.isUse()) {
+      (Suspense as any)?.use(Vue);
     }
-    if (SwipeOut.isUse()) {
-      SwipeOut.use(Vue);
+    if ((SwipeOut as any)?.isUse()) {
+      (SwipeOut as any)?.use(Vue);
     }
-    if (Util.isUse()) {
-      Util.use(Vue);
+    if ((Util as any)?.isUse()) {
+      (Util as any)?.use(Vue);
     }
-    if (AdapterScreen.isUse()) {
-      AdapterScreen.use(Vue);
+    if ((AdapterScreen as any)?.isUse()) {
+      (AdapterScreen as any)?.use(Vue);
     }
-    if (Browsersniff.isUse()) {
-      Browsersniff.use(Vue);
+    if ((Browsersniff as any)?.isUse()) {
+      (Browsersniff as any)?.use(Vue);
     }
-    if (Ajax.isUse()) {
-      Ajax.use(Vue);
+    if ((Ajax as any)?.isUse()) {
+      (Ajax as any)?.use(Vue);
     }
-    if (Dict.isUse()) {
-      Dict.use(Vue);
+    if ((Dict as any)?.isUse()) {
+      (Dict as any)?.use(Vue);
     }
-    if (Domain.isUse()) {
-      Domain.use(Vue);
+    if ((Domain as any)?.isUse()) {
+      (Domain as any)?.use(Vue);
     }
-    if (Emitter.isUse()) {
-      Emitter.use(Vue);
+    if ((Emitter as any)?.isUse()) {
+      (Emitter as any)?.use(Vue);
     }
-    if (Intl.isUse()) {
-      Intl.use(Vue);
+    if ((Intl as any)?.isUse()) {
+      (Intl as any)?.use(Vue);
     }
-    if (Mixins.isUse()) {
-      Mixins.use(Vue);
+    if ((Mixins as any)?.isUse()) {
+      (Mixins as any)?.use(Vue);
     }
-    if (NotNull.isUse()) {
-      NotNull.use(Vue);
+    if ((NotNull as any)?.isUse()) {
+      (NotNull as any)?.use(Vue);
     }
-    if (Preferences.isUse()) {
-      Preferences.use(Vue);
+    if ((Preferences as any)?.isUse()) {
+      (Preferences as any)?.use(Vue);
     }
-    if (Resource.isUse()) {
-      Resource.use(Vue);
+    if ((Resource as any)?.isUse()) {
+      (Resource as any)?.use(Vue);
     }
-    if (Validator.isUse()) {
-      Validator.use(Vue);
+    if ((Validator as any)?.isUse()) {
+      (Validator as any)?.use(Vue);
     }
-    if (WatchMemoized.isUse()) {
-      WatchMemoized.use(Vue);
+    if ((WatchMemoized as any)?.isUse()) {
+      (WatchMemoized as any)?.use(Vue);
     }
   },
 };

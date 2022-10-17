@@ -20,8 +20,9 @@
 </template>
 
 <script>
-import PopupInner from './popup';
 import { Popup } from '@baifendian/adherev';
+
+import PopupInner from './popup';
 
 export default {
   data() {
