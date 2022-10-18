@@ -222,7 +222,6 @@ class AnimationManager {
     return addPoints;
   }
 
-  // eslint-disable-next-line consistent-return
   run(lineData, pointsMapIndex) {
     if (!lineData || this.runing) return false;
 
@@ -232,7 +231,6 @@ class AnimationManager {
     this.loopTask(it).then(() => {
       // 所有动画完成
       this.runing = false;
-      console.log('finish');
     });
   }
 
@@ -259,7 +257,6 @@ class AnimationManager {
 
   runTask(points) {
     this.preActiveId = '';
-    // eslint-disable-next-line no-unused-vars,consistent-return
     return new Promise((resolve) => {
       const self = this;
 
@@ -274,7 +271,6 @@ class AnimationManager {
       this.lines = [];
       this.handler = null;
 
-      // eslint-disable-next-line consistent-return
       function loop() {
         if (topIndex === points.length) {
           self.stopTask();
@@ -351,7 +347,6 @@ class AnimationManager {
     });
   }
 
-  // eslint-disable-next-line consistent-return
   stopTask() {
     if (!this.runing) return false;
 
