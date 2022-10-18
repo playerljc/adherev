@@ -103,7 +103,6 @@ export default (serviceName) =>
           this[propertys[1]] = moments && moments.length ? moments[1] : null;
         },
         // ------------ 不需要重写(override)的方法 end ------------------
-
         /**
          * getParams
          * @override
@@ -492,7 +491,4 @@ export default (serviceName) =>
           }
         : {},
     ),
-    // render(h) {
-    //   return this.renderSearchTableImplement(h);
-    // },
   });

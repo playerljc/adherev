@@ -378,7 +378,6 @@ const SearchTable: any = extend({
           });
         },
         showTotal: (total) => {
-          // @ts-ignore
           return Intl.tv(`当前 {page}-{pageSize}/共 {total}条`, {
             page: this.page,
             pageSize: this.limit,
