@@ -63,6 +63,7 @@ const PullRefresh: any = {
   data() {
     return {
       isCan: false,
+      preUpdateTime: new Date().getTime(),
       $maskEl: null,
       $el: null,
       $iconEl: null,
