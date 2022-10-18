@@ -427,6 +427,7 @@ export default defineComponent({
     expose({
       resetUpdateTime,
       getUpdateTime,
+      refresh,
     });
 
     renderMask();
