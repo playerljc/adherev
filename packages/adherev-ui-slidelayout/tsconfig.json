@@ -1,0 +1,14 @@
+{
+  "extends": "../../node_modules/@ctsj/buildv/buildpackagetsconfig-base",
+  "compilerOptions": {
+    "allowJs": true,
+    "experimentalDecorators": true,
+    "declarationDir": "./lib",
+    "outDir": "./lib",
+    "baseUrl": "./",
+    "module": "esnext",
+    "types": ["vue"]
+  },
+  "exclude": ["node_modules"],
+  "include": ["src/**/*"]
+}

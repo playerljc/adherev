@@ -277,7 +277,7 @@ export default (serviceName: string) =>
            * @description - 渲染主体
            */
           renderInner(): VNode | null {
-            const innerVNode = this.renderSearchTableInner();
+            const innerVNode = this.$renderInnerSearchTable();
 
             return (
               <div ref="innerWrapRef" class={`${selectorPrefix}-tablewrapper`}>

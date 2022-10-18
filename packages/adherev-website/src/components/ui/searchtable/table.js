@@ -54,10 +54,10 @@ export default {
 
       return {
         startTime: startTime
-          ? startTime.format(Resource.Dict.value.ResourceMomentFormatFull.value)
+          ? startTime.format(Resource.Dict.value.ResourceMomentFormat15.value())
           : null,
         endTime: endTime
-          ? endTime.format(Resource.Dict.value.ResourceMomentFormatFull.value)
+          ? endTime.format(Resource.Dict.value.ResourceMomentFormat15.value())
           : null,
       };
     },
@@ -140,7 +140,7 @@ export default {
       }
 
       if (column.key === 'birthday') {
-        return text ? moment(text).format(Resource.Dict.value.ResourceMomentFormat10.value) : '';
+        return text ? moment(text).format(Resource.Dict.value.ResourceMomentFormat10.value()) : '';
       }
 
       return text;

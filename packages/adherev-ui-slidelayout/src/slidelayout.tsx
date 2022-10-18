@@ -25,8 +25,6 @@ export function slider(
     callback(el);
   }
 
-  console.log('x,y,z', x, y, z);
-
   (el as HTMLElement).style.transform = `translate3d(${x},${y},${z})`;
 
   (el as HTMLElement).style.transition = `all ${time} ease`;

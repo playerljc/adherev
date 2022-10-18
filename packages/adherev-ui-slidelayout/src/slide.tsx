@@ -31,6 +31,8 @@ export default function useSlide(props: any, { emit }: any) {
 
   const setPositionConfig = (callback: ({ el, maskEl }: any) => object) => {
     positionConfig = callback({ el, maskEl });
+
+    return Promise.resolve();
   };
 
   const getDuration = (time: undefined | null | string | number) =>
@@ -96,14 +98,10 @@ export default function useSlide(props: any, { emit }: any) {
 
   onMounted(() => {
     if (props.mask) {
-      maskEl = createMask(props.zIndex, () => {
-        close();
-      });
+      maskEl = createMask(props.zIndex, () => close());
 
       el.value?.parentElement?.insertBefore(maskEl as HTMLElement, el.value);
     }
-
-    initial();
   });
 
   onBeforeUnmount(() => {
@@ -116,5 +114,6 @@ export default function useSlide(props: any, { emit }: any) {
     setPositionConfig,
     getDuration,
     getElRef,
+    initial,
   };
 }

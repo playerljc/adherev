@@ -28,7 +28,8 @@ export declare const slideProps: {
     };
 };
 export default function useSlide(props: any, { emit }: any): {
-    setPositionConfig: (callback: ({ el, maskEl }: any) => object) => void;
+    setPositionConfig: (callback: ({ el, maskEl }: any) => object) => Promise<void>;
     getDuration: (time: undefined | null | string | number) => any;
     getElRef: () => import("vue").Ref<HTMLElement | undefined>;
+    initial: () => void;
 };

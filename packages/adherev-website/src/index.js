@@ -3,7 +3,7 @@
 import NProgress from 'nprogress';
 import { createApp } from 'vue';
 
-import { Intl, MessageDialog, Resource, Util } from '@baifendian/adherev';
+import { Intl, Resource, Util } from '@baifendian/adherev';
 
 import ComponentRegisterConfig from '@/config/component.register.config.js';
 

@@ -42,7 +42,7 @@ export default defineComponent(
   extend({
     className: 'SearchTable',
     // @overview
-    mixins: [Suspense, updatedEx],
+    mixins: [Suspense, updatedEx, watchEffect],
     props: {
       className: {
         type: String,
@@ -153,7 +153,7 @@ export default defineComponent(
       components() {
         return {
           header: {
-            cell: SearchTableResizableTitle(this.getSearchTableTableColumns()),
+            cell: SearchTableResizableTitle(this.getTableColumns()),
           },
         };
       },
@@ -886,7 +886,9 @@ export default defineComponent(
             <ConditionalRender conditional={!!$slots.tableHeader || !!this.renderTableHeader}>
               {{
                 default: () => (
-                  <Fixed>{$slots.tableHeader(this.getContext()) || this.renderTableHeader()}</Fixed>
+                  <Fixed>
+                    {$slots?.tableHeader?.(this.getContext()) || this.renderTableHeader()}
+                  </Fixed>
                 ),
               }}
             </ConditionalRender>
@@ -910,7 +912,9 @@ export default defineComponent(
             <ConditionalRender conditional={!!$slots.tableFooter || !!this.renderTableFooter}>
               {{
                 default: () => (
-                  <Fixed>{$slots.tableFooter(this.getContext()) || this.renderTableFooter()}</Fixed>
+                  <Fixed>
+                    {$slots?.tableFooter?.(this.getContext()) || this.renderTableFooter()}
+                  </Fixed>
                 ),
               }}
             </ConditionalRender>

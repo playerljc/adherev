@@ -37,7 +37,7 @@ export default defineComponent({
 
     return () => (
       <div class={selectorPrefix} ref="el">
-        <div class={`${selectorPrefix}-rangeWrap`}>
+        <div class={`${selectorPrefix}-rangewrap`}>
           <div class={`${selectorPrefix}-separatedtool`}>
             <div class={`${selectorPrefix}-separated`}>
               <span>{Intl.tv('小')}</span>
