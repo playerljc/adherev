@@ -1,0 +1,48 @@
+{
+  "name": "@baifendian/adherev-ui-configprovider",
+  "version": "1.0.0-alpha",
+  "description": "全局配置",
+  "main": "lib/index.js",
+  "module": "es/index.js",
+  "files": [
+    "lib",
+    "es",
+    "umd"
+  ],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "buildpackage:cjs": "ctbuildv buildpackagets -c ctbuildv.package.ts.cjs.config.js -o lib",
+    "buildpackage:es": "ctbuildv buildpackagets -c ctbuildv.package.ts.esm.config.js -o es",
+    "buildpackage": "npm-run-all --parallel buildpackage:cjs buildpackage:es",
+    "buildumd": "ctbuildv buildumd --config ctbuildv.config.umd.js --packagename AdherevConfigProvider --define alias=@,evnVars=true",
+    "generatorchangelog": "bd changelog/CHANGELOG.html"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://gitee.com/playerljc/adherev"
+  },
+  "resolutions": {},
+  "author": "playerljc",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://gitee.com/playerljc/adherev/issues"
+  },
+  "homepage": "https://gitee.com/playerljc/adherev",
+  "publishConfig": {
+    "access": "public"
+  },
+  "devDependencies": {
+    "@babel/runtime": "^7.17.2",
+    "@ctsj/buildv": "^5.0.3",
+    "npm-run-all": "^4.1.5",
+    "typescript": "^4.5.5"
+  },
+  "dependencies": {
+    "@baifendian/adherev-util": "^2.0.4-alpha",
+    "@baifendian/adherev-util-intl": "^2.0.5-alpha",
+    "@baifendian/adherev-util-resource": "^2.0.5-alpha",
+    "@baifendian/adherev-ui-hooks": "^1.0.0-alpha",
+    "vue": "^3.2.31",
+    "vue-types": "^4.1.1"
+  }
+}

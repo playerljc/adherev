@@ -1,0 +1,1 @@
+{"version":3,"file":"index.js","sources":["index.js"],"sourcesContent":["import useForceUpdate from './useForceUpdate';\nexport default {\n  useForceUpdate: useForceUpdate\n};"],"names":["useForceUpdate"],"mappings":"OAAOA,mBAAoB,iCACZ,CACbA,eAAgBA,cAClB"}

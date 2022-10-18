@@ -1,0 +1,2 @@
+import{createVNode as _createVNode}from"vue";import{defineComponent}from"vue";var selectorPrefix="adherev-ui-contourblock";export default defineComponent({name:"adv-contourblock",setup:function(e,o){var r=o.slots;return function(){var e;return _createVNode("div",null,[_createVNode("div",{class:"".concat(selectorPrefix)},[_createVNode("div",{class:"".concat(selectorPrefix,"-inner")},[null==(e=null==r?void 0:r.default)?void 0:e.call(r)])])])}}});
+//# sourceMappingURL=contourblock.js.map

@@ -1,0 +1,1 @@
+{"version":3,"file":"useForceUpdate.js","sources":["useForceUpdate.js"],"sourcesContent":["import { ref } from 'vue';\nexport default (function () {\n  var count = ref(0);\n  count.value = count.value + 1;\n});"],"names":["ref","count","value"],"mappings":"OAASA,GAAgB,KAAL,qBACL,WACb,IAAIC,EAAQD,IAAI,CAAC,EACjBC,EAAMC,MAAQD,EAAMC,MAAQ,CAC7B"}
