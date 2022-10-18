@@ -1147,16 +1147,16 @@
     "@babel/helper-validator-identifier" "^7.19.1"
     to-fast-properties "^2.0.0"
 
-"@baifendian/adhere-ui-bmap@^1.0.16":
-  version "1.0.21"
-  resolved "https://registry.yarnpkg.com/@baifendian/adhere-ui-bmap/-/adhere-ui-bmap-1.0.21.tgz#27c083cae8edf0ed66d453dfd71797122ebe9aff"
-  integrity sha512-mRA+f6+2RovCbav8lGfVziNhSgKa2Yji5DBirXNnAQ9tHbOSQcE5zF93Wy0Z83xQQL1YF4VPHLoZjIS1QB2MTQ==
+"@baifendian/adhere-ui-bmap@^1.0.21-fix.1":
+  version "1.0.21-fix.1"
+  resolved "https://registry.yarnpkg.com/@baifendian/adhere-ui-bmap/-/adhere-ui-bmap-1.0.21-fix.1.tgz#548f9f7666e47d1828eec81f30fb25a858fe139f"
+  integrity sha512-//d/E8q27VtiQqPOVHX9Hyl6pHaNHfdG92fYiK9lUyuFDlPz8h/hNs6ce+UKNu2KxXV990lZxNM/kHsOZBf2ng==
   dependencies:
     "@baifendian/adhere-ui-conditionalrender" "^1.0.21"
     "@baifendian/adhere-ui-css" "^1.0.21"
     "@baifendian/adhere-util" "^1.0.21"
     "@baifendian/adhere-util-emitter" "^1.0.20"
-    "@baifendian/adhere-util-intl" "^1.0.21"
+    "@baifendian/adhere-util-intl" "^1.0.21-fix.1"
     "@turf/turf" "^6.5.0"
     "@types/react" "^17.0.0"
     "@types/react-dom" "^17.0.0"
@@ -1175,22 +1175,17 @@
     react "^17.0.1"
     react-dom "^17.0.1"
 
-"@baifendian/adhere-ui-css@^1.0.15", "@baifendian/adhere-ui-css@^1.0.21":
+"@baifendian/adhere-ui-css@^1.0.21":
   version "1.0.21"
   resolved "https://registry.yarnpkg.com/@baifendian/adhere-ui-css/-/adhere-ui-css-1.0.21.tgz#a5605ee0008845381684b6d907a94944c3a09f1e"
   integrity sha512-+m8XeKx2BuanU3A9w9TXAYpulU6SDXgCdZ2oJJ38O2qEFFH847vj/fawDn1hzbUPO4pGz/vNCoLF4LEl1O8LYA==
-
-"@baifendian/adhere-ui-historyback@^1.0.15":
-  version "1.0.18"
-  resolved "https://registry.yarnpkg.com/@baifendian/adhere-ui-historyback/-/adhere-ui-historyback-1.0.18.tgz#dbacaa3ac423dcb4bd501550d0961cd457ff524c"
-  integrity sha512-KK/lKLC+9jiQzbJsXiDjSUfOud5ufCbtBnaixzwF5aeq6yG1EoB1HhJ//ditpjuBUPycTdpRAHy2rPHd5vV+Uw==
 
 "@baifendian/adhere-ui-historyback@^1.0.18-fix.2":
   version "1.0.18-fix.2"
   resolved "https://registry.yarnpkg.com/@baifendian/adhere-ui-historyback/-/adhere-ui-historyback-1.0.18-fix.2.tgz#108d201857e2bf8a3246052826721eb8e815a76d"
   integrity sha512-oHcMThpPqo8R/v09g1BrU/dBHm6b57Tfn9CwZLZaaO0s4IwUpJo1FcA/xNIRbhwtJVkF7DsI38F/AM5dh/By7Q==
 
-"@baifendian/adhere-ui-polygonselection@^1.0.15":
+"@baifendian/adhere-ui-polygonselection@^1.0.21":
   version "1.0.21"
   resolved "https://registry.yarnpkg.com/@baifendian/adhere-ui-polygonselection/-/adhere-ui-polygonselection-1.0.21.tgz#b05a89955d655bc7b5e7a99040532ea0cf73c7a0"
   integrity sha512-HAyFnf4at0AQqJAO9YURRoljxSy7qt9tGAEGVvnaCnNDGSO627+Z9buDH3Alcrb3xwYXHDH7r7TrON/qIPJw4Q==
@@ -1199,29 +1194,29 @@
     "@baifendian/adhere-util-emitter" "^1.0.20"
     "@turf/turf" "^6.5.0"
 
-"@baifendian/adhere-util-adapterscreen@^1.0.15":
+"@baifendian/adhere-util-adapterscreen@^1.0.18":
   version "1.0.18"
   resolved "https://registry.yarnpkg.com/@baifendian/adhere-util-adapterscreen/-/adhere-util-adapterscreen-1.0.18.tgz#944c60a66b627d784c317316aa63f00942e16852"
   integrity sha512-nN3v9UvZNaNmwAwSjR/ow5UfHqG0Zx2CSyUckpEX5gYoGFBreos3l55XTzoHEdA6nRhEwOG8QpbHT37kL8aTEg==
 
-"@baifendian/adhere-util-browsersniff@^1.0.15":
+"@baifendian/adhere-util-browsersniff@^1.0.18":
   version "1.0.18"
   resolved "https://registry.yarnpkg.com/@baifendian/adhere-util-browsersniff/-/adhere-util-browsersniff-1.0.18.tgz#79cd0bb0d734de4e69ff882c1e08dc29239f3ef1"
   integrity sha512-Jb702Z8C/BqSRBbKNnNN7KwTZvUCCAGH++p8KAnb48ZdHI3RkO+5q30AW2rR2IqkMPKP4eVDHSpapMgnJGrb5g==
 
-"@baifendian/adhere-util-dict@^1.0.15":
+"@baifendian/adhere-util-dict@^1.0.21":
   version "1.0.21"
   resolved "https://registry.yarnpkg.com/@baifendian/adhere-util-dict/-/adhere-util-dict-1.0.21.tgz#f57785a75b5b533581170fd97edf483cebc1971a"
   integrity sha512-+/7v1jiWozUCjxQUhR1RuV909UkvOmujOMSusOgn74ROydu5R28YmDdghFB7jqi2QFdPGsJDrttu/DtqoY7TXg==
 
-"@baifendian/adhere-util-domain@^1.0.15":
+"@baifendian/adhere-util-domain@^1.0.20":
   version "1.0.20"
   resolved "https://registry.yarnpkg.com/@baifendian/adhere-util-domain/-/adhere-util-domain-1.0.20.tgz#5a30d7f20ea55be8cfa887d947921ff11266afb7"
   integrity sha512-Pu++wsnpb0CL/c2DIyGCtTglrRmwJ2ZY/3DolwCLm8DYUavPdicE/mQxr7YVX2QqIR09zZWEzqD6gJKy8YNCTw==
   dependencies:
     events "^3.3.0"
 
-"@baifendian/adhere-util-emitter@^1.0.15", "@baifendian/adhere-util-emitter@^1.0.20":
+"@baifendian/adhere-util-emitter@^1.0.20":
   version "1.0.20"
   resolved "https://registry.yarnpkg.com/@baifendian/adhere-util-emitter/-/adhere-util-emitter-1.0.20.tgz#f7c14fb088223c9cec0d2c70feb9e3e031ce677a"
   integrity sha512-7GSoMVckHYbNewIzbF1wuRi5YG4xMHkSv4L1UjDnxs4r1WueZR9LoFchVC7KEoWWyQUtYwcYfARtWz3Sj9ui3g==
@@ -1234,35 +1229,35 @@
     "@baifendian/adhere-util" "^1.0.21"
     uuid "^8.3.2"
 
-"@baifendian/adhere-util-intl@^1.0.16", "@baifendian/adhere-util-intl@^1.0.21":
-  version "1.0.21"
-  resolved "https://registry.yarnpkg.com/@baifendian/adhere-util-intl/-/adhere-util-intl-1.0.21.tgz#c5eefcc2d8e62ef93ed4dd969858a14c107b1f7e"
-  integrity sha512-CbJ3FCrQxZwOC32tmLIe/BoMD2X/atEAVB0UwBp3XW2LO97aoiDAX2GNScMh4vAY+m6v1mPmCnRjcjabV+tL5g==
+"@baifendian/adhere-util-intl@^1.0.21-fix.1":
+  version "1.0.21-fix.1"
+  resolved "https://registry.yarnpkg.com/@baifendian/adhere-util-intl/-/adhere-util-intl-1.0.21-fix.1.tgz#f39507e277b7ff8a78cd8cdb51cab80aaa611dd6"
+  integrity sha512-X/4W1lfWmV1WnHTQfRzuGtWLaAKvsi9EfnbgPbwgMdYcr9gXz/n7yvsEIel9TVrHqjoVRdoi83XEhI4R7V+RNw==
   dependencies:
     react "^17.0.1"
     react-dom "^17.0.1"
     react-intl-universal "^2.4.3"
 
-"@baifendian/adhere-util-notnull@^1.0.15":
+"@baifendian/adhere-util-notnull@^1.0.21":
   version "1.0.21"
   resolved "https://registry.yarnpkg.com/@baifendian/adhere-util-notnull/-/adhere-util-notnull-1.0.21.tgz#e14ca0a98a1b8b7a4ab52a4441dcf8bf2822ef8d"
   integrity sha512-5ToRPNyThJPijUq3LdRiEm4g7NwLWAYGFNwmg3wjW71f92bhh9SsRKJ1uv+MMgyJfucM2kgjsL+QIWSHjyfO3A==
   dependencies:
     "@baifendian/adhere-util" "^1.0.21"
 
-"@baifendian/adhere-util-preferences@^1.0.15", "@baifendian/adhere-util-preferences@^1.0.18":
+"@baifendian/adhere-util-preferences@^1.0.18":
   version "1.0.18"
   resolved "https://registry.yarnpkg.com/@baifendian/adhere-util-preferences/-/adhere-util-preferences-1.0.18.tgz#dd18be120406a770ce7082ce374d163c6289b4fc"
   integrity sha512-St5UHTNdyf+ZQKnudFo9ba3/JQTfLy3U2Dx2OOewnFM8ucEO2cgrNtqeJesU/kJSui/cbgHrwGIUY8J1+iddUA==
 
-"@baifendian/adhere-util-validator@^1.0.15":
+"@baifendian/adhere-util-validator@^1.0.21":
   version "1.0.21"
   resolved "https://registry.yarnpkg.com/@baifendian/adhere-util-validator/-/adhere-util-validator-1.0.21.tgz#5d14055ee689a2f351c331e9ab44ebb5a3b726be"
   integrity sha512-S6Kba6DB+wBnGDujLnZdo1zm+7avUQgGEsCoANFGroxLubCOYlDKg92mzrGP6LgvyqLSHKObyn8LA/722Yqbgw==
   dependencies:
     validator "^13.6.0"
 
-"@baifendian/adhere-util-watchmemoized@^1.0.15", "@baifendian/adhere-util-watchmemoized@^1.0.21":
+"@baifendian/adhere-util-watchmemoized@^1.0.21":
   version "1.0.21"
   resolved "https://registry.yarnpkg.com/@baifendian/adhere-util-watchmemoized/-/adhere-util-watchmemoized-1.0.21.tgz#251d3f82b97aa3474686b045ed74110e9cbf65fd"
   integrity sha512-iVNkyN988f6lhdU45hw1jbd5o7M+VSiKfPfooF6s03te07kbiMKu6Fx9ta0cXRX/2ueQc/Ii12XuwZeQwTYb3Q==
@@ -1271,7 +1266,7 @@
     "@baifendian/adhere-util-emitter" "^1.0.20"
     lodash "^4.17.21"
 
-"@baifendian/adhere-util@^1.0.15", "@baifendian/adhere-util@^1.0.21":
+"@baifendian/adhere-util@^1.0.21":
   version "1.0.21"
   resolved "https://registry.yarnpkg.com/@baifendian/adhere-util/-/adhere-util-1.0.21.tgz#29d1ca9771b8b9b71a12b95ff7991cde298046b4"
   integrity sha512-qzhej8EahwLk9rdruaB8eLdcrN20inB+SIbfTcC+F8Tn5OZ4eCPue7t4AHJiA5gn6M0Hg/2y/OdS31nDNVlM/g==
@@ -1731,6 +1726,11 @@
   dependencies:
     "@jridgewell/resolve-uri" "3.1.0"
     "@jridgewell/sourcemap-codec" "1.4.14"
+
+"@juggle/resize-observer@^3.3.1":
+  version "3.4.0"
+  resolved "https://registry.yarnpkg.com/@juggle/resize-observer/-/resize-observer-3.4.0.tgz#08d6c5e20cf7e4cc02fd181c4b0c225cd31dbb60"
+  integrity sha512-dfLbk+PwWvFzSxwk3n5ySL0hfBog779o8h68wK/7/APo/7cgyWp5jcXockbxdk5kFRkbeXWm4Fbi9FrdN381sA==
 
 "@leichtgewicht/ip-codec@^2.0.1":
   version "2.0.4"
@@ -7254,7 +7254,7 @@ dateformat@^3.0.0:
   resolved "https://registry.yarnpkg.com/dateformat/-/dateformat-3.0.3.tgz#a6e37499a4d9a9cf85ef5872044d62901c9889ae"
   integrity sha512-jyCETtSl3VMZMWeRo7iY1FL19ges1t55hMo5yaam4Jrsm5EPL89UQkoQRyiI+Yf4k8r2ZpdngkV8hr1lIdjb3Q==
 
-dayjs@^1.10.5, dayjs@^1.11.0:
+dayjs@^1.10.5, dayjs@^1.11.0, dayjs@^1.11.4:
   version "1.11.5"
   resolved "https://registry.yarnpkg.com/dayjs/-/dayjs-1.11.5.tgz#00e8cc627f231f9499c19b38af49f56dc0ac5e93"
   integrity sha512-CAdX5Q3YW3Gclyo5Vpqkgpj8fSdLQcRuzfX6mC6Phy0nfJ0eGYOeS7m4mt2plDWLAtA4TqTakvbboHvUxfe4iA==
