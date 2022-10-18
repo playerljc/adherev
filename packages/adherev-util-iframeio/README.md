@@ -2,6 +2,10 @@
 &ensp;&ensp;iframe的通信客户端和服务端
 
 # ✨ 特性
+# ✨ 特性
+- 支持 vue(2.x)
+- 支持国际化
+- 支持修改主题
 - 支持动态引入(babel-plugin-import)
 
 # 🖥 兼容环境
