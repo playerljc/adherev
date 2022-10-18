@@ -9,7 +9,7 @@
 
     <adv-playground-page-code-box-section title="代码演示" :config="codeBoxPanelConfig">
       <template #p1>
-        <adv-pullrefresh :class-name="$style.Wrap" @pull-refresh="onCode1Refresh">
+        <adv-pullrefresh :class="$style.Wrap" @pull-refresh="onCode1Refresh">
           <a-list item-layout="horizontal" :data-source="data">
             <a-list-item slot="renderItem" slot-scope="item, index">
               <a-list-item-meta
@@ -27,7 +27,7 @@
       </template>
 
       <template #p2>
-        <adv-pullrefresh ref="ref" :class-name="$style.Wrap" @pull-refresh="onCode2Refresh">
+        <adv-pullrefresh ref="ref" :class="$style.Wrap" @pull-refresh="onCode2Refresh">
           <a-list item-layout="horizontal" :data-source="data">
             <a-list-item slot="renderItem" slot-scope="item, index">
               <a-list-item-meta
@@ -48,7 +48,7 @@
 
       <template #p3>
         <adv-pullrefresh
-          :class-name="$style.Wrap"
+          :class="$style.Wrap"
           :is-show-update-time="false"
           :loading-animation="false"
           @pull-refresh="onCode3Refresh"
@@ -120,7 +120,7 @@ export default {
           codeText: `
         <template>
           <h2>基本使用</h2>
-          <adv-pullrefresh :className="$style.Wrap" @pull-refresh="onCode1Refresh">
+          <adv-pullrefresh :class="$style.Wrap" @pull-refresh="onCode1Refresh">
             <a-list item-layout="horizontal" :data-source="data">
               <a-list-item slot="renderItem" slot-scope="item, index">
                 <a-list-item-meta
@@ -149,9 +149,9 @@ export default {
               }
             },
             methods: {
-              onCode1Refresh(ins) {
+              onCode1Refresh(reset) {
                 setTimeout(() => {
-                  ins.reset();
+                  reset();
                 }, 1000 * 3);
               },
             }
@@ -173,7 +173,7 @@ export default {
           codeText: `
         <template>
           <h2>Api触发刷新</h2>
-          <adv-pullrefresh :className="$style.Wrap" ref="ref" @pull-refresh="onCode2Refresh">
+          <adv-pullrefresh :class="$style.Wrap" ref="ref" @pull-refresh="onCode2Refresh">
             <a-list item-layout="horizontal" :data-source="data">
               <a-list-item slot="renderItem" slot-scope="item, index">
                 <a-list-item-meta
@@ -204,9 +204,9 @@ export default {
               }
             },
             methods: {
-              onCode2Refresh(ins) {
+              onCode2Refresh(reset) {
                 setTimeout(() => {
-                  ins.reset();
+                  reset();
                 }, 1000 * 3);
               },
               onCode2Click() {
@@ -236,7 +236,7 @@ export default {
               codeText: `
             <template>
               <h2>自定义图标和文本(1)</h2>
-              <adv-pullrefresh :className="$style.Wrap" :isShowUpdateTime="false" :loadingAnimation="false" @pull-refresh="onCode3Refresh">
+              <adv-pullrefresh :class="$style.Wrap" :isShowUpdateTime="false" :loadingAnimation="false" @pull-refresh="onCode3Refresh">
                 <template v-slot:icon>
                   <div>
                     <img :src="refreshIcon" alt="" />
@@ -289,9 +289,9 @@ export default {
                   },
                 }
                 methods: {
-                  onCode3Refresh(ins) {
+                  onCode3Refresh(reset) {
                     setTimeout(() => {
-                      ins.reset();
+                      reset();
                     }, 1000 * 3);
                   }
                 }
@@ -504,22 +504,22 @@ export default {
     this.scrollEl = this?.$refs?.wrapRef?.$el?.parentElement?.parentElement;
   },
   methods: {
-    onCode1Refresh(ins) {
+    onCode1Refresh(reset) {
       setTimeout(() => {
-        ins.reset();
+        reset();
       }, 1000 * 3);
     },
-    onCode2Refresh(ins) {
+    onCode2Refresh(reset) {
       setTimeout(() => {
-        ins.reset();
+        reset();
       }, 1000 * 3);
     },
     onCode2Click() {
       this.$refs.ref.refresh();
     },
-    onCode3Refresh(ins) {
+    onCode3Refresh(reset) {
       setTimeout(() => {
-        ins.reset();
+        reset();
       }, 1000 * 3);
     },
   },

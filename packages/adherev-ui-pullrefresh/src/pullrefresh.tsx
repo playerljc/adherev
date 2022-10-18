@@ -15,7 +15,7 @@ const pullRefreshProps = {
   pullHeight: number().def(200),
   isShowUpdateTime: bool().def(true),
   updateTime: number().def(moment().valueOf()),
-  updateTimeFormat: string().def(Resource.Dict.value.ResourceMomentFormat18.value),
+  updateTimeFormat: string().def(Resource.Dict.value.ResourceMomentFormat18.value()),
   loadingAnimation: string().def('la-ball-circus la-dark'),
   renderIcon: object<VNode>(),
   renderCanLabel: object<VNode>(),
@@ -41,11 +41,11 @@ export default defineComponent({
 
     const elRef = ref<HTMLElement>();
 
+    const preUpdateTime = ref<number>(new Date().getTime());
+
     let isCan = false;
 
     let isTop = true;
-
-    let preUpdateTime: number | null = null;
 
     let maskEl: HTMLDivElement | null = null;
 
@@ -74,7 +74,7 @@ export default defineComponent({
         return (
           <div class={`${selectorPrefix}-trigger-icon`}>
             <div class={`${selectorPrefix}-trigger-icon-inner`} ref={iconElRef}>
-              {slots.icon()}
+              {slots?.icon?.()}
             </div>
           </div>
         );
@@ -96,7 +96,7 @@ export default defineComponent({
             class={`${selectorPrefix}-trigger-icon-inner`}
             src={defaultImg}
             alt=""
-            ref="iconElRef"
+            ref={iconElRef}
           />
         </div>
       );
@@ -110,15 +110,16 @@ export default defineComponent({
       </p>
     );
 
-    const renderUpdateTime = (): JSX.Element | null =>
-      props.isShowUpdateTime ? (
+    const renderUpdateTime = (): JSX.Element | null => {
+      return props.isShowUpdateTime ? (
         <p class={`${selectorPrefix}-trigger-update`}>
           {Intl.tv('更新时间')}：
           <span class={`${selectorPrefix}-trigger-update-label`}>
-            {moment(preUpdateTime).format(props.updateTimeFormat)}
+            {moment(preUpdateTime.value).format(props.updateTimeFormat)}
           </span>
         </p>
       ) : null;
+    };
 
     const renderLoadingAnimation = (): JSX.Element => {
       if (props.loadingAnimation) {
@@ -364,11 +365,11 @@ export default defineComponent({
 
         (refreshElRef.value as HTMLElement).style.display = 'block';
 
-        trigger('pull-refresh', self);
+        trigger('pull-refresh', reset);
 
         scrollEl?.removeEventListener('transitionend', onTransitionEnd);
 
-        preUpdateTime = moment().valueOf();
+        preUpdateTime.value = moment().valueOf();
       }
 
       (maskEl as HTMLElement).style.display = 'block';
@@ -402,13 +403,13 @@ export default defineComponent({
 
     const resetUpdateTime = (updateTime: number): Promise<null> => {
       return new Promise((resolve) => {
-        preUpdateTime = updateTime || moment().valueOf();
+        preUpdateTime.value = updateTime || moment().valueOf();
         resolve(null);
       });
     };
 
     const getUpdateTime = (): number => {
-      return preUpdateTime as number;
+      return preUpdateTime.value as number;
     };
 
     onMounted(() => {

@@ -46,7 +46,7 @@ export default {
           <Row gutter={24}>
             {itemList.map((t, index) => (
               <Col span={24 / rowCount} key={`${index}`}>
-                <div className={styles.CardWrap}>
+                <div class={styles.CardWrap}>
                   <Card title={t.title} bordered={false}>
                     {t.component(h)}
                   </Card>
