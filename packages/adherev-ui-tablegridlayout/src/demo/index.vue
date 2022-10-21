@@ -1,6 +1,6 @@
 <template>
   <div>
-    <!--    <adv-tablegridlayout
+    <adv-tablegridlayout
       :density="'default'"
       :layout="'vertical'"
       :parity="true"
@@ -8,59 +8,57 @@
       :data="data"
     >
       <template v-slot:UserNameLabel>
-        <adv-tablegridlayout-label >UserName：</adv-tablegridlayout-label>
+        <adv-tablegridlayout-label>UserName：</adv-tablegridlayout-label>
       </template>
       <template v-slot:UserNameValue>
         <adv-tablegridlayout-value>Zhou Maomao</adv-tablegridlayout-value>
       </template>
 
       <template v-slot:TelephoneLabel>
-        <adv-tablegridlayout-label >Telephone：</adv-tablegridlayout-label>
+        <adv-tablegridlayout-label>Telephone：</adv-tablegridlayout-label>
       </template>
       <template v-slot:TelephoneValue>
         <adv-tablegridlayout-value>1810000000</adv-tablegridlayout-value>
       </template>
 
       <template v-slot:LiveLabel>
-        <adv-tablegridlayout-label >Live：</adv-tablegridlayout-label>
+        <adv-tablegridlayout-label>Live：</adv-tablegridlayout-label>
       </template>
       <template v-slot:LiveValue>
         <adv-tablegridlayout-value>Hangzhou, Zhejiang</adv-tablegridlayout-value>
       </template>
 
       <template v-slot:RemarkLabel>
-        <adv-tablegridlayout-label >Remark：</adv-tablegridlayout-label>
+        <adv-tablegridlayout-label>Remark：</adv-tablegridlayout-label>
       </template>
       <template v-slot:RemarkValue>
         <adv-tablegridlayout-value>Remark</adv-tablegridlayout-value>
       </template>
 
       <template v-slot:AddressLabel>
-        <adv-tablegridlayout-label colspan="2" valign="top"
-          >Address：</adv-tablegridlayout-label
-        >
+        <adv-tablegridlayout-label colspan="2" valign="top">Address：</adv-tablegridlayout-label>
       </template>
       <template v-slot:AddressValue>
         <adv-tablegridlayout-value colspan="2"
           >No. 18, Wantang Road, Xihu District, Hangzhou, Zhejiang, China</adv-tablegridlayout-value
         >
       </template>
-    </adv-tablegridlayout>-->
+    </adv-tablegridlayout>
 
-    <div>
+    <!--    <div>
       <a-button type="primary" @click="onSubmit">获取</a-button>
     </div>
 
     <a-form :form="form" @submit="onSubmit">
-      <!--      <a-form-item>
+      &lt;!&ndash;      <a-form-item>
         <a-button type="primary" @click="handleSubmit"> Check </a-button>
-      </a-form-item>-->
+      </a-form-item>&ndash;&gt;
 
-      <!--      <a-form-item>
+      &lt;!&ndash;      <a-form-item>
         <a-button type="primary" html-type="submit"> Submit </a-button>
-      </a-form-item>-->
+      </a-form-item>&ndash;&gt;
 
-      <!--      <a-card style="width: 300px">
+      &lt;!&ndash;      <a-card style="width: 300px">
         <a slot="extra" href="#">more</a>
         <p>card content</p>
         <p>card content</p>
@@ -76,7 +74,7 @@
             </a-form-item>
           </adv-tablegridlayout-value>
         </template>
-      </a-card>-->
+      </a-card>&ndash;&gt;
 
       <adv-tablegridlayout :inner-style="'padding: 0 0 20px 0'" :data="data">
         <template v-slot:default v-if="true"></template>
@@ -156,7 +154,7 @@
           </adv-tablegridlayout-value>
         </template>
       </adv-tablegridlayout>
-    </a-form>
+    </a-form>-->
   </div>
 </template>
 
@@ -182,15 +180,25 @@ export default {
               label: 'TelephoneLabel',
               value: 'TelephoneValue',
             },
+            // {
+            //   key: 'Sex',
+            //   label: 'SexLabel',
+            //   value: 'SexValue',
+            // },
+            // {
+            //   key: 'Birthday',
+            //   label: 'BirthdayLabel',
+            //   value: 'BirthdayValue',
+            // },
             {
-              key: 'Sex',
-              label: 'SexLabel',
-              value: 'SexValue',
+              key: 'Live',
+              label: 'LiveLabel',
+              value: 'LiveValue',
             },
             {
-              key: 'Birthday',
-              label: 'BirthdayLabel',
-              value: 'BirthdayValue',
+              key: 'Remark',
+              label: 'RemarkLabel',
+              value: 'RemarkValue',
             },
             {
               key: 'Address',

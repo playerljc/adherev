@@ -263,6 +263,8 @@ const renderVertical: RenderVertical = (h: CreateElement, context, data, rowCoun
         'require',
         label?.data?.class || '',
       );
+
+      t.label = label;
     }
   });
 
@@ -334,7 +336,7 @@ const renderGridSearchForm: RenderGridSearchForm = (h, context, params) => {
         _parity ? 'parity' : '',
         className || '',
       )}
-      style={`width:${_width + 'px' ? _width + 'px' : '100%'}${';' + style || ''}`}
+      style={`width:${_width ? _width : '100%'}${';' + style || ''}`}
     >
       <colgroup>{colgroupJSX}</colgroup>
 
