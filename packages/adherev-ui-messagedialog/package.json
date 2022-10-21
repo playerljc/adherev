@@ -42,7 +42,7 @@
     "@baifendian/adherev-util-intl": "^2.0.5-alpha",
     "@baifendian/adherev-util-resource": "^2.0.5-alpha",
     "@form-create/ant-design-vue": "^3.1.2",
-    "ant-design-vue": "^3.0.0-beta.9",
+    "ant-design-vue": "^3.2.13",
     "vue": "^3.2.31",
     "vue-types": "^4.1.1"
   }
