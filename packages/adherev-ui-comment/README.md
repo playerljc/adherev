@@ -1,5 +1,5 @@
 # 简介
-&ensp;&ensp;动画的回到顶部
+&ensp;&ensp;评论
 
 # ✨ 特性
 - 支持 vue(2.x)
@@ -12,12 +12,12 @@
 
 # 📦 安装
 ```javascript
-npm install @baifendian/adherev-ui-backtopanimation --save
+npm install @baifendian/adherev-ui-comment --save
 ``` 
 
 ```javascript
-yarn add @baifendian/adherev-ui-backtopanimation
+yarn add @baifendian/adherev-ui-comment
 ```
 
 # 线上地址(临时)
-[http://49.232.163.126:8084/adherev/ui/backtopanimation](http://49.232.163.126:8084/adherev/ui/backtopanimation)
+[http://49.232.163.126:8084/adherev/ui/comment](http://49.232.163.126:8084/adherev/ui/comment)
