@@ -56,7 +56,7 @@ export default defineComponent({
               }
             }}
           >
-            {slots?.backTitle?.() || Intl.v('返回')}
+            {slots?.backTitle?.() || Intl.tv('返回')}
           </Button>
         );
       }

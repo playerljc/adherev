@@ -1,0 +1,2 @@
+"use strict";require("core-js/modules/es.object.define-property.js"),Object.defineProperty(exports,"__esModule",{value:!0});var tslib_1=require("tslib"),emoji_mart_vue_fast_1=require("emoji-mart-vue-fast"),adherev_util_1=tslib_1.__importDefault(require("@baifendian/adherev-util"));exports.default=adherev_util_1.default._util.HOC(emoji_mart_vue_fast_1.Picker,{name:"adv-comment-comment-emoji"},{});
+//# sourceMappingURL=index.js.map

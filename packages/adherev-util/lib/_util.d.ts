@@ -1,4 +1,5 @@
 import { ComponentOptions } from 'vue';
+import { DefineComponent } from '@vue/runtime-core';
 /**
  * ExtendFunction
  */
@@ -28,8 +29,17 @@ export declare const withVue: (app: any, p: string, val: any) => void;
 export declare const extend: (options: ExtendFunction<any>) => Omit<ExtendFunction<any>, 'className'>;
 /**
  * HOC
- * @param VueComponent
- * @param overwrite
+ * @param Component
+ * @param optionsOverwrite
+ * @param renderOptions
  */
-export declare const HOC: (VueComponent: object, overwrite?: any) => object;
+export declare function HOC(Component: DefineComponent, optionsOverwrite: any, renderOptions: {
+    props: (props: any) => any;
+    attrs: (attrs: any) => any;
+    slots: (slots: any) => any;
+}): DefineComponent<any, () => import("vue").VNode<import("vue").RendererNode, import("vue").RendererElement, {
+    [key: string]: any;
+}>, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, never[], never, import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<any> & {}, {} | {
+    [x: string]: any;
+}>;
 export {};

@@ -29,12 +29,12 @@ export default defineComponent({
       props.defaultExpand ? Constant.DownSquareOutlined : Constant.UpSquareOutlined,
     );
 
-    const expandAlt = computed(() => (props.defaultExpand ? Intl.v('收起') : Intl.v('展开')));
+    const expandAlt = computed(() => (props.defaultExpand ? Intl.tv('收起') : Intl.tv('展开')));
 
     const onCopy = (e: MouseEvent) => {
       props.getClipboardText?.(e)?.then((text) => {
         copy(text);
-        Message.success(Intl.v('复制成功') as string);
+        Message.success(Intl.tv('复制成功') as string);
       });
     };
 
@@ -48,7 +48,7 @@ export default defineComponent({
                 <img
                   class={`${selectPrefix}-action-btn`}
                   src={Constant.CopyOutlined}
-                  alt={Intl.v('复制')}
+                  alt={Intl.tv('复制')}
                   onClick={onCopy}
                 />
               ),

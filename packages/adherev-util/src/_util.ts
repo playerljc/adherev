@@ -1,4 +1,6 @@
-import { ComponentOptions } from 'vue';
+import { ComponentOptions, defineComponent, h, ref } from 'vue';
+
+import { DefineComponent } from '@vue/runtime-core';
 
 /**
  * ExtendFunction
@@ -72,10 +74,47 @@ export const extend = (options: ExtendFunction<any>): Omit<ExtendFunction<any>, 
 
 /**
  * HOC
- * @param VueComponent
- * @param overwrite
+ * @param Component
+ * @param optionsOverwrite
+ * @param renderOptions
  */
-export const HOC = (VueComponent: object, overwrite?: any): object => ({
-  ...VueComponent,
-  ...(overwrite || {}),
-});
+export function HOC(
+  Component: DefineComponent,
+  optionsOverwrite: any,
+  renderOptions: {
+    props: (props: any) => any;
+    attrs: (attrs: any) => any;
+    slots: (slots: any) => any;
+  },
+) {
+  return defineComponent({
+    props: { ...(Component.props || {}), ...(optionsOverwrite.props || {}) },
+    emits: [...(Component.emits ? (Component.emits as []) : [])],
+    slots: [...(Component.slots ? (Component.slots as []) : [])],
+    expose: [...(Component.expose ? (Component.slots as []) : [])],
+    setup(props, { slots, attrs, expose }) {
+      const comRef = ref();
+
+      if (Component.expose) {
+        const exposeObj = {};
+        Component.expose.forEach((methodName) => {
+          exposeObj[methodName] = (params) => comRef.value?.[methodName]?.(params);
+        });
+        expose(exposeObj);
+      }
+
+      return () =>
+        h(
+          Component,
+          {
+            ...(renderOptions?.props?.(props) || props || {}),
+            ...(renderOptions?.attrs?.(attrs) || attrs || {}),
+            ref: comRef,
+          },
+          {
+            ...(renderOptions?.slots?.(slots) || slots || {}),
+          },
+        );
+    },
+  });
+}
