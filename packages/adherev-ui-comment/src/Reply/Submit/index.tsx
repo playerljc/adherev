@@ -84,7 +84,7 @@ const Reply: any = {
           <TextArea
             // @ts-ignore
             class={`${selectorPrefix}-textarea`}
-            placeholder={Intl.v('请输入回复内容')}
+            placeholder={Intl.tv('请输入回复内容')}
             autoFocus={true}
             value={this.value}
             onChange={(e) => {
@@ -129,12 +129,12 @@ const Reply: any = {
               disabled={!this.value}
               onClick={() => this.$emit('result', this.value.trim())}
             >
-              {Intl.v('添加')}
+              {Intl.tv('添加')}
             </Button>
 
             {/*@ts-ignore*/}
             <Button class={`${selectorPrefix}-toolbar-item`} onClick={() => this.$emit('cancel')}>
-              {Intl.v('取消')}
+              {Intl.tv('取消')}
             </Button>
           </div>
         </div>

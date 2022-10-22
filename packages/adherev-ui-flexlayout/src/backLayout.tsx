@@ -121,7 +121,7 @@ const BackLayout: any = {
               }
             }}
           >
-            {this.$slots.backTitle || Intl.v('返回')}
+            {this.$slots.backTitle || Intl.tv('返回')}
           </Button>,
         );
       }

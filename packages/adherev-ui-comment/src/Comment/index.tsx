@@ -192,10 +192,10 @@ const Comment: any = {
   methods: {
     $renderList(h, data) {
       const showReplyText =
-        this.$slots.showReplyText || this.showReplyText || Intl.v('显示回复内容');
-      const hideReplyText = this.$slots.hideReplyText || this.hideReplyText || Intl.v('收起回复');
+        this.$slots.showReplyText || this.showReplyText || Intl.tv('显示回复内容');
+      const hideReplyText = this.$slots.hideReplyText || this.hideReplyText || Intl.tv('收起回复');
       const loadMoreReplyText =
-        this.$slots.loadMoreReplyText || this.loadMoreReplyText || Intl.v('加载更多回复');
+        this.$slots.loadMoreReplyText || this.loadMoreReplyText || Intl.tv('加载更多回复');
 
       const showReplyTextIcon = this.$slots.showReplyTextIcon || this.showReplyTextIcon || (
         // @ts-ignore

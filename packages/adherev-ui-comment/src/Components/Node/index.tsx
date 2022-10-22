@@ -187,7 +187,7 @@ const Node: any = {
             )}
             onClick={() => (this.showReply = true)}
           >
-            {Intl.v('回复')}
+            {Intl.tv('回复')}
           </li>,
         );
       }

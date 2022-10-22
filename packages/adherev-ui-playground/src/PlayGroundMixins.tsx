@@ -38,7 +38,7 @@ const PlayGroundMixins: any = {
     },
     expandAlt() {
       const { expand } = this;
-      return expand ? Intl.v('收起') : Intl.v('展开');
+      return expand ? Intl.tv('收起') : Intl.tv('展开');
     },
   },
   watch: {
@@ -51,7 +51,7 @@ const PlayGroundMixins: any = {
       this.getClipboardText(e).then((text) => {
         copy(text);
         // @ts-ignore
-        Message.success(Intl.v('复制成功'));
+        Message.success(Intl.tv('复制成功'));
       });
     },
   },
@@ -65,7 +65,7 @@ const PlayGroundMixins: any = {
             class={`${selectPrefix}-action-btn`}
             src={Constant.CopyOutlined}
             slot="copy"
-            alt={Intl.v('复制')}
+            alt={Intl.tv('复制')}
             onClick={(e) => {
               this.copy(e);
             }}
