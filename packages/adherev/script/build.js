@@ -55,6 +55,15 @@ const namedMap = new Map([
   ['@baifendian/adherev-ui-polygonselection', 'PolygonSelection'],
   // ['@baifendian/adherev-ui-bmap', 'BMap'],
   ['@baifendian/adherev-ui-playground', 'PlayGround'],
+
+  ['@baifendian/adherev-ui-comment', 'Comment'],
+  ['@baifendian/adherev-ui-configprovider', 'ConfigProvider'],
+  ['@baifendian/adherev-ui-contourblock', 'ContourBlock'],
+  ['@baifendian/adherev-ui-datedisplay', 'DateDisplay'],
+  ['@baifendian/adherev-ui-tablegridlayout', 'TableGridLayout'],
+  ['@baifendian/adherev-ui-writingboard', 'WritingBoard'],
+  ['@baifendian/adherev-ui-hooks', 'Hooks'],
+
   ['@baifendian/adherev-util', 'Util'],
   ['@baifendian/adherev-util-communication-ajax', 'Ajax'],
   ['@baifendian/adherev-util-dict', 'Dict'],
@@ -69,6 +78,7 @@ const namedMap = new Map([
   ['@baifendian/adherev-util-domain', 'Domain'],
   ['@baifendian/adherev-util-browsersniff', 'Browsersniff'],
   ['@baifendian/adherev-util-validator', 'Validator'],
+  ['@baifendian/adherev-util-iframeio', 'IframeIO'],
 ]);
 
 /**

@@ -1,6 +1,6 @@
 {
   "name": "@baifendian/adherev-ui-comment",
-  "version": "1.0.0-alpha",
+  "version": "2.0.0-alpha",
   "description": "评论",
   "main": "lib/index.js",
   "module": "es/index.js",

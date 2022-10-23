@@ -1,6 +1,6 @@
 {
   "name": "@baifendian/adherev-ui-tablegridlayout",
-  "version": "1.0.0-alpha",
+  "version": "2.0.0-alpha",
   "description": "表格布局",
   "main": "lib/index.js",
   "module": "es/index.js",

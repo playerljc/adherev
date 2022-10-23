@@ -1,6 +1,6 @@
 {
   "name": "@baifendian/adherev-ui-datedisplay",
-  "version": "1.0.0-alpha",
+  "version": "2.0.0-alpha",
   "description": "时间显示组件",
   "main": "lib/index.js",
   "module": "es/index.js",
