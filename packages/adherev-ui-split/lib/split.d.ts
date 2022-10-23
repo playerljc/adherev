@@ -40,7 +40,7 @@ export declare const SplitGroup: import("vue").DefineComponent<{
     style: import("vue-types").VueTypeValidableDef<CSSProperties> & {
         default: () => CSSProperties;
     };
-}, () => JSX.Element, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {}, string, import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<import("vue").ExtractPropTypes<{
+}, () => JSX.Element | undefined, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {}, string, import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<import("vue").ExtractPropTypes<{
     direction: import("vue-types").VueTypeValidableDef<directionType> & {
         default: directionType;
     };
