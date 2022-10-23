@@ -1,4 +1,4 @@
 declare const _default: {
-    useForceUpdate: () => void;
+    useForceUpdate: () => () => void;
 };
 export default _default;

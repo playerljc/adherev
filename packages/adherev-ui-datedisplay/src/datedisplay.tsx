@@ -166,7 +166,7 @@ Components[`DateDisplay`] = {
     ...Com,
     ...options,
     setup(props) {
-      return () => <Com {...props} format />;
+      return () => <Com {...props} format={format} />;
     },
   };
 });

@@ -23,7 +23,6 @@ const props = {
   mainAutoStyle: object<CSSProperties>().def({}),
   mainWrapClassName: string().def(''),
   mainWrapStyle: object<CSSProperties>().def({}),
-
   topProps: object<FixedProps>().def({}),
   rightProps: object<FixedProps>().def({}),
   bottomProps: object<FixedProps>().def({}),
@@ -47,7 +46,7 @@ export default defineComponent({
             fit
             {...(props.topProps || {})}
           >
-            {slots.renderTop}
+            {slots.renderTop?.()}
           </Fixed>
         </ConditionalRender>
 
@@ -73,7 +72,7 @@ export default defineComponent({
                   fit
                   {...(props.leftProps || {})}
                 >
-                  {slots.renderLeft}
+                  {slots.renderLeft?.()}
                 </Fixed>
               </ConditionalRender>
 
@@ -84,7 +83,7 @@ export default defineComponent({
                 style={props.mainStyle}
                 {...(props.mainProps || {})}
               >
-                {slots.renderMain}
+                {slots.renderMain?.()}
               </Auto>
 
               {/*@ts-ignore*/}
@@ -95,7 +94,7 @@ export default defineComponent({
                   fit
                   {...(props.rightProps || {})}
                 >
-                  {slots.renderRight}
+                  {slots.renderRight?.()}
                 </Fixed>
               </ConditionalRender>
             </FlexLayout>
@@ -110,7 +109,7 @@ export default defineComponent({
             fit
             {...(props.bottomProps || {})}
           >
-            {slots.renderBottom}
+            {slots.renderBottom?.()}
           </Fixed>
         </ConditionalRender>
       </FlexLayout>

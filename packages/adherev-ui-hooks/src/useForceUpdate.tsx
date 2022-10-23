@@ -1,7 +1,10 @@
-import { ref } from 'vue';
+import { getCurrentInstance } from 'vue';
 
 export default () => {
-  const count = ref(0);
+  const instance = getCurrentInstance();
 
-  count.value = count.value + 1;
+  return () => {
+    // @ts-ignore
+    instance?.ctx?._$forceUpdate?.();
+  };
 };

@@ -12,11 +12,9 @@ export default defineComponent({
   name: 'adv-flexlayout',
   props,
   setup(props, { slots }) {
-    // const getDirection = () => props.direction;
-    // provide('getDirection', getDirection);
-
     provide('direction', props.direction);
 
+    console.log('direction', props.direction);
     return () => (
       <div class={classNames(selectorPrefix, `${selectorPrefix}-${props.direction}`)}>
         {slots.default ? slots.default() : null}

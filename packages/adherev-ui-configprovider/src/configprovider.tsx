@@ -3,6 +3,7 @@ import { object } from 'vue-types';
 
 import Hooks from '@baifendian/adherev-ui-hooks';
 import Intl from '@baifendian/adherev-util-intl';
+import Mixins from '@baifendian/adherev-util-mixins';
 import Resource from '@baifendian/adherev-util-resource';
 
 import { IntlProps } from './types';
@@ -15,13 +16,18 @@ const props = {
   })),
 };
 
+const { forceUpdate } = Mixins;
+
+const { useForceUpdate } = Hooks;
+
 const ConfigProvider = defineComponent({
   name: 'adv-configprovider',
+  mixins: [forceUpdate],
   props,
   setup(props, { slots }) {
     const isIntlInit = ref(false);
 
-    const { useForceUpdate } = Hooks;
+    const $forceUpdate = useForceUpdate();
 
     const init = () =>
       Intl.init(
@@ -37,7 +43,7 @@ const ConfigProvider = defineComponent({
         if (!isIntlInit.value) {
           isIntlInit.value = true;
         } else {
-          useForceUpdate();
+          $forceUpdate();
         }
       });
 

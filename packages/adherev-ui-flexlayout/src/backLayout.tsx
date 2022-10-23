@@ -32,9 +32,8 @@ const props = {
 };
 
 export default defineComponent({
-  name: 'adv-flexlayout-horizontal',
+  name: 'adv-flexlayout-back',
   props,
-  slots: ['backTitle'],
   setup(props, { slots }) {
     const router = useRouter();
 
@@ -95,8 +94,8 @@ export default defineComponent({
           topToolBarSlotNames: [...(props.topToolBarSlotNames || []), '$back'],
         }}
       >
-        {slots?.default?.()}
         {{
+          default: () => slots?.default?.(),
           ...renderToolBarItems(),
           ...renderBottomToolBarItems(),
         }}

@@ -77,9 +77,9 @@ export default defineComponent({
           `${selectorPrefix}-main-auto-wrap`,
           props.mainAutoWrapClassName || '',
         )}
+        {...(otherProps.value || {})}
         topProps={topProps.value}
         bottomProps={bottomProps.value}
-        {...(otherProps.value || {})}
       >
         {{
           renderTop: () =>

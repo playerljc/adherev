@@ -11,5 +11,10 @@ declare const _default: {
         created(): void;
         beforeDestroy(): void;
     };
+    forceUpdate: {
+        methods: {
+            _$forceUpdate(): void;
+        };
+    };
 };
 export default _default;

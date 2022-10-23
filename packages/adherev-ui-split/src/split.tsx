@@ -1,4 +1,4 @@
-import { CSSProperties, computed, defineComponent } from 'vue';
+import { CSSProperties, VNode, computed, defineComponent } from 'vue';
 import { number, object, string } from 'vue-types';
 
 const selectorPrefix = 'adherev-ui-split';
@@ -56,14 +56,28 @@ export const SplitGroup = defineComponent({
   props: splitGroupProps,
   setup(props, { slots }) {
     return () => {
-      const JSXS: JSX.Element[] = [];
+      const nodes: VNode[] = [];
 
       if (slots.default) {
-        const children = slots.default();
+        const children = slots.default?.();
 
-        for (let i = 0; i < children.length; i++) {
+        if (!children || !Array.isArray(children) || !children.length) return;
+
+        const childrenFlat: VNode[] = [];
+
+        for (const child of children) {
+          if (child.type.toString() === 'Symbol(Fragment)') {
+            if ('children' in child && Array.isArray(child.children)) {
+              children.push(...((child.children || []) as []));
+            }
+          } else {
+            childrenFlat.push(child);
+          }
+        }
+
+        for (let i = 0; i < childrenFlat.length; i++) {
           if (i !== 0) {
-            const _props = {
+            const splitProps = {
               key: i,
               direction: props.direction,
               size: props.size,
@@ -71,14 +85,14 @@ export const SplitGroup = defineComponent({
               style: props.style,
             };
 
-            JSXS.push(<Split {..._props} />);
+            nodes.push(<Split {...splitProps} />);
           }
 
-          JSXS.push(children[i]);
+          nodes.push(childrenFlat[i]);
         }
       }
 
-      return <div class={`${selectorPrefix}-group ${props.direction}`}>{JSXS}</div>;
+      return <div class={`${selectorPrefix}-group ${props.direction}`}>{nodes}</div>;
     };
   },
 });

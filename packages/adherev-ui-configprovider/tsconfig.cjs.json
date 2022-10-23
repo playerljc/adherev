@@ -4,7 +4,8 @@
     "outDir": "./lib",
     "baseUrl": "./",
     "jsx": "preserve",
-    "types": ["vue"]
+    "types": ["vue"],
+    "allowJs": true
   },
   "exclude": ["node_modules"],
   "include": ["src/**/*"]

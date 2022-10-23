@@ -10,7 +10,7 @@ const props = {
 };
 
 export default defineComponent({
-  name: 'adv-flexlayout-horizontal',
+  name: 'adv-flexlayout-scroll',
   props,
   setup(props, { slots }) {
     const wrapRef = ref<HTMLElement>();
