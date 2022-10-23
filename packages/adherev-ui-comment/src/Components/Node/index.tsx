@@ -1,5 +1,5 @@
 import classNames from 'classnames';
-import { VNode, computed, defineComponent, ref, watch } from 'vue';
+import { computed, defineComponent, ref, VNode, watch } from 'vue';
 import { bool, func, number, object, oneOfType, string } from 'vue-types';
 
 import ConditionalRender from '@baifendian/adherev-ui-conditionalrender';
@@ -132,7 +132,9 @@ export default defineComponent({
         renderContent: (params) => slots?.renderContent?.(params) || props?.renderContent?.(params),
         renderDateTime: (params) =>
           slots?.renderDateTime?.(params) || props?.renderDateTime?.(params),
-        renderLoading: () => <div>{slots.renderLoading?.() || props.renderLoading}</div>,
+        renderLoading: () => {
+          slots.renderLoading?.() || props.renderLoading;
+        },
         showReplyText: () => slots.showReplyText?.() || props.showReplyText,
         hideReplyText: () => slots.hideReplyText?.() || props.hideReplyText,
         loadMoreReplyText: () => slots.loadMoreReplyText?.() || props.loadMoreReplyText,
@@ -170,7 +172,6 @@ export default defineComponent({
                       {scopedSlots}
                     </ReplyInfo>
                   ),
-
                   noMatch: () => slots?.default?.(record),
                 }}
               </ConditionalRender>
@@ -179,15 +180,21 @@ export default defineComponent({
 
           {/*@ts-ignore*/}
           <ConditionalRender conditional={!loading.value && hasMore.value}>
-            <li class={classNames(`${selectorPrefix}-children-item`, 'more')}>
-              <a
-                // @ts-ignore*
-                onClick={appendData}
-              >
-                <span>{slots.loadMoreCollapseTextIcon?.() || props.loadMoreCollapseTextIcon}</span>
-                <span>{slots.loadMoreReplyText?.() || props.loadMoreReplyText}</span>
-              </a>
-            </li>
+            {{
+              default: () => (
+                <li class={classNames(`${selectorPrefix}-children-item`, 'more')}>
+                  <a
+                    // @ts-ignore
+                    onClick={appendData}
+                  >
+                    <span>
+                      {slots.loadMoreCollapseTextIcon?.() || props.loadMoreCollapseTextIcon}
+                    </span>
+                    <span>{slots.loadMoreReplyText?.() || props.loadMoreReplyText}</span>
+                  </a>
+                </li>
+              ),
+            }}
           </ConditionalRender>
         </ul>
       );
@@ -215,7 +222,6 @@ export default defineComponent({
                 <span>{slots.showReplyText?.() || props.showReplyText}</span>
               </a>
             ),
-
             noMatch: () => (
               <a
                 class={`${selectorPrefix}-collapse`}
@@ -321,42 +327,52 @@ export default defineComponent({
 
             {/*@ts-ignore*/}
             <ConditionalRender conditional={showReply.value}>
-              <FlexLayout.Fixed style="margin-top:15px;">
-                <ReplySubmit
-                  onCancel={() => (showReply.value = false)}
-                  onResult={(reply) => {
-                    props
-                      .fetchReply?.({
-                        id: data.value?.[props.keyProp!],
-                        record: { ...data.value },
-                        reply,
-                      })
-                      ?.then(() => {
-                        showReply.value = false;
-                        loadData();
-                      });
-                  }}
-                  local={props.local}
-                  emojiPickerProps={props.emojiPickerProps}
-                />
-              </FlexLayout.Fixed>
+              {{
+                default: () => (
+                  <FlexLayout.Fixed style="margin-top:15px;">
+                    <ReplySubmit
+                      onCancel={() => (showReply.value = false)}
+                      onResult={(reply) => {
+                        props
+                          .fetchReply?.({
+                            id: data.value?.[props.keyProp!],
+                            record: { ...data.value },
+                            reply,
+                          })
+                          ?.then(() => {
+                            showReply.value = false;
+                            loadData();
+                          });
+                      }}
+                      local={props.local}
+                      emojiPickerProps={props.emojiPickerProps}
+                    />
+                  </FlexLayout.Fixed>
+                ),
+              }}
             </ConditionalRender>
 
             {/*@ts-ignore*/}
             <ConditionalRender conditional={data.value?.[props.isMoreProp]}>
-              <div>
-                {/*@ts-ignore*/}
-                <ConditionalRender conditional={!loading.value}>{renderMore()}</ConditionalRender>
+              {{
+                default: () => (
+                  <>
+                    {/*@ts-ignore*/}
+                    <ConditionalRender conditional={!loading.value}>
+                      {renderMore()}
+                    </ConditionalRender>
 
-                <ConditionalRender.Show conditional={collapse.value}>
-                  {renderChildren()}
-                </ConditionalRender.Show>
+                    <ConditionalRender.Show conditional={collapse.value}>
+                      {renderChildren()}
+                    </ConditionalRender.Show>
 
-                {/*@ts-ignore*/}
-                <ConditionalRender conditional={loading.value}>
-                  {slots.renderLoading?.() || props.renderLoading}
-                </ConditionalRender>
-              </div>
+                    {/*@ts-ignore*/}
+                    <ConditionalRender conditional={loading.value}>
+                      {slots.renderLoading?.() || props.renderLoading}
+                    </ConditionalRender>
+                  </>
+                ),
+              }}
             </ConditionalRender>
           </FlexLayout>
         </FlexLayout.Auto>

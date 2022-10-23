@@ -1,0 +1,25 @@
+@import '~@baifendian/adherev-ui-css/lib/vars';
+
+.adherev-ui-comment-icon {
+  color: @adhere-primary-color;
+  font-size: @adhere-base-font-size;
+}
+
+.adherev-ui-comment-icon-loading {
+  font-size: 24px;
+  &::before {
+    display: inline-block;
+    animation: adherev-ui-comment-icon-loading-animation infinite 1s linear;
+    transform-origin: center center;
+  }
+}
+
+@keyframes adherev-ui-comment-icon-loading-animation {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}

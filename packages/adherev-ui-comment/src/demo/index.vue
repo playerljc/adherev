@@ -10,54 +10,63 @@
         <template v-slot:renderCommentAuthor="record">
           {{ record.name }}
         </template>
+
         <template v-slot:renderCommentActions="props">
           <a-tooltip :title="'Like'">
             <span @click="onLike(props)">
-              <a-icon type="like" />
+              <like-outlined />
               <span style="margin-left: 5px">{{ props.record.like }}</span>
             </span>
           </a-tooltip>
 
           <a-tooltip :title="'Dislike'">
             <span @click="onDisLike(props)">
-              <a-icon type="dislike" />
+              <dislike-outlined />
               <span style="margin-left: 5px">{{ props.record.dislike }}</span>
             </span>
           </a-tooltip>
         </template>
+
         <template v-slot:renderCommentAvatar="record">
           <img :src="record.icon" alt="" />
         </template>
+
         <template v-slot:renderCommentContent="record">
           {{ record.info }}
         </template>
+
         <template v-slot:renderCommentDateTime="record">
           <adv-datedisplay-fromnow :value="record.time" />
         </template>
+
         <template v-slot:renderReplyActions="props">
           <a-tooltip :title="'Like'">
             <span @click="onLike(props)">
-              <a-icon type="like" />
+              <like-outlined />
               <span style="margin-left: 5px">{{ props.record.like }}</span>
             </span>
           </a-tooltip>
 
           <a-tooltip :title="'Dislike'">
             <span @click="onDisLike(props)">
-              <a-icon type="dislike" />
+              <dislike-outlined />
               <span style="margin-left: 5px">{{ props.record.dislike }}</span>
             </span>
           </a-tooltip>
         </template>
+
         <template v-slot:renderReplyAuthor="record">
           {{ record.name }}
         </template>
+
         <template v-slot:renderReplyAvatar="record">
           <img :src="record.icon" alt="" />
         </template>
+
         <template v-slot:renderReplyContent="record">
           {{ record.info }}
         </template>
+        
         <template v-slot:renderReplyDateTime="record">
           <adv-datedisplay-fromnow :value="record.time" />
         </template>
@@ -69,6 +78,7 @@
 <script>
 import faker from 'faker';
 
+import { DislikeOutlined, LikeOutlined } from '@ant-design/icons-vue';
 import GlobalIndicator from '@baifendian/adherev-ui-globalindicator';
 
 const CommentData = Array.from({ length: 300 }).map((t, index) => ({
@@ -94,6 +104,10 @@ const ReplyData = Array.from({ length: 300 }).map((t, index) => ({
 }));
 
 export default {
+  components: {
+    'like-outlined': LikeOutlined,
+    'dislike-outlined': DislikeOutlined,
+  },
   data() {
     return {};
   },

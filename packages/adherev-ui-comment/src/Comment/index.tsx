@@ -1,6 +1,6 @@
 import { Spin } from 'ant-design-vue';
 import classNames from 'classnames';
-import { VNode, defineComponent } from 'vue';
+import { defineComponent, VNode } from 'vue';
 import { func, number, object, string } from 'vue-types';
 
 import Intl from '@baifendian/adherev-util-intl';
@@ -92,7 +92,9 @@ export default defineComponent({
     const renderList = (data) => {
       const showReplyText =
         slots.showReplyText?.() || props.showReplyText || Intl.tv('显示回复内容');
+
       const hideReplyText = slots.hideReplyText?.() || props.hideReplyText || Intl.tv('收起回复');
+
       const loadMoreReplyText =
         slots.loadMoreReplyText?.() || props.loadMoreReplyText || Intl.tv('加载更多回复');
 
@@ -122,9 +124,8 @@ export default defineComponent({
               slots?.renderReplyContent?.(params) || props?.renderReplyContent?.(params),
             renderDateTime: (params) =>
               slots?.renderReplyDateTime?.(params) || props?.renderReplyDateTime?.(params),
-            renderLoading: () => {
-              slots.renderReplyLoading?.() || props.renderReplyLoading || renderLoading();
-            },
+            renderLoading: () =>
+              slots.renderReplyLoading?.() || props.renderReplyLoading || renderLoading(),
             showReplyText: () => showReplyText,
             hideReplyText: () => hideReplyText,
             loadMoreReplyText: () => loadMoreReplyText,
@@ -159,9 +160,8 @@ export default defineComponent({
           slots?.renderCommentContent?.(params) || props?.renderCommentContent?.(params),
         renderDateTime: (params) =>
           slots?.renderCommentDateTime?.(params) || props?.renderCommentDateTime?.(params),
-        renderLoading: () => {
-          slots?.renderCommentLoading?.() || props?.renderCommentLoading || renderLoading();
-        },
+        renderLoading: () =>
+          slots?.renderCommentLoading?.() || props?.renderCommentLoading || renderLoading(),
         showReplyText: () => showReplyText,
         hideReplyText: () => hideReplyText,
         loadMoreReplyText: () => loadMoreReplyText,
