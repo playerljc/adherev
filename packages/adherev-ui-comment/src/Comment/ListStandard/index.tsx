@@ -60,6 +60,24 @@ const ListStandard: any = {
       default: () => null,
     },
   },
+  computed: {
+    isEmpty() {
+      return this.$data.$paging.page === 1 && (this.data[this.dataKeys.list] as any[]).length === 0;
+    },
+  },
+  watch: {
+    data(data) {
+      this.$nextTick(function () {
+        if (this.$data.$callbackHandler) {
+          this.$data.$status =
+            this.$data.$paging.page < data[this.dataKeys.totalPage]
+              ? ScrollLoad.NORMAL
+              : ScrollLoad.EMPTY;
+          this.$data.$callbackHandler(this.$data.$status);
+        }
+      });
+    },
+  },
   data() {
     return {
       loading: true,
@@ -76,11 +94,6 @@ const ListStandard: any = {
       $status: ScrollLoad.NORMAL,
       $callbackHandler: null,
     };
-  },
-  computed: {
-    isEmpty() {
-      return this.$data.$paging.page === 1 && (this.data[this.dataKeys.list] as any[]).length === 0;
-    },
   },
   methods: {
     onLoadMore(callback) {
@@ -175,19 +188,6 @@ const ListStandard: any = {
       }
 
       return result;
-    },
-  },
-  watch: {
-    data(data) {
-      this.$nextTick(function () {
-        if (this.$data.$callbackHandler) {
-          this.$data.$status =
-            this.$data.$paging.page < data[this.dataKeys.totalPage]
-              ? ScrollLoad.NORMAL
-              : ScrollLoad.EMPTY;
-          this.$data.$callbackHandler(this.$data.$status);
-        }
-      });
     },
   },
   mounted() {
