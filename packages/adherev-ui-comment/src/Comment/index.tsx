@@ -1,4 +1,5 @@
-import { Icon, Spin } from 'ant-design-vue';
+import { Spin } from 'ant-design-vue';
+import classNames from 'classnames';
 import { PropType, VNode } from 'vue';
 import { Fragment } from 'vue-fragment';
 
@@ -198,19 +199,16 @@ const Comment: any = {
         this.$slots.loadMoreReplyText || this.loadMoreReplyText || Intl.tv('加载更多回复');
 
       const showReplyTextIcon = this.$slots.showReplyTextIcon || this.showReplyTextIcon || (
-        // @ts-ignore
-        <Icon type="caret-down" />
+        <i class={classNames(`${selectorPrefix}-icon`, 'iconfont iconcaret-down')} />
       );
 
       const hideReplyTextIcon = this.$slots.hideReplyTextIcon || this.hideReplyTextIcon || (
-        // @ts-ignore
-        <Icon type="caret-up" />
+        <i class={classNames(`${selectorPrefix}-icon`, 'iconfont iconcaret-up')} />
       );
 
       const loadMoreCollapseTextIcon = this.$slots.loadMoreCollapseTextIcon ||
         this.loadMoreCollapseTextIcon || (
-          // @ts-ignore
-          <Icon type="enter" class="reply-icon" />
+          <i class={classNames(`${selectorPrefix}-icon`, 'iconfont iconenter reply-icon')} />
         );
 
       const scopedSlots = {
@@ -318,8 +316,13 @@ const Comment: any = {
       return (
         <div class={`${selectorPrefix}-loading`}>
           <Spin>
-            {/*@ts-ignore*/}
-            <Icon slot="indicator" type="loading" style="font-size: 24px;" />
+            <i
+              class={classNames(
+                `${selectorPrefix}-icon`,
+                `${selectorPrefix}-icon-loading`,
+                'iconfont iconloading',
+              )}
+            />
           </Spin>
         </div>
       );

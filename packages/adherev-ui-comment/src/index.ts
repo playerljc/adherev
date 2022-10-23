@@ -1,4 +1,4 @@
-import { Button, Empty, Icon, Input, Popover, Skeleton, Spin } from 'ant-design-vue';
+import { Button, Empty, Input, Popover, Skeleton, Spin } from 'ant-design-vue';
 
 import BackTopAnimation from '@baifendian/adherev-ui-backtopanimation';
 import FlexLayout from '@baifendian/adherev-ui-flexlayout';
@@ -20,7 +20,6 @@ Component.isUse = () => true;
 Component.use = (Vue) => {
   Vue.use(Button);
   Vue.use(Empty);
-  Vue.use(Icon);
   Vue.use(Input);
   Vue.use(Popover);
   Vue.use(Skeleton);
