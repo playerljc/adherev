@@ -1,13 +1,8 @@
 import { Spin } from 'ant-design-vue';
+import classNames from 'classnames';
 import { VNode, defineComponent } from 'vue';
 import { func, number, object, string } from 'vue-types';
 
-import {
-  CaretDownOutlined,
-  CaretUpOutlined,
-  EnterOutlined,
-  LoadingOutlined,
-} from '@ant-design/icons-vue';
 import Intl from '@baifendian/adherev-util-intl';
 
 import ReplyInfo from '../Reply/Info';
@@ -102,15 +97,17 @@ export default defineComponent({
         slots.loadMoreReplyText?.() || props.loadMoreReplyText || Intl.tv('加载更多回复');
 
       const showReplyTextIcon = slots.showReplyTextIcon?.() || props.showReplyTextIcon || (
-        <CaretDownOutlined />
+        <i class={classNames(`${selectorPrefix}-icon`, 'iconfont iconcaret-down')} />
       );
 
       const hideReplyTextIcon = slots.hideReplyTextIcon?.() || props.hideReplyTextIcon || (
-        <CaretUpOutlined />
+        <i class={classNames(`${selectorPrefix}-icon`, 'iconfont iconcaret-up')} />
       );
 
       const loadMoreCollapseTextIcon = slots.loadMoreCollapseTextIcon?.() ||
-        props.loadMoreCollapseTextIcon || <EnterOutlined class="reply-icon" />;
+        props.loadMoreCollapseTextIcon || (
+          <i class={classNames(`${selectorPrefix}-icon`, 'iconfont iconenter reply-icon')} />
+        );
 
       const scopedSlots = {
         default: (record) => {
@@ -201,7 +198,15 @@ export default defineComponent({
         <div class={`${selectorPrefix}-loading`}>
           <Spin>
             {{
-              indicator: () => <LoadingOutlined style="font-size: 24px;" />,
+              indicator: () => (
+                <i
+                  class={classNames(
+                    `${selectorPrefix}-icon`,
+                    `${selectorPrefix}-icon-loading`,
+                    'iconfont iconloading',
+                  )}
+                />
+              ),
             }}
           </Spin>
         </div>

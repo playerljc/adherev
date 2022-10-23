@@ -168,9 +168,12 @@ export default defineComponent({
       ['PlayGroundTab', renderPlayGroundTab],
     ]);
 
-    watch(expandAll, () => {
-      expandLock = false;
-    });
+    watch(
+      () => expandAll.value,
+      () => {
+        expandLock = false;
+      },
+    );
 
     watch(
       () => props.defaultExpandAll,

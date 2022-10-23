@@ -1,5 +1,5 @@
 import { Empty, Skeleton } from 'ant-design-vue';
-import { VNode, computed, defineComponent, nextTick, onMounted, ref, shallowRef, watch } from 'vue';
+import { VNode, computed, defineComponent, onMounted, ref, shallowRef, watch } from 'vue';
 import { func, number, object } from 'vue-types';
 
 import ConditionalRender from '@baifendian/adherev-ui-conditionalrender';
@@ -149,15 +149,19 @@ export default defineComponent({
     );
 
     watch(
-      () => data,
-      (newData) =>
-        nextTick(() => {
-          if (callbackHandler) {
-            status =
-              paging.page < data[props.dataKeys.totalPage] ? ScrollLoad.NORMAL : ScrollLoad.EMPTY;
-            callbackHandler?.(status);
-          }
-        }),
+      () => data.value,
+      () => {
+        if (callbackHandler) {
+          status =
+            paging.page < data.value[props.dataKeys.totalPage]
+              ? ScrollLoad.NORMAL
+              : ScrollLoad.EMPTY;
+          callbackHandler?.(status);
+        }
+      },
+      {
+        flush: 'post',
+      },
     );
 
     onMounted(() => loadData());

@@ -6,6 +6,7 @@ import GlobalIndicator from '@baifendian/adherev-ui-globalindicator';
 import Intl from '@baifendian/adherev-util-intl';
 
 import Comment from '../index';
+// @ts-ignore
 import App from './index.vue';
 
 import '../index.less';
@@ -22,4 +23,9 @@ Intl.use(app);
 (GlobalIndicator as any).use(app);
 DateDisplay.use(app);
 Comment.use(app);
-app.mount('#app');
+
+Intl.init({
+  prefix: 'local',
+}).then(() => {
+  app.mount('#app');
+});

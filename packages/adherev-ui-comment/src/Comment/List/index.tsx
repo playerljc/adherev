@@ -1,4 +1,4 @@
-import { VNode, defineComponent, ref } from 'vue';
+import { Teleport, VNode, defineComponent, ref } from 'vue';
 import { bool, func, object } from 'vue-types';
 
 import BackTopAnimation from '@baifendian/adherev-ui-backtopanimation';
@@ -65,7 +65,10 @@ export default defineComponent({
               <div class={`${selectorPrefix}-normal-wrap`}>
                 {/*@ts-ignore*/}
                 <ScrollLoad
-                  onScrollBottom={(callback) => emit('loadMore', callback)}
+                  onScrollBottom={(callback) => {
+                    console.log('onScrollBottom');
+                    emit('loadMore', callback);
+                  }}
                   {...{
                     ...defaultScrollLoadProps,
                     ...(props.scrollLoadProps || {}),
@@ -83,7 +86,7 @@ export default defineComponent({
                 >
                   {{
                     default: () => (
-                      <teleport to={props.getScrollWrapContainer?.()}>
+                      <Teleport to={props.getScrollWrapContainer?.()}>
                         {/*@ts-ignore*/}
                         <BackTopAnimation
                           onTarget={(callback) =>
@@ -91,7 +94,7 @@ export default defineComponent({
                           }
                           onTrigger={(next) => next()}
                         />
-                      </teleport>
+                      </Teleport>
                     ),
                     noMatch: () => (
                       // @ts-ignore
