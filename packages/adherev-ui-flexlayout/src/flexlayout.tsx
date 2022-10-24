@@ -14,7 +14,6 @@ export default defineComponent({
   setup(props, { slots }) {
     provide('direction', props.direction);
 
-    console.log('direction', props.direction);
     return () => (
       <div class={classNames(selectorPrefix, `${selectorPrefix}-${props.direction}`)}>
         {slots.default ? slots.default() : null}
