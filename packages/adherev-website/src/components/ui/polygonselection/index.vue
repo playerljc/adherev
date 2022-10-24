@@ -27,6 +27,7 @@
 import ImageSelect from './ImageSelect';
 
 export default {
+  displayName: 'polygonselection',
   components: {
     ImageSelect,
   },
@@ -276,7 +277,7 @@ export default {
         config: {
           title: '设置数据',
         },
-        defaultCloneBtn: false,
+        defaultCloseBtn: false,
         children: {
           computed: {
             localData() {

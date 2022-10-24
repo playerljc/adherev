@@ -48,6 +48,7 @@ const uploadFormFef = null;
 const uploadRef = null;
 
 export default {
+  displayName: 'ajax',
   data() {
     return {
       img: null,

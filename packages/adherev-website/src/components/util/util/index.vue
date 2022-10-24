@@ -10,6 +10,7 @@
 
 <script>
 export default {
+  displayName: 'util',
   data() {
     return {
       scrollEl: null,

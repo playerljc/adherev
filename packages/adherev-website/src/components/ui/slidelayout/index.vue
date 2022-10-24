@@ -221,6 +221,7 @@
 
 <script>
 export default {
+  displayName: 'slidelayout',
   data() {
     return {
       horizontalCSS: `
@@ -395,10 +396,10 @@ export default {
                 <adv-space direction="vertical" />
                 <div :style="horizontalCSS">
                   <adv-slidelayout-push :defaultCollapse="collapse5" @after-close="collapse5 = false">
-                    <template v-slot:slide>
+                    <template #slide>
                       <div>left</div>
                     </template>
-                    <template v-slot:master>
+                    <template #master>
                       <div>master</div>
                     </template>
                   </adv-slidelayout-push>
@@ -421,10 +422,10 @@ export default {
                     :defaultCollapse="collapse6"
                     @after-close="collapse6 = false"
                   >
-                    <template v-slot:slide>
+                    <template #slide>
                       <div>right</div>
                     </template>
-                    <template v-slot:master>
+                    <template #master>
                       <div>Master</div>
                     </template>
                   </adv-slidelayout-push>
@@ -473,10 +474,10 @@ export default {
 
                 <div :style="horizontalCSS">
                   <adv-slidelayout-reveal :defaultCollapse="collapse7" @after-close="collapse7 = false">
-                    <template v-slot:slide>
+                    <template #slide>
                       <div>left</div>
                     </template>
-                    <template v-slot:master>
+                    <template #master>
                       <div>Master</div>
                     </template>
                   </adv-slidelayout-reveal>
@@ -499,10 +500,10 @@ export default {
                     :defaultCollapse="collapse8"
                     @after-close="collapse8 = false"
                   >
-                    <template v-slot:slide>
+                    <template #slide>
                       <div>right</div>
                     </template>
-                    <template v-slot:master>
+                    <template #master>
                       <div>Master</div>
                     </template>
                   </adv-slidelayout-reveal>
@@ -530,18 +531,6 @@ export default {
           border: true,
           title: 'Overlay',
           data: [
-            {
-              params: 'className',
-              desc: '附加的样式表',
-              type: 'string',
-              defaultVal: '',
-            },
-            {
-              params: 'style',
-              desc: '附加的样式',
-              type: 'String',
-              defaultVal: '',
-            },
             {
               params: 'width',
               desc: '宽度',

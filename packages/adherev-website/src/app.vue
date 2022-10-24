@@ -5,9 +5,7 @@
     </div>
 
     <div :class="$style.Auto">
-      <keep-alive>
-        <router-view />
-      </keep-alive>
+      <router-view />
     </div>
   </div>
 </template>
@@ -16,6 +14,7 @@
 import Header from '@/lib/Header';
 
 export default {
+  displayName: 'app',
   components: {
     Header,
   },

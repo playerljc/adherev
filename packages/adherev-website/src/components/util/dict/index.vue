@@ -32,6 +32,7 @@
 
 <script>
 export default {
+  displayName: 'dict',
   data() {
     return {
       scrollEl: null,

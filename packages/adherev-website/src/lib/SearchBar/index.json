@@ -60,11 +60,6 @@
     "path": "/adherev/component/ui/fontsizesetting"
   },
   {
-    "kw": ["表单配置", "FormItemCreator"],
-    "group": "组件 - UI",
-    "path": "/adherev/component/ui/formitemcreator"
-  },
-  {
     "kw": ["全局无侵入的遮罩", "GlobalIndicator"],
     "group": "组件 - UI",
     "path": "/adherev/component/ui/globalindicator"
@@ -205,21 +200,41 @@
     "path": "/adherev/component/ui/swipeout"
   },
   {
-    "kw": ["基于antd-design的Table的列头筛选", "TableHeadSearch"],
-    "group": "组件 - UI",
-    "path": "/adherev/component/ui/tableheadsearch"
-  },
-  {
-    "kw": ["表格列表配置", "TableList"],
-    "group": "组件 - UI",
-    "path": "/adherev/component/ui/tablelist"
-  },
-  {
     "kw": ["警告的提示(就是为了全局统一)", "WarnPrompt"],
     "group": "组件 - UI",
     "path": "/adherev/component/ui/warnprompt"
   },
 
+  {
+    "kw": ["表格布局", "TableGridLayout"],
+    "group": "组件 - UI",
+    "path": "/adherev/component/ui/tablegridlayout"
+  },
+  {
+    "kw": ["写字板", "WritingBoard"],
+    "group": "组件 - UI",
+    "path": "/adherev/component/ui/writingboard"
+  },
+  {
+    "kw": ["宽度和高度相等的元素", "ContourBlock"],
+    "group": "组件 - UI",
+    "path": "/adherev/component/ui/contourblock"
+  },
+  {
+    "kw": ["时间显示组件", "DateDisplay"],
+    "group": "组件 - UI",
+    "path": "/adherev/component/ui/datedisplay"
+  },
+  {
+    "kw": ["评论", "Comment"],
+    "group": "组件 - UI",
+    "path": "/adherev/component/ui/comment"
+  },
+  {
+    "kw": ["全局配置", "ConfigProvider"],
+    "group": "组件 - UI",
+    "path": "/adherev/component/ui/configprovider"
+  },
   {
     "kw": ["对屏幕的缩放进行适配的操作", "AdapterScreen"],
     "group": "组件 - Util",
@@ -294,6 +309,11 @@
     "kw": ["对值的监控和缓存", "WatchMemoized"],
     "group": "组件 - Util",
     "path": "/adherev/component/util/watchmemoized"
+  },
+  {
+    "kw": ["iframe的通信客户端和服务端", "IframeIO"],
+    "group": "组件 - Util",
+    "path": "/adherev/component/util/iframeio"
   },
   {
     "kw": ["echarts", "echarts"],

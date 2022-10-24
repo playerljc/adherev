@@ -99,9 +99,24 @@ const JDCategoryTab = () =>
   lazy(import(/* webpackChunkName: "jdcategorytab" */ '@/components/ui/jdcategorytab'));
 const ImageLazy = () =>
   lazy(import(/* webpackChunkName: "imagelazy" */ '@/components/ui/imagelazy'));
-// const BMap = () => lazy(import(/* webpackChunkName: "bmap" */ '@/components/ui/bmap'));
+const BMap = () => lazy(import(/* webpackChunkName: "bmap" */ '@/components/ui/bmap'));
 const PolygonSelection = () =>
   lazy(import(/* webpackChunkName: "polygonselection" */ '@/components/ui/polygonselection'));
+
+const Comment = () => lazy(import(/* webpackChunkName: "comment" */ '@/components/ui/comment'));
+const ConfigProvider = () =>
+  lazy(import(/* webpackChunkName: "configprovider" */ '@/components/ui/configprovider'));
+const ContourBlock = () =>
+  lazy(import(/* webpackChunkName: "contourblock" */ '@/components/ui/contourblock'));
+const DateDisplay = () =>
+  lazy(import(/* webpackChunkName: "datedisplay" */ '@/components/ui/datedisplay'));
+const TableGridLayout = () =>
+  lazy(import(/* webpackChunkName: "tablegridlayout" */ '@/components/ui/tablegridlayout'));
+const WritingBoard = () =>
+  lazy(import(/* webpackChunkName: "writingboard" */ '@/components/ui/writingboard'));
+// const Hooks = () =>
+//   lazy(import(/* webpackChunkName: "hooks" */ '@/components/ui/hooks'));
+
 const Domain = () => lazy(import(/* webpackChunkName: "domain" */ '@/components/util/domain'));
 const Resource = () =>
   lazy(import(/* webpackChunkName: "resource" */ '@/components/util/resource'));
@@ -110,6 +125,8 @@ const Browsersniff = () =>
 const Validator = () =>
   lazy(import(/* webpackChunkName: "validator" */ '@/components/util/validator'));
 const Demo = () => lazy(import(/* webpackChunkName: "demo" */ '@/components/ui/demo'));
+const IframeIO = () =>
+  lazy(import(/* webpackChunkName: "iframeio" */ '@/components/util/iframeio'));
 
 const Echarts = () =>
   lazy(import(/* webpackChunkName: "echarts" */ '@/components/gallery/echarts'));
@@ -369,11 +386,41 @@ export default () => [
                 name: 'PlayGround',
                 component: PlayGround,
               },
-              // {
-              //   path: '/adherev/component/ui/bmap',
-              //   name: 'BMap',
-              //   component: BMap,
-              // },
+              {
+                path: '/adherev/component/ui/bmap',
+                name: 'BMap',
+                component: BMap,
+              },
+              {
+                path: '/adherev/component/ui/comment',
+                name: 'Comment',
+                component: Comment,
+              },
+              {
+                path: '/adherev/component/ui/configprovider',
+                name: 'ConfigProvider',
+                component: ConfigProvider,
+              },
+              {
+                path: '/adherev/component/ui/contourblock',
+                name: 'ContourBlock',
+                component: ContourBlock,
+              },
+              {
+                path: '/adherev/component/ui/datedisplay',
+                name: 'DateDisplay',
+                component: DateDisplay,
+              },
+              {
+                path: '/adherev/component/ui/tablegridlayout',
+                name: 'TableGridLayout',
+                component: TableGridLayout,
+              },
+              {
+                path: '/adherev/component/ui/writingboard',
+                name: 'WritingBoard',
+                component: WritingBoard,
+              },
             ],
           },
           {
@@ -458,6 +505,11 @@ export default () => [
                 path: '/adherev/component/util/validator',
                 name: 'Validator',
                 component: Validator,
+              },
+              {
+                path: '/adherev/component/util/iframeio',
+                name: 'IframeIO',
+                component: IframeIO,
               },
             ],
           },

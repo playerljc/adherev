@@ -7,7 +7,7 @@ const selectorPrefix = 'adherev-ui-backtopanimation';
 
 const props = {
   className: string().def(''),
-  zIndex: oneOfType([string, number]).def(Resource.Dict.value.ResourceNormalMaxZIndex.value),
+  zIndex: oneOfType([string(), number()]).def(Resource.Dict.value.ResourceNormalMaxZIndex.value),
   duration: integer().def(300),
 };
 

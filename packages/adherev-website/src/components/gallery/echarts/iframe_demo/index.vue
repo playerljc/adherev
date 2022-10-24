@@ -1,11 +1,11 @@
 <template>
-  <playground :lang="lang" :code-text="codeText">
+  <adv-playground :lang="lang" :code-text="codeText">
     <iframe
       src="https://echarts.apache.org/examples/zh/editor.html?c=area-stack-gradient"
       :frame-border="false"
       style="width: 100%; height: 296px; border: 0"
     />
-  </playground>
+  </adv-playground>
 </template>
 
 <script>

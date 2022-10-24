@@ -1,3 +1,39 @@
+# 2.0.0
+
+***
+
+2022-10-24
+
+* **加入新组件**
+  - 加入adherev-ui-comment
+  - 加入adherev-ui-configprovider
+  - 加入adherev-ui-contourblock
+  - 加入adherev-ui-datedisplay
+  - 加入adherev-ui-tablegridlayout
+  - 加入adherev-ui-writingboard
+  - 加入adherev-ui-hooks
+  - 加入adherev-util-iframeio
+* **@baifendian/adherev-ui-flexlayout修改**
+  - 加入HorizontalFlexLayout布局
+  - 加入VerticalFlexLayout布局
+  - 加入ToolBarLayout布局
+  - 加入BackLayout布局
+  - 加入ScrollLayout布局
+* **@baifendian/adherev-ui-imagelazy重构**
+  - 使用lazysizes进行重构
+* **@baifendian/adherev-ui-popup重构**
+  - close的BUG修改
+  - 添加showClosePrePopup
+  - bug修改
+* **@baifendian/adherev-util-intl重构**
+  - 去掉i18n
+* **@baifendian/adherev-util-mixins修改**
+  - 加入watchEffect配置
+  - 加入forceUpdate配置
+* **@baifendian/adherev-util**
+  - 加入extend方法
+* **已知问题的修改*
+
 # 2.0.5-alpha
 
 ***

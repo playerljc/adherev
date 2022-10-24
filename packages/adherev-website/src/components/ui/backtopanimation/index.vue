@@ -46,6 +46,7 @@ data = data.map((t, index) => ({
 }));
 
 export default {
+  displayName: 'backtopanimation',
   data() {
     return {
       data,

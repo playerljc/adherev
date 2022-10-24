@@ -106,6 +106,7 @@ import icon from './区控-图例.svg';
 const { TitleLayer, Util, AnimationManager } = OLMap;
 
 export default {
+  displayName: 'olmap',
   data() {
     return {
       scrollEl: null,

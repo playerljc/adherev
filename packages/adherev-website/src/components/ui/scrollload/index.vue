@@ -155,6 +155,7 @@ function getData() {
 }
 
 export default {
+  displayName: 'scrollload',
   data() {
     return {
       data: getData(),
@@ -386,11 +387,11 @@ export default {
               </a-list-item>
             </a-list>
 
-            <template v-slot:loading>
+            <template #loading>
               <a-spin tip="loading..." style="width: 100%" />
             </template>
 
-            <template v-slot:empty>
+            <template #empty>
               <a-empty />
             </template>
           </adv-scrollload>

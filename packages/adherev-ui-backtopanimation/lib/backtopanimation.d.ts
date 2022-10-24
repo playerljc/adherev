@@ -2,8 +2,8 @@ declare const _default: import("vue").DefineComponent<{
     className: import("vue-types").VueTypeValidableDef<string> & {
         default: string;
     };
-    zIndex: import("vue-types").VueTypeDef<import("vue-types").VueTypeValidableDef<string> | import("vue-types").VueTypeValidableDef<number>> & {
-        default: (() => import("vue-types").VueTypeValidableDef<string>) | (() => import("vue-types").VueTypeValidableDef<number>);
+    zIndex: import("vue-types").VueTypeDef<string | number> & {
+        default: string | number;
     };
     duration: import("vue-types").VueTypeDef<number> & {
         default: number;
@@ -12,8 +12,8 @@ declare const _default: import("vue").DefineComponent<{
     className: import("vue-types").VueTypeValidableDef<string> & {
         default: string;
     };
-    zIndex: import("vue-types").VueTypeDef<import("vue-types").VueTypeValidableDef<string> | import("vue-types").VueTypeValidableDef<number>> & {
-        default: (() => import("vue-types").VueTypeValidableDef<string>) | (() => import("vue-types").VueTypeValidableDef<number>);
+    zIndex: import("vue-types").VueTypeDef<string | number> & {
+        default: string | number;
     };
     duration: import("vue-types").VueTypeDef<number> & {
         default: number;
@@ -24,7 +24,7 @@ declare const _default: import("vue").DefineComponent<{
     onTarget?: ((...args: any[]) => any) | undefined;
 }, {
     className: string;
-    zIndex: import("vue-types").VueTypeValidableDef<string> | import("vue-types").VueTypeValidableDef<number>;
+    zIndex: string | number;
     duration: number;
 }>;
 export default _default;

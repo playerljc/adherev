@@ -37,9 +37,5 @@ export declare function HOC(Component: DefineComponent, optionsOverwrite: any, r
     props: (props: any) => any;
     attrs: (attrs: any) => any;
     slots: (slots: any) => any;
-}): DefineComponent<any, () => import("vue").VNode<import("vue").RendererNode, import("vue").RendererElement, {
-    [key: string]: any;
-}>, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, never[], never, import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<any> & {}, {} | {
-    [x: string]: any;
-}>;
+}): DefineComponent<unknown, object, {}, import("vue").ComputedOptions, import("vue").MethodOptions, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {}, string, import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<unknown>, {}>;
 export {};

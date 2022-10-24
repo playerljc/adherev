@@ -27,6 +27,7 @@
 import { DelConfirm } from '@baifendian/adherev';
 
 export default {
+  displayName: 'delconfirm',
   data() {
     return {
       scrollEl: null,
@@ -161,10 +162,10 @@ export default {
               defaultVal: '',
             },
             {
-              params: 'success',
-              desc: '确认后的回调，此方法需要返回Promise对象',
-              type: 'Function',
-              defaultVal: '() => {}',
+              name: 'title',
+              desc: '标题',
+              type: 'string',
+              defaultVal: '',
             },
             {
               name: 'text',

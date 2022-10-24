@@ -86,7 +86,7 @@
               </p>
             </adv-conditionalrender-wrap>
 
-            <template v-slot:noMatch>
+            <template #noMatch>
               <a-empty />
             </template>
           </adv-conditionalrender-show>
@@ -107,7 +107,7 @@
               <p>Fragment3</p>
             </adv-conditionalrender-wrap>
 
-            <template v-slot:noMatch>
+            <template #noMatch>
               <adv-conditionalrender-wrap>
                 <p>NoMatchFragment1</p>
                 <p>NoMatchFragment2</p>
@@ -153,7 +153,7 @@
               </p>
             </adv-conditionalrender-wrap>
 
-            <template v-slot:noMatch>
+            <template #noMatch>
               <a-empty />
             </template>
           </adv-conditionalrender-visibility>
@@ -174,7 +174,7 @@
               <p>Fragment3</p>
             </adv-conditionalrender-wrap>
 
-            <template v-slot:noMatch>
+            <template #noMatch>
               <adv-conditionalrender-wrap>
                 <p>NoMatchFragment1</p>
                 <p>NoMatchFragment2</p>
@@ -194,6 +194,7 @@
 
 <script>
 export default {
+  displayName: 'conditionalrender',
   data() {
     return {
       baseUseShow: true,
@@ -253,7 +254,7 @@ export default {
               specs and implementations would be involved, which might cause designers and
               developers difficulties and duplication and reduce the efficiency of development.
             </p>
-            <template v-slot:noMatch>
+            <template #noMatch>
               <a-empty />
             </template>
           </adv-conditionalrender>
@@ -317,7 +318,7 @@ export default {
               </p>
             </adv-conditionalrender-wrap>
 
-            <template v-slot:noMatch>
+            <template #noMatch>
               <a-empty />
             </template>
           </adv-conditionalrender-show>
@@ -349,7 +350,7 @@ export default {
               <p>Fragment3</p>
             </adv-conditionalrender-wrap>
 
-            <template v-slot:noMatch>
+            <template #noMatch>
               <adv-conditionalrender-wrap>
                 <p>NoMatchFragment1</p>
                 <p>NoMatchFragment2</p>
@@ -417,7 +418,7 @@ export default {
               </p>
             </adv-conditionalrender-wrap>
 
-            <template v-slot:noMatch>
+            <template #noMatch>
               <a-empty />
             </template>
           </adv-conditionalrender-visibility>
@@ -449,7 +450,7 @@ export default {
               <p>Fragment3</p>
             </adv-conditionalrender-wrap>
 
-            <template v-slot:noMatch>
+            <template #noMatch>
               <adv-conditionalrender-wrap>
                 <p>NoMatchFragment1</p>
                 <p>NoMatchFragment2</p>

@@ -18,6 +18,7 @@
 import { ErrorPrompt } from '@baifendian/adherev';
 
 export default {
+  displayName: 'errorprompt',
   data() {
     return {
       scrollEl: null,

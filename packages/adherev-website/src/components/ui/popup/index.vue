@@ -25,6 +25,7 @@ import { Popup } from '@baifendian/adherev';
 import PopupInner from './popup';
 
 export default {
+  displayName: 'popup',
   data() {
     return {
       scrollEl: null,

@@ -29,6 +29,9 @@ export interface IData {
     subMenuClassName?: string;
     subMenuStyle?: CSSProperties;
 }
+export interface IConfig {
+    beforeMount(app: any): void;
+}
 export interface IComponent {
     isUse?(): boolean;
     use?(Vue: any): void;
@@ -37,4 +40,5 @@ export interface IComponent {
         vm: any;
         el: HTMLElement;
     }): void;
+    setConfig(config: IConfig): void;
 }

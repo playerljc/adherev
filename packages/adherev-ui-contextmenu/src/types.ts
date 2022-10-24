@@ -34,9 +34,14 @@ export interface IData {
   subMenuStyle?: CSSProperties;
 }
 
+export interface IConfig {
+  beforeMount(app: any): void;
+}
+
 export interface IComponent {
   isUse?(): boolean;
   use?(Vue: any): void;
   open(data: IData[], defaultConfig: IConfig): void;
   close(params: { vm: any; el: HTMLElement }): void;
+  setConfig(config: IConfig): void;
 }

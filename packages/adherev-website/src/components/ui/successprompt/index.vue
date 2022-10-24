@@ -18,6 +18,7 @@
 import { SuccessPrompt } from '@baifendian/adherev';
 
 export default {
+  displayName: 'successprompt',
   data() {
     return {
       scrollEl: null,

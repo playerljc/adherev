@@ -13,7 +13,7 @@ export const cardProps = {
   bodyStyle: object<CSSProperties>().def({}),
   actionClassName: string().def(''),
   actionStyle: object<CSSProperties>().def({}),
-  title: oneOfType([string, object<VNode>()]),
+  title: oneOfType([string(), object<VNode>()]),
   extra: object<VNode>(),
   actions: array<any>().def([]),
   description: object<{

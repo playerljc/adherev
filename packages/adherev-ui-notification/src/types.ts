@@ -38,8 +38,13 @@ export interface IShowStandardConfig {
   datetime: Object | Function | string;
 }
 
+export interface Config {
+  beforeMount(app: any): void;
+}
+
 export interface INotificationFactory {
   build(container: HTMLElement, config: IConfig): Notification;
   isUse?(): boolean;
   use?(Vue: any): void;
+  setConfig(config: Config): void;
 }

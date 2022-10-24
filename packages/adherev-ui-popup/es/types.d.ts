@@ -23,7 +23,11 @@ export interface IPopupFactory {
     getEl: () => HTMLElement;
     setEl: (el: HTMLElement) => void;
 }
+export interface IConfig {
+    beforeMount(app: any): void;
+}
 export interface IComponent extends IPopupFactory {
     isUse?(): boolean;
     use?(Vue: any): void;
+    setConfig(config: IConfig): void;
 }

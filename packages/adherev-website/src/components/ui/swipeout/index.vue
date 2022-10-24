@@ -64,6 +64,7 @@
 
 <script>
 export default {
+  displayName: 'suspense',
   data() {
     return {
       data: [

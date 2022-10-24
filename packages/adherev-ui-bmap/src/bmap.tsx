@@ -13,17 +13,17 @@ const loadGridIcon =
 const props = {
   ak: string().def('bxFuXXDt1oKdlgu6mXCCnK51cDgDGBLp'),
   zoom: number().def(5),
-  center: object<IPoint>().def(() => ({
+  center: object<IPoint>().def({
     lon: 116.404,
     lat: 39.915,
-  })).isRequired,
-  config: object<IConfig>().def(() => ({
+  }).isRequired,
+  config: object<IConfig>().def({
     minZoom: 2,
     maxZoom: 20,
     enableHighResolution: true,
     enableAutoResize: true,
     enableMapClick: false,
-  })),
+  }),
   externalImportBMapScript: bool().def(false),
 };
 
@@ -33,55 +33,11 @@ export default defineComponent({
   emits: ['bMapInitReady'],
   setup(props, { emit, expose }) {
     const root = ref<HTMLDivElement | null>(null);
+    let isReady = ref(false);
 
-    let isReady: boolean = false;
     let BMap: any;
     let map: any;
     let isLoad: boolean = false;
-
-    // const importBMapJS = () => {
-    //   function importReal(src: string | null) {
-    //     return new Promise<any>((resolve) => {
-    //       const script = document.createElement('script');
-    //
-    //       script.onload = () => {
-    //         resolve((window as any).BMap);
-    //       };
-    //       if (typeof src === 'string') {
-    //         script.src = src;
-    //       }
-    //
-    //       if (document) {
-    //         document.querySelector('head')?.appendChild(script);
-    //       }
-    //     });
-    //   }
-    //
-    //   return new Promise((resolve) => {
-    //     const preWrite = document.write;
-    //
-    //     document.write = (html) => {
-    //       const el = document.createElement('div');
-    //       el.innerHTML = html;
-    //       const first = el.firstElementChild;
-    //
-    //       if (
-    //         first?.tagName.toLowerCase() === 'script' &&
-    //         first?.getAttribute('src')?.indexOf('http://api.map.baidu.com') !== -1
-    //       ) {
-    //         importReal(first.getAttribute('src')).then((res) => {
-    //           resolve(res);
-    //         });
-    //       } else {
-    //         preWrite(html);
-    //       }
-    //     };
-    //
-    //     const script = document.createElement('script');
-    //     script.src = `http://api.map.baidu.com/api?v=3.0&ak=${props.ak}`;
-    //     document?.querySelector('head')?.appendChild(script);
-    //   });
-    // };
 
     const initMap = () => {
       map = new BMap.Map(root.value, {
@@ -130,46 +86,17 @@ export default defineComponent({
     });
 
     onMounted(() => {
-      // 外部载入bmap.js
-      // if (props.externalImportBMapScript) {
-      //   BMap = (window as any).BMap;
-      //
-      //   isReady = true;
-      //
-      //   nextTick(() => {
-      //     initMap();
-      //   });
-      // }
-      // // 内部引入bmap.js
-      // else {
-      //   importBMapJS().then((BMap) => {
-      //     BMap = BMap;
-      //
-      //     (window as any).BMap = BMap;
-      //
-      //     emit('onBMapScriptReady');
-      //
-      //     isReady = true;
-      //
-      //     nextTick(() => {
-      //       initMap();
-      //     });
-      //   });
-      // }
-
       // @ts-ignore
       BMap = window.BMap;
 
-      isReady = true;
+      isReady.value = true;
 
-      nextTick(() => {
-        initMap();
-      });
+      nextTick(() => initMap());
     });
 
     return () => (
       // @ts-ignore
-      <ConditionalRender conditional={isReady}>
+      <ConditionalRender conditional={isReady.value}>
         {{
           default: () => <div class={selectorPrefix} ref={root} />,
           noMatch: () => <div>loading</div>,

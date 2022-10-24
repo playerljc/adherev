@@ -56,6 +56,7 @@ import { Emitter } from '@baifendian/adherev';
 let handler1;
 
 export default {
+  displayName: 'emitter',
   data() {
     return {
       scrollEl: null,

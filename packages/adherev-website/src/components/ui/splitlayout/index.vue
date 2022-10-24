@@ -117,6 +117,7 @@
 
 <script>
 export default {
+  displayName: 'splitlayout',
   data() {
     return {
       scrollEl: null,

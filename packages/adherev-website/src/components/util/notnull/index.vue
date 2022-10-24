@@ -23,6 +23,7 @@
 import { NotNull } from '@baifendian/adherev';
 
 export default {
+  displayName: 'notnull',
   data() {
     return {
       scrollEl: null,

@@ -7,6 +7,7 @@ const {
 } = BfdUtil;
 
 Popup.isUse = () => true;
+
 Popup.use = (Vue: any) => {
   withVue(Vue, 'Popup', Popup);
 };

@@ -78,6 +78,8 @@ const ContextMenuComponent = defineComponent({
   },
 });
 
+let globalConfig: IConfig | null = null;
+
 const ContextMenu: IComponent = {
   /**
    * config
@@ -129,7 +131,9 @@ const ContextMenu: IComponent = {
 
         return () => <ContextMenuComponent ref={root} data={data} config={config} el={parentEl} />;
       },
-    }).mount(parentEl);
+    });
+    if (globalConfig) globalConfig?.beforeMount?.(app);
+    app.mount(parentEl);
 
     return {
       vm: app,
@@ -147,6 +151,9 @@ const ContextMenu: IComponent = {
     } catch (err) {
       (el as HTMLElement)?.parentElement?.removeChild(el);
     }
+  },
+  setConfig(config) {
+    globalConfig = config;
   },
 };
 

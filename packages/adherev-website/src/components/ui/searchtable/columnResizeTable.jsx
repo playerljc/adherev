@@ -64,7 +64,7 @@ export default {
         },
       ].map((column) => ({
         ...column,
-        resize: true,
+        resizable: true,
       }));
     },
   },

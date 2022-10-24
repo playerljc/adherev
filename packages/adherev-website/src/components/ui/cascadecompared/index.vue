@@ -8,7 +8,7 @@
       <template #p1>
         <div style="width: 320px; height: 548px; border: 1px solid rgba(0, 0, 0, 0.1)">
           <adv-cascadecompared :indicator="indicator" :master="master">
-            <template v-slot:masterGroupTitle="props">
+            <template #masterGroupTitle="props">
               <h2
                 style="
                   padding: 15px 0 15px 15px;
@@ -20,7 +20,7 @@
               </h2>
             </template>
 
-            <template v-slot:cell="props">
+            <template #cell="props">
               <h4>厂家指导价{{ props.columnIndex + 1 }}</h4>
             </template>
           </adv-cascadecompared>
@@ -28,96 +28,90 @@
       </template>
 
       <template #p2>
-        <fragment>
-          <a-button type="primary" @click="onCode2Click">插入</a-button>
+        <a-button type="primary" @click="onCode2Click">插入</a-button>
 
-          <adv-space />
+        <adv-space />
 
-          <div style="width: 320px; height: 548px; border: 1px solid rgba(0, 0, 0, 0.1)">
-            <adv-cascadecompared ref="ref1" :indicator="indicator" :master="data1">
-              <template v-slot:masterGroupTitle="props">
-                <h2
-                  style="
-                    padding: 15px 0 15px 15px;
-                    margin: 0;
-                    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-                  "
-                >
-                  header{{ props.groupIndex + 1 }}
-                </h2>
-              </template>
+        <div style="width: 320px; height: 548px; border: 1px solid rgba(0, 0, 0, 0.1)">
+          <adv-cascadecompared ref="ref1" :indicator="indicator" :master="data1">
+            <template #masterGroupTitle="props">
+              <h2
+                style="
+                  padding: 15px 0 15px 15px;
+                  margin: 0;
+                  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+                "
+              >
+                header{{ props.groupIndex + 1 }}
+              </h2>
+            </template>
 
-              <template v-slot:cell="props">
-                <h4>厂家指导价{{ props.columnIndex + 1 }}</h4>
-              </template>
-            </adv-cascadecompared>
-          </div>
-        </fragment>
+            <template #cell="props">
+              <h4>厂家指导价{{ props.columnIndex + 1 }}</h4>
+            </template>
+          </adv-cascadecompared>
+        </div>
       </template>
 
       <template #p3>
-        <fragment>
-          <adv-space-group direction="horizontal">
-            <a-button type="primary" @click="$refs.ref2.scrollToByIndex(9, 0)"
-              >滚动到底部(无动画)</a-button
-            >
-            <a-button @click="$refs.ref2.scrollToByIndex(9)">滚动到底部(有动画)</a-button>
-            <a-button @click="$refs.ref2.scrollToByIndex(0)">回到顶部</a-button>
-          </adv-space-group>
+        <adv-space-group direction="horizontal">
+          <a-button type="primary" @click="$refs.ref2.scrollToByIndex(9, 0)"
+            >滚动到底部(无动画)</a-button
+          >
+          <a-button @click="$refs.ref2.scrollToByIndex(9)">滚动到底部(有动画)</a-button>
+          <a-button @click="$refs.ref2.scrollToByIndex(0)">回到顶部</a-button>
+        </adv-space-group>
 
-          <adv-space />
+        <adv-space />
 
-          <div style="width: 320px; height: 548px; border: 1px solid rgba(0, 0, 0, 0.1)">
-            <adv-cascadecompared ref="ref2" :indicator="indicator" :master="master">
-              <template v-slot:masterGroupTitle="props">
-                <h2
-                  style="
-                    padding: 15px 0 15px 15px;
-                    margin: 0;
-                    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-                  "
-                >
-                  header{{ props.groupIndex + 1 }}
-                </h2>
-              </template>
+        <div style="width: 320px; height: 548px; border: 1px solid rgba(0, 0, 0, 0.1)">
+          <adv-cascadecompared ref="ref2" :indicator="indicator" :master="master">
+            <template #masterGroupTitle="props">
+              <h2
+                style="
+                  padding: 15px 0 15px 15px;
+                  margin: 0;
+                  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+                "
+              >
+                header{{ props.groupIndex + 1 }}
+              </h2>
+            </template>
 
-              <template v-slot:cell="props">
-                <h4>厂家指导价{{ props.columnIndex + 1 }}</h4>
-              </template>
-            </adv-cascadecompared>
-          </div>
-        </fragment>
+            <template #cell="props">
+              <h4>厂家指导价{{ props.columnIndex + 1 }}</h4>
+            </template>
+          </adv-cascadecompared>
+        </div>
       </template>
 
       <template #p4>
-        <fragment>
-          <adv-space-group direction="horizontal">
-            <a-button type="primary" @click="$refs.ref3.scrollToByColumn(1)">滚动到第一列</a-button>
-            <a-button @click="$refs.ref3.scrollToByColumn(9)">滚动到最后一列(有动画)</a-button>
-          </adv-space-group>
+        <adv-space-group direction="horizontal">
+          <a-button type="primary" @click="$refs.ref3.scrollToByColumn(1)">滚动到第一列</a-button>
+          <a-button @click="$refs.ref3.scrollToByColumn(9)">滚动到最后一列(有动画)</a-button>
+        </adv-space-group>
 
-          <adv-space />
+        <adv-space />
 
-          <div style="width: 320px; height: 548px; border: 1px solid rgba(0, 0, 0, 0.1)">
-            <adv-cascadecompared ref="ref3" :indicator="indicator" :master="master">
-              <template v-slot:masterGroupTitle="props">
-                <h2
-                  style="
-                    padding: 15px 0 15px 15px;
-                    margin: 0;
-                    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-                  "
-                >
-                  header{{ props.groupIndex + 1 }}
-                </h2>
-              </template>
+        <div style="width: 320px; height: 548px; border: 1px solid rgba(0, 0, 0, 0.1)">
+          <adv-cascadecompared ref="ref3" :indicator="indicator" :master="master">
+            <template #masterGroupTitle="props">
+              <h2
+                style="
+                  padding: 15px 0 15px 15px;
+                  margin: 0;
+                  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+                "
+              >
+                header{{ props.groupIndex + 1 }}
+              </h2>
+            </template>
 
-              <template v-slot:cell="props">
-                <h4>厂家指导价{{ props.columnIndex + 1 }}</h4>
-              </template>
-            </adv-cascadecompared>
-          </div>
-        </fragment>
+            <template #cell="props">
+              <h4>厂家指导价{{ props.columnIndex + 1 }}</h4>
+            </template>
+          </adv-cascadecompared>
+        </div>
       </template>
     </adv-playground-page-code-box-section>
 
@@ -186,6 +180,7 @@ function getMaster() {
 }
 
 export default {
+  displayName: 'cascadecompared',
   computed: {
     indicator() {
       return {

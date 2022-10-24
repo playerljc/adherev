@@ -4,7 +4,7 @@ import { object, oneOfType, string } from 'vue-types';
 const selectPrefix = 'adherev-ui-playground-page-section';
 
 export const sectionProps = {
-  title: oneOfType([string, object<VNode>()]),
+  title: oneOfType([string(), object<VNode>()]),
   extra: object<VNode>(),
 };
 

@@ -14,13 +14,13 @@
                 :indexes="code1Indexes"
                 :dataSource="code1DataSource"
               >
-                <template v-slot:title="props">
+                <template #title="props">
                   <span>{{ props.index }}</span>
                 </template>
-                <template v-slot:index="props">
+                <template #index="props">
                   <span>{{ props.index }}</span>
                 </template>
-                <template v-slot:content="props">
+                <template #content="props">
                   <ul>
                     <li v-for="(t, index) in 10" :key="index + 1">
                       {{ props.index }}{{ index + 1 }}
@@ -37,13 +37,13 @@
                 :indexes="code1Indexes"
                 :dataSource="code1DataSource"
               >
-                <template v-slot:title="props">
+                <template #title="props">
                   <span>{{ props.index }}</span>
                 </template>
-                <template v-slot:index="props">
+                <template #index="props">
                   <span>{{ props.index }}</span>
                 </template>
-                <template v-slot:content="props">
+                <template #content="props">
                   <ul>
                     <li v-for="(t, index) in 10" :key="index + 1">
                       {{ props.index }}{{ index + 1 }}
@@ -66,13 +66,13 @@
                 :indexes="code1Indexes"
                 :dataSource="code1DataSource"
               >
-                <template v-slot:title="props">
+                <template #title="props">
                   <span>{{ props.index }}</span>
                 </template>
-                <template v-slot:index="props">
+                <template #index="props">
                   <span>{{ props.index }}</span>
                 </template>
-                <template v-slot:content="props">
+                <template #content="props">
                   <ul>
                     <li v-for="(t, index) in 10" :key="index + 1">
                       {{ props.index }}{{ index + 1 }}
@@ -89,13 +89,13 @@
                 :indexes="code1Indexes"
                 :dataSource="code1DataSource"
               >
-                <template v-slot:title="props">
+                <template #title="props">
                   <span>{{ props.index }}</span>
                 </template>
-                <template v-slot:index="props">
+                <template #index="props">
                   <span>{{ props.index }}</span>
                 </template>
-                <template v-slot:content="props">
+                <template #content="props">
                   <ul>
                     <li v-for="(t, index) in 10" :key="index + 1">
                       {{ props.index }}{{ index + 1 }}
@@ -123,13 +123,13 @@
             :indexes="code1Indexes"
             :dataSource="code1DataSource"
           >
-            <template v-slot:title="props">
+            <template #title="props">
               <span>{{ props.index }}</span>
             </template>
-            <template v-slot:index="props">
+            <template #index="props">
               <span>{{ props.index }}</span>
             </template>
-            <template v-slot:content="props">
+            <template #content="props">
               <ul>
                 <li v-for="(t, index) in 10" :key="index + 1">{{ props.index }}{{ index + 1 }}</li>
               </ul>
@@ -147,6 +147,7 @@
 
 <script>
 export default {
+  displayName: 'surnames',
   data() {
     return {
       scrollEl: null,
@@ -172,13 +173,13 @@ export default {
                   :indexes="code1Indexes"
                   :dataSource="code1DataSource"
                 >
-                  <template v-slot:title="props">
+                  <template #title="props">
                     <span>{{ props.index }}</span>
                   </template>
-                  <template v-slot:index="props">
+                  <template #index="props">
                     <span>{{ props.index }}</span>
                   </template>
-                  <template v-slot:content="props">
+                  <template #content="props">
                     <ul>
                       <li v-for="(t, index) in 10" :key="index + 1">
                         {{ props.index }}{{ index + 1 }}
@@ -195,13 +196,13 @@ export default {
                   :indexes="code1Indexes"
                   :dataSource="code1DataSource"
                 >
-                  <template v-slot:title="props">
+                  <template #title="props">
                     <span>{{ props.index }}</span>
                   </template>
-                  <template v-slot:index="props">
+                  <template #index="props">
                     <span>{{ props.index }}</span>
                   </template>
-                  <template v-slot:content="props">
+                  <template #content="props">
                     <ul>
                       <li v-for="(t, index) in 10" :key="index + 1">
                         {{ props.index }}{{ index + 1 }}
@@ -278,13 +279,13 @@ export default {
                   :indexes="code1Indexes"
                   :dataSource="code1DataSource"
                 >
-                  <template v-slot:title="props">
+                  <template #title="props">
                     <span>{{ props.index }}</span>
                   </template>
-                  <template v-slot:index="props">
+                  <template #index="props">
                     <span>{{ props.index }}</span>
                   </template>
-                  <template v-slot:content="props">
+                  <template #content="props">
                     <ul>
                       <li v-for="(t, index) in 10" :key="index + 1">
                         {{ props.index }}{{ index + 1 }}
@@ -301,13 +302,13 @@ export default {
                   :indexes="code1Indexes"
                   :dataSource="code1DataSource"
                 >
-                  <template v-slot:title="props">
+                  <template #title="props">
                     <span>{{ props.index }}</span>
                   </template>
-                  <template v-slot:index="props">
+                  <template #index="props">
                     <span>{{ props.index }}</span>
                   </template>
-                  <template v-slot:content="props">
+                  <template #content="props">
                     <ul>
                       <li v-for="(t, index) in 10" :key="index + 1">
                         {{ props.index }}{{ index + 1 }}
@@ -389,13 +390,13 @@ export default {
               :indexes="code1Indexes"
               :dataSource="code1DataSource"
             >
-              <template v-slot:title="props">
+              <template #title="props">
                 <span>{{ props.index }}</span>
               </template>
-              <template v-slot:index="props">
+              <template #index="props">
                 <span>{{ props.index }}</span>
               </template>
-              <template v-slot:content="props">
+              <template #content="props">
                 <ul>
                   <li v-for="(t, index) in 10" :key="index + 1">{{ props.index }}{{ index + 1 }}</li>
                 </ul>
@@ -499,18 +500,6 @@ export default {
           border: true,
           title: 'Surnames',
           data: [
-            {
-              params: 'className',
-              desc: '附加的样式表',
-              type: 'string',
-              defaultVal: '',
-            },
-            {
-              params: 'style',
-              desc: '附加的样式',
-              type: 'String',
-              defaultVal: '',
-            },
             {
               params: 'position',
               desc: '显示的位置 top, right, bottom, left',

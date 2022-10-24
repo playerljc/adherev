@@ -20,6 +20,7 @@
 import Person from './person';
 
 export default {
+  displayName: 'mixins',
   components: { Person },
   data() {
     return {

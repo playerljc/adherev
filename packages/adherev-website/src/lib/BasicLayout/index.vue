@@ -36,9 +36,7 @@
       </div>
 
       <div>
-        <keep-alive>
-          <router-view />
-        </keep-alive>
+        <router-view />
       </div>
 
       <div :class="$style.FooterWrap">

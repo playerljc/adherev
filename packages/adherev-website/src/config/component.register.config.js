@@ -1,4 +1,5 @@
 import {
+  Space as AntdSpace,
   Avatar,
   Breadcrumb,
   Button,
@@ -8,17 +9,20 @@ import {
   DatePicker,
   Divider,
   Empty,
-  Form,
+  Form, // FormModel,
+  // Icon,
   Input,
   InputNumber,
   List,
   Menu,
   Modal,
+  Progress,
   Radio,
   Result,
   Row,
   Select,
   Slider,
+  Statistic,
   Switch,
   Table,
   Tabs,
@@ -26,14 +30,20 @@ import {
   Tooltip,
 } from 'ant-design-vue';
 
+import * as VueIcons from '@ant-design/icons-vue';
 import {
   AdapterScreen,
+  ConfigProvider as AdherevConfigProvider,
   Ajax,
+  BMap,
   BackTopAnimation,
   Browsersniff,
   CascadeCompared,
+  Comment,
   ConditionalRender,
   ContextMenu,
+  ContourBlock,
+  DateDisplay,
   DelConfirm,
   Dict,
   Domain,
@@ -43,6 +53,7 @@ import {
   FontSizeSetting,
   GlobalIndicator,
   HistoryBack,
+  IframeIO,
   ImageLazy,
   ImportantConfirm,
   Intl,
@@ -51,7 +62,7 @@ import {
   NotNull,
   Notification,
   OLMap,
-  Permission, // BMap,
+  Permission,
   PlayGround,
   PolygonSelection,
   Popup,
@@ -72,22 +83,13 @@ import {
   Surnames,
   Suspense,
   SwipeOut,
+  TableGridLayout,
   Util,
   Validator,
   WarnPrompt,
   WatchMemoized,
+  WritingBoard,
 } from '@baifendian/adherev';
-
-import AnchorNavigation from '@/lib/AnchorNavigation';
-import CodeBoxPanel from '@/lib/CodeBoxPanel';
-import CodePanel from '@/lib/CodePanel';
-import CodeTabPanel from '@/lib/CodeTabPanel';
-import FunctionProps from '@/lib/FunctionProps';
-import Playground from '@/lib/Playground';
-import PlaygroundMulit from '@/lib/PlaygroundMulit';
-import PlaygroundPage from '@/lib/PlaygroundPage';
-import PlaygroundTab from '@/lib/PlaygroundTab';
-import Props from '@/lib/Props';
 
 const register = [
   (app) => {
@@ -100,9 +102,12 @@ const register = [
     app.use(Empty);
     app.use(Tooltip);
     // app.use(Icon);
+    app.use(Statistic);
+    app.use(Progress);
     app.use(Modal);
     app.use(Result);
     app.use(Form);
+    app.use(AntdSpace);
     // app.use(FormModel);
     app.use(Input);
     app.use(Radio);
@@ -120,6 +125,14 @@ const register = [
     app.use(Switch);
   },
   (app) => {
+    TableGridLayout.use(app);
+    WritingBoard.use(app);
+    IframeIO.use(app);
+    ContourBlock.use(app);
+    DateDisplay.use(app);
+    Comment.use(app);
+    BMap.use(app);
+    AdherevConfigProvider.use(app);
     ConditionalRender.use(app);
     DelConfirm.use(app);
     ImportantConfirm.use(app);
@@ -172,16 +185,9 @@ const register = [
     Util.use(app);
   },
   (app) => {
-    app.use(AnchorNavigation);
-    app.use(CodeBoxPanel);
-    app.use(CodePanel);
-    app.use(CodeTabPanel);
-    app.use(Playground);
-    app.use(PlaygroundMulit);
-    app.use(PlaygroundPage);
-    app.use(PlaygroundTab);
-    app.use(FunctionProps);
-    app.use(Props);
+    for (const p in VueIcons) {
+      app.component(p, VueIcons[p]);
+    }
   },
 ];
 

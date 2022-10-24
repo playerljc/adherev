@@ -44,7 +44,7 @@
           <code>ant-design-vue/dist/antd.less</code>
         </div>
       </article>
-      <playground :code-text="code1" :default-expand="true" lang="javascript" />
+      <adv-playground :code-text="code1" :default-expand="true" lang="javascript" />
 
       <!--<article class="ant-typography" style="margin: 20px 0">
         <h2>国际化说明</h2>
@@ -66,7 +66,7 @@
           </p>
         </div>
       </article>
-      <playground-mulit :defaultConfig="code3" :default-expand="true" lang="javascript" />
+      <adv-playground-mulit :defaultConfig="code3" :default-expand="true" lang="javascript" />
     </div>
   </ScrollFooterPanel>
 </template>
@@ -75,6 +75,7 @@
 import ScrollFooterPanel from '@/lib/ScrollFooterPanel';
 
 export default {
+  displayName: 'introduction',
   components: {
     ScrollFooterPanel,
   },

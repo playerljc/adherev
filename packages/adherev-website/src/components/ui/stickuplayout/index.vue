@@ -10,7 +10,7 @@
         <div style="height: 500px; overflow: hidden">
           <adv-stickuplayout>
             <adv-stickuplayout-item>
-              <template v-slot:title>
+              <template #title>
                 <span class="title">基本参数</span>
               </template>
               <table>
@@ -63,7 +63,7 @@
             </adv-stickuplayout-item>
 
             <adv-stickuplayout-item>
-              <template v-slot:title>
+              <template #title>
                 <span class="title">车身</span>
               </template>
               <table>
@@ -116,7 +116,7 @@
             </adv-stickuplayout-item>
 
             <adv-stickuplayout-item>
-              <template v-slot:title>
+              <template #title>
                 <span class="title">发动机</span>
               </template>
               <table>
@@ -169,7 +169,7 @@
             </adv-stickuplayout-item>
 
             <adv-stickuplayout-item>
-              <template v-slot:title>
+              <template #title>
                 <span class="title">变速箱</span>
               </template>
               <table>
@@ -222,7 +222,7 @@
             </adv-stickuplayout-item>
 
             <adv-stickuplayout-item>
-              <template v-slot:title>
+              <template #title>
                 <span class="title">车轮制动</span>
               </template>
               <table>
@@ -275,7 +275,7 @@
             </adv-stickuplayout-item>
 
             <adv-stickuplayout-item>
-              <template v-slot:title>
+              <template #title>
                 <span class="title">主/被动安全装备</span>
               </template>
               <table>
@@ -347,7 +347,7 @@
         <div style="height: 500px; overflow: hidden">
           <adv-stickuplayout ref="ref1">
             <adv-stickuplayout-item>
-              <template v-slot:title>
+              <template #title>
                 <span class="title">基本参数</span>
               </template>
               <table>
@@ -400,7 +400,7 @@
             </adv-stickuplayout-item>
 
             <adv-stickuplayout-item>
-              <template v-slot:title>
+              <template #title>
                 <span class="title">车身</span>
               </template>
 
@@ -454,7 +454,7 @@
             </adv-stickuplayout-item>
 
             <adv-stickuplayout-item>
-              <template v-slot:title>
+              <template #title>
                 <span class="title">发动机</span>
               </template>
 
@@ -508,7 +508,7 @@
             </adv-stickuplayout-item>
 
             <adv-stickuplayout-item>
-              <template v-slot:title>
+              <template #title>
                 <span class="title">变速箱</span>
               </template>
 
@@ -562,7 +562,7 @@
             </adv-stickuplayout-item>
 
             <adv-stickuplayout-item>
-              <template v-slot:title>
+              <template #title>
                 <span class="title">车轮制动</span>
               </template>
 
@@ -616,7 +616,7 @@
             </adv-stickuplayout-item>
 
             <adv-stickuplayout-item>
-              <template v-slot:title>
+              <template #title>
                 <span class="title">主/被动安全装备</span>
               </template>
 
@@ -681,6 +681,7 @@
 
 <script>
 export default {
+  displayName: 'stickuplayout',
   data() {
     return {
       scrollEl: null,
@@ -706,7 +707,7 @@ export default {
               <div style="height: 500px; overflow: hidden">
                 <adv-stickuplayout>
                   <adv-stickuplayout-item>
-                    <template v-slot:title>
+                    <template #title>
                       <span class="title">基本参数</span>
                     </template>
                     <table>
@@ -759,7 +760,7 @@ export default {
                   </adv-stickuplayout-item>
 
                   <adv-stickuplayout-item>
-                    <template v-slot:title>
+                    <template #title>
                       <span class="title">车身</span>
                     </template>
                     <table>
@@ -812,7 +813,7 @@ export default {
                   </adv-stickuplayout-item>
 
                   <adv-stickuplayout-item>
-                    <template v-slot:title>
+                    <template #title>
                       <span class="title">发动机</span>
                     </template>
                     <table>
@@ -865,7 +866,7 @@ export default {
                   </adv-stickuplayout-item>
 
                   <adv-stickuplayout-item>
-                    <template v-slot:title>
+                    <template #title>
                       <span class="title">变速箱</span>
                     </template>
                     <table>
@@ -918,7 +919,7 @@ export default {
                   </adv-stickuplayout-item>
 
                   <adv-stickuplayout-item>
-                    <template v-slot:title>
+                    <template #title>
                       <span class="title">车轮制动</span>
                     </template>
                     <table>
@@ -971,7 +972,7 @@ export default {
                   </adv-stickuplayout-item>
 
                   <adv-stickuplayout-item>
-                    <template v-slot:title>
+                    <template #title>
                       <span class="title">主/被动安全装备</span>
                     </template>
                     <table>
@@ -1124,7 +1125,7 @@ export default {
           <div style="height: 500px; overflow: hidden">
             <adv-stickuplayout ref="ref1">
               <adv-stickuplayout-item>
-                <template v-slot:title>
+                <template #title>
                   <span class="title">基本参数</span>
                 </template>
                 <table>
@@ -1177,7 +1178,7 @@ export default {
               </adv-stickuplayout-item>
 
               <adv-stickuplayout-item>
-                <template v-slot:title>
+                <template #title>
                   <span class="title">车身</span>
                 </template>
 
@@ -1231,7 +1232,7 @@ export default {
               </adv-stickuplayout-item>
 
               <adv-stickuplayout-item>
-                <template v-slot:title>
+                <template #title>
                   <span class="title">发动机</span>
                 </template>
 
@@ -1285,7 +1286,7 @@ export default {
               </adv-stickuplayout-item>
 
               <adv-stickuplayout-item>
-                <template v-slot:title>
+                <template #title>
                   <span class="title">变速箱</span>
                 </template>
 
@@ -1339,7 +1340,7 @@ export default {
               </adv-stickuplayout-item>
 
               <adv-stickuplayout-item>
-                <template v-slot:title>
+                <template #title>
                   <span class="title">车轮制动</span>
                 </template>
 
@@ -1393,7 +1394,7 @@ export default {
               </adv-stickuplayout-item>
 
               <adv-stickuplayout-item>
-                <template v-slot:title>
+                <template #title>
                   <span class="title">主/被动安全装备</span>
                 </template>
 
@@ -1513,18 +1514,6 @@ export default {
           title: 'SplitLayout',
           data: [
             {
-              params: 'className',
-              desc: '附加的样式表',
-              type: 'string',
-              defaultVal: '',
-            },
-            {
-              params: 'style',
-              desc: '附加的样式',
-              type: 'String',
-              defaultVal: '',
-            },
-            {
               params: 'fixedClassName',
               desc: '固定头附加的样式表',
               type: 'string',
@@ -1552,24 +1541,6 @@ export default {
               params: 'onChange',
               desc: '滚动到固定区域',
               type: 'Function',
-              defaultVal: '',
-            },
-          ],
-        },
-        {
-          border: true,
-          title: 'SplitLayout.Item',
-          data: [
-            {
-              params: 'className',
-              desc: '附加的样式表',
-              type: 'string',
-              defaultVal: '',
-            },
-            {
-              params: 'style',
-              desc: '附加的样式',
-              type: 'String',
               defaultVal: '',
             },
           ],

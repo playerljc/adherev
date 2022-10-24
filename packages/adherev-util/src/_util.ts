@@ -1,3 +1,4 @@
+import merge from 'lodash.merge';
 import { ComponentOptions, defineComponent, h, ref } from 'vue';
 
 import { DefineComponent } from '@vue/runtime-core';
@@ -87,34 +88,44 @@ export function HOC(
     slots: (slots: any) => any;
   },
 ) {
-  return defineComponent({
-    props: { ...(Component.props || {}), ...(optionsOverwrite.props || {}) },
-    emits: [...(Component.emits ? (Component.emits as []) : [])],
-    slots: [...(Component.slots ? (Component.slots as []) : [])],
-    expose: [...(Component.expose ? (Component.slots as []) : [])],
-    setup(props, { slots, attrs, expose }) {
-      const comRef = ref();
+  return defineComponent(
+    merge(
+      {
+        ...(Component || {}),
+      },
+      {
+        ...(optionsOverwrite || {}),
+        setup(props, { slots, attrs, expose }) {
+          const comRef = ref();
 
-      if (Component.expose) {
-        const exposeObj = {};
-        Component.expose.forEach((methodName) => {
-          exposeObj[methodName] = (params) => comRef.value?.[methodName]?.(params);
-        });
-        expose(exposeObj);
-      }
+          if (Component.expose) {
+            const exposeObj = {};
+            Component.expose.forEach((methodName) => {
+              exposeObj[methodName] = (params) => comRef.value?.[methodName]?.(params);
+            });
+            expose(exposeObj);
+          }
 
-      return () =>
-        h(
-          Component,
-          {
-            ...(renderOptions?.props?.(props) || props || {}),
-            ...(renderOptions?.attrs?.(attrs) || attrs || {}),
-            ref: comRef,
-          },
-          {
-            ...(renderOptions?.slots?.(slots) || slots || {}),
-          },
-        );
-    },
-  });
+          return () =>
+            h(
+              Component,
+              {
+                ...(renderOptions?.props?.(props) || props || {}),
+                ...(renderOptions?.attrs?.(attrs) || attrs || {}),
+                ref: comRef,
+              },
+              {
+                ...(renderOptions?.slots?.(slots) || slots || {}),
+              },
+            );
+        },
+      },
+      // {
+      //   // props: { ...(Component.props || {}), ...(optionsOverwrite.props || {}) },
+      //   // emits: [...(Component.emits ? (Component.emits as []) : [])],
+      //   // slots: [...(Component.slots ? (Component.slots as []) : [])],
+      //   // expose: [...(Component.expose ? (Component.slots as []) : [])],
+      // },
+    ),
+  );
 }

@@ -579,10 +579,7 @@ export default defineComponent({
     });
 
     onBeforeUnmount(() => {
-      ro?.current?.disconnect();
-    });
-
-    onBeforeUnmount(() => {
+      ro?.disconnect();
       containerRef?.value?.removeEventListener('mousedown', onMousedown);
       containerRef?.value?.removeEventListener('touchstart', onTouchstart);
     });

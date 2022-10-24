@@ -141,6 +141,7 @@ const asyncFun = memoized.createMemoFun((...params) => {
 });
 
 export default {
+  displayName: 'watchmemoized',
   data() {
     return {
       scrollEl: null,

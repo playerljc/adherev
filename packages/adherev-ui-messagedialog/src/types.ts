@@ -45,7 +45,6 @@ export interface IPromptConfig {
 }
 
 export interface IConfig {
-  messages: object;
   beforeMount(app: any): void;
 }
 
@@ -66,7 +65,7 @@ export interface IMessageDialogFactory extends IComponent {
   Alert(config: IAlertArgv): void;
   Modal(config: IModalArg): void;
   close({ app, el }: { app: any; el: HTMLElement }): void;
-  // setConfig(gc: IConfig): void;
+  setConfig(gc: IConfig): void;
 }
 
 export interface IModalProps {

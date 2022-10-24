@@ -27,6 +27,7 @@
 import { ImportantConfirm } from '@baifendian/adherev';
 
 export default {
+  displayName: 'importantconfirm',
   data() {
     return {
       scrollEl: null,

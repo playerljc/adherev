@@ -12,7 +12,6 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "startapp": "cross-env environment=dev mode=development ctbuildv startapp -c ctbuildv.test.config.js --define alias=@,evnVars=true,static=assets,runtimeCompiler=true",
-    "buildapp": "cross-env environment=dev mode=production ctbuildv buildapp -c ctbuildv.test.config.js --define alias=@,evnVars=true,static=assets",
     "buildpackage:cjs": "ctbuildv buildpackagets -c ctbuildv.package.ts.cjs.config.js -o lib",
     "buildpackage:es": "ctbuildv buildpackagets -c ctbuildv.package.ts.esm.config.js -o es",
     "buildpackage": "npm-run-all --parallel buildpackage:cjs buildpackage:es",

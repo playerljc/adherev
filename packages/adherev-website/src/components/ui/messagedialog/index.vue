@@ -54,6 +54,7 @@ import { MessageDialog } from '@baifendian/adherev';
 import icon from './icon.svg';
 
 export default {
+  displayName: 'messagedialog',
   data() {
     return {
       scrollEl: null,

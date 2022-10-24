@@ -63,7 +63,8 @@
     "vue-i18n": "^9.1.9",
     "vue-router": "^4.0.12",
     "vue-types": "^4.1.1",
-    "vue3-highlightjs": "^1.0.5"
+    "vue3-highlightjs": "^1.0.5",
+    "@ckpack/vue-color": "^1.2.4"
   },
   "devDependencies": {
     "@babel/runtime": "^7.17.2",

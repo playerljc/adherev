@@ -10,7 +10,8 @@ import formCreate from '@form-create/ant-design-vue';
 // import Emitter from './emitter';
 import ModalDialog from './modal';
 import {
-  IAlertArgv, // IConfig,
+  IAlertArgv,
+  IConfig, // IConfig,
   IConfirmArgv,
   IMessageDialogFactory,
   IModalArg,
@@ -24,7 +25,7 @@ const DEFAULT_LOCAL = 'zh_CN';
 const LOCAL = Resource.Dict.value.LocalsAntd.value;
 
 // MessageDialog的配置
-// let globalConfig: IConfig | null = null;
+let globalConfig: IConfig | null = null;
 
 /**
  * renderByIcon
@@ -464,7 +465,7 @@ const MessageDialogFactory: IMessageDialogFactory = {
     //     app.use(com);
     //   }
     // });
-    // globalConfig?.beforeMount?.(app);
+    globalConfig?.beforeMount?.(app);
 
     app.mount(el);
 
@@ -489,6 +490,9 @@ const MessageDialogFactory: IMessageDialogFactory = {
     } catch (err) {
       el?.parentElement?.removeChild(el);
     }
+  },
+  setConfig(gc: IConfig) {
+    globalConfig = gc;
   },
 };
 

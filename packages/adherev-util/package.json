@@ -39,6 +39,7 @@
   },
   "dependencies": {
     "@baifendian/adhere-util": "^1.0.21",
+    "lodash": "^4.17.21",
     "vue": "^3.2.31"
   }
 }

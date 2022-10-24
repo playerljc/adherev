@@ -24,6 +24,7 @@
 import { Domain } from '@baifendian/adherev';
 
 export default {
+  displayName: 'domain',
   data() {
     return {
       scrollEl: null,

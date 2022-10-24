@@ -1,4 +1,48 @@
 <template>
+  <!--<div class="PageDemo" ref="ref" style="padding: 20px">
+    <adv-playground-anchor-navigation
+      :defaultActiveAnchor="activeAnchor"
+      :anchors="anchors"
+      :scrollEl="scrollEl"
+    >
+      <div>
+        &lt;!&ndash;<h1>CodePanel</h1>
+        <adv-playground-code-panel id="p1">
+          {{ code1 }}
+        </adv-playground-code-panel>
+
+        <h1>CodeTabPanel</h1>
+        <adv-playground-code-tab-panel
+          id="p2"
+          :active="activeKey"
+          :config="config"
+          @change="onChange($event)"
+        />
+
+        <h1>PlayGround</h1>
+        <adv-playground id="p3" :code-text="code1">
+          <a-button type="primary">显示警告提示</a-button>
+        </adv-playground>
+
+        <h1>PlayGroundTab</h1>
+        <adv-playground-tab id="p4" :active="activeTabKey" :config="config">
+          <a-button type="primary">显示警告提示</a-button>
+        </adv-playground-tab>
+
+        <h1>PlayGroundMulit</h1>
+        <adv-playground-mulit id="p5" :defaultConfig="defaultConfig">
+          <a-button type="primary">显示警告提示</a-button>
+        </adv-playground-mulit>&ndash;&gt;
+
+        <h1>CodeBoxPanel</h1>
+        <adv-playground-code-box-panel title="代码演示" :config="codeBoxPanelConfig">
+          <template #cell1>
+            <a-button type="primary">显示警告提示</a-button>
+          </template>
+        </adv-playground-code-box-panel>
+      </div>
+    </adv-playground-anchor-navigation>
+  </div>-->
   <adv-playground-page
     :defaultActiveAnchor="activeAnchor"
     :anchors="anchors"
@@ -19,12 +63,6 @@
 
     <adv-playground-page-props-section title="Props" :config="propsConfig" />
   </adv-playground-page>
-
-  <!--  <adv-playground-page-code-box-section title="代码演示" :config="codeBoxPanelConfig">
-    <template #cell1>
-      <a-button type="primary">显示警告提示</a-button>
-    </template>
-  </adv-playground-page-code-box-section>-->
 </template>
 
 <script>
@@ -33,6 +71,7 @@ anchor.length = 3;
 anchor.fill(0);
 
 export default {
+  displayName: 'demo',
   data() {
     return {
       scrollEl: null,
@@ -83,7 +122,7 @@ export default {
         },
         {
           type: 'CodePanel',
-          title: 'c.js',
+          title: 'a.js',
           codeText: '<template><p>999</p></template>',
         },
       ],
@@ -652,7 +691,7 @@ export default {
     };
   },
   mounted() {
-    console.log('this?.$refs?.ref', this?.$refs?.ref);
+    console.log('this?.$refs?.ref?.$el', this?.$refs?.ref?.$el);
     this.scrollEl = this?.$refs?.ref?.$el?.parentElement?.parentElement;
     // this.scrollEl = this?.$refs?.ref?.parentElement?.parentElement;
   },

@@ -23,6 +23,7 @@
 import { Preferences } from '@baifendian/adherev';
 
 export default {
+  displayName: 'preferences',
   data() {
     return {
       scrollEl: null,

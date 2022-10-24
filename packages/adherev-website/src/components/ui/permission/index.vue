@@ -44,6 +44,7 @@ const { setPermission, getPermission } = Permission;
 setPermission(['1']);
 
 export default {
+  displayName: 'permission',
   data() {
     return {
       // 所有权限是[1]
@@ -72,7 +73,7 @@ export default {
 
             <adv-permission :permissions="curPermission" :allPermission="allPermission">
               <Button>有权限才能看到这个按钮</Button>
-              <template v-slot:noMatch>
+              <template #noMatch>
                 <a-empty />
               </template>
             </adv-permission>
@@ -109,7 +110,7 @@ export default {
                       <Button
                         type="primary"
                         onClick={() => {
-                          const val = vm.$refs.formRef.allPermission.trim();
+                          const val = vm.$refs.rootRef.allPermission.toString().trim();
                           if (val) {
                             this.allPermission = val.split(',');
                           }
@@ -149,7 +150,7 @@ export default {
                       <Button
                         type="primary"
                         onClick={() => {
-                          const val = vm.$refs.formRef.curPermission.trim();
+                          const val = vm.$refs.rootRef.curPermission.trim();
                           if (val) {
                             this.curPermission = val.split(',');
                           }
@@ -291,16 +292,15 @@ export default {
      * @return {{permission}}
      */
     onSetAllPermission() {
-      const { el, vm, rootRef } = MessageDialog.Modal({
+      const { el, vm } = MessageDialog.Modal({
         config: {
           title: '设置所有权限',
           width: 200,
-          footer: () => [
+          footer: (h) => [
             <Button
               type="primary"
               onClick={() => {
-                const val = rootRef.value.allPermission.toString().trim(); // vm.$refs.formRef.allPermission.trim();
-
+                const val = vm.$refs.rootRef.allPermission.toString().trim();
                 if (val) {
                   this.allPermission = val.split(',');
                 }
@@ -332,15 +332,15 @@ export default {
     onSetCurPermission() {
       const { curPermission } = this;
 
-      const { el, vm, rootRef } = MessageDialog.Modal({
+      const { el, vm } = MessageDialog.Modal({
         config: {
           title: '设置当前权限',
           width: 200,
-          footer: () => [
+          footer: (h) => [
             <Button
               type="primary"
               onClick={() => {
-                const val = rootRef.value.curPermission.trim(); // vm.$refs.formRef.curPermission.trim();
+                const val = vm.$refs.rootRef.curPermission.trim();
                 if (val) {
                   this.curPermission = val.split(',');
                 }

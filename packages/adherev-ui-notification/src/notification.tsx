@@ -3,7 +3,7 @@ import { createApp, h } from 'vue';
 
 import Util from '@baifendian/adherev-util';
 
-import { IConfig, INotificationFactory, IShowConfig, IShowStandardConfig } from './types';
+import { Config, IConfig, INotificationFactory, IShowConfig, IShowStandardConfig } from './types';
 
 const selectorPrefix = 'adherev-ui-notification';
 
@@ -159,7 +159,7 @@ export class Notification {
 
       const self = this;
 
-      createApp({
+      const app = createApp({
         mounted() {
           resolve(self.build(id, n));
         },
@@ -177,7 +177,9 @@ export class Notification {
             </>
           );
         },
-      }).mount(n);
+      });
+      if (globalConfig) globalConfig?.beforeMount?.(app);
+      app.mount(n);
     });
   }
 
@@ -346,6 +348,8 @@ export class Notification {
   }
 }
 
+let globalConfig: Config | null = null;
+
 const NotificationFactory: INotificationFactory = {
   /**
    * build
@@ -355,6 +359,9 @@ const NotificationFactory: INotificationFactory = {
    */
   build(container: HTMLElement, config: IConfig): Notification {
     return new Notification(container, config);
+  },
+  setConfig(config) {
+    globalConfig = config;
   },
 };
 

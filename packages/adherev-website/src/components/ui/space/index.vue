@@ -61,6 +61,7 @@
 
 <script>
 export default {
+  displayName: 'space',
   data() {
     return {
       scrollEl: null,

@@ -11,6 +11,7 @@
 
 <script>
 export default {
+  displayName: 'resource',
   data() {
     return {
       scrollEl: null,

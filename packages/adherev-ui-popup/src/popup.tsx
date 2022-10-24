@@ -83,7 +83,11 @@ export class Popup {
       render() {
         return h(children as string);
       },
-    }).mount(this.popupInnerEl);
+    });
+
+    if (globalConfig) globalConfig?.beforeMount?.(this.vm);
+
+    this.vm.mount(this.popupInnerEl);
   }
 
   /**
@@ -239,6 +243,8 @@ export class Popup {
   }
 }
 
+let globalConfig: IConfig | null = null;
+
 /**
  * PopupFactory
  */
@@ -353,6 +359,9 @@ const PopupFactory: IComponent = {
    */
   setEl(tel: HTMLElement) {
     el = tel;
+  },
+  setConfig(config) {
+    globalConfig = config;
   },
 };
 

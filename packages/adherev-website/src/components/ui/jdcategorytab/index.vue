@@ -15,7 +15,7 @@
               :id="String(index + 1)"
             >
               <adv-conditionalrender :conditional="index % 2 === 0">
-                <template v-slot:noMatch>
+                <template #noMatch>
                   <a-table :columns="columns" :data-source="data">
                     <template #headerCell="{ column }">
                       <template v-if="column.key === 'name'">
@@ -95,7 +95,7 @@
           >
             <adv-jdcategorytab-item :id="activeKey">
               <adv-conditionalrender :conditional="parseInt(activeKey) % 2 === 0">
-                <template v-slot:noMatch>
+                <template #noMatch>
                   <a-table :columns="columns" :data-source="data">
                     <template #headerCell="{ column }">
                       <template v-if="column.key === 'name'">
@@ -142,8 +142,8 @@
                 </template>
 
                 <a-list item-layout="horizontal" :data-source="listData" style="padding: 20px">
-                  <template #renderItem="{ item }">
-                    <a-list-item slot="" slot-scope="item, index">
+                  <template #renderItem="item, index">
+                    <a-list-item>
                       <a-list-item-meta
                         description="Ant Design, a design language for background applications, is refined by Ant UED Team"
                       >
@@ -197,7 +197,7 @@
               :id="String(index + 1)"
             >
               <adv-conditionalrender :conditional="index % 2 === 0">
-                <template v-slot:noMatch>
+                <template #noMatch>
                   <a-table :columns="columns" :data-source="data">
                     <template #headerCell="{ column }">
                       <template v-if="column.key === 'name'">
@@ -276,11 +276,14 @@
 </template>
 
 <script>
+import { DownloadOutlined, SmileOutlined } from '@ant-design/icons-vue';
+
 const data = [];
 data.length = 100;
 data.fill(0);
 
 export default {
+  displayName: 'jdcategorytab',
   data() {
     return {
       data,
@@ -313,7 +316,7 @@ export default {
                 :id="String(index + 1)"
               >
                 <adv-conditionalrender :conditional="index % 2 === 0">
-                  <template v-slot:noMatch>
+                  <template #noMatch>
                     <a-table
                       style="padding: 20px"
                       :columns="columns"
@@ -492,7 +495,7 @@ export default {
             >
               <adv-jdcategorytab-item :id="activeKey">
                 <adv-conditionalrender :conditional="parseInt(activeKey) % 2 === 0">
-                  <template v-slot:noMatch>
+                  <template #noMatch>
                     <a-table
                       style="padding: 20px"
                       :columns="columns"
@@ -693,7 +696,7 @@ export default {
                   :id="String(index + 1)"
                 >
                   <adv-conditionalrender :conditional="index % 2 === 0">
-                    <template v-slot:noMatch>
+                    <template #noMatch>
                       <a-table
                         style="padding: 20px"
                         :columns="columns"
@@ -740,7 +743,6 @@ export default {
                 </adv-jdcategorytab-item>
               </adv-jdcategorytab>
             </div>
-          </fragment>
         </template>
 
         <script>
@@ -1004,6 +1006,10 @@ export default {
         },
       ],
     };
+  },
+  components: {
+    'smile-outlined': SmileOutlined,
+    'down-outlined': DownloadOutlined,
   },
   computed: {
     columns() {

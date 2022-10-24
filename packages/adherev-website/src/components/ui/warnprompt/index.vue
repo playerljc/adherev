@@ -18,6 +18,7 @@
 import { WarnPrompt } from '@baifendian/adherev';
 
 export default {
+  displayName: 'warnprompt',
   data() {
     return {
       scrollEl: null,

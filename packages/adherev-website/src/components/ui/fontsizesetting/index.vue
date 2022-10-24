@@ -20,6 +20,7 @@
 
 <script>
 export default {
+  displayName: 'fontsizesetting',
   data() {
     return {
       fontSize: 12,
@@ -44,12 +45,6 @@ export default {
           border: true,
           title: '属性',
           data: [
-            {
-              params: 'className',
-              desc: '附加的样式',
-              type: 'string',
-              defaultVal: '',
-            },
             {
               params: 'min',
               desc: '最小值',

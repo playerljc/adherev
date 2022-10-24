@@ -11,17 +11,23 @@
       <template #p1>
         <adv-pullrefresh :class="$style.Wrap" @pull-refresh="onCode1Refresh">
           <a-list item-layout="horizontal" :data-source="data">
-            <a-list-item slot="renderItem" slot-scope="item, index">
-              <a-list-item-meta
-                description="Ant Design, a design language for background applications, is refined by Ant UED Team"
-              >
-                <a slot="title" href="https://www.antdv.com/">{{ item.title }}</a>
-                <a-avatar
-                  slot="avatar"
-                  src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"
-                />
-              </a-list-item-meta>
-            </a-list-item>
+            <template #renderItem="item, index">
+              <a-list-item>
+                <a-list-item-meta
+                  description="Ant Design, a design language for background applications, is refined by Ant UED Team"
+                >
+                  <template #title>
+                    <a href="https://www.antdv.com/">{{ item.title }}</a>
+                  </template>
+
+                  <template #avatar>
+                    <a-avatar
+                      src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"
+                    />
+                  </template>
+                </a-list-item-meta>
+              </a-list-item>
+            </template>
           </a-list>
         </adv-pullrefresh>
       </template>
@@ -29,17 +35,23 @@
       <template #p2>
         <adv-pullrefresh ref="ref" :class="$style.Wrap" @pull-refresh="onCode2Refresh">
           <a-list item-layout="horizontal" :data-source="data">
-            <a-list-item slot="renderItem" slot-scope="item, index">
-              <a-list-item-meta
-                description="Ant Design, a design language for background applications, is refined by Ant UED Team"
-              >
-                <a slot="title" href="https://www.antdv.com/">{{ item.title }}</a>
-                <a-avatar
-                  slot="avatar"
-                  src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"
-                />
-              </a-list-item-meta>
-            </a-list-item>
+            <template #renderItem="item, index">
+              <a-list-item>
+                <a-list-item-meta
+                  description="Ant Design, a design language for background applications, is refined by Ant UED Team"
+                >
+                  <template #title>
+                    <a href="https://www.antdv.com/">{{ item.title }}</a>
+                  </template>
+
+                  <template #avatar>
+                    <a-avatar
+                      src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"
+                    />
+                  </template>
+                </a-list-item-meta>
+              </a-list-item>
+            </template>
           </a-list>
         </adv-pullrefresh>
         <adv-space />
@@ -71,17 +83,23 @@
             </div>
           </template>
           <a-list item-layout="horizontal" :data-source="data">
-            <a-list-item slot="renderItem" slot-scope="item, index">
-              <a-list-item-meta
-                description="Ant Design, a design language for background applications, is refined by Ant UED Team"
-              >
-                <a slot="title" href="https://www.antdv.com/">{{ item.title }}</a>
-                <a-avatar
-                  slot="avatar"
-                  src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"
-                />
-              </a-list-item-meta>
-            </a-list-item>
+            <template #renderItem="item, index">
+              <a-list-item>
+                <a-list-item-meta
+                  description="Ant Design, a design language for background applications, is refined by Ant UED Team"
+                >
+                  <template #title>
+                    <a href="https://www.antdv.com/">{{ item.title }}</a>
+                  </template>
+
+                  <template #avatar>
+                    <a-avatar
+                      src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"
+                    />
+                  </template>
+                </a-list-item-meta>
+              </a-list-item>
+            </template>
           </a-list>
         </adv-pullrefresh>
       </template>
@@ -102,6 +120,7 @@ data.fill(0);
 data = data.map((t, index) => `Ant Design Title ${index + 1}`);
 
 export default {
+  displayName: 'pullrefresh',
   data() {
     return {
       data,
@@ -237,18 +256,18 @@ export default {
             <template>
               <h2>自定义图标和文本(1)</h2>
               <adv-pullrefresh :class="$style.Wrap" :isShowUpdateTime="false" :loadingAnimation="false" @pull-refresh="onCode3Refresh">
-                <template v-slot:icon>
+                <template #icon>
                   <div>
                     <img :src="refreshIcon" alt="" />
                   </div>
                 </template>
-                <template v-slot:label>
+                <template #label>
                   <span>下拉可刷新</span>
                 </template>
-                <template v-slot:canLabel>
+                <template #canLabel>
                   <span>释放可刷新</span>
                 </template>
-                <template v-slot:loadingAnimation>
+                <template #loadingAnimation>
                   <div :class="$style.RefreshCustom1">
                     <img :src="refreshIcon" alt="" />
                     <div>刷新中...</div>

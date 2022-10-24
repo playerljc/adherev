@@ -1,1 +1,1 @@
-export default ['海量智搜'];
+export default ['Nome', 'Sexo', 'Data de nascimento', 'Endereço'];
