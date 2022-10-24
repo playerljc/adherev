@@ -3,16 +3,40 @@ import { defineComponent, nextTick, onBeforeUnmount, onMounted, ref } from 'vue'
 import { object, string } from 'vue-types';
 
 import Intl from '@baifendian/adherev-util-intl';
+import ar from '@emoji-mart/data/i18n/ar.json';
+import de from '@emoji-mart/data/i18n/de.json';
+import en from '@emoji-mart/data/i18n/en.json';
+import es from '@emoji-mart/data/i18n/es.json';
+import fa from '@emoji-mart/data/i18n/fa.json';
+import fr from '@emoji-mart/data/i18n/fr.json';
+import it from '@emoji-mart/data/i18n/it.json';
+import ja from '@emoji-mart/data/i18n/ja.json';
+import nl from '@emoji-mart/data/i18n/nl.json';
+import pl from '@emoji-mart/data/i18n/pl.json';
+import pt from '@emoji-mart/data/i18n/pt.json';
+import ru from '@emoji-mart/data/i18n/ru.json';
+import uk from '@emoji-mart/data/i18n/uk.json';
+import zh from '@emoji-mart/data/i18n/zh.json';
 
 import Emoji from '../../Components/Emoji';
-import en from '../../Components/Emoji/locales/en';
-import zh from '../../Components/Emoji/locales/zh';
 import EmojiIcon from './emoji';
 
 const { TextArea } = Input;
 
-const LOCAL_MAP = new Map<string, any>([
+export const LOCAL_MAP = new Map<string, any>([
+  ['ar', ar],
+  ['de', de],
   ['en', en],
+  ['es', es],
+  ['fa', fa],
+  ['fr', fr],
+  ['it', it],
+  ['ja', ja],
+  ['nl', nl],
+  ['pl', pl],
+  ['pt', pt],
+  ['ru', ru],
+  ['uk', uk],
   ['zh', zh],
 ]);
 
@@ -103,9 +127,9 @@ export default defineComponent({
             getPopupContainer={() => emojiWrapRef.value}
             content={
               <Emoji
-                set="emojione"
+                // set="native"
                 i18n={LOCAL_MAP.get(props.local || 'zh')}
-                onSelect={onEmojiSelect}
+                onEmojiSelect={onEmojiSelect}
                 {...(props.emojiPickerProps || {})}
               />
             }

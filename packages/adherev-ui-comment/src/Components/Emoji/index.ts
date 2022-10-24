@@ -1,18 +1,31 @@
-import { Picker } from 'emoji-mart-vue-fast';
+import 'emoji-mart/dist/browser.js';
+import { defineComponent, h, onBeforeUnmount, onMounted, ref } from 'vue';
+import { func, object } from 'vue-types';
 
-import Util from '@baifendian/adherev-util';
+const props = {
+  i18n: object().def({}),
+  onEmojiSelect: func(),
+};
 
-/**
- * Emoji
- * @param props
- * @constructor
- * @classdesc 表情
- */
+export default defineComponent({
+  props,
+  setup(props) {
+    const rootRef = ref<HTMLDivElement>();
+    let picker;
 
-export default Util._util.HOC(
-  Picker,
-  {
-    name: `adv-comment-comment-emoji`,
+    onMounted(() => {
+      // @ts-ignore
+      picker = new window.EmojiMart.Picker({ ...props });
+
+      rootRef.value?.appendChild(picker);
+    });
+
+    onBeforeUnmount(() => {
+      try {
+        picker && rootRef.value?.removeChild(picker);
+      } catch (e) {}
+    });
+
+    return () => h('div', { ref: rootRef });
   },
-  {},
-);
+});

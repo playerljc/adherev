@@ -1,2 +1,2 @@
-import{Picker}from"emoji-mart-vue-fast";import Util from"@baifendian/adherev-util";export default Util._util.HOC(Picker,{name:"adv-comment-comment-emoji"},{});
+import{__assign}from"tslib";import"emoji-mart/dist/browser.js";import{defineComponent,h,onBeforeUnmount,onMounted,ref}from"vue";import{func,object}from"vue-types";var props={i18n:object().def({}),onEmojiSelect:func()};export default defineComponent({props:props,setup:function(e){var n,r=ref();return onMounted(function(){var o;n=new window.EmojiMart.Picker(__assign({},e)),null!=(o=r.value)&&o.appendChild(n)}),onBeforeUnmount(function(){var o;try{n&&null!=(o=r.value)&&o.removeChild(n)}catch(o){}}),function(){return h("div",{ref:r})}}});
 //# sourceMappingURL=index.js.map

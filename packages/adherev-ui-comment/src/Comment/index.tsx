@@ -1,6 +1,6 @@
 import { Spin } from 'ant-design-vue';
 import classNames from 'classnames';
-import { defineComponent, VNode } from 'vue';
+import { VNode, defineComponent } from 'vue';
 import { func, number, object, string } from 'vue-types';
 
 import Intl from '@baifendian/adherev-util-intl';

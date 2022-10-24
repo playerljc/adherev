@@ -4,6 +4,7 @@
     "outDir": "./lib",
     "baseUrl": "./",
     "jsx": "preserve",
-    "types": ["vue"]
+    "types": ["vue"],
+    "resolveJsonModule": true
   }
 }
