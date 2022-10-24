@@ -17,10 +17,12 @@
                 targetSrc: 'https://dss2.bdstatic.com/8_V1bjqh_Q23odCf/pacific/1989213037.jpg',
               }"
             />
+
             <a-list-item-meta :description="item.description">
               <a slot="title" :href="item.href">{{ item.title }}</a>
               <a-avatar slot="avatar" :src="item.avatar" />
             </a-list-item-meta>
+
             {{ item.content }}
           </a-list-item>
         </a-list>

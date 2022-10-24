@@ -398,7 +398,6 @@ export default () => [
                 name: 'Teleport',
                 component: Teleport,
               },
-
               {
                 path: '/adherev/component/ui/comment',
                 name: 'Comment',
