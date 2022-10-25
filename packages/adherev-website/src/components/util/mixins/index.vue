@@ -57,85 +57,85 @@ export default {
               title: 'index.vue',
               key: 'index.vue',
               codeText: `
-            <template>
-              <Person @display="onDisplay" />
-              <div v-html="display" :class="$style.console" ref="ref1" />
-            </template>
+  <template>
+    <Person @display="onDisplay" />
+    <div v-html="display" :class="$style.console" ref="ref1" />
+  </template>
 
-            <script>
-              import Person from './person';
+  <script>
+    import Person from './person';
 
-              export default {
-                components: { Person },
-                data() {
-                  return {
-                    display: '',
-                  };
-                },
-                methods: {
-                  onDisplay({ pre, cur }) {
-                    this.display = \`\${this.display}</br>pre:\${JSON.stringify(pre)}</br>cur:\${JSON.stringify(cur,)}\`;
+    export default {
+      components: { Person },
+      data() {
+        return {
+          display: '',
+        };
+      },
+      methods: {
+        onDisplay({ pre, cur }) {
+          this.display = \`\${this.display}</br>pre:\${JSON.stringify(pre)}</br>cur:\${JSON.stringify(cur,)}\`;
 
-                    this.$nextTick(function () {
-                      this.$refs.ref1.scrollTop = this.$refs.ref1.scrollHeight - this.$refs.ref1.offsetHeight;
-                    });
-                  },
-                },
-              }
-            <\/script>
+          this.$nextTick(function () {
+            this.$refs.ref1.scrollTop = this.$refs.ref1.scrollHeight - this.$refs.ref1.offsetHeight;
+          });
+        },
+      },
+    }
+  <\/script>
 					`,
             },
             {
               title: 'person.vue',
               key: 'person.vue',
               codeText: `
-          	<template>
-              <div @click="onClick" :class="$style.Wrap">
-                <div>点击改变数据</div>
-                <div>{{ name }}</div>
-                <div>{{ sex }}</div>
-              </div>
-            </template>
+  <template>
+    <div @click="onClick" :class="$style.Wrap">
+      <div>点击改变数据</div>
+      <div>{{ name }}</div>
+      <div>{{ sex }}</div>
+    </div>
+  </template>
 
-            <script>
-            import { Mixins } from '@baifendian/adherev';
+  <script>
+  import { Mixins } from '@baifendian/adherev';
 
-            const { updatedEx } = Mixins;
+  const { updatedEx } = Mixins;
 
-            let index = 0;
+  let index = 0;
 
-            export default {
-              mixins: [updatedEx],
-              data() {
-                return {
-                  name: 'lzq',
-                  sex: '男',
-                };
-              },
-              updatedEx(pre) {
-                // 参数为pre
-                console.log('pre', pre);
-                const { $preProps, ...other } = this.$data;
-                console.log('current', other);
-                this.$emit('display', { pre, cur: other });
-              },
-              methods: {
-                onClick() {
-                  index++;
-                  this.name = \`lzq\${index}\`;
-                  this.sex = \`sex\${index}\`;
-                },
-              },
-            };
-            <\/script>
+  export default {
+    mixins: [updatedEx],
+    data() {
+      return {
+        name: 'lzq',
+        sex: '男',
+      };
+    },
+    updatedEx(pre) {
+      // 参数为pre
+      console.log('pre', pre);
+      const { $preProps, ...other } = this.$data;
+      console.log('current', other);
+      this.$emit('display', { pre, cur: other });
+    },
+    methods: {
+      onClick() {
+        index++;
+        this.name = \`lzq\${index}\`;
+        this.sex = \`sex\${index}\`;
+      },
+    },
+  };
+  <\/script>
 
-            <style lang="less" module>
-              .Wrap {
-                &:hover {
-                  cursor: pointer;
-                }
-              }
-            </style>
+  <style lang="less" module>
+    .Wrap {
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  </style>
 `,
             },
           ],
