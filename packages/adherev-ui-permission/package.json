@@ -1,6 +1,6 @@
 {
   "name": "@baifendian/adherev-ui-permission",
-  "version": "2.0.4-alpha",
+  "version": "2.0.0",
   "description": "权限的组件",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -32,8 +32,8 @@
     "access": "public"
   },
   "dependencies": {
-    "@baifendian/adherev-util": "^2.0.4-alpha",
-    "@baifendian/adherev-ui-conditionalrender": "^2.0.4-alpha",
+    "@baifendian/adherev-ui-conditionalrender": "^2.0.0",
+    "@baifendian/adherev-util": "^2.0.0",
     "vue": "^3.2.31",
     "vue-types": "^4.1.1"
   },

@@ -1,6 +1,6 @@
 {
   "name": "@baifendian/adherev-ui-css",
-  "version": "2.0.4-alpha",
+  "version": "2.0.0",
   "description": "提供很多公共的样式",
   "main": "lib/index.less",
   "files": [

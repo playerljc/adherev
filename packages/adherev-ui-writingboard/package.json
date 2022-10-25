@@ -1,6 +1,6 @@
 {
   "name": "@baifendian/adherev-ui-writingboard",
-  "version": "2.0.0-alpha",
+  "version": "2.0.0",
   "description": "写字板",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -34,16 +34,16 @@
   },
   "devDependencies": {
     "@babel/runtime": "^7.17.2",
+    "@ckpack/vue-color": "^1.2.4",
     "@ctsj/buildv": "^5.0.3",
     "npm-run-all": "^4.1.5",
-    "typescript": "^4.5.5",
-    "@ckpack/vue-color": "^1.2.4"
+    "typescript": "^4.5.5"
   },
   "dependencies": {
-    "@baifendian/adherev-util": "^2.0.4-alpha",
+    "@baifendian/adherev-util": "^2.0.0",
     "@juggle/resize-observer": "^3.3.1",
-    "lodash": "^4.17.21",
     "classnames": "^2.2.6",
+    "lodash": "^4.17.21",
     "vue": "^3.2.31",
     "vue-types": "^4.1.1"
   }

@@ -1,6 +1,6 @@
 {
   "name": "@baifendian/adherev-util-iframeio",
-  "version": "2.0.0-alpha",
+  "version": "2.0.0",
   "description": "iframe的通信客户端和服务端",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -39,6 +39,6 @@
   },
   "dependencies": {
     "@baifendian/adhere-util-iframeio": "^1.0.21-fix.1",
-    "@baifendian/adherev-util": "^2.0.4-alpha"
+    "@baifendian/adherev-util": "^2.0.0"
   }
 }
