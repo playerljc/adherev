@@ -5,7 +5,7 @@
         <a-space :direction="'vertical'" :size="'middle'" style="display: flex">
           <a-card :title="'将输入框值设置到iframe里'">
             <a-input-group :compact="true">
-              <a-input v-model="value" style="width: calc(100% - 200px)" />
+              <a-input v-model:value="value" style="width: calc(100% - 200px)" />
               <a-button :type="'primary'" @click="onSend">发送</a-button>
             </a-input-group>
           </a-card>

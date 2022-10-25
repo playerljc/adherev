@@ -56,6 +56,7 @@ export default {
        * /display
        */
       .controller('/display', (ctx, next) => {
+        debugger
         const body = ctx.request.getBody();
         this.displayValue = body;
         ctx.response.setStatusCode(200);
