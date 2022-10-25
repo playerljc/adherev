@@ -1,6 +1,6 @@
 {
   "name": "@baifendian/adherev-util-intl",
-  "version": "1.0.11",
+  "version": "1.0.12",
   "description": "基于 vue-i18n 的国际化组件",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -39,7 +39,7 @@
   },
   "dependencies": {
     "@baifendian/adhere-util-intl": "^1.0.21-fix.1",
-    "@baifendian/adherev-util": "^1.0.11"
+    "@baifendian/adherev-util": "^1.0.12"
   },
   "gitHead": "2e23d8b8d13e6a97f5326e4e5d257c9903cd108d"
 }
