@@ -1,6 +1,6 @@
 {
   "name": "@baifendian/adherev-website",
-  "version": "2.0.5-alpha",
+  "version": "2.0.0",
   "private": true,
   "description": "adherev的website",
   "scripts": {
