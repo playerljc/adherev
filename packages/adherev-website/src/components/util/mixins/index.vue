@@ -2,9 +2,17 @@
   <adv-playground-page :scrollEl="scrollEl" ref="ref">
     <adv-playground-page-section title="Mixins-混入">
       <p>提供一些全局和局部的混入功能</p>
-      <h2>updatedEx</h2>
-      <p>提供pre参数的updated的hook</p>
-      <p>updated生命周期函数没有提供data和props的pre参数</p>
+      <ul>
+        <li>
+          <h2>updatedEx</h2>
+          <p>提供pre参数的updated的hook</p>
+          <p>updated生命周期函数没有提供data和props的pre参数</p>
+        </li>
+        <li>
+          <h2>watchEffect</h2>
+          <p>任意props或dada发生改变后触发</p>
+        </li>
+      </ul>
     </adv-playground-page-section>
 
     <adv-playground-page-code-box-section title="代码演示" :config="codeBoxPanelConfig">
@@ -14,15 +22,20 @@
           <div v-html="display" :class="$style.console" ref="ref1" />
         </fragment>
       </template>
+
+      <template #p2>
+        <WatchEffect />
+      </template>
     </adv-playground-page-code-box-section>
   </adv-playground-page>
 </template>
 
 <script>
 import Person from './person';
+import WatchEffect from './watchEffect';
 
 export default {
-  components: { Person },
+  components: { Person, WatchEffect },
   data() {
     return {
       display: '',
@@ -30,11 +43,11 @@ export default {
       codeBoxPanelConfig: [
         {
           id: 'p1',
-          name: '基本使用',
+          name: 'updatedEx',
           cardProps: {
             description: {
-              title: '基本使用',
-              info: '基本使用',
+              title: 'updatedEx',
+              info: 'updatedEx',
             },
           },
           type: 'PlayGroundTab',
@@ -127,6 +140,81 @@ export default {
             },
           ],
           childrenSlot: 'p1',
+        },
+        {
+          id: 'p2',
+          name: 'watchEffect',
+          cardProps: {
+            description: {
+              title: 'watchEffect',
+              info: 'watchEffect',
+            },
+          },
+          type: 'PlayGroundTab',
+          active: 'index.vue',
+          config: [
+            {
+              title: 'index.vue',
+              key: 'index.vue',
+              codeText: `
+  <template>
+    <div>
+      <div><button @click="value1 = value1 + 1">addValue1</button></div>
+      <div><button @click="value2 = value2 + 1">addValue2</button></div>
+      <Sub :value1="value1" :value2="value2" />
+    </div>
+  </template>
+
+  <script>
+  import Sub from './sub';
+
+  export default {
+    data() {
+      return {
+        value1: 0,
+        value2: 0,
+      };
+    },
+    components: {
+      Sub: Sub,
+    },
+  };
+  <\/script>
+`,
+            },
+            {
+              title: 'sub.vue',
+              key: 'sub.vue',
+              codeText: `
+  <template>
+    <div>
+      <div><button @click="value3 = value3 + 1">addValue3</button></div>
+      <div>{{ value1 }}</div>
+      <div>{{ value2 }}</div>
+    </div>
+  </template>
+
+  <script>
+  import { Mixins } from '@baifendian/adherev';
+
+  export default {
+    props: ['value1', 'value2'],
+    mixins: [Mixins.watchEffect],
+    data() {
+      return {
+        value3: '',
+      };
+    },
+    watchEffect({ attr, newVal, oldVal }) {
+      console.log('value3', this.value3);
+      console.log(attr, newVal, oldVal);
+    },
+  };
+  <\/script>
+`,
+            },
+          ],
+          childrenSlot: 'p2',
         },
       ],
     };

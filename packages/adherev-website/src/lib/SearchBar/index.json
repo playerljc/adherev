@@ -70,11 +70,6 @@
     "path": "/adherev/component/ui/historyback"
   },
   {
-    "kw": ["Hooks", "Hooks"],
-    "group": "组件 - UI",
-    "path": "/adherev/component/ui/hooks"
-  },
-  {
     "kw": ["图片懒加载", "ImageLazy"],
     "group": "组件 - UI",
     "path": "/adherev/component/ui/imagelazy"
@@ -234,8 +229,6 @@
     "group": "组件 - UI",
     "path": "/adherev/component/ui/configprovider"
   },
-
-
   {
     "kw": ["传送门", "Teleport"],
     "group": "组件 - UI",
@@ -256,11 +249,6 @@
     "kw": ["浏览器嗅探的库", "Browsersniff"],
     "group": "组件 - Util",
     "path": "/adherev/component/util/browsersniff"
-  },
-  {
-    "kw": ["React错误边界处理，防止白屏操作", "Decorators"],
-    "group": "组件 - Util",
-    "path": "/adherev/component/util/decorators"
   },
   {
     "kw": ["字典", "Dict"],
@@ -288,14 +276,14 @@
     "path": "/adherev/component/util/notnull"
   },
   {
+    "kw": ["mixins", "Mixins"],
+    "group": "组件 - Util",
+    "path": "/adherev/component/util/mixins"
+  },
+  {
     "kw": ["sessionStore和localStore进行的封装", "Preferences"],
     "group": "组件 - Util",
     "path": "/adherev/component/util/preferences"
-  },
-  {
-    "kw": ["扩展React的工具类", "ReactUtil"],
-    "group": "组件 - Util",
-    "path": "/adherev/component/util/reactutil"
   },
   {
     "kw": ["资源", "Resource"],
