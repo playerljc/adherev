@@ -1,5 +1,4 @@
 // import 'ant-design-vue/dist/antd.less'
-// import { Result } from 'ant-design-vue';
 import NProgress from 'nprogress';
 import { createApp } from 'vue';
 
@@ -55,35 +54,9 @@ Router().then((router) => {
 
   const app = createApp(Main);
 
-  /*const i18n = Intl({
-    I18nOptions: {
-      messages: {
-        en_US,
-        zh_CN,
-        pt_PT,
-      },
-      locale: lang,
-      globalInjection: true,
-      legacy: false,
-    },
-    prefix: 'local',
-  });*/
-
-  app.use(router); //.use(i18n);
+  app.use(router);
 
   ComponentRegisterConfig(app);
 
   app.mount('#app');
 });
-
-// import { createApp } from 'vue';
-//
-// import ComponentRegisterConfig from '@/config/component.register.config.js';
-//
-// import Main from './main';
-//
-// const app = createApp(Main);
-//
-// ComponentRegisterConfig(app);
-//
-// app.mount('#container');
