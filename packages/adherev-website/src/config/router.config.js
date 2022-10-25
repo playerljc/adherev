@@ -131,6 +131,8 @@ const IframeIO = () =>
 const Echarts = () =>
   lazy(import(/* webpackChunkName: "echarts" */ '@/components/gallery/echarts'));
 
+import IframeServer from '@/components/util/iframeio/server';
+
 export default () => [
   {
     path: '/',
@@ -546,5 +548,9 @@ export default () => [
         ],
       },
     ],
+  },
+  {
+    path: '/iframeServer',
+    component: IframeServer,
   },
 ];

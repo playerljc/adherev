@@ -75,9 +75,10 @@ export const extend = (options: ExtendFunction<any>): Omit<ExtendFunction<any>, 
 
 /**
  * HOC
- * @param Component
- * @param optionsOverwrite
- * @param renderOptions
+ * @description 实现高阶函数
+ * @param Component - Vue组件配置对象
+ * @param optionsOverwrite - Vue组件的options
+ * @param renderOptions - props,attrs和slots
  */
 export function HOC(
   Component: DefineComponent,

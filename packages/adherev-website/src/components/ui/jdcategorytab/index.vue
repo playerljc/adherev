@@ -1037,7 +1037,7 @@ export default {
         {
           title: 'Action',
           key: 'action',
-        },
+        }
       ];
     },
     tableData() {

@@ -251,11 +251,6 @@
     "path": "/adherev/component/util/browsersniff"
   },
   {
-    "kw": ["React错误边界处理，防止白屏操作", "Decorators"],
-    "group": "组件 - Util",
-    "path": "/adherev/component/util/decorators"
-  },
-  {
     "kw": ["字典", "Dict"],
     "group": "组件 - Util",
     "path": "/adherev/component/util/dict"
@@ -281,14 +276,14 @@
     "path": "/adherev/component/util/notnull"
   },
   {
+    "kw": ["mixins", "Mixins"],
+    "group": "组件 - Util",
+    "path": "/adherev/component/util/mixins"
+  },
+  {
     "kw": ["sessionStore和localStore进行的封装", "Preferences"],
     "group": "组件 - Util",
     "path": "/adherev/component/util/preferences"
-  },
-  {
-    "kw": ["扩展React的工具类", "ReactUtil"],
-    "group": "组件 - Util",
-    "path": "/adherev/component/util/reactutil"
   },
   {
     "kw": ["资源", "Resource"],
