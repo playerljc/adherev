@@ -24,15 +24,11 @@ export default (serviceName) =>
     mixins: serviceName ? [SearchTable, cleanMixin([serviceName])] : [SearchTable],
     data() {
       return {
-        // @ts-ignore
         ...this.getParams(),
-        // @ts-ignore
         [this.getOrderFieldProp()]: this.getOrderFieldValue(),
-        // @ts-ignore
         [this.getOrderProp()]: this.getOrderPropValue() || 'descend',
         // 查询参数
         searchParams: {
-          // @ts-ignore
           ...this.getParams(),
         },
         selectedRowKeys: [],

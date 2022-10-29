@@ -115,7 +115,6 @@ const SearchTable: any = extend({
       default: false,
     },
   },
-  // @ts-ignore
   scopedSlots: [
     'searchFormBefore',
     'searchFormAfter',
@@ -171,7 +170,6 @@ const SearchTable: any = extend({
 
     this.tableDensity = this.getTableDensity();
   },
-  // @ts-ignore
   updatedEx(prevState) {
     if (!this.$refs.tableWrapRef) return;
 
