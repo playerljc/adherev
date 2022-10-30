@@ -43,12 +43,12 @@
   },
   "dependencies": {
     "@baifendian/adherev-ui-backtopanimation": "^1.0.12-fix.1",
-    "@baifendian/adherev-ui-conditionalrender": "^1.0.12",
-    "@baifendian/adherev-ui-css": "^1.0.12",
-    "@baifendian/adherev-ui-flexlayout": "^1.0.12",
+    "@baifendian/adherev-ui-conditionalrender": "^1.0.12-fix.1",
+    "@baifendian/adherev-ui-css": "^1.0.12-fix.1",
+    "@baifendian/adherev-ui-flexlayout": "^1.0.12-fix.1",
     "@baifendian/adherev-ui-scrollload": "^1.0.12-fix.1",
-    "@baifendian/adherev-ui-teleport": "^1.0.12",
-    "@baifendian/adherev-util": "^1.0.12",
+    "@baifendian/adherev-ui-teleport": "^1.0.12-fix.1",
+    "@baifendian/adherev-util": "^1.0.12-fix.1",
     "@baifendian/adherev-util-intl": "^1.0.12-fix.1",
     "@types/emoji-mart": "^3.0.9",
     "ant-design-vue": "^1.7.5",
@@ -59,5 +59,5 @@
     "vue-fragment": "^1.5.2",
     "vue-hoc": "^0.4.7"
   },
-  "gitHead": "2e23d8b8d13e6a97f5326e4e5d257c9903cd108d"
+  "gitHead": "020167ab4e43579ddefc8f99551297f29b87ec50"
 }
