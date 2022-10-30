@@ -1,6 +1,6 @@
 {
   "name": "@baifendian/adherev-util-validator",
-  "version": "1.0.12",
+  "version": "1.0.12-fix.1",
   "description": "一个验证的库",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -39,7 +39,7 @@
   },
   "dependencies": {
     "@baifendian/adhere-util-validator": "^1.0.21",
-    "@baifendian/adherev-util": "^1.0.12"
+    "@baifendian/adherev-util": "^1.0.12-fix.1"
   },
   "gitHead": "2e23d8b8d13e6a97f5326e4e5d257c9903cd108d"
 }
