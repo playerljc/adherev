@@ -17,7 +17,7 @@
             @change="change"
           />
 
-          <adv-configprovider :intl="intl">
+          <adv-configprovider :intl="intl" @propsChange="onPropsChange">
             <template v-slot:default>
               <adv-tablegridlayout :data="data">
                 <template v-slot:default v-if="true"></template>
@@ -249,6 +249,9 @@ export default {
   methods: {
     change(e) {
       this.lang = e.target.value;
+    },
+    onPropsChange() {
+      console.log('onPropsChange');
     },
   },
 };

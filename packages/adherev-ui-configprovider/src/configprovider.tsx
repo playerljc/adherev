@@ -1,3 +1,4 @@
+import debounce from 'lodash.debounce';
 import { PropType, VNode } from 'vue';
 
 import Intl from '@baifendian/adherev-util-intl';
@@ -13,10 +14,11 @@ const ConfigProvider: any = {
       default: () => ({}),
     },
   },
-  emits: ['intlInit'],
+  emits: ['intlInit', 'propsChange'],
   data() {
     return {
       isIntlInit: false,
+      $propsChangeHandler: null,
     };
   },
   provide() {
@@ -33,6 +35,11 @@ const ConfigProvider: any = {
       this.$init();
     },
   },
+  created() {
+    this.$data.$propsChangeHandler = debounce(() => {
+      this.$emit('propsChange');
+    }, 200);
+  },
   methods: {
     $init() {
       Intl.init(
@@ -47,9 +54,12 @@ const ConfigProvider: any = {
 
         if (!this.isIntlInit) {
           this.isIntlInit = true;
-          this.$emit('intlInit');
+          this.$nextTick(function () {
+            this.$emit('intlInit');
+          });
         } else {
           this.$forceUpdate();
+          this.$nextTick(this.$data.$propsChangeHandler);
         }
       });
     },
