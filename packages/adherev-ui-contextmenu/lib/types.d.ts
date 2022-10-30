@@ -15,6 +15,7 @@ export interface ContextMenuType {
         vm: any;
         el: HTMLElement;
     }) => void;
+    setConfig: (gc: any) => void;
 }
 export interface IContextMenuComponentProps {
     data: IData[];

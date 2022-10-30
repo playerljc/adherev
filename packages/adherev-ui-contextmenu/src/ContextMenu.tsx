@@ -5,6 +5,8 @@ import { ContextMenuType, IConfig, IData } from './types';
 
 const selectorPrefix = 'adherev-ui-contextmenu';
 
+let globalConfig;
+
 /**
  * ContextMenuComponent
  * @class ContextMenuComponent
@@ -81,6 +83,9 @@ const ContextMenuComponent: any = {
 };
 
 const ContextMenu: ContextMenuType = {
+  setConfig(gc) {
+    globalConfig = gc;
+  },
   /**
    * config
    * {
@@ -114,6 +119,7 @@ const ContextMenu: ContextMenuType = {
     document.body.appendChild(parentEl);
 
     const vm = new Vue({
+      ...(globalConfig || {}),
       mounted() {
         this.$refs.ref.mount();
       },

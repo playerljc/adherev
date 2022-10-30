@@ -86,6 +86,7 @@ declare const NotificationFactory: {
     isUse?: () => boolean;
     use?: (vue: Vue) => void;
     build: (container: HTMLElement, config: IConfig) => Notification;
+    setConfig: (gc: any) => void;
 };
 /**
  * NotificationFactory

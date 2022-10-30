@@ -6,13 +6,7 @@ import Intl from '@baifendian/adherev-util-intl';
 import Resource from '@baifendian/adherev-util-resource';
 
 import ModalDialog from './modal';
-import {
-  IAlertArgv,
-  /*IConfig,*/
-  IConfirmArgv,
-  IMessageDialogFactory,
-  IPromptConfig,
-} from './types';
+import { IAlertArgv, IConfirmArgv, IMessageDialogFactory, IPromptConfig } from './types';
 
 export const selectorPrefix = 'adherev-ui-messagedialog';
 
@@ -25,7 +19,7 @@ const {
 } = Util;
 
 // MessageDialog的配置
-// let globalConfig: IConfig | null = null;
+let globalConfig: any;
 
 /**
  * renderByIcon
@@ -38,29 +32,19 @@ function renderByIcon({ h, icon, text }) {
   return (
     <div class={`${selectorPrefix}-renderByIcon`}>
       <div class={`${selectorPrefix}-renderByIcon-fixed`}>
-        {Util.isFunction(icon) ? (
-          icon(h)
-        ) : (
-          // @ts-ignore
-          <Fragment>{icon}</Fragment>
-        )}
+        {Util.isFunction(icon) ? icon(h) : <Fragment>{icon}</Fragment>}
       </div>
       <div class={`${selectorPrefix}-renderByIcon-auto`}>
-        {Util.isFunction(text) ? (
-          text(h)
-        ) : (
-          // @ts-ignore
-          <Fragment>{text}</Fragment>
-        )}
+        {Util.isFunction(text) ? text(h) : <Fragment>{text}</Fragment>}
       </div>
     </div>
   );
 }
 
 const MessageDialogFactory: IMessageDialogFactory = {
-  // setConfig: (gc: IConfig) => {
-  //   globalConfig = gc;
-  // },
+  setConfig: (gc) => {
+    globalConfig = gc;
+  },
   /**
    * Confirm
    * @param title {String | Function}
@@ -96,11 +80,9 @@ const MessageDialogFactory: IMessageDialogFactory = {
               onClick={() => {
                 if (onSuccess) {
                   onSuccess().then(() => {
-                    // Emitter.trigger(Actions.close, el);
                     close();
                   });
                 } else {
-                  // Emitter.trigger(Actions.close, el);
                   close();
                 }
               }}
@@ -113,13 +95,7 @@ const MessageDialogFactory: IMessageDialogFactory = {
       local,
       children: icon
         ? (h) => renderByIcon({ h, icon, text })
-        : (h) =>
-            Util.isFunction(text) ? (
-              (text as Function)(h)
-            ) : (
-              // @ts-ignore
-              <Fragment>{text}</Fragment>
-            ),
+        : (h) => (Util.isFunction(text) ? (text as Function)(h) : <Fragment>{text}</Fragment>),
     });
   },
   /**
@@ -160,13 +136,11 @@ const MessageDialogFactory: IMessageDialogFactory = {
                   fApi.validate((valid) => {
                     if (valid) {
                       onSuccess(fApi.getValue(config.rule[0].field)).then(() => {
-                        // Emitter.trigger(Actions.close, el);
                         close();
                       });
                     }
                   });
                 } else {
-                  // Emitter.trigger(Actions.close, el);
                   close();
                 }
               }}
@@ -192,7 +166,7 @@ const MessageDialogFactory: IMessageDialogFactory = {
               {
                 type: 'input',
                 field: 'prompt',
-                title: '输入框',
+                title: Intl.v('输入框'),
                 info: '',
                 _fc_drag_tag: 'input',
                 hidden: false,
@@ -324,13 +298,7 @@ const MessageDialogFactory: IMessageDialogFactory = {
 
       children: icon
         ? (h) => renderByIcon({ h, icon, text })
-        : (h) =>
-            Util.isFunction(text) ? (
-              (text as Function)(h)
-            ) : (
-              // @ts-ignore
-              <Fragment>{text}</Fragment>
-            ),
+        : (h) => (Util.isFunction(text) ? (text as Function)(h) : <Fragment>{text}</Fragment>),
     });
   },
   /**
@@ -379,7 +347,6 @@ const MessageDialogFactory: IMessageDialogFactory = {
       if (!Util.isEmpty(title)) {
         // 如果是jsx
         if (Util.isFunction(title)) {
-          // @ts-ignore
           return <Fragment slot="title">{title(h)}</Fragment>;
         }
 
@@ -434,15 +401,7 @@ const MessageDialogFactory: IMessageDialogFactory = {
     const el = document.createElement('div');
 
     const _vm = new Vue({
-      // ...(globalConfig?.getOptions?.() || {}),
-      // i18n: Intl({
-      //   I18nOptions: {
-      //     // @ts-ignore
-      //     messages: (globalConfig || {}).messages,
-      //     locale: local || DEFAULT_LOCAL,
-      //   },
-      //   prefix: 'local',
-      // }),
+      ...(globalConfig || {}),
       render(h) {
         const footerJSX = renderFooter({ config, h });
 
@@ -451,8 +410,10 @@ const MessageDialogFactory: IMessageDialogFactory = {
         }
 
         return (
-          // @ts-ignore
-          <ConfigProvider locale={LOCAL[local || DEFAULT_LOCAL]}>
+          <ConfigProvider
+            // @ts-ignore
+            locale={LOCAL[local || DEFAULT_LOCAL]}
+          >
             <ModalDialog
               config={modalConfig}
               closeBtn={defaultCloseBtn}
@@ -482,7 +443,6 @@ const MessageDialogFactory: IMessageDialogFactory = {
    * @param el
    */
   close({ _vm, el }: { _vm: any; el: HTMLElement }) {
-    // Emitter.trigger(Actions.close, el);
     _vm.$destroy();
 
     el?.parentElement?.removeChild(el);

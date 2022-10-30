@@ -8,6 +8,8 @@ import { IConfig, IShowConfig, IShowStandardConfig } from './types';
 
 const selectorPrefix = 'adherev-ui-notification';
 
+let globalConfig: any;
+
 /**
  * Notification
  * @class Notification
@@ -155,6 +157,7 @@ class Notification {
       const self = this;
 
       new Vue({
+        ...(globalConfig || {}),
         mounted() {
           resolve(self.build(id, n));
         },
@@ -352,6 +355,7 @@ const NotificationFactory: {
   isUse?: () => boolean;
   use?: (vue: Vue) => void;
   build: (container: HTMLElement, config: IConfig) => Notification;
+  setConfig: (gc) => void;
 } = {
   /**
    * build
@@ -361,6 +365,13 @@ const NotificationFactory: {
    */
   build(container: HTMLElement, config: IConfig): Notification {
     return new Notification(container, config);
+  },
+  /**
+   * setConfig
+   * @param gc
+   */
+  setConfig: (gc) => {
+    globalConfig = gc;
   },
 };
 

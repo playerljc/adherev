@@ -10,6 +10,8 @@ let popups: Popup[] = [];
 let maskEl;
 let el: HTMLElement | null = null;
 
+let globalConfig: any;
+
 /**
  * Popup
  * @class Popup
@@ -78,6 +80,7 @@ export class Popup {
     const self = this;
 
     this.vm = new Vue({
+      ...(globalConfig || {}),
       mounted() {
         self?.el?.appendChild(self.popupEl as HTMLElement);
         self.trigger('onCreate');
@@ -244,6 +247,13 @@ export class Popup {
  * PopupFactory
  */
 const PopupFactory: IPopupFactory = {
+  /**
+   * setConfig
+   * @param gc
+   */
+  setConfig: (gc) => {
+    globalConfig = gc;
+  },
   /**
    * create
    * @param config

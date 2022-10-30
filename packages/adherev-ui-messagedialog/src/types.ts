@@ -44,13 +44,8 @@ export interface IPromptConfig {
   };
 }
 
-export interface IConfig {
-  messages: object;
-  getOptions?: () => any;
-}
-
 export interface IMessageDialogFactory {
-  // setConfig: (gc: IConfig) => void;
+  setConfig: (gc: any) => void;
   Confirm: (params: IConfirmArgv) => void;
   Prompt: (params: IPromptConfig) => void;
   InputPrompt: (params: IPromptConfig) => void;

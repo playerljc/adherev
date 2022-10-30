@@ -13,6 +13,7 @@ const ConfigProvider: any = {
       default: () => ({}),
     },
   },
+  emits: ['intlInit'],
   data() {
     return {
       isIntlInit: false,
@@ -46,6 +47,7 @@ const ConfigProvider: any = {
 
         if (!this.isIntlInit) {
           this.isIntlInit = true;
+          this.$emit('intlInit');
         } else {
           this.$forceUpdate();
         }

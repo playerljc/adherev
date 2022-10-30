@@ -15,6 +15,7 @@ export interface ContextMenuType {
   use?: (Vue: any) => void;
   open: (data: IData, config: IConfig) => void;
   close: (params: { vm: any; el: HTMLElement }) => void;
+  setConfig: (gc: any) => void;
 }
 
 export interface IContextMenuComponentProps {

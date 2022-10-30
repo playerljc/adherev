@@ -14,6 +14,7 @@ export interface IConfig {
     zIndex: number;
 }
 export interface IPopupFactory {
+    setConfig: (gc: any) => void;
     create: (config: IConfig) => Popup;
     show: (popup: Popup) => boolean;
     showClosePrePopup: (popup: Popup) => boolean;

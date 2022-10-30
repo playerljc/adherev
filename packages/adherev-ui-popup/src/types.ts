@@ -16,6 +16,7 @@ export interface IConfig {
 }
 
 export interface IPopupFactory {
+  setConfig: (gc) => void;
   create: (config: IConfig) => Popup;
   show: (popup: Popup) => boolean;
   showClosePrePopup: (popup: Popup) => boolean;
