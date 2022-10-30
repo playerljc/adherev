@@ -1,56 +1,64 @@
-<template>
-  <div :class="$style.App">
-    <div :class="$style.Fixed">
-      <Header />
-    </div>
-
-    <div :class="$style.Auto">
-      <keep-alive>
-        <router-view />
-      </keep-alive>
-    </div>
-  </div>
-</template>
-
 <script>
-import Header from '@/lib/Header';
+import { Resource, Util } from '@baifendian/adherev';
+
+import en_US from '@/locales/en_US';
+import pt_PT from '@/locales/pt_PT';
+import zh_CN from '@/locales/zh_CN';
+
+// 获取当前语言
+const lang = Util.getLang();
 
 export default {
-  components: {
-    Header,
+  data() {
+    return {
+      locale: Resource.Dict.value.LocalsAntd.value[lang],
+      hasIntlInit: false,
+    };
+  },
+  computed: {
+    intl() {
+      return {
+        lang,
+        locales: {
+          en_US,
+          zh_CN,
+          pt_PT,
+        },
+      };
+    },
+  },
+  methods: {
+    onIntlInit() {
+      import('@/config/adherev.intl.component.register.config.js').then(() => {
+        this.hasIntlInit = true;
+      });
+    },
   },
 };
 </script>
 
-<style lang="less" module>
-.App {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  height: 100%;
+<template>
+  <a-config-provider :locale="locale">
+    <adv-configprovider :intl="intl" @intlInit="onIntlInit">
+      <template v-slot:default>
+        <div id="app">
+          <template v-if="hasIntlInit">
+            <keep-alive>
+              <router-view />
+            </keep-alive>
+          </template>
 
-  > .Fixed {
-    display: flex;
-    flex-shrink: 0;
-    align-items: center;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-
-    > .Fixed {
-      flex-shrink: 0;
-      padding: 10px;
-    }
-
-    > .Auto {
-      flex-grow: 1;
-      min-width: 0;
-      margin-right: 20px;
-      text-align: right;
-    }
-  }
-
-  > .Auto {
-    flex-grow: 1;
-    min-height: 0;
-  }
-}
-</style>
+          <template v-else>
+            <a-skeleton
+              v-for="t in Array.from({ length: 5 })"
+              :loading="true"
+              :active="true"
+              :avatar="true"
+              :paragraph="{ rows: 4 }"
+            />
+          </template>
+        </div>
+      </template>
+    </adv-configprovider>
+  </a-config-provider>
+</template>

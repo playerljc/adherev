@@ -1,3 +1,4 @@
+import IframeServer from '@/components/util/iframeio/server';
 import BasicLayout from '@/lib/BasicLayout';
 import { lazy } from '@/lib/Router';
 
@@ -21,7 +22,7 @@ import { lazy } from '@/lib/Router';
 //   import(/* webpackChunkName: "echarts" */ '@/components/gallery/gis/maptalks'),
 // );
 
-const App = () => lazy(import(/* webpackChunkName: "app" */ '@/app'));
+const App = () => lazy(import(/* webpackChunkName: "app" */ '@/components'));
 const Introduction = () => lazy(import(/* webpackChunkName: "introduction" */ '@/introduction'));
 const Changelog = () => lazy(import(/* webpackChunkName: "changelog" */ '@/changelog'));
 const ConditionalRender = () => lazy(import('@/components/ui/conditionalrender'));
@@ -130,8 +131,6 @@ const IframeIO = () =>
 
 const Echarts = () =>
   lazy(import(/* webpackChunkName: "echarts" */ '@/components/gallery/echarts'));
-
-import IframeServer from '@/components/util/iframeio/server';
 
 export default () => [
   {

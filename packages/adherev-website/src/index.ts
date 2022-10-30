@@ -4,14 +4,12 @@ import Vue from 'vue';
 import 'vue-highlight.js/lib/allLanguages';
 import VueI18n from 'vue-i18n';
 
-import { Resource, Util } from '@baifendian/adherev';
+import { Util } from '@baifendian/adherev';
 
 import '@/config/component.register.config.js';
 
+import App from './app.vue';
 import Router from './lib/Router';
-import en_US from './locales/en_US';
-import pt_PT from './locales/pt_PT';
-import zh_CN from './locales/zh_CN';
 
 import 'font-awesome/less/font-awesome.less';
 import 'highlight.js/styles/agate.css';
@@ -39,36 +37,8 @@ Router().then((router) => {
       locale: lang, // 设置地区
     }),
     router,
-    computed: {
-      intl() {
-        return {
-          lang,
-          locales: {
-            en_US,
-            zh_CN,
-            pt_PT,
-          },
-        };
-      },
+    render(h) {
+      return h(App);
     },
-    data() {
-      return {
-        locale: Resource.Dict.value.LocalsAntd.value[lang],
-      };
-    },
-    render: Vue.compile(
-      `
-        <a-config-provider :locale="locale">
-            <adv-configprovider :intl="intl">
-               <template v-slot:default>
-                 <div id="app">
-                   <keep-alive>
-                     <router-view />
-                   </keep-alive>
-                 </div>
-               </template>
-            </adv-configprovider>
-        </a-config-provider>`,
-    ).render,
   });
 });
