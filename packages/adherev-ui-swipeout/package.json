@@ -1,6 +1,6 @@
 {
   "name": "@baifendian/adherev-ui-swipeout",
-  "version": "1.0.12-fix.1",
+  "version": "1.0.12",
   "description": "滑动操作",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -38,7 +38,7 @@
     "typescript": "^4.6.2"
   },
   "dependencies": {
-    "@baifendian/adherev-util": "^1.0.12-fix.1",
+    "@baifendian/adherev-util": "^1.0.12",
     "classnames": "^2.2.6",
     "omit.js": "^2.0.2",
     "swiper": "^4.5.0",
