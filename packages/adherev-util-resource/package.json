@@ -1,6 +1,6 @@
 {
   "name": "@baifendian/adherev-util-resource",
-  "version": "1.0.12",
+  "version": "1.0.12-fix.1",
   "description": "常用的资源",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -40,7 +40,7 @@
   "dependencies": {
     "@baifendian/adherev-util": "^1.0.12",
     "@baifendian/adherev-util-dict": "^1.0.12",
-    "@baifendian/adherev-util-intl": "^1.0.12",
+    "@baifendian/adherev-util-intl": "^1.0.12-fix.1",
     "ant-design-vue": "^1.7.5",
     "moment": "^2.29.1",
     "vue": "^2.6.14"

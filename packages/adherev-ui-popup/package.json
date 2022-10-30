@@ -1,6 +1,6 @@
 {
   "name": "@baifendian/adherev-ui-popup",
-  "version": "1.0.12",
+  "version": "1.0.12-fix.1",
   "description": "popup",
   "main": "lib/index.js",
   "module": "es/index.js",
