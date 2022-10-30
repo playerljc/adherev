@@ -80,6 +80,8 @@ const register = [
   () => {
     Vue.use(AdherevConfigProvider);
     Vue.use(VueHighlightJS);
+  },
+  () => {
     Vue.use(Playground);
     Vue.use(PlaygroundMulit);
     Vue.use(FunctionProps);
