@@ -4,7 +4,7 @@ import Vue from 'vue';
 import 'vue-highlight.js/lib/allLanguages';
 import VueI18n from 'vue-i18n';
 
-import { Util } from '@baifendian/adherev';
+import { ContextMenu, MessageDialog, Notification, Popup, Util } from '@baifendian/adherev';
 
 import '@/config/component.register.config.js';
 
@@ -22,6 +22,11 @@ import './index.less';
 
 // 获取当前语言
 const lang = Util.getLang();
+
+ContextMenu.setConfig({});
+MessageDialog.setConfig({});
+Notification.setConfig({});
+Popup.setConfig({});
 
 Router().then((router) => {
   router.beforeEach((_to, _from, next) => {
