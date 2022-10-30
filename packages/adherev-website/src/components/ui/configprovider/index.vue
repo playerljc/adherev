@@ -230,6 +230,18 @@ export default {
                   prefix: 'local',
                 }`,
             },
+            {
+              params: 'intlInit',
+              desc: '国际化初始化完事件',
+              type: `Function`,
+              defaultVal: ``,
+            },
+            {
+              params: 'propsChange',
+              desc: '属性变化事件',
+              type: `Function`,
+              defaultVal: ``,
+            },
           ],
         },
       ],
