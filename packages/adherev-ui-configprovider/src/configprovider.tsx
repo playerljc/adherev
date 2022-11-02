@@ -34,6 +34,9 @@ const ConfigProvider: any = {
     'intl.prefix': function () {
       this.$init();
     },
+    'intl.mainLanguage': function () {
+      this.$init();
+    },
   },
   created() {
     this.$data.$propsChangeHandler = debounce(() => {
@@ -47,6 +50,7 @@ const ConfigProvider: any = {
           prefix: this.intl.prefix || 'local',
           currentLocale: this.intl.lang,
           locales: this.intl.locales || {},
+          mainLanguage: this.intl.mainLanguage || 'zh_CN',
         },
         Intl.isInit(),
       ).then(() => {
