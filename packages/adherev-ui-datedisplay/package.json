@@ -1,6 +1,6 @@
 {
   "name": "@baifendian/adherev-ui-datedisplay",
-  "version": "1.0.12-fix.1",
+  "version": "1.0.12-fix.2",
   "description": "时间显示组件",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -41,7 +41,7 @@
   "dependencies": {
     "@baifendian/adherev-ui-conditionalrender": "^1.0.12",
     "@baifendian/adherev-util": "^1.0.12",
-    "@baifendian/adherev-util-resource": "^1.0.12-fix.1",
+    "@baifendian/adherev-util-resource": "^1.0.12-fix.2",
     "classnames": "^2.2.6",
     "dayjs": "^1.11.4",
     "vue": "^2.6.14",
