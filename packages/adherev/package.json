@@ -1,6 +1,6 @@
 {
   "name": "@baifendian/adherev",
-  "version": "1.0.12-fix.2",
+  "version": "1.0.12-fix.3",
   "description": "adherev",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -60,7 +60,7 @@
     "@baifendian/adherev-ui-cascadecompared": "^1.0.12",
     "@baifendian/adherev-ui-comment": "^1.0.12-fix.2",
     "@baifendian/adherev-ui-conditionalrender": "^1.0.12",
-    "@baifendian/adherev-ui-configprovider": "^1.0.12-fix.2",
+    "@baifendian/adherev-ui-configprovider": "^1.0.12-fix.3",
     "@baifendian/adherev-ui-confirm-delconfirm": "^1.0.12-fix.2",
     "@baifendian/adherev-ui-confirm-importantconfirm": "^1.0.12-fix.2",
     "@baifendian/adherev-ui-contextmenu": "^1.0.12-fix.1",

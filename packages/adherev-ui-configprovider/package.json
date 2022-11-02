@@ -1,6 +1,6 @@
 {
   "name": "@baifendian/adherev-ui-configprovider",
-  "version": "1.0.12-fix.2",
+  "version": "1.0.12-fix.3",
   "description": "全局配置",
   "main": "lib/index.js",
   "module": "es/index.js",
