@@ -10,6 +10,7 @@ export interface IntlProps {
   lang: 'en_US' | 'zh_CN' | 'pt_PT';
   locales: object;
   prefix: string;
+  mainLanguage: string;
 }
 
 export interface ConfigProviderContext {}

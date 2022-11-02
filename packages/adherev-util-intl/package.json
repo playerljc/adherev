@@ -38,7 +38,7 @@
     "typescript": "^4.5.5"
   },
   "dependencies": {
-    "@baifendian/adhere-util-intl": "^1.0.21-fix.1",
+    "@baifendian/adhere-util-intl": "^1.0.21-fix.3",
     "@baifendian/adherev-util": "^2.0.0"
   }
 }

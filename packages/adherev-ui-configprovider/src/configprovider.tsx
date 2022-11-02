@@ -13,6 +13,7 @@ const props = {
     lang: 'zh_CN',
     locales: {},
     prefix: 'local',
+    mainLanguage: 'zh_CN',
   })),
 };
 
@@ -35,6 +36,7 @@ const ConfigProvider = defineComponent({
           prefix: props.intl.prefix || 'local',
           currentLocale: props.intl.lang,
           locales: props.intl.locales || {},
+          mainLanguage: props.intl.mainLanguage || 'zh_CN',
         },
         Intl.isInit(),
       ).then(() => {
@@ -47,7 +49,15 @@ const ConfigProvider = defineComponent({
         }
       });
 
-    watch([() => props.intl.lang, () => props.intl.locales, () => props.intl.prefix], () => init());
+    watch(
+      [
+        () => props.intl.lang,
+        () => props.intl.locales,
+        () => props.intl.prefix,
+        () => props.intl.mainLanguage,
+      ],
+      () => init(),
+    );
 
     onMounted(() => init());
 
