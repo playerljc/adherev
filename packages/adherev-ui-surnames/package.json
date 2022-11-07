@@ -1,6 +1,6 @@
 {
   "name": "@baifendian/adherev-ui-surnames",
-  "version": "1.0.12",
+  "version": "1.0.12-fix.4",
   "description": "姓名面板",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -39,7 +39,7 @@
   },
   "dependencies": {
     "@baifendian/adherev-ui-css": "^1.0.12",
-    "@baifendian/adherev-util": "^1.0.12",
+    "@baifendian/adherev-util": "^1.0.12-fix.4",
     "classnames": "^2.2.6",
     "vue": "^2.6.14"
   },

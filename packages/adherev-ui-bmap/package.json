@@ -1,6 +1,6 @@
 {
   "name": "@baifendian/adherev-ui-bmap",
-  "version": "1.0.12-fix.2",
+  "version": "1.0.12-fix.4",
   "description": "百度地图3.0的封装",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -39,8 +39,8 @@
   },
   "dependencies": {
     "@baifendian/adhere-ui-bmap": "^1.0.21-fix.3",
-    "@baifendian/adherev-ui-conditionalrender": "^1.0.12",
-    "@baifendian/adherev-util": "^1.0.12",
+    "@baifendian/adherev-ui-conditionalrender": "^1.0.12-fix.4",
+    "@baifendian/adherev-util": "^1.0.12-fix.4",
     "vue": "^2.6.14"
   },
   "gitHead": "2e23d8b8d13e6a97f5326e4e5d257c9903cd108d"
