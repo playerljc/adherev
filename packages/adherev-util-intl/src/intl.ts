@@ -256,6 +256,7 @@ IntlV.init = function (..._params) {
           zh_CN,
           pt_PT,
         },
+        mainLanguage: 'zh_CN',
       },
       false,
     ];

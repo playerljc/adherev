@@ -1,3 +1,5 @@
+import merge from 'lodash.merge';
+import type { CreateElement } from 'vue';
 import { ComponentOptions } from 'vue/types/options';
 
 /**
@@ -80,4 +82,94 @@ export const Fragment = {
     // @ts-ignore
     return this?.$slots?.default;
   },
+};
+
+/**
+ * HOCFunctional
+ * @description 函数组件实现HOC
+ * @param options
+ * @param data
+ * @constructor
+ */
+export const HOCFunctional = (options: object, data: object) => {
+  return {
+    functional: true,
+    render(h, context) {
+      return h(options, merge(context.data, data || {}), context.children);
+    },
+  };
+};
+
+/**
+ * HOC
+ * @description 非函数组件实现HOC
+ * @description HOC是对已有组件的一个扩展，扩展的原则就是render函数中还是用已有组件进行渲染，只是对已有组件的属性和传值进行了扩展而已
+ * @param component - 组件配置
+ * @param options - 重写的配置项
+ * @param dataOptions - 数据对象
+ * @param children
+ * @constructor
+ */
+export const HOC = (
+  component: {
+    [props: string]: any;
+  },
+  options: Function | object | null,
+  dataOptions: {
+    renderWith: (h: CreateElement, baseRenderOptions?: any) => any;
+    options?: { deep: boolean };
+  },
+  children?: Function,
+) => {
+  const methods = {};
+
+  for (const methodName of component.methods || {}) {
+    methods[methodName] = function (params) {
+      return this.$refs.wrapRef[methodName](params);
+    };
+  }
+
+  const baseOptions = {
+    props: component.props,
+    methods,
+  };
+
+  const Options =
+    options instanceof Function ? options(baseOptions) : merge(baseOptions, options || {});
+
+  return {
+    ...Options,
+    render(h) {
+      const slots = children
+        ? children.call(this, h)
+        : Object.keys(this.$slots).reduce((arr, key) => arr.concat(this.$slots[key]), []);
+
+      const baseDataOtions = {
+        props: this.$props,
+        attrs: this.$attrs,
+        on: this.$listeners,
+        slot: { ...(this.$slots || {}) },
+        scopedSlots: { ...(this.$scopedSlots || {}) },
+      };
+
+      const dataOptionsFun =
+        ('options' in dataOptions && dataOptions.options?.deep) || !('options' in dataOptions)
+          ? merge
+          : Object.assign;
+
+      const DataOptions = dataOptionsFun(
+        baseDataOtions,
+        dataOptionsFun?.renderWith?.call?.(this, h, { ...baseDataOtions }),
+      );
+
+      return h(
+        component,
+        {
+          ...DataOptions,
+          ref: 'wrapRef',
+        },
+        slots,
+      );
+    },
+  };
 };
