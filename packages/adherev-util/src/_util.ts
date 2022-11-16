@@ -1,6 +1,11 @@
 import merge from 'lodash.merge';
+import mergeWidth from 'lodash.mergewith';
 import type { CreateElement } from 'vue';
 import { ComponentOptions } from 'vue/types/options';
+
+import WatchMemoized from '@baifendian/adherev-util-watchmemoized';
+
+const { memoized } = WatchMemoized;
 
 /**
  * ExtendFunction
@@ -89,13 +94,15 @@ export const Fragment = {
  * @description 函数组件实现HOC
  * @param options
  * @param data
+ * @param name
  * @constructor
  */
-export const HOCFunctional = (options: object, data: object) => {
+export const HOCFunctional = (options: object, data: Function, name: string) => {
   return {
     functional: true,
+    name,
     render(h, context) {
-      return h(options, merge(context.data, data || {}), context.children);
+      return h(options, merge(data ? data(h, context) : {}, context.data), context.children);
     },
   };
 };
@@ -123,8 +130,9 @@ export const HOC = (
 ) => {
   const methods = {};
 
-  for (const methodName of component.methods || {}) {
+  for (const methodName in component.methods || {}) {
     methods[methodName] = function (params) {
+      // @ts-ignore
       return this.$refs.wrapRef[methodName](params);
     };
   }
@@ -138,29 +146,43 @@ export const HOC = (
     options instanceof Function ? options(baseOptions) : merge(baseOptions, options || {});
 
   return {
-    ...Options,
     render(h) {
       const slots = children
         ? children.call(this, h)
         : Object.keys(this.$slots).reduce((arr, key) => arr.concat(this.$slots[key]), []);
 
-      const baseDataOtions = {
+      const baseDataOptions = {
         props: this.$props,
         attrs: this.$attrs,
         on: this.$listeners,
-        slot: { ...(this.$slots || {}) },
         scopedSlots: { ...(this.$scopedSlots || {}) },
       };
 
       const dataOptionsFun =
-        ('options' in dataOptions && dataOptions.options?.deep) || !('options' in dataOptions)
-          ? merge
+        ('options' in (dataOptions || {}) && (dataOptions || {}).options?.deep) ||
+        !('options' in (dataOptions || {}))
+          ? mergeWidth
           : Object.assign;
 
-      const DataOptions = dataOptionsFun(
-        baseDataOtions,
-        dataOptionsFun?.renderWith?.call?.(this, h, { ...baseDataOtions }),
-      );
+      const argv = [
+        baseDataOptions,
+        dataOptions?.renderWith?.call?.(this, h, { ...baseDataOptions }),
+      ];
+
+      if (dataOptionsFun === mergeWidth) {
+        argv.push((objValue, srcValue) => {
+          if (Array.isArray(objValue)) return srcValue;
+        });
+      }
+
+      const DataOptions = dataOptionsFun.apply(window, argv);
+
+      // console.log(
+      //   'HOC',
+      //   component.name,
+      //   baseDataOptions,
+      //   dataOptions?.renderWith?.call?.(this, h, { ...baseDataOptions }),
+      // )
 
       return h(
         component,
@@ -171,5 +193,22 @@ export const HOC = (
         slots,
       );
     },
+    ...Options,
   };
 };
+
+/**
+ * getComponentPropsOption
+ * @description 获取组件的Props定义
+ * @param Component
+ * @returns {{}}
+ */
+export const getComponentPropsOption = memoized.createMemoFun((Component) => ({
+  ...(Component.mixins || []).reduce(
+    (props, com) => ({
+      ...(com.props || {}),
+      ...props,
+    }),
+    Component.props,
+  ),
+}));

@@ -1,3 +1,4 @@
+import type { CreateElement } from 'vue';
 import { ComponentOptions } from 'vue/types/options';
 /**
  * ExtendFunction
@@ -34,4 +35,42 @@ export declare const extend: (options: ExtendFunction<any>) => Omit<ExtendFuncti
 export declare const Fragment: {
     render(h: any): any;
 };
+/**
+ * HOCFunctional
+ * @description 函数组件实现HOC
+ * @param options
+ * @param data
+ * @param name
+ * @constructor
+ */
+export declare const HOCFunctional: (options: object, data: Function, name: string) => {
+    functional: boolean;
+    name: string;
+    render(h: any, context: any): any;
+};
+/**
+ * HOC
+ * @description 非函数组件实现HOC
+ * @description HOC是对已有组件的一个扩展，扩展的原则就是render函数中还是用已有组件进行渲染，只是对已有组件的属性和传值进行了扩展而已
+ * @param component - 组件配置
+ * @param options - 重写的配置项
+ * @param dataOptions - 数据对象
+ * @param children
+ * @constructor
+ */
+export declare const HOC: (component: {
+    [props: string]: any;
+}, options: Function | object | null, dataOptions: {
+    renderWith: (h: CreateElement, baseRenderOptions?: any) => any;
+    options?: {
+        deep: boolean;
+    } | undefined;
+}, children?: Function | undefined) => any;
+/**
+ * getComponentPropsOption
+ * @description 获取组件的Props定义
+ * @param Component
+ * @returns {{}}
+ */
+export declare const getComponentPropsOption: any;
 export {};
