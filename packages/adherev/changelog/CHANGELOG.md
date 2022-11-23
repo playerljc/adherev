@@ -1,3 +1,16 @@
+# 2.0.1
+
+***
+
+2022-11-22
+
+* **adhere-ui-historyback**
+  - 修改为返回的判断逻辑
+* **adhere-util**
+  - color加入新方法
+* **adhere-ui-writingboard**
+  - 加入导出图片设置背景色
+
 # 2.0.0
 
 ***

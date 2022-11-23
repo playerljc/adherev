@@ -1,7 +1,7 @@
 import debounce from 'lodash/debounce';
 import { defineComponent, onBeforeUnmount, onMounted, ref } from 'vue';
 import { number, string } from 'vue-types';
-
+import Util from '@baifendian/adherev-util';
 // @ts-ignore
 import { ResizeObserver } from '@juggle/resize-observer';
 
@@ -534,6 +534,66 @@ export default defineComponent({
       stackIndex = 0;
     }
 
+    /**
+     * toDataURL
+     * @default canvas导出base64
+     * @param backgroundColor
+     * @param type
+     * @param quality
+     */
+    function toDataURL(backgroundColor?: string, type?: string, quality?: any) {
+      if (backgroundColor) {
+        const [R, G, B] = Util.colorToRgb(backgroundColor);
+
+        const fillsIndex: number[] = [];
+
+        // 先设置背景
+        let imageData = ctx?.getImageData(
+          0,
+          0,
+          canvasRef?.value?.width!,
+          canvasRef?.value?.height!,
+        )!;
+
+        for (let i = 0; i < imageData?.data?.length; i += 4) {
+          // 当该像素是透明的，则设置成backgroundColor
+          if (imageData.data[i + 3] === 0) {
+            imageData.data[i] = R; // R
+            imageData.data[i + 1] = G; // G
+            imageData.data[i + 2] = B; // B
+            imageData.data[i + 3] = 255;
+
+            fillsIndex.push(i);
+            fillsIndex.push(i + 1);
+            fillsIndex.push(i + 2);
+            fillsIndex.push(i + 3);
+          }
+        }
+
+        ctx?.putImageData(imageData, 0, 0);
+
+        // 生成base64字符串
+        const base64 = canvasRef?.value?.toDataURL(type || 'image/png', quality);
+
+        // 删除背景
+        imageData = ctx?.getImageData(
+          0,
+          0,
+          canvasRef?.value?.width!,
+          canvasRef?.value?.height!,
+        )!;
+
+        fillsIndex.forEach((index) => {
+          imageData.data[index] = 0;
+        });
+        ctx?.putImageData(imageData, 0, 0);
+
+        return base64;
+      }
+
+      return canvasRef?.value?.toDataURL(type || 'image/png', quality);
+    }
+
     expose({
       setMode: (mode) => {
         curShape = mode;
@@ -553,7 +613,7 @@ export default defineComponent({
        * toDataURL
        * @description 获取base64
        */
-      toDataURL: () => canvasRef?.value?.toDataURL('image/png', 1.0),
+      toDataURL,
     });
 
     onMounted(() => {
