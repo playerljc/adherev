@@ -1,7 +1,7 @@
 import debounce from 'lodash/debounce';
 import { VNode } from 'vue';
 
-import Util from '@baifendian/adhere-util';
+import Util from '@baifendian/adherev-util';
 import { ResizeObserver } from '@juggle/resize-observer';
 
 import { Mode, Point } from './types';
