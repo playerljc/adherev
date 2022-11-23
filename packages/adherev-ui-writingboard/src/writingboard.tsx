@@ -1,6 +1,7 @@
 import debounce from 'lodash/debounce';
 import { VNode } from 'vue';
 
+import Util from '@baifendian/adhere-util';
 import { ResizeObserver } from '@juggle/resize-observer';
 
 import { Mode, Point } from './types';
@@ -198,8 +199,57 @@ const BackTopAnimation: any = {
     setLineWidth(width) {
       this.$data.$lineWidth = width;
     },
-    toDataURL() {
-      return this.$refs.canvasRef.toDataURL('image/png', 1.0);
+    toDataURL(backgroundColor?: string, type?: string, quality?: any) {
+      if (backgroundColor) {
+        const [R, G, B] = Util.colorToRgb(backgroundColor);
+
+        const fillsIndex: number[] = [];
+
+        // 先设置背景
+        let imageData = this.$data.$ctx?.getImageData(
+          0,
+          0,
+          this.$refs.canvasRef.width,
+          this.$refs.canvasRef.height,
+        );
+
+        for (let i = 0; i < imageData?.data?.length; i += 4) {
+          // 当该像素是透明的，则设置成backgroundColor
+          if (imageData.data[i + 3] === 0) {
+            imageData.data[i] = R; // R
+            imageData.data[i + 1] = G; // G
+            imageData.data[i + 2] = B; // B
+            imageData.data[i + 3] = 255;
+
+            fillsIndex.push(i);
+            fillsIndex.push(i + 1);
+            fillsIndex.push(i + 2);
+            fillsIndex.push(i + 3);
+          }
+        }
+
+        this.$data.$ctx?.putImageData(imageData, 0, 0);
+
+        // 生成base64字符串
+        const base64 = this.$refs.canvasRef?.toDataURL(type || 'image/png', quality);
+
+        // 删除背景
+        imageData = this.$data.$ctx?.getImageData(
+          0,
+          0,
+          this.$refs.canvasRef.width,
+          this.$refs.canvasRef.height,
+        );
+
+        fillsIndex.forEach((index) => {
+          imageData.data[index] = 0;
+        });
+        this.$data.$ctx?.putImageData(imageData, 0, 0);
+
+        return base64;
+      }
+
+      return this.$refs.canvasRef?.toDataURL(type || 'image/png', quality);
     },
   },
   created() {
