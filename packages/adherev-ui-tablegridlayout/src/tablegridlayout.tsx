@@ -115,8 +115,8 @@ const renderHorizontal: RenderHorizontal = (h: CreateElement, context, params) =
   const flatData: VNode[] = [];
 
   (_data || []).forEach((t) => {
-    let label = context.$slots[t.label];
-    let value = context.$slots[t.value];
+    let label = typeof t.label === 'string' ? context.$slots[t.label] : t.label;
+    let value = typeof t.value === 'string' ? context.$slots[t.value] : t.value;
 
     label = Array.isArray(label) && !!label.length ? label[0] : label;
     value = Array.isArray(value) && !!value.length ? value[0] : value;
@@ -185,7 +185,7 @@ const renderVertical: RenderVertical = (h: CreateElement, context, data, rowCoun
     while (_index < (_data || []).length) {
       const item = (_data || [])[_index];
       let label = typeof item.label === 'string' ? context.$slots[item.label] : item.label;
-      let value = context.$slots[item.value];
+      let value = typeof item.value === 'string' ? context.$slots[item.value] : item.value;
 
       label = Array.isArray(label) && !!label.length ? label[0] : label;
       value = Array.isArray(value) && !!value.length ? value[0] : value;
@@ -247,7 +247,7 @@ const renderVertical: RenderVertical = (h: CreateElement, context, data, rowCoun
   const columnCount = _columnCount as number;
 
   (_data || []).forEach((t) => {
-    let label = context.$slots[t.label];
+    let label = typeof t.label === 'string' ? context.$slots[t.label] : t.label;
 
     label = Array.isArray(label) && !!label.length ? label[0] : label;
 
