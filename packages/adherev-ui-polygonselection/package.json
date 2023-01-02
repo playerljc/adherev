@@ -38,7 +38,7 @@
     "typescript": "^4.6.2"
   },
   "dependencies": {
-    "@baifendian/adhere-ui-polygonselection": "^1.0.21",
+    "@baifendian/adhere-ui-polygonselection": "^1.0.22-fix.1",
     "@baifendian/adherev-util": "^1.0.12-fix.4"
   },
   "gitHead": "2e23d8b8d13e6a97f5326e4e5d257c9903cd108d"
