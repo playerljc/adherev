@@ -2,12 +2,23 @@
   "name": "@baifendian/adherev-util-resource",
   "version": "1.0.12-fix.4",
   "description": "常用的资源",
+  "homepage": "https://gitee.com/playerljc/adherev",
+  "bugs": {
+    "url": "https://gitee.com/playerljc/adherev/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://gitee.com/playerljc/adherev"
+  },
+  "license": "ISC",
+  "author": "playerljc",
   "main": "lib/index.js",
   "module": "es/index.js",
   "files": [
     "lib",
     "es",
-    "umd"
+    "umd",
+    "resource"
   ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -17,19 +28,14 @@
     "buildumd": "ctbuild buildumd --config ctbuild.config.umd.js --packagename AdherevResource --define alias=@,evnVars=true",
     "generatorchangelog": "bd changelog/CHANGELOG.html"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://gitee.com/playerljc/adherev"
-  },
   "resolutions": {},
-  "author": "playerljc",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://gitee.com/playerljc/adherev/issues"
-  },
-  "homepage": "https://gitee.com/playerljc/adherev",
-  "publishConfig": {
-    "access": "public"
+  "dependencies": {
+    "@baifendian/adherev-util": "^1.0.12-fix.4",
+    "@baifendian/adherev-util-dict": "^1.0.12-fix.4",
+    "@baifendian/adherev-util-intl": "^1.0.12-fix.4",
+    "ant-design-vue": "^1.7.5",
+    "moment": "^2.29.1",
+    "vue": "2.6.14"
   },
   "devDependencies": {
     "@babel/runtime": "^7.7.4",
@@ -37,13 +43,8 @@
     "npm-run-all": "^4.1.5",
     "typescript": "^4.6.2"
   },
-  "dependencies": {
-    "@baifendian/adherev-util": "^1.0.12-fix.4",
-    "@baifendian/adherev-util-dict": "^1.0.12-fix.4",
-    "@baifendian/adherev-util-intl": "^1.0.12-fix.4",
-    "ant-design-vue": "^1.7.5",
-    "moment": "^2.29.1",
-    "vue": "^2.6.14"
+  "publishConfig": {
+    "access": "public"
   },
   "gitHead": "020167ab4e43579ddefc8f99551297f29b87ec50"
 }

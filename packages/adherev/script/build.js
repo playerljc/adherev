@@ -55,14 +55,13 @@ const namedMap = new Map([
   ['@baifendian/adherev-ui-bmap', 'BMap'],
   ['@baifendian/adherev-ui-playground', 'PlayGround'],
   ['@baifendian/adherev-ui-teleport', 'Teleport'],
-
   ['@baifendian/adherev-ui-comment', 'Comment'],
   ['@baifendian/adherev-ui-configprovider', 'ConfigProvider'],
   ['@baifendian/adherev-ui-contourblock', 'ContourBlock'],
   ['@baifendian/adherev-ui-datedisplay', 'DateDisplay'],
   ['@baifendian/adherev-ui-tablegridlayout', 'TableGridLayout'],
   ['@baifendian/adherev-ui-writingboard', 'WritingBoard'],
-
+  ['@baifendian/adherev-ui-vuequill-sandbox', 'VueQuillSandBox'],
   ['@baifendian/adherev-util', 'Util'],
   ['@baifendian/adherev-util-adapterscreen', 'AdapterScreen'],
   ['@baifendian/adherev-util-browsersniff', 'Browsersniff'],

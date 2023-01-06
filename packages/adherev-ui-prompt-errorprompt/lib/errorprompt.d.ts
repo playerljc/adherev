@@ -1,11 +1,10 @@
-import { MessageType } from 'ant-design-vue/types/message';
-declare const ErrorPrompt: {
-    (content?: any): MessageType;
-    isUse?: () => boolean;
-    use?: (Vue: any) => void;
-};
+import { ConfigDuration, ConfigOnClose, ConfigType } from 'ant-design-vue/types/message';
+import { ModalOptions } from 'ant-design-vue/types/modal';
+export declare const openErrorDialog: (options: ModalOptions) => import("ant-design-vue/types/modal").ModalConfirm;
 /**
  * 错误的提示
- * @param content - {string| VNode |(h) => VNode}
+ * @param content
+ * @param duration
+ * @param onClose
  */
-export default ErrorPrompt;
+export declare const openErrorMessage: (content: ConfigType, duration?: ConfigDuration | undefined, onClose?: ConfigOnClose | undefined) => import("ant-design-vue/types/message").MessageType;

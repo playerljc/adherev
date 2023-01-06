@@ -1,14 +1,52 @@
+# 1.0.14
+
+***
+
+2023-01-06
+
+* **adherev-ui-antdformitem**
+  - 加入adherev-ui-antdformitem代码
+  - 加入Input和TextArea组件
+  - 加入所有Antd组件的默认操作
+* **adherev-ui-searchtable**
+  - 加入ProSearchTable
+  - 加入editor功能
+  - 加入对列表头分组的修改
+* **adherev-util**
+  - 加入DateUtil
+  - 加入FormatUtil
+  - 加入EncryptUtil
+  - color加入新方法
+* **adherev-util-adapterscreen**
+  - Safari浏览器适配
+* **adherev-ui-prompt-errorprompt**
+  - 分成dialog和message
+* **adherev-ui-prompt-successprompt**
+  - 分成dialog和message
+* **adherev-ui-prompt-warnprompt**
+  - 分成dialog和message
+* **adherev-util-resource**
+  - 加入resource资源目录
+* **adherev-ui-vuequill-sandbox**
+  - 加入adherev-ui-vuequill-sandbox组件
+
 # 1.0.13
 
 ***
 
 2022-11-22
 
-* **adhere-ui-historyback**
+* **adherev-util-resource**
+  - 加入resource资源目录
+* **adherev-ui-tablegridlayout**
+  - label和value支持VNode
+* **adherev-util-watchmemoized**
+  - 去掉adherev-util的依赖
+* **adherev-ui-historyback**
   - 修改为返回的判断逻辑
-* **adhere-util**
+* **adherev-util**
   - color加入新方法
-* **adhere-ui-writingboard**
+* **adherev-ui-writingboard**
   - 加入导出图片设置背景色
 
 # 1.0.12

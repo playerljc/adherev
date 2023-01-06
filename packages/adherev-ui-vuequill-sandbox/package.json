@@ -1,0 +1,54 @@
+{
+  "name": "@baifendian/adherev-ui-vuequill-sandbox",
+  "version": "1.0.0",
+  "description": "对Quill进行样式隔离的包装",
+  "homepage": "https://gitee.com/playerljc/adherev",
+  "bugs": {
+    "url": "https://gitee.com/playerljc/adherev/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://gitee.com/playerljc/adherev"
+  },
+  "license": "ISC",
+  "author": "playerljc",
+  "main": "lib/index.js",
+  "module": "es/index.js",
+  "files": [
+    "lib",
+    "es",
+    "umd"
+  ],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "startapp:dev": "ctbuildv startapp --define alias=@,evnVars=true",
+    "buildpackage:cjs": "ctbuildv buildpackagets -c ctbuildv.package.ts.cjs.config.js -o lib",
+    "buildpackage:es": "ctbuildv buildpackagets -c ctbuildv.package.ts.esm.config.js -o es",
+    "buildpackage": "npm-run-all --parallel buildpackage:cjs buildpackage:es",
+    "buildumd": "ctbuildv buildumd --config ctbuildv.config.umd.js --packagename AdherevVueQuillSandBox --define alias=@,evnVars=true",
+    "generatorchangelog": "bd changelog/CHANGELOG.html"
+  },
+  "resolutions": {},
+  "dependencies": {
+    "@baifendian/adhere-ui-reactquill-sandbox": "^1.0.22-fix.2",
+    "@baifendian/adherev-util": "^1.0.12-fix.4",
+    "classnames": "^2.2.6",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-quill": "^2.0.0",
+    "vue": "2.6.14"
+  },
+  "devDependencies": {
+    "@babel/runtime": "^7.7.4",
+    "@ctsj/buildv": "^2.0.9",
+    "npm-run-all": "^4.1.5",
+    "typescript": "^4.6.2"
+  },
+  "peerDependencies": {
+    "vue": ">=2.6.14 - <2.7.14"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "gitHead": "020167ab4e43579ddefc8f99551297f29b87ec50"
+}

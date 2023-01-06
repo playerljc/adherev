@@ -1,36 +1,36 @@
 {
-  "private": true,
-  "workspaces": [
-    "packages/*"
-  ],
   "name": "root",
-  "version": "1.0.13",
+  "version": "1.0.14",
+  "private": true,
   "description": "一个基于Vue的通用组件库，这个是在平时做的项目中沉淀出来的公共组件，包括UI、功能和其他",
-  "scripts": {
-    "bootstrap": "lerna bootstrap",
-    "clean": "lerna clean",
-    "link": "lerna link",
-    "changed": "lerna changed",
-    "list": "lerna list",
-    "publish": "lerna publish",
-    "buildpackages": "lerna run buildpackage",
-    "buildumd": "node scripts/buildumd.js",
-    "generatorchangelog": "lerna run generatorchangelog",
-    "prettier": "prettier -c --write '**/*'",
-    "pretty-quick": "pretty-quick",
-    "lint": "eslint -c ./.eslintrc.js --fix --ext .jsx,.js,.vue,.ts,.tsx ./packages",
-    "lint:fix": "eslint --fix  -c ./.eslintrc.js --fix --ext .jsx,.js,.vue,.ts,.tsx ./packages",
-    "lint:style": "stylelint \"{site,packages}/**/*.less\" --syntax less"
+  "bugs": {
+    "url": "http://git.baifendian.com/SYYF/adherev/issues"
   },
-  "author": "playerljc <playerljc@163.com>",
   "repository": {
     "type": "git",
     "url": "http://git.baifendian.com/SYYF/adherev"
   },
-  "bugs": {
-    "url": "http://git.baifendian.com/SYYF/adherev/issues"
-  },
   "license": "ISC",
+  "author": "playerljc <playerljc@163.com>",
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "bootstrap": "lerna bootstrap",
+    "buildpackages": "lerna run buildpackage",
+    "buildumd": "node scripts/buildumd.js",
+    "changed": "lerna changed",
+    "clean": "lerna clean",
+    "generatorchangelog": "lerna run generatorchangelog",
+    "link": "lerna link",
+    "lint": "eslint -c ./.eslintrc.js --fix --ext .jsx,.js,.vue,.ts,.tsx ./packages",
+    "lint:fix": "eslint --fix  -c ./.eslintrc.js --fix --ext .jsx,.js,.vue,.ts,.tsx ./packages",
+    "lint:style": "stylelint \"{site,packages}/**/*.less\" --syntax less",
+    "list": "lerna list",
+    "prettier": "prettier -c --write '**/*'",
+    "pretty-quick": "pretty-quick",
+    "publish": "lerna publish"
+  },
   "browserslist": {
     "production": [
       ">0.2%",
@@ -43,6 +43,7 @@
       "last 1 safari version"
     ]
   },
+  "dependencies": {},
   "devDependencies": {
     "@trivago/prettier-plugin-sort-imports": "^3.3.0",
     "@typescript-eslint/eslint-plugin": "^5.4.0",
@@ -65,7 +66,7 @@
     "eslint-plugin-vue": "^8.0.3",
     "fs-extra": "^9.0.1",
     "husky": "^4.2.5",
-    "lerna": "^3.22.1",
+    "lerna": "^6.4.0",
     "lint-staged": "^10.2.0",
     "prettier": "^2.4.1",
     "pretty-quick": "^2.0.0",
@@ -78,6 +79,5 @@
     "stylelint-order": "^4.0.0",
     "typescript": "^4.6.2",
     "vue-eslint-parser": "^7.11.0"
-  },
-  "dependencies": {}
+  }
 }

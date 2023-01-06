@@ -1,11 +1,14 @@
-import { MessageType } from 'ant-design-vue/types/message';
-declare const SuccessPrompt: {
-    (content?: any): MessageType;
-    isUse?: () => boolean;
-    use?: (Vue: any) => void;
-};
+import { ConfigDuration, ConfigOnClose, ConfigType } from 'ant-design-vue/types/message';
+import { ModalOptions } from 'ant-design-vue/types/modal';
+/**
+ * openSuccessDialog
+ * @param options
+ */
+export declare const openSuccessDialog: (options: ModalOptions) => import("ant-design-vue/types/modal").ModalConfirm;
 /**
  * 成功的提示
- * @param content - {string| VNode |(h) => VNode}
+ * @param content
+ * @param duration
+ * @param onClose
  */
-export default SuccessPrompt;
+export declare const openSuccessMessage: (content: ConfigType, duration?: ConfigDuration | undefined, onClose?: ConfigOnClose | undefined) => import("ant-design-vue/types/message").MessageType;

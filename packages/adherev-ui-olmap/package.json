@@ -46,5 +46,9 @@
     "ol-wind": "^1.1.1-alpha.2",
     "uuid": "^8.3.2"
   },
+  "peerDependencies": {
+    "vue": ">=2.6.14 - <2.7.14",
+    "ol": "<=6.5.0"
+  },
   "gitHead": "020167ab4e43579ddefc8f99551297f29b87ec50"
 }

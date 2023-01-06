@@ -2,6 +2,16 @@
   "name": "@baifendian/adherev-ui-comment",
   "version": "1.0.12-fix.4",
   "description": "评论",
+  "homepage": "https://gitee.com/playerljc/adherev",
+  "bugs": {
+    "url": "https://gitee.com/playerljc/adherev/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://gitee.com/playerljc/adherev"
+  },
+  "license": "ISC",
+  "author": "playerljc",
   "main": "lib/index.js",
   "module": "es/index.js",
   "files": [
@@ -18,29 +28,7 @@
     "buildumd": "ctbuildv buildumd --config ctbuildv.config.umd.js --packagename AdherevComment --define alias=@,evnVars=true",
     "generatorchangelog": "bd changelog/CHANGELOG.html"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://gitee.com/playerljc/adherev"
-  },
   "resolutions": {},
-  "author": "playerljc",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://gitee.com/playerljc/adherev/issues"
-  },
-  "homepage": "https://gitee.com/playerljc/adherev",
-  "publishConfig": {
-    "access": "public"
-  },
-  "devDependencies": {
-    "@babel/runtime": "^7.7.4",
-    "@baifendian/adherev-ui-datedisplay": "^1.0.12-fix.4",
-    "@baifendian/adherev-ui-globalindicator": "^1.0.12-fix.4",
-    "@ctsj/buildv": "^2.0.9",
-    "faker": "^5.4.0",
-    "npm-run-all": "^4.1.5",
-    "typescript": "^4.6.2"
-  },
   "dependencies": {
     "@baifendian/adherev-ui-backtopanimation": "^1.0.12-fix.4",
     "@baifendian/adherev-ui-conditionalrender": "^1.0.12-fix.4",
@@ -55,9 +43,25 @@
     "classnames": "^2.2.6",
     "emoji-mart": "^5.2.0",
     "emoji-mart-vue": "^2.6.6",
-    "vue": "^2.6.14",
+    "vue": "2.6.14",
     "vue-fragment": "^1.5.2",
     "vue-hoc": "^0.4.7"
+  },
+  "devDependencies": {
+    "@babel/runtime": "^7.7.4",
+    "@baifendian/adherev-ui-datedisplay": "^1.0.12-fix.4",
+    "@baifendian/adherev-ui-globalindicator": "^1.0.12-fix.4",
+    "@ctsj/buildv": "^2.0.9",
+    "faker": "^5.4.0",
+    "npm-run-all": "^4.1.5",
+    "typescript": "^4.6.2"
+  },
+  "peerDependencies": {
+    "ant-design-vue": ">=1.7.5 - <2.0.0",
+    "vue": ">=2.6.14 - <2.7.14"
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "gitHead": "020167ab4e43579ddefc8f99551297f29b87ec50"
 }

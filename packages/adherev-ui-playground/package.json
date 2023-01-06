@@ -2,6 +2,16 @@
   "name": "@baifendian/adherev-ui-playground",
   "version": "1.0.12-fix.4",
   "description": "一个代码展示的组件",
+  "homepage": "https://gitee.com/playerljc/adhere",
+  "bugs": {
+    "url": "https://gitee.com/playerljc/adhere/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://gitee.com/playerljc/adhere"
+  },
+  "license": "ISC",
+  "author": "playerljc",
   "main": "lib/index.js",
   "module": "es/index.js",
   "files": [
@@ -19,26 +29,7 @@
     "buildumd": "ctbuildv buildumd --packagename AdherePlayground --define alias=@,evnVars=true",
     "generatorchangelog": "bd changelog/CHANGELOG.html"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://gitee.com/playerljc/adhere"
-  },
   "resolutions": {},
-  "author": "playerljc",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://gitee.com/playerljc/adhere/issues"
-  },
-  "homepage": "https://gitee.com/playerljc/adhere",
-  "publishConfig": {
-    "access": "public"
-  },
-  "devDependencies": {
-    "@babel/runtime": "^7.7.4",
-    "@ctsj/buildv": "^2.0.9",
-    "npm-run-all": "^4.1.5",
-    "typescript": "^4.6.2"
-  },
   "dependencies": {
     "@baifendian/adherev-ui-conditionalrender": "^1.0.12-fix.4",
     "@baifendian/adherev-ui-contextmenu": "^1.0.12-fix.4",
@@ -49,10 +40,22 @@
     "classnames": "^2.3.1",
     "copy-to-clipboard": "^3.3.1",
     "highlight.js": "^9.11.0",
-    "vue": "^2.6.14",
+    "vue": "2.6.14",
     "vue-fragment": "^1.5.2",
     "vue-highlight.js": "^3.1.0",
     "vue-hoc": "^0.4.7"
+  },
+  "devDependencies": {
+    "@babel/runtime": "^7.7.4",
+    "@ctsj/buildv": "^2.0.9",
+    "npm-run-all": "^4.1.5",
+    "typescript": "^4.6.2"
+  },
+  "peerDependencies": {
+    "vue": ">=2.6.14 - <2.7.14"
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "gitHead": "020167ab4e43579ddefc8f99551297f29b87ec50"
 }

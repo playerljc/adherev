@@ -45,5 +45,9 @@
     "ant-design-vue": "^1.7.5",
     "vue": "^2.6.12"
   },
+  "peerDependencies": {
+    "vue": ">=2.6.14 - <2.7.14",
+    "ant-design-vue": ">=1.7.5 - <2.0.0"
+  },
   "gitHead": "020167ab4e43579ddefc8f99551297f29b87ec50"
 }

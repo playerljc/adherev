@@ -1,2 +1,2 @@
-import{message}from"ant-design-vue";var WarnPrompt=function(r){return message.warn(r)};export default WarnPrompt;
+var __assign=this&&this.__assign||function(){return(__assign=Object.assign||function(n){for(var a,e=1,r=arguments.length;e<r;e++)for(var t in a=arguments[e])Object.prototype.hasOwnProperty.call(a,t)&&(n[t]=a[t]);return n}).apply(this,arguments)};import{Modal,message}from"ant-design-vue";import Intl from"@baifendian/adherev-util-intl";var openWarnDialog=function(n){return Modal.warning(__assign({title:Intl.tv("提示"),mask:!1,maskClosable:!0},n||{}))},openWarnMessage=function(n,a,e){return message.warning(n,a,e)};export{openWarnDialog,openWarnMessage};
 //# sourceMappingURL=warnprompt.js.map
