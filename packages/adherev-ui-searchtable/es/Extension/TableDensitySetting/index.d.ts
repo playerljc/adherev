@@ -13,6 +13,6 @@ declare const _default: {
         onReset(): void;
         onChange(density: any): void;
     };
-    render(h: any): any;
+    render(h: any): JSX.Element;
 };
 export default _default;

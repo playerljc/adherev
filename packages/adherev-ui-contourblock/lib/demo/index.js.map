@@ -1,1 +1,1 @@
-{"version":3,"file":"index.js","sources":[],"sourcesContent":[],"names":[],"mappings":""}
+{"version":3,"file":"index.js","sources":["demo/index.js"],"sourcesContent":["\"use strict\";\n\n// import Vue from 'vue';\n//\n// import ContourBlock from '../index';\n// import App from './index.vue';\n//\n// import '../index.less';\n//\n// ContourBlock.use(Vue);\n//\n// new Vue({\n//   el: '#app',\n//   render(h) {\n//     return h(App);\n//   },\n// });"],"names":[],"mappings":"AAAA"}

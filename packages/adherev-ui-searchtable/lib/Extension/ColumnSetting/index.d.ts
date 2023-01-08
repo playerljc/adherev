@@ -10,6 +10,6 @@ declare const _default: {
     };
     emits: string[];
     inject: string[];
-    render(h: any): any;
+    render(h: any): JSX.Element;
 };
 export default _default;

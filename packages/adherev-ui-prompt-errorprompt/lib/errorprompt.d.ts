@@ -7,4 +7,4 @@ export declare const openErrorDialog: (options: ModalOptions) => import("ant-des
  * @param duration
  * @param onClose
  */
-export declare const openErrorMessage: (content: ConfigType, duration?: ConfigDuration | undefined, onClose?: ConfigOnClose | undefined) => import("ant-design-vue/types/message").MessageType;
+export declare const openErrorMessage: (content: ConfigType, duration?: ConfigDuration, onClose?: ConfigOnClose) => import("ant-design-vue/types/message").MessageType;

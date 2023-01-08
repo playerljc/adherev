@@ -35,7 +35,7 @@
     "@baifendian/adherev-util-intl": "^1.0.12-fix.4",
     "ant-design-vue": "^1.7.5",
     "moment": "^2.29.1",
-    "vue": "2.6.14"
+    "vue": "^2.7.14"
   },
   "devDependencies": {
     "@babel/runtime": "^7.7.4",

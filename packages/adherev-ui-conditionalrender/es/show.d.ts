@@ -6,6 +6,6 @@ declare const _default: {
             default: boolean;
         };
     };
-    render(h: any): any;
+    render(h: any): JSX.Element;
 };
 export default _default;

@@ -76,7 +76,7 @@ const ModalConfig: any = {
     renderFooter(h) {
       const { config, closeBtn } = this;
 
-      let result = null;
+      let result: any = null;
 
       if (config.footerJSX) {
         if (closeBtn) {

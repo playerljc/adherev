@@ -43,7 +43,7 @@
     "classnames": "^2.2.6",
     "emoji-mart": "^5.2.0",
     "emoji-mart-vue": "^2.6.6",
-    "vue": "2.6.14",
+    "vue": "^2.7.14",
     "vue-fragment": "^1.5.2",
     "vue-hoc": "^0.4.7"
   },
@@ -51,14 +51,14 @@
     "@babel/runtime": "^7.7.4",
     "@baifendian/adherev-ui-datedisplay": "^1.0.12-fix.4",
     "@baifendian/adherev-ui-globalindicator": "^1.0.12-fix.4",
-    "@ctsj/buildv": "^2.0.9",
+    "@ctsj/buildv": "^2.0.10",
     "faker": "^5.4.0",
     "npm-run-all": "^4.1.5",
     "typescript": "^4.6.2"
   },
   "peerDependencies": {
     "ant-design-vue": ">=1.7.5 - <2.0.0",
-    "vue": ">=2.6.14 - <2.7.14"
+    "vue": ">=2.6.14 - <3.0.0"
   },
   "publishConfig": {
     "access": "public"

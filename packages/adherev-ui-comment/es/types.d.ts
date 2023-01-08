@@ -1,5 +1,5 @@
 import type { VNode } from 'vue';
-export declare type Local = 'ar' | 'de' | 'en' | 'es' | 'fa' | 'fr' | 'it' | 'ja' | 'nl' | 'pl' | 'pt' | 'ru' | 'uk' | 'zh' | string;
+export type Local = 'ar' | 'de' | 'en' | 'es' | 'fa' | 'fr' | 'it' | 'ja' | 'nl' | 'pl' | 'pt' | 'ru' | 'uk' | 'zh' | string;
 export interface CommentProps {
     getScrollWrapContainer?: () => HTMLElement;
     fetchCommentData?: () => Promise<any>;

@@ -114,7 +114,7 @@
     "omit.js": "^2.0.2",
     "swiper": "4.4.6",
     "uuid": "^8.3.2",
-    "vue": "^2.6.12",
+    "vue": "^2.7.14",
     "vue-fragment": "^1.5.2",
     "vue-i18n": "^8.24.4"
   },
@@ -130,7 +130,7 @@
   },
   "peerDependencies": {
     "ant-design-vue": ">=1.7.5 - <2.0.0",
-    "vue": ">=2.6.14 - <2.7.14"
+    "vue": ">=2.6.14 - <3.0.0"
   },
   "publishConfig": {
     "access": "public"

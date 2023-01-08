@@ -2,6 +2,16 @@
   "name": "@baifendian/adherev-ui-spin",
   "version": "1.0.12-fix.4",
   "description": "无侵入的loading",
+  "homepage": "https://gitee.com/playerljc/adherev",
+  "bugs": {
+    "url": "https://gitee.com/playerljc/adherev/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://gitee.com/playerljc/adherev"
+  },
+  "license": "ISC",
+  "author": "playerljc",
   "main": "lib/index.js",
   "module": "es/index.js",
   "files": [
@@ -17,30 +27,20 @@
     "buildumd": "ctbuildv buildumd --config ctbuildv.config.umd.js --packagename AdherevSpin --define alias=@,evnVars=true",
     "generatorchangelog": "bd changelog/CHANGELOG.html"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://gitee.com/playerljc/adherev"
-  },
   "resolutions": {},
-  "author": "playerljc",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://gitee.com/playerljc/adherev/issues"
-  },
-  "homepage": "https://gitee.com/playerljc/adherev",
-  "publishConfig": {
-    "access": "public"
-  },
-  "devDependencies": {
-    "@babel/runtime": "^7.7.4",
-    "@ctsj/buildv": "^2.0.9",
-    "npm-run-all": "^4.1.5",
-    "typescript": "^4.6.2"
-  },
   "dependencies": {
     "@baifendian/adherev-ui-css": "^1.0.12",
     "@baifendian/adherev-util": "^1.0.12-fix.4",
     "@baifendian/adherev-util-resource": "^1.0.12-fix.4"
+  },
+  "devDependencies": {
+    "@babel/runtime": "^7.7.4",
+    "@ctsj/buildv": "^2.0.10",
+    "npm-run-all": "^4.1.5",
+    "typescript": "^4.6.2"
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "gitHead": "020167ab4e43579ddefc8f99551297f29b87ec50"
 }

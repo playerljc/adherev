@@ -40,19 +40,19 @@
     "classnames": "^2.3.1",
     "copy-to-clipboard": "^3.3.1",
     "highlight.js": "^9.11.0",
-    "vue": "2.6.14",
+    "vue": "^2.7.14",
     "vue-fragment": "^1.5.2",
     "vue-highlight.js": "^3.1.0",
     "vue-hoc": "^0.4.7"
   },
   "devDependencies": {
     "@babel/runtime": "^7.7.4",
-    "@ctsj/buildv": "^2.0.9",
+    "@ctsj/buildv": "^2.0.10",
     "npm-run-all": "^4.1.5",
     "typescript": "^4.6.2"
   },
   "peerDependencies": {
-    "vue": ">=2.6.14 - <2.7.14"
+    "vue": ">=2.6.14 - <3.0.0"
   },
   "publishConfig": {
     "access": "public"

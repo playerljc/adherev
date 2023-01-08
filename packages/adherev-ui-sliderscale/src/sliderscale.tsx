@@ -59,7 +59,7 @@ const SliderScale: any = {
           break;
         }
 
-        let itemJSX = null;
+        let itemJSX: any = null;
 
         if ((i + 1) % interval === 0) {
           itemJSX = (

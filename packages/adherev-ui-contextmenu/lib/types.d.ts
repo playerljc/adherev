@@ -6,7 +6,7 @@ export interface IMenuProps {
 export interface IMenuItemProps {
     data: IData;
 }
-export declare type ISubMenuProps = IMenuProps;
+export type ISubMenuProps = IMenuProps;
 export interface ContextMenuType {
     isUse?: () => boolean;
     use?: (Vue: any) => void;

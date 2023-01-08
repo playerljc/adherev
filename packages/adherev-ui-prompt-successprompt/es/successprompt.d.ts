@@ -11,4 +11,4 @@ export declare const openSuccessDialog: (options: ModalOptions) => import("ant-d
  * @param duration
  * @param onClose
  */
-export declare const openSuccessMessage: (content: ConfigType, duration?: ConfigDuration | undefined, onClose?: ConfigOnClose | undefined) => import("ant-design-vue/types/message").MessageType;
+export declare const openSuccessMessage: (content: ConfigType, duration?: ConfigDuration, onClose?: ConfigOnClose) => import("ant-design-vue/types/message").MessageType;

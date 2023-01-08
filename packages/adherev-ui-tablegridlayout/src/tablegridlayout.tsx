@@ -8,9 +8,8 @@ import {
   DataItem,
   GroupRenderDetail,
   RenderDetail,
-  RenderGridSearchForm,
-  RenderHorizontal,
-  RenderVertical,
+  RenderGridSearchForm, // RenderHorizontal,
+  // RenderVertical,
   RowCountRef,
   TableGridLayoutProps,
 } from './types';
@@ -25,7 +24,15 @@ const selectorPrefix = 'adherev-ui-tablegridlayout';
      detail: GroupRenderDetail;
  * }
  */
-const renderHorizontal: RenderHorizontal = (h: CreateElement, context, params) => {
+const renderHorizontal: (
+  h: CreateElement,
+  context,
+  params,
+) => { detail: { startIndex: number; endIndex: number }[]; element: JSX.Element } = (
+  h: CreateElement,
+  context,
+  params,
+) => {
   const {
     data: { columnCount: _columnCount, data: _data },
     rowCountRef,
@@ -162,7 +169,17 @@ const renderHorizontal: RenderHorizontal = (h: CreateElement, context, params) =
  * @param data
  * @param rowCountRef
  */
-const renderVertical: RenderVertical = (h: CreateElement, context, data, rowCountRef) => {
+const renderVertical: (
+  h: CreateElement,
+  context,
+  data,
+  rowCountRef,
+) => { detail: { startIndex: number; endIndex: number }[]; element: JSX.Element } = (
+  h: CreateElement,
+  context,
+  data,
+  rowCountRef,
+) => {
   const { columnCount: _columnCount, data: _data } = data;
 
   /**

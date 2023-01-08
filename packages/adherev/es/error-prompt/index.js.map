@@ -1,1 +1,1 @@
-{"version":3,"file":"index.js","sources":["error-prompt/index.js"],"sourcesContent":["import Model from '@baifendian/adherev-ui-prompt-errorprompt/es';\r\nexport default Model;\r\n"],"names":["Model"],"mappings":"OAAOA,wEACQA"}
+{"version":3,"file":"index.js","sources":["error-prompt/index.js"],"sourcesContent":["import Model from '@baifendian/adherev-ui-prompt-errorprompt/es';\r\nexport default Model;\r\n"],"names":["Model"],"mappings":"OAAOA,UAAW,8DACHA"}

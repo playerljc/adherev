@@ -74,6 +74,7 @@ const ContextMenuComponent: any = {
         class={selectorPrefix}
         style={this.getStyle}
         onClick={this.onClick}
+        // @ts-ignore
         onContextMenu={this.onContextMenu}
       >
         <Menu data={data} className={config.className} styleName={config.styleName} ref="menuIns" />

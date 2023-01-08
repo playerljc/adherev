@@ -1,0 +1,24 @@
+import AutoComplete from './formitems/AutoComplete';
+import Cascader from './formitems/Cascader';
+import DatePicker from './formitems/DatePicker';
+import Input from './formitems/Input';
+import InputNumberDecimal1 from './formitems/InputNumberDecimal1';
+import InputNumberDecimal2 from './formitems/InputNumberDecimal2';
+import InputNumberInteger from './formitems/InputNumberInteger';
+import Mentions from './formitems/Mentions';
+import Modal from './formitems/Modal';
+import MultipleSelect from './formitems/MultipleSelect';
+import RangePicker from './formitems/RangePicker';
+import Select from './formitems/Select';
+import Slider from './formitems/Slider';
+import TextArea from './formitems/TextArea';
+import TimePicker from './formitems/TimePicker';
+import Tooltip from './formitems/Tooltip';
+import TreeSelect from './formitems/TreeSelect';
+import Upload from './formitems/Upload';
+export { Select, MultipleSelect, TreeSelect, AutoComplete, DatePicker, RangePicker, TimePicker, Cascader, Modal, Mentions, Slider, Tooltip, Upload, InputNumberInteger, InputNumberDecimal1, InputNumberDecimal2, Input, TextArea, };
+export * as AntdComponents from './formitems/Others';
+declare const _default: {
+    install: (Vue: any) => void;
+};
+export default _default;

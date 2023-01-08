@@ -3,9 +3,16 @@
   "version": "1.0.12-fix.4",
   "private": true,
   "description": "adherev的website",
+  "bugs": {
+    "url": "http://git.baifendian.com/SYYF/adherev/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "http://git.baifendian.com/SYYF/adherev"
+  },
+  "license": "ISC",
+  "author": "playerljc <playerljc@163.com>",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "startapp": "cross-env environment=dev mode=development ctbuildv startapp --define alias=@,evnVars=true,cssModules=true,static=assets,runtimeCompiler=true",
     "buildapp": "cross-env environment=dev mode=production ctbuildv buildapp --define alias=@,evnVars=true,cssModules=true,static=assets,runtimeCompiler=true",
     "buildapp:analysis": "cross-env environment=dev mode=production ctbuildv buildapp --define alias=@,evnVars=true,cssModules=true,analysis=true,static=assets",
     "lint": "npm run lint:js && npm run lint:style && npm run lint:prettier",
@@ -15,7 +22,9 @@
     "lint:js": "eslint --cache --ext .vue,.js,.jsx,.ts,.tsx --format=pretty ./src",
     "lint:prettier": "check-prettier lint",
     "lint:style": "stylelint --fix \"src/**/*.less\" --syntax less",
-    "prettier": "prettier -c --write \"**/*\""
+    "prettier": "prettier -c --write \"**/*\"",
+    "startapp": "cross-env environment=dev mode=development ctbuildv startapp --define alias=@,evnVars=true,cssModules=true,static=assets,runtimeCompiler=true",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "husky": {
     "hooks": {
@@ -30,15 +39,6 @@
     ],
     "**/*.{vue,js,jsx,ts,tsx}": "npm run lint-staged:js"
   },
-  "author": "playerljc <playerljc@163.com>",
-  "repository": {
-    "type": "git",
-    "url": "http://git.baifendian.com/SYYF/adherev"
-  },
-  "bugs": {
-    "url": "http://git.baifendian.com/SYYF/adherev/issues"
-  },
-  "license": "ISC",
   "resolutions": {
     "mini-css-extract-plugin": "1.6.2"
   },
@@ -57,7 +57,7 @@
     "moment": "^2.29.1",
     "nprogress": "^0.2.0",
     "ol": "^6.5.0",
-    "vue": "^2.6.12",
+    "vue": "^2.7.14",
     "vue-fragment": "^1.5.2",
     "vue-highlight.js": "^3.1.0",
     "vue-hoc": "^0.4.7",
@@ -66,7 +66,7 @@
   },
   "devDependencies": {
     "@babel/runtime": "^7.9.2",
-    "@ctsj/buildv": "^2.0.9",
+    "@ctsj/buildv": "^2.0.10",
     "@umijs/fabric": "^2.0.8",
     "@vue/eslint-config-prettier": "^7.0.0",
     "@vue/eslint-config-standard": "^6.1.0",

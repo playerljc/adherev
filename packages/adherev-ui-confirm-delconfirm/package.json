@@ -33,16 +33,16 @@
     "@baifendian/adherev-util": "^1.0.12-fix.4",
     "@baifendian/adherev-util-intl": "^1.0.12-fix.4",
     "@baifendian/adherev-util-resource": "^1.0.12-fix.4",
-    "vue": "2.6.14"
+    "vue": "^2.7.14"
   },
   "devDependencies": {
     "@babel/runtime": "^7.7.4",
-    "@ctsj/buildv": "^2.0.9",
+    "@ctsj/buildv": "^2.0.10",
     "npm-run-all": "^4.1.5",
     "typescript": "^4.6.2"
   },
   "peerDependencies": {
-    "vue": ">=2.6.14 - <2.7.14"
+    "vue": ">=2.6.14 - <3.0.0"
   },
   "publishConfig": {
     "access": "public"

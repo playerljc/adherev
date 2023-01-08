@@ -1,3 +1,6 @@
+/**
+ * adv-conditionalrender-visibility
+ */
 declare const _default: {
     name: string;
     props: {
@@ -6,9 +9,6 @@ declare const _default: {
             default: boolean;
         };
     };
-    render(h: any): any;
+    render(h: any): JSX.Element;
 };
-/**
- * adv-conditionalrender-visibility
- */
 export default _default;

@@ -1,1 +1,1 @@
-{"version":3,"file":"index.js","sources":["swipe-out/index.js"],"sourcesContent":["import Model from '@baifendian/adherev-ui-swipeout/es';\r\nexport default Model;\r\n"],"names":["Model"],"mappings":"OAAOA,8DACQA"}
+{"version":3,"file":"index.js","sources":["swipe-out/index.js"],"sourcesContent":["import Model from '@baifendian/adherev-ui-swipeout/es';\r\nexport default Model;\r\n"],"names":["Model"],"mappings":"OAAOA,UAAW,oDACHA"}

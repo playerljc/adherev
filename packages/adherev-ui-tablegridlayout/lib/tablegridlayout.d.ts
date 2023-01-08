@@ -2,7 +2,7 @@ import { CreateElement } from 'vue';
 import { DataItem, RenderDetail, TableGridLayoutProps } from './types';
 declare const renderGridSearchFormGroup: (h: CreateElement, context: {
     $slots: any;
-}, data?: DataItem[] | undefined, props?: Pick<TableGridLayoutProps, "bordered" | "innerClassName" | "innerStyle" | "className" | "style" | "layout" | "density" | "parity"> | undefined) => any;
+}, data?: DataItem[], props?: Omit<TableGridLayoutProps, 'data'>) => JSX.Element;
 /**
  * getRenderDetail
  * @description 获取渲染细节

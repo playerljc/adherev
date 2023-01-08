@@ -1,1 +1,1 @@
-{"version":3,"file":"index.js","sources":["font-size-setting/index.js"],"sourcesContent":["import Model from '@baifendian/adherev-ui-fontsizesetting/es';\r\nexport default Model;\r\n"],"names":["Model"],"mappings":"OAAOA,qEACQA"}
+{"version":3,"file":"index.js","sources":["font-size-setting/index.js"],"sourcesContent":["import Model from '@baifendian/adherev-ui-fontsizesetting/es';\r\nexport default Model;\r\n"],"names":["Model"],"mappings":"OAAOA,UAAW,2DACHA"}

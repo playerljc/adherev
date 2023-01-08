@@ -1,0 +1,2 @@
+"use strict";require("core-js/modules/es.object.define-property.js"),Object.defineProperty(exports,"__esModule",{value:!0});var ant_design_vue_1=require("ant-design-vue"),util_1=require("../util"),Wrap=(0,util_1.extend)(ant_design_vue_1.Input,{functional:!0,inject:["getEl"],render:function(e,t){return(0,util_1.assignAttrs)(ant_design_vue_1.Input,t,Wrap.defaultProps),e(ant_design_vue_1.Input,t.data,t.children)}});Wrap.defaultProps={allowClear:!0,maxLength:1e3},exports.default=Wrap;
+//# sourceMappingURL=Input.js.map
