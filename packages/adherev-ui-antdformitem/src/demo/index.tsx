@@ -1,7 +1,6 @@
 import Vue from 'vue';
 
 import Dict from '@baifendian/adherev-util-dict';
-import Intl from '@baifendian/adherev-util-intl';
 
 import AntdFormItem from '../index';
 // @ts-ignore

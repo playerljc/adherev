@@ -594,7 +594,6 @@ export default () => {
               selectProps: {
                 dropdownRender: () => (
                   <Table
-                    // @ts-ignore
                     dataSource={this.data}
                     loading={this.loading}
                     pagination={this.$getPagination()}
@@ -766,7 +765,6 @@ export default () => {
               selectProps: {
                 dropdownRender: () => (
                   <Table
-                    // @ts-ignore
                     dataSource={this.$getDataSource()}
                     pagination={this.$getPagination()}
                     loading={this.loading}

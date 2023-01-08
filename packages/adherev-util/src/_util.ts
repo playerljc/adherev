@@ -84,7 +84,6 @@ export const extend = (options: ExtendFunction<any>): Omit<ExtendFunction<any>, 
  */
 export const Fragment = {
   render(h) {
-    // @ts-ignore
     return this?.$slots?.default;
   },
 };
@@ -132,7 +131,6 @@ export const HOC = (
 
   for (const methodName in component.methods || {}) {
     methods[methodName] = function (params) {
-      // @ts-ignore
       return this.$refs.wrapRef[methodName](params);
     };
   }

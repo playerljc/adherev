@@ -483,10 +483,7 @@ export default () => {
             {...{
               props: {
                 selectProps: {
-                  notFoundContent: this.fetching ? (
-                    // @ts-ignore
-                    <Spin size="small" />
-                  ) : null,
+                  notFoundContent: this.fetching ? <Spin size="small" /> : null,
                   filterOption: false,
                   showArrow: false,
                   defaultActiveFirstOption: false,
@@ -714,10 +711,7 @@ export default () => {
             {...{
               props: {
                 selectProps: {
-                  notFoundContent: this.fetching ? (
-                    // @ts-ignore
-                    <Spin size="small" />
-                  ) : null,
+                  notFoundContent: this.fetching ? <Spin size="small" /> : null,
                   filterOption: false,
                   showArrow: false,
                   defaultActiveFirstOption: false,

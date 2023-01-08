@@ -57,7 +57,6 @@ export default {
 
       return (
         <Radio
-          // @ts-ignore
           onChange={(e) => {
             e.stopPropagation();
 

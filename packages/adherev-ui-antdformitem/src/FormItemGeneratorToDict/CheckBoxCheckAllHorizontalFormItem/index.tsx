@@ -31,7 +31,6 @@ export default {
       <div>
         <div style="margin-bottom: 10px;">
           <Checkbox
-            // @ts-ignore
             checked={this.checkAll}
             onChange={(e) => {
               this.$emit('change', e.target.checked ? this.dataSource.map((t) => t.value) : []);
