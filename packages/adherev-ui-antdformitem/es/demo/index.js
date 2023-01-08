@@ -1,2 +1,2 @@
-"use strict";
+import Vue from"vue";import Dict from"@baifendian/adherev-util-dict";import AntdFormItem from"../index";import TestDist from"./dict.test.config";import Test from"./test";import"../index.less";AntdFormItem.use(Vue),Dict.use(Vue),Dict.init([TestDist],{isFunMemo:!1}),AntdFormItem.FormItemGeneratorToDict.init(Vue),AntdFormItem.AntFormItemNormalize.Input.defaultProps.maxLength=10,new Vue({el:"#app",render:function(t){return t(Test)}});
 //# sourceMappingURL=index.js.map

@@ -1,0 +1,2 @@
+import{__assign}from"tslib";import{Checkbox}from"ant-design-vue";export default{name:"CheckBoxHorizontalFormItem",props:{checkBoxGroupProps:{type:Object,default:function(){return{}}},value:{type:Array,default:function(){return[]}},dataSource:{type:Array,default:function(){return[]}}},render:function(t){return t(Checkbox.Group,{props:__assign(__assign({options:this.dataSource},this.checkBoxGroupProps),{value:this.value}),attrs:this.$attrs,scopedSlots:this.$scopedSlots,on:this.$listeners},this.$slots.default)}};
+//# sourceMappingURL=index.js.map

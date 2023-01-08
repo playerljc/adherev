@@ -1,0 +1,2 @@
+import{__assign}from"tslib";import{Cascader}from"ant-design-vue";export default{name:"CascaderFormItem",props:{cascaderProps:{type:Object,default:function(){return{}}},value:{type:Array,default:function(){return[]}},dataSource:{type:Array,default:function(){return[]}}},render:function(t){return t(Cascader,{props:__assign(__assign({},this.cascaderProps),{value:this.value,options:this.dataSource}),attrs:this.$attrs,on:this.$listeners,scopedSlots:this.$scopedSlots},this.$slots.default)}};
+//# sourceMappingURL=index.js.map
