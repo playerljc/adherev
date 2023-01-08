@@ -42,7 +42,7 @@ export default {
 
       return (
         <div>
-          <div style={{ paddingLeft: 10 }}>
+          <div style="padding-left: 10px;padding-top:10px;">
             <Checkbox
               checked={this.checkAll}
               onChange={(e) => {
@@ -58,7 +58,7 @@ export default {
                 }
               }}
             >
-              {Intl.tv('全选')}
+              全选
             </Checkbox>
           </div>
 

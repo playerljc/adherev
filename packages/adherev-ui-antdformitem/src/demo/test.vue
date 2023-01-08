@@ -23,7 +23,6 @@ export default {
 
 <template>
   <div style="padding: 50px">
-    <!--
     <fieldset>
       <legend>
         <h1>Radio</h1>
@@ -740,7 +739,7 @@ export default {
           </dd>
         </dl>
       </div>
-    </fieldset>-->
+    </fieldset>
 
     <fieldset>
       <legend>
@@ -750,14 +749,14 @@ export default {
       <div>
         <dl>
           <dt>
-            <h3>普通不带分页</h3>
+            <h3>普通</h3>
           </dt>
           <dd><SystemTestCascaderFormItem :value="vals" @change="onChangeValues" /></dd>
         </dl>
 
         <dl>
           <dt>
-            <h3>普通单选Select</h3>
+            <h3>只能选叶子节点</h3>
           </dt>
 
           <dd>
