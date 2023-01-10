@@ -36,6 +36,13 @@ const { renderGridSearchFormGroup, Label, Value } = TableGridLayout;
 
 const _selectorPrefix = `${selectorPrefix}-protable`;
 
+/**
+ * ProTableFactory
+ * @description 创建ProTable的工厂
+ * @param className
+ * @param superClass
+ * @param searchAndPaginParamsMemo
+ */
 export default ({ className, superClass }, searchAndPaginParamsMemo) =>
   extend({
     className,

@@ -65,7 +65,7 @@ export declare const HOC: (component: {
     options?: {
         deep: boolean;
     } | undefined;
-}, children?: Function | undefined) => any;
+}, children?: Function) => any;
 /**
  * getComponentPropsOption
  * @description 获取组件的Props定义
@@ -73,4 +73,37 @@ export declare const HOC: (component: {
  * @returns {{}}
  */
 export declare const getComponentPropsOption: any;
+export declare function filterEmpty(children?: never[]): never[];
+export declare function isEmptyElement(c: any): boolean;
+export declare const camelize: (str: any) => any;
+export declare const parseStyleText: (cssText: string | undefined, camel: any) => {};
+/**
+ * isVNode
+ * @description 是否是VNode
+ * @param element
+ * @return boolean
+ */
+export declare const isVNode: (element: any) => any;
+/**
+ * cloneVNode
+ * @description cloneVNode
+ * @param vnode
+ * @param deep
+ */
+export declare function cloneVNode(vnode: any, deep: any): any;
+/**
+ * cloneVNodes
+ * @description cloneVNodes
+ * @param vnodes
+ * @param deep
+ */
+export declare function cloneVNodes(vnodes: any, deep: any): any[];
+/**
+ * cloneElement
+ * @description cloneElement
+ * @param n
+ * @param nodeProps
+ * @param deep
+ */
+export declare function cloneElement(n: any, nodeProps: {} | undefined, deep: any): any;
 export {};
