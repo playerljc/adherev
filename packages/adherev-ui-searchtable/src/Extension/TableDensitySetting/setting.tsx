@@ -2,7 +2,7 @@ import { CreateElement } from 'vue';
 
 import Intl from '@baifendian/adherev-util-intl';
 
-import { selectorPrefix } from '../../searchtable';
+import { selectorPrefix } from '../../SearchTable';
 import { TableDensity } from '../../types';
 
 const Setting: any = {

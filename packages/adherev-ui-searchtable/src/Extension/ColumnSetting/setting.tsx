@@ -4,7 +4,7 @@ import Draggable from 'vuedraggable';
 
 import Intl from '@baifendian/adherev-util-intl';
 
-import { selectorPrefix } from '../../searchtable';
+import { selectorPrefix } from '../../SearchTable';
 import { IColumnSetting } from '../../types';
 
 /**

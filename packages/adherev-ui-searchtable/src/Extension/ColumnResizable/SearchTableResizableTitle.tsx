@@ -1,6 +1,6 @@
 import classNames from 'classnames';
 
-import { selectorPrefix } from '../../searchtable';
+import { selectorPrefix } from '../../SearchTable';
 import { columnHeaderAlign } from '../../types';
 
 const columnAlignMap = new Map<string | null, string>([

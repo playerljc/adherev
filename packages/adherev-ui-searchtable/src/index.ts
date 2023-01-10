@@ -39,6 +39,7 @@ import SearchTable, {
   ROW_SELECTION_NORMAL_MODE,
 } from './SearchTable';
 import SearchTableImplement from './SearchTableImplement';
+import SearchTableImplementFactory from './SearchTableImplementFactory';
 import SearchForm from './searchform';
 import SearchFormLabel from './searchformlabel';
 import SearchFormRow from './searchformrow';
@@ -105,6 +106,7 @@ SearchTable.OptionsWrap = withInstall(OptionsWrap);
 SearchTable.SearchAndPaginParams = SearchAndPaginParams;
 SearchTable.SearchTableImplement = SearchTableImplement;
 SearchTable.ProSearchTable = ProSearchTable;
+SearchTable.SearchTableImplementFactory = SearchTableImplementFactory;
 
 SearchTable.NUMBER_GENERATOR_RULE_ALONE = NUMBER_GENERATOR_RULE_ALONE;
 SearchTable.NUMBER_GENERATOR_RULE_CONTINUITY = NUMBER_GENERATOR_RULE_CONTINUITY;

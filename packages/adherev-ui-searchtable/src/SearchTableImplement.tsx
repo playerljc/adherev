@@ -10,7 +10,7 @@ import SearchTable, {
   NUMBER_GENERATOR_RULE_CONTINUITY,
   ROW_SELECTION_CONTINUOUS_MODE,
   ROW_SELECTION_NORMAL_MODE,
-} from './searchtable';
+} from './SearchTable';
 
 const selectorPrefix = 'adherev-ui-searchtableimplement';
 
