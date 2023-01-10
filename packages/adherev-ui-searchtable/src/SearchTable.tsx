@@ -1,5 +1,6 @@
 import { Button, Table } from 'ant-design-vue';
 import classNames from 'classnames';
+import cloneDeep from 'lodash.clonedeep';
 import { CreateElement, PropType, VNode } from 'vue';
 
 import ConditionalRender from '@baifendian/adherev-ui-conditionalrender';
@@ -14,8 +15,16 @@ import ColumnResizable, {
   SearchTableResizableTitle,
 } from './Extension/ColumnResizable';
 import ColumnSetting from './Extension/ColumnSetting';
+import TableCell from './Extension/TableComponents/TableCell';
+import TableRow from './Extension/TableComponents/TableRow';
 import TableDensitySetting from './Extension/TableDensitySetting';
-import { TableDensity } from './types';
+import {
+  CellConfigReducer,
+  ColumnTypeExt,
+  RowConfig,
+  RowConfigReducer,
+  TableDensity,
+} from './types';
 
 export const selectorPrefix = 'adherev-ui-searchtable';
 
@@ -129,7 +138,20 @@ const SearchTable: any = extend({
     'inner',
     'searchTable',
   ],
-  data() {
+  data(): {
+    page: number;
+    limit: number;
+    expand: boolean;
+    scrollY: number;
+    columnSetting: any[];
+    tableDensity: TableDensity;
+    $columnResizable: ColumnResizable;
+    $columnObserver: any;
+    $rowConfigReducers: RowConfigReducer[];
+    $cellConfigReducers: CellConfigReducer[];
+    $tableRowComponentReducers: string[];
+    $tableCellComponentReducers: string[];
+  } {
     return {
       page: 1,
       limit: 10,
@@ -144,14 +166,32 @@ const SearchTable: any = extend({
       $columnResizable: new ColumnResizable(),
       // 列属性监控对象
       $columnObserver: null,
+      // rowConfigReducers
+      // 给TableRow传递props的reducer
+      $rowConfigReducers: [],
+      // cellConfigReducers
+      // 给TableCell传递props的reducer
+      $cellConfigReducers: [],
+      // tableRowComponentReducers
+      // 处理TableRow的reducer
+      $tableRowComponentReducers: [],
+      // tableCellComponentReducers
+      // 处理TableCell的reducer
+      $tableCellComponentReducers: [],
     };
   },
   computed: {
     // 自定义表格部分
     components() {
+      const columns = this.getTableColumns(this.$createElement);
+
       return {
         header: {
-          cell: SearchTableResizableTitle(this.getTableColumns(this.$createElement)),
+          cell: SearchTableResizableTitle(columns),
+        },
+        body: {
+          row: TableRow,
+          cell: TableCell,
         },
       };
     },
@@ -298,7 +338,7 @@ const SearchTable: any = extend({
      */
     onTableChange(pagination, filters, sorter) {
       this[this.getOrderFieldProp()] = sorter.field || this.getOrderFieldValue();
-      this[this.getOrderProp()] = sorter.order || this.getOrderPropValue();
+      this[this.getOrderProp()] = sorter.order /*|| this.getOrderPropValue()*/;
 
       this.$nextTick(function () {
         const { order } = sorter;
@@ -343,6 +383,97 @@ const SearchTable: any = extend({
      */
     sortOrder(columnName: string): string {
       return this[this.getOrderFieldProp()] === columnName ? this[this.getOrderProp()] : '';
+    },
+
+    /**
+     * onCellConfigReducers
+     * @description 所有onCell的处理
+     * @return ColumnTypeExt
+     */
+    onCellConfigReducers(params: {
+      rowIndex: number;
+      column: ColumnTypeExt;
+      record: { [prop: string]: any };
+      columns: ColumnTypeExt[];
+    }): ColumnTypeExt {
+      const { rowIndex, column, record, columns } = params;
+
+      return this.$data.$cellConfigReducers.reduce(
+        (params, reducer) => {
+          params.value = reducer.call(this, { rowIndex, record, columns, column: params.value });
+          return params;
+        },
+        { value: column },
+      ).value;
+    },
+
+    /**
+     * onRowConfigReducers
+     * @description 所有row的处理
+     * @param params
+     */
+    onRowConfigReducers(params: {
+      rowIndex: number;
+      record: { [prop: string]: any };
+      columns: ColumnTypeExt[];
+    }): RowConfig {
+      const { rowIndex, record, columns } = params;
+
+      return this.$data.$rowConfigReducers.reduce(
+        (params, reducer) => {
+          params.value = reducer.call(this, { rowIndex, record, columns, rowConfig: params.value });
+          return params;
+        },
+        { value: {} },
+      ).value;
+    },
+
+    /**
+     * onRow
+     * @description 自定义bodyRow传递props参数
+     * @param primaryValue
+     */
+    onRow(primaryValue) {
+      // customRow: (record, rowIndex) => {
+      //   // 这块可能以后会有很多操作
+      //   // 行的所有操作都可以在这里处理
+      //   return {
+      //     props: {
+      //       record,
+      //       rowIndex,
+      //       columns,
+      //       rowKey: this.getRowKey(),
+      //       rowConfig: this.onRowConfigReducers({
+      //         rowIndex: Number(rowIndex),
+      //         record,
+      //         columns,
+      //       }),
+      //     },
+      //   };
+      // },
+
+      const dataSource = this.getData();
+      if (!dataSource) return;
+
+      const rowIndex = dataSource.findIndex((t) => t[this.getRowKey()] === primaryValue);
+
+      if (rowIndex === -1) return;
+
+      const record = dataSource[rowIndex];
+
+      const columns = this.getColumns();
+
+      return {
+        record,
+        rowIndex,
+        columns,
+        rowKey: this.getRowKey(),
+        rowConfig: this.onRowConfigReducers({
+          rowIndex: Number(rowIndex),
+          record,
+          columns,
+        }),
+      };
     },
 
     /**
@@ -404,24 +535,83 @@ const SearchTable: any = extend({
 
       // 对权限进行过滤
       const columns = this.getColumns()
-        .filter((column) => {
-          if ('authorized' in column) {
-            return column.authorized();
-          }
+        .filter((column: ColumnTypeExt) => {
+          if ('$hide' in column && !column.$hide) return false;
+
+          if ('$authorized' in column) return column?.$authorized?.();
 
           return true;
         })
-        .map((column, index) => {
-          if ('resizable' in column && !!column.resizable) {
-            return this.$data.$columnResizable.searchTableResizableColumnItem(this, index, column);
-          }
+        // $resizable 设置
+        .map((column: ColumnTypeExt, index) => {
+          const res = { value: column };
 
-          return column;
+          const loop = (_column) => {
+            let _res: ColumnTypeExt = _column;
+
+            if ('$resizable' in _column && !!_column?.$resizable) {
+              _res = this.$data.$columnResizable.searchTableResizableColumnItem(
+                this,
+                index,
+                _column,
+              );
+            }
+
+            // @ts-ignore
+            if (_res?.children && Array.isArray(_res.children)) {
+              // @ts-ignore
+              _res.children.forEach((_t, _index) => {
+                // @ts-ignore
+                _res.children[_index] = loop(_t);
+              });
+            }
+
+            return _res;
+          };
+
+          // @ts-ignore
+          res.value = loop(column);
+
+          return res.value;
+
+          // if ('resizable' in column && !!column.resizable) {
+          //   return this.$data.$columnResizable.searchTableResizableColumnItem(this, index, column);
+          // }
+
+          // return column;
+        })
+        .map((column: ColumnTypeExt) => {
+          return {
+            ...column,
+            // 每个单元格都会调用
+            // 给TableCell传递的props参数
+            customCell: (record, rowIndex) => {
+              const _column = cloneDeep(column);
+
+              return {
+                props: {
+                  // 行的索引
+                  rowIndex,
+                  // 行的数据
+                  record,
+                  // 列的配置
+                  column: this.onCellConfigReducers({
+                    rowIndex,
+                    column: _column,
+                    record,
+                    columns,
+                  }),
+                  // 所有列的配置
+                  columns,
+                },
+              };
+            },
+          };
         });
 
       if (isShowNumber) {
         const numberGeneratorRule =
-          this.getNumberGeneratorRule() ?? SearchTable.NUMBER_GENERATOR_RULE_ALONE;
+          this.getNumberGeneratorRule() || SearchTable.NUMBER_GENERATOR_RULE_ALONE;
 
         const { page = 0, limit = 10 } = this;
 
@@ -466,6 +656,20 @@ const SearchTable: any = extend({
       }
 
       return columns;
+    },
+
+    /**
+     * getTableRowComponentReducers
+     */
+    getTableRowComponentReducers() {
+      return this.$data.$tableRowComponentReducers;
+    },
+
+    /**
+     * getTableCellComponentReducers
+     */
+    getTableCellComponentReducers() {
+      return this.$data.$tableCellComponentReducers;
     },
 
     getSortColumnSetting() {
@@ -749,7 +953,7 @@ const SearchTable: any = extend({
 
       // 作用域插槽
       const scopedSlots = {
-        ...(this.getScopedSlots(h) || {}),
+        ...(this?.getScopedSlots?.(h) || {}),
       };
 
       const tablePropsAttr = {};
@@ -784,6 +988,7 @@ const SearchTable: any = extend({
       const tableProps = {
         scopedSlots,
         props: {
+          ref: 'antdTableRef',
           rowKey: this.getRowKey(),
           dataSource: this.getData(),
           columns,
@@ -791,6 +996,25 @@ const SearchTable: any = extend({
           pagination: this.getPagination(),
           rowSelection: this.getRowSelection(),
           components: this.components,
+          // onRow
+          // 给TableRow的props参数
+          // customRow: (record, rowIndex) => {
+          //   // 这块可能以后会有很多操作
+          //   // 行的所有操作都可以在这里处理
+          //   return {
+          //     props: {
+          //       record,
+          //       rowIndex,
+          //       columns,
+          //       rowKey: this.getRowKey(),
+          //       rowConfig: this.onRowConfigReducers({
+          //         rowIndex: Number(rowIndex),
+          //         record,
+          //         columns,
+          //       }),
+          //     },
+          //   };
+          // },
           ...(tablePropsAttr || {}),
         },
         on: {

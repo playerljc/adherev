@@ -210,3 +210,13 @@ export const getComponentPropsOption = memoized.createMemoFun((Component) => ({
     Component.props,
   ),
 }));
+
+export const isVNode = (element) => {
+  return (
+    element &&
+    typeof element === 'object' &&
+    'componentOptions' in element &&
+    'context' in element &&
+    element.tag !== undefined
+  ); // remove text node
+};

@@ -87,7 +87,7 @@ const Components = {
 };
 
 const Component: any = {
-  isUse: true,
+  isUse: () => true,
   use: (Vue) => {
     if ((Dict as any).isUse()) {
       (Dict as any).use(Vue);
