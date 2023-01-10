@@ -15,10 +15,10 @@ export default {
   inject: ['getContext'],
   methods: {
     onReset() {
-      this.getContext().tableDensity = TableDensity.DEFAULT;
+      this.getContext().context.tableDensity = TableDensity.DEFAULT;
     },
     onChange(density) {
-      this.getContext().tableDensity = density;
+      this.getContext().context.tableDensity = density;
     },
   },
   render(h) {
@@ -27,7 +27,7 @@ export default {
         // @ts-ignore
         content={
           <Setting
-            density={this.getContext?.()?.tableDensity || TableDensity.DEFAULT}
+            density={this.getContext?.()?.context?.tableDensity || TableDensity.DEFAULT}
             onReset={this.onReset}
             onChange={this.onChange}
           />

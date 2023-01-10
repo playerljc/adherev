@@ -231,7 +231,9 @@ const SearchTable: any = extend({
      * getContext
      */
     getContext() {
-      return this;
+      return {
+        context: this,
+      };
     },
     /**
      * searchTableResizableEffectLayout
@@ -712,7 +714,7 @@ const SearchTable: any = extend({
       params: { value: any; record: object; index: number },
     ) {
       return (
-        this.$scopedSlots?.tableNumberColumn?.({ context: this.getContext(), number }) || (
+        this.$scopedSlots?.tableNumberColumn?.({ context: this.getContext?.()?.context, number }) || (
           <span>{number}</span>
         )
       );
@@ -731,7 +733,7 @@ const SearchTable: any = extend({
       });
 
       return (
-        this.$scopedSlots?.columnSetting?.({ context: this.getContext(), columns }) || (
+        this.$scopedSlots?.columnSetting?.({ context: this.getContext?.()?.context, columns }) || (
           // @ts-ignore
           <ColumnSetting
             columns={columns}
@@ -895,7 +897,7 @@ const SearchTable: any = extend({
 
       return (
         <div class={`${selectorPrefix}-searchfooterwrapper`}>
-          {this.$scopedSlots?.searchFooter?.({ context: this.getContext(), items }) ||
+          {this.$scopedSlots?.searchFooter?.({ context: this.getContext?.()?.context, items }) ||
             items.map((t, index) => (
               <div key={index} class={`${selectorPrefix}-searchfooteritem`}>
                 {t}

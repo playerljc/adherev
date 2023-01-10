@@ -40,6 +40,7 @@ import SearchTable, {
 } from './SearchTable';
 import SearchTableImplement from './SearchTableImplement';
 import SearchTableImplementFactory from './SearchTableImplementFactory';
+import ProTableFactory from './ProTableFactory';
 import SearchForm from './searchform';
 import SearchFormLabel from './searchformlabel';
 import SearchFormRow from './searchformrow';
@@ -107,6 +108,7 @@ SearchTable.SearchAndPaginParams = SearchAndPaginParams;
 SearchTable.SearchTableImplement = SearchTableImplement;
 SearchTable.ProSearchTable = ProSearchTable;
 SearchTable.SearchTableImplementFactory = SearchTableImplementFactory;
+SearchTable.ProTableFactory = ProTableFactory;
 
 SearchTable.NUMBER_GENERATOR_RULE_ALONE = NUMBER_GENERATOR_RULE_ALONE;
 SearchTable.NUMBER_GENERATOR_RULE_CONTINUITY = NUMBER_GENERATOR_RULE_CONTINUITY;

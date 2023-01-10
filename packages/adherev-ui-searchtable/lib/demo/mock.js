@@ -1,2 +1,34 @@
-"use strict";require("core-js/modules/es.object.define-property.js"),require("core-js/modules/es.array.fill.js"),require("core-js/modules/es.array.map.js"),Object.defineProperty(exports,"__esModule",{value:!0}),exports.oneFew=void 0;var tslib_1=require("tslib"),faker_1=tslib_1.__importDefault(require("faker")),adherev_util_1=tslib_1.__importDefault(require("@baifendian/adherev-util")),data=[];data.length=100,data.fill(0),exports.oneFew={total:1,list:[{id:faker_1.default.random.uuid(),name:faker_1.default.internet.userName(),sex:"".concat(adherev_util_1.default.generatorRandom(0,1)),homeTown:faker_1.default.address.city(),birthday:(new Date).getTime(),deptName:faker_1.default.company.companyName(),height:faker_1.default.random.number(),width:faker_1.default.random.number()}]},exports.default={total:data.length,list:data.map(function(){return{id:faker_1.default.random.uuid(),name:faker_1.default.internet.userName(),sex:"".concat(adherev_util_1.default.generatorRandom(0,1)),homeTown:faker_1.default.address.city(),birthday:(new Date).getTime(),deptName:faker_1.default.company.companyName(),height:faker_1.default.random.number(),width:faker_1.default.random.number()}})};
+import faker from 'faker';
+import Util from '@baifendian/adherev-util';
+const data = [];
+data.length = 100;
+data.fill(0);
+export const oneFew = {
+    total: 1,
+    list: [
+        {
+            id: faker.random.uuid(),
+            name: faker.internet.userName(),
+            sex: `${Util.generatorRandom(0, 1)}`,
+            homeTown: faker.address.city(),
+            birthday: new Date().getTime(),
+            deptName: faker.company.companyName(),
+            height: faker.random.number(),
+            width: faker.random.number(),
+        },
+    ],
+};
+export default {
+    total: data.length,
+    list: data.map(() => ({
+        id: faker.random.uuid(),
+        name: faker.internet.userName(),
+        sex: `${Util.generatorRandom(0, 1)}`,
+        homeTown: faker.address.city(),
+        birthday: new Date().getTime(),
+        deptName: faker.company.companyName(),
+        height: faker.random.number(),
+        width: faker.random.number(),
+    })),
+};
 //# sourceMappingURL=mock.js.map

@@ -1,4 +1,4 @@
-import type { FormInstance } from 'ant-design-vue/es/form';
+import type { FormInstance, FormListFieldData, FormListOperation } from 'ant-design-vue/es/form';
 import type { Rule } from 'ant-design-vue/lib/form/index';
 import {
   ColumnType,
@@ -415,6 +415,44 @@ export interface CellConfigReducer {
     record: { [prop: string]: any };
     columns: ColumnTypeExt[];
   }): ColumnTypeExt;
+}
+
+export interface TableRowComponentProps {
+  record: { [prop: string]: any };
+  rowIndex: number;
+  columns: any[];
+  rowKey: string;
+  rowConfig: RowConfig;
+  [p: string]: any;
+}
+
+export interface TableRowComponentHookFunctionParameter extends TableRowComponentProps {
+  context: {
+    context: any;
+    editable?: {
+      tableEditable?: {
+        form?: FormInstance;
+        formList?: {
+          fields: FormListFieldData[];
+          operation?: FormListOperation;
+          meta?: {
+            errors?: VNode[];
+            warnings?: VNode[];
+          };
+        };
+      };
+    };
+  };
+  h: CreateElement;
+  value: VNode;
+}
+
+export interface TableCellComponentProps {
+  record: { [prop: string]: any };
+  column: ColumnTypeExt;
+  rowIndex: number;
+  columns: ColumnTypeExt[];
+  [p: string]: any;
 }
 
 /**

@@ -1,0 +1,1 @@
+{"version":3,"file":"index.jsx","sourceRoot":"","sources":["../../../src/Extension/DisabledOption/index.tsx"],"names":[],"mappings":"AAAA,MAAM,cAAc,GAAG,uCAAuC,CAAC;AAE/D,eAAe;IACb,IAAI,EAAE,gCAAgC;IACtC,MAAM,CAAC,CAAC;QACN,OAAO,CAAC,GAAG,CAAC,KAAK,CAAC,CAAC,cAAc,CAAC,CAAC,CAAC,IAAI,CAAC,MAAM,CAAC,OAAO,CAAC,EAAE,GAAG,CAAC,CAAC;IACjE,CAAC;CACF,CAAC"}

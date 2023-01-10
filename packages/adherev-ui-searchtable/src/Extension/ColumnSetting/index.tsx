@@ -20,17 +20,17 @@ export default {
         // @ts-ignore
         content={
           <Setting
-            columns={this.getContext?.()?.getSortColumnSetting?.() || []}
+            columns={this.getContext?.()?.context?.getSortColumnSetting?.() || []}
             onShowColumns={(checked) => {
-              const { columnSetting } = this.getContext?.();
+              const { columnSetting } = this.getContext?.()?.context;
 
-              this.getContext().columnSetting = columnSetting.map((column) => ({
+              this.getContext().context.columnSetting = columnSetting.map((column) => ({
                 ...column,
                 display: checked,
               }));
             }}
             onReset={() => {
-              this.getContext().columnSetting = this.getContext()
+              this.getContext().columnSetting = this.getContext().context
                 .getTableColumns()
                 .map((column, index) => ({
                   ...column,
@@ -39,17 +39,17 @@ export default {
                 }));
             }}
             onDisplayColumn={({ column, checked }) => {
-              const { columnSetting } = this.getContext?.();
+              const { columnSetting } = this.getContext?.()?.context;
 
-              this.getContext().columnSetting = columnSetting.map((_column) => ({
+              this.getContext().context.columnSetting = columnSetting.map((_column) => ({
                 ..._column,
                 display: _column.key === column.key ? checked : _column.display,
               }));
             }}
             onSortEnd={(map) => {
-              const { columnSetting } = this.getContext?.();
+              const { columnSetting } = this.getContext?.()?.context;
 
-              this.getContext().columnSetting = columnSetting.map((column) => ({
+              this.getContext().context.columnSetting = columnSetting.map((column) => ({
                 ...column,
                 sort: map.get(column.key),
               }));
