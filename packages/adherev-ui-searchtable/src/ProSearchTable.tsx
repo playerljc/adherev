@@ -1,4 +1,4 @@
-import { Button, Input, InputNumber, Rate, Slider, Switch } from 'ant-design-vue';
+import { Button, Icon, Input, InputNumber, Rate, Slider, Switch } from 'ant-design-vue';
 import merge from 'lodash.merge';
 import moment from 'moment';
 import omit from 'omit.js';
@@ -521,98 +521,55 @@ export const ProSearchTable = (serviceName) =>
           }
         }
 
-        return (
-          columns
-            // 处理align
-            .map((t) => ({
-              ...t,
-              align: ![this.getLinkColumnDataIndex() || '_linkColumn'].includes(t.dataIndex)
-                ? 'center'
-                : 'align' in t && t.align
-                ? t.align
-                : 'center',
-            }))
-            // 处理search
-            .map((_t) => {
-              const loop = (t) => {
-                const { $search, ...columnConfig } = t;
-                const searchConfig = this.assignSearchConfig($search, columnConfig);
-                const showColumnHeader = searchConfig.showColumnHeader;
+        const res = columns
+          // 处理align
+          .map((t) => ({
+            ...t,
+            align: ![this.getLinkColumnDataIndex() || '_linkColumn'].includes(t.dataIndex)
+              ? 'center'
+              : 'align' in t && t.align
+              ? t.align
+              : 'center',
+          }))
+          // 处理search
+          .map((_t) => {
+            const loop = (t) => {
+              const { $search, ...columnConfig } = t;
+              const searchConfig = this.assignSearchConfig($search, columnConfig);
+              const showColumnHeader = searchConfig.showColumnHeader;
 
-                let column = {
-                  ...t,
-                };
-
-                const dataIndex = searchConfig.dataIndex || t.dataIndex;
-
-                if (
-                  !['_number', this.getOptionsColumnDataIndex()].includes(dataIndex) &&
-                  showColumnHeader
-                ) {
-                  column = {
-                    ...column,
-                    scopedSlots: {
-                      filterDropdown: this.getFilterDropdownSlot(),
-                      filterIcon: this.getFilterIconSlot(),
-                    },
-                    // ...TableHeadSearch(({ confirm }) => {
-                    //   const type = searchConfig.type;
-                    //
-                    //   return (
-                    //     <div class={`${_selectorPrefix}-headersearchwrap`}>
-                    //       <div class={`${_selectorPrefix}-headersearchwrap-main`}>
-                    //         {this.renderGridSearchFormGroupDataItem(type, {
-                    //           searchConfig,
-                    //           column,
-                    //           dataIndex,
-                    //         })}
-                    //       </div>
-                    //
-                    //       <div class={`${_selectorPrefix}-headersearchwrap-footer`}>
-                    //         <Button
-                    //           size="small"
-                    //           onClick={() => {
-                    //             let state = {};
-                    //
-                    //             if (type === 'rangePicker') {
-                    //               if (searchConfig.startName) state[searchConfig.startName] = null;
-                    //               if (searchConfig.endName) state[searchConfig.endName] = null;
-                    //             } else {
-                    //               state[dataIndex] = undefined;
-                    //             }
-                    //
-                    //             this.setState(state, () => this.onSearch().then(() => confirm()));
-                    //           }}
-                    //         >
-                    //           {Intl.tv('重置')}
-                    //         </Button>
-                    //
-                    //         <Button
-                    //           size="small"
-                    //           type="primary"
-                    //           onClick={() => this.onSearch().then(() => confirm())}
-                    //         >
-                    //           {Intl.tv('确定')}
-                    //         </Button>
-                    //       </div>
-                    //     </div>
-                    //   );
-                    // }),
-                  };
-                }
-
-                if (t.children && Array.isArray(t.children)) {
-                  t.children.forEach((item, _index) => {
-                    t.children[_index] = loop(item);
-                  });
-                }
-
-                return column;
+              let column = {
+                ...t,
               };
 
-              return loop(_t);
-            })
-        );
+              const dataIndex = searchConfig.dataIndex || t.dataIndex;
+
+              if (
+                !['_number', this.getOptionsColumnDataIndex()].includes(dataIndex) &&
+                showColumnHeader
+              ) {
+                column = {
+                  ...column,
+                  scopedSlots: {
+                    filterDropdown: this.getFilterDropdownSlot(),
+                    filterIcon: this.getFilterIconSlot(),
+                  },
+                };
+              }
+
+              if (t.children && Array.isArray(t.children)) {
+                t.children.forEach((item, _index) => {
+                  t.children[_index] = loop(item);
+                });
+              }
+
+              return column;
+            };
+
+            return loop(_t);
+          });
+
+        return res;
       },
 
       /**
@@ -733,6 +690,63 @@ export const ProSearchTable = (serviceName) =>
       },
 
       /**
+       * getScopedSlots
+       * @description 获取ProSearchTable的ScopedSlots
+       */
+      getScopedSlots(h) {
+        return {
+          // header查询
+          [this.getFilterDropdownSlot()]: ({ confirm, column }) => {
+            const searchConfig = column.$search;
+            const dataIndex = column.dataIndex;
+            const type = searchConfig.type;
+
+            return (
+              <div class={`${_selectorPrefix}-headersearchwrap`}>
+                <div class={`${_selectorPrefix}-headersearchwrap-main`}>
+                  {this.renderGridSearchFormGroupDataItem(type, {
+                    searchConfig,
+                    column,
+                    dataIndex,
+                  })}
+                </div>
+
+                <div class={`${_selectorPrefix}-headersearchwrap-footer`}>
+                  <Button
+                    size="small"
+                    onClick={() => {
+                      if (type === 'rangePicker') {
+                        if (searchConfig.startName) this[searchConfig.startName] = null;
+                        if (searchConfig.endName) this[searchConfig.endName] = null;
+                      } else {
+                        this[dataIndex] = undefined;
+                      }
+
+                      this.$nextTick(() => this.onSearch().then(() => confirm()));
+                    }}
+                  >
+                    {Intl.tv('重置')}
+                  </Button>
+
+                  <Button
+                    size="small"
+                    type="primary"
+                    onClick={() => this.onSearch().then(() => confirm())}
+                  >
+                    {Intl.tv('确定')}
+                  </Button>
+                </div>
+              </div>
+            );
+          },
+          // header查询的图标
+          [this.getFilterIconSlot()]: () => {
+            return <Icon type="search" />;
+          },
+        };
+      },
+
+      /**
        * assignSearchConfig
        * @description assign searchConfig
        * @param searchConfig
@@ -830,23 +844,29 @@ export const ProSearchTable = (serviceName) =>
           }
         }
 
-        return this.renderSearchFooterItemsImpl(defaultItems).map((t) =>
+        return this.renderSearchFooterItemsImpl(h, defaultItems).map((t) =>
           'tag' in t && t.tag && t.tag.startsWith('vue-component-') ? t : t.value,
         );
       },
 
       /**
        * renderSearchFooterItemsImpl
+       * @param h
        * @param defaultItems
        * @return {*}
        */
-      renderSearchFooterItemsImpl(defaultItems) {
+      renderSearchFooterItemsImpl(h, defaultItems) {
+        const tableDensitySetting = this.renderTableDensitySetting(this.$createElement);
+        const columnSetting = this.renderColumnSetting(this.$createElement);
+
         return [
           ...defaultItems,
-          <div class={`${_selectorPrefix}-headeritem`}>{this.renderTableDensitySetting()}</div>,
-          <div class={`${_selectorPrefix}-headeritem`}>
-            {this.renderColumnSetting(this.$createElement)}
-          </div>,
+          {
+            value: <div class={`${_selectorPrefix}-headeritem`}>{tableDensitySetting}</div>,
+          },
+          {
+            value: <div class={`${_selectorPrefix}-headeritem`}>{columnSetting}</div>,
+          },
         ];
       },
 

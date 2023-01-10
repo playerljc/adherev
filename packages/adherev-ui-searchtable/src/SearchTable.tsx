@@ -621,6 +621,7 @@ const SearchTable: any = extend({
             ...{
               title: Intl.tv('序号'),
               key: '_number',
+              dataIndex: '_number',
               align: 'center',
               width: getTableNumberColumnWidth || 80,
               customRender: (text, row, index) => {
@@ -739,13 +740,6 @@ const SearchTable: any = extend({
                 ...column,
                 display: checked,
               }));
-
-              // this.setState(({ columnSetting }) => ({
-              //   columnSetting: (columnSetting || [])?.map((column) => ({
-              //     ...column,
-              //     display: checked,
-              //   })),
-              // }));
             }}
             onReset={() => {
               this.columnSetting = this.getTableColumns(h).map((column, index) => ({
@@ -753,40 +747,18 @@ const SearchTable: any = extend({
                 display: true,
                 sort: index,
               }));
-
-              // this.setState(() => ({
-              //   columnSetting: this.getTableColumns().map((column, index) => ({
-              //     ...column,
-              //     display: true,
-              //     sort: index,
-              //   })),
-              // }));
             }}
             onDisplayColumn={(column, checked) => {
               this.columnSetting = (this.columnSetting || [])?.map((_column) => ({
                 ..._column,
                 display: _column.key === column.key ? checked : _column.display,
               }));
-
-              // this.setState(({ columnSetting }) => ({
-              //   columnSetting: (columnSetting || [])?.map((_column) => ({
-              //     ..._column,
-              //     display: _column.key === column.key ? checked : _column.display,
-              //   })),
-              // }));
             }}
             onSortEnd={(map) => {
               this.columnSetting = (this.columnSetting || [])?.map((column) => ({
                 ...column,
                 sort: map.get(column.key),
               }));
-
-              // this.setState(({ columnSetting }) => ({
-              //   columnSetting: (columnSetting || [])?.map((column) => ({
-              //     ...column,
-              //     sort: map.get(column.key),
-              //   })),
-              // }));
             }}
           />
         )
@@ -796,7 +768,7 @@ const SearchTable: any = extend({
      * renderTableDensitySetting
      * @description 表格密度设置
      */
-    renderTableDensitySetting(): VNode {
+    renderTableDensitySetting(h): VNode {
       return (
         this.$scopedSlots?.tableDensitySetting?.(this) || (
           // @ts-ignore
@@ -804,16 +776,9 @@ const SearchTable: any = extend({
             density={this.tableDensity}
             onChange={(density) => {
               this.tableDensity = density;
-              // this.setState({
-              //   tableDensity: density,
-              // });
             }}
             onReset={() => {
               this.tableDensity = this.getTableDensity();
-
-              // this.setState({
-              //   tableDensity: this.getTableDensity(),
-              // });
             }}
           />
         )

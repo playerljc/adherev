@@ -6,7 +6,7 @@ const {
   _util: { extend },
 } = Util;
 
-const { ProSearchTable } = SearchTable;
+const { ProSearchTable, OptionsWrap, DisabledOption } = SearchTable;
 
 export default extend({
   className: 'ProTableImpl',
@@ -23,6 +23,34 @@ export default extend({
     },
     getTotalKey() {
       return 'total';
+    },
+    getScopedSlots(h) {
+      const superScopedSlots = this.$getScopedSlotsProSearchTable(h);
+
+      return {
+        ...superScopedSlots,
+        options: (val, record) => (
+          <OptionsWrap>
+            {this.renderOptionColumn(
+              [
+                {
+                  key: 'view',
+                  value: <a onClick={() => alert(1)}>查看</a>,
+                },
+                {
+                  key: 'edit',
+                  value: <a onClick={() => alert(2)}>编辑</a>,
+                },
+                {
+                  key: 'delete',
+                  value: <DisabledOption>删除</DisabledOption>,
+                },
+              ],
+              { val, record },
+            )}
+          </OptionsWrap>
+        ),
+      };
     },
     getColumns() {
       return this.$getColumnsProSearchTable([
@@ -113,6 +141,14 @@ export default extend({
             type: 'inputNumberDecimal2',
             visible: true,
           },
+        },
+        {
+          title: '操作',
+          dataIndex: '_options',
+          key: '_options',
+          align: 'center',
+          scopedSlots: { customRender: 'options' },
+          width: 200,
         },
       ]);
     },
