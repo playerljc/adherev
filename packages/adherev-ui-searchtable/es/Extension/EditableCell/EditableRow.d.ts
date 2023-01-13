@@ -1,13 +1,12 @@
+/**
+ * EditableRow
+ * @description 行编辑
+ * @param columns
+ * @param value
+ * @constructor
+ */
 import { CreateElement, VNode } from 'vue';
 declare const EditableRow: {
-    provide(): {
-        getEditableRowFormIns: any;
-    };
-    data(): {
-        editableRow: {
-            form: any;
-        };
-    };
     methods: {
         /**
          * useEditableRow
@@ -16,11 +15,6 @@ declare const EditableRow: {
          * @param trVNode trVNode
          */
         useEditableRow(h: CreateElement, trVNode: VNode): VNode;
-        /**
-         * getEditableRowFormIns
-         * @description 获取form对象实例
-         */
-        getEditableRowFormIns(): any;
     };
 };
 export default EditableRow;

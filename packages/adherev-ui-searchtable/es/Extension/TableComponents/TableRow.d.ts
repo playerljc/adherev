@@ -6,17 +6,8 @@ import { TableRowComponentProps } from '../../types';
 declare const _default: {
     inject: string[];
     mixins: ({
-        provide(): {
-            getEditableRowFormIns: any;
-        };
-        data(): {
-            editableRow: {
-                form: any;
-            };
-        };
         methods: {
             useEditableRow(h: import("vue").CreateElement, trVNode: import("vue").VNode): import("vue").VNode;
-            getEditableRowFormIns(): any;
         };
     } | {
         methods: {

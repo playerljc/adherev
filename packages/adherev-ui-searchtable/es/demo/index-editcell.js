@@ -1,0 +1,2 @@
+import Vue from"vue";import{createStore}from"./store";import SearchTable from"../index";import ProEditableCellTable from"./ProEditableCellTable";import"../index.less";import"./index.less";SearchTable.use(Vue);var SearchTableImplementFactory=SearchTable.SearchTableImplementFactory;new Vue({el:"#app",store:createStore(),render:function(e){return e(SearchTableImplementFactory(ProEditableCellTable))}});
+//# sourceMappingURL=index-editcell.js.map

@@ -35,17 +35,17 @@ declare const _default: {
         /**
          * renderFormItem
          */
-        renderFormItem(): any;
-        /**
-         * onSaveTrigger
-         * @description 点击了保存句柄
-         */
-        onSaveTrigger(): void;
+        renderFormItem(h: any): any;
         /**
          * renderDefaultSaveTrigger
          * @description 渲染缺省的保存句柄
          */
         renderDefaultSaveTrigger(): JSX.Element;
+        /**
+         * onSaveTrigger
+         * @description 点击了保存句柄
+         */
+        onSaveTrigger(): void;
         /**
          * onCancelTrigger
          * @description 点击了cancel句柄
@@ -61,6 +61,6 @@ declare const _default: {
          */
         getValue(): any;
     };
-    render(): JSX.Element;
+    render(h: any): JSX.Element;
 };
 export default _default;

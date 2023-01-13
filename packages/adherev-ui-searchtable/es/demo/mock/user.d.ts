@@ -8,11 +8,11 @@ declare namespace _default {
                 id: any;
                 name: any;
                 sex: string;
-                birthDay: any;
+                birthday: any;
                 deptName: any;
                 height: any;
                 width: any;
-                hometown: any;
+                homeTown: any;
                 address: any;
             }[];
         }
