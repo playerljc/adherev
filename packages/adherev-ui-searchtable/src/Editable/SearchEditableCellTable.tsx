@@ -48,7 +48,7 @@ export default (serviceName) =>
     mixins: [SearchTableImplement(serviceName)],
     provide() {
       return {
-        getEditableRowFormIns: this.getEditableRowFormIns,
+        getFormIns: this.getFormIns,
       };
     },
     data() {
@@ -260,10 +260,10 @@ export default (serviceName) =>
         return <Form form={this.form}>{children}</Form>;
       },
       /**
-       * getEditableRowFormIns
+       * getFormIns
        * @description 获取form对象实例
        */
-      getEditableRowFormIns() {
+      getFormIns() {
         return this.form;
       },
     },

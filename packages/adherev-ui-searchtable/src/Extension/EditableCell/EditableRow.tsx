@@ -17,7 +17,7 @@ const {
 const EditableRow = {
   // provide() {
   //   return {
-  //     getEditableRowFormIns: this.getEditableRowFormIns,
+  //     getFormIns: this.getFormIns,
   //   };
   // },
   // data() {
@@ -47,10 +47,10 @@ const EditableRow = {
       return res;
     },
     // /**
-    //  * getEditableRowFormIns
+    //  * getFormIns
     //  * @description 获取form对象实例
     //  */
-    // getEditableRowFormIns() {
+    // getFormIns() {
     //   return this.form;
     // },
   },

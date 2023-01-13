@@ -32,7 +32,7 @@ export default {
     },
   },
   emits: ['triggerChange'],
-  inject: ['getEditableRowFormIns', 'getContext'],
+  inject: ['getFormIns', 'getContext'],
   methods: {
     /**
      * updateEditorCellData
@@ -66,7 +66,7 @@ export default {
         this.editableConfig;
       const { rowIndex, record } = this;
 
-      const form = this.getEditableRowFormIns();
+      const form = this.getFormIns();
 
       let formItemNodeProps = {
         autoFocus: !useKeepEdit,
@@ -125,7 +125,7 @@ export default {
       const { dataIndex, onSave } = this.editableConfig;
       const { rowIndex, record } = this;
 
-      const form = this.getEditableRowFormIns();
+      const form = this.getFormIns();
       const value = this.getValue();
 
       if (onSave) {
@@ -179,7 +179,7 @@ export default {
      * getValue
      */
     getValue() {
-      return this.getEditableRowFormIns?.()?.getFieldValue(this.editableConfig.dataIndex);
+      return this.getFormIns?.()?.getFieldValue(this.editableConfig.dataIndex);
     },
   },
   render(h) {
@@ -201,7 +201,7 @@ export default {
 
     const $scopedSlots = context?.$scopedSlots;
 
-    const form = this.getEditableRowFormIns();
+    const form = this.getFormIns();
     const { getFieldDecorator } = form;
 
     const renderArgs = {

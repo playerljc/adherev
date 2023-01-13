@@ -202,8 +202,8 @@ const SearchTable: any = extend({
   },
   created() {
     const columns = this.getColumns();
-    this.$data.$tableRowComponentReducers = this.onTableRowComponentReducers(columns);
-    this.$data.$tableCellComponentReducers = this.onTableCellComponentReducers(columns);
+    this.$data.$tableRowComponentReducers = this.onTableRowComponentReducers?.(columns) || [];
+    this.$data.$tableCellComponentReducers = this.onTableCellComponentReducers?.(columns) || [];
 
     this.columnSetting = this.getTableColumns(this.$createElement).map((column, index) => ({
       ...column,
