@@ -2,10 +2,20 @@ import userMock from '../mock/user';
 import request from '../util/request';
 
 export const fetchList = (() => ({
-  call: () => {
+  call: ({ page, limit }) => {
+    const clone = JSON.parse(JSON.stringify(userMock.fetchList));
+
+    const res = {
+      resCode: 0,
+      data: {
+        records: clone.data.records.slice((page - 1) * limit, page * limit),
+        total: clone.data.total,
+      },
+    };
+
     return request
       .get({
-        path: userMock.fetchList,
+        path: res,
         mock: true,
         loading: {
           show: false,

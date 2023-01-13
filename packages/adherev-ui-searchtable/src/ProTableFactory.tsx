@@ -816,7 +816,7 @@ export default ({ className, superClass }, searchAndPaginParamsMemo) =>
                 this.advancedSearchPanelCollapse = true;
               }}
             >
-              {Intl.v('高级搜索')}
+              {Intl.tv('高级搜索')}
             </Button>
           );
 

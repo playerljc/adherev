@@ -94,7 +94,7 @@ export default {
         {editorRowId !== record[rowKey] && (
           <div class={`${selectorPrefix}-editor-row-control-edit`} onClick={this.$onEditor}>
             {this.$slots?.[this.renderEditorRow]?.() ||
-              this?.renderEditorRow?.() ||
+              this?.renderEditorRow?.(h) ||
               this.renderDefaultEditorRow(h)}
           </div>
         )}
@@ -108,7 +108,7 @@ export default {
               }
             >
               {this.$slots?.[this.renderSave]?.() ||
-                this?.renderSave?.() ||
+                this?.renderSave?.(h) ||
                 this.renderDefaultSave(h)}
             </div>
 
@@ -117,7 +117,7 @@ export default {
               onClick={this.reset}
             >
               {this.$slots?.[this.renderCancel]?.() ||
-                this?.renderCancel?.() ||
+                this?.renderCancel?.(h) ||
                 this.renderDefaultCancel(h)}
             </div>
           </div>

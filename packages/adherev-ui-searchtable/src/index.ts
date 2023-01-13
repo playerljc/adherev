@@ -28,11 +28,14 @@ import Validator from '@baifendian/adherev-util-validator';
 
 import { ProEditableCellSearchTable } from './Editable/ProEditableCellSearchTable';
 import { ProEditableRowSearchTable } from './Editable/ProEditableRowSearchTable';
+import { ProEditableSearchTable } from './Editable/ProEditableSearchTable';
 import SearchEditableCellTable from './Editable/SearchEditableCellTable';
 import SearchEditableRowTable from './Editable/SearchEditableRowTable';
+import SearchEditableTable from './Editable/SearchEditableTable';
 import ColumnSetting from './Extension/ColumnSetting';
 import DisabledOption from './Extension/DisabledOption';
 import EditableRowControl from './Extension/EditableCell/EditableRowControl';
+import EditableTableControl from './Extension/EditableCell/EditableTableControl';
 import LinkColumn from './Extension/LinkColumn';
 import OptionsWrap from './Extension/OptionsWrap';
 import * as SearchAndPaginParams from './Extension/SearchAndPaginParams';
@@ -82,6 +85,7 @@ SearchTable.use = (Vue) => {
   Vue.use(SearchTable.LinkColumn);
   Vue.use(SearchTable.OptionsWrap);
   Vue.use(SearchTable.EditableRowControl);
+  Vue.use(SearchTable.EditableTableControl);
 
   Vue.use(Table);
   Vue.use(Button);
@@ -112,6 +116,7 @@ SearchTable.DisabledOption = withInstall(DisabledOption);
 SearchTable.LinkColumn = withInstall(LinkColumn);
 SearchTable.OptionsWrap = withInstall(OptionsWrap);
 SearchTable.EditableRowControl = withInstall(EditableRowControl);
+SearchTable.EditableTableControl = withInstall(EditableTableControl);
 
 SearchTable.SearchAndPaginParams = SearchAndPaginParams;
 SearchTable.SearchTableImplement = SearchTableImplement;
@@ -120,8 +125,10 @@ SearchTable.SearchTableImplementFactory = SearchTableImplementFactory;
 SearchTable.ProTableFactory = ProTableFactory;
 SearchTable.ProEditableCellSearchTable = ProEditableCellSearchTable;
 SearchTable.ProEditableRowSearchTable = ProEditableRowSearchTable;
+SearchTable.ProEditableSearchTable = ProEditableSearchTable;
 SearchTable.SearchEditableRowTable = SearchEditableRowTable;
 SearchTable.SearchEditableCellTable = SearchEditableCellTable;
+SearchTable.SearchEditableTable = SearchEditableTable;
 SearchTable.NUMBER_GENERATOR_RULE_ALONE = NUMBER_GENERATOR_RULE_ALONE;
 SearchTable.NUMBER_GENERATOR_RULE_CONTINUITY = NUMBER_GENERATOR_RULE_CONTINUITY;
 SearchTable.ROW_SELECTION_NORMAL_MODE = ROW_SELECTION_NORMAL_MODE;

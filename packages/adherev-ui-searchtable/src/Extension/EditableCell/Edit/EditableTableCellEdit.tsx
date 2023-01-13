@@ -1,14 +1,12 @@
 import { Form, Icon } from 'ant-design-vue';
-import moment from 'moment';
 import { PropType } from 'vue';
 
 import { selectorPrefix } from '../../../SearchTable';
 import { ColumnEditableConfig, ColumnTypeExt } from '../../../types';
-import EventTypes from '../EventTypes';
 import FormItemGenerator from './FormItemGenerator';
 
 /**
- * EditableCellEditor
+ * EditableTableCellEdit
  * @description 可编辑单元格的编辑状态
  */
 export default {
@@ -35,30 +33,6 @@ export default {
   inject: ['getFormIns', 'getContext'],
   methods: {
     /**
-     * updateEditorCellData
-     * @description 更新单元格的值
-     */
-    updateEditorCellData() {
-      const { dataIndex } = this.editableConfig;
-      const { record } = this;
-
-      const value = this.getValue();
-
-      if (value instanceof moment) {
-        return this.getContext?.()?.context?.updateEditorCellDateData({
-          record,
-          dataIndex,
-          value,
-        });
-      }
-
-      return this.getContext?.()?.context?.updateEditorCellDate({
-        record,
-        dataIndex,
-        value,
-      });
-    },
-    /**
      * renderFormItem
      */
     renderFormItem(h) {
@@ -71,19 +45,6 @@ export default {
       let formItemNodeProps = {
         autoFocus: !useKeepEdit,
         ...this.editableConfig.props,
-        ...EventTypes.reduce<{ [prop: string]: Function }>((eventCombination, eventType) => {
-          eventCombination[eventType] = (e: any) => {
-            if (this.editableConfig.props[eventType]) {
-              this.editableConfig.props[eventType](e, {
-                form,
-                dataIndex,
-                rowIndex,
-                updateEditorCellData: () => this.updateEditorCellData(),
-              });
-            }
-          };
-          return eventCombination;
-        }, {}),
       };
 
       const formItemNode = FormItemGenerator.render(h, {
@@ -104,7 +65,6 @@ export default {
         dataIndex,
         rowIndex,
         form,
-        updateEditorCellData: () => this.updateEditorCellData(),
         children: formItemNode,
       };
 
@@ -210,7 +170,6 @@ export default {
       dataIndex,
       rowIndex,
       form,
-      updateEditorCellData: () => this.updateEditorCellData(),
     };
 
     const renderSaveTriggerArgs = {
@@ -231,7 +190,7 @@ export default {
       <div class={`${selectorPrefix}-editablecell-edit`}>
         <div class={`${selectorPrefix}-editablecell-edit-inner`}>
           <Form.Item>
-            {getFieldDecorator(dataIndex as string, {
+            {getFieldDecorator(`${dataIndex}_${rowIndex}`, {
               rules,
               initialValue: context?.valueToFormItemValue({
                 type,

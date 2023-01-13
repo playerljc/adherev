@@ -1,3 +1,11 @@
+import { CreateElement, VNode } from 'vue';
+
+// import Util from '@baifendian/adherev-util';
+//
+// const {
+//   _util: { cloneElement },
+// } = Util;
+
 /**
  * EditableRow
  * @description 行编辑
@@ -5,28 +13,7 @@
  * @param value
  * @constructor
  */
-// import { Form } from 'ant-design-vue';
-import { CreateElement, VNode } from 'vue';
-
-import Util from '@baifendian/adherev-util';
-
-const {
-  _util: { cloneElement },
-} = Util;
-
 const EditableRow = {
-  // provide() {
-  //   return {
-  //     getFormIns: this.getFormIns,
-  //   };
-  // },
-  // data() {
-  //   return {
-  //     editableRow: {
-  //       form: this.$form.createForm(this, { name: 'editableRowForm' }),
-  //     },
-  //   };
-  // },
   methods: {
     /**
      * useEditableRow
@@ -35,24 +22,16 @@ const EditableRow = {
      * @param trVNode trVNode
      */
     useEditableRow(h: CreateElement, trVNode: VNode): VNode {
-      let res = trVNode;
+      // let res = trVNode;
+      //
+      // if ((this.props.columns || []).some((column) => !!column?.$editable?.editable)) {
+      //   res = cloneElement(trVNode, {
+      //     children: [...(trVNode?.children || [])],
+      //   });
+      // }
 
-      if ((this.props.columns || []).some((column) => !!column?.$editable?.editable)) {
-        res = cloneElement(trVNode, {
-          // children: [<Form from={this.editableRow.form}></Form>, ...(trVNode?.children || [])],
-          children: [...(trVNode?.children || [])],
-        });
-      }
-
-      return res;
+      return trVNode;
     },
-    // /**
-    //  * getFormIns
-    //  * @description 获取form对象实例
-    //  */
-    // getFormIns() {
-    //   return this.form;
-    // },
   },
 };
 
