@@ -1,2 +1,0 @@
-import{Modal}from"ant-design-vue";import{Resource}from"@baifendian/adherev";import{assignAttrs,extend}from"../util";var Wrap=extend(Modal,{functional:!0,inject:["getEl"],render:function(e,a){return assignAttrs(Modal,a,Wrap.defaultProps),e(Modal,a.data,a.children)}});Wrap.defaultProps={closable:!0,centered:!0,maskClosable:!0,destroyOnClose:!0,zIndex:Resource.Dict.value.ResourceNormalMaxZIndex.value};export default Wrap;
-//# sourceMappingURL=Modal.js.map

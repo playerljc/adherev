@@ -48,7 +48,6 @@ export const ROW_SELECTION_CONTINUOUS_MODE = Symbol();
 
 const SearchTable: any = extend({
   className: 'SearchTable',
-  // @overview
   mixins: [Suspense, updatedEx, watchEffect],
   props: {
     className: {
@@ -202,6 +201,10 @@ const SearchTable: any = extend({
     };
   },
   created() {
+    const columns = this.getColumns();
+    this.$data.$tableRowComponentReducers = this.onTableRowComponentReducers(columns);
+    this.$data.$tableCellComponentReducers = this.onTableCellComponentReducers(columns);
+
     this.columnSetting = this.getTableColumns(this.$createElement).map((column, index) => ({
       ...column,
       sort: index,
@@ -675,6 +678,9 @@ const SearchTable: any = extend({
       return this.$data.$tableCellComponentReducers;
     },
 
+    /**
+     * getSortColumnSetting
+     */
     getSortColumnSetting() {
       const columns = [...this.columnSetting];
 
@@ -686,6 +692,9 @@ const SearchTable: any = extend({
 
       return columns;
     },
+    /**
+     * getScrollHeaderEl
+     */
     getScrollHeaderEl(): HTMLElement | null {
       const tableWrapRef: HTMLElement = this.$refs.tableWrapRef as HTMLElement;
 
@@ -693,6 +702,9 @@ const SearchTable: any = extend({
         '.ant-table-wrapper > .ant-spin-nested-loading > .ant-spin-container > .ant-table > .ant-table-content > .ant-table-scroll > .ant-table-header',
       );
     },
+    /**
+     * getScrollBodyEl
+     */
     getScrollBodyEl(): HTMLElement | null {
       const tableWrapRef: HTMLElement = this.$refs.tableWrapRef as HTMLElement;
 
@@ -714,9 +726,10 @@ const SearchTable: any = extend({
       params: { value: any; record: object; index: number },
     ) {
       return (
-        this.$scopedSlots?.tableNumberColumn?.({ context: this.getContext?.()?.context, number }) || (
-          <span>{number}</span>
-        )
+        this.$scopedSlots?.tableNumberColumn?.({
+          context: this.getContext?.()?.context,
+          number,
+        }) || <span>{number}</span>
       );
     },
     /**
@@ -963,25 +976,6 @@ const SearchTable: any = extend({
           pagination: this.getPagination(),
           rowSelection: this.getRowSelection(),
           components: this.components,
-          // onRow
-          // 给TableRow的props参数
-          // customRow: (record, rowIndex) => {
-          //   // 这块可能以后会有很多操作
-          //   // 行的所有操作都可以在这里处理
-          //   return {
-          //     props: {
-          //       record,
-          //       rowIndex,
-          //       columns,
-          //       rowKey: this.getRowKey(),
-          //       rowConfig: this.onRowConfigReducers({
-          //         rowIndex: Number(rowIndex),
-          //         record,
-          //         columns,
-          //       }),
-          //     },
-          //   };
-          // },
           ...(tablePropsAttr || {}),
         },
         on: {

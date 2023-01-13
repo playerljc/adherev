@@ -1,8 +1,8 @@
-import faker from 'faker'
+import faker from 'faker';
 
-const data = []
-data.length = 300
-data.fill(0)
+const data = [];
+data.length = 300;
+data.fill(0);
 
 export default {
   fetchList: {
@@ -13,11 +13,11 @@ export default {
         id: faker.random.uuid(),
         name: faker.internet.userName(),
         sex: `${(index + 1) % 2}`,
-        birthDay: faker.time.recent(),
+        birthday: faker.time.recent(),
         deptName: faker.company.companyName(),
         height: faker.random.number(),
         width: faker.random.number(),
-        hometown: faker.address.city(),
+        homeTown: faker.address.city(),
         address: faker.address.streetAddress(),
       })),
     },
@@ -87,4 +87,4 @@ export default {
     },
     resMsg: '',
   },
-}
+};

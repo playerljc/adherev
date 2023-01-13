@@ -1,0 +1,2 @@
+import MemoManager from"./Extension/SearchAndPaginParams/memo";import ProTableFactory from"./ProTableFactory";import SearchTableImplement from"./SearchTableImplement";var TableImplementSearchAndvPaginParamsMemo=MemoManager.create(),ProSearchTable=function(e){return ProTableFactory({className:"ProSearchTable",superClass:SearchTableImplement(e)},TableImplementSearchAndvPaginParamsMemo)};export{TableImplementSearchAndvPaginParamsMemo,ProSearchTable};
+//# sourceMappingURL=ProSearchTable.js.map

@@ -9,10 +9,10 @@
 //     return <tr>{this.$slots.default}</tr>;
 //   },
 // };
-import { TableRowComponentHookFunctionParameter, TableRowComponentProps } from '../../types';
-import useRowDragSortRow from '../DragSort/RowDragSort/DragSortRow';
-import useEditableRow from '../EditableCell/EditableRow';
-import useEditableTableRow from '../EditableCell/EditableTableRow';
+import { TableRowComponentProps } from '../../types';
+import RowDragSortRow from '../DragSort/RowDragSort/DragSortRow';
+import EditableRow from '../EditableCell/EditableRow';
+import EditableTableRow from '../EditableCell/EditableTableRow';
 
 /**
  * TableRow
@@ -20,15 +20,8 @@ import useEditableTableRow from '../EditableCell/EditableTableRow';
  */
 export default {
   inject: ['getContext'],
-  data() {
-    return {
-      $map: new Map<string, (params: TableRowComponentHookFunctionParameter) => any>([
-        ['useEditableRow', useEditableRow],
-        ['useEditableTableRow', useEditableTableRow],
-        ['useRowDragSortRow', useRowDragSortRow],
-      ]),
-    };
-  },
+  // 混入EditableRow,EditableTableRow,RowDragSortRow
+  mixins: [EditableRow, EditableTableRow, RowDragSortRow],
   computed: {
     props(): TableRowComponentProps {
       return this.getContext?.()?.context?.onRow?.(this.$parent.rowKey);
@@ -36,24 +29,20 @@ export default {
   },
   render(h) {
     // 所有的reducer都去装饰tr，最终返回装饰后的tr
-    const trREL = <tr>{this.$slots.default}</tr>;
+    const trVNode = <tr>{this.$slots.default}</tr>;
 
-    return this.getContext?.()
-      ?.context?.getTableRowComponentReducers()
-      ?.reduce?.(
-        (pre, hookName) => {
-          pre.value = this.$data.$map.get(hookName)?.({
-            h,
-            context: this.getContext(),
-            value: pre.value,
-            ...this.props,
-          });
+    const context = this.getContext?.()?.context;
 
-          return pre;
-        },
-        {
-          value: trREL,
-        },
-      ).value as any;
+    return context?.getTableRowComponentReducers()?.reduce?.(
+      (pre, hookName) => {
+        // 调用混入对象的use方法
+        pre.value = this[hookName](h, pre.value);
+
+        return pre;
+      },
+      {
+        value: trVNode,
+      },
+    ).value as any;
   },
 };

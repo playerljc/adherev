@@ -1,3 +1,4 @@
+import AntdvFormItem from '@baifendian/adherev-ui-antdvformitem';
 import BackTopAnimation from '@baifendian/adherev-ui-backtopanimation';
 import BMap from '@baifendian/adherev-ui-bmap';
 import CascadeCompared from '@baifendian/adherev-ui-cascadecompared';
@@ -60,6 +61,7 @@ import Validator from '@baifendian/adherev-util-validator';
 import WatchMemoized from '@baifendian/adherev-util-watchmemoized';
 
 export { 
+  AntdvFormItem,
   BackTopAnimation,
   BMap,
   CascadeCompared,
@@ -125,6 +127,11 @@ export {
 export default {
 	install:function (Vue){
 	if(
+
+(AntdvFormItem as any)?.isUse()){ 
+
+(AntdvFormItem as any)?.use(Vue); }
+		if(
 
 (BackTopAnimation as any)?.isUse()){ 
 

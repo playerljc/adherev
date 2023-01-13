@@ -1,2 +1,2 @@
 export default Model;
-import Model from "@baifendian/adherev-ui-historyback";
+import Model from "@baifendian/adherev-ui-historyback/lib";

@@ -2,17 +2,18 @@ import userMock from '../mock/user';
 import request from '../util/request';
 
 export const fetchList = (() => ({
-  call: () =>
-  {
-      return request.get({
-          path: userMock.fetchList,
-          mock: true,
-          loading: {
-              show: false,
-          },
-      }).then(res => {
-          return res;
+  call: () => {
+    return request
+      .get({
+        path: userMock.fetchList,
+        mock: true,
+        loading: {
+          show: false,
+        },
       })
+      .then((res) => {
+        return res;
+      });
   },
   defaultResult: () => ({
     total: 0,

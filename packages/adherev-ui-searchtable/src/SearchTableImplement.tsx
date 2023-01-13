@@ -384,7 +384,6 @@ export default (serviceName) =>
         showLoading(): boolean {
           return this.loading[`${serviceName}/${this.getFetchListPropName()}`];
         },
-
         /**
          * getSearchParams
          * @description - 获取查询参数

@@ -1,0 +1,2 @@
+import"core-js/modules/es.number.constructor.js";import{RouterLink}from"vue-router";export default{props:{record:{type:Object},rowIndex:{type:Number},dataIndex:{type:Number},to:{type:String}},name:"adv-searchtable-link-column",render:function(t){return t(RouterLink,{attrs:{to:this.to}},[this.$scopedSlots.default?this.$scopedSlots.default({record:this.record,rowIndex:this.rowIndex,dataIndex:this.dataIndex}):this.record[this.dataIndex]])}};
+//# sourceMappingURL=index.js.map

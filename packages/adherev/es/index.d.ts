@@ -1,3 +1,4 @@
+import AntdvFormItem from '@baifendian/adherev-ui-antdvformitem';
 import BackTopAnimation from '@baifendian/adherev-ui-backtopanimation';
 import BMap from '@baifendian/adherev-ui-bmap';
 import CascadeCompared from '@baifendian/adherev-ui-cascadecompared';
@@ -58,7 +59,7 @@ import Preferences from '@baifendian/adherev-util-preferences';
 import Resource from '@baifendian/adherev-util-resource';
 import Validator from '@baifendian/adherev-util-validator';
 import WatchMemoized from '@baifendian/adherev-util-watchmemoized';
-export { BackTopAnimation, BMap, CascadeCompared, Comment, ConditionalRender, ConfigProvider, DelConfirm, ImportantConfirm, ContextMenu, ContourBlock, DateDisplay, FlexLayout, FontSizeSetting, GlobalIndicator, HistoryBack, ImageLazy, JdCategoryTab, MessageDialog, Notification, OLMap, Permission, PlayGround, PolygonSelection, Popup, ErrorPrompt, SuccessPrompt, WarnPrompt, PullRefresh, Revolving, ScrollLoad, SearchTable, SlideLayout, SliderScale, Space, Spin, Split, SplitLayout, StickupLayout, Surnames, Suspense, SwipeOut, TableGridLayout, Teleport, VueQuillSandBox, WritingBoard, Util, AdapterScreen, Browsersniff, Ajax, Dict, Domain, Emitter, IframeIO, Intl, Mixins, NotNull, Preferences, Resource, Validator, WatchMemoized, };
+export { AntdvFormItem, BackTopAnimation, BMap, CascadeCompared, Comment, ConditionalRender, ConfigProvider, DelConfirm, ImportantConfirm, ContextMenu, ContourBlock, DateDisplay, FlexLayout, FontSizeSetting, GlobalIndicator, HistoryBack, ImageLazy, JdCategoryTab, MessageDialog, Notification, OLMap, Permission, PlayGround, PolygonSelection, Popup, ErrorPrompt, SuccessPrompt, WarnPrompt, PullRefresh, Revolving, ScrollLoad, SearchTable, SlideLayout, SliderScale, Space, Spin, Split, SplitLayout, StickupLayout, Surnames, Suspense, SwipeOut, TableGridLayout, Teleport, VueQuillSandBox, WritingBoard, Util, AdapterScreen, Browsersniff, Ajax, Dict, Domain, Emitter, IframeIO, Intl, Mixins, NotNull, Preferences, Resource, Validator, WatchMemoized, };
 declare const _default: {
     install: (Vue: any) => void;
 };

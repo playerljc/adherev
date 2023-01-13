@@ -1,22 +1,2 @@
-export default (context) => {
-    const observer = new MutationObserver((mutationsList) => {
-        const list = mutationsList.filter(
-        // @ts-ignore
-        (t) => t.type === 'childList' && t.target?.tagName?.toLowerCase() === 'colgroup');
-        if (list.length) {
-            const columns = context.getTableColumns();
-            if (list.length - 1 === columns.length) {
-                // 停止监控
-                observer?.disconnect?.();
-                context?.$forceUpdate?.();
-            }
-        }
-    });
-    observer.observe(context.$refs.tableWrapRef, {
-        attributes: false,
-        childList: true,
-        subtree: true,
-    });
-    return observer;
-};
+"use strict";require("core-js/modules/es.object.define-property.js"),require("core-js/modules/es.array.filter.js"),require("core-js/modules/es.object.to-string.js"),Object.defineProperty(exports,"__esModule",{value:!0}),exports.default=function(r){var l=new MutationObserver(function(e){var t,e=e.filter(function(e){return"childList"===e.type&&"colgroup"===(null==(e=null==(e=e.target)?void 0:e.tagName)?void 0:e.toLowerCase())});e.length&&(t=r.getTableColumns(),e.length-1===t.length)&&(null!=(e=null==l?void 0:l.disconnect)&&e.call(l),null!=(t=null==r?void 0:r.$forceUpdate))&&t.call(r)});return l.observe(r.$refs.tableWrapRef,{attributes:!1,childList:!0,subtree:!0}),l};
 //# sourceMappingURL=SearchTableResizableObserver.js.map

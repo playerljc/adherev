@@ -2,7 +2,7 @@ import Vue from 'vue';
 
 import SearchTable from '../index';
 // import { createStore } from './store';
-import Table from './table';
+import Table from './Table';
 
 import '../index.less';
 

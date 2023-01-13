@@ -1,2 +1,2 @@
 export default Model;
-import Model from "@baifendian/adherev-ui-notification";
+import Model from "@baifendian/adherev-ui-notification/lib";

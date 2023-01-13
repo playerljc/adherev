@@ -42,7 +42,7 @@
   },
   "peerDependencies": {
     "ant-design-vue": ">=1.7.5 - <2.0.0",
-    "vue": ">=2.6.14 - <3.0.0"
+    "vue": ">=2.6.14 - <=2.7.14"
   },
   "publishConfig": {
     "access": "public"

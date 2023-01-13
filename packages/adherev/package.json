@@ -42,6 +42,7 @@
     "@baifendian/adhere-util-notnull": "^1.0.22-fix.1",
     "@baifendian/adhere-util-preferences": "^1.0.22",
     "@baifendian/adhere-util-watchmemoized": "^1.0.22-fix.1",
+    "@baifendian/adherev-ui-antdvformitem": "^1.0.0",
     "@baifendian/adherev-ui-backtopanimation": "^1.0.12-fix.4",
     "@baifendian/adherev-ui-bmap": "^1.0.12-fix.4",
     "@baifendian/adherev-ui-cascadecompared": "^1.0.12-fix.4",
@@ -130,7 +131,7 @@
   },
   "peerDependencies": {
     "ant-design-vue": ">=1.7.5 - <2.0.0",
-    "vue": ">=2.6.14 - <3.0.0"
+    "vue": ">=2.6.14 - <=2.7.14"
   },
   "publishConfig": {
     "access": "public"

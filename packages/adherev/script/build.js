@@ -62,6 +62,7 @@ const namedMap = new Map([
   ['@baifendian/adherev-ui-tablegridlayout', 'TableGridLayout'],
   ['@baifendian/adherev-ui-writingboard', 'WritingBoard'],
   ['@baifendian/adherev-ui-vuequill-sandbox', 'VueQuillSandBox'],
+  ['@baifendian/adherev-ui-antdvformitem', 'AntdvFormItem'],
   ['@baifendian/adherev-util', 'Util'],
   ['@baifendian/adherev-util-adapterscreen', 'AdapterScreen'],
   ['@baifendian/adherev-util-browsersniff', 'Browsersniff'],

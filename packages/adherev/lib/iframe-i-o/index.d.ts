@@ -1,2 +1,2 @@
 export default Model;
-import Model from "@baifendian/adherev-util-iframeio";
+import Model from "@baifendian/adherev-util-iframeio/lib";

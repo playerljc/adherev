@@ -44,7 +44,7 @@
     "vue-color": "^2.8.1"
   },
   "peerDependencies": {
-    "vue": ">=2.6.14 - <3.0.0"
+    "vue": ">=2.6.14 - <=2.7.14"
   },
   "publishConfig": {
     "access": "public"

@@ -1,2 +1,2 @@
 export default Model;
-import Model from "@baifendian/adherev-ui-vuequill-sandbox";
+import Model from "@baifendian/adherev-ui-vuequill-sandbox/lib";

@@ -321,7 +321,7 @@ export interface ColumnEditableConfig {
     children?: VNode;
     // 更新单元格数据的方法
     updateEditorCellData?: () => Promise<void>;
-  }) => VNode;
+  }) => VNode | string;
   // 点击ToEdit句柄之前触发，resolve则将继续，reject则不能切换状态
   onBeforeToEdit?: (params: ColumnParams) => Promise<void>;
   // 点击了save句柄，resolve则切换到view状态
@@ -335,11 +335,11 @@ export interface ColumnEditableConfig {
   // 是否使用句柄来切换状态 view的时候有一个句柄点击后变成编辑状态，编辑的时候有2个句柄，save和cancel，如果设置为false，则关于句柄的事件将不会触发
   useTrigger?: boolean;
   // 渲染查看的句柄
-  renderToEditTrigger?: (params: ColumnParams) => VNode;
+  renderToEditTrigger?: (params: ColumnParams) => VNode | string;
   // 渲染保存的句柄
-  renderSaveTrigger?: (params: ColumnParams) => VNode;
+  renderSaveTrigger?: (params: ColumnParams) => VNode | string;
   // 渲染取消的句柄
-  renderCancelTrigger?: (params: ColumnParams) => VNode;
+  renderCancelTrigger?: (params: ColumnParams) => VNode | string;
   // FormItem的rules
   rules?: Rule[];
   // 如果有此属性，则不用column的dataIndex
@@ -347,10 +347,27 @@ export interface ColumnEditableConfig {
   // dist渲染的组件的字典名称(适用于FormItemGeneratorToDict)
   dictName?: string;
   // children自定义的渲染，适用于FormItemGeneratorToDict的自定义children时候使用
-  renderChildren?: (params?: any) => VNode | null;
+  renderChildren?: ((params?: any) => VNode | null) | string;
   // 是否一直保持编辑状态，也就是说view和edit都显示的是控件，如果设置为true则相当于设置了useTrigger是false，useTrigger的设置将失效
   // 最好不使用这种模式
   useKeepEdit?: boolean;
+}
+
+export interface FormItemGeneratorConfig {
+  // 编辑控件的类型
+  type?: FormItemType | string;
+  // 组件的props定义
+  props?: any;
+  // dist渲染的组件的字典名称(适用于FormItemGeneratorToDict)
+  dictName?: string;
+  // children自定义的渲染，适用于FormItemGeneratorToDict的自定义children时候使用
+  renderChildren?: (params?: any) => VNode | null;
+  // 表单的实例
+  form?: FormInstance<any> | null;
+  // 行的索引值
+  dataIndex?: number;
+  // 列的索引值
+  rowIndex?: number;
 }
 
 /**
@@ -424,27 +441,6 @@ export interface TableRowComponentProps {
   rowKey: string;
   rowConfig: RowConfig;
   [p: string]: any;
-}
-
-export interface TableRowComponentHookFunctionParameter extends TableRowComponentProps {
-  context: {
-    context: any;
-    editable?: {
-      tableEditable?: {
-        form?: FormInstance;
-        formList?: {
-          fields: FormListFieldData[];
-          operation?: FormListOperation;
-          meta?: {
-            errors?: VNode[];
-            warnings?: VNode[];
-          };
-        };
-      };
-    };
-  };
-  h: CreateElement;
-  value: VNode;
 }
 
 export interface TableCellComponentProps {

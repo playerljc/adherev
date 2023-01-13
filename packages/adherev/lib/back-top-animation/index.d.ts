@@ -1,2 +1,2 @@
 export default Model;
-import Model from "@baifendian/adherev-ui-backtopanimation";
+import Model from "@baifendian/adherev-ui-backtopanimation/lib";

@@ -1,6 +1,7 @@
 import {
   Button,
   Checkbox,
+  Form,
   Icon,
   Input,
   InputNumber,
@@ -12,7 +13,7 @@ import {
 } from 'ant-design-vue';
 import VueDraggableResizable from 'vue-draggable-resizable';
 
-import AntdFormItem from '@baifendian/adherev-ui-antdformitem';
+import AntdvFormItem from '@baifendian/adherev-ui-antdvformitem';
 import Conditionalrender from '@baifendian/adherev-ui-conditionalrender';
 import FlexLayout from '@baifendian/adherev-ui-flexlayout';
 import SlideLayout from '@baifendian/adherev-ui-slidelayout';
@@ -25,6 +26,8 @@ import Intl from '@baifendian/adherev-util-intl';
 import Resource from '@baifendian/adherev-util-resource';
 import Validator from '@baifendian/adherev-util-validator';
 
+import { ProEditableCellSearchTable } from './Editable/ProEditableCellSearchTable';
+import SearchEditableCellTable from './Editable/SearchEditableCellTable';
 import ColumnSetting from './Extension/ColumnSetting';
 import DisabledOption from './Extension/DisabledOption';
 import LinkColumn from './Extension/LinkColumn';
@@ -32,6 +35,7 @@ import OptionsWrap from './Extension/OptionsWrap';
 import * as SearchAndPaginParams from './Extension/SearchAndPaginParams';
 import TableDensitySetting from './Extension/TableDensitySetting';
 import { ProSearchTable } from './ProSearchTable';
+import ProTableFactory from './ProTableFactory';
 import SearchTable, {
   NUMBER_GENERATOR_RULE_ALONE,
   NUMBER_GENERATOR_RULE_CONTINUITY,
@@ -40,7 +44,6 @@ import SearchTable, {
 } from './SearchTable';
 import SearchTableImplement from './SearchTableImplement';
 import SearchTableImplementFactory from './SearchTableImplementFactory';
-import ProTableFactory from './ProTableFactory';
 import SearchForm from './searchform';
 import SearchFormLabel from './searchformlabel';
 import SearchFormRow from './searchformrow';
@@ -56,7 +59,7 @@ SearchTable.use = (Vue) => {
   FlexLayout.isUse() && FlexLayout.use(Vue);
   Suspense.isUse() && Suspense.use(Vue);
   Intl.isUse() && Intl.use(Vue);
-  AntdFormItem.isUse() && AntdFormItem.use(Vue);
+  AntdvFormItem.isUse() && AntdvFormItem.use(Vue);
   Conditionalrender.isUse() && Conditionalrender.use(Vue);
   SlideLayout.isUse() && SlideLayout.use(Vue);
   Space.isUse() && Space.use(Vue);
@@ -87,6 +90,7 @@ SearchTable.use = (Vue) => {
   Vue.use(Rate);
   Vue.use(Slider);
   Vue.use(Switch);
+  Vue.use(Form);
 
   Vue.component('vue-draggable-resizable', VueDraggableResizable);
 
@@ -109,6 +113,8 @@ SearchTable.SearchTableImplement = SearchTableImplement;
 SearchTable.ProSearchTable = ProSearchTable;
 SearchTable.SearchTableImplementFactory = SearchTableImplementFactory;
 SearchTable.ProTableFactory = ProTableFactory;
+SearchTable.ProEditableCellSearchTable = ProEditableCellSearchTable;
+SearchTable.SearchEditableCellTable = SearchEditableCellTable;
 
 SearchTable.NUMBER_GENERATOR_RULE_ALONE = NUMBER_GENERATOR_RULE_ALONE;
 SearchTable.NUMBER_GENERATOR_RULE_CONTINUITY = NUMBER_GENERATOR_RULE_CONTINUITY;

@@ -1,2 +1,2 @@
-"use strict";
+"use strict";require("core-js/modules/es.object.define-property.js"),Object.defineProperty(exports,"__esModule",{value:!0});var tslib_1=require("tslib"),adherev_ui_antdvformitem_1=tslib_1.__importDefault(require("@baifendian/adherev-ui-antdvformitem"));console.log(adherev_ui_antdvformitem_1.default),console.trace();
 //# sourceMappingURL=index.js.map

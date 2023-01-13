@@ -1,15 +1,2 @@
-import Vue from 'vue';
-import Vuex from 'vuex';
-import VuexGeneratorPlugin from './plugin/VuexGeneratorPlugin';
-Vue.use(Vuex);
-/**
- * createStore
- * @description 创建store
- */
-export const createStore = () => {
-    return new Vuex.Store({
-        // 使用VuexGeneratorPlugin插件
-        plugins: [VuexGeneratorPlugin],
-    });
-};
+"use strict";require("core-js/modules/es.object.define-property.js"),Object.defineProperty(exports,"__esModule",{value:!0}),exports.createStore=void 0;var tslib_1=require("tslib"),vue_1=tslib_1.__importDefault(require("vue")),vuex_1=tslib_1.__importDefault(require("vuex")),VuexGeneratorPlugin_1=tslib_1.__importDefault(require("./plugin/VuexGeneratorPlugin")),createStore=(vue_1.default.use(vuex_1.default),function(){return new vuex_1.default.Store({plugins:[VuexGeneratorPlugin_1.default]})});exports.createStore=createStore;
 //# sourceMappingURL=index.js.map

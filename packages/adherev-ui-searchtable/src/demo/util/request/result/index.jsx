@@ -1,15 +1,15 @@
-import Vue from 'vue'
+import Vue from 'vue';
 
-import Error from './error'
-import Warn from './warn'
+import Error from './error';
+import Warn from './warn';
 
-import './index.less'
+import './index.less';
 
 // 句柄
-let handler
+let handler;
 
 // 防抖时间
-const time = 2000
+const time = 2000;
 
 /**
  * createWrapOnce
@@ -17,16 +17,15 @@ const time = 2000
  * @return {HTMLElement}
  */
 function createWrapOnce() {
-  let el = document.getElementById('request-result')
-  if (el)
-    return el
+  let el = document.getElementById('request-result');
+  if (el) return el;
 
-  el = document.createElement('div')
-  el.id = 'request-result'
-  el.className = 'request-result'
-  document.body.appendChild(el)
+  el = document.createElement('div');
+  el.id = 'request-result';
+  el.className = 'request-result';
+  document.body.appendChild(el);
 
-  return el
+  return el;
 }
 
 /**
@@ -36,8 +35,8 @@ function createWrapOnce() {
  */
 export function openErrorOnce(props) {
   if (handler) {
-    clearTimeout(handler)
-    handler = null
+    clearTimeout(handler);
+    handler = null;
   }
 
   handler = setTimeout(
@@ -45,11 +44,11 @@ export function openErrorOnce(props) {
       new Vue({
         el: createWrapOnce(),
         render(h) {
-          return <Error props={{ ...props }} />
+          return <Error props={{ ...props }} />;
         },
       }),
     time,
-  )
+  );
 }
 
 /**
@@ -59,8 +58,8 @@ export function openErrorOnce(props) {
  */
 export function openWarnOnce(props) {
   if (handler) {
-    clearTimeout(handler)
-    handler = null
+    clearTimeout(handler);
+    handler = null;
   }
 
   handler = setTimeout(
@@ -68,9 +67,9 @@ export function openWarnOnce(props) {
       new Vue({
         el: createWrapOnce(),
         render(h) {
-          return <Warn props={{ ...props }} />
+          return <Warn props={{ ...props }} />;
         },
       }),
     time,
-  )
+  );
 }

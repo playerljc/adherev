@@ -5,7 +5,7 @@ import omit from 'omit.js';
 import qs from 'qs';
 import { VNode } from 'vue';
 
-import AntdFormItem from '@baifendian/adherev-ui-antdformitem';
+import AntdvFormItem from '@baifendian/adherev-ui-antdvformitem';
 import ConditionalRender from '@baifendian/adherev-ui-conditionalrender';
 import TableGridLayout from '@baifendian/adherev-ui-tablegridlayout';
 import Util from '@baifendian/adherev-util';
@@ -23,7 +23,7 @@ const {
 
 const {
   FormItemGeneratorToDict,
-  AntFormItemNormalize: {
+  AntdvFormItemNormalize: {
     DatePicker,
     InputNumberDecimal1,
     InputNumberDecimal2,
@@ -31,7 +31,7 @@ const {
     RangePicker,
     TimePicker,
   },
-} = AntdFormItem;
+} = AntdvFormItem;
 const { renderGridSearchFormGroup, Label, Value } = TableGridLayout;
 
 const _selectorPrefix = `${selectorPrefix}-protable`;
@@ -281,7 +281,7 @@ export default ({ className, superClass }, searchAndPaginParamsMemo) =>
        * @returns {boolean}
        */
       hasNumberColumnFixed() {
-        return true;
+        return false;
       },
 
       /**
@@ -632,7 +632,7 @@ export default ({ className, superClass }, searchAndPaginParamsMemo) =>
       getGridSearchFormGroupDataByColumnConfig() {
         let searchFormGroupData: {
           key: number;
-          label: VNode;
+          label: VNode | null;
           value: VNode | null;
         }[] = [];
 
@@ -649,6 +649,7 @@ export default ({ className, superClass }, searchAndPaginParamsMemo) =>
 
               searchFormGroupData.push({
                 key: dataIndex,
+                // @ts-ignore
                 label: <Label {...($search.labelAttrs || {})}>{title}：</Label>,
                 value: ConditionalRender.conditionalRender({
                   conditional: this.hasAuthority
