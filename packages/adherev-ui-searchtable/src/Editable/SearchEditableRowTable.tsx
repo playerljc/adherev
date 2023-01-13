@@ -1,4 +1,3 @@
-import { Form } from 'ant-design-vue';
 import moment from 'moment';
 
 import Util from '@baifendian/adherev-util';
