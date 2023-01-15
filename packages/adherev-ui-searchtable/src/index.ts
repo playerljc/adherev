@@ -26,8 +26,10 @@ import Intl from '@baifendian/adherev-util-intl';
 import Resource from '@baifendian/adherev-util-resource';
 import Validator from '@baifendian/adherev-util-validator';
 
-import { ProSearchRowDragSortTable } from './DragSort/RowDragSort/ProSearchRowDragSortTable';
+import { ProRowDragSortSearchTable } from './DragSort/RowDragSort/ProRowDragSortSearchTable';
 import SearchRowDragSortTable from './DragSort/RowDragSort/SearchRowDragSortTable';
+import { ProDragSortEditableCellSearchTable } from './DragSortEditable/ProDragSortEditableCellSearchTable';
+import SearchDragSortEditableCellTable from './DragSortEditable/SearchDragSortEditableCellTable';
 import { ProEditableCellSearchTable } from './Editable/ProEditableCellSearchTable';
 import { ProEditableRowSearchTable } from './Editable/ProEditableRowSearchTable';
 import { ProEditableSearchTable } from './Editable/ProEditableSearchTable';
@@ -128,11 +130,13 @@ SearchTable.ProTableFactory = ProTableFactory;
 SearchTable.ProEditableCellSearchTable = ProEditableCellSearchTable;
 SearchTable.ProEditableRowSearchTable = ProEditableRowSearchTable;
 SearchTable.ProEditableSearchTable = ProEditableSearchTable;
-SearchTable.ProSearchRowDragSortTable = ProSearchRowDragSortTable;
+SearchTable.ProDragSortEditableCellSearchTable = ProDragSortEditableCellSearchTable;
+SearchTable.ProRowDragSortSearchTable = ProRowDragSortSearchTable;
 SearchTable.SearchEditableRowTable = SearchEditableRowTable;
 SearchTable.SearchEditableCellTable = SearchEditableCellTable;
 SearchTable.SearchEditableTable = SearchEditableTable;
 SearchTable.SearchRowDragSortTable = SearchRowDragSortTable;
+SearchTable.SearchDragSortEditableCellTable = SearchDragSortEditableCellTable;
 
 SearchTable.NUMBER_GENERATOR_RULE_ALONE = NUMBER_GENERATOR_RULE_ALONE;
 SearchTable.NUMBER_GENERATOR_RULE_CONTINUITY = NUMBER_GENERATOR_RULE_CONTINUITY;

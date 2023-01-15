@@ -20,6 +20,7 @@ import TableCell from './Extension/TableComponents/TableCell';
 import TableRow from './Extension/TableComponents/TableRow';
 import TableDensitySetting from './Extension/TableDensitySetting';
 import {
+  BodyConfig,
   BodyConfigReducer,
   CellConfigReducer,
   ColumnTypeExt,
@@ -448,7 +449,7 @@ const SearchTable: any = extend({
      * onBodyConfigReducers
      * @description 所有body的处理
      */
-    onBodyConfigReducers(): RowConfig {
+    onBodyConfigReducers(): BodyConfig {
       return this.$data.$bodyConfigReducers.reduce(
         (params, reducer) => {
           params.value = reducer.call(this, params.value);
@@ -463,6 +464,7 @@ const SearchTable: any = extend({
      */
     onBody() {
       return {
+        columns: this.getColumns(),
         bodyConfig: this.onBodyConfigReducers(),
       };
     },

@@ -33,22 +33,31 @@ export default (serviceName) =>
       };
     },
     methods: {
+      /**
+       * onTableBodyComponentReducers
+       * @param columns
+       */
       onTableBodyComponentReducers(columns: ColumnTypeExt[]): string[] {
         return Array.from(
           new Set([...this.$data.$tableBodyComponentReducers, 'useDragSortRowBody']),
         );
       },
-
+      /**
+       * onTableRowComponentReducers
+       * @param columns
+       */
       onTableRowComponentReducers(columns: ColumnTypeExt[]): string[] {
         return Array.from(new Set([...this.$data.$tableRowComponentReducers, 'useRowDragSortRow']));
       },
-
+      /**
+       * onTableCellComponentReducers
+       * @param columns
+       */
       onTableCellComponentReducers(columns: ColumnTypeExt[]): string[] {
         return Array.from(
           new Set([...this.$data.$tableCellComponentReducers, 'useRowDragSortCell']),
         );
       },
-
       /**
        * bodyDragSortReducer
        * @param params
@@ -58,7 +67,6 @@ export default (serviceName) =>
           $bodyDragSort: this.onDragSortBody(),
         };
       },
-
       /**
        * rowDragSortReducer
        * @param params
@@ -79,7 +87,6 @@ export default (serviceName) =>
 
         return rowConfig;
       },
-
       /**
        * cellDragSortReducer
        * @param params
@@ -100,7 +107,6 @@ export default (serviceName) =>
 
         return column;
       },
-
       /**
        * onDragSortBody
        * @description
@@ -108,7 +114,6 @@ export default (serviceName) =>
       onDragSortBody(): RowDragSortBodyConfig {
         return {};
       },
-
       /**
        * onDragSortRow
        * @param params
@@ -120,7 +125,6 @@ export default (serviceName) =>
       }): RowDragSortRowConfig {
         return {};
       },
-
       /**
        * onDragSortCell
        * @param params

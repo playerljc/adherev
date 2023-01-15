@@ -14,6 +14,7 @@ const {
  * @description 可编辑的单元格
  */
 export default {
+  inject: ['getActiveValue', 'setActiveValue'],
   data() {
     return {
       $editableCell: {
@@ -85,6 +86,7 @@ export default {
 
       // 单元格不是可编辑的单元格
       if (!editable) {
+        this.setActiveValue('');
         res = tdVNode;
       }
       // 始终保持编辑状态
@@ -97,7 +99,10 @@ export default {
                 props: this.$props,
               }}
               editableConfig={this.editableCellEditableConfig}
-              onTriggerChange={() => (this.editableCell.status = 'view')}
+              onTriggerChange={() => {
+                this.setActiveValue('');
+                this.editableCell.status = 'view';
+              }}
             >
               {tdVNode.children}
             </EditableCellEdit>,
@@ -115,6 +120,7 @@ export default {
               }}
               editableConfig={this.editableCellEditableConfig}
               onTriggerChange={() => {
+                this.setActiveValue(this.record[this.column.dataIndex]);
                 this.editableCell.status = 'edit';
               }}
             >
@@ -134,7 +140,7 @@ export default {
               }}
               editableConfig={this.editableCellEditableConfig}
               onTriggerChange={() => {
-                console.log('取消编辑');
+                this.setActiveValue('');
                 this.editableCell.status = 'view';
               }}
             >

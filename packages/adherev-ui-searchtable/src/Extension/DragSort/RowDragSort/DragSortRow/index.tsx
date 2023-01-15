@@ -20,7 +20,12 @@ export default {
       let res = trVNode;
 
       res = cloneElement(trVNode, {
-        class: classNames(`${trVNode.data?.class}`,`${selectorPrefix}-row-drag-sort-draggable-item`),
+        class: classNames(
+          `${trVNode.data?.class}`,
+          this.props?.rowConfig?.$rowDragSort?.canDrag?.()
+            ? `${selectorPrefix}-row-drag-sort-draggable-item`
+            : `${selectorPrefix}-row-drag-sort-no-drag-draggable-item`,
+        ),
         children: [...(trVNode?.children || [])],
       });
 

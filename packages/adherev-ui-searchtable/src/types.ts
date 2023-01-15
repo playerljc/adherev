@@ -402,13 +402,15 @@ export interface RowEditableConfig {
  */
 export interface RowDragSortRowConfig {
   [prop: string]: any;
+  canDrag?: (params?: { [prop: string]: any }) => boolean;
 }
 
 /**
  * RowDragSortBodyConfig
  */
 export interface RowDragSortBodyConfig {
-  [prop: string]: any;
+  draggableProps?: { [prop: string]: any };
+  canDrag?: (params?: { [prop: string]: any }) => boolean;
 }
 
 /**
@@ -420,7 +422,7 @@ export interface RowConfig {
 }
 
 export interface BodyConfig {
-  $bodyDragSort?: { [prop: string]: any };
+  $bodyDragSort?: RowDragSortBodyConfig;
 }
 
 export interface BodyConfigReducer {

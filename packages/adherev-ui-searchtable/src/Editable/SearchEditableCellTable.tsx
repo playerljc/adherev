@@ -49,6 +49,8 @@ export default (serviceName) =>
     provide() {
       return {
         getFormIns: this.getFormIns,
+        getActiveValue: this.getActiveValue,
+        setActiveValue: this.setActiveValue,
       };
     },
     data() {
@@ -83,6 +85,8 @@ export default (serviceName) =>
           ],
         ]),
         form: this.$form.createForm(this, { name: 'SearchEditableCellTableForm' }),
+        // 正在编辑的单元格id
+        activeValue: ''
       };
     },
     methods: {
@@ -268,6 +272,19 @@ export default (serviceName) =>
       renderSearchTable(h) {
         const children = this.$renderSearchTableSearchTable(h);
         return <Form form={this.form}>{children}</Form>;
+      },
+      /**
+       * setActiveValue
+       * @param activeValue
+       */
+      setActiveValue(activeValue) {
+        this.activeValue = activeValue;
+      },
+      /**
+       * getActiveValue
+       */
+      getActiveValue() {
+        return this.activeValue;
       },
       /**
        * getFormIns

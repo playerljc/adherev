@@ -21,14 +21,20 @@ export default {
      * @param tbodyVNode
      */
     useDragSortRowBody(h: CreateElement, tbodyVNode: VNode): VNode | null {
+      const bodyConfig = this.props.bodyConfig;
+
       return (
         <Draggable
           {...{
-            props: this.props.bodyConfig.$bodyDragSort || {},
+            props: bodyConfig?.$bodyDragSort?.draggableProps || {},
           }}
           tag="tbody"
           class={classNames(`${selectorPrefix}-search-row-drag-sort-table`, tbodyVNode.data?.class)}
-          draggable={`.${selectorPrefix}-row-drag-sort-draggable-item`}
+          draggable={
+            bodyConfig?.$bodyDragSort?.canDrag?.()
+              ? `.${selectorPrefix}-row-drag-sort-draggable-item`
+              : false
+          }
           // handle={`.${selectorPrefix}-row-drag-sort-handle`}
           onEnd={this.onUseDragSortRowBodyEnd}
         >

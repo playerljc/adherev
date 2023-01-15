@@ -6,11 +6,11 @@ const {
   _util: { extend },
 } = Util;
 
-const { ProSearchRowDragSortTable } = SearchTable;
+const { ProRowDragSortSearchTable } = SearchTable;
 
 export default extend({
   className: 'ProRowDragSortTable',
-  mixins: [ProSearchRowDragSortTable('user')],
+  mixins: [ProRowDragSortSearchTable('user')],
   methods: {
     getFetchListPropName() {
       return 'fetchList';
