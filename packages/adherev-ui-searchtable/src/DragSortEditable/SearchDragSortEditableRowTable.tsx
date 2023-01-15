@@ -25,8 +25,8 @@ export default (serviceName) =>
           (...params) => this.rowEditableReducer(...params),
         ],
         $cellConfigReducers: [
-          (...params) => this.cellEditableReducer(...params),
           (...params) => this.cellDragSortReducer(...params),
+          (...params) => this.cellEditableReducer(...params),
         ],
       };
     },
