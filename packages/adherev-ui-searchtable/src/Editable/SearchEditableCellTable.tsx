@@ -213,8 +213,13 @@ export default (serviceName) =>
           if (recordItem) {
             recordItem[dataIndex] = value;
 
+            this.receiveDataMutation(dataSource);
+
             this.$nextTick(() => resolve());
-          } else resolve();
+            return;
+          }
+
+          resolve();
         });
       },
       /**
@@ -247,8 +252,13 @@ export default (serviceName) =>
           if (recordItem) {
             recordItem[dataIndex] = value?.valueOf();
 
+            this.receiveDataMutation(dataSource);
+
             this.$nextTick(() => resolve());
-          } else resolve();
+            return;
+          }
+
+          resolve();
         });
       },
       /**

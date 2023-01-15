@@ -7,7 +7,7 @@ import EditableTableCell from '../EditableCell/EditableTableCell';
 
 /**
  * TableCell
- * @description 表格单元格组件
+ * @description 表格单元格(td)组件
  */
 export default {
   props: {
@@ -30,7 +30,6 @@ export default {
   // 混入EditableCell, EditableTableCell, RowDragSortCell
   mixins: [EditableCell, EditableTableCell, RowDragSortCell],
   render(h) {
-    // console.log('cell', this.$parent.record);
     // 所有的reducer都去装饰tr，最终返回装饰后的tr
     const tdVNode = <td>{this.$slots.default}</td>;
 

@@ -22,7 +22,7 @@ module.exports = {
 
     webpackConfig.entry = {
       // 判断入口文件是.js,.jsx,.tsx
-      index: path.join(__dirname, 'src', 'demo', 'index-edittable.tsx'),
+      index: path.join(__dirname, 'src', 'demo', 'index-rowdragsorttable.tsx'),
     };
   },
 };

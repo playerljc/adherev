@@ -197,13 +197,21 @@ export default (serviceName) =>
           // 改变的数据
           const changeDataSource = this.$valuesToArray(changeData);
 
-          this[`${this.getServiceName()}${this.getFetchListPropNameToFirstUpper()}`][
-            this.getDataKey()
-          ] = dataSource.map((srcRecord, _index) => ({
-            // 原始数据和改变的数据做merge
-            ...srcRecord,
-            ...changeDataSource[_index],
-          }));
+          // this[`${this.getServiceName()}${this.getFetchListPropNameToFirstUpper()}`][
+          //   this.getDataKey()
+          // ] = dataSource.map((srcRecord, _index) => ({
+          //   // 原始数据和改变的数据做merge
+          //   ...srcRecord,
+          //   ...changeDataSource[_index],
+          // }));
+
+          this.receiveDataMutation(
+            dataSource.map((srcRecord, _index) => ({
+              // 原始数据和改变的数据做merge
+              ...srcRecord,
+              ...changeDataSource[_index],
+            })),
+          );
 
           this.$nextTick(() => resolve());
         });

@@ -400,12 +400,15 @@ export interface RowEditableConfig {
 /**
  * RowDragSortConfig
  */
-export interface RowDragSortConfig {
-  type?: string;
-  dropOverDownwardClassName?: string;
-  dropOverUpwardClasName?: string;
-  dropConfig?: { [prop: string]: any };
-  dragConfig?: { [prop: string]: any };
+export interface RowDragSortRowConfig {
+  [prop: string]: any;
+}
+
+/**
+ * RowDragSortBodyConfig
+ */
+export interface RowDragSortBodyConfig {
+  [prop: string]: any;
 }
 
 /**
@@ -413,7 +416,20 @@ export interface RowDragSortConfig {
  */
 export interface RowConfig {
   $editable?: RowEditableConfig;
-  $rowDragSort?: RowDragSortConfig;
+  $rowDragSort?: RowDragSortRowConfig;
+}
+
+export interface BodyConfig {
+  $bodyDragSort?: { [prop: string]: any };
+}
+
+export interface BodyConfigReducer {
+  (params: {
+    rowIndex: number;
+    record: { [prop: string]: any };
+    columns: ColumnTypeExt[];
+    bodyConfig: BodyConfig;
+  }): RowConfig;
 }
 
 export interface RowConfigReducer {
@@ -432,6 +448,10 @@ export interface CellConfigReducer {
     record: { [prop: string]: any };
     columns: ColumnTypeExt[];
   }): ColumnTypeExt;
+}
+
+export interface TableBodyComponentProps {
+  bodyConfig: BodyConfig;
 }
 
 export interface TableRowComponentProps {

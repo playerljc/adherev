@@ -35,11 +35,9 @@ export default (serviceName) =>
         selectedRows: [],
       };
     },
-    computed: serviceName
-      ? {
-          ...mapState([serviceName]),
-        }
-      : {},
+    computed: {
+      ...(serviceName ? mapState([serviceName]) : {}),
+    },
     methods: Object.assign(
       {
         /**
@@ -479,11 +477,9 @@ export default (serviceName) =>
           return null;
         },
       },
-      serviceName
-        ? {
-            ...mapActions([serviceName]),
-            ...mapMutations([serviceName]),
-          }
-        : {},
+      {
+        ...(serviceName ? (mapActions([serviceName]) || {}): {}),
+        ...(serviceName ? (mapMutations([serviceName]) || {}) : {}),
+      },
     ),
   });

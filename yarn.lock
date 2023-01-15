@@ -1440,10 +1440,10 @@
     xml-loader "^1.2.1"
     yaml-loader "^0.5.0"
 
-"@ctsj/vuexgenerator@^1.0.0":
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/@ctsj/vuexgenerator/-/vuexgenerator-1.0.0.tgz#082ca2cd7e60dcff0ef5c5d74d86df2fbf2c0d7d"
-  integrity sha512-ZPna2rvidzONHxUK0toIxNs0ANY6Pfgs6/nun7hlhAD3qk1jJqDVeB+1P6igA5pRGaMnpx0rpXhV48ANXnoHMg==
+"@ctsj/vuexgenerator@^1.0.1":
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/@ctsj/vuexgenerator/-/vuexgenerator-1.0.1.tgz#2026a22b1dcfd4a256b79d5dc142390401ff1f28"
+  integrity sha512-ZPE/iEHeDwZwGyl+GkkzcJMVn2cFHMlGZ3HempyLcp3qY6t1l7DPtioKU4ioXcX52mdZZhVQlMAe4Puryzw2nA==
   dependencies:
     vuex "^3.6.2"
 
@@ -5345,6 +5345,11 @@ array-last@^1.1.1:
   integrity sha512-eOCut5rXlI6aCOS7Z7kCplKRKyiFQ6dHFBem4PwlwKeNFk2/XxTrhRh5T9PyaEWGy/NHTZWbY+nsZlNFJu9rYg==
   dependencies:
     is-number "^4.0.0"
+
+array-move@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/array-move/-/array-move-4.0.0.tgz#2c3730f056cc926f62a59769a5a8cda2fb6d8c55"
+  integrity sha512-+RY54S8OuVvg94THpneQvFRmqWdAHeqtMzgMW6JNurHxe8rsS07cHQdfGkXnTUXiBcyZ0j3SiDIxxj0RPiqCkQ==
 
 array-slice@^1.0.0:
   version "1.1.0"

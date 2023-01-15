@@ -202,6 +202,7 @@ export default {
     const $scopedSlots = context?.$scopedSlots;
 
     const form = this.getFormIns();
+
     const { getFieldDecorator } = form;
 
     const renderArgs = {
@@ -227,17 +228,19 @@ export default {
       rowIndex,
     };
 
+    const initialValue = context?.valueToFormItemValue({
+      type,
+      record,
+      dataIndex,
+    });
+
     return (
       <div class={`${selectorPrefix}-editablecell-edit`}>
         <div class={`${selectorPrefix}-editablecell-edit-inner`}>
           <Form.Item>
-            {getFieldDecorator(dataIndex as string, {
+            {getFieldDecorator(dataIndex, {
               rules,
-              initialValue: context?.valueToFormItemValue({
-                type,
-                record,
-                dataIndex,
-              }),
+              initialValue,
               ...(formItemProps || {}),
             })(
               type !== 'custom'

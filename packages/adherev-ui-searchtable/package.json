@@ -45,7 +45,7 @@
     "@baifendian/adherev-util-mixins": "^1.0.12-fix.4",
     "@baifendian/adherev-util-resource": "^1.0.12-fix.4",
     "@baifendian/adherev-util-validator": "^1.0.12-fix.4",
-    "@ctsj/vuexgenerator": "^1.0.0",
+    "@ctsj/vuexgenerator": "^1.0.1",
     "ant-design-vue": "^1.7.5",
     "classnames": "^2.2.6",
     "lodash.clonedeep": "^4.5.0",
@@ -57,14 +57,15 @@
     "vue": "^2.7.14",
     "vue-draggable-resizable": "^2.3.0",
     "vue-router": "^3.5.1",
-    "vuedraggable": "^2.24.3"
+    "vuedraggable": "^2.24.3",
+    "array-move": "^4.0.0"
   },
   "devDependencies": {
     "@babel/runtime": "^7.7.4",
     "@baifendian/adherev-util-communication-ajax": "^1.0.12-fix.4",
     "@baifendian/adherev-util-resource": "^1.0.12-fix.4",
     "@ctsj/buildv": "^2.0.10",
-    "@ctsj/vuexgenerator": "^1.0.0",
+    "@ctsj/vuexgenerator": "^1.0.1",
     "npm-run-all": "^4.1.5",
     "typescript": "^4.6.2",
     "vuex": "^3.6.2"

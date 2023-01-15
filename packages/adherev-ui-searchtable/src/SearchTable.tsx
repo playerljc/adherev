@@ -15,10 +15,12 @@ import ColumnResizable, {
   SearchTableResizableTitle,
 } from './Extension/ColumnResizable';
 import ColumnSetting from './Extension/ColumnSetting';
+import TableBody from './Extension/TableComponents/TableBody';
 import TableCell from './Extension/TableComponents/TableCell';
 import TableRow from './Extension/TableComponents/TableRow';
 import TableDensitySetting from './Extension/TableDensitySetting';
 import {
+  BodyConfigReducer,
   CellConfigReducer,
   ColumnTypeExt,
   RowConfig,
@@ -146,8 +148,10 @@ const SearchTable: any = extend({
     tableDensity: TableDensity;
     $columnResizable: ColumnResizable;
     $columnObserver: any;
+    $bodyConfigReducers: BodyConfigReducer[];
     $rowConfigReducers: RowConfigReducer[];
     $cellConfigReducers: CellConfigReducer[];
+    $tableBodyComponentReducers: string[];
     $tableRowComponentReducers: string[];
     $tableCellComponentReducers: string[];
   } {
@@ -165,12 +169,18 @@ const SearchTable: any = extend({
       $columnResizable: new ColumnResizable(),
       // 列属性监控对象
       $columnObserver: null,
+      // bodyConfigReducers
+      // 给TableBody传递props的reducer
+      $bodyConfigReducers: [],
       // rowConfigReducers
       // 给TableRow传递props的reducer
       $rowConfigReducers: [],
       // cellConfigReducers
       // 给TableCell传递props的reducer
       $cellConfigReducers: [],
+      // tableBodyComponentReducers
+      // 处理TableBody的reducer
+      $tableBodyComponentReducers: [],
       // tableRowComponentReducers
       // 处理TableRow的reducer
       $tableRowComponentReducers: [],
@@ -189,6 +199,7 @@ const SearchTable: any = extend({
           cell: SearchTableResizableTitle(columns),
         },
         body: {
+          wrapper: TableBody,
           row: TableRow,
           cell: TableCell,
         },
@@ -202,6 +213,7 @@ const SearchTable: any = extend({
   },
   created() {
     const columns = this.getColumns();
+    this.$data.$tableBodyComponentReducers = this.onTableBodyComponentReducers?.(columns) || [];
     this.$data.$tableRowComponentReducers = this.onTableRowComponentReducers?.(columns) || [];
     this.$data.$tableCellComponentReducers = this.onTableCellComponentReducers?.(columns) || [];
 
@@ -286,7 +298,6 @@ const SearchTable: any = extend({
     },
     /**
      * columnSettingEffect
-     * @param props
      * @protected
      */
     columnSettingEffect() {
@@ -431,6 +442,29 @@ const SearchTable: any = extend({
         },
         { value: {} },
       ).value;
+    },
+
+    /**
+     * onBodyConfigReducers
+     * @description 所有body的处理
+     */
+    onBodyConfigReducers(): RowConfig {
+      return this.$data.$bodyConfigReducers.reduce(
+        (params, reducer) => {
+          params.value = reducer.call(this, params.value);
+          return params;
+        },
+        { value: {} },
+      ).value;
+    },
+
+    /**
+     * onBody
+     */
+    onBody() {
+      return {
+        bodyConfig: this.onBodyConfigReducers(),
+      };
     },
 
     /**
@@ -665,6 +699,13 @@ const SearchTable: any = extend({
     },
 
     /**
+     * getTableBodyComponentReducers
+     */
+    getTableBodyComponentReducers() {
+      return this.$data.$tableBodyComponentReducers;
+    },
+
+    /**
      * getTableRowComponentReducers
      */
     getTableRowComponentReducers() {
@@ -713,6 +754,23 @@ const SearchTable: any = extend({
       );
     },
 
+    /**
+     * receiveDataMutation
+     * @description 使用新的dataSource更新数据流
+     * @param dataSource
+     */
+    receiveDataMutation(dataSource) {
+      const serviceName = this.getServiceName();
+      const fetchListPropName = this.getFetchListPropName();
+      const data = this[`${serviceName}${this.getFetchListPropNameToFirstUpper()}`];
+
+      this[`${serviceName}ReceiveMutation`]({
+        [fetchListPropName]: {
+          ...data,
+          [this.getDataKey()]: dataSource,
+        },
+      });
+    },
     /**
      * renderTableNumberColumn
      * @description - 渲染序号列

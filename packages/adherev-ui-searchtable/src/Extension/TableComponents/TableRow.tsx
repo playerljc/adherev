@@ -16,7 +16,7 @@ import EditableTableRow from '../EditableCell/EditableTableRow';
 
 /**
  * TableRow
- * @description 表格行组件
+ * @description 表格行(tr)组件
  */
 export default {
   inject: ['getContext'],

@@ -26,6 +26,8 @@ import Intl from '@baifendian/adherev-util-intl';
 import Resource from '@baifendian/adherev-util-resource';
 import Validator from '@baifendian/adherev-util-validator';
 
+import { ProSearchRowDragSortTable } from './DragSort/RowDragSort/ProSearchRowDragSortTable';
+import SearchRowDragSortTable from './DragSort/RowDragSort/SearchRowDragSortTable';
 import { ProEditableCellSearchTable } from './Editable/ProEditableCellSearchTable';
 import { ProEditableRowSearchTable } from './Editable/ProEditableRowSearchTable';
 import { ProEditableSearchTable } from './Editable/ProEditableSearchTable';
@@ -126,9 +128,12 @@ SearchTable.ProTableFactory = ProTableFactory;
 SearchTable.ProEditableCellSearchTable = ProEditableCellSearchTable;
 SearchTable.ProEditableRowSearchTable = ProEditableRowSearchTable;
 SearchTable.ProEditableSearchTable = ProEditableSearchTable;
+SearchTable.ProSearchRowDragSortTable = ProSearchRowDragSortTable;
 SearchTable.SearchEditableRowTable = SearchEditableRowTable;
 SearchTable.SearchEditableCellTable = SearchEditableCellTable;
 SearchTable.SearchEditableTable = SearchEditableTable;
+SearchTable.SearchRowDragSortTable = SearchRowDragSortTable;
+
 SearchTable.NUMBER_GENERATOR_RULE_ALONE = NUMBER_GENERATOR_RULE_ALONE;
 SearchTable.NUMBER_GENERATOR_RULE_CONTINUITY = NUMBER_GENERATOR_RULE_CONTINUITY;
 SearchTable.ROW_SELECTION_NORMAL_MODE = ROW_SELECTION_NORMAL_MODE;

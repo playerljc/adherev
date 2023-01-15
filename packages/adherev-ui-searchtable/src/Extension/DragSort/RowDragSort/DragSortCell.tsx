@@ -5,10 +5,10 @@ export default {
     /**
      * useRowDragSortCell
      * @param h
-     * @param trVNode
+     * @param tdVNode
      */
-    useRowDragSortCell(h: CreateElement, trVNode: VNode): VNode | null {
-      return null;
+    useRowDragSortCell(h: CreateElement, tdVNode: VNode): VNode | null {
+      return tdVNode;
     },
   },
 };

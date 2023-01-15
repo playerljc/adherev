@@ -117,6 +117,8 @@ export default (serviceName) =>
             }
           });
 
+          this.receiveDataMutation(dataSource);
+
           this.$nextTick(() => resolve());
         });
       },
