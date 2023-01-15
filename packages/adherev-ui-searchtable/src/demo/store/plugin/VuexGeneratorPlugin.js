@@ -1,7 +1,5 @@
 import VuexGenerator from '@ctsj/vuexgenerator';
 
-console.log('VuexGeneratorPlugin.js');
-
 /**
  * serviceRegister
  */

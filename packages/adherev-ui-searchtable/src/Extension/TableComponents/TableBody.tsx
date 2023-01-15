@@ -16,7 +16,7 @@ export default {
   },
   render(h) {
     // 所有的reducer都去装饰tbody，最终返回装饰后的tbody
-    const tbodyVNode = <tr>{this.$slots.default}</tr>;
+    const tbodyVNode = <tbody>{this.$slots.default}</tbody>;
 
     const context = this.getContext?.()?.context;
 

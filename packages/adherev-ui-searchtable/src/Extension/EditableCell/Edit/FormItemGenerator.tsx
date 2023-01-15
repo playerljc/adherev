@@ -5,8 +5,6 @@ import AntdvFormItem from '@baifendian/adherev-ui-antdvformitem';
 
 import { FormItemGeneratorConfig } from '../../../types';
 
-console.log(AntdvFormItem.AntdvFormItemNormalize);
-
 const {
   FormItemGeneratorToDict,
   AntdvFormItemNormalize: {

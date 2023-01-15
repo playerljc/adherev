@@ -112,7 +112,9 @@ export default (serviceName) =>
        * @description
        */
       onDragSortBody(): RowDragSortBodyConfig {
-        return {};
+        return {
+          canDrag: () => true,
+        };
       },
       /**
        * onDragSortRow
@@ -123,7 +125,9 @@ export default (serviceName) =>
         record: { [prop: string]: any };
         columns: ColumnTypeExt[];
       }): RowDragSortRowConfig {
-        return {};
+        return {
+          canDrag: () => true,
+        };
       },
       /**
        * onDragSortCell

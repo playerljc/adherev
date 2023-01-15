@@ -25,7 +25,7 @@ export default extend({
       return 'total';
     },
     getColumns() {
-      return this.$getColumnsProSearchRowDragSortTable([
+      return this.$getColumnsProRowDragSortSearchTable([
         {
           title: '姓名',
           dataIndex: 'name',

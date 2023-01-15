@@ -6,11 +6,11 @@ const {
   _util: { extend },
 } = Util;
 
-const { ProEditableRowSearchTable, EditableRowControl } = SearchTable;
+const { ProDragSortEditableRowSearchTable, EditableRowControl } = SearchTable;
 
 export default extend({
-  className: 'ProEditableRowTable',
-  mixins: [ProEditableRowSearchTable('user')],
+  className: 'ProRowDragSortEditableRowTable',
+  mixins: [ProDragSortEditableRowSearchTable('user')],
   methods: {
     getFetchListPropName() {
       return 'fetchList';
@@ -25,7 +25,7 @@ export default extend({
       return 'total';
     },
     getScopedSlots(h) {
-      const superScopedSlots = this.$getScopedSlotsProEditableRowSearchTable(h);
+      const superScopedSlots = this.$getScopedSlotsProDragSortEditableRowSearchTable(h);
 
       return {
         ...superScopedSlots,
@@ -39,7 +39,7 @@ export default extend({
       };
     },
     getColumns() {
-      return this.$getColumnsProEditableRowSearchTable([
+      return this.$getColumnsProDragSortEditableRowSearchTable([
         {
           title: '姓名',
           dataIndex: 'name',
@@ -131,16 +131,6 @@ export default extend({
             type: 'input',
             visible: true,
           },
-          $editable: {
-            editable: true,
-            type: 'input',
-            rules: [
-              {
-                required: true,
-                message: '请输入所在部门',
-              },
-            ],
-          },
         },
         {
           title: '身高',
@@ -149,6 +139,7 @@ export default extend({
           align: 'center',
           sorter: true,
           sortOrder: this.sortOrder('height'),
+          width: 300,
           $search: {
             type: 'inputNumberDecimal2',
             visible: true,
@@ -171,6 +162,7 @@ export default extend({
           align: 'center',
           sorter: true,
           sortOrder: this.sortOrder('width'),
+          width: 300,
           $search: {
             type: 'inputNumberDecimal2',
             visible: true,

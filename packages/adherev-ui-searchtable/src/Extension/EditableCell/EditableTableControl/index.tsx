@@ -30,16 +30,16 @@ export default {
   inject: ['getFormIns', 'getContext'],
   methods: {
     renderDefaultSave(h) {
-      return <a>{Intl.tv('保存')}</a>;
-      // return <a>保存</a>;
+      // return <a>{Intl.tv('保存')}</a>;
+      return <a>保存</a>;
     },
     renderDefaultCancel(h) {
-      return <a>{Intl.tv('取消')}</a>;
-      // return <a>取消</a>;
+      // return <a>{Intl.tv('取消')}</a>;
+      return <a>取消</a>;
     },
     renderDefaultEditorTable(h) {
-      return <a>{Intl.tv('编辑表格')}</a>;
-      // return <a>编辑表格</a>;
+      // return <a>{Intl.tv('编辑表格')}</a>;
+      return <a>编辑表格</a>;
     },
     $onEditor() {
       if (this.onEditor) {

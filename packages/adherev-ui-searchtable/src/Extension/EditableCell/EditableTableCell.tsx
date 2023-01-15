@@ -1,5 +1,4 @@
 // useEditableTableCell
-
 // import { CreateElement, VNode } from 'vue';
 //
 // /**
@@ -13,7 +12,6 @@
 //     },
 //   },
 // };
-
 import { CreateElement, VNode } from 'vue';
 
 import Util from '@baifendian/adherev-util';
@@ -60,25 +58,25 @@ export default {
     const { $editableCell } = this.$data;
 
     $editableCell.watchHandler.push(
-        this.$watch(
-            function () {
-              return this.getContext?.()?.context?.getData();
-            },
-            function () {
-              this.editableCell.status = this.editableCellEditableConfig.defaultStatus;
-            },
-        ),
+      this.$watch(
+        function () {
+          return this.getContext?.()?.context?.getData();
+        },
+        function () {
+          this.editableCell.status = this.editableCellEditableConfig.defaultStatus;
+        },
+      ),
     );
 
     $editableCell.watchHandler.push(
-        this.$watch(
-            function () {
-              return this.column?.$editable?.defaultStatus;
-            },
-            function () {
-              this.editableCell.status = this.editableCellEditableConfig.defaultStatus;
-            },
-        ),
+      this.$watch(
+        function () {
+          return this.column?.$editable?.defaultStatus;
+        },
+        function () {
+          this.editableCell.status = this.editableCellEditableConfig.defaultStatus;
+        },
+      ),
     );
   },
   beforeDestroy() {
@@ -109,11 +107,11 @@ export default {
           children: [
             // @ts-ignore
             <EditableTableCellEdit
-                {...{
-                  props: this.$props,
-                }}
-                editableConfig={this.editableCellEditableConfig}
-                onTriggerChange={() => (this.editableCell.status = 'view')}
+              {...{
+                props: this.$props,
+              }}
+              editableConfig={this.editableCellEditableConfig}
+              onTriggerChange={() => (this.editableCell.status = 'view')}
             >
               {tdVNode.children}
             </EditableTableCellEdit>,
@@ -126,13 +124,13 @@ export default {
           children: [
             // @ts-ignore
             <EditableCellView
-                {...{
-                  props: this.$props,
-                }}
-                editableConfig={this.editableCellEditableConfig}
-                onTriggerChange={() => {
-                  this.editableCell.status = 'edit';
-                }}
+              {...{
+                props: this.$props,
+              }}
+              editableConfig={this.editableCellEditableConfig}
+              onTriggerChange={() => {
+                this.editableCell.status = 'edit';
+              }}
             >
               {tdVNode.children}
             </EditableCellView>,
@@ -145,14 +143,13 @@ export default {
           children: [
             // @ts-ignore
             <EditableTableCellEdit
-                {...{
-                  props: this.$props,
-                }}
-                editableConfig={this.editableCellEditableConfig}
-                onTriggerChange={() => {
-                  console.log('取消编辑');
-                  this.editableCell.status = 'view';
-                }}
+              {...{
+                props: this.$props,
+              }}
+              editableConfig={this.editableCellEditableConfig}
+              onTriggerChange={() => {
+                this.editableCell.status = 'view';
+              }}
             >
               {tdVNode.children}
             </EditableTableCellEdit>,
@@ -164,4 +161,3 @@ export default {
     },
   },
 };
-

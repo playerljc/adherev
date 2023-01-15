@@ -14,7 +14,6 @@ const {
  * @description 行可编辑的SearchTable
  * @param serviceName
  */
-// SearchTableImpl
 export default (serviceName) =>
   extend({
     className: 'SearchEditableRowTable',
