@@ -115,6 +115,10 @@ const TableGridLayout = () =>
   lazy(import(/* webpackChunkName: "tablegridlayout" */ '@/components/ui/tablegridlayout'));
 const WritingBoard = () =>
   lazy(import(/* webpackChunkName: "writingboard" */ '@/components/ui/writingboard'));
+const AntdvFormItem = () =>
+  lazy(import(/* webpackChunkName: "antdvformitem" */ '@/components/ui/antdvformitem'));
+const VueQuillSandBox = () =>
+  lazy(import(/* webpackChunkName: "vuequillsandbox" */ '@/components/ui/vuequillsandbox'));
 
 const Demo = () => lazy(import(/* webpackChunkName: "demo" */ '@/components/ui/demo'));
 
@@ -426,6 +430,16 @@ export default () => [
                 path: '/adherev/component/ui/writingboard',
                 name: 'WritingBoard',
                 component: WritingBoard,
+              },
+              {
+                path: '/adherev/component/ui/antdvformitem',
+                name: 'AntdvFormItem',
+                component: AntdvFormItem,
+              },
+              {
+                path: '/adherev/component/ui/vuequillsandbox',
+                name: 'VueQuillSandBox',
+                component: VueQuillSandBox,
               },
             ],
           },

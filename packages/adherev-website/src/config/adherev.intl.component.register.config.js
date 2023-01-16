@@ -3,6 +3,7 @@ import Vue from 'vue';
 import {
   AdapterScreen,
   Ajax,
+  AntdvFormItem,
   BMap,
   BackTopAnimation,
   Browsersniff,
@@ -55,6 +56,7 @@ import {
   Teleport,
   Util,
   Validator,
+  VueQuillSandBox,
   WarnPrompt,
   WatchMemoized,
   WritingBoard,
@@ -62,6 +64,8 @@ import {
 
 const register = [
   () => {
+    AntdvFormItem.use(Vue);
+    VueQuillSandBox.use(Vue);
     ConditionalRender.use(Vue);
     DelConfirm.use(Vue);
     ImportantConfirm.use(Vue);
