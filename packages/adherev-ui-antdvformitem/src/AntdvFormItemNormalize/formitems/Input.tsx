@@ -14,7 +14,7 @@ const Wrap = extend(Input, {
 
 Wrap.defaultProps = {
   allowClear: true,
-  maxLength: 2,
+  maxLength: 1000,
 };
 
 export default Wrap;

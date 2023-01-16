@@ -29,7 +29,6 @@ export default {
   },
   methods: {
     onIntlInit() {
-      debugger;
       import('@/config/adherev.intl.component.register.config.js').then(() => {
         this.hasIntlInit = true;
       });

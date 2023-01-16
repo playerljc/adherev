@@ -4,9 +4,17 @@ import Vue from 'vue';
 import 'vue-highlight.js/lib/allLanguages';
 import VueI18n from 'vue-i18n';
 
-import { ContextMenu, MessageDialog, Notification, Popup, Util } from '@baifendian/adherev';
+import {
+  AntdvFormItem,
+  ContextMenu,
+  MessageDialog,
+  Notification,
+  Popup,
+  Util,
+} from '@baifendian/adherev';
 
 import '@/config/component.register.config.js';
+import DictConfig from '@/config/dict/dict.config';
 
 import App from './app.vue';
 import Router from './lib/Router';
@@ -19,6 +27,12 @@ import 'nprogress/nprogress.css';
 import '@baifendian/adherev/lib/css.less';
 
 import './index.less';
+
+// 配置字典
+DictConfig();
+
+// 初始化字典组件
+AntdvFormItem.FormItemGeneratorToDict.init(Vue);
 
 // 获取当前语言
 const lang = Util.getLang();

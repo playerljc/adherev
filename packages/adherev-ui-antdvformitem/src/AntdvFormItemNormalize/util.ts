@@ -20,17 +20,27 @@ function getProps(attrs) {
  * @param defaultProps
  */
 export function assignAttrs(Component, context, defaultProps) {
-  context.data.attrs = {
+  context.data.props = {
     ...defaultProps,
-    ...getProps(context.data.attrs),
+    ...getProps(context.data.props),
   };
 
   if (
-    !('getPopupContainer' in context.data.attrs) ||
-    context.data.attrs.getPopupContainer === undefined
+    !('getPopupContainer' in context.data.props) ||
+    context.data.props.getPopupContainer === undefined
   ) {
-    context.data.attrs.getPopupContainer = (el) =>
-      context?.injections?.getEl?.() || el?.parentElement || document.body;
+    context.data.props.getPopupContainer = (el) => {
+      return context?.injections?.getEl?.() || el?.parentElement || document.body;
+    };
+  }
+
+  if (
+    !('getCalendarContainer' in context.data.props) ||
+    context.data.props.getCalendarContainer === undefined
+  ) {
+    context.data.props.getCalendarContainer = (el) => {
+      return context?.injections?.getEl?.() || el?.parentElement || document.body;
+    };
   }
 }
 
