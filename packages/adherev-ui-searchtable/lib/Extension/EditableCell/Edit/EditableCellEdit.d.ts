@@ -42,6 +42,11 @@ declare const _default: {
          */
         renderDefaultSaveTrigger(): JSX.Element;
         /**
+         * renderDefaultCancelTrigger
+         * @description 渲染缺省的取消句柄
+         */
+        renderDefaultCancelTrigger(): JSX.Element;
+        /**
          * onSaveTrigger
          * @description 点击了保存句柄
          */
@@ -51,11 +56,6 @@ declare const _default: {
          * @description 点击了cancel句柄
          */
         onCancelTrigger(): void;
-        /**
-         * renderDefaultCancelTrigger
-         * @description 渲染缺省的取消句柄
-         */
-        renderDefaultCancelTrigger(): JSX.Element;
         /**
          * getValue
          */

@@ -37,16 +37,16 @@ export default {
   inject: ['getFormIns', 'getContext'],
   methods: {
     renderDefaultEditorRow(h) {
-      // return <a>{Intl.tv('编辑行')}</a>;
-      return <a>编辑行</a>;
+      return <a>{Intl.tv('编辑行')}</a>;
+      // return <a>编辑行</a>;
     },
     renderDefaultCancel(h) {
-      // return <a>{Intl.tv('取消')}</a>;
-      return <a>取消</a>;
+      return <a>{Intl.tv('取消')}</a>;
+      // return <a>取消</a>;
     },
     renderDefaultSave(h) {
-      // return <a>{Intl.tv('保存')}</a>;
-      return <a>保存</a>;
+      return <a>{Intl.tv('保存')}</a>;
+      // return <a>保存</a>;
     },
     validateFieldsSuccess(values) {
       if (this.onSave) {

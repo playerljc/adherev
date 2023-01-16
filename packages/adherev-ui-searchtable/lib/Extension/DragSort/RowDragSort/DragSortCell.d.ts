@@ -4,9 +4,9 @@ declare const _default: {
         /**
          * useRowDragSortCell
          * @param h
-         * @param trVNode
+         * @param tdVNode
          */
-        useRowDragSortCell(h: CreateElement, trVNode: VNode): VNode | null;
+        useRowDragSortCell(h: CreateElement, tdVNode: VNode): VNode | null;
     };
 };
 export default _default;

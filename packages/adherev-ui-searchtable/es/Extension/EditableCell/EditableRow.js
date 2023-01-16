@@ -1,2 +1,2 @@
-import"core-js/modules/es.object.to-string.js";import{__spreadArray}from"tslib";import Util from"@baifendian/adherev-util";var cloneElement=Util._util.cloneElement,EditableRow={methods:{useEditableRow:function(e,l){var t=l;return t=(this.props.columns||[]).some(function(e){return!(null==(e=null==e?void 0:e.$editable)||!e.editable)})?cloneElement(l,{children:__spreadArray([],(null==l?void 0:l.children)||[],!0)}):t}}};export default EditableRow;
+var EditableRow={methods:{useEditableRow:function(e,t){return t}}};export default EditableRow;
 //# sourceMappingURL=EditableRow.js.map

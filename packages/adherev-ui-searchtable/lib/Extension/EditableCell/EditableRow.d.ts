@@ -1,3 +1,4 @@
+import { CreateElement, VNode } from 'vue';
 /**
  * EditableRow
  * @description 行编辑
@@ -5,7 +6,6 @@
  * @param value
  * @constructor
  */
-import { CreateElement, VNode } from 'vue';
 declare const EditableRow: {
     methods: {
         /**

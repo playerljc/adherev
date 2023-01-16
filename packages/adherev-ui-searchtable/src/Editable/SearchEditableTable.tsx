@@ -23,6 +23,10 @@ export default (serviceName) =>
       };
     },
     methods: {
+      /**
+       * onTableRowComponentReducers
+       * @param columns
+       */
       onTableRowComponentReducers(columns: ColumnTypeExt[]): string[] {
         const existsEditor = columns.some(
           (column) => '$editable' in column && column.$editable?.editable,
@@ -36,7 +40,10 @@ export default (serviceName) =>
 
         return this.$data.$tableRowComponentReducers;
       },
-
+      /**
+       * onTableRowComponentReducers
+       * @param columns
+       */
       onTableCellComponentReducers(columns: ColumnTypeExt[]): string[] {
         const existsEditor = columns.some(
           (column) => '$editable' in column && column.$editable?.editable,
@@ -50,7 +57,6 @@ export default (serviceName) =>
 
         return this.$data.$tableCellComponentReducers;
       },
-
       /**
        * rowEditableReducer
        * @description 可编辑row的处理
@@ -74,7 +80,6 @@ export default (serviceName) =>
 
         return rowConfig;
       },
-
       /**
        * onEditorRow
        * @param params
@@ -88,7 +93,6 @@ export default (serviceName) =>
           editable: true,
         };
       },
-
       /**
        * onEditorCell
        * @param record

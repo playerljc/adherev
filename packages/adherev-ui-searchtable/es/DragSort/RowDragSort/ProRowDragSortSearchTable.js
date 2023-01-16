@@ -1,0 +1,2 @@
+import MemoManager from"../../Extension/SearchAndPaginParams/memo";import ProTableFactory from"../../ProTableFactory";import SearchRowDragSortTable from"./SearchRowDragSortTable";var TableImplementSearchAndvPaginParamsMemo=MemoManager.create(),ProRowDragSortSearchTable=function(a){return ProTableFactory({className:"ProRowDragSortSearchTable",superClass:SearchRowDragSortTable(a)},TableImplementSearchAndvPaginParamsMemo)};export{TableImplementSearchAndvPaginParamsMemo,ProRowDragSortSearchTable};
+//# sourceMappingURL=ProRowDragSortSearchTable.js.map

@@ -30,8 +30,10 @@ import { ProRowDragSortSearchTable } from './DragSort/RowDragSort/ProRowDragSort
 import SearchRowDragSortTable from './DragSort/RowDragSort/SearchRowDragSortTable';
 import { ProDragSortEditableCellSearchTable } from './DragSortEditable/ProDragSortEditableCellSearchTable';
 import { ProDragSortEditableRowSearchTable } from './DragSortEditable/ProDragSortEditableRowSearchTable';
+import { ProDragSortEditableSearchTable } from './DragSortEditable/ProDragSortEditableSearchTable';
 import SearchDragSortEditableCellTable from './DragSortEditable/SearchDragSortEditableCellTable';
 import SearchDragSortEditableRowTable from './DragSortEditable/SearchDragSortEditableRowTable';
+import SearchDragSortEditableTable from './DragSortEditable/SearchDragSortEditableTable';
 import { ProEditableCellSearchTable } from './Editable/ProEditableCellSearchTable';
 import { ProEditableRowSearchTable } from './Editable/ProEditableRowSearchTable';
 import { ProEditableSearchTable } from './Editable/ProEditableSearchTable';
@@ -135,12 +137,14 @@ SearchTable.ProEditableSearchTable = ProEditableSearchTable;
 SearchTable.ProRowDragSortSearchTable = ProRowDragSortSearchTable;
 SearchTable.ProDragSortEditableCellSearchTable = ProDragSortEditableCellSearchTable;
 SearchTable.ProDragSortEditableRowSearchTable = ProDragSortEditableRowSearchTable;
+SearchTable.ProDragSortEditableSearchTable = ProDragSortEditableSearchTable;
 SearchTable.SearchEditableCellTable = SearchEditableCellTable;
 SearchTable.SearchEditableRowTable = SearchEditableRowTable;
 SearchTable.SearchEditableTable = SearchEditableTable;
 SearchTable.SearchRowDragSortTable = SearchRowDragSortTable;
 SearchTable.SearchDragSortEditableCellTable = SearchDragSortEditableCellTable;
 SearchTable.SearchDragSortEditableRowTable = SearchDragSortEditableRowTable;
+SearchTable.SearchDragSortEditableTable = SearchDragSortEditableTable;
 
 SearchTable.NUMBER_GENERATOR_RULE_ALONE = NUMBER_GENERATOR_RULE_ALONE;
 SearchTable.NUMBER_GENERATOR_RULE_CONTINUITY = NUMBER_GENERATOR_RULE_CONTINUITY;

@@ -87,7 +87,6 @@ export default {
 
       // 单元格不是可编辑的单元格
       if (!editable) {
-        this.setActiveValue('');
         res = tdVNode;
       }
       // 始终保持编辑状态

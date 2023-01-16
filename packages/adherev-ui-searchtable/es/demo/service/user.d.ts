@@ -1,5 +1,8 @@
 export namespace fetchList {
-    function call(): Promise<unknown>;
+    function call({ page, limit }: {
+        page: any;
+        limit: any;
+    }): Promise<unknown>;
     function defaultResult(): {
         total: number;
         records: never[];

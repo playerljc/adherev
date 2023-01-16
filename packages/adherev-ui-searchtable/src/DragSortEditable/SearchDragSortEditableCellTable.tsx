@@ -1,6 +1,6 @@
 import Util from '@baifendian/adherev-util';
 
-import { ColumnTypeExt, RowDragSortBodyConfig, RowDragSortRowConfig } from '@/types';
+import { ColumnTypeExt, RowDragSortBodyConfig, RowDragSortRowConfig } from '../types';
 
 import SearchRowDragSortTable from '../DragSort/RowDragSort/SearchRowDragSortTable';
 import SearchEditableCellTable from '../Editable/SearchEditableCellTable';

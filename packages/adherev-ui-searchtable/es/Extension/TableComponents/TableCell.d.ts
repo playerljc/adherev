@@ -2,7 +2,7 @@ import { PropType } from 'vue';
 import { ColumnTypeExt } from '../../types';
 /**
  * TableCell
- * @description 表格单元格组件
+ * @description 表格单元格(td)组件
  */
 declare const _default: {
     props: {
@@ -23,6 +23,7 @@ declare const _default: {
     };
     inject: string[];
     mixins: ({
+        inject: string[];
         data(): {
             $editableCell: {
                 defaultConfig: {
@@ -51,12 +52,36 @@ declare const _default: {
             useEditableCell(h: import("vue").CreateElement, tdVNode: import("vue").VNode): import("vue").VNode | null;
         };
     } | {
+        data(): {
+            $editableCell: {
+                defaultConfig: {
+                    editable: boolean;
+                    defaultStatus: string;
+                    type: string;
+                    props: {};
+                    formItemProps: {};
+                    useTrigger: boolean;
+                    require: boolean;
+                    dataIndex: any;
+                    useKeepEdit: boolean;
+                };
+                watchHandler: never[];
+            };
+            editableCell: {
+                status: any;
+            };
+        };
+        computed: {
+            editableCellEditableConfig(): any;
+        };
+        created(): void;
+        beforeDestroy(): void;
         methods: {
-            useEditableTableCell(h: import("vue").CreateElement, value: import("vue").VNode): import("vue").VNode | null;
+            useEditableTableCell(h: import("vue").CreateElement, tdVNode: import("vue").VNode): import("vue").VNode | null;
         };
     } | {
         methods: {
-            useRowDragSortCell(h: import("vue").CreateElement, trVNode: import("vue").VNode): import("vue").VNode | null;
+            useRowDragSortCell(h: import("vue").CreateElement, tdVNode: import("vue").VNode): import("vue").VNode | null;
         };
     })[];
     render(h: any): any;

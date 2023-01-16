@@ -4,6 +4,7 @@ import { CreateElement, VNode } from 'vue';
  * @description 可编辑的单元格
  */
 declare const _default: {
+    inject: string[];
     data(): {
         $editableCell: {
             defaultConfig: {

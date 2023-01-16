@@ -1,7 +1,7 @@
 import { TableRowComponentProps } from '../../types';
 /**
  * TableRow
- * @description 表格行组件
+ * @description 表格行(tr)组件
  */
 declare const _default: {
     inject: string[];
