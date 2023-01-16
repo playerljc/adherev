@@ -15,7 +15,6 @@ export { DictFormItem, FunctionComponents };
 export default {
   install: (Vue) => {
     Object.keys(FunctionComponents).forEach((key) => {
-      console.log('FunctionComponents', key);
       Vue.component(`adv-formitemgeneratortodict-${key.toLowerCase()}`, FunctionComponents[key]);
     });
   },

@@ -104,7 +104,6 @@ export default {
     };
 
     Object.keys(FormItemComponents).forEach((key) => {
-      console.log('FormItemComponents', key);
       Vue.component(`${key}`, FormItemComponents[key]);
     });
   },

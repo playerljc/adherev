@@ -9,11 +9,9 @@ export default {
   },
   methods: {
     onChange(e) {
-      console.log('onChange', e)
       this.val = typeof e === 'object' ? e.target.value : e
     },
     onChangeValues(vals) {
-      console.log('onChangeValues', vals)
       this.vals = vals
     },
   },
