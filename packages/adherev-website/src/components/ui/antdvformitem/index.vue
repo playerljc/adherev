@@ -9,7 +9,7 @@
     </adv-playground-page-section>
 
     <adv-playground-page-code-box-section title="Normalize" :config="normalizeCodeBoxPanelConfig">
-<!--      <template #p1>
+      <template #p1>
         <adv-space-group direction="vertical">
           <dl>
             <dt>
@@ -282,7 +282,7 @@
             </dd>
           </dl>
         </adv-space-group>
-      </template>-->
+      </template>
 
       <template #p2>
         <div style="height: 500px">
