@@ -61,7 +61,6 @@ export default {
           return this.column?.$editable?.defaultStatus;
         },
         function () {
-          console.log('editable', this.editableCellEditableConfig.defaultStatus);
           this.editableCell.status = this.editableCellEditableConfig.defaultStatus;
         },
       ),
