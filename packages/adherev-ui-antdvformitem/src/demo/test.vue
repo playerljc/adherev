@@ -751,7 +751,9 @@ export default {
           <dt>
             <h3>普通</h3>
           </dt>
-          <dd><SystemTestCascaderFormItem :value="vals" @change="onChangeValues" /></dd>
+          <dd>
+            <SystemTestCascaderFormItem :value="vals" @change="onChangeValues" />
+          </dd>
         </dl>
 
         <dl>

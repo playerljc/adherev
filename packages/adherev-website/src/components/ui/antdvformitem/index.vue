@@ -469,6 +469,518 @@
       </template>
     </adv-playground-page-code-box-section>
 
+    <adv-playground-page-code-box-section
+      title="FormItemGeneratorToDict - Radio(字典中以Radio或DynamicRadio结尾)"
+      :config="radioCodeBoxPanelConfig"
+    >
+      <template #p1>
+        <SystemTestRadioHorizontalFormItem :value="val" @change="onChange" />
+      </template>
+
+      <template #p2>
+        <SystemTestRadioVerticalFormItem :value="val" @change="onChange" />
+      </template>
+
+      <template #p3>
+        <SystemTestRadioButtonFormItem button-style="solid" :value="val" @change="onChange" />
+      </template>
+
+      <template #p4>
+        <SystemTestRadioSelectFormItem style="width: 200px" :value="val" @change="onChange" />
+      </template>
+
+      <template #p5>
+        <SystemTestRadioCustomFormItem
+          option-type="button"
+          button-style="solid"
+          :value="val"
+          @change="onChange"
+        >
+          <template #option="item">
+            <a-space :size="8">
+              <a-radio
+                :key="item.data.value"
+                :value="item.data.value"
+                :disabled="item.data.disabled"
+              >
+                {{ item.data.label }}
+              </a-radio>
+            </a-space>
+          </template>
+        </SystemTestRadioCustomFormItem>
+      </template>
+    </adv-playground-page-code-box-section>
+    <adv-playground-page-code-box-section
+      title="FormItemGeneratorToDict - Checkbox(字典中以Checkbox或DynamicCheckbox结尾)"
+      :config="checkboxCodeBoxPanelConfig"
+    >
+      <template #p1>
+        <SystemTestCheckBoxHorizontalFormItem :value="vals" @change="onChangeValues"
+      /></template>
+
+      <template #p2>
+        <SystemTestCheckBoxVerticalFormItem :value="vals" @change="onChangeValues"
+      /></template>
+
+      <template #p3>
+        <SystemTestCheckBoxCheckAllVerticalFormItem :value="vals" @change="onChangeValues"
+      /></template>
+
+      <template #p4>
+        <SystemTestCheckBoxCheckAllHorizontalFormItem :value="vals" @change="onChangeValues"
+      /></template>
+
+      <template #p5>
+        <SystemTestCheckBoxSelectFormItem
+          style="width: 200px"
+          :value="vals"
+          @change="onChangeValues"
+      /></template>
+
+      <template #p6>
+        <SystemTestCheckBoxCheckAllSelectFormItem
+          style="width: 200px"
+          :value="vals"
+          @change="onChangeValues"
+      /></template>
+
+      <template #p7>
+        <SystemTestCheckBoxCustomFormItem
+          style="width: 200px"
+          :value="vals"
+          @change="onChangeValues"
+        >
+          <template #option="item">
+            <a-space :size="8">
+              <a-checkbox :key="item.data.value" :value="item.data.value">
+                {{ item.data.label }}
+              </a-checkbox>
+            </a-space>
+          </template>
+        </SystemTestCheckBoxCustomFormItem></template
+      >
+    </adv-playground-page-code-box-section>
+    <adv-playground-page-code-box-section
+      title="FormItemGeneratorToDict - Select"
+      :config="selectCodeBoxPanelConfig"
+    >
+      <template #p1>
+        <SystemTestSelectFormItem style="width: 200px" :value="val" @change="onChange" />
+      </template>
+      <template #p2>
+        <SystemTestSelectMulitFormItem
+          style="width: 300px"
+          :value="vals"
+          @change="onChangeValues"
+        />
+      </template>
+      <template #p3>
+        <SystemTestSelectCheckAllMulitFormItem
+          style="width: 300px"
+          :value="vals"
+          @change="onChangeValues"
+        />
+      </template>
+      <template #p4>
+        <SystemTestAutoCompleteSelectFormItem
+          style="width: 200px"
+          :value="val"
+          @change="onChange"
+        />
+      </template>
+      <template #p5>
+        <SystemTestAutoCompleteSelectMulitFormItem
+          style="width: 200px"
+          :value="vals"
+          @change="onChangeValues"
+        />
+      </template>
+      <template #p6>
+        <SystemTestAutoCompleteSelectCheckAllMulitFormItem
+          style="width: 200px"
+          :value="vals"
+          @change="onChangeValues"
+        />
+      </template>
+    </adv-playground-page-code-box-section>
+    <adv-playground-page-code-box-section
+      title="FormItemGeneratorToDict - TreeSelect"
+      :config="treeSelectCodeBoxPanelConfig"
+    >
+      <template #p1>
+        <SystemTestTreeFormItem
+          style="width: 200px"
+          :value="val"
+          :show-search="false"
+          @change="onChange"
+        />
+      </template>
+
+      <template #p2>
+        <SystemTestTreeLeafFormItem style="width: 200px" :value="val" @change="onChange" />
+      </template>
+
+      <template #p3>
+        <SystemTestTreeMulitFormItem style="width: 200px" :value="vals" @change="onChangeValues" />
+      </template>
+
+      <template #p4>
+        <SystemTestTreeLeafMulitFormItem
+          style="width: 200px"
+          :value="vals"
+          @change="onChangeValues"
+        />
+      </template>
+    </adv-playground-page-code-box-section>
+    <adv-playground-page-code-box-section
+      title="FormItemGeneratorToDict - Transfer"
+      :config="transferCodeBoxPanelConfig"
+    >
+      <template #p1>
+        <SystemTestTransferFormItem :value="vals" @change="onChangeValues" />
+      </template>
+
+      <template #p2>
+        <SystemTestTransferSelectFormItem
+          style="width: 300px"
+          :value="vals"
+          @change="onChangeValues"
+        />
+      </template>
+    </adv-playground-page-code-box-section>
+    <adv-playground-page-code-box-section
+      title="FormItemGeneratorToDict - Table"
+      :config="tableCodeBoxPanelConfig"
+    >
+      <template #p1>
+        <SystemTestTableFormItem
+          :table-props="{
+                columns: [
+                  {
+                    key: 'name',
+                    dataIndex: 'name',
+                    title: '姓名',
+                  },
+                  {
+                    key: 'sex',
+                    dataIndex: 'sex',
+                    title: '性别',
+                  },
+                  {
+                    key: 'birthDay',
+                    dataIndex: 'birthDay',
+                    title: '生日',
+                  },
+                  {
+                    key: 'deptName',
+                    dataIndex: 'deptName',
+                    title: '部门',
+                  },
+                  {
+                    key: 'address',
+                    dataIndex: 'address',
+                    title: '地址',
+                  },
+                ],
+              }"
+        />
+      </template>
+
+      <template #p2>
+        <SystemTestTableSelectFormItem
+          style="width: 1024px"
+          :table-props="{
+                columns: [
+                  {
+                    key: 'name',
+                    dataIndex: 'name',
+                    title: '姓名',
+                  },
+                  {
+                    key: 'sex',
+                    dataIndex: 'sex',
+                    title: '性别',
+                  },
+                  {
+                    key: 'birthDay',
+                    dataIndex: 'birthDay',
+                    title: '生日',
+                  },
+                  {
+                    key: 'deptName',
+                    dataIndex: 'deptName',
+                    title: '部门',
+                  },
+                  {
+                    key: 'address',
+                    dataIndex: 'address',
+                    title: '地址',
+                  },
+                ],
+              }"
+          :value="val"
+          @change="onChange"
+        />
+      </template>
+
+      <template #p3>
+        <SystemTestTableMulitSelectFormItem
+          style="width: 1024px"
+          :table-props="{
+                columns: [
+                  {
+                    key: 'name',
+                    dataIndex: 'name',
+                    title: '姓名',
+                  },
+                  {
+                    key: 'sex',
+                    dataIndex: 'sex',
+                    title: '性别',
+                  },
+                  {
+                    key: 'birthDay',
+                    dataIndex: 'birthDay',
+                    title: '生日',
+                  },
+                  {
+                    key: 'deptName',
+                    dataIndex: 'deptName',
+                    title: '部门',
+                  },
+                  {
+                    key: 'address',
+                    dataIndex: 'address',
+                    title: '地址',
+                  },
+                ],
+              }"
+          :value="vals"
+          @change="onChangeValues"
+        />
+      </template>
+
+      <template #p4>
+        <SystemTestTablePaginationFormItem
+          :table-props="{
+                columns: [
+                  {
+                    key: 'name',
+                    dataIndex: 'name',
+                    title: '姓名',
+                  },
+                  {
+                    key: 'sex',
+                    dataIndex: 'sex',
+                    title: '性别',
+                  },
+                  {
+                    key: 'birthDay',
+                    dataIndex: 'birthDay',
+                    title: '生日',
+                  },
+                  {
+                    key: 'deptName',
+                    dataIndex: 'deptName',
+                    title: '部门',
+                  },
+                  {
+                    key: 'address',
+                    dataIndex: 'address',
+                    title: '地址',
+                  },
+                ],
+              }"
+        />
+      </template>
+
+      <template #p5>
+        <SystemTestTablePaginationSelectFormItem
+          style="width: 1024px"
+          :table-props="{
+                columns: [
+                  {
+                    key: 'name',
+                    dataIndex: 'name',
+                    title: '姓名',
+                  },
+                  {
+                    key: 'sex',
+                    dataIndex: 'sex',
+                    title: '性别',
+                  },
+                  {
+                    key: 'birthDay',
+                    dataIndex: 'birthDay',
+                    title: '生日',
+                  },
+                  {
+                    key: 'deptName',
+                    dataIndex: 'deptName',
+                    title: '部门',
+                  },
+                  {
+                    key: 'address',
+                    dataIndex: 'address',
+                    title: '地址',
+                  },
+                ],
+              }"
+          :value="val"
+          @change="onChange"
+        />
+      </template>
+
+      <template #p6>
+        <SystemTestTablePaginationMulitSelectFormItem
+          style="width: 1024px"
+          :table-props="{
+                columns: [
+                  {
+                    key: 'name',
+                    dataIndex: 'name',
+                    title: '姓名',
+                  },
+                  {
+                    key: 'sex',
+                    dataIndex: 'sex',
+                    title: '性别',
+                  },
+                  {
+                    key: 'birthDay',
+                    dataIndex: 'birthDay',
+                    title: '生日',
+                  },
+                  {
+                    key: 'deptName',
+                    dataIndex: 'deptName',
+                    title: '部门',
+                  },
+                  {
+                    key: 'address',
+                    dataIndex: 'address',
+                    title: '地址',
+                  },
+                ],
+              }"
+          :value="vals"
+          @change="onChangeValues"
+        />
+      </template>
+    </adv-playground-page-code-box-section>
+    <adv-playground-page-code-box-section
+      title="FormItemGeneratorToDict - Cascader"
+      :config="cascaderCodeBoxPanelConfig"
+    >
+      <template #p1>
+        <SystemTestCascaderFormItem :value="vals" @change="onChangeValues" />
+      </template>
+
+      <template #p2>
+        <SystemTestCascaderLeafFormItem :value="vals" @change="onChangeValues" />
+      </template>
+    </adv-playground-page-code-box-section>
+    <adv-playground-page-code-box-section
+      title="FormItemGeneratorToDict - List"
+      :config="listCodeBoxPanelConfig"
+    >
+      <template #p1>
+        <SystemTestListFormItem>
+          <a-list-item slot="renderItem" slot-scope="item, index">
+            <a-list-item-meta :description="item.address">
+              <a slot="title" href="https://www.antdv.com/">{{ item.name }}</a>
+              <a-avatar
+                slot="avatar"
+                src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"
+              />
+            </a-list-item-meta>
+          </a-list-item>
+        </SystemTestListFormItem>
+      </template>
+
+      <template #p2>
+        <SystemTestListSelectFormItem style="width: 1024px" :value="val" @change="onChange">
+          <a-list-item slot="renderItem" slot-scope="item, index">
+            <a-list-item-meta :description="item.address">
+              <a slot="title" href="https://www.antdv.com/">{{ item.name }}</a>
+              <a-avatar
+                slot="avatar"
+                src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"
+              />
+            </a-list-item-meta>
+          </a-list-item>
+        </SystemTestListSelectFormItem>
+      </template>
+
+      <template #p3>
+        <SystemTestListMulitSelectFormItem
+          style="width: 1024px"
+          :value="vals"
+          @change="onChangeValues"
+        >
+          <a-list-item slot="renderItem" slot-scope="item, index">
+            <a-list-item-meta :description="item.address">
+              <a slot="title" href="https://www.antdv.com/">{{ item.name }}</a>
+              <a-avatar
+                slot="avatar"
+                src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"
+              />
+            </a-list-item-meta>
+          </a-list-item>
+        </SystemTestListMulitSelectFormItem>
+      </template>
+
+      <template #p4>
+        <SystemTestListPaginationFormItem>
+          <a-list-item slot="renderItem" slot-scope="item, index">
+            <a-list-item-meta :description="item.address">
+              <a slot="title" href="https://www.antdv.com/">{{ item.name }}</a>
+              <a-avatar
+                slot="avatar"
+                src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"
+              />
+            </a-list-item-meta>
+          </a-list-item>
+        </SystemTestListPaginationFormItem>
+      </template>
+
+      <template #p5>
+        <SystemTestListPaginationSelectFormItem
+          style="width: 1024px"
+          :value="val"
+          @change="onChange"
+        >
+          <a-list-item slot="renderItem" slot-scope="item, index">
+            <a-list-item-meta :description="item.address">
+              <a slot="title" href="https://www.antdv.com/">{{ item.name }}</a>
+              <a-avatar
+                slot="avatar"
+                src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"
+              />
+            </a-list-item-meta>
+          </a-list-item>
+        </SystemTestListPaginationSelectFormItem>
+      </template>
+
+      <template #p6>
+        <SystemTestListPaginationMulitSelectFormItem
+          style="width: 1024px"
+          :value="vals"
+          @change="onChangeValues"
+        >
+          <a-list-item slot="renderItem" slot-scope="item, index">
+            <a-list-item-meta :description="item.address">
+              <a slot="title" href="https://www.antdv.com/">{{ item.name }}</a>
+              <a-avatar
+                slot="avatar"
+                src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"
+              />
+            </a-list-item-meta>
+          </a-list-item>
+        </SystemTestListPaginationMulitSelectFormItem>
+      </template>
+    </adv-playground-page-code-box-section>
+
     <adv-playground-page-props-section title="Props" :config="propsConfig" />
   </adv-playground-page>
 </template>
@@ -518,6 +1030,516 @@ export default {
           childrenSlot: 'p2',
         },
       ],
+      radioCodeBoxPanelConfig: [
+        {
+          id: 'p1',
+          name: 'Radio横向',
+          type: 'PlayGround',
+          cardProps: {
+            description: {
+              title: 'Radio横向',
+              info: 'Radio横向',
+            },
+          },
+          codeText: ``,
+          childrenSlot: 'p1',
+        },
+        {
+          id: 'p2',
+          name: 'Radio纵向',
+          type: 'PlayGround',
+          cardProps: {
+            description: {
+              title: 'Radio纵向',
+              info: 'Radio纵向',
+            },
+          },
+          codeText: ``,
+          childrenSlot: 'p2',
+        },
+        {
+          id: 'p3',
+          name: 'Radio的Button',
+          type: 'PlayGround',
+          cardProps: {
+            description: {
+              title: 'Radio的Button',
+              info: 'Radio的Button',
+            },
+          },
+          codeText: ``,
+          childrenSlot: 'p3',
+        },
+        {
+          id: 'p4',
+          name: 'Radio的Select',
+          type: 'PlayGround',
+          cardProps: {
+            description: {
+              title: 'Radio的Select',
+              info: 'Radio的Select',
+            },
+          },
+          codeText: ``,
+          childrenSlot: 'p4',
+        },
+        {
+          id: 'p5',
+          name: 'Radio的自定义',
+          type: 'PlayGround',
+          cardProps: {
+            description: {
+              title: 'Radio的自定义',
+              info: 'Radio的自定义',
+            },
+          },
+          codeText: ``,
+          childrenSlot: 'p5',
+        },
+      ],
+      checkboxCodeBoxPanelConfig: [
+        {
+          id: 'p1',
+          name: 'Checkbox横向',
+          type: 'PlayGround',
+          cardProps: {
+            description: {
+              title: 'Checkbox横向',
+              info: 'Checkbox横向',
+            },
+          },
+          codeText: ``,
+          childrenSlot: 'p1',
+        },
+        {
+          id: 'p2',
+          name: 'Checkbox纵向',
+          type: 'PlayGround',
+          cardProps: {
+            description: {
+              title: 'Checkbox纵向',
+              info: 'Checkbox纵向',
+            },
+          },
+          codeText: ``,
+          childrenSlot: 'p2',
+        },
+        {
+          id: 'p3',
+          name: 'Checkbox横向全选',
+          type: 'PlayGround',
+          cardProps: {
+            description: {
+              title: 'Checkbox横向全选',
+              info: 'Checkbox横向全选',
+            },
+          },
+          codeText: ``,
+          childrenSlot: 'p3',
+        },
+        {
+          id: 'p4',
+          name: 'Checkbox纵向全选',
+          type: 'PlayGround',
+          cardProps: {
+            description: {
+              title: 'Checkbox纵向全选',
+              info: 'Checkbox纵向全选',
+            },
+          },
+          codeText: ``,
+          childrenSlot: 'p4',
+        },
+        {
+          id: 'p5',
+          name: 'Checkbox的Select',
+          type: 'PlayGround',
+          cardProps: {
+            description: {
+              title: 'Checkbox的Select',
+              info: 'Checkbox的Select',
+            },
+          },
+          codeText: ``,
+          childrenSlot: 'p5',
+        },
+        {
+          id: 'p6',
+          name: 'Checkbox的CheckAllSelect',
+          type: 'PlayGround',
+          cardProps: {
+            description: {
+              title: 'Checkbox的CheckAllSelect',
+              info: 'Checkbox的CheckAllSelect',
+            },
+          },
+          codeText: ``,
+          childrenSlot: 'p6',
+        },
+        {
+          id: 'p7',
+          name: '自定义CheckBox',
+          type: 'PlayGround',
+          cardProps: {
+            description: {
+              title: '自定义CheckBox',
+              info: '自定义CheckBox',
+            },
+          },
+          codeText: ``,
+          childrenSlot: 'p7',
+        },
+      ],
+      selectCodeBoxPanelConfig: [
+        {
+          id: 'p1',
+          name: 'Select单选',
+          type: 'PlayGround',
+          cardProps: {
+            description: {
+              title: 'Select单选',
+              info: 'Select单选',
+            },
+          },
+          codeText: ``,
+          childrenSlot: 'p1',
+        },
+        {
+          id: 'p2',
+          name: 'Select多选',
+          type: 'PlayGround',
+          cardProps: {
+            description: {
+              title: 'Select多选',
+              info: 'Select多选',
+            },
+          },
+          codeText: ``,
+          childrenSlot: 'p2',
+        },
+        {
+          id: 'p3',
+          name: 'Select全选',
+          type: 'PlayGround',
+          cardProps: {
+            description: {
+              title: 'Select全选',
+              info: 'Select全选',
+            },
+          },
+          codeText: ``,
+          childrenSlot: 'p3',
+        },
+        {
+          id: 'p4',
+          name: 'AutoComplete的单选',
+          type: 'PlayGround',
+          cardProps: {
+            description: {
+              title: 'AutoComplete的单选',
+              info: 'AutoComplete的单选',
+            },
+          },
+          codeText: ``,
+          childrenSlot: 'p4',
+        },
+        {
+          id: 'p5',
+          name: 'AutoComplete的多选',
+          type: 'PlayGround',
+          cardProps: {
+            description: {
+              title: 'AutoComplete的多选',
+              info: 'AutoComplete的多选',
+            },
+          },
+          codeText: ``,
+          childrenSlot: 'p5',
+        },
+        {
+          id: 'p6',
+          name: 'AutoComplete的全选',
+          type: 'PlayGround',
+          cardProps: {
+            description: {
+              title: 'AutoComplete的全选',
+              info: 'AutoComplete的全选',
+            },
+          },
+          codeText: ``,
+          childrenSlot: 'p6',
+        },
+      ],
+      treeSelectCodeBoxPanelConfig: [
+        {
+          id: 'p1',
+          name: 'TreeSelect单选(能选任意节点)',
+          type: 'PlayGround',
+          cardProps: {
+            description: {
+              title: 'TreeSelect单选(能选任意节点)',
+              info: 'TreeSelect单选(能选任意节点)',
+            },
+          },
+          codeText: ``,
+          childrenSlot: 'p1',
+        },
+        {
+          id: 'p2',
+          name: 'TreeSelect单选(只能选叶子节点)',
+          type: 'PlayGround',
+          cardProps: {
+            description: {
+              title: 'TreeSelect单选(只能选叶子节点)',
+              info: 'TreeSelect单选(只能选叶子节点)',
+            },
+          },
+          codeText: ``,
+          childrenSlot: 'p2',
+        },
+        {
+          id: 'p3',
+          name: 'TreeSelect多选(能选任意节点)',
+          type: 'PlayGround',
+          cardProps: {
+            description: {
+              title: 'TreeSelect多选(能选任意节点)',
+              info: 'TreeSelect多选(能选任意节点)',
+            },
+          },
+          codeText: ``,
+          childrenSlot: 'p3',
+        },
+        {
+          id: 'p4',
+          name: 'TreeSelect多选(只能选叶子节点)',
+          type: 'PlayGround',
+          cardProps: {
+            description: {
+              title: 'TreeSelect多选(只能选叶子节点)',
+              info: 'TreeSelect多选(只能选叶子节点)',
+            },
+          },
+          codeText: ``,
+          childrenSlot: 'p4',
+        },
+      ],
+      transferCodeBoxPanelConfig: [
+        {
+          id: 'p1',
+          name: '基本',
+          type: 'PlayGround',
+          cardProps: {
+            description: {
+              title: '基本',
+              info: '基本',
+            },
+          },
+          codeText: ``,
+          childrenSlot: 'p1',
+        },
+        {
+          id: 'p2',
+          name: 'SelectFormItem',
+          type: 'PlayGround',
+          cardProps: {
+            description: {
+              title: 'SelectFormItem',
+              info: 'SelectFormItem',
+            },
+          },
+          codeText: ``,
+          childrenSlot: 'p2',
+        },
+      ],
+      tableCodeBoxPanelConfig: [
+        {
+          id: 'p1',
+          name: '普通不带分页',
+          type: 'PlayGround',
+          cardProps: {
+            description: {
+              title: '普通不带分页',
+              info: '普通不带分页',
+            },
+          },
+          codeText: ``,
+          childrenSlot: 'p1',
+        },
+        {
+          id: 'p2',
+          name: '普通单选Select',
+          type: 'PlayGround',
+          cardProps: {
+            description: {
+              title: '普通单选Select',
+              info: '普通单选Select',
+            },
+          },
+          codeText: ``,
+          childrenSlot: 'p2',
+        },
+        {
+          id: 'p3',
+          name: '普通多选Select',
+          type: 'PlayGround',
+          cardProps: {
+            description: {
+              title: '普通多选Select',
+              info: '普通多选Select',
+            },
+          },
+          codeText: ``,
+          childrenSlot: 'p3',
+        },
+        {
+          id: 'p4',
+          name: '分页的动态数据',
+          type: 'PlayGround',
+          cardProps: {
+            description: {
+              title: '分页的动态数据',
+              info: '分页的动态数据',
+            },
+          },
+          codeText: ``,
+          childrenSlot: 'p4',
+        },
+        {
+          id: 'p5',
+          name: '分页的动态数据Select单选',
+          type: 'PlayGround',
+          cardProps: {
+            description: {
+              title: '分页的动态数据Select单选',
+              info: '分页的动态数据Select单选',
+            },
+          },
+          codeText: ``,
+          childrenSlot: 'p5',
+        },
+        {
+          id: 'p6',
+          name: '分页的动态数据Select多选',
+          type: 'PlayGround',
+          cardProps: {
+            description: {
+              title: '分页的动态数据Select多选',
+              info: '分页的动态数据Select多选',
+            },
+          },
+          codeText: ``,
+          childrenSlot: 'p6',
+        },
+      ],
+      cascaderCodeBoxPanelConfig: [
+        {
+          id: 'p1',
+          name: 'Cascader(能选任意节点)',
+          type: 'PlayGround',
+          cardProps: {
+            description: {
+              title: 'Cascader(能选任意节点)',
+              info: 'Cascader(能选任意节点)',
+            },
+          },
+          codeText: ``,
+          childrenSlot: 'p1',
+        },
+        {
+          id: 'p2',
+          name: 'Cascader(只能选叶子节点)',
+          type: 'PlayGround',
+          cardProps: {
+            description: {
+              title: 'Cascader(只能选叶子节点)',
+              info: 'Cascader(只能选叶子节点)',
+            },
+          },
+          codeText: ``,
+          childrenSlot: 'p2',
+        },
+      ],
+      listCodeBoxPanelConfig: [
+        {
+          id: 'p1',
+          name: '普通不带分页',
+          type: 'PlayGround',
+          cardProps: {
+            description: {
+              title: '普通不带分页',
+              info: '普通不带分页',
+            },
+          },
+          codeText: ``,
+          childrenSlot: 'p1',
+        },
+        {
+          id: 'p2',
+          name: '普通单选Select',
+          type: 'PlayGround',
+          cardProps: {
+            description: {
+              title: '普通单选Select',
+              info: '普通单选Select',
+            },
+          },
+          codeText: ``,
+          childrenSlot: 'p2',
+        },
+        {
+          id: 'p3',
+          name: '普通多选Select',
+          type: 'PlayGround',
+          cardProps: {
+            description: {
+              title: '普通多选Select',
+              info: '普通多选Select',
+            },
+          },
+          codeText: ``,
+          childrenSlot: 'p3',
+        },
+        {
+          id: 'p4',
+          name: '分页的动态数据',
+          type: 'PlayGround',
+          cardProps: {
+            description: {
+              title: '分页的动态数据',
+              info: '分页的动态数据',
+            },
+          },
+          codeText: ``,
+          childrenSlot: 'p4',
+        },
+        {
+          id: 'p5',
+          name: '分页的动态数据Select单选',
+          type: 'PlayGround',
+          cardProps: {
+            description: {
+              title: '分页的动态数据Select单选',
+              info: '分页的动态数据Select单选',
+            },
+          },
+          codeText: ``,
+          childrenSlot: 'p5',
+        },
+        {
+          id: 'p6',
+          name: '分页的动态数据Select多选',
+          type: 'PlayGround',
+          cardProps: {
+            description: {
+              title: '分页的动态数据Select多选',
+              info: '分页的动态数据Select多选',
+            },
+          },
+          codeText: ``,
+          childrenSlot: 'p6',
+        },
+      ],
       propsConfig: [
         {
           border: true,
@@ -525,6 +1547,8 @@ export default {
           data: [],
         },
       ],
+      val: '',
+      vals: [],
     };
   },
   mounted() {
@@ -533,6 +1557,13 @@ export default {
   methods: {
     closeModal() {
       this.isModalOpen = false;
+    },
+    onChange(e) {
+      this.val = typeof e === 'object' ? e.target.value : e;
+    },
+    onChangeValues(vals) {
+      debugger;
+      this.vals = vals;
     },
   },
 };
