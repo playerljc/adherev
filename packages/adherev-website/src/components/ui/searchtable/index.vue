@@ -294,8 +294,8 @@
 
 <script>
 import ProEditableCellRenderTriggerTable from './ProEditableCellRenderTriggerTable';
-import ProEditableCellUseKeepEditTable from './ProEditableCellUseKeepEditTable';
 import ProEditableCellTable from './ProEditableCellTable';
+import ProEditableCellUseKeepEditTable from './ProEditableCellUseKeepEditTable';
 import ProEditableRowTable from './ProEditableRowTable';
 import ProEditableTable from './ProEditableTable';
 import ProRowDragSortEditableCellTable from './ProRowDragSortEditableCellTable';
@@ -341,7 +341,7 @@ export default {
       pagination4: false,
       scrollEl: null,
       codeBoxPanelConfig: [
-        /*{
+        {
           id: 'p1',
           name: '基本使用',
           cardProps: {
@@ -1061,9 +1061,9 @@ export default {
   };
           `,
           childrenSlot: 'p12',
-        },*/
+        },
 
-        /*{
+        {
           id: 'p13',
           name: 'ProSearchTable',
           cardProps: {
@@ -1114,8 +1114,7 @@ export default {
           type: 'PlayGround',
           codeText: ``,
           childrenSlot: 'p16',
-        },*/
-
+        },
         {
           id: 'p17',
           name: '始终处于编辑状态的可编辑单元格',
@@ -1128,23 +1127,21 @@ export default {
           type: 'PlayGround',
           codeText: ``,
           childrenSlot: 'p17',
-        }
-
-        // {
-        //   id: 'p18',
-        //   name: '可编辑的表格自定义trigger',
-        //   cardProps: {
-        //     description: {
-        //       title: '可编辑的表格自定义trigger',
-        //       info: '可编辑的表格自定义trigger',
-        //     },
-        //   },
-        //   type: 'PlayGround',
-        //   codeText: ``,
-        //   childrenSlot: 'p18',
-        // },
-
-        /*{
+        },
+        {
+          id: 'p18',
+          name: '可编辑的表格自定义trigger',
+          cardProps: {
+            description: {
+              title: '可编辑的表格自定义trigger',
+              info: '可编辑的表格自定义trigger',
+            },
+          },
+          type: 'PlayGround',
+          codeText: ``,
+          childrenSlot: 'p18',
+        },
+        {
           id: 'p19',
           name: '拖拽排序',
           cardProps: {
@@ -1195,7 +1192,7 @@ export default {
           type: 'PlayGround',
           codeText: ``,
           childrenSlot: 'p22',
-        },*/
+        },
       ],
       apiConfig: [
         {

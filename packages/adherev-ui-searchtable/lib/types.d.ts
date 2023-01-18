@@ -228,6 +228,7 @@ export interface ColumnEditableConfig {
 export interface FormItemGeneratorConfig {
     type?: FormItemType | string;
     props?: any;
+    listeners?: any;
     dictName?: string;
     renderChildren?: (params?: any) => VNode | null;
     form?: FormInstance<any> | null;
