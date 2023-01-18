@@ -358,6 +358,7 @@ export interface FormItemGeneratorConfig {
   type?: FormItemType | string;
   // 组件的props定义
   props?: any;
+  listeners?: any;
   // dist渲染的组件的字典名称(适用于FormItemGeneratorToDict)
   dictName?: string;
   // children自定义的渲染，适用于FormItemGeneratorToDict的自定义children时候使用

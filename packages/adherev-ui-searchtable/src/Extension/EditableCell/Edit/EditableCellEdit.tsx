@@ -40,7 +40,7 @@ export default {
      */
     updateEditorCellData() {
       const { dataIndex } = this.editableConfig;
-      const { record } = this;
+      const { record, rowIndex } = this;
 
       const value = this.getValue();
 
@@ -49,6 +49,7 @@ export default {
           record,
           dataIndex,
           value,
+          rowIndex,
         });
       }
 
@@ -56,6 +57,7 @@ export default {
         record,
         dataIndex,
         value,
+        rowIndex,
       });
     },
     /**
@@ -71,24 +73,44 @@ export default {
       let formItemNodeProps = {
         autoFocus: !useKeepEdit,
         ...this.editableConfig.props,
-        ...EventTypes.reduce<{ [prop: string]: Function }>((eventCombination, eventType) => {
-          eventCombination[eventType] = (e: any) => {
-            if (this.editableConfig.props[eventType]) {
-              this.editableConfig.props[eventType](e, {
-                form,
-                dataIndex,
-                rowIndex,
-                updateEditorCellData: () => this.updateEditorCellData(),
-              });
-            }
-          };
-          return eventCombination;
-        }, {}),
       };
+
+      // const formItemListeners = {
+      //   ...EventTypes.reduce<{ [prop: string]: Function }>((eventCombination, eventType) => {
+      //     eventCombination[eventType] = (e: any) => {
+      //       if (this.editableConfig?.listeners[eventType]) {
+      //         this.editableConfig?.listeners[eventType]?.(e, {
+      //           form,
+      //           dataIndex,
+      //           rowIndex,
+      //           updateEditorCellData: () => this.updateEditorCellData(),
+      //         });
+      //       }
+      //     };
+      //
+      //     return eventCombination;
+      //   }, {}),
+      // }
+
+      const formItemListeners = Object.keys(this.editableConfig?.listeners || {}).reduce<{
+        [prop: string]: Function;
+      }>((eventCombination, eventType) => {
+        eventCombination[eventType] = (e: any) => {
+          this.editableConfig?.listeners[eventType]?.(e, {
+            form,
+            dataIndex,
+            rowIndex,
+            updateEditorCellData: () => this.updateEditorCellData(),
+          });
+        };
+
+        return eventCombination;
+      }, {});
 
       const formItemNode = FormItemGenerator.render(h, {
         type,
         props: formItemNodeProps,
+        listeners: formItemListeners,
         dictName,
         renderChildren,
         form,
@@ -114,14 +136,14 @@ export default {
      * renderDefaultSaveTrigger
      * @description 渲染缺省的保存句柄
      */
-    renderDefaultSaveTrigger() {
+    renderDefaultSaveTrigger(h) {
       return <Icon type="check" />;
     },
     /**
      * renderDefaultCancelTrigger
      * @description 渲染缺省的取消句柄
      */
-    renderDefaultCancelTrigger() {
+    renderDefaultCancelTrigger(h) {
       return <Icon type="close" />;
     },
     /**
@@ -179,7 +201,9 @@ export default {
      * getValue
      */
     getValue() {
-      return this.getFormIns?.()?.getFieldValue(this.editableConfig.dataIndex);
+      return this.getFormIns?.()?.getFieldValue(
+        `${this.editableConfig.dataIndex}_${this.rowIndex}`,
+      );
     },
   },
   render(h) {
@@ -238,7 +262,7 @@ export default {
       <div class={`${selectorPrefix}-editablecell-edit`}>
         <div class={`${selectorPrefix}-editablecell-edit-inner`}>
           <Form.Item>
-            {getFieldDecorator(dataIndex, {
+            {getFieldDecorator(`${dataIndex}_${rowIndex}`, {
               rules,
               initialValue,
               ...(formItemProps || {}),
@@ -259,7 +283,7 @@ export default {
               >
                 {$scopedSlots?.[renderSaveTrigger]?.(renderSaveTriggerArgs) ||
                   renderSaveTrigger?.(renderSaveTriggerArgs) ||
-                  this.renderDefaultSaveTrigger()}
+                  this.renderDefaultSaveTrigger(h)}
               </div>
 
               <div
@@ -268,7 +292,7 @@ export default {
               >
                 {$scopedSlots?.[renderCancelTrigger]?.(renderCancelTriggerArgs) ||
                   renderCancelTrigger?.(renderCancelTriggerArgs) ||
-                  this.renderDefaultCancelTrigger()}
+                  this.renderDefaultCancelTrigger(h)}
               </div>
             </div>
           </div>

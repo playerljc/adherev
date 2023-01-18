@@ -35,12 +35,12 @@ declare const _default: {
          * renderDefaultSaveTrigger
          * @description 渲染缺省的保存句柄
          */
-        renderDefaultSaveTrigger(): JSX.Element;
+        renderDefaultSaveTrigger(h: any): JSX.Element;
         /**
          * renderDefaultCancelTrigger
          * @description 渲染缺省的取消句柄
          */
-        renderDefaultCancelTrigger(): JSX.Element;
+        renderDefaultCancelTrigger(h: any): JSX.Element;
         /**
          * onSaveTrigger
          * @description 点击了保存句柄

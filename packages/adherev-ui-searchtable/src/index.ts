@@ -1,6 +1,7 @@
 import {
   Button,
   Checkbox,
+  ConfigProvider,
   Form,
   Icon,
   Input,
@@ -107,6 +108,7 @@ SearchTable.use = (Vue) => {
   Vue.use(Slider);
   Vue.use(Switch);
   Vue.use(Form);
+  Vue.use(ConfigProvider);
 
   Vue.component('vue-draggable-resizable', VueDraggableResizable);
 

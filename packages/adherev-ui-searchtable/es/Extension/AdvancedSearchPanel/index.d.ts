@@ -48,6 +48,7 @@ declare const _default: {
             type: FunctionConstructor;
         };
     };
+    inject: string[];
     slots: string[];
     data(): {
         collapse: any;

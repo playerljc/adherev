@@ -15,6 +15,7 @@ import {
 
 import '@/config/component.register.config.js';
 import DictConfig from '@/config/dict/dict.config';
+import { createStore } from '@/components/ui/searchtable/store';
 
 import App from './app.vue';
 import Router from './lib/Router';
@@ -52,6 +53,7 @@ Router().then((router) => {
 
   return new Vue({
     el: '#container',
+    store: createStore(),
     i18n: new VueI18n({
       locale: lang, // 设置地区
     }),

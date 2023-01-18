@@ -1,4 +1,4 @@
-import { Button, Icon } from 'ant-design-vue';
+import { Button, ConfigProvider, Icon } from 'ant-design-vue';
 import classNames from 'classnames';
 
 import ConditionalRender from '@baifendian/adherev-ui-conditionalrender';
@@ -78,6 +78,7 @@ export default {
       type: Function,
     },
   },
+  inject: ['configProvider'],
   slots: ['titleLabel', 'collapse'],
   data() {
     return {
@@ -103,60 +104,60 @@ export default {
 
     return (
       <Teleport to={getPopupContainer?.() || document.body}>
-        <SlideLayout.Overlay
-          {...{
-            props: overlayProps,
-            on: {
-              'before-show': () => onBeforeShow(),
-              'before-close': () => onBeforeClose(),
-              'after-show': () => onAfterShow(),
-              'after-close': () => onAfterClose(),
-            },
-          }}
-          defaultCollapse={this.collapse}
-          class={classNames(selectorPrefix, overlayProps.className || '')}
-        >
-          <VerticalFlexLayout class={`${selectorPrefix}-inner`}>
-            <header slot="renderTop" class={`${selectorPrefix}-header`}>
-              <div class={`${selectorPrefix}-title`}>
-                <ConditionalRender conditional={!this.$slots.titleLabel}>
-                  <Space.Group direction="horizontal" size={2}>
-                    <Icon type="filter" />
-                    <strong>{Intl.tv('高级搜索')}</strong>
-                  </Space.Group>
-
-                  <div slot="noMatch">{this.$slots.titleLabel}</div>
-                </ConditionalRender>
-              </div>
-
-              <div
-                class={`${selectorPrefix}-collapse`}
-                onClick={() => {
-                  this.collapse = !this.collapse;
-                }}
-              >
-                <ConditionalRender conditional={!this.$slots.collapse}>
-                  <ConditionalRender conditional={this.collapse}>
+        <ConfigProvider {...{ props: this.configProvider }}>
+          <SlideLayout.Overlay
+            {...{
+              props: overlayProps,
+              on: {
+                'before-show': () => onBeforeShow(),
+                'before-close': () => onBeforeClose(),
+                'after-show': () => onAfterShow(),
+                'after-close': () => onAfterClose(),
+              },
+            }}
+            defaultCollapse={this.collapse}
+            class={classNames(selectorPrefix, overlayProps.className || '')}
+          >
+            <VerticalFlexLayout class={`${selectorPrefix}-inner`}>
+              <header slot="renderTop" class={`${selectorPrefix}-header`}>
+                <div class={`${selectorPrefix}-title`}>
+                  <ConditionalRender conditional={!this.$slots.titleLabel}>
                     <Space.Group direction="horizontal" size={2}>
-                      <Icon type="left-circle" />
-                      <strong>{Intl.tv('收起')}</strong>
+                      <Icon type="filter" />
+                      <strong>{Intl.tv('高级搜索')}</strong>
                     </Space.Group>
 
-                    <div slot="noMatch">
-                      <Space.Group direction="horizontal" size={2}>
-                        <Icon type="right-circle" />
-                        <strong>{Intl.tv('展开')}</strong>
-                      </Space.Group>
-                    </div>
+                    <div slot="noMatch">{this.$slots.titleLabel}</div>
                   </ConditionalRender>
+                </div>
 
-                  <div slot="noMatch">{this.$slots.collapse}</div>
-                </ConditionalRender>
-              </div>
-            </header>
+                <div
+                  class={`${selectorPrefix}-collapse`}
+                  onClick={() => {
+                    this.collapse = !this.collapse;
+                  }}
+                >
+                  <ConditionalRender conditional={!this.$slots.collapse}>
+                    <ConditionalRender conditional={this.collapse}>
+                      <Space.Group direction="horizontal" size={2}>
+                        <Icon type="left-circle" />
+                        <strong>{Intl.tv('收起')}</strong>
+                      </Space.Group>
 
-            <div slot="renderMain" class={`${selectorPrefix}-main`}>
-              <div class={`${selectorPrefix}-main-inner`}>
+                      <div slot="noMatch">
+                        <Space.Group direction="horizontal" size={2}>
+                          <Icon type="right-circle" />
+                          <strong>{Intl.tv('展开')}</strong>
+                        </Space.Group>
+                      </div>
+                    </ConditionalRender>
+
+                    <div slot="noMatch">{this.$slots.collapse}</div>
+                  </ConditionalRender>
+                </div>
+              </header>
+
+              <div slot="renderMain" class={`${selectorPrefix}-main`}>
                 <div class={`${selectorPrefix}-scroll`}>
                   <ScrollLayout scrollY>
                     {renderGridSearchFormGroup(
@@ -199,9 +200,9 @@ export default {
                   </div>
                 </footer>
               </div>
-            </div>
-          </VerticalFlexLayout>
-        </SlideLayout.Overlay>
+            </VerticalFlexLayout>
+          </SlideLayout.Overlay>
+        </ConfigProvider>
       </Teleport>
     );
   },

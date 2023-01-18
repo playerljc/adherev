@@ -6,9 +6,9 @@ import moment from 'moment';
 // import Vue from 'vue';
 import Util from '@baifendian/adherev-util';
 
-// import { selectorPrefix } from '@/SearchTable';
-import SearchTableImplement from '../SearchTableImplement';
-import { ColumnEditableConfig, ColumnTypeExt, FormItemType, RowEditableConfig } from '../types';
+import { selectorPrefix } from '../../SearchTable';
+import SearchTableImplement from '../../SearchTableImplement';
+import { ColumnEditableConfig, ColumnTypeExt, FormItemType, RowEditableConfig } from '../../types';
 
 const {
   _util: { extend },
@@ -86,7 +86,7 @@ export default (serviceName) =>
         ]),
         form: this.$form.createForm(this, { name: 'SearchEditableCellTableForm' }),
         // 正在编辑的单元格id
-        activeValue: ''
+        activeValue: '',
       };
     },
     methods: {
@@ -192,16 +192,19 @@ export default (serviceName) =>
        * @description 更新可编辑单元格的数据
        * @param record 行数据
        * @param dataIndex 列索引
+       * @param rowIndex 行索引
        * @param value 更新的值
        * @return Promise<void>
        */
       updateEditorCellDate({
         record,
         dataIndex,
+        rowIndex,
         value,
       }: {
         record: { [props: string]: any };
         dataIndex: string;
+        rowIndex: number;
         value: any;
       }): Promise<void> {
         return new Promise((resolve) => {
@@ -241,6 +244,7 @@ export default (serviceName) =>
       }: {
         record: { [props: string]: any };
         dataIndex: string;
+        rowIndex: number;
         value: moment.Moment | null;
       }): Promise<void> {
         return new Promise((resolve) => {
@@ -271,7 +275,11 @@ export default (serviceName) =>
        */
       renderSearchTable(h) {
         const children = this.$renderSearchTableSearchTable(h);
-        return <Form form={this.form}>{children}</Form>;
+        return (
+          <Form class={`${selectorPrefix}-form`} form={this.form}>
+            {children}
+          </Form>
+        );
       },
       /**
        * setActiveValue

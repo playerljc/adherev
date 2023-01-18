@@ -25,6 +25,7 @@ export default {
    * @param type 控件类型
    * @param renderChildren 渲染孩子
    * @param props 控件的props
+   * @param listeners
    * @param dictName distName
    * @param form 表单的form实例
    * @param dataIndex
@@ -32,7 +33,16 @@ export default {
    */
   render(
     h: CreateElement,
-    { type, renderChildren, props, dictName, form, dataIndex, rowIndex }: FormItemGeneratorConfig,
+    {
+      type,
+      renderChildren,
+      props,
+      listeners,
+      dictName,
+      form,
+      dataIndex,
+      rowIndex,
+    }: FormItemGeneratorConfig,
   ) {
     const defaultProps = {
       autoFocus: true,
@@ -45,6 +55,12 @@ export default {
             props: {
               ...defaultProps,
               ...(props || {}),
+            },
+            on: {
+              ...(listeners || {}),
+              // blur: () => {
+              //   console.log('blur');
+              // }
             },
           }}
         />
@@ -59,6 +75,9 @@ export default {
               ...defaultProps,
               ...(props || {}),
             },
+            on: {
+              ...(listeners || {}),
+            },
           }}
         />
       );
@@ -70,6 +89,9 @@ export default {
             props: {
               ...defaultProps,
               ...(props || {}),
+            },
+            on: {
+              ...(listeners || {}),
             },
           }}
         />
@@ -83,6 +105,9 @@ export default {
               ...defaultProps,
               ...(props || {}),
             },
+            on: {
+              ...(listeners || {}),
+            },
           }}
         />
       );
@@ -95,6 +120,9 @@ export default {
               ...defaultProps,
               ...(props || {}),
             },
+            on: {
+              ...(listeners || {}),
+            },
           }}
         />
       );
@@ -106,6 +134,9 @@ export default {
             props: {
               ...defaultProps,
               ...(props || {}),
+            },
+            on: {
+              ...(listeners || {}),
             },
           }}
         />
@@ -122,6 +153,9 @@ export default {
               ...defaultProps,
               ...(props || {}),
             },
+            on: {
+              ...(listeners || {}),
+            },
           }}
         />
       );
@@ -136,6 +170,9 @@ export default {
               ...defaultProps,
               ...(props || {}),
             },
+            on: {
+              ...(listeners || {}),
+            },
           }}
         />
       );
@@ -149,6 +186,9 @@ export default {
             props: {
               ...defaultProps,
               ...(props || {}),
+            },
+            on: {
+              ...(listeners || {}),
             },
           }}
         />
@@ -165,6 +205,9 @@ export default {
               ...defaultProps,
               ...(props || {}),
             },
+            on: {
+              ...(listeners || {}),
+            },
           }}
         />
       );
@@ -179,6 +222,9 @@ export default {
               ...defaultProps,
               ...(props || {}),
             },
+            on: {
+              ...(listeners || {}),
+            },
           }}
         />
       );
@@ -192,6 +238,9 @@ export default {
             props: {
               ...defaultProps,
               ...(props || {}),
+            },
+            on: {
+              ...(listeners || {}),
             },
           }}
         />
@@ -208,6 +257,9 @@ export default {
               ...defaultProps,
               ...(props || {}),
             },
+            on: {
+              ...(listeners || {}),
+            },
           }}
         />
       );
@@ -221,6 +273,9 @@ export default {
             props: {
               ...defaultProps,
               ...(props || {}),
+            },
+            on: {
+              ...(listeners || {}),
             },
           }}
         />
@@ -236,6 +291,9 @@ export default {
               ...defaultProps,
               ...(props || {}),
             },
+            on: {
+              ...(listeners || {}),
+            },
           }}
         />
       );
@@ -249,6 +307,9 @@ export default {
             props: {
               ...defaultProps,
               ...(props || {}),
+            },
+            on: {
+              ...(listeners || {}),
             },
           }}
         >
@@ -267,6 +328,9 @@ export default {
               ...defaultProps,
               ...(props || {}),
             },
+            on: {
+              ...(listeners || {}),
+            },
           }}
         />
       );
@@ -280,6 +344,9 @@ export default {
             props: {
               ...defaultProps,
               ...(props || {}),
+            },
+            on: {
+              ...(listeners || {}),
             },
           }}
         />
@@ -295,6 +362,9 @@ export default {
               ...defaultProps,
               ...(props || {}),
             },
+            on: {
+              ...(listeners || {}),
+            },
           }}
         />
       );
@@ -309,6 +379,9 @@ export default {
               ...defaultProps,
               ...(props || {}),
             },
+            on: {
+              ...(listeners || {}),
+            },
           }}
         />
       );
@@ -322,6 +395,9 @@ export default {
             props: {
               ...defaultProps,
               ...(props || {}),
+            },
+            on: {
+              ...(listeners || {}),
             },
           }}
         >
@@ -338,6 +414,9 @@ export default {
             props: {
               ...defaultProps,
               ...(props || {}),
+            },
+            on: {
+              ...(listeners || {}),
             },
           }}
         >
@@ -356,6 +435,9 @@ export default {
               ...defaultProps,
               ...(props || {}),
             },
+            on: {
+              ...(listeners || {}),
+            },
           }}
         />
       );
@@ -371,6 +453,9 @@ export default {
               ...defaultProps,
               ...(props || {}),
             },
+            on: {
+              ...(listeners || {}),
+            },
           }}
         />
       );
@@ -384,6 +469,9 @@ export default {
             props: {
               ...defaultProps,
               ...(props || {}),
+            },
+            on: {
+              ...(listeners || {}),
             },
           }}
         />
@@ -399,6 +487,9 @@ export default {
               ...defaultProps,
               ...(props || {}),
             },
+            on: {
+              ...(listeners || {}),
+            },
           }}
         />
       );
@@ -412,6 +503,9 @@ export default {
             props: {
               ...defaultProps,
               ...(props || {}),
+            },
+            on: {
+              ...(listeners || {}),
             },
           }}
         />
@@ -428,6 +522,9 @@ export default {
               ...defaultProps,
               ...(props || {}),
             },
+            on: {
+              ...(listeners || {}),
+            },
           }}
         />
       );
@@ -441,6 +538,9 @@ export default {
             props: {
               ...defaultProps,
               ...(props || {}),
+            },
+            on: {
+              ...(listeners || {}),
             },
           }}
         />
@@ -456,6 +556,9 @@ export default {
               ...defaultProps,
               ...(props || {}),
             },
+            on: {
+              ...(listeners || {}),
+            },
           }}
         />
       );
@@ -469,6 +572,9 @@ export default {
             props: {
               ...defaultProps,
               ...(props || {}),
+            },
+            on: {
+              ...(listeners || {}),
             },
           }}
         />
@@ -485,6 +591,9 @@ export default {
               ...defaultProps,
               ...(props || {}),
             },
+            on: {
+              ...(listeners || {}),
+            },
           }}
         />
       );
@@ -498,6 +607,9 @@ export default {
             props: {
               ...defaultProps,
               ...(props || {}),
+            },
+            on: {
+              ...(listeners || {}),
             },
           }}
         />
@@ -513,6 +625,9 @@ export default {
               ...defaultProps,
               ...(props || {}),
             },
+            on: {
+              ...(listeners || {}),
+            },
           }}
         />
       );
@@ -526,6 +641,9 @@ export default {
             props: {
               ...defaultProps,
               ...(props || {}),
+            },
+            on: {
+              ...(listeners || {}),
             },
           }}
         />
@@ -542,6 +660,9 @@ export default {
               ...defaultProps,
               ...(props || {}),
             },
+            on: {
+              ...(listeners || {}),
+            },
           }}
         />
       );
@@ -555,6 +676,9 @@ export default {
             props: {
               ...defaultProps,
               ...(props || {}),
+            },
+            on: {
+              ...(listeners || {}),
             },
           }}
         />
@@ -570,6 +694,9 @@ export default {
               ...defaultProps,
               ...(props || {}),
             },
+            on: {
+              ...(listeners || {}),
+            },
           }}
         />
       );
@@ -584,6 +711,9 @@ export default {
               ...defaultProps,
               ...(props || {}),
             },
+            on: {
+              ...(listeners || {}),
+            },
           }}
         />
       );
@@ -597,6 +727,9 @@ export default {
               ...defaultProps,
               ...(props || {}),
             },
+            on: {
+              ...(listeners || {}),
+            },
           }}
         />
       );
@@ -609,6 +742,9 @@ export default {
               ...defaultProps,
               ...(props || {}),
             },
+            on: {
+              ...(listeners || {}),
+            },
           }}
         />
       );
@@ -620,6 +756,9 @@ export default {
             props: {
               ...defaultProps,
               ...(props || {}),
+            },
+            on: {
+              ...(listeners || {}),
             },
           }}
         />
@@ -634,6 +773,9 @@ export default {
               ...defaultProps,
               ...(props || {}),
             },
+            on: {
+              ...(listeners || {}),
+            },
           }}
         />
       );
@@ -646,6 +788,9 @@ export default {
             props: {
               ...defaultProps,
               ...(props || {}),
+            },
+            on: {
+              ...(listeners || {}),
             },
           }}
         />
@@ -660,6 +805,9 @@ export default {
               ...defaultProps,
               ...(props || {}),
             },
+            on: {
+              ...(listeners || {}),
+            },
           }}
         />
       );
@@ -671,6 +819,9 @@ export default {
             props: {
               ...defaultProps,
               ...(props || {}),
+            },
+            on: {
+              ...(listeners || {}),
             },
           }}
         />

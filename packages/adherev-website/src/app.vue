@@ -13,6 +13,7 @@ export default {
     return {
       locale: Resource.Dict.value.LocalsAntd.value[lang],
       hasIntlInit: false,
+      skeletonCount: 5,
     };
   },
   computed: {
@@ -50,7 +51,8 @@ export default {
 
           <template v-else>
             <a-skeleton
-              v-for="t in Array.from({ length: 5 })"
+              v-for="t in skeletonCount"
+              :key="t"
               :loading="true"
               :active="true"
               :avatar="true"

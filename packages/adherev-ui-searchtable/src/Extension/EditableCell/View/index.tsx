@@ -59,7 +59,7 @@ export default {
      * renderTrigger
      * @description 渲染句柄
      */
-    renderTrigger() {
+    renderTrigger(h) {
       return <Icon type="edit" />;
     },
   },
@@ -103,7 +103,7 @@ export default {
           <div class={`${selectorPrefix}-editablecell-view-trigger-inner`} onClick={this.onTrigger}>
             {$scopedSlots?.[renderToEditTrigger]?.(renderToEditTriggerArgv) ||
               renderToEditTrigger?.(renderToEditTriggerArgv)}
-            {!$scopedSlots[renderToEditTrigger] && !renderToEditTrigger && this.renderTrigger()}
+            {!$scopedSlots[renderToEditTrigger] && !renderToEditTrigger && this.renderTrigger(h)}
           </div>
         </div>
       </div>

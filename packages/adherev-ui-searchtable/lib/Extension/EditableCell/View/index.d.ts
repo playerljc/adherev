@@ -35,7 +35,7 @@ declare const _default: {
          * renderTrigger
          * @description 渲染句柄
          */
-        renderTrigger(): JSX.Element;
+        renderTrigger(h: any): JSX.Element;
     };
     render(h: any): any;
 };

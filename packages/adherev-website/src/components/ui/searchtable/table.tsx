@@ -283,6 +283,7 @@ export default {
           // @ts-ignore
           .get({
             mock: true,
+            // @ts-ignore
             path: require('./mock.js').default,
           })
           .then((result: any) => {

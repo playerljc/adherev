@@ -74,14 +74,14 @@ export default {
      * renderDefaultSaveTrigger
      * @description 渲染缺省的保存句柄
      */
-    renderDefaultSaveTrigger() {
+    renderDefaultSaveTrigger(h) {
       return <Icon type="check" />;
     },
     /**
      * renderDefaultCancelTrigger
      * @description 渲染缺省的取消句柄
      */
-    renderDefaultCancelTrigger() {
+    renderDefaultCancelTrigger(h) {
       return <Icon type="close" />;
     },
     /**
@@ -139,7 +139,9 @@ export default {
      * getValue
      */
     getValue() {
-      return this.getFormIns?.()?.getFieldValue(this.editableConfig.dataIndex);
+      return this.getFormIns?.()?.getFieldValue(
+        `${this.editableConfig.dataIndex}_${this.rowIndex}`,
+      );
     },
   },
   render(h) {
@@ -215,7 +217,7 @@ export default {
               >
                 {$scopedSlots?.[renderSaveTrigger]?.(renderSaveTriggerArgs) ||
                   renderSaveTrigger?.(renderSaveTriggerArgs) ||
-                  this.renderDefaultSaveTrigger()}
+                  this.renderDefaultSaveTrigger(h)}
               </div>
 
               <div
@@ -224,7 +226,7 @@ export default {
               >
                 {$scopedSlots?.[renderCancelTrigger]?.(renderCancelTriggerArgs) ||
                   renderCancelTrigger?.(renderCancelTriggerArgs) ||
-                  this.renderDefaultCancelTrigger()}
+                  this.renderDefaultCancelTrigger(h)}
               </div>
             </div>
           </div>

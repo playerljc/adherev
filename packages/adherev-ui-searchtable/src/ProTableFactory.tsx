@@ -607,14 +607,14 @@ export default ({ className, superClass }, searchAndPaginParamsMemo) =>
       /**
        * getGridSearchFormGroupParams
        */
-      getGridSearchFormGroupParams() {
+      getGridSearchFormGroupParams(h) {
         return [
           [
             {
               name: 'g1',
               columnCount: 3,
               colgroup: [, 'auto', , 'auto', , 'auto'],
-              data: this.getGridSearchFormGroupDataByColumnConfig(),
+              data: this.getGridSearchFormGroupDataByColumnConfig(h),
             },
           ],
           {},
@@ -629,7 +629,7 @@ export default ({ className, superClass }, searchAndPaginParamsMemo) =>
        * @description 通过列设置获取gridSearchFormGroup的Data数据
        * @return Array
        */
-      getGridSearchFormGroupDataByColumnConfig() {
+      getGridSearchFormGroupDataByColumnConfig(h) {
         let searchFormGroupData: {
           key: number;
           label: VNode | null;
@@ -657,7 +657,7 @@ export default ({ className, superClass }, searchAndPaginParamsMemo) =>
                     : true,
                   match: (
                     <Value {...($search.valueAttrs || {})}>
-                      {this.renderGridSearchFormGroupDataItem(type, {
+                      {this.renderGridSearchFormGroupDataItem(h, type, {
                         searchConfig,
                         column,
                         dataIndex,
@@ -699,7 +699,7 @@ export default ({ className, superClass }, searchAndPaginParamsMemo) =>
             return (
               <div class={`${_selectorPrefix}-headersearchwrap`}>
                 <div class={`${_selectorPrefix}-headersearchwrap-main`}>
-                  {this.renderGridSearchFormGroupDataItem(type, {
+                  {this.renderGridSearchFormGroupDataItem(h, type, {
                     searchConfig,
                     column,
                     dataIndex,
@@ -793,7 +793,7 @@ export default ({ className, superClass }, searchAndPaginParamsMemo) =>
       renderSearchForm(h /*columnCount, data*/) {
         return this.renderGridSearchFormGroup(
           h,
-          ...this.getGridSearchFormGroupParams(/*columnCount, data*/),
+          ...this.getGridSearchFormGroupParams(h/*columnCount, data*/),
         );
       },
 
@@ -868,12 +868,13 @@ export default ({ className, superClass }, searchAndPaginParamsMemo) =>
       /**
        * renderGridSearchFormGroupDataItem
        * @description 渲染GridSearchForm的查询项
+       * @param h
        * @param type
        * @param searchConfig
        * @param column
        * @param dataIndex
        */
-      renderGridSearchFormGroupDataItem(type, { searchConfig, column, dataIndex }) {
+      renderGridSearchFormGroupDataItem(h, type, { searchConfig, column, dataIndex }) {
         const renderInput = ({ searchConfig, dataIndex }) => {
           return (
             <Input
