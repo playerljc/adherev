@@ -7,10 +7,29 @@ export default {
       return [
         {
           title: '姓名',
-          dataIndex: 'name',
-          key: 'name',
-          align: 'center',
-          width: 200,
+          // dataIndex: 'name',
+          key: 'group',
+          // align: 'center',
+          // width: 200,
+          // $resizable: true,
+          children: [
+            {
+              title: '姓名1',
+              dataIndex: 'name',
+              key: 'name',
+              align: 'center',
+              width: 100,
+              $resizable: true,
+            },
+            {
+              title: '姓名2',
+              dataIndex: 'width',
+              key: 'width',
+              align: 'center',
+              width: 100,
+              $resizable: true,
+            }
+          ]
         },
         {
           title: '性别',
@@ -53,19 +72,16 @@ export default {
           sortOrder: this.sortOrder('height'),
           width: 300,
         },
-        {
-          title: '体重',
-          dataIndex: 'width',
-          key: 'width',
-          align: 'center',
-          sorter: true,
-          sortOrder: this.sortOrder('width'),
-          width: 300,
-        },
-      ].map((column) => ({
-        ...column,
-        $resizable: true,
-      }));
+        // {
+        //   title: '体重',
+        //   dataIndex: 'width',
+        //   key: 'width',
+        //   align: 'center',
+        //   sorter: true,
+        //   sortOrder: this.sortOrder('width'),
+        //   width: 300,
+        // },
+      ];
     },
   },
 };

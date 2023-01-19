@@ -613,6 +613,8 @@ const SearchTable: any = extend({
           // @ts-ignore
           res.value = loop(column);
 
+          // console.log('res.value', res.value);
+
           return res.value;
 
           // if ('resizable' in column && !!column.resizable) {

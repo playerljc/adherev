@@ -1,7 +1,7 @@
 import classNames from 'classnames';
 
 import { selectorPrefix } from '../../SearchTable';
-import { columnHeaderAlign } from '../../types';
+import { ColumnTypeExt, columnHeaderAlign } from '../../types';
 
 const columnAlignMap = new Map<string | null, string>([
   [columnHeaderAlign.center, columnHeaderAlign.center],
@@ -11,16 +11,47 @@ const columnAlignMap = new Map<string | null, string>([
   [null, ''],
 ]);
 
+/**
+ * findColumnByKey
+ * @param columns
+ * @param key
+ * @return column | null
+ */
+function findColumnByKey(columns: ColumnTypeExt[], key): any {
+  function loop(children) {
+    let res;
+
+    for (let i = 0; i < children.length; i++) {
+      if (children[i].key === key) {
+        res = children[i];
+        break;
+      } else {
+        if (
+          'children' in children[i] &&
+          Array.isArray(children[i].children) &&
+          children[i].children.length
+        ) {
+          res = loop(children[i].children);
+          if (res) {
+            break;
+          }
+        }
+      }
+    }
+
+    return res;
+  }
+
+  return loop(columns);
+}
+
 export default (columns) =>
   function (h, props, children) {
     const { key, ...restProps } = props;
 
-    const col = columns.find((col) => {
-      const k = col.dataIndex || col.key;
-      return k === key;
-    });
+    const col = findColumnByKey(columns, key);
 
-    if (!col || !col.width || !col.resizable) {
+    if (!col || !col.width || !col.$resizable) {
       return h(
         'th',
         {
