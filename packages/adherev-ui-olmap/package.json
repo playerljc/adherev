@@ -1,6 +1,6 @@
 {
   "name": "@baifendian/adherev-ui-olmap",
-  "version": "1.0.12-fix.4",
+  "version": "1.0.13",
   "description": "对openlayers的封装",
   "homepage": "https://gitee.com/playerljc/adherev",
   "bugs": {
@@ -29,9 +29,9 @@
   },
   "resolutions": {},
   "dependencies": {
-    "@baifendian/adherev-ui-css": "^1.0.12",
-    "@baifendian/adherev-util": "^1.0.12-fix.4",
-    "@baifendian/adherev-util-resource": "^1.0.12-fix.4",
+    "@baifendian/adherev-ui-css": "^1.0.13",
+    "@baifendian/adherev-util": "^1.0.13",
+    "@baifendian/adherev-util-resource": "^1.0.13",
     "algebra.js": "^0.2.6",
     "ol": "6.5.0",
     "ol-wind": "^1.1.1-alpha.2",

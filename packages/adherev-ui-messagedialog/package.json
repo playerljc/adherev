@@ -1,6 +1,6 @@
 {
   "name": "@baifendian/adherev-ui-messagedialog",
-  "version": "1.0.12-fix.4",
+  "version": "1.0.13",
   "description": "对ant-design-vue的<Model>进行封装",
   "homepage": "https://gitee.com/playerljc/adherev",
   "bugs": {
@@ -29,9 +29,9 @@
   },
   "resolutions": {},
   "dependencies": {
-    "@baifendian/adherev-util": "^1.0.12-fix.4",
-    "@baifendian/adherev-util-intl": "^1.0.12-fix.4",
-    "@baifendian/adherev-util-resource": "^1.0.12-fix.4",
+    "@baifendian/adherev-util": "^1.0.13",
+    "@baifendian/adherev-util-intl": "^1.0.13",
+    "@baifendian/adherev-util-resource": "^1.0.13",
     "@form-create/ant-design-vue": "^2.5.6",
     "ant-design-vue": "^1.7.5",
     "vue": "^2.7.14"

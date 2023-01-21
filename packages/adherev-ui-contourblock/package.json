@@ -1,6 +1,6 @@
 {
   "name": "@baifendian/adherev-ui-contourblock",
-  "version": "1.0.12-fix.4",
+  "version": "1.0.13",
   "description": "宽度和高度相等的元素",
   "homepage": "https://gitee.com/playerljc/adherev",
   "bugs": {
@@ -30,7 +30,7 @@
   },
   "resolutions": {},
   "dependencies": {
-    "@baifendian/adherev-util": "^1.0.12-fix.4",
+    "@baifendian/adherev-util": "^1.0.13",
     "vue": "^2.7.14"
   },
   "devDependencies": {

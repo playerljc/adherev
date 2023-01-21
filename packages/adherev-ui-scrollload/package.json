@@ -1,6 +1,6 @@
 {
   "name": "@baifendian/adherev-ui-scrollload",
-  "version": "1.0.12-fix.4",
+  "version": "1.0.13",
   "description": "滚动加载",
   "homepage": "https://gitee.com/playerljc/adherev",
   "bugs": {
@@ -29,9 +29,9 @@
   },
   "resolutions": {},
   "dependencies": {
-    "@baifendian/adherev-ui-css": "^1.0.12",
-    "@baifendian/adherev-util": "^1.0.12-fix.4",
-    "@baifendian/adherev-util-intl": "^1.0.12-fix.4",
+    "@baifendian/adherev-ui-css": "^1.0.13",
+    "@baifendian/adherev-util": "^1.0.13",
+    "@baifendian/adherev-util-intl": "^1.0.13",
     "classnames": "^2.2.6",
     "vue": "^2.7.14"
   },
