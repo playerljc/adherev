@@ -38,7 +38,7 @@
     "typescript": "^4.6.2"
   },
   "dependencies": {
-    "@baifendian/adhere-util": "^1.0.22-fix.1",
+    "@baifendian/adhere-util": "^1.0.23",
     "lodash.merge": "^4.6.2",
     "lodash.mergewith": "^4.6.2"
   },

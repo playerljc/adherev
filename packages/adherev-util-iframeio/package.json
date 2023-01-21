@@ -30,7 +30,7 @@
   },
   "resolutions": {},
   "dependencies": {
-    "@baifendian/adhere-util-iframeio": "^1.0.22-fix.1",
+    "@baifendian/adhere-util-iframeio": "^1.0.23",
     "@baifendian/adherev-util": "^1.0.12-fix.4"
   },
   "devDependencies": {
