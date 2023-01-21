@@ -29,16 +29,12 @@
   - 加入resource资源目录
 * **adherev-ui-vuequill-sandbox**
   - 加入adherev-ui-vuequill-sandbox组件
-* **adherev-util-resource**
-  - 加入resource资源目录
 * **adherev-ui-tablegridlayout**
   - label和value支持VNode
 * **adherev-util-watchmemoized**
   - 去掉adherev-util的依赖
 * **adherev-ui-historyback**
   - 修改为返回的判断逻辑
-* **adherev-util**
-  - color加入新方法
 * **adherev-ui-writingboard**
   - 加入导出图片设置背景色
 
