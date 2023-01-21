@@ -1,8 +1,8 @@
-# 1.0.14
+# 1.0.13
 
 ***
 
-2023-01-06
+2022-11-22
 
 * **adherev-ui-antdformitem**
   - 加入adherev-ui-antdformitem代码
@@ -29,13 +29,6 @@
   - 加入resource资源目录
 * **adherev-ui-vuequill-sandbox**
   - 加入adherev-ui-vuequill-sandbox组件
-
-# 1.0.13
-
-***
-
-2022-11-22
-
 * **adherev-util-resource**
   - 加入resource资源目录
 * **adherev-ui-tablegridlayout**
