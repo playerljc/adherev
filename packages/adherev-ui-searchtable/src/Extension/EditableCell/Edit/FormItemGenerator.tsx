@@ -6,7 +6,9 @@ import AntdvFormItem from '@baifendian/adherev-ui-antdvformitem';
 import { FormItemGeneratorConfig } from '../../../types';
 
 const {
-  FormItemGeneratorToDict,
+  FormItemGeneratorToDict: {
+    getComponents
+  },
   AntdvFormItemNormalize: {
     DatePicker,
     InputNumberDecimal1,
@@ -16,6 +18,8 @@ const {
     TimePicker,
   },
 } = AntdvFormItem;
+
+const Components = () => getComponents();
 
 export default {
   /**
@@ -144,7 +148,7 @@ export default {
     };
 
     const renderSelect = () => {
-      const Component = FormItemGeneratorToDict[`${dictName}FormItem`];
+      const Component = Components()[`${dictName}FormItem`];
 
       return (
         <Component
@@ -161,7 +165,7 @@ export default {
       );
     };
     const renderMultiSelect = () => {
-      const Component = FormItemGeneratorToDict[`${dictName}MulitFormItem`];
+      const Component = Components()[`${dictName}MulitFormItem`];
 
       return (
         <Component
@@ -178,7 +182,7 @@ export default {
       );
     };
     const renderCheckAllMultiSelect = () => {
-      const Component = FormItemGeneratorToDict[`${dictName}CheckAllMulitFormItem`];
+      const Component = Components()[`${dictName}CheckAllMulitFormItem`];
 
       return (
         <Component
@@ -196,7 +200,7 @@ export default {
     };
 
     const renderAutoCompleteSelect = () => {
-      const Component = FormItemGeneratorToDict[`${dictName}FormItem`];
+      const Component = Components()[`${dictName}FormItem`];
 
       return (
         <Component
@@ -213,7 +217,7 @@ export default {
       );
     };
     const renderAutoCompleteSelectMulti = () => {
-      const Component = FormItemGeneratorToDict[`${dictName}MulitFormItem`];
+      const Component = Components()[`${dictName}MulitFormItem`];
 
       return (
         <Component
@@ -230,7 +234,7 @@ export default {
       );
     };
     const renderAutoCompleteSelectCheckAllMulti = () => {
-      const Component = FormItemGeneratorToDict[`${dictName}CheckAllMulitFormItem`];
+      const Component = Components()[`${dictName}CheckAllMulitFormItem`];
 
       return (
         <Component
@@ -248,7 +252,7 @@ export default {
     };
 
     const renderRadioHorizontal = () => {
-      const Component = FormItemGeneratorToDict[`${dictName}HorizontalFormItem`];
+      const Component = Components()[`${dictName}HorizontalFormItem`];
 
       return (
         <Component
@@ -265,7 +269,7 @@ export default {
       );
     };
     const renderRadioButton = () => {
-      const Component = FormItemGeneratorToDict[`${dictName}ButtonFormItem`];
+      const Component = Components()[`${dictName}ButtonFormItem`];
 
       return (
         <Component
@@ -282,7 +286,7 @@ export default {
       );
     };
     const renderRadioSelect = () => {
-      const Component = FormItemGeneratorToDict[`${dictName}SelectFormItem`];
+      const Component = Components()[`${dictName}SelectFormItem`];
 
       return (
         <Component
@@ -299,7 +303,7 @@ export default {
       );
     };
     const renderRadioCustom = () => {
-      const Component = FormItemGeneratorToDict[`${dictName}CustomFormItem`];
+      const Component = Components()[`${dictName}CustomFormItem`];
 
       return (
         <Component
@@ -319,7 +323,7 @@ export default {
     };
 
     const renderCheckBoxHorizontal = () => {
-      const Component = FormItemGeneratorToDict[`${dictName}HorizontalFormItem`];
+      const Component = Components()[`${dictName}HorizontalFormItem`];
 
       return (
         <Component
@@ -336,7 +340,7 @@ export default {
       );
     };
     const renderCheckBoxCheckAllHorizontal = () => {
-      const Component = FormItemGeneratorToDict[`${dictName}CheckAllHorizontalFormItem`];
+      const Component = Components()[`${dictName}CheckAllHorizontalFormItem`];
 
       return (
         <Component
@@ -353,7 +357,7 @@ export default {
       );
     };
     const renderCheckboxSelect = () => {
-      const Component = FormItemGeneratorToDict[`${dictName}SelectFormItem`];
+      const Component = Components()[`${dictName}SelectFormItem`];
 
       return (
         <Component
@@ -370,7 +374,7 @@ export default {
       );
     };
     const renderCheckBoxCheckAllSelect = () => {
-      const Component = FormItemGeneratorToDict[`${dictName}CheckAllSelectFormItem`];
+      const Component = Components()[`${dictName}CheckAllSelectFormItem`];
 
       return (
         <Component
@@ -387,7 +391,7 @@ export default {
       );
     };
     const renderCheckBoxCustom = () => {
-      const Component = FormItemGeneratorToDict[`${dictName}CustomFormItem`];
+      const Component = Components()[`${dictName}CustomFormItem`];
 
       return (
         <Component
@@ -406,7 +410,7 @@ export default {
       );
     };
     const renderCheckBoxCheckAllCustom = () => {
-      const Component = FormItemGeneratorToDict[`${dictName}CheckAllCustomFormItem`];
+      const Component = Components()[`${dictName}CheckAllCustomFormItem`];
 
       return (
         <Component
@@ -426,7 +430,7 @@ export default {
     };
 
     const renderTransferSelect = () => {
-      const Component = FormItemGeneratorToDict[`${dictName}SelectFormItem`];
+      const Component = Components()[`${dictName}SelectFormItem`];
 
       return (
         <Component
@@ -444,7 +448,7 @@ export default {
     };
 
     const renderTableSelect = () => {
-      const Component = FormItemGeneratorToDict[`${dictName}SelectFormItem`];
+      const Component = Components()[`${dictName}SelectFormItem`];
 
       return (
         <Component
@@ -461,7 +465,7 @@ export default {
       );
     };
     const renderTableMultiSelect = () => {
-      const Component = FormItemGeneratorToDict[`${dictName}MulitSelectFormItem`];
+      const Component = Components()[`${dictName}MulitSelectFormItem`];
 
       return (
         <Component
@@ -478,7 +482,7 @@ export default {
       );
     };
     const renderTablePagingSelect = () => {
-      const Component = FormItemGeneratorToDict[`${dictName}PaginationSelectFormItem`];
+      const Component = Components()[`${dictName}PaginationSelectFormItem`];
 
       return (
         <Component
@@ -495,7 +499,7 @@ export default {
       );
     };
     const renderTablePagingMultiSelect = () => {
-      const Component = FormItemGeneratorToDict[`${dictName}PaginationMulitSelectFormItem`];
+      const Component = Components()[`${dictName}PaginationMulitSelectFormItem`];
 
       return (
         <Component
@@ -513,7 +517,7 @@ export default {
     };
 
     const renderListSelect = () => {
-      const Component = FormItemGeneratorToDict[`${dictName}SelectFormItem`];
+      const Component = Components()[`${dictName}SelectFormItem`];
 
       return (
         <Component
@@ -530,7 +534,7 @@ export default {
       );
     };
     const renderListMultiSelect = () => {
-      const Component = FormItemGeneratorToDict[`${dictName}MulitSelectFormItem`];
+      const Component = Components()[`${dictName}MulitSelectFormItem`];
 
       return (
         <Component
@@ -547,7 +551,7 @@ export default {
       );
     };
     const renderListPagingSelect = () => {
-      const Component = FormItemGeneratorToDict[`${dictName}PaginationSelectFormItem`];
+      const Component = Components()[`${dictName}PaginationSelectFormItem`];
 
       return (
         <Component
@@ -564,7 +568,7 @@ export default {
       );
     };
     const renderListPagingMultiSelect = () => {
-      const Component = FormItemGeneratorToDict[`${dictName}PaginationMulitSelectFormItem`];
+      const Component = Components()[`${dictName}PaginationMulitSelectFormItem`];
 
       return (
         <Component
@@ -582,7 +586,7 @@ export default {
     };
 
     const renderTreeSelect = () => {
-      const Component = FormItemGeneratorToDict[`${dictName}FormItem`];
+      const Component = Components()[`${dictName}FormItem`];
 
       return (
         <Component
@@ -599,7 +603,7 @@ export default {
       );
     };
     const renderTreeMultiSelect = () => {
-      const Component = FormItemGeneratorToDict[`${dictName}MulitFormItem`];
+      const Component = Components()[`${dictName}MulitFormItem`];
 
       return (
         <Component
@@ -616,7 +620,7 @@ export default {
       );
     };
     const renderTreeSelectLeaf = () => {
-      const Component = FormItemGeneratorToDict[`${dictName}LeafFormItem`];
+      const Component = Components()[`${dictName}LeafFormItem`];
 
       return (
         <Component
@@ -633,7 +637,7 @@ export default {
       );
     };
     const renderTreeMultiSelectLeaf = () => {
-      const Component = FormItemGeneratorToDict[`${dictName}LeafMulitFormItem`];
+      const Component = Components()[`${dictName}LeafMulitFormItem`];
 
       return (
         <Component
@@ -651,7 +655,7 @@ export default {
     };
 
     const renderCascaderSelect = () => {
-      const Component = FormItemGeneratorToDict[`${dictName}FormItem`];
+      const Component = Components()[`${dictName}FormItem`];
 
       return (
         <Component
@@ -668,7 +672,7 @@ export default {
       );
     };
     const renderCascaderMultiSelect = () => {
-      const Component = FormItemGeneratorToDict[`${dictName}MulitFormItem`];
+      const Component = Components()[`${dictName}MulitFormItem`];
 
       return (
         <Component
@@ -685,7 +689,7 @@ export default {
       );
     };
     const renderCascaderSelectLeaf = () => {
-      const Component = FormItemGeneratorToDict[`${dictName}LeafFormItem`];
+      const Component = Components()[`${dictName}LeafFormItem`];
 
       return (
         <Component
@@ -702,7 +706,7 @@ export default {
       );
     };
     const renderCascaderMultiSelectLeaf = () => {
-      const Component = FormItemGeneratorToDict[`${dictName}LeafMulitFormItem`];
+      const Component = Components()[`${dictName}LeafMulitFormItem`];
 
       return (
         <Component

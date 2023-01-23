@@ -22,7 +22,9 @@ const {
 } = Util;
 
 const {
-  FormItemGeneratorToDict,
+  FormItemGeneratorToDict: {
+    getComponents
+  },
   AntdvFormItemNormalize: {
     DatePicker,
     InputNumberDecimal1,
@@ -33,6 +35,8 @@ const {
   },
 } = AntdvFormItem;
 const { renderGridSearchFormGroup, Label, Value } = TableGridLayout;
+
+const Components = () => getComponents();
 
 const _selectorPrefix = `${selectorPrefix}-protable`;
 
@@ -955,7 +959,7 @@ export default ({ className, superClass }, searchAndPaginParamsMemo) =>
         };
 
         const renderSelect = ({ searchConfig, dataIndex }) => {
-          const Component = FormItemGeneratorToDict[`${searchConfig.dictName}FormItem`];
+          const Component = Components()[`${searchConfig.dictName}FormItem`];
 
           return (
             <Component
@@ -970,7 +974,7 @@ export default ({ className, superClass }, searchAndPaginParamsMemo) =>
           );
         };
         const renderMultiSelect = ({ searchConfig, dataIndex }) => {
-          const Component = FormItemGeneratorToDict[`${searchConfig.dictName}MulitFormItem`];
+          const Component = Components()[`${searchConfig.dictName}MulitFormItem`];
 
           return (
             <Component
@@ -986,7 +990,7 @@ export default ({ className, superClass }, searchAndPaginParamsMemo) =>
         };
         const renderCheckAllMultiSelect = ({ searchConfig, dataIndex }) => {
           const Component =
-            FormItemGeneratorToDict[`${searchConfig.dictName}CheckAllMulitFormItem`];
+            Components()[`${searchConfig.dictName}CheckAllMulitFormItem`];
 
           return (
             <Component
@@ -1002,7 +1006,7 @@ export default ({ className, superClass }, searchAndPaginParamsMemo) =>
         };
 
         const renderAutoCompleteSelect = ({ searchConfig, dataIndex }) => {
-          const Component = FormItemGeneratorToDict[`${searchConfig.dictName}FormItem`];
+          const Component = Components()[`${searchConfig.dictName}FormItem`];
 
           return (
             <Component
@@ -1017,7 +1021,7 @@ export default ({ className, superClass }, searchAndPaginParamsMemo) =>
           );
         };
         const renderAutoCompleteSelectMulti = ({ searchConfig, dataIndex }) => {
-          const Component = FormItemGeneratorToDict[`${searchConfig.dictName}MulitFormItem`];
+          const Component = Components()[`${searchConfig.dictName}MulitFormItem`];
 
           return (
             <Component
@@ -1033,7 +1037,7 @@ export default ({ className, superClass }, searchAndPaginParamsMemo) =>
         };
         const renderAutoCompleteSelectCheckAllMulti = ({ searchConfig, dataIndex }) => {
           const Component =
-            FormItemGeneratorToDict[`${searchConfig.dictName}CheckAllMulitFormItem`];
+            Components()[`${searchConfig.dictName}CheckAllMulitFormItem`];
 
           return (
             <Component
@@ -1049,7 +1053,7 @@ export default ({ className, superClass }, searchAndPaginParamsMemo) =>
         };
 
         const renderRadioHorizontal = ({ searchConfig, dataIndex }) => {
-          const Component = FormItemGeneratorToDict[`${searchConfig.dictName}HorizontalFormItem`];
+          const Component = Components()[`${searchConfig.dictName}HorizontalFormItem`];
 
           return (
             <Component
@@ -1064,7 +1068,7 @@ export default ({ className, superClass }, searchAndPaginParamsMemo) =>
           );
         };
         const renderRadioButton = ({ searchConfig, dataIndex }) => {
-          const Component = FormItemGeneratorToDict[`${searchConfig.dictName}ButtonFormItem`];
+          const Component = Components()[`${searchConfig.dictName}ButtonFormItem`];
 
           return (
             <Component
@@ -1079,7 +1083,7 @@ export default ({ className, superClass }, searchAndPaginParamsMemo) =>
           );
         };
         const renderRadioSelect = ({ searchConfig, dataIndex }) => {
-          const Component = FormItemGeneratorToDict[`${searchConfig.dictName}SelectFormItem`];
+          const Component = Components()[`${searchConfig.dictName}SelectFormItem`];
 
           return (
             <Component
@@ -1094,7 +1098,7 @@ export default ({ className, superClass }, searchAndPaginParamsMemo) =>
           );
         };
         const renderRadioCustom = ({ searchConfig, dataIndex }) => {
-          const Component = FormItemGeneratorToDict[`${searchConfig.dictName}CustomFormItem`];
+          const Component = Components()[`${searchConfig.dictName}CustomFormItem`];
 
           return (
             <Component
@@ -1115,7 +1119,7 @@ export default ({ className, superClass }, searchAndPaginParamsMemo) =>
         };
 
         const renderCheckBoxHorizontal = ({ searchConfig, dataIndex }) => {
-          const Component = FormItemGeneratorToDict[`${searchConfig.dictName}HorizontalFormItem`];
+          const Component = Components()[`${searchConfig.dictName}HorizontalFormItem`];
 
           return (
             <Component
@@ -1131,7 +1135,7 @@ export default ({ className, superClass }, searchAndPaginParamsMemo) =>
         };
         const renderCheckBoxCheckAllHorizontal = ({ searchConfig, dataIndex }) => {
           const Component =
-            FormItemGeneratorToDict[`${searchConfig.dictName}CheckAllHorizontalFormItem`];
+            Components()[`${searchConfig.dictName}CheckAllHorizontalFormItem`];
 
           return (
             <Component
@@ -1146,7 +1150,7 @@ export default ({ className, superClass }, searchAndPaginParamsMemo) =>
           );
         };
         const renderCheckboxSelect = ({ searchConfig, dataIndex }) => {
-          const Component = FormItemGeneratorToDict[`${searchConfig.dictName}SelectFormItem`];
+          const Component = Components()[`${searchConfig.dictName}SelectFormItem`];
 
           return (
             <Component
@@ -1162,7 +1166,7 @@ export default ({ className, superClass }, searchAndPaginParamsMemo) =>
         };
         const renderCheckBoxCheckAllSelect = ({ searchConfig, dataIndex }) => {
           const Component =
-            FormItemGeneratorToDict[`${searchConfig.dictName}CheckAllSelectFormItem`];
+            Components()[`${searchConfig.dictName}CheckAllSelectFormItem`];
 
           return (
             <Component
@@ -1177,7 +1181,7 @@ export default ({ className, superClass }, searchAndPaginParamsMemo) =>
           );
         };
         const renderCheckBoxCustom = ({ searchConfig, dataIndex }) => {
-          const Component = FormItemGeneratorToDict[`${searchConfig.dictName}CustomFormItem`];
+          const Component = Components()[`${searchConfig.dictName}CustomFormItem`];
 
           return (
             <Component
@@ -1198,7 +1202,7 @@ export default ({ className, superClass }, searchAndPaginParamsMemo) =>
         };
         const renderCheckBoxCheckAllCustom = ({ searchConfig, dataIndex }) => {
           const Component =
-            FormItemGeneratorToDict[`${searchConfig.dictName}CheckAllCustomFormItem`];
+            Components()[`${searchConfig.dictName}CheckAllCustomFormItem`];
 
           return (
             <Component
@@ -1219,7 +1223,7 @@ export default ({ className, superClass }, searchAndPaginParamsMemo) =>
         };
 
         const renderTransferSelect = ({ searchConfig, dataIndex }) => {
-          const Component = FormItemGeneratorToDict[`${searchConfig.dictName}SelectFormItem`];
+          const Component = Components()[`${searchConfig.dictName}SelectFormItem`];
 
           return (
             <Component
@@ -1235,7 +1239,7 @@ export default ({ className, superClass }, searchAndPaginParamsMemo) =>
         };
 
         const renderTableSelect = ({ searchConfig, dataIndex }) => {
-          const Component = FormItemGeneratorToDict[`${searchConfig.dictName}SelectFormItem`];
+          const Component = Components()[`${searchConfig.dictName}SelectFormItem`];
 
           return (
             <Component
@@ -1250,7 +1254,7 @@ export default ({ className, superClass }, searchAndPaginParamsMemo) =>
           );
         };
         const renderTableMultiSelect = ({ searchConfig, dataIndex }) => {
-          const Component = FormItemGeneratorToDict[`${searchConfig.dictName}MulitSelectFormItem`];
+          const Component = Components()[`${searchConfig.dictName}MulitSelectFormItem`];
 
           return (
             <Component
@@ -1266,7 +1270,7 @@ export default ({ className, superClass }, searchAndPaginParamsMemo) =>
         };
         const renderTablePagingSelect = ({ searchConfig, dataIndex }) => {
           const Component =
-            FormItemGeneratorToDict[`${searchConfig.dictName}PaginationSelectFormItem`];
+            Components()[`${searchConfig.dictName}PaginationSelectFormItem`];
 
           return (
             <Component
@@ -1282,7 +1286,7 @@ export default ({ className, superClass }, searchAndPaginParamsMemo) =>
         };
         const renderTablePagingMultiSelect = ({ searchConfig, dataIndex }) => {
           const Component =
-            FormItemGeneratorToDict[`${searchConfig.dictName}PaginationMulitSelectFormItem`];
+            Components()[`${searchConfig.dictName}PaginationMulitSelectFormItem`];
 
           return (
             <Component
@@ -1298,7 +1302,7 @@ export default ({ className, superClass }, searchAndPaginParamsMemo) =>
         };
 
         const renderListSelect = ({ searchConfig, dataIndex }) => {
-          const Component = FormItemGeneratorToDict[`${searchConfig.dictName}SelectFormItem`];
+          const Component = Components()[`${searchConfig.dictName}SelectFormItem`];
 
           return (
             <Component
@@ -1313,7 +1317,7 @@ export default ({ className, superClass }, searchAndPaginParamsMemo) =>
           );
         };
         const renderListMultiSelect = ({ searchConfig, dataIndex }) => {
-          const Component = FormItemGeneratorToDict[`${searchConfig.dictName}MulitSelectFormItem`];
+          const Component = Components()[`${searchConfig.dictName}MulitSelectFormItem`];
 
           return (
             <Component
@@ -1329,7 +1333,7 @@ export default ({ className, superClass }, searchAndPaginParamsMemo) =>
         };
         const renderListPagingSelect = ({ searchConfig, dataIndex }) => {
           const Component =
-            FormItemGeneratorToDict[`${searchConfig.dictName}PaginationSelectFormItem`];
+            Components()[`${searchConfig.dictName}PaginationSelectFormItem`];
 
           return (
             <Component
@@ -1345,7 +1349,7 @@ export default ({ className, superClass }, searchAndPaginParamsMemo) =>
         };
         const renderListPagingMultiSelect = ({ searchConfig, dataIndex }) => {
           const Component =
-            FormItemGeneratorToDict[`${searchConfig.dictName}PaginationMulitSelectFormItem`];
+            Components()[`${searchConfig.dictName}PaginationMulitSelectFormItem`];
 
           return (
             <Component
@@ -1361,7 +1365,7 @@ export default ({ className, superClass }, searchAndPaginParamsMemo) =>
         };
 
         const renderTreeSelect = ({ searchConfig, dataIndex }) => {
-          const Component = FormItemGeneratorToDict[`${searchConfig.dictName}FormItem`];
+          const Component = Components()[`${searchConfig.dictName}FormItem`];
 
           return (
             <Component
@@ -1376,7 +1380,7 @@ export default ({ className, superClass }, searchAndPaginParamsMemo) =>
           );
         };
         const renderTreeMultiSelect = ({ searchConfig, dataIndex }) => {
-          const Component = FormItemGeneratorToDict[`${searchConfig.dictName}MulitFormItem`];
+          const Component = Components()[`${searchConfig.dictName}MulitFormItem`];
 
           return (
             <Component
@@ -1391,7 +1395,7 @@ export default ({ className, superClass }, searchAndPaginParamsMemo) =>
           );
         };
         const renderTreeSelectLeaf = ({ searchConfig, dataIndex }) => {
-          const Component = FormItemGeneratorToDict[`${searchConfig.dictName}LeafFormItem`];
+          const Component = Components()[`${searchConfig.dictName}LeafFormItem`];
 
           return (
             <Component
@@ -1406,7 +1410,7 @@ export default ({ className, superClass }, searchAndPaginParamsMemo) =>
           );
         };
         const renderTreeMultiSelectLeaf = ({ searchConfig, dataIndex }) => {
-          const Component = FormItemGeneratorToDict[`${searchConfig.dictName}LeafMulitFormItem`];
+          const Component = Components()[`${searchConfig.dictName}LeafMulitFormItem`];
 
           return (
             <Component
@@ -1422,7 +1426,7 @@ export default ({ className, superClass }, searchAndPaginParamsMemo) =>
         };
 
         const renderCascaderSelect = ({ searchConfig, dataIndex }) => {
-          const Component = FormItemGeneratorToDict[`${searchConfig.dictName}FormItem`];
+          const Component = Components()[`${searchConfig.dictName}FormItem`];
 
           return (
             <Component
@@ -1437,7 +1441,7 @@ export default ({ className, superClass }, searchAndPaginParamsMemo) =>
           );
         };
         const renderCascaderMultiSelect = ({ searchConfig, dataIndex }) => {
-          const Component = FormItemGeneratorToDict[`${searchConfig.dictName}MulitFormItem`];
+          const Component = Components()[`${searchConfig.dictName}MulitFormItem`];
 
           return (
             <Component
@@ -1452,7 +1456,7 @@ export default ({ className, superClass }, searchAndPaginParamsMemo) =>
           );
         };
         const renderCascaderSelectLeaf = ({ searchConfig, dataIndex }) => {
-          const Component = FormItemGeneratorToDict[`${searchConfig.dictName}LeafFormItem`];
+          const Component = Components()[`${searchConfig.dictName}LeafFormItem`];
 
           return (
             <Component
@@ -1467,7 +1471,7 @@ export default ({ className, superClass }, searchAndPaginParamsMemo) =>
           );
         };
         const renderCascaderMultiSelectLeaf = ({ searchConfig, dataIndex }) => {
-          const Component = FormItemGeneratorToDict[`${searchConfig.dictName}LeafMulitFormItem`];
+          const Component = Components()[`${searchConfig.dictName}LeafMulitFormItem`];
 
           return (
             <Component

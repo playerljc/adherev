@@ -1,9 +1,20 @@
 // import mergewith from 'lodash.mergewith';
 import Vue from 'vue';
-
 import { createStore } from './store';
+import AntdvFormItem from '@baifendian/adherev-ui-antdvformitem';
+import Dict from '@baifendian/adherev-util-dict';
 import SearchTable from '../index';
 import ProTable from './ProTable';
+
+import TestDist from './dict.test.config';
+
+
+AntdvFormItem.use(Vue);
+Dict.use(Vue);
+
+// 配置字典
+Dict.init([TestDist], { isFunMemo: false });
+AntdvFormItem.FormItemGeneratorToDict.init(Vue);
 
 import '../index.less';
 import './index.less';
