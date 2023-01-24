@@ -51,12 +51,12 @@ const DelConfirm: any = {
     title: {
       type: String,
       required: false,
-      default: intl.tv('提示'),
+      default: '',
     },
     text: {
       type: String,
       required: false,
-      default: `${intl.tv('确定删除吗')}?`,
+      default: '',
     },
   },
   methods: {
@@ -67,8 +67,8 @@ const DelConfirm: any = {
 
       open({
         success,
-        title,
-        text,
+        title: intl.tv('提示'),
+        text: text || `${intl.tv('确定删除吗')}?`,
         zIndex,
       });
     },
