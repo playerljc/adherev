@@ -3,6 +3,7 @@ import merge from 'lodash.merge';
 import mergeWidth from 'lodash.mergewith';
 import type { CreateElement } from 'vue';
 import { ComponentOptions } from 'vue/types/options';
+import { ComponentOptionsWithProps } from 'vue/types/v3-component-options';
 
 import WatchMemoized from '@baifendian/adherev-util-watchmemoized';
 
@@ -214,23 +215,40 @@ export const getComponentPropsOption = memoized.createMemoFun((Component) => ({
   ),
 }));
 
+/**
+ * filterEmpty
+ * @param children
+ */
 export function filterEmpty(children = []) {
-  return children.filter(c => !isEmptyElement(c));
+  return children.filter((c) => !isEmptyElement(c));
 }
 
+/**
+ * isEmptyElement
+ * @param c
+ */
 export function isEmptyElement(c) {
   return !(c.tag || (c.text && c.text.trim() !== ''));
 }
 
-export const camelize = str => {
+/**
+ * camelize
+ * @param str
+ */
+export const camelize = (str) => {
   return str.replace(/-(\w)/g, (_, c) => (c ? c.toUpperCase() : ''));
-}
+};
 
+/**
+ * parseStyleText
+ * @param cssText
+ * @param camel
+ */
 export const parseStyleText = (cssText = '', camel) => {
   const res = {};
   const listDelimiter = /;(?![^(]*\))/g;
   const propertyDelimiter = /:(.+)/;
-  cssText.split(listDelimiter).forEach(function(item) {
+  cssText.split(listDelimiter).forEach(function (item) {
     if (item) {
       const tmp = item.split(propertyDelimiter);
       if (tmp.length > 1) {
@@ -423,4 +441,24 @@ export function cloneElement(n, nodeProps = {}, deep) {
     node.data.ref = ref;
   }
   return node;
+}
+
+/**
+ * forwardRef
+ * @param comp
+ * @param ref
+ */
+export function forwardRef(
+  comp: ComponentOptionsWithProps,
+  ref: string,
+): ComponentOptionsWithProps {
+  return {
+    methods: Object.keys(comp?.methods || {}).reduce((methods, methodName) => {
+      methods[methodName] = function (this: Vue, ...params) {
+        return this?.$refs?.[ref]?.[methodName]?.(...params);
+      }
+
+      return methods;
+    }, {}),
+  };
 }

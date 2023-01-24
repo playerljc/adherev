@@ -1,5 +1,6 @@
 import type { CreateElement } from 'vue';
 import { ComponentOptions } from 'vue/types/options';
+import { ComponentOptionsWithProps } from 'vue/types/v3-component-options';
 /**
  * ExtendFunction
  */
@@ -73,9 +74,26 @@ export declare const HOC: (component: {
  * @returns {{}}
  */
 export declare const getComponentPropsOption: any;
+/**
+ * filterEmpty
+ * @param children
+ */
 export declare function filterEmpty(children?: never[]): never[];
+/**
+ * isEmptyElement
+ * @param c
+ */
 export declare function isEmptyElement(c: any): boolean;
+/**
+ * camelize
+ * @param str
+ */
 export declare const camelize: (str: any) => any;
+/**
+ * parseStyleText
+ * @param cssText
+ * @param camel
+ */
 export declare const parseStyleText: (cssText: string | undefined, camel: any) => {};
 /**
  * isVNode
@@ -106,4 +124,10 @@ export declare function cloneVNodes(vnodes: any, deep: any): any[];
  * @param deep
  */
 export declare function cloneElement(n: any, nodeProps: {} | undefined, deep: any): any;
+/**
+ * forwardRef
+ * @param comp
+ * @param ref
+ */
+export declare function forwardRef(comp: ComponentOptionsWithProps, ref: string): ComponentOptionsWithProps;
 export {};
