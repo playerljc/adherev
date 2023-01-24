@@ -59,10 +59,6 @@ import SearchTable, {
 } from './SearchTable';
 import SearchTableImplement from './SearchTableImplement';
 import SearchTableImplementFactory from './SearchTableImplementFactory';
-import SearchForm from './searchform';
-import SearchFormLabel from './searchformlabel';
-import SearchFormRow from './searchformrow';
-import SearchFormValue from './searchformvalue';
 
 const {
   _util: { withInstall, withVue },
@@ -82,11 +78,6 @@ SearchTable.use = (Vue) => {
   Teleport.isUse() && Teleport.use(Vue);
   Resource?.isUse?.() && Resource?.use?.(Vue);
   Validator.isUse() && Validator.use(Vue);
-
-  Vue.use(SearchTable.SearchForm);
-  Vue.use(SearchTable.SearchFormRow);
-  Vue.use(SearchTable.SearchFormLabel);
-  Vue.use(SearchTable.SearchFormValue);
 
   Vue.use(SearchTable.ColumnSetting);
   Vue.use(SearchTable.TableDensitySetting);
@@ -114,11 +105,6 @@ SearchTable.use = (Vue) => {
 
   withVue(Vue, 'SearchTable', SearchTable);
 };
-
-SearchTable.SearchForm = withInstall(SearchForm);
-SearchTable.SearchFormRow = withInstall(SearchFormRow);
-SearchTable.SearchFormLabel = withInstall(SearchFormLabel);
-SearchTable.SearchFormValue = withInstall(SearchFormValue);
 
 SearchTable.ColumnSetting = withInstall(ColumnSetting);
 SearchTable.TableDensitySetting = withInstall(TableDensitySetting);

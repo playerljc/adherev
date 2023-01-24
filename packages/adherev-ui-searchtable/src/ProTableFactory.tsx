@@ -22,9 +22,7 @@ const {
 } = Util;
 
 const {
-  FormItemGeneratorToDict: {
-    getComponents
-  },
+  FormItemGeneratorToDict: { getComponents },
   AntdvFormItemNormalize: {
     DatePicker,
     InputNumberDecimal1,
@@ -285,7 +283,7 @@ export default ({ className, superClass }, searchAndPaginParamsMemo) =>
        * @returns {boolean}
        */
       hasNumberColumnFixed() {
-        return false;
+        return true;
       },
 
       /**
@@ -519,56 +517,56 @@ export default ({ className, superClass }, searchAndPaginParamsMemo) =>
           }
         }
 
-        const res = columns
-          // 处理align
-          .map((t) => ({
-            ...t,
-            align: ![this.getLinkColumnDataIndex() || '_linkColumn'].includes(t.dataIndex)
-              ? 'center'
-              : 'align' in t && t.align
-              ? t.align
-              : 'center',
-          }))
-          // 处理search
-          .map((_t) => {
-            const loop = (t) => {
-              const { $search, ...columnConfig } = t;
-              const searchConfig = this.assignSearchConfig($search, columnConfig);
-              const showColumnHeader = searchConfig.showColumnHeader;
+        return (
+          columns
+            // 处理align
+            .map((t) => ({
+              ...t,
+              align: ![this.getLinkColumnDataIndex() || '_linkColumn'].includes(t.dataIndex)
+                ? 'center'
+                : 'align' in t && t.align
+                ? t.align
+                : 'center',
+            }))
+            // 处理search
+            .map((_t) => {
+              const loop = (t) => {
+                const { $search, ...columnConfig } = t;
+                const searchConfig = this.assignSearchConfig($search, columnConfig);
+                const showColumnHeader = searchConfig.showColumnHeader;
 
-              let column = {
-                ...t,
+                let column = {
+                  ...t,
+                };
+
+                const dataIndex = searchConfig.dataIndex || t.dataIndex;
+
+                if (
+                  !['_number', this.getOptionsColumnDataIndex()].includes(dataIndex) &&
+                  showColumnHeader
+                ) {
+                  column = {
+                    ...column,
+                    scopedSlots: {
+                      ...(column.scopedSlots || {}),
+                      filterDropdown: this.getFilterDropdownSlot(),
+                      filterIcon: this.getFilterIconSlot(),
+                    },
+                  };
+                }
+
+                if (t.children && Array.isArray(t.children)) {
+                  t.children.forEach((item, _index) => {
+                    t.children[_index] = loop(item);
+                  });
+                }
+
+                return column;
               };
 
-              const dataIndex = searchConfig.dataIndex || t.dataIndex;
-
-              if (
-                !['_number', this.getOptionsColumnDataIndex()].includes(dataIndex) &&
-                showColumnHeader
-              ) {
-                column = {
-                  ...column,
-                  scopedSlots: {
-                    ...(column.scopedSlots || {}),
-                    filterDropdown: this.getFilterDropdownSlot(),
-                    filterIcon: this.getFilterIconSlot(),
-                  },
-                };
-              }
-
-              if (t.children && Array.isArray(t.children)) {
-                t.children.forEach((item, _index) => {
-                  t.children[_index] = loop(item);
-                });
-              }
-
-              return column;
-            };
-
-            return loop(_t);
-          });
-
-        return res;
+              return loop(_t);
+            })
+        );
       },
 
       /**
@@ -798,7 +796,7 @@ export default ({ className, superClass }, searchAndPaginParamsMemo) =>
       renderSearchForm(h /*columnCount, data*/) {
         return this.renderGridSearchFormGroup(
           h,
-          ...this.getGridSearchFormGroupParams(h/*columnCount, data*/),
+          ...this.getGridSearchFormGroupParams(h /*columnCount, data*/),
         );
       },
 
@@ -990,8 +988,7 @@ export default ({ className, superClass }, searchAndPaginParamsMemo) =>
           );
         };
         const renderCheckAllMultiSelect = ({ searchConfig, dataIndex }) => {
-          const Component =
-            Components()[`${searchConfig.dictName}CheckAllMulitFormItem`];
+          const Component = Components()[`${searchConfig.dictName}CheckAllMulitFormItem`];
 
           return (
             <Component
@@ -1037,8 +1034,7 @@ export default ({ className, superClass }, searchAndPaginParamsMemo) =>
           );
         };
         const renderAutoCompleteSelectCheckAllMulti = ({ searchConfig, dataIndex }) => {
-          const Component =
-            Components()[`${searchConfig.dictName}CheckAllMulitFormItem`];
+          const Component = Components()[`${searchConfig.dictName}CheckAllMulitFormItem`];
 
           return (
             <Component
@@ -1135,8 +1131,7 @@ export default ({ className, superClass }, searchAndPaginParamsMemo) =>
           );
         };
         const renderCheckBoxCheckAllHorizontal = ({ searchConfig, dataIndex }) => {
-          const Component =
-            Components()[`${searchConfig.dictName}CheckAllHorizontalFormItem`];
+          const Component = Components()[`${searchConfig.dictName}CheckAllHorizontalFormItem`];
 
           return (
             <Component
@@ -1166,8 +1161,7 @@ export default ({ className, superClass }, searchAndPaginParamsMemo) =>
           );
         };
         const renderCheckBoxCheckAllSelect = ({ searchConfig, dataIndex }) => {
-          const Component =
-            Components()[`${searchConfig.dictName}CheckAllSelectFormItem`];
+          const Component = Components()[`${searchConfig.dictName}CheckAllSelectFormItem`];
 
           return (
             <Component
@@ -1202,8 +1196,7 @@ export default ({ className, superClass }, searchAndPaginParamsMemo) =>
           );
         };
         const renderCheckBoxCheckAllCustom = ({ searchConfig, dataIndex }) => {
-          const Component =
-            Components()[`${searchConfig.dictName}CheckAllCustomFormItem`];
+          const Component = Components()[`${searchConfig.dictName}CheckAllCustomFormItem`];
 
           return (
             <Component
@@ -1270,8 +1263,7 @@ export default ({ className, superClass }, searchAndPaginParamsMemo) =>
           );
         };
         const renderTablePagingSelect = ({ searchConfig, dataIndex }) => {
-          const Component =
-            Components()[`${searchConfig.dictName}PaginationSelectFormItem`];
+          const Component = Components()[`${searchConfig.dictName}PaginationSelectFormItem`];
 
           return (
             <Component
@@ -1286,8 +1278,7 @@ export default ({ className, superClass }, searchAndPaginParamsMemo) =>
           );
         };
         const renderTablePagingMultiSelect = ({ searchConfig, dataIndex }) => {
-          const Component =
-            Components()[`${searchConfig.dictName}PaginationMulitSelectFormItem`];
+          const Component = Components()[`${searchConfig.dictName}PaginationMulitSelectFormItem`];
 
           return (
             <Component
@@ -1333,8 +1324,7 @@ export default ({ className, superClass }, searchAndPaginParamsMemo) =>
           );
         };
         const renderListPagingSelect = ({ searchConfig, dataIndex }) => {
-          const Component =
-            Components()[`${searchConfig.dictName}PaginationSelectFormItem`];
+          const Component = Components()[`${searchConfig.dictName}PaginationSelectFormItem`];
 
           return (
             <Component
@@ -1349,8 +1339,7 @@ export default ({ className, superClass }, searchAndPaginParamsMemo) =>
           );
         };
         const renderListPagingMultiSelect = ({ searchConfig, dataIndex }) => {
-          const Component =
-            Components()[`${searchConfig.dictName}PaginationMulitSelectFormItem`];
+          const Component = Components()[`${searchConfig.dictName}PaginationMulitSelectFormItem`];
 
           return (
             <Component
