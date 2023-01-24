@@ -49,12 +49,12 @@ const ImportantConfirm: any = {
     title: {
       type: String,
       required: false,
-      default: intl.tv('提示'),
+      default: '',
     },
     text: {
       type: String,
       required: false,
-      default: `${intl.v('真的要执行此操作码')}?`,
+      default: '',
     },
     icon: {
       type: String,
@@ -70,8 +70,8 @@ const ImportantConfirm: any = {
 
       open({
         success,
-        title,
-        text,
+        title: title || intl.tv('提示'),
+        text: text || `${intl.v('真的要执行此操作码')}?`,
         zIndex,
         icon,
       });
