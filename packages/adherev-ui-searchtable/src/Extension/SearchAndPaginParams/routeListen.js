@@ -12,10 +12,11 @@ function clearSearAndPaginParamsByPathname(pathname) {
   if (findIndex !== -1) TableImplementSearchAndvPaginParamsMemo.deleteByIndex(findIndex);
 }
 
-export default ({ location, action }) => {
-  const { pathname } = location;
-
+function deal(pathname) {
   const findIndex = historyStack.lastIndexOf(pathname);
+
+  console.log('del cell', pathname);
+
   // 没找到
   if (findIndex === -1) {
     // 清除查询条件
@@ -45,4 +46,29 @@ export default ({ location, action }) => {
     historyStack = historyStack.slice(0, findIndex);
     historyStack.push(pathname);
   }
+}
+
+const popstate = (context) => {
+  deal(window.location.pathname);
+
+  context.on(routeListen);
 };
+
+let popstateHandler;
+
+function routeListen({ location, action, context }) {
+  const { pathname } = location;
+
+  context.remove(routeListen);
+
+  if (popstateHandler) {
+    window.removeEventListener('popstate', popstateHandler);
+  }
+
+  popstateHandler = popstate.bind(this, context);
+  window.addEventListener('popstate', popstateHandler);
+
+  deal(pathname);
+}
+
+export default routeListen;
