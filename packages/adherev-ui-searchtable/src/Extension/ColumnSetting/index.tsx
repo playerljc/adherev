@@ -22,37 +22,42 @@ export default {
           <Setting
             columns={this.getContext?.()?.context?.getSortColumnSetting?.() || []}
             onShowColumns={(checked) => {
-              const { columnSetting } = this.getContext?.()?.context;
-
-              this.getContext().context.columnSetting = columnSetting.map((column) => ({
-                ...column,
-                display: checked,
-              }));
+              // const { columnSetting } = this.getContext?.()?.context;
+              //
+              // this.getContext().context.columnSetting = columnSetting.map((column) => ({
+              //   ...column,
+              //   display: checked,
+              // }));
+              this.$emit('showColumns', checked);
             }}
             onReset={() => {
-              this.getContext().columnSetting = this.getContext().context
-                .getTableColumns()
-                .map((column, index) => ({
-                  ...column,
-                  display: true,
-                  sort: index,
-                }));
+              // this.getContext().columnSetting = this.getContext().context
+              //   .getTableColumns()
+              //   .map((column, index) => ({
+              //     ...column,
+              //     display: true,
+              //     sort: index,
+              //   }));
+              this.$emit('reset');
             }}
             onDisplayColumn={({ column, checked }) => {
-              const { columnSetting } = this.getContext?.()?.context;
-
-              this.getContext().context.columnSetting = columnSetting.map((_column) => ({
-                ..._column,
-                display: _column.key === column.key ? checked : _column.display,
-              }));
+              // const { columnSetting } = this.getContext?.()?.context;
+              //
+              // this.getContext().context.columnSetting = columnSetting.map((_column) => ({
+              //   ..._column,
+              //   display: _column.key === column.key ? checked : _column.display,
+              // }));
+              this.$emit('displayColumn', { column, checked });
             }}
             onSortEnd={(map) => {
-              const { columnSetting } = this.getContext?.()?.context;
+              // const { columnSetting } = this.getContext?.()?.context;
+              //
+              // this.getContext().context.columnSetting = columnSetting.map((column) => ({
+              //   ...column,
+              //   sort: map.get(column.key),
+              // }));
 
-              this.getContext().context.columnSetting = columnSetting.map((column) => ({
-                ...column,
-                sort: map.get(column.key),
-              }));
+              this.$emit('sortEnd', map);
             }}
           />
         }

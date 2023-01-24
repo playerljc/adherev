@@ -8,6 +8,7 @@
 * FormItemGeneratorToDict引用的修改
 * ProTableFactory的scopedSlots修改
 * 去掉SearchForm及其附属组件使用TableGridLayout实现
+* 列设置修改
 
 # 1.0.11
 

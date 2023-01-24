@@ -825,7 +825,7 @@ const SearchTable: any = extend({
                 sort: index,
               }));
             }}
-            onDisplayColumn={(column, checked) => {
+            onDisplayColumn={({column, checked}) => {
               this.columnSetting = (this.columnSetting || [])?.map((_column) => ({
                 ..._column,
                 display: _column.key === column.key ? checked : _column.display,
