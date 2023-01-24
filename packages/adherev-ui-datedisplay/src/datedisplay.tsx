@@ -46,14 +46,14 @@ keys.forEach((key) => {
     render(h): VNode {
       const dict = Resource.Dict.value[key].value;
 
-      return (
-        <ConditionalRender conditional={!!this.value}>
+      return !!this.value ? (
+        <span>
           {dayjs(this.value).format(
             dict instanceof Function ? dict(this.split1, this.split2) : dict,
           )}
-          {/*@ts-ignore*/}
-          <Fragment slot="noMatch">{this.$slots.errorUI}</Fragment>
-        </ConditionalRender>
+        </span>
+      ) : (
+        this.$slots.errorUI || null
       );
     },
   };
@@ -79,12 +79,10 @@ Components[`DateDisplayFromNow`] = {
       default: false,
     },
   },
-  render(h): VNode {
-    return (
-      <ConditionalRender conditional={!!this.value}>
-        {dayjs(this.value).locale(this.locale).fromNow(this.now)}
-      </ConditionalRender>
-    );
+  render(h) {
+    return !!this.value ? (
+      <span>{dayjs(this.value).locale(this.locale).fromNow(this.now)}</span>
+    ) : null;
   },
 };
 
@@ -108,12 +106,10 @@ Components[`DateDisplayToNow`] = {
       default: false,
     },
   },
-  render(h): VNode {
-    return (
-      <ConditionalRender conditional={!!this.value}>
-        {dayjs(this.value).locale(this.locale).toNow(this.now)}
-      </ConditionalRender>
-    );
+  render(h) {
+    return !!this.value ? (
+      <span>{dayjs(this.value).locale(this.locale).toNow(this.now)}</span>
+    ) : null;
   },
 };
 
@@ -135,12 +131,10 @@ Components[`DateDisplay`] = {
       type: String,
     },
   },
-  render(h): VNode {
-    return (
-      <ConditionalRender conditional={!!this.value}>
-        {dayjs(this.value).locale(this.locale).format(this.format)}
-      </ConditionalRender>
-    );
+  render(h) {
+    return !!this.value ? (
+      <span>{dayjs(this.value).locale(this.locale).format(this.format)}</span>
+    ) : null;
   },
 };
 
