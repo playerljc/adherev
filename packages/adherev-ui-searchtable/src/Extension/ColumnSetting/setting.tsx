@@ -54,13 +54,12 @@ const Setting: any = Vue.extend({
               checked={this.showColumns}
               onChange={this.onShowColumns}
             >
-              {/*{Intl.tv('列展示')}*/}
-              列展示
+              {Intl.tv('列设置')}
             </Checkbox>
           </div>
 
           <div>
-            <a onClick={this.onReset}>{/*{Intl.tv('重置')}*/}重置</a>
+            <a onClick={this.onReset}>{Intl.tv('重置')}</a>
           </div>
         </div>
 
