@@ -549,6 +549,7 @@ export default ({ className, superClass }, searchAndPaginParamsMemo) =>
                 column = {
                   ...column,
                   scopedSlots: {
+                    ...(column.scopedSlots || {}),
                     filterDropdown: this.getFilterDropdownSlot(),
                     filterIcon: this.getFilterIconSlot(),
                   },

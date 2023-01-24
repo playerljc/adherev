@@ -1,4 +1,6 @@
+import DateDisplay from '@baifendian/adherev-ui-datedisplay';
 import Util from '@baifendian/adherev-util';
+import Dict from '@baifendian/adherev-util-dict';
 
 import SearchTable from '../index';
 
@@ -29,6 +31,8 @@ export default extend({
 
       return {
         ...superScopedSlots,
+        sex: (val) => Dict.value.SystemTestSexSelect.value.find((t) => t.value == val).label,
+        birthday: (val) => <DateDisplay.DateDisplay10 value={val} />,
         options: (val, record) => (
           <OptionsWrap>
             {this.renderOptionColumn(

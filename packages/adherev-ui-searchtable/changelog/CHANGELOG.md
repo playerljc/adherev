@@ -5,6 +5,7 @@
 2023-01-23
 
 * FormItemGeneratorToDict引用的修改
+* ProTableFactory的scopedSlots修改
 
 # 1.0.11
 

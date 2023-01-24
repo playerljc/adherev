@@ -1065,6 +1065,8 @@ const SearchTable: any = extend({
         }
       }
 
+      console.log('tableProps', tableProps);
+
       return <Table {...tableProps} />;
     },
     /**
