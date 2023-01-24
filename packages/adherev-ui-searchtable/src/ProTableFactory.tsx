@@ -809,7 +809,7 @@ export default ({ className, superClass }, searchAndPaginParamsMemo) =>
       renderSearchFooterItems(h, _defaultItems) {
         const defaultItems = [...(_defaultItems || [])];
 
-        if (this.$data.$hasAdvancedSearchPanel && this.expand) {
+        if (this.hasAdvancedSearch() && this.$data.$hasAdvancedSearchPanel && this.expand) {
           const SearchButtonComponent = (
             <Button
               slot="default"
