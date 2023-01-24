@@ -167,7 +167,7 @@ export default ({ className, superClass }, searchAndPaginParamsMemo) =>
        * @description 查询面板Collapse之前
        */
       onSearchPanelCollapseBefore() {
-        if (this.$data.$hasAdvancedSearchPanel && this.expand)
+        if (this.hasAdvancedSearch() && this.$data.$hasAdvancedSearchPanel && this.expand)
           this.advancedSearchPanelCollapse = false;
       },
 
