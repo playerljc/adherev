@@ -68,6 +68,7 @@ export default extend({
             type: 'input',
             visible: true,
           },
+          fixed: 'left',
         },
         {
           title: '性别',
