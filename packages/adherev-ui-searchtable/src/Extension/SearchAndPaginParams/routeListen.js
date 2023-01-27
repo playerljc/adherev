@@ -15,8 +15,6 @@ function clearSearAndPaginParamsByPathname(pathname) {
 function deal(pathname) {
   const findIndex = historyStack.lastIndexOf(pathname);
 
-  console.log('del cell', pathname);
-
   // 没找到
   if (findIndex === -1) {
     // 清除查询条件

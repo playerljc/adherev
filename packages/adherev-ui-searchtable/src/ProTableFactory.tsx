@@ -1,4 +1,4 @@
-import { Button, Icon, Input, InputNumber, Rate, Slider, Switch } from 'ant-design-vue';
+import { Button, Icon, InputNumber, Rate, Slider, Switch } from 'ant-design-vue';
 import merge from 'lodash.merge';
 import moment from 'moment/moment';
 import omit from 'omit.js';
@@ -30,6 +30,8 @@ const {
     InputNumberInteger,
     RangePicker,
     TimePicker,
+    Input,
+    TextArea,
   },
 } = AntdvFormItem;
 const { renderGridSearchFormGroup, Label, Value } = TableGridLayout;
@@ -893,7 +895,7 @@ export default ({ className, superClass }, searchAndPaginParamsMemo) =>
         };
         const renderTextArea = ({ searchConfig, dataIndex }) => {
           return (
-            <Input.TextArea
+            <TextArea
               value={this[dataIndex]}
               onChange={(e) => this.onInputChange(dataIndex, e)}
               {...{
