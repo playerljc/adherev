@@ -18,7 +18,7 @@ export default {
             multiple: true,
             treeCheckable: true,
             treeData: this.dataSource,
-            value: this.targetValue,
+            value: this.value,
             ...this.treeSelectProps,
           },
           attrs: this.$attrs,

@@ -1,10 +1,7 @@
 import { Cascader } from 'ant-design-vue';
 
-import CascaderFormItem from '../CascaderFormItem';
-
 export default {
   name: 'CascaderLeafFormItem',
-  mixins: [CascaderFormItem],
   props: {
     cascaderProps: {
       type: Object,
@@ -46,7 +43,7 @@ export default {
       {
         props: {
           ...this.cascaderProps,
-          value: this.targetValue,
+          value: this.value,
           options: this.targetDataSource,
         },
         attrs: this.$attrs,

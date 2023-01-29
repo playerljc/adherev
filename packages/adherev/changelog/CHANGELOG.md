@@ -8,7 +8,6 @@
   - 加入adherev-ui-antdformitem代码
   - 加入Input和TextArea组件
   - 加入所有Antd组件的默认操作
-  - 字典生成器中，数据源组件的value如果在dataSource中没有找到的处理
 * **adherev-ui-searchtable**
   - 加入ProSearchTable
   - 加入editor功能
