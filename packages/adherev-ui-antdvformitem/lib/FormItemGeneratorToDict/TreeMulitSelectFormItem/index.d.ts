@@ -16,6 +16,15 @@ declare const _default: {
                 default: () => never[];
             };
         };
+        computed: {
+            targetValue(): any;
+        };
+        watch: {
+            value(value: any): void;
+        };
+        methods: {
+            $exists(value: any): null;
+        };
         render(h: any): JSX.Element;
     }[];
     props: {

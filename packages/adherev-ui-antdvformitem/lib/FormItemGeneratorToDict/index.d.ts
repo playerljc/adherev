@@ -318,6 +318,7 @@ declare const FunctionComponents: Pick<{
     };
     MulitSelectFormItem: {
         name: string;
+        emits: string[];
         props: {
             selectProps: {
                 type: ObjectConstructor;
@@ -331,6 +332,12 @@ declare const FunctionComponents: Pick<{
                 type: ArrayConstructor;
                 default: () => never[];
             };
+        };
+        computed: {
+            targetValue(): any;
+        };
+        watch: {
+            value(value: any): void;
         };
         render(h: any): JSX.Element;
     };
@@ -433,6 +440,7 @@ declare const FunctionComponents: Pick<{
     };
     SelectFormItem: {
         name: string;
+        emits: string[];
         props: {
             selectProps: {
                 type: ObjectConstructor;
@@ -446,6 +454,12 @@ declare const FunctionComponents: Pick<{
                 type: ArrayConstructor;
                 default: () => never[];
             };
+        };
+        computed: {
+            targetValue(): any;
+        };
+        watch: {
+            value(value: any): void;
         };
         render(h: any): JSX.Element;
     };
@@ -494,6 +508,15 @@ declare const FunctionComponents: Pick<{
                 default: () => never[];
             };
         };
+        computed: {
+            targetValue(): any;
+        };
+        watch: {
+            value(value: any): void;
+        };
+        methods: {
+            $exists(value: any): null;
+        };
         render(h: any): JSX.Element;
     };
     TreeMulitSelectFormItem: {
@@ -513,6 +536,15 @@ declare const FunctionComponents: Pick<{
                     type: ArrayConstructor;
                     default: () => never[];
                 };
+            };
+            computed: {
+                targetValue(): any;
+            };
+            watch: {
+                value(value: any): void;
+            };
+            methods: {
+                $exists(value: any): null;
             };
             render(h: any): JSX.Element;
         }[];
@@ -659,6 +691,12 @@ declare const FunctionComponents: Pick<{
                 default: () => never[];
             };
         };
+        computed: {
+            targetValue(): any;
+        };
+        watch: {
+            value(value: any): void;
+        };
         render(h: any): any;
     };
     CascaderFormItem: {
@@ -677,10 +715,46 @@ declare const FunctionComponents: Pick<{
                 default: () => never[];
             };
         };
+        computed: {
+            targetValue(): any;
+        };
+        watch: {
+            value(value: any): void;
+        };
+        methods: {
+            $exists(value: any): null;
+        };
         render(h: any): any;
     };
     CascaderLeafFormItem: {
         name: string;
+        mixins: {
+            name: string;
+            props: {
+                cascaderProps: {
+                    type: ObjectConstructor;
+                    default: () => {};
+                };
+                value: {
+                    type: ArrayConstructor;
+                    default: () => never[];
+                };
+                dataSource: {
+                    type: ArrayConstructor;
+                    default: () => never[];
+                };
+            };
+            computed: {
+                targetValue(): any;
+            };
+            watch: {
+                value(value: any): void;
+            };
+            methods: {
+                $exists(value: any): null;
+            };
+            render(h: any): any;
+        }[];
         props: {
             cascaderProps: {
                 type: ObjectConstructor;

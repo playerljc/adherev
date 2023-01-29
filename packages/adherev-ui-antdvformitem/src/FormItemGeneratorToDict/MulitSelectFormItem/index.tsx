@@ -6,6 +6,7 @@ const { Option } = AntdvSelect;
 
 export default {
   name: 'MulitSelectFormItem',
+  emits: ['change'],
   props: {
     selectProps: {
       type: Object,
@@ -20,13 +21,36 @@ export default {
       default: () => [],
     },
   },
+  computed: {
+    targetValue() {
+      if (!Array.isArray(this.value)) return [];
+
+      return this.value.filter((_value) => this.dataSource?.find((t) => t.value === _value));
+    },
+  },
+  watch: {
+    value(value) {
+      if (!Array.isArray(value)) {
+        this.$emit('change', []);
+        return;
+      }
+
+      const filterValue = value.filter((_value) =>
+        this.dataSource?.find((t) => t.value === _value),
+      );
+
+      if (filterValue.length !== value.length) {
+        this.$emit('change', filterValue);
+      }
+    },
+  },
   render(h) {
     return (
       <MultipleSelect
         {...{
           props: {
             ...this.selectProps,
-            value: this.value,
+            value: this.targetValue,
           },
           attrs: this.$attrs,
           scopedSlots: this.$scopedSlots,

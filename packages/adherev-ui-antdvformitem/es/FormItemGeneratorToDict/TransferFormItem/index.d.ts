@@ -14,6 +14,12 @@ declare const _default: {
             default: () => never[];
         };
     };
+    computed: {
+        targetValue(): any;
+    };
+    watch: {
+        value(value: any): void;
+    };
     render(h: any): any;
 };
 export default _default;
