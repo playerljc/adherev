@@ -1,6 +1,6 @@
 {
   "name": "@baifendian/adherev-ui-slidelayout",
-  "version": "1.0.13",
+  "version": "1.0.14",
   "description": "实现抽屉布局",
   "homepage": "https://gitee.com/playerljc/adherev",
   "bugs": {
@@ -29,8 +29,8 @@
   },
   "resolutions": {},
   "dependencies": {
-    "@baifendian/adherev-ui-css": "^1.0.13",
-    "@baifendian/adherev-util": "^1.0.13",
+    "@baifendian/adherev-ui-css": "^1.0.14",
+    "@baifendian/adherev-util": "^1.0.14",
     "classnames": "^2.2.6",
     "vue": "^2.7.14",
     "vue-fragment": "^1.5.2"

@@ -1,6 +1,6 @@
 {
   "name": "@baifendian/adherev-ui-historyback",
-  "version": "1.0.13",
+  "version": "1.0.14",
   "description": "历史记录返回操作",
   "homepage": "https://gitee.com/playerljc/adherev",
   "bugs": {
@@ -30,7 +30,7 @@
   "resolutions": {},
   "dependencies": {
     "@baifendian/adhere-ui-historyback": "^1.0.24",
-    "@baifendian/adherev-util": "^1.0.13"
+    "@baifendian/adherev-util": "^1.0.14"
   },
   "devDependencies": {
     "@babel/runtime": "^7.7.4",

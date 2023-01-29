@@ -1,6 +1,6 @@
 {
   "name": "@baifendian/adherev-ui-splitlayout",
-  "version": "1.0.13",
+  "version": "1.0.14",
   "description": "实现分割窗体的布局，可以拉动调整大小",
   "homepage": "https://gitee.com/playerljc/adherev",
   "bugs": {
@@ -29,9 +29,9 @@
   },
   "resolutions": {},
   "dependencies": {
-    "@baifendian/adherev-ui-css": "^1.0.13",
-    "@baifendian/adherev-ui-flexlayout": "^1.0.13",
-    "@baifendian/adherev-util": "^1.0.13",
+    "@baifendian/adherev-ui-css": "^1.0.14",
+    "@baifendian/adherev-ui-flexlayout": "^1.0.14",
+    "@baifendian/adherev-util": "^1.0.14",
     "classnames": "^2.2.6"
   },
   "devDependencies": {

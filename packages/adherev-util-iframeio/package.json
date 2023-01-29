@@ -1,6 +1,6 @@
 {
   "name": "@baifendian/adherev-util-iframeio",
-  "version": "1.0.13",
+  "version": "1.0.14",
   "description": "iframe的通信客户端和服务端",
   "homepage": "https://gitee.com/playerljc/adherev",
   "bugs": {
@@ -31,7 +31,7 @@
   "resolutions": {},
   "dependencies": {
     "@baifendian/adhere-util-iframeio": "^1.0.24",
-    "@baifendian/adherev-util": "^1.0.13"
+    "@baifendian/adherev-util": "^1.0.14"
   },
   "devDependencies": {
     "@babel/runtime": "^7.7.4",
