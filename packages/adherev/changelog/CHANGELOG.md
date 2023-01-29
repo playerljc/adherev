@@ -1,3 +1,23 @@
+# 1.0.14
+
+***
+
+2023-11-22
+
+* **adherev-util**
+  - 加入forwardRef方法
+* **adherev-ui-searchtable**
+  - routeListen修改
+  - FormItemGeneratorToDict引用的修改
+  - ProTableFactory的scopedSlots修改
+  - 去掉SearchForm及其附属组件使用TableGridLayout实现
+  - 高级搜索触发条件修改
+  - 列设置修改
+* **adherev-ui-importantconfirm**
+  - title，text参数赋值错误
+* **adherev-ui-deleconfirm**
+  - title，text参数赋值错误
+
 # 1.0.13
 
 ***
