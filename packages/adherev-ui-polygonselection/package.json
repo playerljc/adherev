@@ -29,7 +29,7 @@
   },
   "resolutions": {},
   "dependencies": {
-    "@baifendian/adhere-ui-polygonselection": "^1.0.23",
+    "@baifendian/adhere-ui-polygonselection": "^1.0.24",
     "@baifendian/adherev-util": "^1.0.13"
   },
   "devDependencies": {

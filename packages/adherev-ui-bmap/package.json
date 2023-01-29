@@ -29,7 +29,7 @@
   },
   "resolutions": {},
   "dependencies": {
-    "@baifendian/adhere-ui-bmap": "^1.0.23",
+    "@baifendian/adhere-ui-bmap": "^1.0.24",
     "@baifendian/adherev-ui-conditionalrender": "^1.0.13",
     "@baifendian/adherev-util": "^1.0.13",
     "vue": "^2.7.14"
