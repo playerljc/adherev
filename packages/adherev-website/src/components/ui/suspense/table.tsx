@@ -83,7 +83,7 @@ export default {
       return this.loading;
     },
     fetchData() {
-      const list = [];
+      const list: any = [];
       list.length = 10;
       list.fill(0);
 

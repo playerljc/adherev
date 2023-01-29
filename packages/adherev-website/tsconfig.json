@@ -6,7 +6,32 @@
     "baseUrl": "./",
     "jsx": "preserve",
     "module": "esnext",
-    "types": ["vue"]
+    "types": [
+      "vue",
+      "eslint",
+      "estree",
+      "geojson",
+      "glob",
+      "html-minifier-terser",
+      "json-schema",
+      "json5",
+      "mdast",
+      "minimatch",
+      "minimist",
+      "node",
+      "normalize-package-data",
+      "parse-json",
+      "q",
+      "scheduler",
+      "source-list-map",
+      "tapable",
+      "uglify-js",
+      "unist",
+      "vfile",
+      "vfile-message",
+      "webpack",
+      "webpack-sources"
+    ]
   },
   "exclude": ["node_modules"],
   "include": ["src/**/*"]
