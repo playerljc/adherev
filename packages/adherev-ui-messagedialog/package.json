@@ -1,6 +1,6 @@
 {
   "name": "@baifendian/adherev-ui-messagedialog",
-  "version": "1.0.14",
+  "version": "1.0.15",
   "description": "对ant-design-vue的<Model>进行封装",
   "homepage": "https://gitee.com/playerljc/adherev",
   "bugs": {
