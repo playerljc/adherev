@@ -83,7 +83,7 @@ export default {
   },
   methods: {
     onCode1F1() {
-      ErrorPrompt('操作失败');
+      ErrorPrompt.openErrorMessage('操作失败');
     },
   },
 };

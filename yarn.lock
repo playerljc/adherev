@@ -5641,7 +5641,7 @@ babel-loader@^8.0.4, babel-loader@^8.2.2:
     make-dir "^3.1.0"
     schema-utils "^2.6.5"
 
-babel-plugin-import@^1.13.3:
+babel-plugin-import@^1.13.3, babel-plugin-import@^1.13.6:
   version "1.13.6"
   resolved "https://registry.yarnpkg.com/babel-plugin-import/-/babel-plugin-import-1.13.6.tgz#4ff2aa3b9759e6a4458ce59890da3684fe3dda9d"
   integrity sha512-N7FYnGh0DFsvDRkAPsvFq/metVfVD7P2h1rokOPpEH4cZbdRHCW+2jbXt0nnuqowkm/xhh2ww1anIdEpfYa7ZA==

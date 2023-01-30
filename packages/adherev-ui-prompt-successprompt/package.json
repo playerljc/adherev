@@ -21,8 +21,8 @@
   ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "buildpackage:cjs": "ctbuild buildpackagets -p tsconfig.cjs.json -o lib",
-    "buildpackage:es": "ctbuild buildpackagets -p tsconfig.esm.json -o es",
+    "buildpackage:cjs": "ctbuildv buildpackagets -c ctbuildv.package.ts.cjs.config.js -o lib",
+    "buildpackage:es": "ctbuildv buildpackagets -c ctbuildv.package.ts.esm.config.js -o es",
     "buildpackage": "npm-run-all --parallel buildpackage:cjs buildpackage:es",
     "buildumd": "ctbuild buildumd --config ctbuild.config.umd.js --packagename AdherevSuccessPrompt --define alias=@,evnVars=true",
     "generatorchangelog": "bd changelog/CHANGELOG.html"
@@ -36,7 +36,8 @@
   },
   "devDependencies": {
     "@babel/runtime": "^7.7.4",
-    "@ctsj/build": "^6.0.5",
+    "@ctsj/buildv": "^2.0.10",
+    "babel-plugin-import": "^1.13.6",
     "npm-run-all": "^4.1.5",
     "typescript": "^4.6.2"
   },

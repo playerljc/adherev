@@ -83,7 +83,7 @@ export default {
   },
   methods: {
     onCode1F1() {
-      WarnPrompt('操作异常');
+      WarnPrompt.openWarnMessage('操作异常');
     },
   },
 };
