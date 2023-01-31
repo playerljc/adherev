@@ -1,3 +1,2 @@
-declare const _default: Ajax;
+declare const _default: any;
 export default _default;
-import Ajax from "packages/adherev-util-communication-ajax/lib";

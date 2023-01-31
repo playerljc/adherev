@@ -637,6 +637,7 @@ export default ({ className, superClass }, searchAndPaginParamsMemo) =>
       getGridSearchFormGroupDataByColumnConfig(h) {
         let searchFormGroupData: {
           key: number;
+          sort?: number;
           label: VNode | null;
           value: VNode | null;
         }[] = [];
@@ -654,6 +655,7 @@ export default ({ className, superClass }, searchAndPaginParamsMemo) =>
 
               searchFormGroupData.push({
                 key: dataIndex,
+                sort: $search.sort,
                 // @ts-ignore
                 label: <Label {...($search.labelAttrs || {})}>{title}：</Label>,
                 value: ConditionalRender.conditionalRender({
@@ -686,7 +688,22 @@ export default ({ className, superClass }, searchAndPaginParamsMemo) =>
 
         loop(this.getColumns(this.$getColumnsSearchTableImpl()));
 
-        return searchFormGroupData.filter((t) => !!t.value);
+        const config = searchFormGroupData.filter((t) => !!t.value);
+
+        // 以下是包含sort字段的处理
+        const containSort = config.filter(
+          (t) => 'sort' in t && t.sort !== null && t.sort !== undefined,
+        );
+        const noContainSort = config.filter(
+          (t) =>
+            !('sort' in t) || t.sort === null || t.sort === undefined || typeof t.sort !== 'number',
+        );
+
+        containSort.forEach((item) => {
+          noContainSort.splice((item.sort as number) - 1, 0, item);
+        });
+
+        return noContainSort;
       },
 
       /**

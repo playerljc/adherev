@@ -83,7 +83,7 @@ declare namespace _default {
             renderSearchFooterItems(): null;
             showLoading(): any;
             getOrderFieldValue(): string;
-            fetchDataExecute(searchParams: any): Promise<void>;
+            fetchDataExecute(searchParams: any): any;
             getPagination(): any;
         };
     }[];
