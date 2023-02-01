@@ -99,8 +99,10 @@ const VueQuillSandbox: any = {
   name: 'adv-vuequillsandbox',
   props: propsDefine,
   emits: [],
-  data: {
-    $reactQuillRef: createRef(),
+  data() {
+    return {
+      $reactQuillRef: createRef(),
+    };
   },
   mounted() {
     this.$renderQuill();
