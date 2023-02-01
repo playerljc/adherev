@@ -679,7 +679,11 @@ export default () => {
         },
         value(value) {
           this.selectedRowKeys = value;
-          this.selectedRows = value.map((v) => this.data.find((t) => t[this.rowKey || 'id'] === v));
+          this.selectedRows = value
+            ? value.map((t) =>
+                this.$getDataSource().find((_item) => _item[this.rowKey || 'id'] === t),
+              )
+            : [];
         },
       },
       methods: {
