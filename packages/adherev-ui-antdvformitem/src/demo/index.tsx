@@ -1,7 +1,7 @@
 import Vue from 'vue';
 
-import Dict from '@baifendian/adherev-util-dict';
 import FlexLayout from '@baifendian/adherev-ui-flexlayout';
+import Dict from '@baifendian/adherev-util-dict';
 
 import AntdFormItem from '../index';
 // @ts-ignore
@@ -20,12 +20,12 @@ FlexLayout.use(Vue);
 Dict.init([TestDist], { isFunMemo: false });
 
 // 初始化字典组件
-// AntdFormItem.FormItemGeneratorToDict.init(Vue);
-// AntdFormItem.AntFormItemNormalize.Input.defaultProps.maxLength = 10;
+AntdFormItem.FormItemGeneratorToDict.init(Vue);
+// AntdFormItem.AntdvFormItemNormalize.Input.defaultProps.maxLength = 10;
 
 new Vue({
   el: '#app',
   render(h) {
-    return h(Index/*Test*/);
+    return h(/*Index*/ Test);
   },
 });

@@ -20,8 +20,11 @@ export default {
     targetDataSource() {
       function loop(nodes) {
         (nodes || []).forEach((node) => {
-          node.disabled =
-            'children' in node && Array.isArray(node.children) && !!node.children.length;
+          node.disabled = !(
+            'children' in node &&
+            Array.isArray(node.children) &&
+            !!node.children.length
+          );
 
           loop(node.children);
         });
