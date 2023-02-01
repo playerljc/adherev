@@ -7,6 +7,7 @@
 * BUG修改
 * Table生成器的修改
 * List生成器的修改
+* Cascader生成器的修改
 
 # 1.0.0
 
