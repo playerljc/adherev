@@ -513,6 +513,7 @@ export default () => {
       emits: ['change'],
       data() {
         return {
+          inputValue: '',
           loading: false,
           data: [],
           pagin: {
@@ -581,6 +582,33 @@ export default () => {
             showQuickJumper: true,
           };
         },
+        $renderDropdownRender(h) {
+          const data = this.inputValue
+            ? this.data.filter((t) => t[this.labelKey || 'name']?.indexOf?.(this.inputValue) !== -1)
+            : this.data;
+
+          return (
+            <Table
+              dataSource={data}
+              loading={this.loading}
+              pagination={this.$getPagination()}
+              rowKey={this.rowKey || 'id'}
+              rowSelection={{
+                type: 'radio',
+                selectedRowKeys: this.selectedRowKeys,
+                selectedRows: this.selectedRows,
+                onChange: (selectedRowKeys, selectedRows) => {
+                  this.selectedRowKeys = selectedRowKeys;
+                  this.selectedRows = selectedRows;
+                  this.$emit('change', selectedRowKeys.length ? selectedRowKeys[0] : '');
+                },
+              }}
+              {...{
+                props: this.tableProps,
+              }}
+            />
+          );
+        },
       },
       mounted() {
         this.$loadData();
@@ -591,27 +619,10 @@ export default () => {
           {
             props: {
               selectProps: {
-                dropdownRender: () => (
-                  <Table
-                    dataSource={this.data}
-                    loading={this.loading}
-                    pagination={this.$getPagination()}
-                    rowKey={this.rowKey || 'id'}
-                    rowSelection={{
-                      type: 'radio',
-                      selectedRowKeys: this.selectedRowKeys,
-                      selectedRows: this.selectedRows,
-                      onChange: (selectedRowKeys, selectedRows) => {
-                        this.selectedRowKeys = selectedRowKeys;
-                        this.selectedRows = selectedRows;
-                        this.$emit('change', selectedRowKeys.length ? selectedRowKeys[0] : '');
-                      },
-                    }}
-                    {...{
-                      props: this.tableProps,
-                    }}
-                  />
-                ),
+                dropdownRender: () => this.$renderDropdownRender(h),
+                filterOption: () => {
+                  return false;
+                },
                 ...this.selectProps,
               },
               value: this.value,
@@ -622,7 +633,12 @@ export default () => {
             },
             attrs: this.$attrs,
             scopedSlots: this.$scopedSlots,
-            on: this.$listeners,
+            on: {
+              ...this.$listeners,
+              search: (inputValue) => {
+                this.inputValue = inputValue;
+              },
+            },
           },
           this.$slots.default,
         );
@@ -654,6 +670,7 @@ export default () => {
       emits: ['change'],
       data() {
         return {
+          inputValue: '',
           loading: false,
           $data: new Map(),
           pagin: {
@@ -756,6 +773,38 @@ export default () => {
 
           this.$emit('change', _selectedRowKeys);
         },
+        $renderDropdownRender(h) {
+          const dataSource = this.$getDataSource();
+
+          const data = this.inputValue
+            ? dataSource.filter(
+                (t) => t[this.labelKey || 'name']?.indexOf?.(this.inputValue) !== -1,
+              )
+            : dataSource;
+
+          return (
+            <Table
+              dataSource={data}
+              pagination={this.$getPagination()}
+              loading={this.loading}
+              rowKey={this.rowKey || 'id'}
+              rowSelection={{
+                type: 'checkbox',
+                selectedRowKeys: this.selectedRowKeys,
+                selectedRows: this.selectedRows,
+                onSelect: (record, selected) => {
+                  this.$filter(selected, [record]);
+                },
+                onSelectAll: (selected, selectedRows, changeRows) => {
+                  this.$filter(selected, changeRows);
+                },
+              }}
+              {...{
+                props: this.tableProps,
+              }}
+            />
+          );
+        },
       },
       mounted() {
         this.$loadData();
@@ -766,28 +815,10 @@ export default () => {
           {
             props: {
               selectProps: {
-                dropdownRender: () => (
-                  <Table
-                    dataSource={this.$getDataSource()}
-                    pagination={this.$getPagination()}
-                    loading={this.loading}
-                    rowKey={this.rowKey || 'id'}
-                    rowSelection={{
-                      type: 'checkbox',
-                      selectedRowKeys: this.selectedRowKeys,
-                      selectedRows: this.selectedRows,
-                      onSelect: (record, selected) => {
-                        this.$filter(selected, [record]);
-                      },
-                      onSelectAll: (selected, selectedRows, changeRows) => {
-                        this.$filter(selected, changeRows);
-                      },
-                    }}
-                    {...{
-                      props: this.tableProps,
-                    }}
-                  />
-                ),
+                dropdownRender: () => this.$renderDropdownRender(h),
+                filterOption: () => {
+                  return false;
+                },
                 ...this.selectProps,
               },
               value: this.value,
@@ -800,6 +831,9 @@ export default () => {
             scopedSlots: this.$scopedSlots,
             on: {
               ...this.$listeners,
+              search: (inputValue) => {
+                this.inputValue = inputValue;
+              },
               change: (value) => {
                 this.$emit('change', value);
 

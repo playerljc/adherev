@@ -10,6 +10,7 @@
 * 生成器中引入antd组件的都换成AntdvFormItemNormalize中的组件
 * AntdvFormItemNormalize中的默认值矫正
 * 生成器中各个组件查询的修改
+* List和Table动态分页的查询修改
 
 # 1.0.0
 

@@ -513,6 +513,7 @@ export default () => {
       emits: ['change'],
       data() {
         return {
+          inputValue: '',
           loading: false,
           data: [],
           pagin: {
@@ -581,6 +582,50 @@ export default () => {
             showQuickJumper: true,
           };
         },
+        $renderDropdownRender(h) {
+          const data = this.inputValue
+            ? this.data.filter((t) => t[this.labelKey || 'name']?.indexOf?.(this.inputValue) !== -1)
+            : this.data;
+
+          return (
+            <List
+              dataSource={data}
+              loading={this.loading}
+              pagination={this.$getPagination()}
+              rowKey={this.rowKey || 'id'}
+              {...{
+                props: this.listProps,
+              }}
+              renderItem={(item, index) => (
+                <ConditionalRender
+                  conditional={
+                    !!this.listProps?.renderItem ||
+                    this.$slots.renderItem ||
+                    this.$scopedSlots.renderItem
+                  }
+                >
+                  <div slot="noMatch" class={`${selectorPrefix}-rowselectwrap`}>
+                    <div class={`${selectorPrefix}-rowselectwrap-fixed`}>
+                      {this.RadioWrap(h, item)}
+                    </div>
+                    <div class={`${selectorPrefix}-rowselectwrap-auto`}>{item}</div>
+                  </div>
+
+                  <div class={`${selectorPrefix}-rowselectwrap`}>
+                    <div class={`${selectorPrefix}-rowselectwrap-fixed`}>
+                      {this.RadioWrap(h, item)}
+                    </div>
+                    <div class={`${selectorPrefix}-rowselectwrap-auto`}>
+                      {this?.listProps?.renderItem?.(item) ||
+                        this.$slots.renderItem ||
+                        this.$scopedSlots.renderItem(item, index)}
+                    </div>
+                  </div>
+                </ConditionalRender>
+              )}
+            />
+          );
+        },
         RadioWrap(h, item) {
           const rowKey = this.rowKey || 'id';
 
@@ -611,44 +656,10 @@ export default () => {
           {
             props: {
               selectProps: {
-                dropdownRender: () => (
-                  <List
-                    dataSource={this.data}
-                    loading={this.loading}
-                    pagination={this.$getPagination()}
-                    rowKey={this.rowKey || 'id'}
-                    {...{
-                      props: this.listProps,
-                    }}
-                    renderItem={(item, index) => (
-                      <ConditionalRender
-                        conditional={
-                          !!this.listProps?.renderItem ||
-                          this.$slots.renderItem ||
-                          this.$scopedSlots.renderItem
-                        }
-                      >
-                        <div slot="noMatch" class={`${selectorPrefix}-rowselectwrap`}>
-                          <div class={`${selectorPrefix}-rowselectwrap-fixed`}>
-                            {this.RadioWrap(h, item)}
-                          </div>
-                          <div class={`${selectorPrefix}-rowselectwrap-auto`}>{item}</div>
-                        </div>
-
-                        <div class={`${selectorPrefix}-rowselectwrap`}>
-                          <div class={`${selectorPrefix}-rowselectwrap-fixed`}>
-                            {this.RadioWrap(h, item)}
-                          </div>
-                          <div class={`${selectorPrefix}-rowselectwrap-auto`}>
-                            {this?.listProps?.renderItem?.(item) ||
-                              this.$slots.renderItem ||
-                              this.$scopedSlots.renderItem(item, index)}
-                          </div>
-                        </div>
-                      </ConditionalRender>
-                    )}
-                  />
-                ),
+                dropdownRender: () => this.$renderDropdownRender(h),
+                filterOption: () => {
+                  return false;
+                },
                 ...this.selectProps,
               },
               value: this.value,
@@ -659,7 +670,12 @@ export default () => {
             },
             attrs: this.$attrs,
             scopedSlots: this.$scopedSlots,
-            on: this.$listeners,
+            on: {
+              search: (inputValue) => {
+                this.inputValue = inputValue;
+              },
+              ...this.$listeners,
+            },
           },
           this.$slots.default,
         );
@@ -691,6 +707,7 @@ export default () => {
       emits: ['change'],
       data() {
         return {
+          inputValue: '',
           loading: false,
           $data: new Map(),
           pagin: {
@@ -793,6 +810,65 @@ export default () => {
 
           this.$emit('change', _selectedRowKeys);
         },
+        $renderDropdownRender(h) {
+          const dataSource = this.$getDataSource();
+
+          const data = this.inputValue
+            ? dataSource.filter(
+                (t) => t[this.labelKey || 'name']?.indexOf?.(this.inputValue) !== -1,
+              )
+            : dataSource;
+
+          return (
+            <List
+              dataSource={data}
+              pagination={this.$getPagination()}
+              loading={this.loading}
+              rowKey={this.rowKey || 'id'}
+              // rowSelection={{
+              //   type: 'checkbox',
+              //   selectedRowKeys: this.selectedRowKeys,
+              //   selectedRows: this.selectedRows,
+              //   onSelect: (record, selected) => {
+              //     this.$filter(selected, [record]);
+              //   },
+              //   onSelectAll: (selected, selectedRows, changeRows) => {
+              //     this.$filter(selected, changeRows);
+              //   },
+              // }}
+              {...{
+                props: this.listProps,
+              }}
+              renderItem={(item, index) => (
+                <ConditionalRender
+                  conditional={
+                    !!this.listProps?.renderItem ||
+                    this.$slots.renderItem ||
+                    this.$scopedSlots.renderItem
+                  }
+                >
+                  <div slot="noMatch" class={`${selectorPrefix}-rowselectwrap`}>
+                    <div class={`${selectorPrefix}-rowselectwrap-fixed`}>
+                      {this.CheckWrap(h, item)}
+                    </div>
+                    <div class={`${selectorPrefix}-rowselectwrap-auto`}>{item}</div>
+                  </div>
+
+                  <div class={`${selectorPrefix}-rowselectwrap`}>
+                    <div class={`${selectorPrefix}-rowselectwrap-fixed`}>
+                      {this.CheckWrap(h, item)}
+                    </div>
+                    <div class={`${selectorPrefix}-rowselectwrap-auto`}>
+                      {this?.listProps?.renderItem?.(item) ||
+                        this.$slots.renderItem ||
+                        this.$scopedSlots.renderItem(item, index)}
+                    </div>
+                  </div>
+                </ConditionalRender>
+              )}
+            />
+          );
+        },
         CheckWrap(h, item) {
           const rowKey = this.rowKey || 'id';
 
@@ -829,55 +905,10 @@ export default () => {
           {
             props: {
               selectProps: {
-                dropdownRender: () => (
-                  <List
-                    dataSource={this.$getDataSource()}
-                    pagination={this.$getPagination()}
-                    loading={this.loading}
-                    rowKey={this.rowKey || 'id'}
-                    // rowSelection={{
-                    //   type: 'checkbox',
-                    //   selectedRowKeys: this.selectedRowKeys,
-                    //   selectedRows: this.selectedRows,
-                    //   onSelect: (record, selected) => {
-                    //     this.$filter(selected, [record]);
-                    //   },
-                    //   onSelectAll: (selected, selectedRows, changeRows) => {
-                    //     this.$filter(selected, changeRows);
-                    //   },
-                    // }}
-                    {...{
-                      props: this.listProps,
-                    }}
-                    renderItem={(item, index) => (
-                      <ConditionalRender
-                        conditional={
-                          !!this.listProps?.renderItem ||
-                          this.$slots.renderItem ||
-                          this.$scopedSlots.renderItem
-                        }
-                      >
-                        <div slot="noMatch" class={`${selectorPrefix}-rowselectwrap`}>
-                          <div class={`${selectorPrefix}-rowselectwrap-fixed`}>
-                            {this.CheckWrap(h, item)}
-                          </div>
-                          <div class={`${selectorPrefix}-rowselectwrap-auto`}>{item}</div>
-                        </div>
-
-                        <div class={`${selectorPrefix}-rowselectwrap`}>
-                          <div class={`${selectorPrefix}-rowselectwrap-fixed`}>
-                            {this.CheckWrap(h, item)}
-                          </div>
-                          <div class={`${selectorPrefix}-rowselectwrap-auto`}>
-                            {this?.listProps?.renderItem?.(item) ||
-                              this.$slots.renderItem ||
-                              this.$scopedSlots.renderItem(item, index)}
-                          </div>
-                        </div>
-                      </ConditionalRender>
-                    )}
-                  />
-                ),
+                dropdownRender: () => this.$renderDropdownRender(h),
+                filterOption: () => {
+                  return false;
+                },
                 ...this.selectProps,
               },
               value: this.value,
@@ -890,6 +921,9 @@ export default () => {
             scopedSlots: this.$scopedSlots,
             on: {
               ...this.$listeners,
+              search: (inputValue) => {
+                this.inputValue = inputValue;
+              },
               change: (value) => {
                 this.$emit('change', value);
 

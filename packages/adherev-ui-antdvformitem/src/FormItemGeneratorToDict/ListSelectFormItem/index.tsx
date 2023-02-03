@@ -74,7 +74,9 @@ export default {
     },
     $renderDropdownRender(h) {
       const data = this.inputValue
-        ? this.dataSource.filter((t) => t.label.startsWith(this.inputValue))
+        ? this.dataSource.filter(
+            (t) => t[this.labelKey || 'name']?.indexOf?.(this.inputValue) !== -1,
+          )
         : this.dataSource;
 
       return (
@@ -123,9 +125,7 @@ export default {
         props: {
           selectProps: {
             dropdownRender: () => this.$renderDropdownRender(h),
-            filterOption: (inputValue) => {
-              this.inputValue = inputValue;
-
+            filterOption: () => {
               return false;
             },
             ...this.selectProps,
@@ -140,6 +140,9 @@ export default {
         scopedSlots: this.$scopedSlots,
         on: {
           ...this.$listeners,
+          search: (inputValue) => {
+            this.inputValue = inputValue;
+          },
           change: (val) => {
             this.$emit('change', val);
 

@@ -25,7 +25,7 @@ export default {
   methods: {
     $renderDropdownRender(h) {
       const data = this.inputValue
-        ? this.dataSource.filter((t) => t.label.startsWith(this.inputValue))
+        ? this.dataSource.filter((t) => t.label.indexOf(this.inputValue) !== -1)
         : this.dataSource;
 
       return (
@@ -53,9 +53,7 @@ export default {
           ...this.$props,
           selectProps: {
             dropdownRender: () => this.$renderDropdownRender(h),
-            filterOption: (inputValue) => {
-              this.inputValue = inputValue;
-
+            filterOption: () => {
               return false;
             },
             ...this.$props.selectProps,
@@ -65,7 +63,11 @@ export default {
         scopedSlots: this.$scopedSlots,
         on: {
           ...this.$listeners,
+          search: (inputValue) => {
+            this.inputValue = inputValue;
+          },
           change: (val) => {
+            console.log('change', val);
             this.$emit('change', val);
 
             if (!val) this.inputValue = '';
