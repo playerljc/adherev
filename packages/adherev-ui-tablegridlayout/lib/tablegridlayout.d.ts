@@ -18,19 +18,11 @@ declare const TableGridLayout: import("vue").DefineComponent<{
     data: import("vue-types").VueTypeValidableDef<DataItem[]> & {
         default: () => DataItem[];
     };
-    layout: import("vue-types").VueTypeValidableDef<"horizontal" | "vertical"> & {
-        default: "horizontal" | "vertical";
+    layout: import("vue-types").VueTypeValidableDef<string> & {
+        default: string;
     };
-    /**
-     * renderHorizontal
-     * @description 渲染横向布局
-     * @return {
-     *   element: JSX.Element[];
-         detail: GroupRenderDetail;
-     * }
-     */
-    density: import("vue-types").VueTypeValidableDef<"default" | "middle" | "small"> & {
-        default: "default" | "middle" | "small";
+    density: import("vue-types").VueTypeValidableDef<string> & {
+        default: string;
     };
     parity: import("vue-types").VueTypeValidableDef<boolean> & {
         default: boolean;
@@ -54,19 +46,11 @@ declare const TableGridLayout: import("vue").DefineComponent<{
     data: import("vue-types").VueTypeValidableDef<DataItem[]> & {
         default: () => DataItem[];
     };
-    layout: import("vue-types").VueTypeValidableDef<"horizontal" | "vertical"> & {
-        default: "horizontal" | "vertical";
+    layout: import("vue-types").VueTypeValidableDef<string> & {
+        default: string;
     };
-    /**
-     * renderHorizontal
-     * @description 渲染横向布局
-     * @return {
-     *   element: JSX.Element[];
-         detail: GroupRenderDetail;
-     * }
-     */
-    density: import("vue-types").VueTypeValidableDef<"default" | "middle" | "small"> & {
-        default: "default" | "middle" | "small";
+    density: import("vue-types").VueTypeValidableDef<string> & {
+        default: string;
     };
     parity: import("vue-types").VueTypeValidableDef<boolean> & {
         default: boolean;
@@ -78,8 +62,8 @@ declare const TableGridLayout: import("vue").DefineComponent<{
     innerStyle: import("vue").CSSProperties;
     bordered: boolean;
     data: DataItem[];
-    layout: "horizontal" | "vertical";
-    density: "default" | "middle" | "small";
+    layout: string;
+    density: string;
     parity: boolean;
 }>;
 /**

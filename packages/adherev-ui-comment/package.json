@@ -2,6 +2,16 @@
   "name": "@baifendian/adherev-ui-comment",
   "version": "2.0.0-fix.1",
   "description": "评论",
+  "homepage": "https://gitee.com/playerljc/adherev",
+  "bugs": {
+    "url": "https://gitee.com/playerljc/adherev/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://gitee.com/playerljc/adherev"
+  },
+  "license": "ISC",
+  "author": "playerljc",
   "main": "lib/index.js",
   "module": "es/index.js",
   "files": [
@@ -18,27 +28,7 @@
     "buildumd": "ctbuildv buildumd --config ctbuildv.config.umd.js --packagename AdherevComment --define alias=@,evnVars=true",
     "generatorchangelog": "bd changelog/CHANGELOG.html"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://gitee.com/playerljc/adherev"
-  },
   "resolutions": {},
-  "author": "playerljc",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://gitee.com/playerljc/adherev/issues"
-  },
-  "homepage": "https://gitee.com/playerljc/adherev",
-  "publishConfig": {
-    "access": "public"
-  },
-  "devDependencies": {
-    "@ant-design/icons-vue": "^6.1.0",
-    "@babel/runtime": "^7.17.2",
-    "@ctsj/buildv": "^5.0.3",
-    "npm-run-all": "^4.1.5",
-    "typescript": "^4.5.5"
-  },
   "dependencies": {
     "@baifendian/adherev-ui-backtopanimation": "^2.0.0-fix.1",
     "@baifendian/adherev-ui-conditionalrender": "^2.0.0",
@@ -50,11 +40,24 @@
     "@baifendian/adherev-util-resource": "^2.0.0-fix.1",
     "@emoji-mart/data": "^1.0.6",
     "@types/emoji-mart": "^3.0.9",
-    "ant-design-vue": "^3.2.13",
+    "ant-design-vue": "^3.2.15",
     "classnames": "^2.3.1",
     "emoji-mart": "^5.2.0",
     "omit.js": "^2.0.2",
-    "vue": "^3.2.31",
-    "vue-types": "^4.1.1"
+    "vue": "^3.2.45",
+    "vue-types": "^3.0.2"
+  },
+  "devDependencies": {
+    "@ant-design/icons-vue": "^6.1.0",
+    "@babel/runtime": "^7.17.2",
+    "@ctsj/buildv": "^5.0.4",
+    "npm-run-all": "^4.1.5",
+    "typescript": "^4.9.5"
+  },
+  "peerDependencies": {
+    "vue": ">=3.0.0 - <4.x"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }

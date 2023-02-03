@@ -1,0 +1,2 @@
+import _Cascader from"ant-design-vue/es/cascader";import"core-js/modules/es.object.to-string.js";import"core-js/modules/es.array.index-of.js";import{HOC,assignAttrs}from"../util";var Wrap=HOC(_Cascader,{props:function(r,e){return assignAttrs(r,Wrap.defaultProps,null==e?void 0:e())}});Wrap.defaultProps={allowClear:!0,placement:"bottomLeft",showSearch:{filter:function(e,r){return r.some(function(r){return-1<r.label.toLowerCase().indexOf(e.toLowerCase())})}}};export default Wrap;
+//# sourceMappingURL=Cascader.js.map

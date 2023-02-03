@@ -8,7 +8,9 @@ export const tableGridLayoutProps = {
   innerStyle: object<CSSProperties>().def({}),
   bordered: bool().def(false),
   data: array<DataItem>().def([]),
+  // @ts-ignore
   layout: string<'horizontal' | 'vertical'>().def('horizontal'),
+  // @ts-ignore
   density: string<'default' | 'middle' | 'small'>().def('default'),
   parity: bool().def(false),
 };

@@ -1,7 +1,10 @@
 import merge from 'lodash.merge';
 import { ComponentOptions, defineComponent, h, ref } from 'vue';
 
+// import WatchMemoized from '@baifendian/adherev-util-watchmemoized';
 import { DefineComponent } from '@vue/runtime-core';
+
+// const { memoized } = WatchMemoized;
 
 /**
  * ExtendFunction
@@ -130,3 +133,19 @@ export function HOC(
     ),
   );
 }
+
+/**
+ * getComponentPropsOption
+ * @description 获取组件的Props定义
+ * @param Component
+ * @returns {{}}
+ */
+export const getComponentPropsOption = (Component) => ({
+  ...(Component.mixins || []).reduce(
+    (props, com) => ({
+      ...(com.props || {}),
+      ...props,
+    }),
+    Component.props,
+  ),
+});

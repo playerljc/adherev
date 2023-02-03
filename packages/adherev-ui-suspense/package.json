@@ -2,6 +2,16 @@
   "name": "@baifendian/adherev-ui-suspense",
   "version": "2.0.0",
   "description": "数据加载单元(如第一次是骷髅骨架，其他是 loading)，有数据加载的单元，第一次是骷髅骨架(或其他)mount，更新是 loading",
+  "homepage": "https://gitee.com/playerljc/adherev",
+  "bugs": {
+    "url": "https://gitee.com/playerljc/adherev/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://gitee.com/playerljc/adherev"
+  },
+  "license": "ISC",
+  "author": "playerljc",
   "main": "lib/index.js",
   "module": "es/index.js",
   "files": [
@@ -17,30 +27,23 @@
     "buildumd": "ctbuildv buildumd --config ctbuildv.config.umd.js --packagename AdherevSuspense --define alias=@,evnVars=true",
     "generatorchangelog": "bd changelog/CHANGELOG.html"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://gitee.com/playerljc/adherev"
-  },
   "resolutions": {},
-  "author": "playerljc",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://gitee.com/playerljc/adherev/issues"
-  },
-  "homepage": "https://gitee.com/playerljc/adherev",
-  "publishConfig": {
-    "access": "public"
+  "dependencies": {
+    "@baifendian/adherev-util": "^2.0.0",
+    "ant-design-vue": "^3.2.15",
+    "vue": "^3.2.45",
+    "vue-types": "^3.0.2"
   },
   "devDependencies": {
     "@babel/runtime": "^7.17.2",
-    "@ctsj/buildv": "^5.0.3",
+    "@ctsj/buildv": "^5.0.4",
     "npm-run-all": "^4.1.5",
-    "typescript": "^4.5.5"
+    "typescript": "^4.9.5"
   },
-  "dependencies": {
-    "@baifendian/adherev-util": "^2.0.0",
-    "ant-design-vue": "^3.2.13",
-    "vue": "^3.2.31",
-    "vue-types": "^4.1.1"
+  "peerDependencies": {
+    "vue": ">=3.0.0 - <4.x"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }

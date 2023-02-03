@@ -2,6 +2,16 @@
   "name": "@baifendian/adherev-ui-globalindicator",
   "version": "2.0.0-fix.1",
   "description": "全局无侵入的遮罩",
+  "homepage": "https://gitee.com/playerljc/adherev",
+  "bugs": {
+    "url": "https://gitee.com/playerljc/adherev/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://gitee.com/playerljc/adherev"
+  },
+  "license": "ISC",
+  "author": "playerljc",
   "main": "lib/index.js",
   "module": "es/index.js",
   "files": [
@@ -17,30 +27,20 @@
     "generatorchangelog": "bd changelog/CHANGELOG.html",
     "buildumd": "ctbuild buildumd --packagename AdherevGlobalIndicator --define alias=@,evnVars=true"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://gitee.com/playerljc/adherev"
-  },
   "resolutions": {},
-  "author": "playerljc",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://gitee.com/playerljc/adherev/issues"
-  },
-  "homepage": "https://gitee.com/playerljc/adherev",
-  "publishConfig": {
-    "access": "public"
+  "dependencies": {
+    "@baifendian/adherev-ui-css": "^2.0.0",
+    "@baifendian/adherev-util": "^2.0.0",
+    "@baifendian/adherev-util-resource": "^2.0.0-fix.1",
+    "vue-types": "^3.0.2"
   },
   "devDependencies": {
     "@babel/runtime": "^7.17.2",
     "@ctsj/build": "^4.0.19",
     "npm-run-all": "^4.1.5",
-    "typescript": "^4.5.5"
+    "typescript": "^4.9.5"
   },
-  "dependencies": {
-    "@baifendian/adherev-ui-css": "^2.0.0",
-    "@baifendian/adherev-util": "^2.0.0",
-    "@baifendian/adherev-util-resource": "^2.0.0-fix.1",
-    "vue-types": "^4.1.1"
+  "publishConfig": {
+    "access": "public"
   }
 }

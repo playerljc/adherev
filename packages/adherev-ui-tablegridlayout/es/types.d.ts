@@ -18,11 +18,11 @@ export declare const tableGridLayoutProps: {
     data: import("vue-types").VueTypeValidableDef<DataItem[]> & {
         default: () => DataItem[];
     };
-    layout: import("vue-types").VueTypeValidableDef<"horizontal" | "vertical"> & {
-        default: "horizontal" | "vertical";
+    layout: import("vue-types").VueTypeValidableDef<string> & {
+        default: string;
     };
-    density: import("vue-types").VueTypeValidableDef<"default" | "middle" | "small"> & {
-        default: "default" | "middle" | "small";
+    density: import("vue-types").VueTypeValidableDef<string> & {
+        default: string;
     };
     parity: import("vue-types").VueTypeValidableDef<boolean> & {
         default: boolean;

@@ -1,0 +1,2 @@
+import{__assign}from"tslib";import{defineComponent,h}from"vue";import{object,string}from"vue-types";import{Table}from"../../AntdvFormItemNormalize";export default defineComponent({name:"TableFormItem",props:{tableProps:object().def({}),rowKey:string().def("id")},emits:["change"],render:function(){var t=this;return h(Table,__assign(__assign(__assign({pagination:!1,rowKey:this.rowKey||"id"},this.tableProps),this.$attrs),{onChange:function(e){return t.$emit("change",e)}}),this.$slots)}});
+//# sourceMappingURL=index.js.map

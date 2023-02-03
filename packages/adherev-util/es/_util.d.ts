@@ -29,13 +29,21 @@ export declare const withVue: (app: any, p: string, val: any) => void;
 export declare const extend: (options: ExtendFunction<any>) => Omit<ExtendFunction<any>, 'className'>;
 /**
  * HOC
- * @param Component
- * @param optionsOverwrite
- * @param renderOptions
+ * @description 实现高阶函数
+ * @param Component - Vue组件配置对象
+ * @param optionsOverwrite - Vue组件的options
+ * @param renderOptions - props,attrs和slots
  */
 export declare function HOC(Component: DefineComponent, optionsOverwrite: any, renderOptions: {
     props: (props: any) => any;
     attrs: (attrs: any) => any;
     slots: (slots: any) => any;
 }): DefineComponent<unknown, object, {}, import("vue").ComputedOptions, import("vue").MethodOptions, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {}, string, import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<unknown>, {}>;
+/**
+ * getComponentPropsOption
+ * @description 获取组件的Props定义
+ * @param Component
+ * @returns {{}}
+ */
+export declare const getComponentPropsOption: (Component: any) => any;
 export {};

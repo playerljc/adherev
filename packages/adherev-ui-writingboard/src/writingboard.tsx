@@ -1,6 +1,7 @@
 import debounce from 'lodash/debounce';
 import { defineComponent, onBeforeUnmount, onMounted, ref } from 'vue';
 import { number, string } from 'vue-types';
+
 import Util from '@baifendian/adherev-util';
 // @ts-ignore
 import { ResizeObserver } from '@juggle/resize-observer';
@@ -576,12 +577,7 @@ export default defineComponent({
         const base64 = canvasRef?.value?.toDataURL(type || 'image/png', quality);
 
         // 删除背景
-        imageData = ctx?.getImageData(
-          0,
-          0,
-          canvasRef?.value?.width!,
-          canvasRef?.value?.height!,
-        )!;
+        imageData = ctx?.getImageData(0, 0, canvasRef?.value?.width!, canvasRef?.value?.height!)!;
 
         fillsIndex.forEach((index) => {
           imageData.data[index] = 0;

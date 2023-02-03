@@ -114,8 +114,8 @@ const renderHorizontal: RenderHorizontal = (slots, params) => {
   const flatData: VNode[] = [];
 
   (_data || []).forEach((t) => {
-    let label = slots[t.label]?.();
-    let value = slots[t.value]?.();
+    let label = typeof t.label === 'string' ? slots[t.label]?.() : t.label;
+    let value = typeof t.value === 'string' ? slots[t.value]?.() : t.value;
 
     label = Array.isArray(label) && !!label.length ? label[0] : label;
     value = Array.isArray(value) && !!value.length ? value[0] : value;
@@ -245,7 +245,7 @@ const renderVertical: RenderVertical = (slots, data, rowCountRef) => {
   const columnCount = _columnCount as number;
 
   (_data || []).forEach((t) => {
-    let label = slots[t.label]?.();
+    let label = typeof t.label === 'string' ? slots[t.label]?.() : t.label;
 
     label = Array.isArray(label) && !!label.length ? label[0] : label;
 
@@ -426,7 +426,7 @@ const renderGridSearchFormGroup = (
                 {renderGridSearchForm(slots, {
                   data: g,
                   rowCountRef,
-                  ...renderGridSearchFormProps,
+                  ...(renderGridSearchFormProps as any),
                 })}
               </div>
             ),
@@ -434,7 +434,7 @@ const renderGridSearchFormGroup = (
               renderGridSearchForm(slots, {
                 data: g,
                 rowCountRef,
-                ...renderGridSearchFormProps,
+                ...(renderGridSearchFormProps as any),
               }),
           }}
         </ConditionalRender>
@@ -463,6 +463,7 @@ const getRenderDetail = (
     ...renderGridSearchFormProps
   } = props || {};
 
+  // @ts-ignore
   const result: RenderDetail = { rowCount: 0, layout: props.layout, detail: [] };
 
   data.forEach((g) => {

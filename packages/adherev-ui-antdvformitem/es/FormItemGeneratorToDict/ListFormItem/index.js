@@ -1,0 +1,2 @@
+import{__assign}from"tslib";import{defineComponent,h}from"vue";import{object,string}from"vue-types";import{List}from"../../AntdvFormItemNormalize";export default defineComponent({name:"ListFormItem",props:{listProps:object().def({}),rowKey:string().def("id")},emits:["change"],render:function(){var i=this;return h(List,__assign(__assign(__assign({pagination:!1,rowKey:this.rowKey||"id"},this.listProps),this.$attrs),{onChange:function(t){return i.$emit("change",t)}}),this.$slots)}});
+//# sourceMappingURL=index.js.map
