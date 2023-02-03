@@ -1,8 +1,8 @@
 import { TreeSelect } from 'ant-design-vue';
 
-import { assignAttrs, extend } from '../util';
+import { HOC, assignAttrs } from '../util';
 
-const Wrap = extend(TreeSelect, {
+const Wrap = HOC(TreeSelect, {
   functional: true,
   inject: ['getEl'],
   render(h, context) {
@@ -12,6 +12,10 @@ const Wrap = extend(TreeSelect, {
   },
 });
 
-Wrap.defaultProps = {};
+Wrap.defaultProps = {
+  showSearch: true,
+  allowClear: true,
+  treeNodeFilterProp: 'title',
+};
 
 export default Wrap;

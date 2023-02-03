@@ -1,2 +1,2 @@
-import _DatePicker from"ant-design-vue/es/date-picker";import{assignAttrs,extend}from"../util";var Wrap=extend(_DatePicker,{functional:!0,inject:["getEl"],render:function(e,r){return assignAttrs(_DatePicker,r,Wrap.defaultProps),e(_DatePicker,r.data,r.children)}});Wrap.defaultProps={allowClear:!0};export default Wrap;
+import _DatePicker from"ant-design-vue/es/date-picker";import{HOC,assignAttrs}from"../util";var Wrap=HOC(_DatePicker,{functional:!0,inject:["getEl"],render:function(r,e){return assignAttrs(_DatePicker,e,Wrap.defaultProps),r(_DatePicker,e.data,e.children)}});Wrap.defaultProps={allowClear:!0};export default Wrap;
 //# sourceMappingURL=DatePicker.js.map

@@ -28,11 +28,15 @@ declare const _default: {
     };
     emits: string[];
     data(): {
+        inputValue: string;
         selectedRowKeys: any;
         selectedRows: any;
     };
     watch: {
         value(value: any): void;
+    };
+    methods: {
+        $renderDropdownRender(h: any): JSX.Element;
     };
     render(h: any): any;
 };

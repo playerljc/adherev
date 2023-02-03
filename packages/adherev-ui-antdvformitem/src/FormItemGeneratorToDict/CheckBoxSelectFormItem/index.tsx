@@ -1,5 +1,4 @@
-import { Checkbox, Space } from 'ant-design-vue';
-
+import { Checkbox, Space } from '../../AntdvFormItemNormalize';
 import MulitSelectFormItem from '../MulitSelectFormItem';
 
 export default {

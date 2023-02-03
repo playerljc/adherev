@@ -20,6 +20,7 @@ declare const _default: {
     };
     emits: string[];
     data(): {
+        inputValue: string;
         selectedKeys: never[];
     };
     methods: {

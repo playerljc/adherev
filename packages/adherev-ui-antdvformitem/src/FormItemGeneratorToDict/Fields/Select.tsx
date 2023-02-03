@@ -1,9 +1,9 @@
-import { Spin } from 'ant-design-vue';
 import debounce from 'lodash.debounce';
 
 import Dict from '@baifendian/adherev-util-dict';
 import WatchMemoized from '@baifendian/adherev-util-watchmemoized';
 
+import { Spin } from '../../AntdvFormItemNormalize';
 import CheckAllMulitSelectFormItem from '../CheckAllMulitSelectFormItem';
 import MulitSelectFormItem from '../MulitSelectFormItem';
 import SelectFormItem from '../SelectFormItem';

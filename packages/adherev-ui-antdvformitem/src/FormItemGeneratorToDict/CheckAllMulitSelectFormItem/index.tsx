@@ -1,7 +1,6 @@
-import { Checkbox, Divider } from 'ant-design-vue';
-
 import Intl from '@baifendian/adherev-util-intl';
 
+import { Checkbox, Divider } from '../../AntdvFormItemNormalize';
 import MulitSelectFormItem from '../MulitSelectFormItem';
 
 const selectorPrefix = 'adherev-ui-antdformitem';

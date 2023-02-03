@@ -1,8 +1,8 @@
 import { Cascader } from 'ant-design-vue';
 
-import { assignAttrs, extend } from '../util';
+import { HOC, assignAttrs } from '../util';
 
-const Wrap = extend(Cascader, {
+const Wrap = HOC(Cascader, {
   functional: true,
   inject: ['getEl'],
   render(h, context) {
@@ -13,6 +13,10 @@ const Wrap = extend(Cascader, {
 });
 
 Wrap.defaultProps = {
+  showSearch: {
+    filter: (inputValue, path) =>
+      path.some((option) => option.label.toLowerCase().indexOf(inputValue.toLowerCase()) > -1),
+  },
   allowClear: true,
 };
 

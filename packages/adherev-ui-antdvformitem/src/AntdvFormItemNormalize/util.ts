@@ -50,11 +50,11 @@ export function assignAttrs(Component, context, defaultProps) {
  * @param SubComponent
  * @returns {*}
  */
-export function extend(Component, SubComponent) {
+export function HOC(Component, SubComponent) {
   const ComponentOtherMixins = {};
 
   Object.keys(Component)
-    .filter((key) => /^[A-Z]$/.test(key))
+    .filter((key) => /^[A-Z]/.test(key))
     .forEach((key) => (ComponentOtherMixins[key] = Component[key]));
 
   return {

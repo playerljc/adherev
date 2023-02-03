@@ -1,5 +1,5 @@
 // transferFormItem
-import { Transfer } from 'ant-design-vue';
+import { Transfer } from '../../AntdvFormItemNormalize';
 
 export default {
   name: 'TransferFormItem',

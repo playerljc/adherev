@@ -1,8 +1,8 @@
 import { Select } from 'ant-design-vue';
 
-import { assignAttrs, extend } from '../util';
+import { HOC, assignAttrs } from '../util';
 
-const Wrap = extend(Select, {
+const Wrap = HOC(Select, {
   functional: true,
   inject: ['getEl'],
   render(h, context) {

@@ -1,5 +1,4 @@
-import { Transfer } from 'ant-design-vue';
-
+import { Transfer } from '../../AntdvFormItemNormalize';
 import MulitSelectFormItem from '../MulitSelectFormItem';
 
 export default {
@@ -25,16 +24,21 @@ export default {
   emits: ['change'],
   data() {
     return {
+      inputValue: '',
       selectedKeys: [],
     };
   },
   methods: {
     $renderDropdownRender(h) {
+      const data = this.inputValue
+        ? this.dataSource.filter((t) => t.label.startsWith(this.inputValue))
+        : this.dataSource;
+
       return (
         <Transfer
           selectedKeys={this.selectedKeys}
           targetKeys={this.value}
-          dataSource={this.dataSource.map((t) => ({
+          dataSource={data.map((t) => ({
             key: `${t.value}`,
             title: t.label,
             description: t.label,
@@ -61,12 +65,24 @@ export default {
           ...this.$props,
           selectProps: {
             dropdownRender: () => this.$renderDropdownRender(h),
+            filterOption: (inputValue) => {
+              this.inputValue = inputValue;
+
+              return false;
+            },
             ...this.$props.selectProps,
           },
         },
         attrs: this.$attrs,
         scopedSlots: this.$scopedSlots,
-        on: this.$listeners,
+        on: {
+          ...this.$listeners,
+          change: (val) => {
+            this.$emit('change', val);
+
+            if (!val || (Array.isArray(val) && !val.length)) this.inputValue = '';
+          },
+        },
       },
       this.$slots.default,
     );

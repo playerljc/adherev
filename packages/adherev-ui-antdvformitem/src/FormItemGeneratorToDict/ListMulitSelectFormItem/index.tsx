@@ -1,8 +1,7 @@
 // ListMulitSelectFormItem
-import { Checkbox } from 'ant-design-vue';
-
 import ConditionalRender from '@baifendian/adherev-ui-conditionalrender';
 
+import { Checkbox } from '../../AntdvFormItemNormalize';
 import ListFormItem from '../ListFormItem';
 import MulitSelectFormItem from '../MulitSelectFormItem';
 
@@ -39,6 +38,7 @@ export default {
   emits: ['change'],
   data() {
     return {
+      inputValue: '',
       selectedRowKeys: this.value ? this.value : [],
       selectedRows: this.value
         ? this.value.map((t) => this.dataSource.find((_item) => _item[this.rowKey || 'id'] === t))
@@ -78,52 +78,62 @@ export default {
         />
       );
     },
+    $renderDropdownRender(h) {
+      const data = this.inputValue
+        ? this.dataSource.filter((t) => t.label.startsWith(this.inputValue))
+        : this.dataSource;
+
+      return (
+        // @ts-ignore
+        <ListFormItem
+          listProps={{
+            dataSource: data,
+            ...this.listProps,
+            renderItem: (item, index) => (
+              <ConditionalRender
+                conditional={
+                  !!this.listProps?.renderItem ||
+                  this.$slots.renderItem ||
+                  this.$scopedSlots.renderItem
+                }
+              >
+                <div slot="noMatch" class={`${selectorPrefix}-rowselectwrap`}>
+                  <div class={`${selectorPrefix}-rowselectwrap-fixed`}>
+                    {this.CheckWrap(h, item)}
+                  </div>
+                  <div class={`${selectorPrefix}-rowselectwrap-auto`}>{item}</div>
+                </div>
+
+                <div class={`${selectorPrefix}-rowselectwrap`}>
+                  <div class={`${selectorPrefix}-rowselectwrap-fixed`}>
+                    {this.CheckWrap(h, item)}
+                  </div>
+                  <div class={`${selectorPrefix}-rowselectwrap-auto`}>
+                    {this?.listProps?.renderItem?.(item) ||
+                      this.$slots.renderItem ||
+                      this.$scopedSlots.renderItem(item, index)}
+                  </div>
+                </div>
+              </ConditionalRender>
+            ),
+          }}
+          rowKey={this.rowKey}
+        />
+      );
+    },
   },
   render(h) {
-    const Component = ListFormItem;
-
     return h(
       MulitSelectFormItem,
       {
         props: {
           selectProps: {
-            dropdownRender: () => (
-              // @ts-ignore
-              <Component
-                listProps={{
-                  dataSource: this.dataSource,
-                  ...this.listProps,
-                  renderItem: (item, index) => (
-                    <ConditionalRender
-                      conditional={
-                        !!this.listProps?.renderItem ||
-                        this.$slots.renderItem ||
-                        this.$scopedSlots.renderItem
-                      }
-                    >
-                      <div slot="noMatch" class={`${selectorPrefix}-rowselectwrap`}>
-                        <div class={`${selectorPrefix}-rowselectwrap-fixed`}>
-                          {this.CheckWrap(h, item)}
-                        </div>
-                        <div class={`${selectorPrefix}-rowselectwrap-auto`}>{item}</div>
-                      </div>
+            dropdownRender: () => this.$renderDropdownRender(h),
+            filterOption: (inputValue) => {
+              this.inputValue = inputValue;
 
-                      <div class={`${selectorPrefix}-rowselectwrap`}>
-                        <div class={`${selectorPrefix}-rowselectwrap-fixed`}>
-                          {this.CheckWrap(h, item)}
-                        </div>
-                        <div class={`${selectorPrefix}-rowselectwrap-auto`}>
-                          {this?.listProps?.renderItem?.(item) ||
-                            this.$slots.renderItem ||
-                            this.$scopedSlots.renderItem(item, index)}
-                        </div>
-                      </div>
-                    </ConditionalRender>
-                  ),
-                }}
-                rowKey={this.rowKey}
-              />
-            ),
+              return false;
+            },
             ...this.selectProps,
           },
           value: this.value,
@@ -133,8 +143,15 @@ export default {
           })),
         },
         attrs: this.$attrs,
-        on: this.$listeners,
         scopedSlots: this.$scopedSlots,
+        on: {
+          ...this.$listeners,
+          change: (val) => {
+            this.$emit('change', val);
+
+            if (!val || (Array.isArray(val) && !val.length)) this.inputValue = '';
+          },
+        },
       },
       this.$slots.default,
     );

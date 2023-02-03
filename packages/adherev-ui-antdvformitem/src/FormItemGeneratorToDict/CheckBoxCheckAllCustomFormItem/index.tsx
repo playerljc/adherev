@@ -1,8 +1,7 @@
 // CheckBoxCheckAllCustomFormItem
-import { Checkbox } from 'ant-design-vue';
-
 import Intl from '@baifendian/adherev-util-intl';
 
+import { Checkbox } from '../../AntdvFormItemNormalize';
 import CheckBoxCustomFormItem from '../CheckBoxCustomFormItem';
 
 export default {

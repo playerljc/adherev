@@ -1,8 +1,8 @@
 import { Tooltip } from 'ant-design-vue';
 
-import { assignAttrs, extend } from '../util';
+import { HOC, assignAttrs } from '../util';
 
-const Wrap = extend(Tooltip, {
+const Wrap = HOC(Tooltip, {
   functional: true,
   inject: ['getEl'],
   render(h, context) {

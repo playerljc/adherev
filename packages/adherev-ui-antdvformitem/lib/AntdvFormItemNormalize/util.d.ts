@@ -11,4 +11,4 @@ export declare function assignAttrs(Component: any, context: any, defaultProps: 
  * @param SubComponent
  * @returns {*}
  */
-export declare function extend(Component: any, SubComponent: any): any;
+export declare function HOC(Component: any, SubComponent: any): any;

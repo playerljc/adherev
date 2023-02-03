@@ -1,5 +1,4 @@
-import { Radio, Space } from 'ant-design-vue';
-
+import { Radio, Space } from '../../AntdvFormItemNormalize';
 import SelectFormItem from '../SelectFormItem';
 
 export default {

@@ -1,7 +1,6 @@
-import { Table } from 'ant-design-vue';
-
 import Dict from '@baifendian/adherev-util-dict';
 
+import { Table } from '../../AntdvFormItemNormalize';
 import MulitSelectFormItem from '../MulitSelectFormItem';
 import SelectFormItem from '../SelectFormItem';
 import TableFormItem from '../TableFormItem';

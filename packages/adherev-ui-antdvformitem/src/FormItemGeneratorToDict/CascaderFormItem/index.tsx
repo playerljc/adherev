@@ -1,4 +1,4 @@
-import { Cascader } from 'ant-design-vue';
+import { Cascader } from '../../AntdvFormItemNormalize';
 
 export default {
   name: 'CascaderFormItem',

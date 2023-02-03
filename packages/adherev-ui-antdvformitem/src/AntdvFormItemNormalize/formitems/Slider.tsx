@@ -1,8 +1,8 @@
 import { Slider } from 'ant-design-vue';
 
-import { assignAttrs, extend } from '../util';
+import { HOC, assignAttrs } from '../util';
 
-const Wrap = extend(Slider, {
+const Wrap = HOC(Slider, {
   functional: true,
   inject: ['getEl'],
   render(h, context) {

@@ -2,9 +2,9 @@ import { Modal } from 'ant-design-vue';
 
 import Resource from '@baifendian/adherev-util-resource';
 
-import { assignAttrs, extend } from '../util';
+import { HOC, assignAttrs } from '../util';
 
-const Wrap = extend(Modal, {
+const Wrap = HOC(Modal, {
   functional: true,
   inject: ['getEl'],
   render(h, context) {

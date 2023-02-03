@@ -1,5 +1,4 @@
-import { Select as AntdvSelect } from 'ant-design-vue';
-
+import { Select as AntdvSelect } from '../../AntdvFormItemNormalize';
 import { Select } from '../../AntdvFormItemNormalize';
 
 const { Option } = AntdvSelect;

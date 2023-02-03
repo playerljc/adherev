@@ -1,5 +1,5 @@
 // CheckBoxHorizontalFormItem
-import { Checkbox } from 'ant-design-vue';
+import { Checkbox } from '../../AntdvFormItemNormalize';
 
 export default {
   name: 'CheckBoxHorizontalFormItem',

@@ -1,5 +1,5 @@
 // RadioCustomFormItem
-import { Radio } from 'ant-design-vue';
+import { Radio } from '../../AntdvFormItemNormalize';
 
 export default {
   name: 'RadioCustomFormItem',

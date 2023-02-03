@@ -28,6 +28,7 @@ declare const _default: {
     };
     emits: string[];
     data(): {
+        inputValue: string;
         selectedRowKeys: any;
         selectedRows: any;
     };
@@ -36,6 +37,7 @@ declare const _default: {
     };
     methods: {
         CheckWrap(h: any, item: any): JSX.Element;
+        $renderDropdownRender(h: any): JSX.Element;
     };
     render(h: any): any;
 };

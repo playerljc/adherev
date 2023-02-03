@@ -1,7 +1,4 @@
-import { Checkbox, Space } from 'ant-design-vue';
-
-import Intl from '@baifendian/adherev-util-intl';
-
+import { Checkbox, Space } from '../../AntdvFormItemNormalize';
 import MulitSelectFormItem from '../MulitSelectFormItem';
 
 export default {
@@ -92,6 +89,11 @@ export default {
           ...this.$props,
           selectProps: {
             dropdownRender: () => this.$renderDropdownRender(h),
+            filterOption: (inputValue) => {
+              this.inputValue = inputValue;
+
+              return false;
+            },
             ...this.$props.selectProps,
           },
         },

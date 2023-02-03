@@ -1,8 +1,8 @@
 import { AutoComplete } from 'ant-design-vue';
 
-import { assignAttrs, extend } from '../util';
+import { HOC, assignAttrs } from '../util';
 
-const Wrap = extend(AutoComplete, {
+const Wrap = HOC(AutoComplete, {
   functional: true,
   inject: ['getEl'],
   render(h, context) {
@@ -14,6 +14,8 @@ const Wrap = extend(AutoComplete, {
 
 Wrap.defaultProps = {
   allowClear: true,
+  filterOption: (input, option) =>
+    option.componentOptions.children[0].text.toLowerCase().includes(input.toLowerCase()),
 };
 
 export default Wrap;

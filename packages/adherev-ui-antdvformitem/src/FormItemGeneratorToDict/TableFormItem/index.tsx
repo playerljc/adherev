@@ -1,5 +1,5 @@
 // TableFormItem
-import { Table } from 'ant-design-vue';
+import { Table } from '../../AntdvFormItemNormalize';
 
 export default {
   name: 'TableFormItem',

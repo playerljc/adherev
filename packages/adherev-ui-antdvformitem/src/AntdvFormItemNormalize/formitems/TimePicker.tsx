@@ -1,8 +1,8 @@
 import { TimePicker } from 'ant-design-vue';
 
-import { assignAttrs, extend } from '../util';
+import { HOC, assignAttrs } from '../util';
 
-const Wrap = extend(TimePicker, {
+const Wrap = HOC(TimePicker, {
   functional: true,
   inject: ['getEl'],
   render(h, context) {

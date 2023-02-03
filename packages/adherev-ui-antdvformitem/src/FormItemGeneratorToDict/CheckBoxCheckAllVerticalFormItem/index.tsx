@@ -1,8 +1,7 @@
 // CheckBoxCheckAllVerticalFormItem
-import { Checkbox } from 'ant-design-vue';
-
 import Intl from '@baifendian/adherev-util-intl';
 
+import { Checkbox } from '../../AntdvFormItemNormalize';
 import CheckBoxVerticalFormItem from '../CheckBoxVerticalFormItem';
 
 export default {

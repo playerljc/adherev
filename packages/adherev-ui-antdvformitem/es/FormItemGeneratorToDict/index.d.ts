@@ -264,6 +264,7 @@ declare const FunctionComponents: Pick<{
         };
         emits: string[];
         data(): {
+            inputValue: string;
             selectedRowKeys: any[];
             selectedRows: any;
         };
@@ -272,6 +273,7 @@ declare const FunctionComponents: Pick<{
         };
         methods: {
             RadioWrap(h: any, item: any): JSX.Element;
+            $renderDropdownRender(h: any): JSX.Element;
         };
         render(h: any): any;
     };
@@ -305,6 +307,7 @@ declare const FunctionComponents: Pick<{
         };
         emits: string[];
         data(): {
+            inputValue: string;
             selectedRowKeys: any;
             selectedRows: any;
         };
@@ -313,6 +316,7 @@ declare const FunctionComponents: Pick<{
         };
         methods: {
             CheckWrap(h: any, item: any): JSX.Element;
+            $renderDropdownRender(h: any): JSX.Element;
         };
         render(h: any): any;
     };
@@ -471,6 +475,7 @@ declare const FunctionComponents: Pick<{
         };
         emits: string[];
         data(): {
+            inputValue: string;
             selectedKeys: never[];
         };
         methods: {
@@ -597,11 +602,15 @@ declare const FunctionComponents: Pick<{
         };
         emits: string[];
         data(): {
+            inputValue: string;
             selectedRowKeys: any[];
             selectedRows: any;
         };
         watch: {
             value(value: any): void;
+        };
+        methods: {
+            $renderDropdownRender(h: any): JSX.Element;
         };
         render(h: any): any;
     };
@@ -635,11 +644,15 @@ declare const FunctionComponents: Pick<{
         };
         emits: string[];
         data(): {
+            inputValue: string;
             selectedRowKeys: any;
             selectedRows: any;
         };
         watch: {
             value(value: any): void;
+        };
+        methods: {
+            $renderDropdownRender(h: any): JSX.Element;
         };
         render(h: any): any;
     };

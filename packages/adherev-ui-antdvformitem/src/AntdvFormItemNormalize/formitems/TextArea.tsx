@@ -1,8 +1,8 @@
 import { Input } from 'ant-design-vue';
 
-import { assignAttrs, extend } from '../util';
+import { HOC, assignAttrs } from '../util';
 
-const Wrap = extend(Input.TextArea, {
+const Wrap = HOC(Input.TextArea, {
   functional: true,
   inject: ['getEl'],
   render(h, context) {

@@ -1,8 +1,8 @@
 import { Mentions } from 'ant-design-vue';
 
-import { assignAttrs, extend } from '../util';
+import { HOC, assignAttrs } from '../util';
 
-const Wrap = extend(Mentions, {
+const Wrap = HOC(Mentions, {
   functional: true,
   inject: ['getEl'],
   render(h, context) {

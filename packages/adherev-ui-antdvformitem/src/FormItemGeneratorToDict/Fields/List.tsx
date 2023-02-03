@@ -1,8 +1,7 @@
-import { Checkbox, List, Radio } from 'ant-design-vue';
-
 import ConditionalRender from '@baifendian/adherev-ui-conditionalrender';
 import Dict from '@baifendian/adherev-util-dict';
 
+import { Checkbox, List, Radio } from '../../AntdvFormItemNormalize';
 import ListFormItem from '../ListFormItem';
 import ListMulitSelectFormItem from '../ListMulitSelectFormItem';
 import ListSelectFormItem from '../ListSelectFormItem';

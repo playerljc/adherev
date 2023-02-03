@@ -1,5 +1,5 @@
 // RadioVerticalFormItem
-import { Radio } from 'ant-design-vue';
+import { Radio } from '../../AntdvFormItemNormalize';
 
 const selectorPrefix = 'adherev-ui-antdformitem';
 

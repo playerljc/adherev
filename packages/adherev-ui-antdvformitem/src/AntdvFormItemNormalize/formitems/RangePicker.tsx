@@ -1,10 +1,10 @@
 import { DatePicker } from 'ant-design-vue';
 
-import { assignAttrs, extend } from '../util';
+import { HOC, assignAttrs } from '../util';
 
 const { RangePicker } = DatePicker;
 
-const Wrap = extend(RangePicker, {
+const Wrap = HOC(RangePicker, {
   functional: true,
   inject: ['getEl'],
   render(h, context) {

@@ -1,5 +1,5 @@
 // ListFormItem
-import { List } from 'ant-design-vue';
+import { List } from '../../AntdvFormItemNormalize';
 
 export default {
   name: 'ListFormItem',

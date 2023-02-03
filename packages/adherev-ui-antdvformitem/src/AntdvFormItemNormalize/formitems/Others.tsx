@@ -51,7 +51,7 @@ import {
   Tree,
 } from 'ant-design-vue';
 
-import { assignAttrs, extend } from '../util';
+import { HOC, assignAttrs } from '../util';
 
 const AntdComponents = {
   Affix,
@@ -109,7 +109,7 @@ const AntdComponents = {
 export default Object.keys(AntdComponents).reduce((res, key) => {
   const Component = AntdComponents[key];
 
-  res[key] = extend(Component, {
+  res[key] = HOC(Component, {
     functional: true,
     inject: ['getEl'],
     render(h, context) {

@@ -16,8 +16,8 @@ import TimePicker from './formitems/TimePicker';
 import Tooltip from './formitems/Tooltip';
 import TreeSelect from './formitems/TreeSelect';
 import Upload from './formitems/Upload';
-export { Select, MultipleSelect, TreeSelect, AutoComplete, DatePicker, RangePicker, TimePicker, Cascader, Modal, Mentions, Slider, Tooltip, Upload, InputNumberInteger, InputNumberDecimal1, InputNumberDecimal2, Input, TextArea, };
-export * as AntdvdComponents from './formitems/Others';
+declare const Affix: any, Alert: any, Anchor: any, Avatar: any, BackTop: any, Badge: any, Breadcrumb: any, Button: any, Calendar: any, Card: any, Carousel: any, Checkbox: any, Col: any, Collapse: any, Comment: any, ConfigProvider: any, Descriptions: any, Divider: any, Drawer: any, Dropdown: any, Empty: any, Form: any, FormModel: any, Icon: any, InputNumber: any, Layout: any, List: any, LocaleProvider: any, Menu: any, PageHeader: any, Pagination: any, Popconfirm: any, Popover: any, Progress: any, Radio: any, Rate: any, Result: any, Row: any, Skeleton: any, Space: any, Spin: any, Statistic: any, Steps: any, Switch: any, Table: any, Tabs: any, Tag: any, Timeline: any, Transfer: any, Tree: any;
+export { Select, MultipleSelect, TreeSelect, AutoComplete, DatePicker, RangePicker, TimePicker, Cascader, Modal, Mentions, Slider, Tooltip, Upload, InputNumberInteger, InputNumberDecimal1, InputNumberDecimal2, Input, TextArea, Affix, Alert, Anchor, Avatar, BackTop, Badge, Breadcrumb, Button, Calendar, Card, Carousel, Checkbox, Col, Collapse, Comment, ConfigProvider, Descriptions, Divider, Drawer, Dropdown, Empty, Form, FormModel, Icon, InputNumber, Layout, List, LocaleProvider, Menu, PageHeader, Pagination, Popconfirm, Popover, Progress, Radio, Rate, Result, Row, Skeleton, Space, Spin, Statistic, Steps, Switch, Table, Tabs, Tag, Timeline, Transfer, Tree, };
 declare const _default: {
     install: (Vue: any) => void;
 };

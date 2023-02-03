@@ -33,6 +33,7 @@ export default {
   emits: ['change'],
   data() {
     return {
+      inputValue: '',
       selectedRowKeys: this.value ? [this.value] : [],
       selectedRows: this.value
         ? this.dataSource.find((t) => t[this.rowKey || 'id'] === this.value)
@@ -45,34 +46,46 @@ export default {
       this.selectedRows = [this.dataSource.find((t) => t[this.rowKey || 'id'] === this.value)];
     },
   },
-  render(h) {
-    const Component = TableFormItem;
+  methods: {
+    $renderDropdownRender(h) {
+      const data = this.inputValue
+        ? this.dataSource.filter((t) => t.label.startsWith(this.inputValue))
+        : this.dataSource;
 
+      return (
+        // @ts-ignore
+        <TableFormItem
+          tableProps={{
+            rowSelection: {
+              type: 'radio',
+              selectedRowKeys: this.selectedRowKeys,
+              selectedRows: this.selectedRows,
+              onChange: (selectedRowKeys, selectedRows) => {
+                this.selectedRowKeys = selectedRowKeys;
+                this.selectedRows = selectedRows;
+                this.$emit('change', selectedRowKeys.length ? selectedRowKeys[0] : '');
+              },
+            },
+            dataSource: data,
+            ...this.tableProps,
+          }}
+          rowKey={this.rowKey}
+        />
+      );
+    },
+  },
+  render(h) {
     return h(
       SelectFormItem,
       {
         props: {
           selectProps: {
-            dropdownRender: () => (
-              // @ts-ignore
-              <Component
-                tableProps={{
-                  rowSelection: {
-                    type: 'radio',
-                    selectedRowKeys: this.selectedRowKeys,
-                    selectedRows: this.selectedRows,
-                    onChange: (selectedRowKeys, selectedRows) => {
-                      this.selectedRowKeys = selectedRowKeys;
-                      this.selectedRows = selectedRows;
-                      this.$emit('change', selectedRowKeys.length ? selectedRowKeys[0] : '');
-                    },
-                  },
-                  dataSource: this.dataSource,
-                  ...this.tableProps,
-                }}
-                rowKey={this.rowKey}
-              />
-            ),
+            dropdownRender: () => this.$renderDropdownRender(h),
+            filterOption: (inputValue) => {
+              this.inputValue = inputValue;
+
+              return false;
+            },
             ...this.selectProps,
           },
           value: this.value,
@@ -82,8 +95,15 @@ export default {
           })),
         },
         attrs: this.$attrs,
-        on: this.$listeners,
         scopedSlots: this.$scopedSlots,
+        on: {
+          ...this.$listeners,
+          change: (val) => {
+            this.$emit('change', val);
+
+            if (!val || (Array.isArray(val) && !val.length)) this.inputValue = '';
+          },
+        },
       },
       this.$slots.default,
     );
