@@ -1,3 +1,5 @@
+import { App, Plugin } from 'vue';
+
 import Preferences from '@baifendian/adhere-util-preferences';
 import BfdUtil from '@baifendian/adherev-util';
 
@@ -5,12 +7,13 @@ const {
   _util: { withVue },
 } = BfdUtil;
 
-const Component: any = Preferences;
+const Wrap = {
+  ...Preferences,
+  install: (app: App) => {
+    withVue(app, 'Preferences', Preferences);
 
-Component.isUse = () => true;
-
-Component.use = (Vue) => {
-  withVue(Vue, 'Preferences', Component);
+    return app;
+  },
 };
 
-export default Component;
+export default Wrap as typeof Wrap & Plugin;

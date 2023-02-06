@@ -1,2 +1,3 @@
-import MessageDialog from './messagedialog';
-export default MessageDialog;
+import { Plugin } from 'vue';
+declare const _default: import("./types").IMessageDialogFactory & Plugin;
+export default _default;

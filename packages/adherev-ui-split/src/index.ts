@@ -1,24 +1,24 @@
+import { App, Plugin } from 'vue';
+
 import BfdUtil from '@baifendian/adherev-util';
 
 import Split, { SplitGroup } from './split';
-import { IComponent } from './types';
 
 const {
-  _util: { withInstall, withVue },
+  _util: { withVue },
 } = BfdUtil;
 
-const Component: IComponent = withInstall(Split);
+Split.Group = SplitGroup;
 
-Component.isUse = () => true;
+Split.install = function (app: App) {
+  app.component(SplitGroup.name, SplitGroup);
+  app.component(Split.name, Split);
+  withVue(app, 'Split', Split);
 
-Component.use = (Vue: any) => {
-  Vue.use(Component);
-
-  Vue.use(Component.Group);
-
-  withVue(Vue, 'Split', Component);
+  return app;
 };
 
-Component.Group = withInstall(SplitGroup);
-
-export default Component;
+export default Split as typeof Split &
+  Plugin & {
+    readonly Group: typeof SplitGroup;
+  };

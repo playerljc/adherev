@@ -1,7 +1,5 @@
-export interface IComponent {
-  isUse(): boolean;
-  use(Vue: any): void;
-  EMPTY: string;
-  ERROR: string;
-  NORMAL: string;
-}
+import { ExtractPropTypes } from 'vue';
+
+import { scrollLoadProps } from './scrollload';
+
+export type ScrollLoadProps = Partial<ExtractPropTypes<typeof scrollLoadProps>>;

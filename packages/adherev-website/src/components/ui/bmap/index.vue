@@ -3101,7 +3101,7 @@ export default {
   mounted() {
     this.scrollEl = this?.$refs?.ref?.$el?.parentElement?.parentElement;
 
-    BMap().then((modules) => {
+    BMap.init().then((modules) => {
       const {
         BMap: _BMapComponent,
         BMapWindLayer: _BMapWindLayer,

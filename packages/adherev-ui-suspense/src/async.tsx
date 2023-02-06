@@ -4,7 +4,7 @@ import { func } from 'vue-types';
 
 import Suspense from './suspense';
 
-const suspenseAsyncProps = {
+export const suspenseAsyncProps = {
   isEmpty: func<(params?: any) => boolean>(),
   renderEmpty: func<(params?: any) => VNode | null>(),
   fetchAsyncData: func<(params?: any) => Promise<any>>(),

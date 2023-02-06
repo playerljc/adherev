@@ -1,4 +1,4 @@
-import { IComponent, IConfig } from './types';
+import { IConfig } from './types';
 /**
  * Popup
  * @class Popup
@@ -67,5 +67,5 @@ export declare class Popup {
 /**
  * PopupFactory
  */
-declare const PopupFactory: IComponent;
+declare const PopupFactory: any;
 export default PopupFactory;

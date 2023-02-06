@@ -1,2 +1,2 @@
-import IntlV from './intl';
-export default IntlV;
+declare const _default: any;
+export default _default;

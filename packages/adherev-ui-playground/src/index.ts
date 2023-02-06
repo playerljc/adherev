@@ -1,5 +1,6 @@
 // import 'vue3-highlightjs/lib/allLanguages';
 import 'highlight.js/lib/common';
+import { App, Plugin } from 'vue';
 
 import ContextMenu from '@baifendian/adherev-ui-contextmenu';
 import Space from '@baifendian/adherev-ui-space';
@@ -23,61 +24,63 @@ import PlayGroundTab from './PlayGroundTab';
 import Props from './Props';
 
 const {
-  _util: { withInstall, withVue },
+  _util: { withVue },
 } = BfdUtil;
 
-const Component = withInstall(PlayGround);
-Component.FunctionProps = withInstall(FunctionProps);
-Component.Props = withInstall(Props);
-Component.CodePanel = withInstall(CodePanel);
-Component.CodeTabPanel = withInstall(CodeTabPanel);
-Component.CodeBoxPanel = withInstall(CodeBoxPanel);
-Component.PlayGroundTab = withInstall(PlayGroundTab);
-Component.PlayGroundMulit = withInstall(PlayGroundMulit);
-Component.PlayGroundPage = withInstall(PlayGroundPage);
-Component.AnchorNavigation = withInstall(AnchorNavigation);
-Component.PlayGroundPage.CodeBoxSection = withInstall(CodeBoxSection);
-Component.PlayGroundPage.FunctionPropsSection = withInstall(FunctionPropsSection);
-Component.PlayGroundPage.PropsSection = withInstall(PropsSection);
-Component.PlayGroundPage.Section = withInstall(Section);
+PlayGround.FunctionProps = FunctionProps;
+PlayGround.Props = Props;
+PlayGround.CodePanel = CodePanel;
+PlayGround.CodeTabPanel = CodeTabPanel;
+PlayGround.CodeBoxPanel = CodeBoxPanel;
+PlayGround.PlayGroundTab = PlayGroundTab;
+PlayGround.PlayGroundMulit = PlayGroundMulit;
+PlayGround.AnchorNavigation = AnchorNavigation;
+PlayGround.PlayGroundPage = PlayGroundPage;
+PlayGround.PlayGroundPage.CodeBoxSection = CodeBoxSection;
+PlayGround.PlayGroundPage.FunctionPropsSection = FunctionPropsSection;
+PlayGround.PlayGroundPage.PropsSection = PropsSection;
+PlayGround.PlayGroundPage.Section = Section;
 
-Component.isUse = () => true;
+PlayGround.install = function (app: App) {
+  app.component(PlayGround.name, PlayGround);
+  app.use(ContextMenu);
+  app.component(Space.name, Space);
+  app.component(Intl.name, Intl);
 
-Component.use = (Vue: any) => {
-  (ContextMenu as any).isUse() && (ContextMenu as any).use(Vue);
-  (Space as any).isUse() && (Space as any).use(Vue);
-  (Intl as any).isUse() && (Intl as any).use(Vue);
+  app.component(FunctionProps.name, FunctionProps);
+  app.component(Props.name, Props);
+  app.component(CodePanel.name, CodePanel);
+  app.component(CodeTabPanel.name, CodeTabPanel);
+  app.component(CodeBoxPanel.name, CodeBoxPanel);
+  app.component(PlayGroundTab.name, PlayGroundTab);
+  app.component(PlayGroundMulit.name, PlayGroundMulit);
+  app.component(AnchorNavigation.name, AnchorNavigation);
+  app.component(PlayGroundPage.name, PlayGroundPage);
+  app.component(CodeBoxSection.name, CodeBoxSection);
+  app.component(FunctionPropsSection.name, FunctionPropsSection);
+  app.component(PropsSection.name, PropsSection);
+  app.component(Section.name, Section);
+  app.component(hljsVuePlugin.component.name, hljsVuePlugin.component);
 
-  Vue.use(Component);
-  Vue.use(Component.FunctionProps);
-  Vue.use(Component.Props);
-  Vue.use(Component.CodePanel);
-  Vue.use(Component.CodeTabPanel);
-  Vue.use(Component.CodeBoxPanel);
-  Vue.use(Component.PlayGroundTab);
-  Vue.use(Component.PlayGroundMulit);
-  Vue.use(Component.PlayGroundPage);
-  Vue.use(Component.AnchorNavigation);
-  Vue.use(Component.PlayGroundPage.CodeBoxSection);
-  Vue.use(Component.PlayGroundPage.FunctionPropsSection);
-  Vue.use(Component.PlayGroundPage.PropsSection);
-  Vue.use(Component.PlayGroundPage.Section);
-  Vue.use(hljsVuePlugin);
+  withVue(app, 'PlayGround', PlayGround);
 
-  withVue(Vue, 'PlayGround', Component);
-  withVue(Vue, 'FunctionProps', FunctionProps);
-  withVue(Vue, 'Props', Props);
-  withVue(Vue, 'CodePanel', CodePanel);
-  withVue(Vue, 'CodeTabPanel', CodeTabPanel);
-  withVue(Vue, 'CodeBoxPanel', CodeBoxPanel);
-  withVue(Vue, 'PlayGroundTab', PlayGroundTab);
-  withVue(Vue, 'PlayGroundMulit', PlayGroundMulit);
-  withVue(Vue, 'PlayGroundPage', PlayGroundPage);
-  withVue(Vue, 'AnchorNavigation', AnchorNavigation);
-  withVue(Vue, 'PlayGroundPage.CodeBoxSection', CodeBoxSection);
-  withVue(Vue, 'PlayGroundPage.FunctionPropsSection', FunctionPropsSection);
-  withVue(Vue, 'PlayGroundPage.PropsSection', PropsSection);
-  withVue(Vue, 'PlayGroundPage.Section', Section);
+  return app;
 };
 
-export default Component;
+export default PlayGround as typeof PlayGround &
+  Plugin & {
+    readonly FunctionProps: typeof FunctionProps;
+    readonly Props: typeof Props;
+    readonly CodePanel: typeof CodePanel;
+    readonly CodeTabPanel: typeof CodeTabPanel;
+    readonly CodeBoxPanel: typeof CodeBoxPanel;
+    readonly PlayGroundTab: typeof PlayGroundTab;
+    readonly PlayGroundMulit: typeof PlayGroundMulit;
+    readonly AnchorNavigation: typeof AnchorNavigation;
+    readonly PlayGroundPage: typeof PlayGroundPage & {
+      readonly CodeBoxSection: typeof CodeBoxSection;
+      readonly FunctionPropsSection: typeof FunctionPropsSection;
+      readonly PropsSection: typeof PropsSection;
+      readonly Section: typeof Section;
+    };
+  };

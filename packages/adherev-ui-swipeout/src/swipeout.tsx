@@ -5,7 +5,7 @@ import { bool, number, object, string } from 'vue-types';
 
 const selectorPrefix = 'adherev-ui-swipeout';
 
-const swiperOutProps = {
+export const swiperOutProps = {
   beforeClassName: string().def(''),
   beforeStyle: object<CSSProperties>().def({}),
   afterClassName: string().def(''),

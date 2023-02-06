@@ -7,6 +7,18 @@ export declare function open({ success, ...params }: {
     [x: string]: any;
     success: any;
 }): void;
+export declare const delCConfirmProps: {
+    zIndex: import("vue-types").VueTypeValidableDef<number> & {
+        default: number;
+    };
+    success: import("vue-types").VueTypeValidableDef<() => Promise<void>>;
+    title: import("vue-types").VueTypeValidableDef<string> & {
+        default: string;
+    };
+    text: import("vue-types").VueTypeValidableDef<string> & {
+        default: string;
+    };
+};
 declare const _default: import("vue").DefineComponent<{
     zIndex: import("vue-types").VueTypeValidableDef<number> & {
         default: number;

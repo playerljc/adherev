@@ -10,7 +10,7 @@ const selectorPrefix = 'adhere-ui-bmap';
 const loadGridIcon =
   'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAYAAADDPmHLAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAUdJREFUeNrs2sENwyAQRcE4ckf0RBv04Z7ck30wFXBi/4wU5bScXhQk9hhj9B+xzu/7WjijvZ/b/Jbz/e83kE0AAkAACAABIAAEgAAQAAJAAAgAAVDYfA5ui+eY33R+BuA9PXO++QtwB0AACAABIAAEgAAQAAJAAAgAASAAqrIPED5vH8A+AO4ACAABIAAEgAAQAAJAAAgAASAABEBJ9gHC5+0D2AfAHQABIAAEgAAQAAJAAAgAASAABIAAKMk+QPi8fQD7ALgDIAAEgAAQAAJAAAgAASAABIAAEAAl2QcIn7cPYB8AdwAEgAAQAAJAAAgAASAABIAAEAACoCT7AOHz9gHsA+AOgAAQAAJAAAgAASAABIAAEAACQACUZB8gfN4+gH0A3AEQAAJAAAgAASAABIAAEAACQABUNV8D++I5nmM3nX8EGADa0U/2xPbBVwAAAABJRU5ErkJggg==';
 
-const props = {
+export const bmapProps = {
   ak: string().def('bxFuXXDt1oKdlgu6mXCCnK51cDgDGBLp'),
   zoom: number().def(5),
   center: object<IPoint>().def({
@@ -29,7 +29,7 @@ const props = {
 
 export default defineComponent({
   name: 'adv-bmap',
-  props,
+  props: bmapProps,
   emits: ['bMapInitReady'],
   setup(props, { emit, expose }) {
     const root = ref<HTMLDivElement | null>(null);

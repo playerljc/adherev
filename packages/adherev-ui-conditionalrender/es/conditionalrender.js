@@ -1,2 +1,2 @@
-import{defineComponent}from"vue";import{bool}from"vue-types";var props={conditional:bool().def(!0)};export default defineComponent({name:"adv-conditionalrender",props:props,slots:["default","noMatch"],setup:function(o,n){var t=n.slots;return function(){return o.conditional?t.default?t.default():null:t.noMatch?t.noMatch():null}}});
+import{defineComponent}from"vue";import{bool}from"vue-types";var conditionalRenderProps={conditional:bool().def(!0)};export default defineComponent({name:"adv-conditionalrender",props:conditionalRenderProps,slots:["default","noMatch"],setup:function(o,n){var e=n.slots;return function(){return o.conditional?e.default?e.default():null:e.noMatch?e.noMatch():null}}});export{conditionalRenderProps};
 //# sourceMappingURL=conditionalrender.js.map

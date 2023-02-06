@@ -16,7 +16,7 @@ import { IMenuDataItem } from './types';
 
 const selectorPrefix = 'adherev-ui-jdcategorytab';
 
-const props = {
+export const jdCategoryTabProps = {
   className: string().def(''),
   menuClassName: string().def(''),
   menuStyle: object<CSSProperties>().def({}),
@@ -33,7 +33,7 @@ const props = {
 
 export default defineComponent({
   name: 'adv-jdcategorytab',
-  props,
+  props: jdCategoryTabProps,
   slots: ['menuItem'],
   emits: ['change'],
   setup(props, { slots, emit, expose }) {

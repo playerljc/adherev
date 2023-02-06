@@ -1,16 +1,18 @@
+import { App, Plugin } from 'vue';
+
 import HistoryBack from '@baifendian/adhere-ui-historyback';
 import BfdUtil from '@baifendian/adherev-util';
-
-import { IComponent } from './types';
 
 const {
   _util: { withVue },
 } = BfdUtil;
 
-(HistoryBack as IComponent).isUse = () => true;
+const HistoryBackWrap = {
+  ...HistoryBack,
+  install: function (app: App) {
+    withVue(app, 'HistoryBack', HistoryBack);
 
-(HistoryBack as IComponent).use = (Vue: any) => {
-  withVue(Vue, 'HistoryBack', HistoryBack);
+    return app;
+  },
 };
-
-export default HistoryBack;
+export default HistoryBackWrap as typeof HistoryBackWrap & Plugin;

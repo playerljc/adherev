@@ -1,2 +1,2 @@
-import BfdUtil from"@baifendian/adherev-util";import Surnames from"./surnames";var _a=BfdUtil._util,withInstall=_a.withInstall,withVue=_a.withVue,Component=withInstall(Surnames);Component.isUse=function(){return!0},Component.use=function(n){n.use(Component),withVue(n,"Surnames",Component)};export default Component;
+import BfdUtil from"@baifendian/adherev-util";import Surnames from"./surnames";var withVue=BfdUtil._util.withVue;Surnames.install=function(e){return e.component(Surnames.name,Surnames),withVue(e,"Surnames",Surnames),e};export default Surnames;
 //# sourceMappingURL=index.js.map

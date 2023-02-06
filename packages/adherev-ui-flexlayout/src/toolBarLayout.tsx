@@ -8,7 +8,7 @@ import VerticalFlexLayout from './verticalFlexLayout';
 
 const selectorPrefix = `${_selectorPrefix}-toolbarlayout`;
 
-const props = {
+export const toolBarLayoutProps = {
   topClassName: string().def(''),
   topStyle: object<CSSProperties>().def({}),
   bottomClassName: string().def(''),
@@ -29,7 +29,7 @@ const props = {
 
 export default defineComponent({
   name: 'adv-flexlayout-toolbar',
-  props,
+  props: toolBarLayoutProps,
   setup(props, { slots }) {
     const topProps = computed(() => ({
       fit: false,

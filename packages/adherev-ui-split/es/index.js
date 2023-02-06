@@ -1,2 +1,2 @@
-import BfdUtil from"@baifendian/adherev-util";import Split,{SplitGroup}from"./split";var _a=BfdUtil._util,withInstall=_a.withInstall,withVue=_a.withVue,Component=withInstall(Split);Component.isUse=function(){return!0},Component.use=function(t){t.use(Component),t.use(Component.Group),withVue(t,"Split",Component)},Component.Group=withInstall(SplitGroup);export default Component;
+import BfdUtil from"@baifendian/adherev-util";import Split,{SplitGroup}from"./split";var withVue=BfdUtil._util.withVue;Split.Group=SplitGroup,Split.install=function(t){return t.component(SplitGroup.name,SplitGroup),t.component(Split.name,Split),withVue(t,"Split",Split),t};export default Split;
 //# sourceMappingURL=index.js.map

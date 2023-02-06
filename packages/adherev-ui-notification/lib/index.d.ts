@@ -1,2 +1,3 @@
-import Notification from './notification';
-export default Notification;
+import { Plugin } from 'vue';
+declare const _default: import("./types").INotificationFactory & Plugin;
+export default _default;

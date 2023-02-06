@@ -1,39 +1,19 @@
-import { VNode } from 'vue';
+import { App, VNode } from 'vue';
 
 import Util from '@baifendian/adherev-util';
 
 import ConditionalRender from './conditionalrender';
 import ConditionalRenderShow from './show';
-import { IComponent } from './types';
 import ConditionalRenderVisibility from './visibility';
 import ConditionalRenderWrap from './wrap';
 
 const {
-  _util: { withInstall, withVue },
+  _util: { withVue },
 } = Util;
 
-const Component: IComponent = withInstall(ConditionalRender);
-
-withInstall(ConditionalRenderShow);
-withInstall(ConditionalRenderVisibility);
-withInstall(ConditionalRenderWrap);
-
-Component.isUse = () => true;
-Component.use = (Vue: any) => {
-  Vue.use(Component);
-  Vue.use(ConditionalRenderShow);
-  Vue.use(ConditionalRenderVisibility);
-  Vue.use(ConditionalRenderWrap);
-
-  withVue(Vue, 'ConditionalRender', ConditionalRender);
-  withVue(Vue, 'ConditionalRenderShow', ConditionalRenderShow);
-  withVue(Vue, 'ConditionalRenderVisibility', ConditionalRenderVisibility);
-  withVue(Vue, 'ConditionalRenderWrap', ConditionalRenderWrap);
-};
-Component.Show = ConditionalRenderShow;
-Component.Visibility = ConditionalRenderVisibility;
-Component.Wrap = ConditionalRenderWrap;
-
+ConditionalRender.Show = ConditionalRenderShow;
+ConditionalRender.Visibility = ConditionalRenderVisibility;
+ConditionalRender.Wrap = ConditionalRenderWrap;
 /**
  * conditionalRender
  * @description - 使用方法的ConditionalRender
@@ -41,7 +21,7 @@ Component.Wrap = ConditionalRenderWrap;
  * @param match
  * @param noMatch
  */
-Component.conditionalRender = function ({
+ConditionalRender.conditionalRender = function ({
   conditional,
   match,
   noMatch,
@@ -59,12 +39,11 @@ Component.conditionalRender = function ({
  * @param arr
  * @return Array
  */
-Component.conditionalArr = function (arr: any[]): any[] {
+ConditionalRender.conditionalArr = function (arr: any[]): any[] {
   return arr.filter((t) => {
     if ('props' in t && 'conditional' in t.props) {
       if (!t.props.conditional) {
-        if (t.props.noMatch && t.props.noMatch?.() !== null) return true;
-        return false;
+        return t.props.noMatch && t.props.noMatch?.() !== null;
       }
     }
 
@@ -77,8 +56,25 @@ Component.conditionalArr = function (arr: any[]): any[] {
  * @deprecated 去除null和undefined值
  * @param arr
  */
-Component.conditionalNotEmptyArr = function (arr: any[]): any[] {
+ConditionalRender.conditionalNotEmptyArr = function (arr: any[]): any[] {
   return arr.filter((t) => !(t === null || t === undefined));
 };
 
-export default Component;
+ConditionalRender.install = (app: App) => {
+  app.component(ConditionalRender.name, ConditionalRender);
+  app.component(ConditionalRenderShow.name, ConditionalRenderShow);
+  app.component(ConditionalRenderVisibility.name, ConditionalRenderVisibility);
+  app.component(ConditionalRenderWrap.name, ConditionalRenderWrap);
+
+  withVue(app, 'ConditionalRender', ConditionalRender);
+};
+
+export default ConditionalRender as typeof ConditionalRender &
+  Plugin & {
+    readonly Show: typeof ConditionalRenderShow;
+    readonly Visibility: typeof ConditionalRenderVisibility;
+    readonly Wrap: typeof ConditionalRenderWrap;
+    readonly conditionalRender: typeof ConditionalRender.conditionalRender;
+    readonly conditionalArr: typeof ConditionalRender.conditionalArr;
+    readonly conditionalNotEmptyArr: typeof ConditionalRender.conditionalNotEmptyArr;
+  };

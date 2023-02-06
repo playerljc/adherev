@@ -1,6 +1,6 @@
 {
   "name": "@baifendian/adherev-ui-vuequill-sandbox",
-  "version": "2.0.0-fix.1",
+  "version": "2.0.0",
   "description": "对Quill进行样式隔离的包装",
   "homepage": "https://gitee.com/playerljc/adherev",
   "bugs": {

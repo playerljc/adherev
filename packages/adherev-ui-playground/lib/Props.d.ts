@@ -1,10 +1,5 @@
 import { VNode } from 'vue';
-export interface IDataItemType {
-    params: string | VNode;
-    desc: string | VNode;
-    type: string | VNode;
-    defaultVal: string | VNode;
-}
+import { IDataItemType } from './types';
 export declare const propsProps: {
     data: import("vue-types").VueTypeValidableDef<IDataItemType[]> & {
         default: () => IDataItemType[];
@@ -114,8 +109,8 @@ declare const _default: import("vue").DefineComponent<{
     headerStyle: import("vue").CSSProperties;
     bodyClassName: string;
     bodyStyle: import("vue").CSSProperties;
-    border: boolean;
     defaultCollapse: boolean;
+    border: boolean;
     scrollY: boolean;
     fixedHeaderScrollBody: boolean;
 }>;

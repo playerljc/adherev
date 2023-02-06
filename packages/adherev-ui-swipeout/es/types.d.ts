@@ -1,17 +1,3 @@
-/**
- * ISwipeOutProps
- * @interface ISwipeOutProps
- */
-export interface ISwipeOutProps {
-    className?: string;
-    beforeClassName?: string;
-    beforeStyle?: string;
-    afterClassName?: string;
-    afterStyle?: string;
-    contentClassName?: string;
-    contentStyle?: string;
-    beforeShow: boolean;
-    afterShow: boolean;
-    direction: 'horizontal' | 'vertical';
-    duration: number;
-}
+import { ExtractPropTypes } from 'vue';
+import { swiperOutProps } from './swipeout';
+export declare type SwipeOutProps = Partial<ExtractPropTypes<typeof swiperOutProps>>;

@@ -1,4 +1,18 @@
 import { CSSProperties } from 'vue';
+export declare const stickupLayoutProps: {
+    fixedClassName: import("vue-types").VueTypeValidableDef<string> & {
+        default: string;
+    };
+    fixedStyle: import("vue-types").VueTypeValidableDef<CSSProperties> & {
+        default: () => CSSProperties;
+    };
+    innerClassName: import("vue-types").VueTypeValidableDef<string> & {
+        default: string;
+    };
+    innerStyle: import("vue-types").VueTypeValidableDef<CSSProperties> & {
+        default: () => CSSProperties;
+    };
+};
 declare const _default: import("vue").DefineComponent<{
     fixedClassName: import("vue-types").VueTypeValidableDef<string> & {
         default: string;

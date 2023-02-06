@@ -1,19 +1,18 @@
+import { App, Plugin } from 'vue';
+
 import Util from '@baifendian/adherev-util';
 
 import BackTopAnimation from './backtopanimation';
-import { Component } from './types';
 
 const {
-  _util: { withInstall, withVue },
+  _util: { withVue },
 } = Util;
 
-const Component: Component = withInstall(BackTopAnimation);
+BackTopAnimation.install = function (app: App) {
+  app.component(BackTopAnimation.name, BackTopAnimation);
+  withVue(app, 'BackTopAnimation', BackTopAnimation);
 
-Component.isUse = () => true;
-
-Component.use = (Vue: any) => {
-  Vue.use(Component);
-  withVue(Vue, 'BackTopAnimation', Component);
+  return app;
 };
 
-export default Component;
+export default BackTopAnimation as typeof BackTopAnimation & Plugin;

@@ -1,3 +1,14 @@
+export declare const backTopAnimationProps: {
+    className: import("vue-types").VueTypeValidableDef<string> & {
+        default: string;
+    };
+    zIndex: import("vue-types").VueTypeDef<string | number> & {
+        default: string | number;
+    };
+    duration: import("vue-types").VueTypeDef<number> & {
+        default: number;
+    };
+};
 declare const _default: import("vue").DefineComponent<{
     className: import("vue-types").VueTypeValidableDef<string> & {
         default: string;

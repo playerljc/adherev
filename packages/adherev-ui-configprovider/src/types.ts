@@ -1,10 +1,6 @@
-/**
- * ConfigProviderProps
- * @interface ConfigProviderProps
- */
-export interface ConfigProviderProps {
-  intl: IntlProps;
-}
+import { ExtractPropTypes } from 'vue';
+
+import { configProviderProps } from './configprovider';
 
 export interface IntlProps {
   lang: 'en_US' | 'zh_CN' | 'pt_PT';
@@ -13,4 +9,4 @@ export interface IntlProps {
   mainLanguage: string;
 }
 
-export interface ConfigProviderContext {}
+export type ConfigProviderProps = Partial<ExtractPropTypes<typeof configProviderProps>>;

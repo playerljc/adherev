@@ -1,19 +1,18 @@
+import { App, Plugin } from 'vue';
+
 import Util from '@baifendian/adherev-util';
 
 import ImageLazy from './imagelazy';
-import { IComponent } from './types';
 
 const {
-  _util: { withInstall, withVue },
+  _util: { withVue },
 } = Util;
 
-const Component: IComponent = withInstall(ImageLazy);
+ImageLazy.install = function (app: App) {
+  app.component(ImageLazy.name, ImageLazy);
+  withVue(app, 'ImageLazy', ImageLazy);
 
-Component.isUse = () => true;
-
-Component.use = (Vue: any) => {
-  Vue.use(Component);
-  withVue(Vue, 'ImageLazy', Component);
+  return app;
 };
 
-export default Component;
+export default ImageLazy as typeof ImageLazy & Plugin;

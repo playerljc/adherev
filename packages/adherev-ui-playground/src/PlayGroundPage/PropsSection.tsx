@@ -3,7 +3,8 @@ import { array } from 'vue-types';
 
 import Space from '@baifendian/adherev-ui-space';
 
-import Props, { IDataItemType } from '../Props';
+import Props from '../Props';
+import { IDataItemType } from '../types';
 import Section, { sectionProps } from './Section';
 
 const propsSectionProps = {

@@ -1,9 +1,8 @@
+import { ExtractPropTypes } from 'vue';
+import { imageLazyProps } from './imagelazy';
 export interface IImgArgs {
     originSrc: string;
     errorSrc: string;
     targetSrc: string;
 }
-export interface IComponent {
-    isUse(): boolean;
-    use(Vue: any): void;
-}
+export declare type ImageLazyProps = Partial<ExtractPropTypes<typeof imageLazyProps>>;

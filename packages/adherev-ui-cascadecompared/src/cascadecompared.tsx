@@ -50,7 +50,7 @@ function initTouch() {
 
 initTouch();
 
-const props = {
+export const cascadeComparedProps = {
   className: string().def(''),
   indicatorClassName: string().def(''),
   indicatorStyle: object<CSSProperties>().def({}),
@@ -76,7 +76,7 @@ const props = {
 
 export default defineComponent({
   name: 'adv-cascadecompared',
-  props,
+  props: cascadeComparedProps,
   slots: ['masterGroupTitle', 'cell'],
   emits: ['stickChange'],
   setup: function (props, { emit, expose, slots }) {

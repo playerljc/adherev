@@ -1,2 +1,2 @@
-import IframeIO from"@baifendian/adhere-util-iframeio";import BfdUtil from"@baifendian/adherev-util";var withVue=BfdUtil._util.withVue,Component=IframeIO;Component.isUse=function(){return!0},Component.use=function(e){withVue(e,"IframeIO",Component)};export default Component;
+import{__assign}from"tslib";import IframeIO from"@baifendian/adhere-util-iframeio";import BfdUtil from"@baifendian/adherev-util";var withVue=BfdUtil._util.withVue,Wrap=__assign(__assign({},IframeIO),{install:function(i){return withVue(i,"IframeIO",IframeIO),i}});export default Wrap;
 //# sourceMappingURL=index.js.map

@@ -4,7 +4,7 @@ import { bool, object } from 'vue-types';
 
 const selectorPrefix = 'adherev-ui-suspense';
 
-const suspenseProps = {
+export const suspenseProps = {
   reset: bool().def(false),
   renderFirstLoading: object<VNode>(),
 };

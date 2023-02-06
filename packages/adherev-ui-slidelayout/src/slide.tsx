@@ -16,7 +16,7 @@ export const slideProps = {
   mask: bool().def(true),
   zIndex: number().def(9999),
   time: number().def(300),
-  direction: string<direction>().def(direction.left),
+  direction: string().def(direction.left),
   defaultCollapse: bool().def(false),
 };
 

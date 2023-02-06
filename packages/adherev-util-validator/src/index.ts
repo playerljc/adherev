@@ -1,3 +1,5 @@
+import { App, Plugin } from 'vue';
+
 import Validator from '@baifendian/adhere-util-validator';
 import BfdUtil from '@baifendian/adherev-util';
 
@@ -5,12 +7,13 @@ const {
   _util: { withVue },
 } = BfdUtil;
 
-const Component: any = Validator;
+const Wrap = {
+  ...Validator,
+  install: (app: App) => {
+    withVue(app, 'Validator', Validator);
 
-Component.isUse = () => true;
-
-Component.use = (Vue) => {
-  withVue(Vue, 'Validator', Component);
+    return app;
+  },
 };
 
-export default Component;
+export default Wrap as typeof Wrap & Plugin;

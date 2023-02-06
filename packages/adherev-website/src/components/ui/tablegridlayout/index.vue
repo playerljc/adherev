@@ -351,7 +351,7 @@
 
       <template #p8>
         <adv-space-group>
-          <a-radio
+          <a-radio-group
             @change="onLayoutChange"
             :value="layout"
             :options="[
@@ -359,7 +359,7 @@
               { label: 'vertical', value: 'vertical' },
             ]"
           >
-          </a-radio>
+          </a-radio-group>
 
           <adv-conditionalrender :conditional="layout === 'vertical'">
             <template #default>
@@ -469,10 +469,10 @@
       <template #p9>
         <adv-space-group>
           <div>
-            <a-button type="primary" @click="0">提交</a-button>
+            <a-button type="primary" @click="onSubmit">提交</a-button>
           </div>
 
-          <a-form :form="form">
+          <a-form ref="formRef" :model="formState">
             <adv-tablegridlayout :inner-style="'padding: 0 0 20px 0'" :data="data9">
               <template #default v-if="true"></template>
 
@@ -481,14 +481,8 @@
               </template>
               <template #UserNameValue>
                 <adv-tablegridlayout-value>
-                  <a-form-item>
-                    <a-input
-                      v-decorator="[
-                        'username',
-                        { rules: [{ required: true, message: '请输入姓名' }] },
-                      ]"
-                      placeholder="username"
-                    />
+                  <a-form-item name="username" :rules="[{ required: true, message: '请输入姓名' }]">
+                    <a-input placeholder="username" />
                   </a-form-item>
                 </adv-tablegridlayout-value>
               </template>
@@ -498,14 +492,11 @@
               </template>
               <template #TelephoneValue>
                 <adv-tablegridlayout-value>
-                  <a-form-item>
-                    <a-input
-                      v-decorator="[
-                        'Telephone',
-                        { rules: [{ required: false, message: '请输入姓名' }] },
-                      ]"
-                      placeholder="Telephone"
-                    />
+                  <a-form-item
+                    name="Telephone"
+                    :rules="[{ required: true, message: '请输入电话' }]"
+                  >
+                    <a-input placeholder="Telephone" />
                   </a-form-item>
                 </adv-tablegridlayout-value>
               </template>
@@ -515,13 +506,12 @@
               </template>
               <template #SexValue>
                 <adv-tablegridlayout-value>
-                  <a-form-item>
+                  <a-form-item name="sex" :rules="[{ required: true, message: '请选择' }]">
                     <a-radio-group
                       :options="[
                         { label: '男', value: 1 },
                         { label: '女', value: 0 },
                       ]"
-                      v-decorator="['sex', { rules: [{ required: true, message: '请选择' }] }]"
                     />
                   </a-form-item>
                 </adv-tablegridlayout-value>
@@ -532,13 +522,11 @@
               </template>
               <template #BirthdayValue>
                 <adv-tablegridlayout-value>
-                  <a-form-item>
-                    <a-date-picker
-                      v-decorator="[
-                        'Birthday',
-                        { rules: [{ required: true, message: '请选择出生年月' }] },
-                      ]"
-                    />
+                  <a-form-item
+                    name="Birthday"
+                    :rules="[{ required: true, message: '请选择出生年月' }]"
+                  >
+                    <a-date-picker />
                   </a-form-item>
                 </adv-tablegridlayout-value>
               </template>
@@ -548,14 +536,8 @@
               </template>
               <template #AddressValue>
                 <adv-tablegridlayout-value colspan="7">
-                  <a-form-item>
-                    <a-textarea
-                      v-decorator="[
-                        'Address',
-                        { rules: [{ required: true, message: '请输入地址' }] },
-                      ]"
-                      placeholder="Address"
-                    />
+                  <a-form-item name="Address" :rules="[{ required: true, message: '请输入地址' }]">
+                    <a-textarea placeholder="Address" />
                   </a-form-item>
                 </adv-tablegridlayout-value>
               </template>
@@ -578,7 +560,7 @@ export default {
     return {
       density: 'default',
       layout: 'horizontal',
-      form: this.$form.createForm(this, { name: 'coordinated' }),
+      // form: this.$form.createForm(this, { name: 'coordinated' }),
       scrollEl: null,
       codeBoxPanelConfig: [
         {
@@ -780,7 +762,7 @@ export default {
           }
         <\/script>
           `,
-          childrenSlot: 'p1',
+          childrenSlot: 'p2',
         },
         {
           id: 'p3',
@@ -880,7 +862,7 @@ export default {
           }
         <\/script>
           `,
-          childrenSlot: 'p1',
+          childrenSlot: 'p3',
         },
         {
           id: 'p4',
@@ -980,7 +962,7 @@ export default {
           }
         <\/script>
           `,
-          childrenSlot: 'p1',
+          childrenSlot: 'p4',
         },
         {
           id: 'p5',
@@ -1136,7 +1118,7 @@ export default {
           }
         <\/script>
           `,
-          childrenSlot: 'p1',
+          childrenSlot: 'p5',
         },
         {
           id: 'p6',
@@ -1236,7 +1218,7 @@ export default {
           }
         <\/script>
           `,
-          childrenSlot: 'p1',
+          childrenSlot: 'p6',
         },
         {
           id: 'p7',
@@ -1361,7 +1343,7 @@ export default {
           }
         <\/script>
           `,
-          childrenSlot: 'p1',
+          childrenSlot: 'p7',
         },
         {
           id: 'p8',
@@ -1582,7 +1564,7 @@ export default {
           }
         <\/script>
           `,
-          childrenSlot: 'p1',
+          childrenSlot: 'p8',
         },
         {
           id: 'p9',
@@ -1753,7 +1735,7 @@ export default {
           }
         <\/script>
           `,
-          childrenSlot: 'p1',
+          childrenSlot: 'p9',
         },
       ],
       apiConfig: [
@@ -1944,6 +1926,7 @@ export default {
           ],
         },
       ],
+      formState: {},
     };
   },
   computed: {
@@ -2360,11 +2343,7 @@ export default {
     onSubmit(e) {
       e.preventDefault();
 
-      this.form.validateFields((err, values) => {
-        if (!err) {
-          console.log('Received values of form: ', values);
-        }
-      });
+      this.$refs.formRef.validateFields().then((values) => {});
     },
   },
 };

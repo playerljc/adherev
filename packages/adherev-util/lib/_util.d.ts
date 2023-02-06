@@ -34,10 +34,10 @@ export declare const extend: (options: ExtendFunction<any>) => Omit<ExtendFuncti
  * @param optionsOverwrite - Vue组件的options
  * @param renderOptions - props,attrs和slots
  */
-export declare function HOC(Component: DefineComponent, optionsOverwrite: any, renderOptions: {
-    props: (props: any) => any;
-    attrs: (attrs: any) => any;
-    slots: (slots: any) => any;
+export declare function HOC(Component: any, optionsOverwrite: any, renderOptions: {
+    props?: (props: any) => any;
+    attrs?: (attrs: any) => any;
+    slots?: (slots: any) => any;
 }): DefineComponent<unknown, object, {}, import("vue").ComputedOptions, import("vue").MethodOptions, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {}, string, import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<unknown>, {}>;
 /**
  * getComponentPropsOption
@@ -46,4 +46,10 @@ export declare function HOC(Component: DefineComponent, optionsOverwrite: any, r
  * @returns {{}}
  */
 export declare const getComponentPropsOption: (Component: any) => any;
+/**
+ * forwardRef
+ * @param comp
+ * @param ref
+ */
+export declare function forwardRef(comp: ComponentOptions, ref: string): ComponentOptions;
 export {};

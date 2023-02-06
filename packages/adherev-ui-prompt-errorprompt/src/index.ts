@@ -1,7 +1,5 @@
-import { Modal, message } from 'ant-design-vue';
-import { VueNode } from 'ant-design-vue/es/_util/type';
-import { ConfigOnClose, MessageArgsProps } from 'ant-design-vue/es/message';
-import { ModalProps } from 'ant-design-vue/es/modal';
+import { Modal } from 'ant-design-vue';
+import { App, Plugin } from 'vue';
 
 import BfdUtil from '@baifendian/adherev-util';
 import Intl from '@baifendian/adherev-util-intl';
@@ -12,25 +10,16 @@ const {
   _util: { withVue },
 } = BfdUtil;
 
-const ErrorPrompt: {
-  isUse: () => boolean;
-  use: (Vue: any) => void;
-  openErrorMessage: (
-    content: VueNode | MessageArgsProps,
-    duration?: number,
-    onClose?: ConfigOnClose,
-  ) => void;
-  openErrorDialog: (options: ModalProps) => void;
-} = {
+const ErrorPrompt = {
   openErrorDialog,
   openErrorMessage,
-  isUse: () => true,
-  use: (Vue) => {
-    Intl.isUse() && Intl.use(Vue);
-    Vue.use(message);
-    Vue.use(Modal);
-    withVue(Vue, 'ErrorPrompt', ErrorPrompt);
+  install: function (app: App) {
+    app.component(Intl.name, Intl);
+    app.component(Modal.name, Modal);
+    withVue(app, 'ErrorPrompt', ErrorPrompt);
+
+    return app;
   },
 };
 
-export default ErrorPrompt;
+export default ErrorPrompt as typeof ErrorPrompt & Plugin;

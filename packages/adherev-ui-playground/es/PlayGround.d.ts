@@ -1,5 +1,5 @@
 import { ExtractPropTypes } from 'vue';
-declare const playGroundProps: {
+export declare const playGroundProps: {
     codeText: import("vue-types").VueTypeValidableDef<string> & {
         default: string;
     };
@@ -81,7 +81,6 @@ declare const playGroundProps: {
         default: string;
     };
 };
-export declare type PlayGroundProps = Partial<ExtractPropTypes<typeof playGroundProps>>;
 declare const _default: import("vue").DefineComponent<{
     codeText: import("vue-types").VueTypeValidableDef<string> & {
         default: string;

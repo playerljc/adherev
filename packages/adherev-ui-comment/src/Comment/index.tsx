@@ -1,12 +1,13 @@
 import { Spin } from 'ant-design-vue';
+import { ListProps } from 'ant-design-vue/es/list';
 import classNames from 'classnames';
 import { VNode, defineComponent } from 'vue';
 import { func, number, object, string } from 'vue-types';
 
+import { FlexLayoutProps } from '@baifendian/adherev-ui-flexlayout/es/types';
 import Intl from '@baifendian/adherev-util-intl';
 
 import ReplyInfo from '../Reply/Info';
-import { FlexLayoutProps, ListProps } from '../types';
 import CommentInfo from './Info';
 import ListStandard from './ListStandard';
 
@@ -19,7 +20,7 @@ type dataKeys = {
   totalCount: string;
 };
 
-const props = {
+export const commentProps = {
   getScrollWrapContainer: func<() => HTMLElement | null>(),
   fetchCommentData: func<(params?: any) => Promise<any>>(),
   commentDataKeys: object<dataKeys>().def({
@@ -87,7 +88,7 @@ export default defineComponent({
     'renderReplyContent',
     'renderReplyDateTime',
   ],
-  props,
+  props: commentProps,
   setup(props, { slots }) {
     const renderList = (data) => {
       const showReplyText =
@@ -136,6 +137,7 @@ export default defineComponent({
 
           return (
             <ReplyInfo
+              // @ts-ignore
               defaultData={record}
               dataKeys={props.replyDataKeys}
               limit={props.replyLimit}
@@ -175,6 +177,7 @@ export default defineComponent({
           {data?.list?.map?.((record) => (
             <li class={`${selectorPrefix}-list-item`} key={record[props.commentKeyProp!]}>
               <CommentInfo
+                // @ts-ignore
                 defaultData={record}
                 dataKeys={props.replyDataKeys}
                 limit={props.replyLimit}

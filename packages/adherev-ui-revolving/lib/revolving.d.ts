@@ -1,10 +1,30 @@
 import { CSSProperties } from 'vue';
-declare enum direction {
-    top = "top",
-    right = "right",
-    bottom = "bottom",
-    left = "left"
-}
+export declare const revolvingProps: {
+    classNameWrapper: import("vue-types").VueTypeValidableDef<string> & {
+        default: string;
+    };
+    wrapperStyle: import("vue-types").VueTypeValidableDef<CSSProperties> & {
+        default: () => CSSProperties;
+    };
+    speed: import("vue-types").VueTypeValidableDef<number> & {
+        default: number;
+    };
+    delay: import("vue-types").VueTypeValidableDef<number> & {
+        default: number;
+    };
+    direction: import("vue-types").VueTypeValidableDef<string> & {
+        default: string;
+    };
+    loop: import("vue-types").VueTypeValidableDef<boolean> & {
+        default: boolean;
+    };
+    stopOnLastSlide: import("vue-types").VueTypeValidableDef<boolean> & {
+        default: boolean;
+    };
+    listeners: import("vue-types").VueTypeValidableDef<object> & {
+        default: () => object;
+    };
+};
 declare const _default: import("vue").DefineComponent<{
     classNameWrapper: import("vue-types").VueTypeValidableDef<string> & {
         default: string;
@@ -18,8 +38,8 @@ declare const _default: import("vue").DefineComponent<{
     delay: import("vue-types").VueTypeValidableDef<number> & {
         default: number;
     };
-    direction: import("vue-types").VueTypeValidableDef<direction> & {
-        default: direction;
+    direction: import("vue-types").VueTypeValidableDef<string> & {
+        default: string;
     };
     loop: import("vue-types").VueTypeValidableDef<boolean> & {
         default: boolean;
@@ -43,8 +63,8 @@ declare const _default: import("vue").DefineComponent<{
     delay: import("vue-types").VueTypeValidableDef<number> & {
         default: number;
     };
-    direction: import("vue-types").VueTypeValidableDef<direction> & {
-        default: direction;
+    direction: import("vue-types").VueTypeValidableDef<string> & {
+        default: string;
     };
     loop: import("vue-types").VueTypeValidableDef<boolean> & {
         default: boolean;
@@ -60,7 +80,7 @@ declare const _default: import("vue").DefineComponent<{
     wrapperStyle: CSSProperties;
     speed: number;
     delay: number;
-    direction: direction;
+    direction: string;
     loop: boolean;
     stopOnLastSlide: boolean;
     listeners: object;

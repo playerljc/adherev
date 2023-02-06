@@ -1,3 +1,5 @@
+import { App } from 'vue';
+
 /**
  * IAlertArgv
  * @interface IAlertArgv
@@ -55,7 +57,8 @@ export interface IModalArg {
   local?: string | null | undefined;
 }
 
-export interface IMessageDialogFactory extends IComponent {
+export interface IMessageDialogFactory {
+  install?: (app: App) => App<any>;
   Confirm(config: IConfirmArgv): void;
   Prompt(config: IPromptConfig): void;
   InputPrompt(config: IPromptConfig): void;
@@ -79,9 +82,4 @@ export interface IModalMethod {
   renderDefault(): void;
   renderTitle(): void;
   renderFooter(): void;
-}
-
-export interface IComponent {
-  isUse?(): boolean;
-  use?(Vue: any): void;
 }

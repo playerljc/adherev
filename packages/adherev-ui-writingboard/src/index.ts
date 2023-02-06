@@ -1,18 +1,18 @@
+import { App, Plugin } from 'vue';
+
 import Util from '@baifendian/adherev-util';
 
 import WritingBoard from './writingboard';
 
 const {
-  _util: { withInstall, withVue },
+  _util: { withVue },
 } = Util;
 
-const Component = withInstall(WritingBoard);
+WritingBoard.install = function (app: App) {
+  app.component(WritingBoard.name, WritingBoard);
+  withVue(app, 'WritingBoard', WritingBoard);
 
-Component.isUse = () => true;
-
-Component.use = (Vue) => {
-  Vue.use(Component);
-  withVue(Vue, 'WritingBoard', Component);
+  return app;
 };
 
-export default Component;
+export default WritingBoard as typeof WritingBoard & Plugin;

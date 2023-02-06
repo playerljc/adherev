@@ -1,23 +1,6 @@
-export interface ISplitProps {
-  direction: 'vertical' | 'horizontal';
-  size: number;
-  className?: string;
-}
+import { ExtractPropTypes } from 'vue';
 
-export interface ISplitMethods {
-  getStyle: object;
-}
+import { splitGroupProps, splitProps } from './split';
 
-export interface ISplitSelf extends ISplitGroupProps, ISplitMethods {}
-
-export interface ISplitGroupProps extends ISplitProps {}
-
-export interface ISplitGroupSelf extends ISplitGroupProps {
-  $slots: any;
-}
-
-export interface IComponent {
-  isUse(): boolean;
-  use(Vue: any): void;
-  Group: any;
-}
+export type SplitProps = Partial<ExtractPropTypes<typeof splitProps>>;
+export type SplitGroupProps = Partial<ExtractPropTypes<typeof splitGroupProps>>;

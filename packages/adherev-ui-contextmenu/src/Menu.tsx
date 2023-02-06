@@ -8,14 +8,14 @@ import { IData } from './types';
 
 const selectorPrefix = 'adherev-ui-contextmenu-submenu';
 
-const props = {
+export const menuProps = {
   data: array<IData>().def([]),
   className: string().def(''),
   style: object<CSSProperties>().def({}),
 };
 
 export default defineComponent({
-  props,
+  props: menuProps,
   setup(props, { expose }) {
     const el = ref<HTMLUListElement | null>(null);
 

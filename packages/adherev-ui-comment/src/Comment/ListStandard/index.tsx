@@ -1,12 +1,13 @@
 import { Empty, Skeleton } from 'ant-design-vue';
+import { ListProps } from 'ant-design-vue/es/list';
 import { VNode, computed, defineComponent, onMounted, ref, shallowRef, watch } from 'vue';
 import { func, number, object } from 'vue-types';
 
 import ConditionalRender from '@baifendian/adherev-ui-conditionalrender';
 import FlexLayout from '@baifendian/adherev-ui-flexlayout';
+import { FlexLayoutProps } from '@baifendian/adherev-ui-flexlayout/es/types';
 import ScrollLoad from '@baifendian/adherev-ui-scrollload';
 
-import { FlexLayoutProps, ListProps } from '../../types';
 import CommentList from '../List';
 
 const selectorPrefix = 'adherev-ui-comment-list-standard';
@@ -20,7 +21,7 @@ type dataKey = {
   totalCount: string;
 };
 
-const props = {
+export const listStandardProps = {
   getScrollWrapContainer: func<() => HTMLElement | null>(),
   flexLayoutProps: object<FlexLayoutProps>().def({}),
   listProps: object<ListProps>().def({}),
@@ -41,7 +42,7 @@ export default defineComponent({
   name: `adv-comment-list-standard`,
   slots: ['renderEmpty', 'renderFirstLoading'],
   scopedSlots: ['renderList'],
-  props,
+  props: listStandardProps,
   setup(props, { slots }) {
     const loading = ref(true);
 
@@ -59,7 +60,7 @@ export default defineComponent({
       limit: props.limit,
     };
 
-    let status = ScrollLoad.NORMAL;
+    let status: any = ScrollLoad.NORMAL;
 
     let callbackHandler: ((status?: string) => any) | null = null;
 

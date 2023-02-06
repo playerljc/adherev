@@ -6,7 +6,7 @@ import Intl from '@baifendian/adherev-util-intl';
 
 const selectorPrefix = 'adherev-ui-fontsizesetting';
 
-const props = {
+export const fontSizeSettingProps = {
   min: number(),
   max: number(),
   step: number(),
@@ -16,7 +16,7 @@ const props = {
 export default defineComponent({
   name: 'adv-fontsizesetting',
   emits: ['change'],
-  props,
+  props: fontSizeSettingProps,
   setup(props, { emit }) {
     const value = ref<number>(props.defaultValue);
 

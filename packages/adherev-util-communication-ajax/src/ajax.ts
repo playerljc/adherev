@@ -1,4 +1,5 @@
 import { notification } from 'ant-design-vue';
+import { App } from 'vue';
 
 import GlobalIndicator from '@baifendian/adherev-ui-globalindicator';
 import Util from '@baifendian/adherev-util';
@@ -82,6 +83,7 @@ class Ajax {
   static isUse: () => boolean;
 
   static use: (Vue) => void;
+  static install: (app: App) => App<any>;
 
   /**
    * constructor

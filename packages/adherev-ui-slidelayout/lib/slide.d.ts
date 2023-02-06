@@ -20,8 +20,8 @@ export declare const slideProps: {
     time: import("vue-types").VueTypeValidableDef<number> & {
         default: number;
     };
-    direction: import("vue-types").VueTypeValidableDef<direction> & {
-        default: direction;
+    direction: import("vue-types").VueTypeValidableDef<string> & {
+        default: string;
     };
     defaultCollapse: import("vue-types").VueTypeValidableDef<boolean> & {
         default: boolean;

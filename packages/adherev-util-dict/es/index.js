@@ -1,2 +1,2 @@
-import Dict from"@baifendian/adhere-util-dict";import BfdUtil from"@baifendian/adherev-util";var withVue=BfdUtil._util.withVue,Component=Dict;Component.isUse=function(){return!0},Component.use=function(t){withVue(t,"Dict",Component)};export default Component;
+var __assign=this&&this.__assign||function(){return(__assign=Object.assign||function(i){for(var t,r=1,a=arguments.length;r<a;r++)for(var n in t=arguments[r])Object.prototype.hasOwnProperty.call(t,n)&&(i[n]=t[n]);return i}).apply(this,arguments)};import Dict from"@baifendian/adhere-util-dict";import BfdUtil from"@baifendian/adherev-util";var withVue=BfdUtil._util.withVue,Wrap=__assign(__assign({},Dict),{install:function(i){return withVue(i,"Dict",Dict),i}});export default Wrap;
 //# sourceMappingURL=index.js.map

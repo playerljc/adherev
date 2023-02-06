@@ -22,8 +22,6 @@ export const cardProps = {
   }>(),
 };
 
-export type CardProps = Partial<ExtractPropTypes<typeof cardProps>>;
-
 export default defineComponent({
   name: 'adv-playground-card',
   props: cardProps,

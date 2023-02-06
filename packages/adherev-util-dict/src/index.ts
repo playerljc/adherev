@@ -1,3 +1,5 @@
+import { App, Plugin } from 'vue';
+
 import Dict from '@baifendian/adhere-util-dict';
 import BfdUtil from '@baifendian/adherev-util';
 
@@ -5,12 +7,13 @@ const {
   _util: { withVue },
 } = BfdUtil;
 
-const Component: any = Dict;
+const Wrap = {
+  ...Dict,
+  install: (app: App) => {
+    withVue(app, 'Dict', Dict);
 
-Component.isUse = () => true;
-
-Component.use = (Vue) => {
-  withVue(Vue, 'Dict', Component);
+    return app;
+  },
 };
 
-export default Component;
+export default Wrap as typeof Wrap & Plugin;

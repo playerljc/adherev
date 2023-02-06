@@ -1,19 +1,18 @@
+import { App } from 'vue';
+
 import Util from '@baifendian/adherev-util';
 
 import VueQuillSandbox from './vueQuillSandbox';
-import { Component } from './types';
 
 const {
-  _util: { withInstall, withVue },
+  _util: { withVue },
 } = Util;
 
-const Component: Component = withInstall(VueQuillSandbox);
+VueQuillSandbox.install = function (app: App) {
+  app.component(VueQuillSandbox.name, VueQuillSandbox);
+  withVue(app, 'VueQuillSandbox', VueQuillSandbox);
 
-Component.isUse = () => true;
-
-Component.use = (Vue: any) => {
-  Vue.use(Component);
-  withVue(Vue, 'VueQuillSandbox', Component);
+  return app;
 };
 
-export default Component;
+export default VueQuillSandbox as typeof VueQuillSandbox & Plugin;

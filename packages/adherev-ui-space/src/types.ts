@@ -1,24 +1,6 @@
-export interface ISpaceProps {
-  direction?: 'vertical' | 'horizontal';
-  size?: number;
-}
+import { ExtractPropTypes } from 'vue';
 
-export interface ISpaceComputed {
-  getStyle: string;
-}
+import { spaceGroupProps, spaceProps } from './space';
 
-export interface ISpaceSelf extends ISpaceProps, ISpaceComputed {}
-
-export interface ISpaceGroupProps extends ISpaceProps {
-  className?: string;
-}
-
-export interface ISpaceGroupSelf extends ISpaceGroupProps {
-  $slots: any;
-}
-
-export interface IComponent {
-  isUse(): boolean;
-  use(Vue: any): void;
-  Group: any;
-}
+export type SpaceProps = Partial<ExtractPropTypes<typeof spaceProps>>;
+export type SpaceGroupProps = Partial<ExtractPropTypes<typeof spaceGroupProps>>;

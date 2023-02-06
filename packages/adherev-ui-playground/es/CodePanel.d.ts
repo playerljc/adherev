@@ -7,7 +7,6 @@ export declare const codePanelProps: {
         default: string;
     };
 };
-export declare type CodePanelProps = Partial<ExtractPropTypes<typeof codePanelProps>>;
 declare const _default: import("vue").DefineComponent<{
     lang: import("vue-types").VueTypeValidableDef<string> & {
         default: string;

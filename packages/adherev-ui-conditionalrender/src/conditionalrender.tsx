@@ -1,7 +1,7 @@
 import { defineComponent } from 'vue';
 import { bool } from 'vue-types';
 
-const props = {
+export const conditionalRenderProps = {
   conditional: bool().def(true),
 };
 
@@ -10,7 +10,7 @@ const props = {
  */
 export default defineComponent({
   name: 'adv-conditionalrender',
-  props,
+  props: conditionalRenderProps,
   slots: ['default', 'noMatch'],
   setup(props, { slots }) {
     return () =>

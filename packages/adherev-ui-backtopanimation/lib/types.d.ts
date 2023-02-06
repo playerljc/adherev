@@ -1,4 +1,3 @@
-export interface Component {
-    isUse(): boolean;
-    use(Vue: any): void;
-}
+import { ExtractPropTypes } from 'vue';
+import { backTopAnimationProps } from './backtopanimation';
+export declare type BackTopAnimationProps = Partial<ExtractPropTypes<typeof backTopAnimationProps>>;

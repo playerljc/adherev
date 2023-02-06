@@ -1,3 +1,8 @@
+export declare const tabProps: {
+    defaultActiveKey: import("vue-types").VueTypeValidableDef<string> & {
+        default: string;
+    };
+};
 declare const _default: import("vue").DefineComponent<{
     defaultActiveKey: import("vue-types").VueTypeValidableDef<string> & {
         default: string;

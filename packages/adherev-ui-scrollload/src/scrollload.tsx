@@ -18,7 +18,7 @@ export const EMPTY = 'empty';
 export const ERROR = 'error';
 export const NORMAL = 'normal';
 
-const scrollLoadProps = {
+export const scrollLoadProps = {
   loadClassName: string().def(''),
   loadStyle: object<CSSProperties>().def({}),
   emptyClassName: string().def(''),

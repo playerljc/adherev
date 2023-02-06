@@ -1,21 +1,13 @@
-import {
-  ExtractPropTypes,
-  VNode,
-  computed,
-  defineComponent,
-  onBeforeMount,
-  onMounted,
-  ref,
-  watch,
-} from 'vue';
+import { VNode, computed, defineComponent, onBeforeMount, onMounted, ref, watch } from 'vue';
 import { array, bool, number, object, oneOfType, string } from 'vue-types';
 
 import ConditionalRender from '@baifendian/adherev-ui-conditionalrender';
 
-import PlayGround, { PlayGroundProps } from './PlayGround';
-import PlayGroundMulit, { PlayGroundMulitProps } from './PlayGroundMulit';
-import PlayGroundTab, { PlayGroundTabProps } from './PlayGroundTab';
+import PlayGround from './PlayGround';
+import PlayGroundMulit from './PlayGroundMulit';
+import PlayGroundTab from './PlayGroundTab';
 import Constant from './constant';
+import { PlayGroundMulitProps, PlayGroundProps, PlayGroundTabProps } from './types';
 
 const selectPrefix = 'adherev-ui-playground-code-box';
 
@@ -26,7 +18,7 @@ type ConfigItemType =
   | (PlayGroundMulitProps & ConfigItemCommonType & { id: string })
   | (PlayGroundTabProps & ConfigItemCommonType & { id: string });
 
-const codeBoxPanelProps = {
+export const codeBoxPanelProps = {
   title: oneOfType([string(), object<VNode>()]),
   extra: object<VNode>(),
   isShowExpandAllBtn: bool().def(true),
@@ -34,8 +26,6 @@ const codeBoxPanelProps = {
   defaultExpandAll: bool().def(false),
   config: array<ConfigItemType>().def([]),
 };
-
-export type CodeBoxPanelProps = Partial<ExtractPropTypes<typeof codeBoxPanelProps>>;
 
 export default defineComponent({
   name: 'adv-playground-code-box-panel',

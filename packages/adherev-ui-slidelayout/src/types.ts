@@ -1,15 +1,9 @@
-export interface ISlideProps {
-  width: string | number;
-  height: string | number;
-  mask: boolean;
-  zIndex: number;
-  time: number;
-  direction: 'left' | 'right' | 'top' | 'bottom';
-  defaultCollapse: boolean;
-}
+import { ExtractPropTypes } from 'vue';
 
-export interface ISlideData {
-  $positionConfig: object;
-  $maskEl: HTMLElement | null;
-  collapse: boolean;
-}
+import { overlayProps } from './overlay';
+import { pushProps } from './push';
+import { revealProps } from './reveal';
+
+export type PushProps = Partial<ExtractPropTypes<typeof pushProps>>;
+export type OverlayProps = Partial<ExtractPropTypes<typeof overlayProps>>;
+export type RevealProps = Partial<ExtractPropTypes<typeof revealProps>>;

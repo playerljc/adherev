@@ -1,4 +1,5 @@
 import { Button } from 'ant-design-vue';
+import { App } from 'vue';
 
 import Util from '@baifendian/adherev-util';
 
@@ -9,45 +10,45 @@ import FlexLayout, { selectorPrefix } from './flexlayout';
 import HorizontalFlexLayout from './horizontalFlexLayout';
 import ScrollLayout from './scrollLayout';
 import ToolBarLayout from './toolBarLayout';
-import { IComponent } from './types';
 import VerticalFlexLayout from './verticalFlexLayout';
 
 const {
-  _util: { withInstall, withVue },
+  _util: { withVue },
 } = Util;
 
-const Component: IComponent = withInstall(FlexLayout);
+FlexLayout.Fixed = Fixed;
+FlexLayout.Auto = Auto;
+FlexLayout.HorizontalFlexLayout = HorizontalFlexLayout;
+FlexLayout.VerticalFlexLayout = VerticalFlexLayout;
+FlexLayout.BackLayout = BackLayout;
+FlexLayout.ScrollLayout = ScrollLayout;
+FlexLayout.ToolBarLayout = ToolBarLayout;
+FlexLayout.selectorPrefix = selectorPrefix;
 
-Component.Fixed = withInstall(Fixed);
-Component.Auto = withInstall(Auto);
-Component.HorizontalFlexLayout = withInstall(HorizontalFlexLayout);
-Component.VerticalFlexLayout = withInstall(VerticalFlexLayout);
-Component.BackLayout = withInstall(BackLayout);
-Component.ScrollLayout = withInstall(ScrollLayout);
-Component.ToolBarLayout = withInstall(ToolBarLayout);
-Component.selectorPrefix = selectorPrefix;
+FlexLayout.install = function (app: App) {
+  app.component(Button.name, Button);
+  app.component(FlexLayout.name, FlexLayout);
+  app.component(Fixed.name, Fixed);
+  app.component(Auto.name, Auto);
+  app.component(HorizontalFlexLayout.name, HorizontalFlexLayout);
+  app.component(VerticalFlexLayout.name, VerticalFlexLayout);
+  app.component(BackLayout.name, BackLayout);
+  app.component(ScrollLayout.name, ScrollLayout);
+  app.component(ToolBarLayout.name, ToolBarLayout);
 
-Component.isUse = () => true;
+  withVue(app, 'FlexLayout', FlexLayout);
 
-Component.use = (Vue: any) => {
-  Vue.use(Button);
-  Vue.use(Component);
-  Vue.use(Component.Fixed);
-  Vue.use(Component.Auto);
-  Vue.use(Component.HorizontalFlexLayout);
-  Vue.use(Component.VerticalFlexLayout);
-  Vue.use(Component.BackLayout);
-  Vue.use(Component.ScrollLayout);
-  Vue.use(Component.ToolBarLayout);
-
-  withVue(Vue, 'FlexLayout', Component);
-  withVue(Vue, 'Fixed', Component.Fixed);
-  withVue(Vue, 'Auto', Component.Auto);
-  withVue(Vue, 'HorizontalFlexLayout', Component.HorizontalFlexLayout);
-  withVue(Vue, 'VerticalFlexLayout', Component.VerticalFlexLayout);
-  withVue(Vue, 'BackLayout', Component.BackLayout);
-  withVue(Vue, 'ScrollLayout', Component.ScrollLayout);
-  withVue(Vue, 'ToolBarLayout', Component.ToolBarLayout);
+  return app;
 };
 
-export default Component;
+export default FlexLayout as typeof FlexLayout &
+  Plugin & {
+    readonly Fixed: typeof Fixed;
+    readonly Auto: typeof Auto;
+    readonly HorizontalFlexLayout: typeof HorizontalFlexLayout;
+    readonly VerticalFlexLayout: typeof VerticalFlexLayout;
+    readonly BackLayout: typeof BackLayout;
+    readonly ScrollLayout: typeof ScrollLayout;
+    readonly ToolBarLayout: typeof ToolBarLayout;
+    readonly selectorPrefix: typeof selectorPrefix;
+  };

@@ -1,4 +1,9 @@
 import { VNode } from 'vue';
+export declare const suspenseAsyncProps: {
+    isEmpty: import("vue-types").VueTypeValidableDef<(params?: any) => boolean>;
+    renderEmpty: import("vue-types").VueTypeValidableDef<(params?: any) => VNode | null>;
+    fetchAsyncData: import("vue-types").VueTypeValidableDef<(params?: any) => Promise<any>>;
+};
 /**
  * SuspenseAsync
  * @description 调用接口

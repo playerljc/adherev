@@ -1,16 +1,9 @@
-import { VNode } from 'vue';
+import { ExtractPropTypes } from 'vue';
 
-export interface IComponent {
-  isUse: () => boolean;
-  use: (Vue: any) => void;
-  Show: any;
-  Visibility: any;
-  Wrap: any;
-  conditionalRender: (params: {
-    conditional: boolean;
-    match: VNode;
-    noMatch: VNode | null;
-  }) => VNode | null;
-  conditionalArr: (arr: any[]) => any[];
-  conditionalNotEmptyArr: (arr: any[]) => any[];
-}
+import { conditionalRenderProps } from './conditionalrender';
+import { showProps } from './show';
+import { visibilityProps } from './visibility';
+
+export type ConditionalRenderProps = Partial<ExtractPropTypes<typeof conditionalRenderProps>>;
+export type ShowProps = Partial<ExtractPropTypes<typeof showProps>>;
+export type VisibilityProps = Partial<ExtractPropTypes<typeof visibilityProps>>;

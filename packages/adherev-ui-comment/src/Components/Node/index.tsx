@@ -1,5 +1,5 @@
 import classNames from 'classnames';
-import { computed, defineComponent, ref, VNode, watch } from 'vue';
+import { VNode, computed, defineComponent, ref, watch } from 'vue';
 import { bool, func, number, object, oneOfType, string } from 'vue-types';
 
 import ConditionalRender from '@baifendian/adherev-ui-conditionalrender';
@@ -157,6 +157,7 @@ export default defineComponent({
                 {{
                   default: () => (
                     <ReplyInfo
+                      // @ts-ignore
                       comId={record[props.keyProp]}
                       isReply
                       defaultData={record}

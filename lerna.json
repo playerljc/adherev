@@ -3,10 +3,8 @@
   "npmClient": "yarn",
   "command": {
     "bootstrap": {
-      "npmClientArgs": [
-        "--no-package-lock"
-      ]
+      "npmClientArgs": ["--no-package-lock"]
     }
   },
-  "version": "2.0.1"
+  "version": "2.0.2"
 }

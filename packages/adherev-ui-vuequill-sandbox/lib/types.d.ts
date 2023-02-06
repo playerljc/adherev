@@ -1,4 +1,3 @@
-export interface Component {
-    isUse(): boolean;
-    use(Vue: any): void;
-}
+import { ExtractPropTypes } from 'vue';
+import { propsDefine } from './vueQuillSandbox';
+export declare type VueQuillSandboxProps = Partial<ExtractPropTypes<typeof propsDefine>>;

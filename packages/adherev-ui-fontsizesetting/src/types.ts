@@ -1,4 +1,5 @@
-export interface IComponent {
-  isUse(): boolean;
-  use(Vue: any): void;
-}
+import { ExtractPropTypes } from 'vue';
+
+import { fontSizeSettingProps } from './fontsizesetting';
+
+export type FontSizeSettingProps = Partial<ExtractPropTypes<typeof fontSizeSettingProps>>;

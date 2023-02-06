@@ -1,3 +1,5 @@
+import { App } from 'vue';
+
 import Util from '@baifendian/adherev-util';
 import Dict from '@baifendian/adherev-util-dict';
 
@@ -28,6 +30,7 @@ function initBasicDict() {
 initBasicDict();
 
 const Resource: {
+  install?: (app: App) => void;
   isUse?: () => boolean;
   use?: (Vue) => void;
   Dict: any;

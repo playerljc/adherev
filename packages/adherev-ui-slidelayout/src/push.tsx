@@ -7,7 +7,7 @@ import { slider } from './slidelayout';
 
 const selectorPrefix = 'adherev-ui-slidelayout-push';
 
-const pushProps = {
+export const pushProps = {
   ...slideProps,
   className: string().def(''),
   style: object<CSSProperties>().def({}),

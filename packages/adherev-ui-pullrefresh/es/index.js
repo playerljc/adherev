@@ -1,2 +1,2 @@
-import BfdUtil from"@baifendian/adherev-util";import Intl from"@baifendian/adherev-util-intl";import PullRefresh from"./pullrefresh";var _a=BfdUtil._util,withInstall=_a.withInstall,withVue=_a.withVue,Component=withInstall(PullRefresh);Component.isUse=function(){return!0},Component.use=function(t){Intl.isUse()&&Intl.use(t),t.use(Component),withVue(t,"PullRefresh",Component)};export default Component;
+import BfdUtil from"@baifendian/adherev-util";import Intl from"@baifendian/adherev-util-intl";import PullRefresh from"./pullrefresh";var withVue=BfdUtil._util.withVue;PullRefresh.install=function(e){return e.component(Intl.name,Intl),e.component(PullRefresh.name,PullRefresh),withVue(e,"PullRefresh",PullRefresh),e};export default PullRefresh;
 //# sourceMappingURL=index.js.map

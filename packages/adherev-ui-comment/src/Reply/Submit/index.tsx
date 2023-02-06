@@ -42,7 +42,7 @@ export const LOCAL_MAP = new Map<string, any>([
 
 const selectorPrefix = 'adherev-ui-comment-reply';
 
-const props = {
+export const submitProps = {
   local: string().def('zh'),
   emojiPickerProps: object().def({}),
 };
@@ -50,7 +50,7 @@ const props = {
 export default defineComponent({
   name: `adv-comment-reply`,
   emits: ['result', 'cancel'],
-  props,
+  props: submitProps,
   setup(props, { emit }) {
     const textAreaRef = ref<HTMLElement>();
     const emojiWrapRef = ref<HTMLDivElement>();

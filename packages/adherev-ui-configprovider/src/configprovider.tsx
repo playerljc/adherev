@@ -8,7 +8,7 @@ import Resource from '@baifendian/adherev-util-resource';
 
 import { IntlProps } from './types';
 
-const props = {
+export const configProviderProps = {
   intl: object<IntlProps>().def(() => ({
     lang: 'zh_CN',
     locales: {},
@@ -24,7 +24,7 @@ const { useForceUpdate } = Hooks;
 const ConfigProvider = defineComponent({
   name: 'adv-configprovider',
   mixins: [forceUpdate],
-  props,
+  props: configProviderProps,
   setup(props, { slots }) {
     const isIntlInit = ref(false);
 

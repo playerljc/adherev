@@ -23,7 +23,6 @@ export declare const anchorNavigationProps: {
     };
     scrollEl: import("vue-types").VueTypeValidableDef<HTMLElement>;
 };
-export declare type AnchorNavigationProps = Partial<ExtractPropTypes<typeof anchorNavigationProps>>;
 declare const _default: import("vue").DefineComponent<{
     defaultActiveAnchor: import("vue-types").VueTypeValidableDef<string> & {
         default: string;

@@ -1,5 +1,61 @@
 import { CSSProperties } from 'vue';
 import { IIndicatorTableConfig, IMasterItem } from './types';
+export declare const cascadeComparedProps: {
+    className: import("vue-types").VueTypeValidableDef<string> & {
+        default: string;
+    };
+    indicatorClassName: import("vue-types").VueTypeValidableDef<string> & {
+        default: string;
+    };
+    indicatorStyle: import("vue-types").VueTypeValidableDef<CSSProperties> & {
+        default: () => CSSProperties;
+    };
+    indicatorFixedWrapClassName: import("vue-types").VueTypeValidableDef<string> & {
+        default: string;
+    };
+    indicatorFixedWrapStyle: import("vue-types").VueTypeValidableDef<CSSProperties> & {
+        default: () => CSSProperties;
+    };
+    indicatorAutoWrapClassName: import("vue-types").VueTypeValidableDef<string> & {
+        default: string;
+    };
+    indicatorAutoWrapStyle: import("vue-types").VueTypeValidableDef<CSSProperties> & {
+        default: () => CSSProperties;
+    };
+    masterClassName: import("vue-types").VueTypeValidableDef<string> & {
+        default: string;
+    };
+    masterStyle: import("vue-types").VueTypeValidableDef<CSSProperties> & {
+        default: () => CSSProperties;
+    };
+    masterInnerClassName: import("vue-types").VueTypeValidableDef<string> & {
+        default: string;
+    };
+    masterInnerStyle: import("vue-types").VueTypeValidableDef<CSSProperties> & {
+        default: () => CSSProperties;
+    };
+    masterStickFixedClassName: import("vue-types").VueTypeValidableDef<string> & {
+        default: string;
+    };
+    masterStickFixedStyle: import("vue-types").VueTypeValidableDef<CSSProperties> & {
+        default: () => CSSProperties;
+    };
+    masterStickInnerClassName: import("vue-types").VueTypeValidableDef<string> & {
+        default: string;
+    };
+    masterStickInnerStyle: import("vue-types").VueTypeValidableDef<CSSProperties> & {
+        default: () => CSSProperties;
+    };
+    indicator: import("vue-types").VueTypeValidableDef<IIndicatorTableConfig> & {
+        default: () => IIndicatorTableConfig;
+    };
+    master: import("vue-types").VueTypeValidableDef<IMasterItem[]> & {
+        default: () => IMasterItem[];
+    };
+    defaultCellWidth: import("vue-types").VueTypeDef<string | number> & {
+        default: string | number;
+    };
+};
 declare const _default: import("vue").DefineComponent<{
     className: import("vue-types").VueTypeValidableDef<string> & {
         default: string;

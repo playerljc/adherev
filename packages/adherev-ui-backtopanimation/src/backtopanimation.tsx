@@ -5,7 +5,7 @@ import Resource from '@baifendian/adherev-util-resource';
 
 const selectorPrefix = 'adherev-ui-backtopanimation';
 
-const props = {
+export const backTopAnimationProps = {
   className: string().def(''),
   zIndex: oneOfType([string(), number()]).def(Resource.Dict.value.ResourceNormalMaxZIndex.value),
   duration: integer().def(300),
@@ -13,7 +13,7 @@ const props = {
 
 export default defineComponent({
   name: 'adv-backtopanimation',
-  props,
+  props: backTopAnimationProps,
   emits: ['trigger', 'scrollTop', 'target'],
   setup(props, { emit }) {
     const root = ref<HTMLDivElement>();

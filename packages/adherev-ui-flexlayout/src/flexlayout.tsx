@@ -4,13 +4,13 @@ import { oneOf } from 'vue-types';
 
 export const selectorPrefix = 'adherev-ui-flexlayout';
 
-const props = {
+export const flexLayoutProps = {
   direction: oneOf(['vertical', 'horizontal']).def('vertical'),
 };
 
 export default defineComponent({
   name: 'adv-flexlayout',
-  props,
+  props: flexLayoutProps,
   setup(props, { slots }) {
     provide('direction', props.direction);
 

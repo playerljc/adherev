@@ -100,4 +100,4 @@ declare const renderGridSearchFormGroup: (slots: any, data?: DataItem[], props?:
  * @return RenderDetail
  */
 declare const getRenderDetail: (slots: any, data: DataItem[], props: Omit<TableGridLayoutProps, 'data'>) => RenderDetail;
-export { TableGridLayout, renderGridSearchFormGroup, getRenderDetail, Label, Value };
+export { TableGridLayout, TableGridLayoutProps, renderGridSearchFormGroup, getRenderDetail, Label, Value, };

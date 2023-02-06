@@ -1,5 +1,5 @@
 import { ExtractPropTypes } from 'vue';
-declare const playGroundTabProps: {
+export declare const playGroundTabProps: {
     active: import("vue-types").VueTypeValidableDef<string> & {
         default: string;
     };
@@ -81,7 +81,6 @@ declare const playGroundTabProps: {
     };
     getClipboardText: import("vue-types").VueTypeValidableDef<(e?: any) => Promise<string>>;
 };
-export declare type PlayGroundTabProps = Partial<ExtractPropTypes<typeof playGroundTabProps>>;
 declare const _default: import("vue").DefineComponent<{
     active: import("vue-types").VueTypeValidableDef<string> & {
         default: string;
@@ -246,6 +245,7 @@ declare const _default: import("vue").DefineComponent<{
     getClipboardText: import("vue-types").VueTypeValidableDef<(e?: any) => Promise<string>>;
 }>>, {
     active: string;
+    config: import("./CodeTabPanel").ICodeTabPanelItemProps[];
     cardProps: Partial<ExtractPropTypes<{
         headerClassName: import("vue-types").VueTypeValidableDef<string> & {
             default: string;
@@ -281,6 +281,5 @@ declare const _default: import("vue").DefineComponent<{
     }>>;
     isActive: boolean;
     defaultExpand: boolean;
-    config: import("./CodeTabPanel").ICodeTabPanelItemProps[];
 }>;
 export default _default;

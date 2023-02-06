@@ -1,4 +1,12 @@
 import { VNode } from 'vue';
+export declare const suspenseProps: {
+    reset: import("vue-types").VueTypeValidableDef<boolean> & {
+        default: boolean;
+    };
+    renderFirstLoading: import("vue-types").VueTypeValidableDef<VNode<import("vue").RendererNode, import("vue").RendererElement, {
+        [key: string]: any;
+    }>>;
+};
 /**
  * Suspense
  * @overview showLoading: boolean

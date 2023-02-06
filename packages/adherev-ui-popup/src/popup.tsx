@@ -1,7 +1,7 @@
 import { v1 } from 'uuid';
 import { createApp, h } from 'vue';
 
-import { IComponent, IConfig } from './types';
+import { IConfig } from './types';
 
 const selectorPrefix = 'adherev-ui-popup';
 
@@ -248,7 +248,7 @@ let globalConfig: IConfig | null = null;
 /**
  * PopupFactory
  */
-const PopupFactory: IComponent = {
+const PopupFactory: any = {
   /**
    * create
    * @param config
@@ -360,6 +360,10 @@ const PopupFactory: IComponent = {
   setEl(tel: HTMLElement) {
     el = tel;
   },
+  /**
+   * setConfig
+   * @param config
+   */
   setConfig(config) {
     globalConfig = config;
   },

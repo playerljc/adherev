@@ -1,6 +1,6 @@
 {
   "name": "@baifendian/adherev-ui-antdvformitem",
-  "version": "2.0.0-fix.1",
+  "version": "2.0.0",
   "description": "Antdv的FormItem进阶",
   "homepage": "https://gitee.com/playerljc/adherev",
   "bugs": {
@@ -41,6 +41,7 @@
     "vue-types": "^3.0.2"
   },
   "devDependencies": {
+    "@baifendian/adherev-ui-flexlayout": "^2.0.0",
     "@babel/runtime": "^7.20.13",
     "@ctsj/buildv": "^5.0.4",
     "babel-plugin-import": "^1.13.6",

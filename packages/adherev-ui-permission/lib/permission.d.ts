@@ -15,6 +15,12 @@ export declare const getPermission: () => any;
  * @return boolean
  */
 export declare const checkPermission: (allPermission: any, currentPermissions: any[] | undefined) => boolean;
+export declare const permissionProps: {
+    allPermission: import("vue-types").VueTypeValidableDef<string[]> & {
+        default: () => string[];
+    };
+    permissions: import("vue-types").VueTypeValidableDef<(string | string[])[]>;
+};
 export declare const Permission: import("vue").DefineComponent<{
     allPermission: import("vue-types").VueTypeValidableDef<string[]> & {
         default: () => string[];
@@ -43,6 +49,4 @@ export declare function PermissionFun({ allPermission, permissions, match, noMat
     permissions: any;
     match: any;
     noMatch: any;
-}): import("vue").VNode<import("vue").RendererNode, import("vue").RendererElement, {
-    [key: string]: any;
-}> | null;
+}): any;

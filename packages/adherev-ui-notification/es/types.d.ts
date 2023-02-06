@@ -1,3 +1,4 @@
+import { App } from 'vue';
 import { Notification } from './notification';
 /**
  * IConfig
@@ -36,8 +37,7 @@ export interface Config {
     beforeMount(app: any): void;
 }
 export interface INotificationFactory {
+    install?: (app: App) => App<any>;
     build(container: HTMLElement, config: IConfig): Notification;
-    isUse?(): boolean;
-    use?(Vue: any): void;
     setConfig(config: Config): void;
 }

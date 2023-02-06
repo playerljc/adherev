@@ -1,3 +1,27 @@
+export declare const playGroundPageProps: {
+    defaultActiveAnchor: import("vue-types").VueTypeValidableDef<string> & {
+        default: string;
+    };
+    anchors: import("vue-types").VueTypeValidableDef<{
+        anchor: string;
+        name: string;
+    }[]> & {
+        default: () => {
+            anchor: string;
+            name: string;
+        }[];
+    };
+    anchorPosition: import("vue-types").VueTypeValidableDef<{
+        top: number;
+        width: number;
+    }> & {
+        default: () => {
+            top: number;
+            width: number;
+        };
+    };
+    scrollEl: import("vue-types").VueTypeValidableDef<HTMLElement>;
+};
 declare const _default: import("vue").DefineComponent<{
     defaultActiveAnchor: import("vue-types").VueTypeValidableDef<string> & {
         default: string;

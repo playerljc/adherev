@@ -8,7 +8,7 @@ import Fixed from './fixed';
 import FlexLayout from './flexlayout';
 import { AutoProps, FixedProps } from './types';
 
-const props = {
+export const verticalFlexLayoutProps = {
   topClassName: string().def(''),
   topStyle: object<CSSProperties>().def({}),
   rightClassName: string().def(''),
@@ -33,7 +33,7 @@ const props = {
 
 export default defineComponent({
   name: 'adv-flexlayout-vertical',
-  props,
+  props: verticalFlexLayoutProps,
   slots: ['renderLeft', 'renderMain', 'renderTop', 'renderBottom', 'renderRight'],
   setup(props, { slots }) {
     return () => (

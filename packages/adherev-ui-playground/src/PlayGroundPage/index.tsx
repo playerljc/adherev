@@ -7,7 +7,7 @@ import AnchorNavigation, { anchorNavigationProps } from '../AnchorNavigation';
 
 const selectPrefix = 'adherev-ui-playground-page';
 
-const playGroundPageProps = {
+export const playGroundPageProps = {
   ...anchorNavigationProps,
 };
 

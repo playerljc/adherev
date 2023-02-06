@@ -39,7 +39,7 @@ export function open({ success, ...params }) {
   });
 }
 
-const props = {
+export const importantConfirmProps = {
   zIndex: number().def(Resource.Dict.value.ResourceNormalMaxZIndex.value),
   success: func<() => Promise<void>>(),
   title: string().def(intl.tv('提示')),
@@ -49,7 +49,7 @@ const props = {
 
 export default defineComponent({
   name: 'adv-importantconfirm',
-  props,
+  props: importantConfirmProps,
   setup(props, { slots }) {
     const onClick = () =>
       open({
@@ -61,11 +61,7 @@ export default defineComponent({
       });
 
     return () => (
-      <div
-        class={selectorPrefix}
-        // @ts-ignore
-        onClick={onClick}
-      >
+      <div class={selectorPrefix} onClick={onClick}>
         {slots.default ? slots.default() : null}
       </div>
     );

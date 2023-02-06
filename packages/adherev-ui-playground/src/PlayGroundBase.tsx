@@ -5,9 +5,10 @@ import { bool, func, object } from 'vue-types';
 
 import Intl from '@baifendian/adherev-util-intl';
 
-import Card, { CardProps } from './Card';
+import Card from './Card';
 import Message from './Message';
 import Constant from './constant';
+import { CardProps } from './types';
 
 const selectPrefix = 'adherev-ui-playground';
 

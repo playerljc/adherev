@@ -1,4 +1,9 @@
-import { CSSProperties } from 'vue';
+import { App, CSSProperties, ExtractPropTypes } from 'vue';
+
+import { contextMenuProps } from './ContextMenu';
+import { menuProps } from './Menu';
+import { menuItemProps } from './MenuItem';
+import { subMenuProps } from './SubMenu';
 
 export interface IMenuProps {
   data: Array<IData>;
@@ -39,9 +44,13 @@ export interface IConfig {
 }
 
 export interface IComponent {
-  isUse?(): boolean;
-  use?(Vue: any): void;
+  install?: (app: App) => App<any>;
   open(data: IData[], defaultConfig: IConfig): void;
   close(params: { vm: any; el: HTMLElement }): void;
   setConfig(config: IConfig): void;
 }
+
+export type ContextMenuProps = Partial<ExtractPropTypes<typeof contextMenuProps>>;
+export type MenuProps = Partial<ExtractPropTypes<typeof menuProps>>;
+export type MenuItemProps = Partial<ExtractPropTypes<typeof menuItemProps>>;
+export type SubMenuProps = Partial<ExtractPropTypes<typeof subMenuProps>>;

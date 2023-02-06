@@ -6,13 +6,13 @@ import { selectorPrefix as parentSelectorPrefix } from './flexlayout';
 
 const selectorPrefix = `${parentSelectorPrefix}-fixed`;
 
-const props = {
+export const fixedProps = {
   fit: bool().def(true),
 };
 
 export default defineComponent({
   name: 'adv-flexlayout-fixed',
-  props,
+  props: fixedProps,
   setup(props, { slots, expose }) {
     const root = ref<HTMLDivElement | null>(null);
 

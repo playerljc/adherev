@@ -1,12 +1,13 @@
+import { App, Plugin } from 'vue';
+
 import WatchMemoized from '@baifendian/adhere-util-watchmemoized';
 
-const Component: any = WatchMemoized;
-
-Component.isUse = () => true;
-
-Component.use = (Vue) => {
-  Vue.config.globalProperties.$adv = Vue.config.globalProperties.$adv || {};
-  Vue.config.globalProperties.$adv.WatchMemoized = Component;
+const Wrap = {
+  ...WatchMemoized,
+  install: (app: App) => {
+    app.config.globalProperties.$adv = app.config.globalProperties.$adv || {};
+    app.config.globalProperties.$adv.WatchMemoized = WatchMemoized;
+  },
 };
 
-export default Component;
+export default Wrap as typeof Wrap & Plugin;

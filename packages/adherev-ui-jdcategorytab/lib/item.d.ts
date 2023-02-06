@@ -1,3 +1,8 @@
+export declare const jdCategoryTabItemProps: {
+    id: import("vue-types").VueTypeValidableDef<string> & {
+        default: string;
+    };
+};
 declare const _default: import("vue").DefineComponent<{
     id: import("vue-types").VueTypeValidableDef<string> & {
         default: string;

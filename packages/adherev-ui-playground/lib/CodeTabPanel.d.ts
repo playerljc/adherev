@@ -13,7 +13,6 @@ export declare const codeTabPanelProps: {
         default: () => ICodeTabPanelItemProps[];
     };
 };
-export declare type CodeTabPanelProps = Partial<ExtractPropTypes<typeof codeTabPanelProps>>;
 declare const _default: import("vue").DefineComponent<{
     active: import("vue-types").VueTypeValidableDef<string> & {
         default: string;

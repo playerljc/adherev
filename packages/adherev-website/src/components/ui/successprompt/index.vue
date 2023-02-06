@@ -84,7 +84,7 @@ export default {
   },
   methods: {
     onCode1F1() {
-      SuccessPrompt('操作成功');
+      SuccessPrompt.openSuccessMessage('操作成功');
     },
   },
 };

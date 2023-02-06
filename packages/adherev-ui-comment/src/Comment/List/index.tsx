@@ -4,12 +4,11 @@ import { bool, func, object } from 'vue-types';
 import BackTopAnimation from '@baifendian/adherev-ui-backtopanimation';
 import ConditionalRender from '@baifendian/adherev-ui-conditionalrender';
 import ScrollLoad from '@baifendian/adherev-ui-scrollload';
-
-import { ScrollLoadProps } from '../../types';
+import { ScrollLoadProps } from '@baifendian/adherev-ui-scrollload/es/types';
 
 const selectorPrefix = 'adherev-ui-comment-inner-list';
 
-const props = {
+export const listProps = {
   isLoading: bool().def(false),
   hasMore: bool().def(false),
   scrollLoadProps: object<ScrollLoadProps>().def({}),
@@ -19,7 +18,7 @@ const props = {
 
 export default defineComponent({
   name: `adv-comment-list`,
-  props,
+  props: listProps,
   slots: ['renderFirstLoading', 'default'],
   emits: ['loadMore'],
   setup(props, { slots, emit }) {

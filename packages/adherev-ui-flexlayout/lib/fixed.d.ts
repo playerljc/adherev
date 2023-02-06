@@ -1,3 +1,8 @@
+export declare const fixedProps: {
+    fit: import("vue-types").VueTypeValidableDef<boolean> & {
+        default: boolean;
+    };
+};
 declare const _default: import("vue").DefineComponent<{
     fit: import("vue-types").VueTypeValidableDef<boolean> & {
         default: boolean;

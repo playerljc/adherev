@@ -4,21 +4,11 @@ import { array, object, string } from 'vue-types';
 
 import ConditionalRender from '@baifendian/adherev-ui-conditionalrender';
 
+import { IColumnItem } from './types';
+
 const selectorPrefix = 'adherev-ui-playground-table';
 
-interface IColumnItem {
-  title?: string;
-  className?: string;
-  style?: CSSProperties;
-  align?: string;
-  width?: string | null;
-  key: string;
-  dataIndex: string;
-  valign?: string;
-  slot?: string;
-}
-
-const tableProps = {
+export const tableProps = {
   tableClassName: string().def(''),
   tableStyle: object<CSSProperties>().def({}),
   columns: array<IColumnItem>().def([]),

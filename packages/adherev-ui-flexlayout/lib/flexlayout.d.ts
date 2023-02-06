@@ -1,4 +1,9 @@
 export declare const selectorPrefix = "adherev-ui-flexlayout";
+export declare const flexLayoutProps: {
+    direction: import("vue-types").VueTypeDef<string> & {
+        default: string;
+    };
+};
 declare const _default: import("vue").DefineComponent<{
     direction: import("vue-types").VueTypeDef<string> & {
         default: string;

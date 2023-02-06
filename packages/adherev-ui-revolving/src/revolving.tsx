@@ -12,12 +12,12 @@ enum direction {
   left = 'left',
 }
 
-const revolvingProps = {
+export const revolvingProps = {
   classNameWrapper: string().def(''),
   wrapperStyle: object<CSSProperties>().def({}),
   speed: number().def(1000),
   delay: number().def(1000),
-  direction: string<direction>().def(direction.top),
+  direction: string().def(direction.top),
   loop: bool().def(true),
   stopOnLastSlide: bool().def(false),
   listeners: object<object>().def({}),

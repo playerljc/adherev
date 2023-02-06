@@ -5,7 +5,7 @@ import Resource from '@baifendian/adherev-util-resource';
 
 const selectorPrefix = 'adherev-ui-spin';
 
-const spinProps = {
+export const spinProps = {
   spinning: bool().def(false),
   text: string().def(''),
   zIndex: number().def(Resource.Dict.value.ResourceNormalMaxZIndex.value),

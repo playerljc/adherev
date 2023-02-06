@@ -1,4 +1,4 @@
-import { IDataItemType } from '../Props';
+import { IDataItemType } from '../types';
 declare const _default: import("vue").DefineComponent<{
     config: import("vue-types").VueTypeValidableDef<IDataItemType[]> & {
         default: () => IDataItemType[];

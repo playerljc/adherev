@@ -1,3 +1,5 @@
+import { App, Plugin } from 'vue';
+
 import Browsersniff from '@baifendian/adhere-util-browsersniff';
 import BfdUtil from '@baifendian/adherev-util';
 
@@ -5,11 +7,13 @@ const {
   _util: { withVue },
 } = BfdUtil;
 
-const Component: any = Browsersniff;
+const Wrap = {
+  ...Browsersniff,
+  install: (app: App) => {
+    withVue(app, 'Browsersniff', Browsersniff);
 
-Component.isUse = () => true;
-Component.use = (Vue) => {
-  withVue(Vue, 'Browsersniff', Component);
+    return app;
+  },
 };
 
-export default Component;
+export default Wrap as typeof Wrap & Plugin;

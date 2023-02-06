@@ -1,7 +1,5 @@
-import { ExtractPropTypes, VNode } from 'vue';
-import { PlayGroundProps } from './PlayGround';
-import { PlayGroundMulitProps } from './PlayGroundMulit';
-import { PlayGroundTabProps } from './PlayGroundTab';
+import { VNode } from 'vue';
+import { PlayGroundMulitProps, PlayGroundProps, PlayGroundTabProps } from './types';
 declare type ConfigItemCommonType = {
     type: string;
     childrenSlot: string;
@@ -14,7 +12,7 @@ declare type ConfigItemType = (PlayGroundProps & ConfigItemCommonType & {
 }) | (PlayGroundTabProps & ConfigItemCommonType & {
     id: string;
 });
-declare const codeBoxPanelProps: {
+export declare const codeBoxPanelProps: {
     title: import("vue-types").VueTypeDef<string | VNode<import("vue").RendererNode, import("vue").RendererElement, {
         [key: string]: any;
     }>>;
@@ -34,7 +32,6 @@ declare const codeBoxPanelProps: {
         default: () => ConfigItemType[];
     };
 };
-export declare type CodeBoxPanelProps = Partial<ExtractPropTypes<typeof codeBoxPanelProps>>;
 declare const _default: import("vue").DefineComponent<{
     title: import("vue-types").VueTypeDef<string | VNode<import("vue").RendererNode, import("vue").RendererElement, {
         [key: string]: any;
@@ -54,7 +51,7 @@ declare const _default: import("vue").DefineComponent<{
     config: import("vue-types").VueTypeValidableDef<ConfigItemType[]> & {
         default: () => ConfigItemType[];
     };
-}, () => JSX.Element, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {}, string, import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<ExtractPropTypes<{
+}, () => JSX.Element, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {}, string, import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<import("vue").ExtractPropTypes<{
     title: import("vue-types").VueTypeDef<string | VNode<import("vue").RendererNode, import("vue").RendererElement, {
         [key: string]: any;
     }>>;
@@ -75,8 +72,8 @@ declare const _default: import("vue").DefineComponent<{
     };
 }>>, {
     config: ConfigItemType[];
-    isShowExpandAllBtn: boolean;
     columnCount: number;
+    isShowExpandAllBtn: boolean;
     defaultExpandAll: boolean;
 }>;
 export default _default;

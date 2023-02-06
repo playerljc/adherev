@@ -1,3 +1,5 @@
+import { App, Plugin } from 'vue';
+
 import Util from '@baifendian/adherev-util';
 
 import ContextMenu from './ContextMenu';
@@ -6,10 +8,10 @@ const {
   _util: { withVue },
 } = Util;
 
-ContextMenu.isUse = () => true;
+ContextMenu.install = function (app: App) {
+  withVue(app, 'ContextMenu', ContextMenu);
 
-ContextMenu.use = (Vue: any) => {
-  withVue(Vue, 'ContextMenu', ContextMenu);
+  return app;
 };
 
-export default ContextMenu;
+export default ContextMenu as typeof ContextMenu & Plugin;

@@ -1,3 +1,8 @@
+export declare const scrollLayoutProps: {
+    scrollY: import("vue-types").VueTypeValidableDef<boolean> & {
+        default: boolean;
+    };
+};
 declare const _default: import("vue").DefineComponent<{
     scrollY: import("vue-types").VueTypeValidableDef<boolean> & {
         default: boolean;

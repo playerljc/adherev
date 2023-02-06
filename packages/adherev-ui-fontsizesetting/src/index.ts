@@ -1,22 +1,20 @@
 import { Slider } from 'ant-design-vue';
+import { App, Plugin } from 'vue';
 
 import Util from '@baifendian/adherev-util';
 
 import FontSizeSetting from './fontsizesetting';
-import { IComponent } from './types';
 
 const {
-  _util: { withInstall, withVue },
+  _util: { withVue },
 } = Util;
 
-const Component: IComponent = withInstall(FontSizeSetting);
+FontSizeSetting.install = function (app: App) {
+  app.component(Slider.name, Slider);
+  app.component(FontSizeSetting.name, FontSizeSetting);
+  withVue(app, 'FontSizeSetting', FontSizeSetting);
 
-Component.isUse = () => true;
-
-Component.use = (Vue: any) => {
-  Vue.use(Slider);
-  Vue.use(Component);
-  withVue(Vue, 'FontSizeSetting', Component);
+  return app;
 };
 
-export default Component;
+export default FontSizeSetting as typeof FontSizeSetting & Plugin;

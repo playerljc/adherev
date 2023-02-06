@@ -1,5 +1,5 @@
 import debounce from 'lodash/debounce';
-import { defineComponent, onBeforeUnmount, onMounted, ref } from 'vue';
+import { ExtractPropTypes, defineComponent, onBeforeUnmount, onMounted, ref } from 'vue';
 import { number, string } from 'vue-types';
 
 import Util from '@baifendian/adherev-util';

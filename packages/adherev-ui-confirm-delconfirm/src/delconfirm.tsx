@@ -36,7 +36,7 @@ export function open({ success, ...params }) {
   });
 }
 
-const props = {
+export const delCConfirmProps = {
   zIndex: number().def(Resource.Dict.value.ResourceNormalMaxZIndex.value),
   success: func<() => Promise<void>>(),
   title: string().def(intl.tv('提示')),
@@ -45,7 +45,7 @@ const props = {
 
 export default defineComponent({
   name: 'adv-delconfirm',
-  props,
+  props: delCConfirmProps,
   setup(props, { slots }) {
     const onClick = () =>
       open({

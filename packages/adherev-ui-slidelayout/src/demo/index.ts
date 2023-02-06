@@ -14,7 +14,7 @@ const app = createApp({
   },
 });
 
-SlideLayout.use(app);
-
+app.use(SlideLayout);
 app.use(Button);
+
 app.mount('#app');

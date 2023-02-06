@@ -1,4 +1,5 @@
 import { Empty, Skeleton, Spin } from 'ant-design-vue';
+import { App, Plugin } from 'vue';
 
 import BfdUtil from '@baifendian/adherev-util';
 
@@ -7,25 +8,26 @@ import Suspense from './suspense';
 import SuspenseSync from './sync';
 
 const {
-  _util: { withInstall, withVue },
+  _util: { withVue },
 } = BfdUtil;
-
-withInstall(SuspenseAsync);
-withInstall(SuspenseSync);
 
 Suspense.Sync = SuspenseSync;
 Suspense.Async = SuspenseAsync;
 
-Suspense.isUse = () => true;
+Suspense.install = function (app: App) {
+  app.component(Spin.name, Spin);
+  app.component(Skeleton.name, Skeleton);
+  app.component(Empty.name, Empty);
+  app.component(SuspenseAsync.name, SuspenseAsync);
+  app.component(SuspenseSync.name, SuspenseSync);
+  app.component(Suspense.name, Suspense);
+  withVue(app, 'Suspense', Suspense);
 
-Suspense.use = (Vue) => {
-  Vue.use(Spin);
-  Vue.use(Skeleton);
-  Vue.use(Empty);
-  Vue.use(SuspenseAsync);
-  Vue.use(SuspenseSync);
-
-  withVue(Vue, 'Suspense', Suspense);
+  return app;
 };
 
-export default Suspense;
+export default Suspense as typeof Suspense &
+  Plugin & {
+    readonly Sync: typeof SuspenseSync;
+    readonly Async: typeof SuspenseAsync;
+  };

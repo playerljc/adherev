@@ -1,2 +1,3 @@
-import GlobalIndicator from './globalindicator';
-export default GlobalIndicator;
+import { Plugin } from 'vue';
+declare const _default: import("./types").IComponent & Plugin;
+export default _default;

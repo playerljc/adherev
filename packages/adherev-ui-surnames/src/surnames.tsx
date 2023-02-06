@@ -27,8 +27,8 @@ type IndexMapItemType = {
   height: number;
 };
 
-const surnamesProps = {
-  position: string<positionType>().def(positionType.right),
+export const surnamesProps = {
+  position: string().def(positionType.right),
   indexes: array<{ index: string }>().def([]),
   dataSource: array<{ index: string; data: object[] }>().def([]),
 };

@@ -1,24 +1,25 @@
+import { App, Plugin } from 'vue';
+
 import BfdUtil from '@baifendian/adherev-util';
 
 import RevolvingItem from './item';
 import Revolving from './revolving';
-import { IComponent } from './types';
 
 const {
-  _util: { withInstall, withVue },
+  _util: { withVue },
 } = BfdUtil;
 
-withInstall(Revolving);
-withInstall(RevolvingItem);
+Revolving.Item = RevolvingItem;
 
-(Revolving as unknown as IComponent).Item = RevolvingItem;
+Revolving.install = function (app: App) {
+  app.component(RevolvingItem.name, RevolvingItem);
+  app.component(Revolving.name, Revolving);
+  withVue(app, 'Revolving', Revolving);
 
-(Revolving as unknown as IComponent).isUse = () => true;
-
-(Revolving as unknown as IComponent).use = (Vue: any) => {
-  Vue.use(Revolving);
-  Vue.use(RevolvingItem);
-  withVue(Vue, 'Revolving', Revolving);
+  return app;
 };
 
-export default Revolving;
+export default Revolving as typeof Revolving &
+  Plugin & {
+    readonly Item: typeof RevolvingItem;
+  };

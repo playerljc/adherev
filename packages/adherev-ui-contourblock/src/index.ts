@@ -1,19 +1,18 @@
+import { App, Plugin } from 'vue';
+
 import Util from '@baifendian/adherev-util';
 
 import ContourBlock from './contourblock';
-import { Component } from './types';
 
 const {
-  _util: { withInstall, withVue },
+  _util: { withVue },
 } = Util;
 
-const Component: Component = withInstall(ContourBlock);
+ContourBlock.install = function (app: App) {
+  app.component(ContourBlock.name, ContourBlock);
+  withVue(app, 'ContourBlock', ContourBlock);
 
-Component.isUse = () => true;
-
-Component.use = (Vue: any) => {
-  Vue.use(Component);
-  withVue(Vue, 'ContourBlock', Component);
+  return app;
 };
 
-export default Component;
+export default ContourBlock as typeof ContourBlock & Plugin;

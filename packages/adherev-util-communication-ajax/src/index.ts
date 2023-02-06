@@ -1,4 +1,4 @@
-import { notification } from 'ant-design-vue';
+import { App, Plugin } from 'vue';
 
 import GlobalIndicator from '@baifendian/adherev-ui-globalindicator';
 import BfdUtil from '@baifendian/adherev-util';
@@ -10,13 +10,13 @@ const {
   _util: { withVue },
 } = BfdUtil;
 
-Ajax.isUse = () => true;
+Ajax.install = (app: App) => {
+  app.use(GlobalIndicator);
+  app.use(Intl);
 
-Ajax.use = (Vue) => {
-  (GlobalIndicator as any).isUse() && (GlobalIndicator as any).use(Vue);
-  Intl.isUse() && Intl.use(Vue);
-  Vue.use(notification);
-  withVue(Vue, 'Ajax', Ajax);
+  withVue(app, 'Ajax', Ajax);
+
+  return app;
 };
 
-export default Ajax;
+export default Ajax as typeof Ajax & Plugin;

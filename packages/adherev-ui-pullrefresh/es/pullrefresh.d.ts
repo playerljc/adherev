@@ -1,5 +1,5 @@
-import { ExtractPropTypes, VNode } from 'vue';
-declare const pullRefreshProps: {
+import { VNode } from 'vue';
+export declare const pullRefreshProps: {
     scrollClassName: import("vue-types").VueTypeValidableDef<string> & {
         default: string;
     };
@@ -31,7 +31,6 @@ declare const pullRefreshProps: {
         [key: string]: any;
     }>>;
 };
-export declare type PullRefreshProps = Partial<ExtractPropTypes<typeof pullRefreshProps>>;
 declare const _default: import("vue").DefineComponent<{
     scrollClassName: import("vue-types").VueTypeValidableDef<string> & {
         default: string;
@@ -63,7 +62,7 @@ declare const _default: import("vue").DefineComponent<{
     renderLoadingAnimation: import("vue-types").VueTypeValidableDef<VNode<import("vue").RendererNode, import("vue").RendererElement, {
         [key: string]: any;
     }>>;
-}, () => JSX.Element, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, ("pull-start" | "pull-can-refresh" | "pull-bottom" | "pull-rebound" | "pull-refresh")[], "pull-start" | "pull-can-refresh" | "pull-bottom" | "pull-rebound" | "pull-refresh", import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<ExtractPropTypes<{
+}, () => JSX.Element, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, ("pull-start" | "pull-can-refresh" | "pull-bottom" | "pull-rebound" | "pull-refresh")[], "pull-start" | "pull-can-refresh" | "pull-bottom" | "pull-rebound" | "pull-refresh", import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<import("vue").ExtractPropTypes<{
     scrollClassName: import("vue-types").VueTypeValidableDef<string> & {
         default: string;
     };
@@ -101,11 +100,11 @@ declare const _default: import("vue").DefineComponent<{
     "onPull-rebound"?: ((...args: any[]) => any) | undefined;
     "onPull-refresh"?: ((...args: any[]) => any) | undefined;
 }, {
+    loadingAnimation: string;
     scrollClassName: string;
     pullHeight: number;
     isShowUpdateTime: boolean;
     updateTime: number;
     updateTimeFormat: string;
-    loadingAnimation: string;
 }>;
 export default _default;

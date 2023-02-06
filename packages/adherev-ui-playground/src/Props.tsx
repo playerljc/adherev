@@ -5,15 +5,9 @@ import Intl from '@baifendian/adherev-util-intl';
 
 import Collapse, { collapseProps } from './Collapse';
 import Table from './Table';
+import { IDataItemType } from './types';
 
 const selectPrefix = 'adherev-ui-playground-props';
-
-export interface IDataItemType {
-  params: string | VNode;
-  desc: string | VNode;
-  type: string | VNode;
-  defaultVal: string | VNode;
-}
 
 export const propsProps = {
   ...collapseProps,

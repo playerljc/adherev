@@ -1,1 +1,1 @@
-{"version":3,"file":"types.js","sources":[],"sourcesContent":[],"names":[],"mappings":""}
+{"version":3,"file":"types.js","sources":["types.js"],"sourcesContent":["export * from '@baifendian/adhere-ui-historyback/es/historyback';\r\n"],"names":[],"mappings":"WAAc"}

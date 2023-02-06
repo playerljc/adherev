@@ -1,12 +1,17 @@
+import { App, Plugin } from 'vue';
+
 import Util from '@baifendian/adhere-util';
 
 import * as _util from './_util';
 
-const Component: any = Util;
+const Wrap = {
+  ...Util,
+  install: (app: App) => {
+    _util.withVue(app, 'Util', Util);
 
-Component.isUse = () => true;
-Component.use = (Vue: any) => {
-  _util.withVue(Vue, 'Util', Component);
+    return app;
+  },
+  _util,
 };
 
-export default { ...Component, _util: { ..._util } };
+export default Wrap as typeof Wrap & Plugin;

@@ -1,5 +1,5 @@
-export interface IComponent {
-  isUse?(): boolean;
-  use?(Vue: any): void;
-  Item: any;
-}
+import { ExtractPropTypes } from 'vue';
+
+import { revolvingProps } from './revolving';
+
+export type RevolvingProps = Partial<ExtractPropTypes<typeof revolvingProps>>;

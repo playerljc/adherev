@@ -1,3 +1,11 @@
+export declare const autoProps: {
+    autoFixed: import("vue-types").VueTypeValidableDef<boolean> & {
+        default: boolean;
+    };
+    fit: import("vue-types").VueTypeValidableDef<boolean> & {
+        default: boolean;
+    };
+};
 declare const _default: import("vue").DefineComponent<{
     autoFixed: import("vue-types").VueTypeValidableDef<boolean> & {
         default: boolean;

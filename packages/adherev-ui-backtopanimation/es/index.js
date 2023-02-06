@@ -1,2 +1,2 @@
-import Util from"@baifendian/adherev-util";import BackTopAnimation from"./backtopanimation";var _a=Util._util,withInstall=_a.withInstall,withVue=_a.withVue,Component=withInstall(BackTopAnimation);Component.isUse=function(){return!0},Component.use=function(t){t.use(Component),withVue(t,"BackTopAnimation",Component)};export default Component;
+import Util from"@baifendian/adherev-util";import BackTopAnimation from"./backtopanimation";var withVue=Util._util.withVue;BackTopAnimation.install=function(i){return i.component(BackTopAnimation.name,BackTopAnimation),withVue(i,"BackTopAnimation",BackTopAnimation),i};export default BackTopAnimation;
 //# sourceMappingURL=index.js.map

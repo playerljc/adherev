@@ -1,3 +1,5 @@
+import { App, Plugin } from 'vue';
+
 import Emitter from '@baifendian/adhere-util-emitter';
 import BfdUtil from '@baifendian/adherev-util';
 
@@ -5,12 +7,13 @@ const {
   _util: { withVue },
 } = BfdUtil;
 
-const Component: any = Emitter;
+const Wrap = {
+  ...Emitter,
+  install: (app: App) => {
+    withVue(app, 'Emitter', Emitter);
 
-Component.isUse = () => true;
-
-Component.use = (Vue) => {
-  withVue(Vue, 'Emitter', Component);
+    return app;
+  },
 };
 
-export default Component;
+export default Wrap as typeof Wrap & Plugin;

@@ -1,14 +1,15 @@
 import omit from 'omit.js';
-import { ExtractPropTypes, defineComponent, ref, watch } from 'vue';
+import { defineComponent, ref, watch } from 'vue';
 import { array } from 'vue-types';
 
 import ConditionalRender from '@baifendian/adherev-ui-conditionalrender';
 import ContextMenu from '@baifendian/adherev-ui-contextmenu';
 
 import Card from './Card';
-import CodePanel, { CodePanelProps } from './CodePanel';
-import CodeTabPanel, { CodeTabPanelProps } from './CodeTabPanel';
+import CodePanel from './CodePanel';
+import CodeTabPanel from './CodeTabPanel';
 import PlayGroundBase, { playGroundBaseProps } from './PlayGroundBase';
+import { CodePanelProps, CodeTabPanelProps } from './types';
 
 const selectPrefix = 'adherev-ui-playground-mulit';
 
@@ -22,12 +23,10 @@ type ConfigItem = (CodePanelProps | CodeTabPanelProps) & {
   title: string;
 };
 
-const playGroundMulitProps = {
+export const playGroundMulitProps = {
   ...playGroundBaseProps,
   defaultConfig: array<ConfigItem>().def([]),
 };
-
-export type PlayGroundMulitProps = Partial<ExtractPropTypes<typeof playGroundMulitProps>>;
 
 export default defineComponent({
   name: 'adv-playground-mulit',

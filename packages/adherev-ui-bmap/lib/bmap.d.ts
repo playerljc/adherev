@@ -1,4 +1,23 @@
 import { IConfig, IPoint } from './types';
+export declare const bmapProps: {
+    ak: import("vue-types").VueTypeValidableDef<string> & {
+        default: string;
+    };
+    zoom: import("vue-types").VueTypeValidableDef<number> & {
+        default: number;
+    };
+    center: import("vue-types").VueTypeValidableDef<IPoint> & {
+        default: () => IPoint;
+    } & {
+        required: true;
+    };
+    config: import("vue-types").VueTypeValidableDef<IConfig> & {
+        default: () => IConfig;
+    };
+    externalImportBMapScript: import("vue-types").VueTypeValidableDef<boolean> & {
+        default: boolean;
+    };
+};
 declare const _default: import("vue").DefineComponent<{
     ak: import("vue-types").VueTypeValidableDef<string> & {
         default: string;

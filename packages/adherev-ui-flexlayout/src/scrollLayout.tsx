@@ -5,13 +5,13 @@ import { selectorPrefix as _selectorPrefix } from './flexlayout';
 
 const selectorPrefix = `${_selectorPrefix}-scrolllayout`;
 
-const props = {
+export const scrollLayoutProps = {
   scrollY: bool().def(true),
 };
 
 export default defineComponent({
   name: 'adv-flexlayout-scroll',
-  props,
+  props: scrollLayoutProps,
   setup(props, { slots }) {
     const wrapRef = ref<HTMLElement>();
 

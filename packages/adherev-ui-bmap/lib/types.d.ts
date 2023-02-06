@@ -1,3 +1,5 @@
+import { ExtractPropTypes } from 'vue';
+import { bmapProps } from './bmap';
 export interface IPoint {
     lon: number;
     lat: number;
@@ -9,8 +11,4 @@ export interface IConfig {
     enableAutoResize: boolean;
     enableMapClick: boolean;
 }
-export interface IComponent {
-    isUse(): boolean;
-    use(Vue: any): void;
-    BMap: any;
-}
+export declare type BmapProps = Partial<ExtractPropTypes<typeof bmapProps>>;

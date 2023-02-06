@@ -1,4 +1,11 @@
 import { VNode } from 'vue';
+export declare const suspenseSyncProps: {
+    data: import("vue-types").VueTypeValidableDef<{
+        [key: string]: any;
+    }>;
+    isEmpty: import("vue-types").VueTypeValidableDef<(params?: any) => boolean>;
+    renderEmpty: import("vue-types").VueTypeValidableDef<(params?: any) => VNode | null>;
+};
 /**
  * SuspenseSync
  * @description 传数据

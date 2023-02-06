@@ -84,12 +84,12 @@ export const extend = (options: ExtendFunction<any>): Omit<ExtendFunction<any>, 
  * @param renderOptions - props,attrs和slots
  */
 export function HOC(
-  Component: DefineComponent,
+  Component: any,
   optionsOverwrite: any,
   renderOptions: {
-    props: (props: any) => any;
-    attrs: (attrs: any) => any;
-    slots: (slots: any) => any;
+    props?: (props: any) => any;
+    attrs?: (attrs: any) => any;
+    slots?: (slots: any) => any;
   },
 ) {
   return defineComponent(
@@ -149,3 +149,20 @@ export const getComponentPropsOption = (Component) => ({
     Component.props,
   ),
 });
+
+/**
+ * forwardRef
+ * @param comp
+ * @param ref
+ */
+export function forwardRef(comp: ComponentOptions, ref: string): ComponentOptions {
+  return defineComponent({
+    methods: Object.keys(comp?.methods || {}).reduce((methods, methodName) => {
+      methods[methodName] = function (this, ...params) {
+        return this?.$refs?.[ref]?.[methodName]?.(...params);
+      };
+
+      return methods;
+    }, {}),
+  });
+}

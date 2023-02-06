@@ -1,3 +1,60 @@
+# 2.0.2
+
+***
+
+2023-02-06
+
+* **公共**
+  - 含有ant-design-vue库加入babel-plugin-import
+* **adherev-ui-searchtable**
+  - $search支持排序
+  - 查询面板样式修改
+  - routeListen修改
+  - FormItemGeneratorToDict引用的修改
+  - ProTableFactory的scopedSlots修改
+  - 去掉SearchForm及其附属组件使用TableGridLayout实现
+  - 高级搜索触发条件修改
+  - 列设置修改
+  - 加入ProSearchTable
+  - 加入editor功能
+  - 加入对列表头分组的修改
+* **adherev-ui-adherev-ui-antdvformitem**
+  - BUG修改
+  - Table生成器的修改
+  - List生成器的修改
+  - 生成器中引入antd组件的都换成AntdvFormItemNormalize中的组件
+  - AntdvFormItemNormalize中的默认值矫正
+  - 生成器中各个组件查询的修改
+  - 加入adherev-ui-antdformitem代码
+  - 加入Input和TextArea组件
+  - 加入所有Antd组件的默认操作
+* **adherev-util**
+  - 加入forwardRef方法
+  - 加入DateUtil
+  - 加入FormatUtil
+  - 加入EncryptUtil
+  - color加入新方法
+* **adherev-ui-importantconfirm**
+  - title，text参数赋值错误
+* **adherev-ui-deleconfirm**
+  - title，text参数赋值错误
+* **adherev-util-adapterscreen**
+  - Safari浏览器适配
+* **adherev-ui-prompt-errorprompt**
+  - 分成dialog和message
+* **adherev-ui-prompt-successprompt**
+  - 分成dialog和message
+* **adherev-ui-prompt-warnprompt**
+  - 分成dialog和message
+* **adherev-util-resource**
+  - 加入resource资源目录
+* **adherev-ui-vuequill-sandbox**
+  - 加入adherev-ui-vuequill-sandbox组件
+* **adherev-ui-tablegridlayout**
+  - label和value支持VNode
+* **adherev-util-watchmemoized**
+  - 去掉adherev-util的依赖
+
 # 2.0.1
 
 ***

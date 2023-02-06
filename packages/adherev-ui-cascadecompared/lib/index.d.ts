@@ -1,3 +1,330 @@
-import { IComponent } from './types';
-declare const Component: IComponent;
-export default Component;
+import { Plugin } from 'vue';
+declare const _default: {
+    new (...args: any[]): {
+        $: import("vue").ComponentInternalInstance;
+        $data: {};
+        $props: Partial<{
+            className: string;
+            indicatorClassName: string;
+            indicatorStyle: import("vue").CSSProperties;
+            indicatorFixedWrapClassName: string;
+            indicatorFixedWrapStyle: import("vue").CSSProperties;
+            indicatorAutoWrapClassName: string;
+            indicatorAutoWrapStyle: import("vue").CSSProperties;
+            masterClassName: string;
+            masterStyle: import("vue").CSSProperties;
+            masterInnerClassName: string;
+            masterInnerStyle: import("vue").CSSProperties;
+            masterStickFixedClassName: string;
+            masterStickFixedStyle: import("vue").CSSProperties;
+            masterStickInnerClassName: string;
+            masterStickInnerStyle: import("vue").CSSProperties;
+            indicator: import("./types").IIndicatorTableConfig;
+            master: import("./types").IMasterItem[];
+            defaultCellWidth: string | number;
+        }> & Omit<Readonly<import("vue").ExtractPropTypes<{
+            className: import("vue-types").VueTypeValidableDef<string> & {
+                default: string;
+            };
+            indicatorClassName: import("vue-types").VueTypeValidableDef<string> & {
+                default: string;
+            };
+            indicatorStyle: import("vue-types").VueTypeValidableDef<import("vue").CSSProperties> & {
+                default: () => import("vue").CSSProperties;
+            };
+            indicatorFixedWrapClassName: import("vue-types").VueTypeValidableDef<string> & {
+                default: string;
+            };
+            indicatorFixedWrapStyle: import("vue-types").VueTypeValidableDef<import("vue").CSSProperties> & {
+                default: () => import("vue").CSSProperties;
+            };
+            indicatorAutoWrapClassName: import("vue-types").VueTypeValidableDef<string> & {
+                default: string;
+            };
+            indicatorAutoWrapStyle: import("vue-types").VueTypeValidableDef<import("vue").CSSProperties> & {
+                default: () => import("vue").CSSProperties;
+            };
+            masterClassName: import("vue-types").VueTypeValidableDef<string> & {
+                default: string;
+            };
+            masterStyle: import("vue-types").VueTypeValidableDef<import("vue").CSSProperties> & {
+                default: () => import("vue").CSSProperties;
+            };
+            masterInnerClassName: import("vue-types").VueTypeValidableDef<string> & {
+                default: string;
+            };
+            masterInnerStyle: import("vue-types").VueTypeValidableDef<import("vue").CSSProperties> & {
+                default: () => import("vue").CSSProperties;
+            };
+            masterStickFixedClassName: import("vue-types").VueTypeValidableDef<string> & {
+                default: string;
+            };
+            masterStickFixedStyle: import("vue-types").VueTypeValidableDef<import("vue").CSSProperties> & {
+                default: () => import("vue").CSSProperties;
+            };
+            masterStickInnerClassName: import("vue-types").VueTypeValidableDef<string> & {
+                default: string;
+            };
+            masterStickInnerStyle: import("vue-types").VueTypeValidableDef<import("vue").CSSProperties> & {
+                default: () => import("vue").CSSProperties;
+            };
+            indicator: import("vue-types").VueTypeValidableDef<import("./types").IIndicatorTableConfig> & {
+                default: () => import("./types").IIndicatorTableConfig;
+            };
+            master: import("vue-types").VueTypeValidableDef<import("./types").IMasterItem[]> & {
+                default: () => import("./types").IMasterItem[];
+            };
+            defaultCellWidth: import("vue-types").VueTypeDef<string | number> & {
+                default: string | number;
+            };
+        }>> & {
+            onStickChange?: ((...args: any[]) => any) | undefined;
+        } & import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, "className" | "indicatorClassName" | "indicatorStyle" | "indicatorFixedWrapClassName" | "indicatorFixedWrapStyle" | "indicatorAutoWrapClassName" | "indicatorAutoWrapStyle" | "masterClassName" | "masterStyle" | "masterInnerClassName" | "masterInnerStyle" | "masterStickFixedClassName" | "masterStickFixedStyle" | "masterStickInnerClassName" | "masterStickInnerStyle" | "indicator" | "master" | "defaultCellWidth">;
+        $attrs: {
+            [x: string]: unknown;
+        };
+        $refs: {
+            [x: string]: unknown;
+        };
+        $slots: Readonly<{
+            [name: string]: import("vue").Slot | undefined;
+        }>;
+        $root: import("vue").ComponentPublicInstance<{}, {}, {}, {}, {}, {}, {}, {}, false, import("vue").ComponentOptionsBase<any, any, any, any, any, any, any, any, any, {}, {}, string>, {}> | null;
+        $parent: import("vue").ComponentPublicInstance<{}, {}, {}, {}, {}, {}, {}, {}, false, import("vue").ComponentOptionsBase<any, any, any, any, any, any, any, any, any, {}, {}, string>, {}> | null;
+        $emit: (event: "stickChange", ...args: any[]) => void;
+        $el: any;
+        $options: import("vue").ComponentOptionsBase<Readonly<import("vue").ExtractPropTypes<{
+            className: import("vue-types").VueTypeValidableDef<string> & {
+                default: string;
+            };
+            indicatorClassName: import("vue-types").VueTypeValidableDef<string> & {
+                default: string;
+            };
+            indicatorStyle: import("vue-types").VueTypeValidableDef<import("vue").CSSProperties> & {
+                default: () => import("vue").CSSProperties;
+            };
+            indicatorFixedWrapClassName: import("vue-types").VueTypeValidableDef<string> & {
+                default: string;
+            };
+            indicatorFixedWrapStyle: import("vue-types").VueTypeValidableDef<import("vue").CSSProperties> & {
+                default: () => import("vue").CSSProperties;
+            };
+            indicatorAutoWrapClassName: import("vue-types").VueTypeValidableDef<string> & {
+                default: string;
+            };
+            indicatorAutoWrapStyle: import("vue-types").VueTypeValidableDef<import("vue").CSSProperties> & {
+                default: () => import("vue").CSSProperties;
+            };
+            masterClassName: import("vue-types").VueTypeValidableDef<string> & {
+                default: string;
+            };
+            masterStyle: import("vue-types").VueTypeValidableDef<import("vue").CSSProperties> & {
+                default: () => import("vue").CSSProperties;
+            };
+            masterInnerClassName: import("vue-types").VueTypeValidableDef<string> & {
+                default: string;
+            };
+            masterInnerStyle: import("vue-types").VueTypeValidableDef<import("vue").CSSProperties> & {
+                default: () => import("vue").CSSProperties;
+            };
+            masterStickFixedClassName: import("vue-types").VueTypeValidableDef<string> & {
+                default: string;
+            };
+            masterStickFixedStyle: import("vue-types").VueTypeValidableDef<import("vue").CSSProperties> & {
+                default: () => import("vue").CSSProperties;
+            };
+            masterStickInnerClassName: import("vue-types").VueTypeValidableDef<string> & {
+                default: string;
+            };
+            masterStickInnerStyle: import("vue-types").VueTypeValidableDef<import("vue").CSSProperties> & {
+                default: () => import("vue").CSSProperties;
+            };
+            indicator: import("vue-types").VueTypeValidableDef<import("./types").IIndicatorTableConfig> & {
+                default: () => import("./types").IIndicatorTableConfig;
+            };
+            master: import("vue-types").VueTypeValidableDef<import("./types").IMasterItem[]> & {
+                default: () => import("./types").IMasterItem[];
+            };
+            defaultCellWidth: import("vue-types").VueTypeDef<string | number> & {
+                default: string | number;
+            };
+        }>> & {
+            onStickChange?: ((...args: any[]) => any) | undefined;
+        }, () => JSX.Element, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, "stickChange"[], string, {
+            className: string;
+            indicatorClassName: string;
+            indicatorStyle: import("vue").CSSProperties;
+            indicatorFixedWrapClassName: string;
+            indicatorFixedWrapStyle: import("vue").CSSProperties;
+            indicatorAutoWrapClassName: string;
+            indicatorAutoWrapStyle: import("vue").CSSProperties;
+            masterClassName: string;
+            masterStyle: import("vue").CSSProperties;
+            masterInnerClassName: string;
+            masterInnerStyle: import("vue").CSSProperties;
+            masterStickFixedClassName: string;
+            masterStickFixedStyle: import("vue").CSSProperties;
+            masterStickInnerClassName: string;
+            masterStickInnerStyle: import("vue").CSSProperties;
+            indicator: import("./types").IIndicatorTableConfig;
+            master: import("./types").IMasterItem[];
+            defaultCellWidth: string | number;
+        }, {}, string> & {
+            beforeCreate?: ((() => void) | (() => void)[]) | undefined;
+            created?: ((() => void) | (() => void)[]) | undefined;
+            beforeMount?: ((() => void) | (() => void)[]) | undefined;
+            mounted?: ((() => void) | (() => void)[]) | undefined;
+            beforeUpdate?: ((() => void) | (() => void)[]) | undefined;
+            updated?: ((() => void) | (() => void)[]) | undefined;
+            activated?: ((() => void) | (() => void)[]) | undefined;
+            deactivated?: ((() => void) | (() => void)[]) | undefined;
+            beforeDestroy?: ((() => void) | (() => void)[]) | undefined;
+            beforeUnmount?: ((() => void) | (() => void)[]) | undefined;
+            destroyed?: ((() => void) | (() => void)[]) | undefined;
+            unmounted?: ((() => void) | (() => void)[]) | undefined;
+            renderTracked?: (((e: import("vue").DebuggerEvent) => void) | ((e: import("vue").DebuggerEvent) => void)[]) | undefined;
+            renderTriggered?: (((e: import("vue").DebuggerEvent) => void) | ((e: import("vue").DebuggerEvent) => void)[]) | undefined;
+            errorCaptured?: (((err: unknown, instance: import("vue").ComponentPublicInstance<{}, {}, {}, {}, {}, {}, {}, {}, false, import("vue").ComponentOptionsBase<any, any, any, any, any, any, any, any, any, {}, {}, string>, {}> | null, info: string) => boolean | void) | ((err: unknown, instance: import("vue").ComponentPublicInstance<{}, {}, {}, {}, {}, {}, {}, {}, false, import("vue").ComponentOptionsBase<any, any, any, any, any, any, any, any, any, {}, {}, string>, {}> | null, info: string) => boolean | void)[]) | undefined;
+        };
+        $forceUpdate: () => void;
+        $nextTick: typeof import("vue").nextTick;
+        $watch<T extends string | ((...args: any) => any)>(source: T, cb: T extends (...args: any) => infer R ? (args_0: R, args_1: R) => any : (...args: any) => any, options?: import("vue").WatchOptions<boolean> | undefined): import("vue").WatchStopHandle;
+    } & Readonly<import("vue").ExtractPropTypes<{
+        className: import("vue-types").VueTypeValidableDef<string> & {
+            default: string;
+        };
+        indicatorClassName: import("vue-types").VueTypeValidableDef<string> & {
+            default: string;
+        };
+        indicatorStyle: import("vue-types").VueTypeValidableDef<import("vue").CSSProperties> & {
+            default: () => import("vue").CSSProperties;
+        };
+        indicatorFixedWrapClassName: import("vue-types").VueTypeValidableDef<string> & {
+            default: string;
+        };
+        indicatorFixedWrapStyle: import("vue-types").VueTypeValidableDef<import("vue").CSSProperties> & {
+            default: () => import("vue").CSSProperties;
+        };
+        indicatorAutoWrapClassName: import("vue-types").VueTypeValidableDef<string> & {
+            default: string;
+        };
+        indicatorAutoWrapStyle: import("vue-types").VueTypeValidableDef<import("vue").CSSProperties> & {
+            default: () => import("vue").CSSProperties;
+        };
+        masterClassName: import("vue-types").VueTypeValidableDef<string> & {
+            default: string;
+        };
+        masterStyle: import("vue-types").VueTypeValidableDef<import("vue").CSSProperties> & {
+            default: () => import("vue").CSSProperties;
+        };
+        masterInnerClassName: import("vue-types").VueTypeValidableDef<string> & {
+            default: string;
+        };
+        masterInnerStyle: import("vue-types").VueTypeValidableDef<import("vue").CSSProperties> & {
+            default: () => import("vue").CSSProperties;
+        };
+        masterStickFixedClassName: import("vue-types").VueTypeValidableDef<string> & {
+            default: string;
+        };
+        masterStickFixedStyle: import("vue-types").VueTypeValidableDef<import("vue").CSSProperties> & {
+            default: () => import("vue").CSSProperties;
+        };
+        masterStickInnerClassName: import("vue-types").VueTypeValidableDef<string> & {
+            default: string;
+        };
+        masterStickInnerStyle: import("vue-types").VueTypeValidableDef<import("vue").CSSProperties> & {
+            default: () => import("vue").CSSProperties;
+        };
+        indicator: import("vue-types").VueTypeValidableDef<import("./types").IIndicatorTableConfig> & {
+            default: () => import("./types").IIndicatorTableConfig;
+        };
+        master: import("vue-types").VueTypeValidableDef<import("./types").IMasterItem[]> & {
+            default: () => import("./types").IMasterItem[];
+        };
+        defaultCellWidth: import("vue-types").VueTypeDef<string | number> & {
+            default: string | number;
+        };
+    }>> & {
+        onStickChange?: ((...args: any[]) => any) | undefined;
+    } & import("vue").ShallowUnwrapRef<() => JSX.Element> & {} & import("vue").ComponentCustomProperties & {};
+    __isFragment?: undefined;
+    __isTeleport?: undefined;
+    __isSuspense?: undefined;
+} & import("vue").ComponentOptionsBase<Readonly<import("vue").ExtractPropTypes<{
+    className: import("vue-types").VueTypeValidableDef<string> & {
+        default: string;
+    };
+    indicatorClassName: import("vue-types").VueTypeValidableDef<string> & {
+        default: string;
+    };
+    indicatorStyle: import("vue-types").VueTypeValidableDef<import("vue").CSSProperties> & {
+        default: () => import("vue").CSSProperties;
+    };
+    indicatorFixedWrapClassName: import("vue-types").VueTypeValidableDef<string> & {
+        default: string;
+    };
+    indicatorFixedWrapStyle: import("vue-types").VueTypeValidableDef<import("vue").CSSProperties> & {
+        default: () => import("vue").CSSProperties;
+    };
+    indicatorAutoWrapClassName: import("vue-types").VueTypeValidableDef<string> & {
+        default: string;
+    };
+    indicatorAutoWrapStyle: import("vue-types").VueTypeValidableDef<import("vue").CSSProperties> & {
+        default: () => import("vue").CSSProperties;
+    };
+    masterClassName: import("vue-types").VueTypeValidableDef<string> & {
+        default: string;
+    };
+    masterStyle: import("vue-types").VueTypeValidableDef<import("vue").CSSProperties> & {
+        default: () => import("vue").CSSProperties;
+    };
+    masterInnerClassName: import("vue-types").VueTypeValidableDef<string> & {
+        default: string;
+    };
+    masterInnerStyle: import("vue-types").VueTypeValidableDef<import("vue").CSSProperties> & {
+        default: () => import("vue").CSSProperties;
+    };
+    masterStickFixedClassName: import("vue-types").VueTypeValidableDef<string> & {
+        default: string;
+    };
+    masterStickFixedStyle: import("vue-types").VueTypeValidableDef<import("vue").CSSProperties> & {
+        default: () => import("vue").CSSProperties;
+    };
+    masterStickInnerClassName: import("vue-types").VueTypeValidableDef<string> & {
+        default: string;
+    };
+    masterStickInnerStyle: import("vue-types").VueTypeValidableDef<import("vue").CSSProperties> & {
+        default: () => import("vue").CSSProperties;
+    };
+    indicator: import("vue-types").VueTypeValidableDef<import("./types").IIndicatorTableConfig> & {
+        default: () => import("./types").IIndicatorTableConfig;
+    };
+    master: import("vue-types").VueTypeValidableDef<import("./types").IMasterItem[]> & {
+        default: () => import("./types").IMasterItem[];
+    };
+    defaultCellWidth: import("vue-types").VueTypeDef<string | number> & {
+        default: string | number;
+    };
+}>> & {
+    onStickChange?: ((...args: any[]) => any) | undefined;
+}, () => JSX.Element, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, "stickChange"[], "stickChange", {
+    className: string;
+    indicatorClassName: string;
+    indicatorStyle: import("vue").CSSProperties;
+    indicatorFixedWrapClassName: string;
+    indicatorFixedWrapStyle: import("vue").CSSProperties;
+    indicatorAutoWrapClassName: string;
+    indicatorAutoWrapStyle: import("vue").CSSProperties;
+    masterClassName: string;
+    masterStyle: import("vue").CSSProperties;
+    masterInnerClassName: string;
+    masterInnerStyle: import("vue").CSSProperties;
+    masterStickFixedClassName: string;
+    masterStickFixedStyle: import("vue").CSSProperties;
+    masterStickInnerClassName: string;
+    masterStickInnerStyle: import("vue").CSSProperties;
+    indicator: import("./types").IIndicatorTableConfig;
+    master: import("./types").IMasterItem[];
+    defaultCellWidth: string | number;
+}, {}, string> & import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps & Plugin;
+export default _default;

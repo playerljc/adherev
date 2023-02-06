@@ -1,6 +1,6 @@
 /**
- * watchEffect
- * data或者props中的属性只要有一个变化就调用watchEffect方法
+ * forceUpdate
+ * @description 注入强制刷新的方法
  */
 declare const _default: {
     methods: {

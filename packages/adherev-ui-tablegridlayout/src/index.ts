@@ -1,3 +1,5 @@
+import { App, ExtractPropTypes, Plugin } from 'vue';
+
 import Util from '@baifendian/adherev-util';
 
 import {
@@ -9,25 +11,29 @@ import {
 } from './tablegridlayout';
 
 const {
-  _util: { withInstall, withVue },
+  _util: { withVue },
 } = Util;
 
-const Component = withInstall(TableGridLayout);
-withInstall(Label);
-withInstall(Value);
+TableGridLayout.getRenderDetail = getRenderDetail;
+TableGridLayout.renderGridSearchFormGroup = renderGridSearchFormGroup;
+TableGridLayout.Label = Label;
+TableGridLayout.Value = Value;
 
-Component.getRenderDetail = getRenderDetail;
-Component.renderGridSearchFormGroup = renderGridSearchFormGroup;
-Component.Label = Label;
-Component.Value = Value;
+TableGridLayout.install = function (app: App) {
+  app.component(Label.name, Label);
+  app.component(Value.name, Value);
+  app.component(TableGridLayout.name, TableGridLayout);
+  withVue(app, 'TableGridLayout', TableGridLayout);
 
-Component.isUse = () => true;
-
-Component.use = (Vue) => {
-  Vue.use(TableGridLayout);
-  Vue.use(Label);
-  Vue.use(Value);
-  withVue(Vue, 'TableGridLayout', Component);
+  return app;
 };
 
-export default Component;
+export default TableGridLayout as typeof TableGridLayout &
+  Plugin & {
+    readonly Label: typeof Label;
+    readonly Value: typeof Value;
+    readonly getRenderDetail: Partial<ExtractPropTypes<ReturnType<typeof getRenderDetail>>>;
+    readonly renderGridSearchFormGroup: Partial<
+      ExtractPropTypes<ReturnType<typeof renderGridSearchFormGroup>>
+    >;
+  };

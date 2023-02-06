@@ -1,3 +1,14 @@
+export declare const spinProps: {
+    spinning: import("vue-types").VueTypeValidableDef<boolean> & {
+        default: boolean;
+    };
+    text: import("vue-types").VueTypeValidableDef<string> & {
+        default: string;
+    };
+    zIndex: import("vue-types").VueTypeValidableDef<number> & {
+        default: number;
+    };
+};
 declare const _default: import("vue").DefineComponent<{
     spinning: import("vue-types").VueTypeValidableDef<boolean> & {
         default: boolean;

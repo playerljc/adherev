@@ -1,3 +1,11 @@
+export declare const fontSizeSettingProps: {
+    min: import("vue-types").VueTypeValidableDef<number>;
+    max: import("vue-types").VueTypeValidableDef<number>;
+    step: import("vue-types").VueTypeValidableDef<number>;
+    defaultValue: import("vue-types").VueTypeValidableDef<number> & {
+        default: number;
+    };
+};
 declare const _default: import("vue").DefineComponent<{
     min: import("vue-types").VueTypeValidableDef<number>;
     max: import("vue-types").VueTypeValidableDef<number>;

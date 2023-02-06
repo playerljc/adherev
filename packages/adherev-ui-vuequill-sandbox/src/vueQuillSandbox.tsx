@@ -18,7 +18,7 @@ import ReactQuill from '@baifendian/adhere-ui-reactquill-sandbox';
 
 const selectorPrefix = 'adherev-ui-vuequillsandbox';
 
-const propsDefine = {
+export const propsDefine = {
   wrapClassName: string().def(''),
   wrapStyle: object<CSSProperties>().def({}),
   quillStyle: string().def(''),
@@ -110,7 +110,6 @@ const VueQuillSandbox = defineComponent({
     return () => (
       <div
         class={classNames(selectorPrefix, props.wrapClassName || '')}
-        // @ts-ignore
         ref={rootRef}
         style={props.wrapStyle || {}}
       />

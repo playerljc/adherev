@@ -19,18 +19,14 @@
 // Intl.getLocal = getLocal;
 //
 // export default Intl;
+import { App, Plugin } from 'vue';
+
 import IntlV, { extend } from './intl';
 
-IntlV.install = function (Vue: any) {
+IntlV.install = function (app: App) {
   // 扩展Vue对象
-  extend(Vue);
+  extend(app);
+  app.component(IntlV.name, IntlV);
 };
 
-IntlV.isUse = () => true;
-
-IntlV.use = (Vue) => {
-  Vue.use(IntlV);
-  // Vue.use(VueI18n);
-};
-
-export default IntlV;
+export default IntlV as typeof IntlV & Plugin;

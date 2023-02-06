@@ -32,7 +32,6 @@ export declare const cardProps: {
         info: string;
     }>;
 };
-export declare type CardProps = Partial<ExtractPropTypes<typeof cardProps>>;
 declare const _default: import("vue").DefineComponent<{
     headerClassName: import("vue-types").VueTypeValidableDef<string> & {
         default: string;

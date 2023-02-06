@@ -1,4 +1,42 @@
 import { CSSProperties, VNode } from 'vue';
+export declare const swiperOutProps: {
+    beforeClassName: import("vue-types").VueTypeValidableDef<string> & {
+        default: string;
+    };
+    beforeStyle: import("vue-types").VueTypeValidableDef<CSSProperties> & {
+        default: () => CSSProperties;
+    };
+    afterClassName: import("vue-types").VueTypeValidableDef<string> & {
+        default: string;
+    };
+    afterStyle: import("vue-types").VueTypeValidableDef<CSSProperties> & {
+        default: () => CSSProperties;
+    };
+    contentClassName: import("vue-types").VueTypeValidableDef<string> & {
+        default: string;
+    };
+    contentStyle: import("vue-types").VueTypeValidableDef<CSSProperties> & {
+        default: () => CSSProperties;
+    };
+    beforeShow: import("vue-types").VueTypeValidableDef<boolean> & {
+        default: boolean;
+    };
+    afterShow: import("vue-types").VueTypeValidableDef<boolean> & {
+        default: boolean;
+    };
+    direction: import("vue-types").VueTypeValidableDef<string> & {
+        default: string;
+    };
+    duration: import("vue-types").VueTypeValidableDef<number> & {
+        default: number;
+    };
+    renderBefore: import("vue-types").VueTypeValidableDef<VNode<import("vue").RendererNode, import("vue").RendererElement, {
+        [key: string]: any;
+    }>>;
+    renderAfter: import("vue-types").VueTypeValidableDef<VNode<import("vue").RendererNode, import("vue").RendererElement, {
+        [key: string]: any;
+    }>>;
+};
 declare const _default: import("vue").DefineComponent<{
     beforeClassName: import("vue-types").VueTypeValidableDef<string> & {
         default: string;

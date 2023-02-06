@@ -1,6 +1,4 @@
-import { ExtractPropTypes } from 'vue';
-import { CodePanelProps } from './CodePanel';
-import { CodeTabPanelProps } from './CodeTabPanel';
+import { CodePanelProps, CodeTabPanelProps } from './types';
 declare enum codeType {
     CodePanel = "CodePanel",
     CodeTabPanel = "CodeTabPanel"
@@ -9,11 +7,11 @@ declare type ConfigItem = (CodePanelProps | CodeTabPanelProps) & {
     type: codeType;
     title: string;
 };
-declare const playGroundMulitProps: {
+export declare const playGroundMulitProps: {
     defaultConfig: import("vue-types").VueTypeValidableDef<ConfigItem[]> & {
         default: () => ConfigItem[];
     };
-    cardProps: import("vue-types").VueTypeValidableDef<Partial<ExtractPropTypes<{
+    cardProps: import("vue-types").VueTypeValidableDef<Partial<import("vue").ExtractPropTypes<{
         headerClassName: import("vue-types").VueTypeValidableDef<string> & {
             default: string;
         };
@@ -46,7 +44,7 @@ declare const playGroundMulitProps: {
             info: string;
         }>;
     }>>> & {
-        default: () => Partial<ExtractPropTypes<{
+        default: () => Partial<import("vue").ExtractPropTypes<{
             headerClassName: import("vue-types").VueTypeValidableDef<string> & {
                 default: string;
             };
@@ -88,12 +86,11 @@ declare const playGroundMulitProps: {
     };
     getClipboardText: import("vue-types").VueTypeValidableDef<(e?: any) => Promise<string>>;
 };
-export declare type PlayGroundMulitProps = Partial<ExtractPropTypes<typeof playGroundMulitProps>>;
 declare const _default: import("vue").DefineComponent<{
     defaultConfig: import("vue-types").VueTypeValidableDef<ConfigItem[]> & {
         default: () => ConfigItem[];
     };
-    cardProps: import("vue-types").VueTypeValidableDef<Partial<ExtractPropTypes<{
+    cardProps: import("vue-types").VueTypeValidableDef<Partial<import("vue").ExtractPropTypes<{
         headerClassName: import("vue-types").VueTypeValidableDef<string> & {
             default: string;
         };
@@ -126,7 +123,7 @@ declare const _default: import("vue").DefineComponent<{
             info: string;
         }>;
     }>>> & {
-        default: () => Partial<ExtractPropTypes<{
+        default: () => Partial<import("vue").ExtractPropTypes<{
             headerClassName: import("vue-types").VueTypeValidableDef<string> & {
                 default: string;
             };
@@ -167,11 +164,11 @@ declare const _default: import("vue").DefineComponent<{
         default: boolean;
     };
     getClipboardText: import("vue-types").VueTypeValidableDef<(e?: any) => Promise<string>>;
-}, () => JSX.Element, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {}, string, import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<ExtractPropTypes<{
+}, () => JSX.Element, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {}, string, import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<import("vue").ExtractPropTypes<{
     defaultConfig: import("vue-types").VueTypeValidableDef<ConfigItem[]> & {
         default: () => ConfigItem[];
     };
-    cardProps: import("vue-types").VueTypeValidableDef<Partial<ExtractPropTypes<{
+    cardProps: import("vue-types").VueTypeValidableDef<Partial<import("vue").ExtractPropTypes<{
         headerClassName: import("vue-types").VueTypeValidableDef<string> & {
             default: string;
         };
@@ -204,7 +201,7 @@ declare const _default: import("vue").DefineComponent<{
             info: string;
         }>;
     }>>> & {
-        default: () => Partial<ExtractPropTypes<{
+        default: () => Partial<import("vue").ExtractPropTypes<{
             headerClassName: import("vue-types").VueTypeValidableDef<string> & {
                 default: string;
             };
@@ -246,7 +243,8 @@ declare const _default: import("vue").DefineComponent<{
     };
     getClipboardText: import("vue-types").VueTypeValidableDef<(e?: any) => Promise<string>>;
 }>>, {
-    cardProps: Partial<ExtractPropTypes<{
+    defaultConfig: ConfigItem[];
+    cardProps: Partial<import("vue").ExtractPropTypes<{
         headerClassName: import("vue-types").VueTypeValidableDef<string> & {
             default: string;
         };
@@ -281,6 +279,5 @@ declare const _default: import("vue").DefineComponent<{
     }>>;
     isActive: boolean;
     defaultExpand: boolean;
-    defaultConfig: ConfigItem[];
 }>;
 export default _default;

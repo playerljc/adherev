@@ -4,7 +4,7 @@ import { object, string } from 'vue-types';
 
 const selectorPrefix = 'adherev-ui-stickuplayout';
 
-const stickupLayoutProps = {
+export const stickupLayoutProps = {
   fixedClassName: string().def(''),
   fixedStyle: object<CSSProperties>().def({}),
   innerClassName: string().def(''),

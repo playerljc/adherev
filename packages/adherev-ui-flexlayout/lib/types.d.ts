@@ -1,126 +1,17 @@
-import type { CSSProperties, VNode } from 'vue';
-export interface ContextType {
-    direction: 'vertical' | 'horizontal';
-}
-export interface FlexLayoutProps {
-    direction?: 'vertical' | 'horizontal';
-}
-export interface FixedProps {
-    fit?: boolean;
-}
-export interface AutoProps {
-    autoFixed?: boolean;
-    fit?: boolean;
-}
-export interface VerticalFlexLayoutProps {
-    topClassName?: string;
-    topStyle?: CSSProperties;
-    rightClassName?: string;
-    rightStyle?: CSSProperties;
-    bottomClassName?: string;
-    bottomStyle?: CSSProperties;
-    leftClassName?: string;
-    leftStyle?: CSSProperties;
-    mainClassName?: string;
-    mainStyle?: CSSProperties;
-    mainAutoWrapClassName?: string;
-    mainAutoStyle?: CSSProperties;
-    mainWrapClassName?: string;
-    mainWrapStyle?: CSSProperties;
-    renderTop?: any;
-    renderRight?: any;
-    renderBottom?: any;
-    renderLeft?: any;
-    renderMain?: any;
-    topProps?: FixedProps;
-    rightProps?: FixedProps;
-    bottomProps?: FixedProps;
-    leftProps?: FixedProps;
-    mainProps?: AutoProps;
-    mainAutoWrapProps?: AutoProps;
-}
-export interface HorizontalFlexLayoutProps {
-    topClassName?: string;
-    topStyle?: CSSProperties;
-    rightClassName?: string;
-    rightStyle?: CSSProperties;
-    bottomClassName?: string;
-    bottomStyle?: CSSProperties;
-    leftClassName?: string;
-    leftStyle?: CSSProperties;
-    mainClassName?: string;
-    mainStyle?: CSSProperties;
-    mainAutoWrapClassName?: string;
-    mainAutoStyle?: CSSProperties;
-    mainWrapClassName?: string;
-    mainWrapStyle?: CSSProperties;
-    renderTop?: any;
-    renderRight?: any;
-    renderBottom?: any;
-    renderLeft?: any;
-    renderMain?: any;
-    topProps?: FixedProps;
-    rightProps?: FixedProps;
-    bottomProps?: FixedProps;
-    leftProps?: FixedProps;
-    mainProps?: AutoProps;
-    mainAutoWrapProps?: AutoProps;
-}
-export interface ToolBarLayoutProps {
-    topClassName?: string;
-    topStyle?: CSSProperties;
-    bottomClassName?: string;
-    bottomStyle?: CSSProperties;
-    mainClassName?: string;
-    mainStyle?: CSSProperties;
-    mainAutoWrapClassName?: string;
-    mainAutoStyle?: CSSProperties;
-    mainWrapClassName?: string;
-    mainWrapStyle?: CSSProperties;
-    topToolBarItems?: VNode[];
-    bottomToolBarItems?: VNode[];
-    topProps?: FixedProps;
-    bottomProps?: FixedProps;
-    mainProps?: AutoProps;
-    mainAutoWrapProps?: AutoProps;
-}
-export interface BackLayoutProps {
-    topClassName?: string;
-    topStyle?: CSSProperties;
-    bottomClassName?: string;
-    bottomStyle?: CSSProperties;
-    mainClassName?: string;
-    mainStyle?: CSSProperties;
-    mainAutoWrapClassName?: string;
-    mainAutoStyle?: CSSProperties;
-    mainWrapClassName?: string;
-    mainWrapStyle?: CSSProperties;
-    topToolBarItems?: VNode[];
-    topProps?: FixedProps;
-    bottomProps?: FixedProps;
-    mainProps?: AutoProps;
-    mainAutoWrapProps?: AutoProps;
-    backPath?: string;
-    enforceBackPath?: string;
-    isShowBack?: boolean;
-    history?: any;
-    backTitle?: string | VNode;
-}
-export interface ScrollLayoutProps {
-    scrollY?: boolean;
-}
-export interface ScrollLayoutContextType {
-    getEl: () => HTMLElement | null;
-}
-export interface IComponent {
-    isUse(): boolean;
-    use(Vue: any): void;
-    Fixed: any;
-    Auto: any;
-    HorizontalFlexLayout: any;
-    VerticalFlexLayout: any;
-    BackLayout: any;
-    ScrollLayout: any;
-    ToolBarLayout: any;
-    selectorPrefix: string;
-}
+import { ExtractPropTypes } from 'vue';
+import { autoProps } from './auto';
+import { backLayoutProps } from './backLayout';
+import { fixedProps } from './fixed';
+import { flexLayoutProps } from './flexlayout';
+import { horizontalFlexLayoutProps } from './horizontalFlexLayout';
+import { scrollLayoutProps } from './scrollLayout';
+import { toolBarLayoutProps } from './toolBarLayout';
+import { verticalFlexLayoutProps } from './verticalFlexLayout';
+export declare type AutoProps = Partial<ExtractPropTypes<typeof autoProps>>;
+export declare type BackLayoutProps = Partial<ExtractPropTypes<typeof backLayoutProps>>;
+export declare type FixedProps = Partial<ExtractPropTypes<typeof fixedProps>>;
+export declare type FlexLayoutProps = Partial<ExtractPropTypes<typeof flexLayoutProps>>;
+export declare type HorizontalFlexLayoutProps = Partial<ExtractPropTypes<typeof horizontalFlexLayoutProps>>;
+export declare type ScrollLayoutProps = Partial<ExtractPropTypes<typeof scrollLayoutProps>>;
+export declare type ToolBarLayoutProps = Partial<ExtractPropTypes<typeof toolBarLayoutProps>>;
+export declare type VerticalFlexLayoutProps = Partial<ExtractPropTypes<typeof verticalFlexLayoutProps>>;

@@ -1,5 +1,4 @@
 import classNames from 'classnames';
-import { MouseEvent } from 'react';
 import { defineComponent, inject, onMounted, onUpdated, ref } from 'vue';
 import { number, oneOfType, string } from 'vue-types';
 
@@ -32,7 +31,7 @@ function toPoint(percent: string) {
   return Number.parseInt(str) / 100;
 }
 
-const splitLayoutProps = {
+export const splitLayoutProps = {
   maxSize: oneOfType([string(), number()]).def('100%'),
   minSize: oneOfType([string(), number()]).def(10),
 };

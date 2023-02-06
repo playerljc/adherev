@@ -3,7 +3,7 @@ import { number } from 'vue-types';
 
 const selectorPrefix = 'adherev-ui-sliderscale';
 
-const sloderScaleProps = {
+export const sliderScaleProps = {
   min: number().def(0),
   max: number().def(100),
   step: number().def(1),
@@ -13,7 +13,7 @@ const sloderScaleProps = {
 
 export default defineComponent({
   name: 'adv-sliderscale',
-  props: sloderScaleProps,
+  props: sliderScaleProps,
   emits: ['change'],
   setup(props, { emit }) {
     const rangeEl = ref<HTMLInputElement>();

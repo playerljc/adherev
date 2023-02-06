@@ -8,13 +8,11 @@ import Card from './Card';
 import CodePanel, { codePanelProps } from './CodePanel';
 import PlayGroundBase, { playGroundBaseProps } from './PlayGroundBase';
 
-const playGroundProps = {
+export const playGroundProps = {
   ...codePanelProps,
   ...playGroundBaseProps,
   codeText: string().def(''),
 };
-
-export type PlayGroundProps = Partial<ExtractPropTypes<typeof playGroundProps>>;
 
 export default defineComponent({
   name: 'adv-playground',

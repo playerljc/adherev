@@ -1,3 +1,5 @@
+import { App, Plugin } from 'vue';
+
 import ConditionalRender from '@baifendian/adherev-ui-conditionalrender';
 import BfdUtil from '@baifendian/adherev-util';
 
@@ -10,21 +12,28 @@ import {
 } from './permission';
 
 const {
-  _util: { withInstall, withVue },
+  _util: { withVue },
 } = BfdUtil;
 
-const Component = withInstall(Permission);
-
-export default {
-  Permission: Component,
+const PermissionWrap = {
+  Permission,
   PermissionFun,
   setPermission,
   checkPermission,
   getPermission,
-  isUse: () => true,
-  use: (Vue: { use: (arg0: any) => void }) => {
-    ConditionalRender.isUse() && ConditionalRender.use(Vue);
-    Vue.use(Component);
-    withVue(Vue, 'Permission', Component);
+  install: function (app: App) {
+    app.component(ConditionalRender.name, ConditionalRender);
+    app.component(Permission.name, Permission);
+    withVue(app, 'Permission', Permission);
+
+    return app;
   },
 };
+
+export default PermissionWrap as typeof PermissionWrap &
+  Plugin & {
+    readonly Permission: typeof Permission;
+    readonly PermissionFun: typeof PermissionFun;
+    readonly checkPermission: typeof checkPermission;
+    readonly getPermission: typeof getPermission;
+  };

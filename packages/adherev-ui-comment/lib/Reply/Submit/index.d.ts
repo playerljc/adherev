@@ -1,4 +1,16 @@
 export declare const LOCAL_MAP: Map<string, any>;
+export declare const submitProps: {
+    local: import("vue-types").VueTypeValidableDef<string> & {
+        default: string;
+    };
+    emojiPickerProps: import("vue-types").VueTypeValidableDef<{
+        [key: string]: any;
+    }> & {
+        default: () => {
+            [key: string]: any;
+        };
+    };
+};
 declare const _default: import("vue").DefineComponent<{
     local: import("vue-types").VueTypeValidableDef<string> & {
         default: string;

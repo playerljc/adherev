@@ -1,4 +1,1 @@
-export interface IComponent {
-  isUse?(): boolean;
-  use?(Vue: any): void;
-}
+export * from '@baifendian/adhere-ui-historyback/es/historyback';

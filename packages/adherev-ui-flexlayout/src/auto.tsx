@@ -6,14 +6,14 @@ import { selectorPrefix as parentSelectorPrefix } from './flexlayout';
 
 const selectorPrefix = `${parentSelectorPrefix}-auto`;
 
-const props = {
+export const autoProps = {
   autoFixed: bool().def(true),
   fit: bool().def(true),
 };
 
 export default defineComponent({
   name: 'adv-flexlayout-auto',
-  props,
+  props: autoProps,
   setup(props, { slots, expose }) {
     const root = ref<HTMLDivElement | null>(null);
 

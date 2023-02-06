@@ -292,19 +292,19 @@ export default {
      * @return {{permission}}
      */
     onSetAllPermission() {
-      const { el, vm } = MessageDialog.Modal({
+      const { el, rootRef, close } = MessageDialog.Modal({
         config: {
           title: '设置所有权限',
           width: 200,
-          footer: (h) => [
+          footer: () => [
             <Button
               type="primary"
               onClick={() => {
-                const val = vm.$refs.rootRef.allPermission.toString().trim();
+                const val = rootRef.value.allPermission.toString().trim();
                 if (val) {
                   this.allPermission = val.split(',');
                 }
-                MessageDialog.close(el);
+                close(el);
               }}
             >
               确定
@@ -332,7 +332,7 @@ export default {
     onSetCurPermission() {
       const { curPermission } = this;
 
-      const { el, vm } = MessageDialog.Modal({
+      const { el, rootRef, close } = MessageDialog.Modal({
         config: {
           title: '设置当前权限',
           width: 200,
@@ -340,11 +340,11 @@ export default {
             <Button
               type="primary"
               onClick={() => {
-                const val = vm.$refs.rootRef.curPermission.trim();
+                const val = rootRef.value.curPermission.trim();
                 if (val) {
                   this.curPermission = val.split(',');
                 }
-                MessageDialog.close(el);
+                close(el);
               }}
             >
               确定

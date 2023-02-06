@@ -8,8 +8,6 @@ export const codePanelProps = {
   codeText: string().def(''),
 };
 
-export type CodePanelProps = Partial<ExtractPropTypes<typeof codePanelProps>>;
-
 export default defineComponent({
   name: 'adv-playground-code-panel',
   props: codePanelProps,

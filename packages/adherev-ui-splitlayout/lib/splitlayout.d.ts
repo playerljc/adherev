@@ -1,3 +1,11 @@
+export declare const splitLayoutProps: {
+    maxSize: import("vue-types").VueTypeDef<string | number> & {
+        default: string | number;
+    };
+    minSize: import("vue-types").VueTypeDef<string | number> & {
+        default: string | number;
+    };
+};
 declare const _default: import("vue").DefineComponent<{
     maxSize: import("vue-types").VueTypeDef<string | number> & {
         default: string | number;

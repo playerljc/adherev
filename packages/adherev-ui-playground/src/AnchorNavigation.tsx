@@ -19,8 +19,6 @@ export const anchorNavigationProps = {
   scrollEl: object<HTMLElement>(),
 };
 
-export type AnchorNavigationProps = Partial<ExtractPropTypes<typeof anchorNavigationProps>>;
-
 type anchorDimensionIndexItemType = {
   anchor: string;
   range: {

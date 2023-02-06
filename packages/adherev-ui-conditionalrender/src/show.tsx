@@ -3,13 +3,13 @@ import { bool } from 'vue-types';
 
 import { deal } from './util';
 
-const props = {
+export const showProps = {
   conditional: bool().def(true),
 };
 
 export default defineComponent({
   name: 'adv-conditionalrender-show',
-  props,
+  props: showProps,
   slots: ['default', 'noMatch'],
   setup(props, { slots }) {
     return () => {

@@ -454,9 +454,8 @@ const MessageDialogFactory: IMessageDialogFactory = {
       .use(Col)
       .use(Input)
       // .use(i18n)
-      .use(formCreate);
-
-    Intl.use(app);
+      .use(formCreate)
+      .use(Intl);
 
     // globalConfig?.useComponents?.forEach?.((com) => {
     //   if ('use' in com && Util.isFunction?.(com.use)) {

@@ -98,8 +98,8 @@ declare const _default: import("vue").DefineComponent<{
     headerStyle: CSSProperties;
     bodyClassName: string;
     bodyStyle: CSSProperties;
-    border: boolean;
     defaultCollapse: boolean;
+    border: boolean;
     scrollY: boolean;
     fixedHeaderScrollBody: boolean;
 }>;

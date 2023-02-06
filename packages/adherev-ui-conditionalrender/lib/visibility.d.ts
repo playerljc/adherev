@@ -1,3 +1,8 @@
+export declare const visibilityProps: {
+    conditional: import("vue-types").VueTypeValidableDef<boolean> & {
+        default: boolean;
+    };
+};
 /**
  * adv-conditionalrender-visibility
  */

@@ -1,3 +1,8 @@
+export declare const showProps: {
+    conditional: import("vue-types").VueTypeValidableDef<boolean> & {
+        default: boolean;
+    };
+};
 declare const _default: import("vue").DefineComponent<{
     conditional: import("vue-types").VueTypeValidableDef<boolean> & {
         default: boolean;

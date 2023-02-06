@@ -1,24 +1,24 @@
+import { App, Plugin } from 'vue';
+
 import BfdUtil from '@baifendian/adherev-util';
 
 import Space, { SpaceGroup } from './space';
-import { IComponent } from './types';
 
 const {
-  _util: { withInstall, withVue },
+  _util: { withVue },
 } = BfdUtil;
 
-const Component: IComponent = withInstall(Space);
+Space.Group = SpaceGroup;
 
-Component.isUse = () => true;
+Space.install = function (app: App) {
+  app.component(SpaceGroup.name, SpaceGroup);
+  app.component(Space.name, Space);
+  withVue(app, 'Space', Space);
 
-Component.use = (Vue: any) => {
-  Vue.use(Component);
-
-  Vue.use(Component.Group);
-
-  withVue(Vue, 'Space', Component);
+  return app;
 };
 
-Component.Group = withInstall(SpaceGroup);
-
-export default Component;
+export default Space as typeof Space &
+  Plugin & {
+    readonly Group: typeof SpaceGroup;
+  };

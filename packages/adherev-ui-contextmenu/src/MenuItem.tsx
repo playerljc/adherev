@@ -11,12 +11,12 @@ import { IData } from './types';
 
 const selectorPrefix = 'adherev-ui-contextmenu-menuitem';
 
-const props = {
+export const menuItemProps = {
   data: object<IData>().def({}),
 };
 
 export default defineComponent({
-  props,
+  props: menuItemProps,
   setup(props) {
     const context = inject('context') as ContextReturnType;
     const root = inject('root') as any;

@@ -21,8 +21,6 @@ export const codeTabPanelProps = {
   config: array<ICodeTabPanelItemProps>().def([]),
 };
 
-export type CodeTabPanelProps = Partial<ExtractPropTypes<typeof codeTabPanelProps>>;
-
 export default defineComponent({
   name: 'adv-playground-code-tab-panel',
   emits: ['change'],

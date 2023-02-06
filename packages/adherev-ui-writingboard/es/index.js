@@ -1,2 +1,2 @@
-import Util from"@baifendian/adherev-util";import WritingBoard from"./writingboard";var _a=Util._util,withInstall=_a.withInstall,withVue=_a.withVue,Component=withInstall(WritingBoard);Component.isUse=function(){return!0},Component.use=function(t){t.use(Component),withVue(t,"WritingBoard",Component)};export default Component;
+import Util from"@baifendian/adherev-util";import WritingBoard from"./writingboard";var withVue=Util._util.withVue;WritingBoard.install=function(i){return i.component(WritingBoard.name,WritingBoard),withVue(i,"WritingBoard",WritingBoard),i};export default WritingBoard;
 //# sourceMappingURL=index.js.map

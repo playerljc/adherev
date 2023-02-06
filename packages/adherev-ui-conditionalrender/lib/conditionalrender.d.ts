@@ -1,3 +1,8 @@
+export declare const conditionalRenderProps: {
+    conditional: import("vue-types").VueTypeValidableDef<boolean> & {
+        default: boolean;
+    };
+};
 /**
  * ConditionalRender
  */

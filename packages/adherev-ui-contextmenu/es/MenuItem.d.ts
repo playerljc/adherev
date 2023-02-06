@@ -1,4 +1,9 @@
 import { IData } from './types';
+export declare const menuItemProps: {
+    data: import("vue-types").VueTypeValidableDef<IData> & {
+        default: () => IData;
+    };
+};
 declare const _default: import("vue").DefineComponent<{
     data: import("vue-types").VueTypeValidableDef<IData> & {
         default: () => IData;

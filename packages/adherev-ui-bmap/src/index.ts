@@ -1,29 +1,29 @@
+import { App, Plugin } from 'vue';
+
 import OriginBMap from '@baifendian/adhere-ui-bmap';
 import Util from '@baifendian/adherev-util';
 
-import BMapComponent from './bmap';
+import BMap from './bmap';
 
 const {
-  _util: { withInstall, withVue },
+  _util: { withVue },
 } = Util;
 
-withInstall(BMapComponent);
-
-const Wrap = (ak) =>
+BMap.init = (ak) =>
   new Promise((resolve) => {
     OriginBMap(ak).then((modules) =>
       resolve({
         ...(modules as any),
-        BMap: BMapComponent,
+        BMap,
       }),
     );
   });
 
-Wrap.isUse = () => true;
+BMap.install = function (app: App) {
+  app.component(BMap.name, BMap);
+  withVue(app, 'BMap', BMap);
 
-Wrap.use = (Vue) => {
-  Vue.use(BMapComponent);
-  withVue(Vue, 'BMap', BMapComponent);
+  return app;
 };
 
-export default Wrap;
+export default BMap as typeof BMap & Plugin;

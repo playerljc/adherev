@@ -1,18 +1,18 @@
+import { App, Plugin } from 'vue';
+
 import BfdUtil from '@baifendian/adherev-util';
 
 import SwipeOut from './swipeout';
 
 const {
-  _util: { withInstall, withVue },
+  _util: { withVue },
 } = BfdUtil;
 
-const Component = withInstall(SwipeOut);
+SwipeOut.install = function (app: App) {
+  app.component(SwipeOut.name, SwipeOut);
+  withVue(app, 'SwipeOut', SwipeOut);
 
-Component.isUse = () => true;
-
-Component.use = (Vue: any) => {
-  Vue.use(Component);
-  withVue(Vue, 'SwipeOut', Component);
+  return app;
 };
 
-export default Component;
+export default SwipeOut as typeof SwipeOut & Plugin;

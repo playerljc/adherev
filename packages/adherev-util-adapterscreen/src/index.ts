@@ -1,3 +1,5 @@
+import { App, Plugin } from 'vue';
+
 import AdapterScreen from '@baifendian/adhere-util-adapterscreen';
 import BfdUtil from '@baifendian/adherev-util';
 
@@ -5,11 +7,13 @@ const {
   _util: { withVue },
 } = BfdUtil;
 
-const Component: any = AdapterScreen;
+const Wrap = {
+  ...AdapterScreen,
+  install: (app: App) => {
+    withVue(app, 'AdapterScreen', AdapterScreen);
 
-Component.isUse = () => true;
-Component.use = (Vue) => {
-  withVue(Vue, 'AdapterScreen', Component);
+    return app;
+  },
 };
 
-export default Component;
+export default Wrap as typeof Wrap & Plugin;

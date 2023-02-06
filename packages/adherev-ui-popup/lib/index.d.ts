@@ -1,2 +1,2 @@
-import Popup from './popup';
-export default Popup;
+declare const _default: any;
+export default _default;

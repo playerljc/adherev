@@ -8,8 +8,8 @@ enum directionType {
   horizontal = 'horizontal',
 }
 
-const splitProps = {
-  direction: string<directionType>().def(directionType.vertical),
+export const splitProps = {
+  direction: string().def(directionType.vertical),
   size: number().def(20),
 };
 
@@ -41,8 +41,8 @@ const Split = defineComponent({
   },
 });
 
-const splitGroupProps = {
-  direction: string<directionType>().def(directionType.vertical),
+export const splitGroupProps = {
+  direction: string().def(directionType.vertical),
   size: number().def(20),
   className: string().def(''),
   style: object<CSSProperties>().def({}),

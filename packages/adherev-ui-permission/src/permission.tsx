@@ -46,12 +46,14 @@ export const checkPermission = (
   return allPermission.indexOf(currentPermissions) !== -1;
 };
 
+export const permissionProps = {
+  allPermission: array<string>().def([]),
+  permissions: array<string | string[]>(),
+};
+
 export const Permission = defineComponent({
   name: 'adv-permission',
-  props: {
-    allPermission: array<string>().def([]),
-    permissions: array<string | string[]>(),
-  },
+  props: permissionProps,
   setup(props, { slots }) {
     return () =>
       checkPermission(props.allPermission, props.permissions)

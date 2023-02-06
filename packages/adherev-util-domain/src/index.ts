@@ -1,3 +1,5 @@
+import { App } from 'vue';
+
 import Domain from '@baifendian/adhere-util-domain';
 import BfdUtil from '@baifendian/adherev-util';
 
@@ -5,12 +7,14 @@ const {
   _util: { withVue },
 } = BfdUtil;
 
-const Component: any = Domain;
+// @ts-ignore
+const Wrap = {
+  ...Domain,
+  install: (app: App) => {
+    withVue(app, 'Domain', Domain);
 
-Component.isUse = () => true;
-
-Component.use = (Vue) => {
-  withVue(Vue, 'Domain', Component);
+    return app;
+  },
 };
 
-export default Component;
+export default Wrap;

@@ -1,4 +1,9 @@
 import { IntlProps } from './types';
+export declare const configProviderProps: {
+    intl: import("vue-types").VueTypeValidableDef<IntlProps> & {
+        default: () => IntlProps;
+    };
+};
 declare const ConfigProvider: import("vue").DefineComponent<{
     intl: import("vue-types").VueTypeValidableDef<IntlProps> & {
         default: () => IntlProps;

@@ -1,18 +1,18 @@
+import { App, Plugin } from 'vue';
+
 import BfdUtil from '@baifendian/adherev-util';
 
 import Surnames from './surnames';
 
 const {
-  _util: { withInstall, withVue },
+  _util: { withVue },
 } = BfdUtil;
 
-const Component = withInstall(Surnames);
+Surnames.install = function (app: App) {
+  app.component(Surnames.name, Surnames);
+  withVue(app, 'Surnames', Surnames);
 
-Component.isUse = () => true;
-
-Component.use = (Vue: any) => {
-  Vue.use(Component);
-  withVue(Vue, 'Surnames', Component);
+  return app;
 };
 
-export default Component;
+export default Surnames as typeof Surnames & Plugin;

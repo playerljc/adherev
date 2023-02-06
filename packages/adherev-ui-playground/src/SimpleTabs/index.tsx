@@ -3,7 +3,7 @@ import { string } from 'vue-types';
 
 const selectorPrefix = 'adherev-ui-playground-simple-tabs';
 
-const tabProps = {
+export const tabProps = {
   defaultActiveKey: string().def(''),
 };
 

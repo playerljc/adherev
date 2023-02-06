@@ -1,23 +1,25 @@
+import { App, Plugin } from 'vue';
+
 import Util from '@baifendian/adherev-util';
 
 import JdCategoryTabItem from './item';
 import JdCategoryTab from './jdcategorytab';
 
 const {
-  _util: { withInstall, withVue },
+  _util: { withVue },
 } = Util;
-
-withInstall(JdCategoryTab);
-withInstall(JdCategoryTabItem);
 
 JdCategoryTab.Item = JdCategoryTabItem;
 
-JdCategoryTab.isUse = () => true;
+JdCategoryTab.install = function (app: App) {
+  app.component(JdCategoryTabItem.name, JdCategoryTabItem);
+  app.component(JdCategoryTab.name, JdCategoryTab);
+  withVue(app, 'JdCategoryTab', JdCategoryTab);
 
-JdCategoryTab.use = (Vue: any) => {
-  Vue.use(JdCategoryTab);
-  Vue.use(JdCategoryTabItem);
-  withVue(Vue, 'JdCategoryTab', JdCategoryTab);
+  return app;
 };
 
-export default JdCategoryTab;
+export default JdCategoryTab as typeof JdCategoryTab &
+  Plugin & {
+    readonly Item: typeof JdCategoryTabItem;
+  };

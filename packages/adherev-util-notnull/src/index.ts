@@ -1,3 +1,5 @@
+import { App, Plugin } from 'vue';
+
 import NotNull from '@baifendian/adhere-util-notnull';
 import BfdUtil from '@baifendian/adherev-util';
 
@@ -5,12 +7,13 @@ const {
   _util: { withVue },
 } = BfdUtil;
 
-const Component: any = NotNull;
+const Wrap = {
+  ...NotNull,
+  install: (app: App) => {
+    withVue(app, 'NotNull', NotNull);
 
-Component.isUse = () => true;
-
-Component.use = (Vue) => {
-  withVue(Vue, 'NotNull', Component);
+    return app;
+  },
 };
 
-export default Component;
+export default Wrap as typeof Wrap & Plugin;

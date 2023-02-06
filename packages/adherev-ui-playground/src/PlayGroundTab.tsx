@@ -7,12 +7,10 @@ import Card from './Card';
 import CodeTabPanel, { codeTabPanelProps } from './CodeTabPanel';
 import PlayGroundBase, { playGroundBaseProps } from './PlayGroundBase';
 
-const playGroundTabProps = {
+export const playGroundTabProps = {
   ...playGroundBaseProps,
   ...codeTabPanelProps,
 };
-
-export type PlayGroundTabProps = Partial<ExtractPropTypes<typeof playGroundTabProps>>;
 
 export default defineComponent({
   name: 'adv-playground-tab',

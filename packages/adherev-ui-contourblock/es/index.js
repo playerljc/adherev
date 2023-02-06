@@ -1,2 +1,2 @@
-import Util from"@baifendian/adherev-util";import ContourBlock from"./contourblock";var _a=Util._util,withInstall=_a.withInstall,withVue=_a.withVue,Component=withInstall(ContourBlock);Component.isUse=function(){return!0},Component.use=function(o){o.use(Component),withVue(o,"ContourBlock",Component)};export default Component;
+import Util from"@baifendian/adherev-util";import ContourBlock from"./contourblock";var withVue=Util._util.withVue;ContourBlock.install=function(o){return o.component(ContourBlock.name,ContourBlock),withVue(o,"ContourBlock",ContourBlock),o};export default ContourBlock;
 //# sourceMappingURL=index.js.map

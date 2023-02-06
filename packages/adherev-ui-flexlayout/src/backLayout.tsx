@@ -9,7 +9,7 @@ import Intl from '@baifendian/adherev-util-intl';
 import ToolBarLayout from './toolBarLayout';
 import { AutoProps, FixedProps } from './types';
 
-const props = {
+export const backLayoutProps = {
   topClassName: string().def(''),
   topStyle: object<CSSProperties>().def({}),
   bottomClassName: string().def(''),
@@ -33,7 +33,7 @@ const props = {
 
 export default defineComponent({
   name: 'adv-flexlayout-back',
-  props,
+  props: backLayoutProps,
   setup(props, { slots }) {
     const router = useRouter();
 
@@ -51,6 +51,7 @@ export default defineComponent({
               if (props.enforceBackPath) {
                 router.replace(props.enforceBackPath);
               } else {
+                // @ts-ignore
                 HistoryBack(router, props.backPath);
               }
             }}

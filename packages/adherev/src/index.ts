@@ -1,3 +1,4 @@
+import {App} from 'vue';import AntdvFormItem from '@baifendian/adherev-ui-antdvformitem';
 import BackTopAnimation from '@baifendian/adherev-ui-backtopanimation';
 import CascadeCompared from '@baifendian/adherev-ui-cascadecompared';
 import Comment from '@baifendian/adherev-ui-comment';
@@ -40,6 +41,7 @@ import Surnames from '@baifendian/adherev-ui-surnames';
 import Suspense from '@baifendian/adherev-ui-suspense';
 import SwipeOut from '@baifendian/adherev-ui-swipeout';
 import TableGridLayout from '@baifendian/adherev-ui-tablegridlayout';
+import VueQuillSandBox from '@baifendian/adherev-ui-vuequill-sandbox';
 import WritingBoard from '@baifendian/adherev-ui-writingboard';
 import Util from '@baifendian/adherev-util';
 import AdapterScreen from '@baifendian/adherev-util-adapterscreen';
@@ -57,17 +59,23 @@ import Resource from '@baifendian/adherev-util-resource';
 import Validator from '@baifendian/adherev-util-validator';
 import WatchMemoized from '@baifendian/adherev-util-watchmemoized';
 
-export {
+export { 
+  AntdvFormItem,
   BackTopAnimation,
   CascadeCompared,
+  Comment,
   ConditionalRender,
+  ConfigProvider,
   DelConfirm,
   ImportantConfirm,
   ContextMenu,
+  ContourBlock,
+  DateDisplay,
   FlexLayout,
   FontSizeSetting,
   GlobalIndicator,
   HistoryBack,
+  Hooks,
   ImageLazy,
   JdCategoryTab,
   MessageDialog,
@@ -94,13 +102,9 @@ export {
   Surnames,
   Suspense,
   SwipeOut,
-  Comment,
-  ConfigProvider,
-  ContourBlock,
-  DateDisplay,
   TableGridLayout,
+  VueQuillSandBox,
   WritingBoard,
-  Hooks,
   Util,
   AdapterScreen,
   Browsersniff,
@@ -108,6 +112,7 @@ export {
   Dict,
   Domain,
   Emitter,
+  IframeIO,
   Intl,
   Mixins,
   NotNull,
@@ -115,184 +120,309 @@ export {
   Resource,
   Validator,
   WatchMemoized,
-  IframeIO,
 };
 
 export default {
-  install: function (Vue) {
-    if ((BackTopAnimation as any)?.isUse()) {
-      (BackTopAnimation as any)?.use(Vue);
-    }
-    if ((CascadeCompared as any)?.isUse()) {
-      (CascadeCompared as any)?.use(Vue);
-    }
-    if ((ConditionalRender as any)?.isUse()) {
-      (ConditionalRender as any)?.use(Vue);
-    }
-    if ((DelConfirm as any)?.isUse()) {
-      (DelConfirm as any)?.use(Vue);
-    }
-    if ((ImportantConfirm as any)?.isUse()) {
-      (ImportantConfirm as any)?.use(Vue);
-    }
-    if ((ContextMenu as any)?.isUse()) {
-      (ContextMenu as any)?.use(Vue);
-    }
-    if ((FlexLayout as any)?.isUse()) {
-      (FlexLayout as any)?.use(Vue);
-    }
-    if ((FontSizeSetting as any)?.isUse()) {
-      (FontSizeSetting as any)?.use(Vue);
-    }
-    if ((GlobalIndicator as any)?.isUse()) {
-      (GlobalIndicator as any)?.use(Vue);
-    }
-    if ((HistoryBack as any)?.isUse()) {
-      (HistoryBack as any)?.use(Vue);
-    }
-    if ((ImageLazy as any)?.isUse()) {
-      (ImageLazy as any)?.use(Vue);
-    }
-    if ((JdCategoryTab as any)?.isUse()) {
-      (JdCategoryTab as any)?.use(Vue);
-    }
-    if ((MessageDialog as any)?.isUse()) {
-      (MessageDialog as any)?.use(Vue);
-    }
-    if ((Notification as any)?.isUse()) {
-      (Notification as any)?.use(Vue);
-    }
-    if ((OLMap as any)?.isUse()) {
-      (OLMap as any)?.use(Vue);
-    }
-    if ((Permission as any)?.isUse()) {
-      (Permission as any)?.use(Vue);
-    }
-    if ((PlayGround as any)?.isUse()) {
-      (PlayGround as any)?.use(Vue);
-    }
-    if ((PolygonSelection as any)?.isUse()) {
-      (PolygonSelection as any)?.use(Vue);
-    }
-    if ((Popup as any)?.isUse()) {
-      (Popup as any)?.use(Vue);
-    }
-    if ((ErrorPrompt as any)?.isUse()) {
-      (ErrorPrompt as any)?.use(Vue);
-    }
-    if ((SuccessPrompt as any)?.isUse()) {
-      (SuccessPrompt as any)?.use(Vue);
-    }
-    if ((WarnPrompt as any)?.isUse()) {
-      (WarnPrompt as any)?.use(Vue);
-    }
-    if ((PullRefresh as any)?.isUse()) {
-      (PullRefresh as any)?.use(Vue);
-    }
-    if ((Revolving as any)?.isUse()) {
-      (Revolving as any)?.use(Vue);
-    }
-    if ((ScrollLoad as any)?.isUse()) {
-      (ScrollLoad as any)?.use(Vue);
-    }
-    if ((SearchTable as any)?.isUse()) {
-      (SearchTable as any)?.use(Vue);
-    }
-    if ((SlideLayout as any)?.isUse()) {
-      (SlideLayout as any)?.use(Vue);
-    }
-    if ((SliderScale as any)?.isUse()) {
-      (SliderScale as any)?.use(Vue);
-    }
-    if ((Space as any)?.isUse()) {
-      (Space as any)?.use(Vue);
-    }
-    if ((Spin as any)?.isUse()) {
-      (Spin as any)?.use(Vue);
-    }
-    if ((Split as any)?.isUse()) {
-      (Split as any)?.use(Vue);
-    }
-    if ((SplitLayout as any)?.isUse()) {
-      (SplitLayout as any)?.use(Vue);
-    }
-    if ((StickupLayout as any)?.isUse()) {
-      (StickupLayout as any)?.use(Vue);
-    }
-    if ((Surnames as any)?.isUse()) {
-      (Surnames as any)?.use(Vue);
-    }
-    if ((Suspense as any)?.isUse()) {
-      (Suspense as any)?.use(Vue);
-    }
-    if ((SwipeOut as any)?.isUse()) {
-      (SwipeOut as any)?.use(Vue);
-    }
-    if ((Comment as any)?.isUse()) {
-      (Comment as any)?.use(Vue);
-    }
-    if ((ConfigProvider as any)?.isUse()) {
-      (ConfigProvider as any)?.use(Vue);
-    }
-    if ((ContourBlock as any)?.isUse()) {
-      (ContourBlock as any)?.use(Vue);
-    }
-    if ((DateDisplay as any)?.isUse()) {
-      (DateDisplay as any)?.use(Vue);
-    }
-    if ((TableGridLayout as any)?.isUse()) {
-      (TableGridLayout as any)?.use(Vue);
-    }
-    if ((WritingBoard as any)?.isUse()) {
-      (WritingBoard as any)?.use(Vue);
-    }
-    if ((Hooks as any)?.isUse()) {
-      (Hooks as any)?.use(Vue);
-    }
-    if ((Util as any)?.isUse()) {
-      (Util as any)?.use(Vue);
-    }
-    if ((AdapterScreen as any)?.isUse()) {
-      (AdapterScreen as any)?.use(Vue);
-    }
-    if ((Browsersniff as any)?.isUse()) {
-      (Browsersniff as any)?.use(Vue);
-    }
-    if ((Ajax as any)?.isUse()) {
-      (Ajax as any)?.use(Vue);
-    }
-    if ((Dict as any)?.isUse()) {
-      (Dict as any)?.use(Vue);
-    }
-    if ((Domain as any)?.isUse()) {
-      (Domain as any)?.use(Vue);
-    }
-    if ((Emitter as any)?.isUse()) {
-      (Emitter as any)?.use(Vue);
-    }
-    if ((Intl as any)?.isUse()) {
-      (Intl as any)?.use(Vue);
-    }
-    if ((Mixins as any)?.isUse()) {
-      (Mixins as any)?.use(Vue);
-    }
-    if ((NotNull as any)?.isUse()) {
-      (NotNull as any)?.use(Vue);
-    }
-    if ((Preferences as any)?.isUse()) {
-      (Preferences as any)?.use(Vue);
-    }
-    if ((Resource as any)?.isUse()) {
-      (Resource as any)?.use(Vue);
-    }
-    if ((Validator as any)?.isUse()) {
-      (Validator as any)?.use(Vue);
-    }
-    if ((WatchMemoized as any)?.isUse()) {
-      (WatchMemoized as any)?.use(Vue);
-    }
-    if ((IframeIO as any)?.isUse()) {
-      (IframeIO as any)?.use(Vue);
-    }
-  },
+	install:function (app:App){
+	if(
+
+(AntdvFormItem as any)?.install()){ 
+
+app?.use?.(AntdvFormItem); }
+		if(
+
+(BackTopAnimation as any)?.install()){ 
+
+app?.use?.(BackTopAnimation); }
+		if(
+
+(CascadeCompared as any)?.install()){ 
+
+app?.use?.(CascadeCompared); }
+		if(
+
+(Comment as any)?.install()){ 
+
+app?.use?.(Comment); }
+		if(
+
+(ConditionalRender as any)?.install()){ 
+
+app?.use?.(ConditionalRender); }
+		if(
+
+(ConfigProvider as any)?.install()){ 
+
+app?.use?.(ConfigProvider); }
+		if(
+
+(DelConfirm as any)?.install()){ 
+
+app?.use?.(DelConfirm); }
+		if(
+
+(ImportantConfirm as any)?.install()){ 
+
+app?.use?.(ImportantConfirm); }
+		if(
+
+(ContextMenu as any)?.install()){ 
+
+app?.use?.(ContextMenu); }
+		if(
+
+(ContourBlock as any)?.install()){ 
+
+app?.use?.(ContourBlock); }
+		if(
+
+(DateDisplay as any)?.install()){ 
+
+app?.use?.(DateDisplay); }
+		if(
+
+(FlexLayout as any)?.install()){ 
+
+app?.use?.(FlexLayout); }
+		if(
+
+(FontSizeSetting as any)?.install()){ 
+
+app?.use?.(FontSizeSetting); }
+		if(
+
+(GlobalIndicator as any)?.install()){ 
+
+app?.use?.(GlobalIndicator); }
+		if(
+
+(HistoryBack as any)?.install()){ 
+
+app?.use?.(HistoryBack); }
+		if(
+
+(Hooks as any)?.install()){ 
+
+app?.use?.(Hooks); }
+		if(
+
+(ImageLazy as any)?.install()){ 
+
+app?.use?.(ImageLazy); }
+		if(
+
+(JdCategoryTab as any)?.install()){ 
+
+app?.use?.(JdCategoryTab); }
+		if(
+
+(MessageDialog as any)?.install()){ 
+
+app?.use?.(MessageDialog); }
+		if(
+
+(Notification as any)?.install()){ 
+
+app?.use?.(Notification); }
+		if(
+
+(OLMap as any)?.install()){ 
+
+app?.use?.(OLMap); }
+		if(
+
+(Permission as any)?.install()){ 
+
+app?.use?.(Permission); }
+		if(
+
+(PlayGround as any)?.install()){ 
+
+app?.use?.(PlayGround); }
+		if(
+
+(PolygonSelection as any)?.install()){ 
+
+app?.use?.(PolygonSelection); }
+		if(
+
+(Popup as any)?.install()){ 
+
+app?.use?.(Popup); }
+		if(
+
+(ErrorPrompt as any)?.install()){ 
+
+app?.use?.(ErrorPrompt); }
+		if(
+
+(SuccessPrompt as any)?.install()){ 
+
+app?.use?.(SuccessPrompt); }
+		if(
+
+(WarnPrompt as any)?.install()){ 
+
+app?.use?.(WarnPrompt); }
+		if(
+
+(PullRefresh as any)?.install()){ 
+
+app?.use?.(PullRefresh); }
+		if(
+
+(Revolving as any)?.install()){ 
+
+app?.use?.(Revolving); }
+		if(
+
+(ScrollLoad as any)?.install()){ 
+
+app?.use?.(ScrollLoad); }
+		if(
+
+(SearchTable as any)?.install()){ 
+
+app?.use?.(SearchTable); }
+		if(
+
+(SlideLayout as any)?.install()){ 
+
+app?.use?.(SlideLayout); }
+		if(
+
+(SliderScale as any)?.install()){ 
+
+app?.use?.(SliderScale); }
+		if(
+
+(Space as any)?.install()){ 
+
+app?.use?.(Space); }
+		if(
+
+(Spin as any)?.install()){ 
+
+app?.use?.(Spin); }
+		if(
+
+(Split as any)?.install()){ 
+
+app?.use?.(Split); }
+		if(
+
+(SplitLayout as any)?.install()){ 
+
+app?.use?.(SplitLayout); }
+		if(
+
+(StickupLayout as any)?.install()){ 
+
+app?.use?.(StickupLayout); }
+		if(
+
+(Surnames as any)?.install()){ 
+
+app?.use?.(Surnames); }
+		if(
+
+(Suspense as any)?.install()){ 
+
+app?.use?.(Suspense); }
+		if(
+
+(SwipeOut as any)?.install()){ 
+
+app?.use?.(SwipeOut); }
+		if(
+
+(TableGridLayout as any)?.install()){ 
+
+app?.use?.(TableGridLayout); }
+		if(
+
+(VueQuillSandBox as any)?.install()){ 
+
+app?.use?.(VueQuillSandBox); }
+		if(
+
+(WritingBoard as any)?.install()){ 
+
+app?.use?.(WritingBoard); }
+		if(
+
+(Util as any)?.install()){ 
+
+app?.use?.(Util); }
+		if(
+
+(AdapterScreen as any)?.install()){ 
+
+app?.use?.(AdapterScreen); }
+		if(
+
+(Browsersniff as any)?.install()){ 
+
+app?.use?.(Browsersniff); }
+		if(
+
+(Ajax as any)?.install()){ 
+
+app?.use?.(Ajax); }
+		if(
+
+(Dict as any)?.install()){ 
+
+app?.use?.(Dict); }
+		if(
+
+(Domain as any)?.install()){ 
+
+app?.use?.(Domain); }
+		if(
+
+(Emitter as any)?.install()){ 
+
+app?.use?.(Emitter); }
+		if(
+
+(IframeIO as any)?.install()){ 
+
+app?.use?.(IframeIO); }
+		if(
+
+(Intl as any)?.install()){ 
+
+app?.use?.(Intl); }
+		if(
+
+(Mixins as any)?.install()){ 
+
+app?.use?.(Mixins); }
+		if(
+
+(NotNull as any)?.install()){ 
+
+app?.use?.(NotNull); }
+		if(
+
+(Preferences as any)?.install()){ 
+
+app?.use?.(Preferences); }
+		if(
+
+(Resource as any)?.install()){ 
+
+app?.use?.(Resource); }
+		if(
+
+(Validator as any)?.install()){ 
+
+app?.use?.(Validator); }
+		if(
+
+(WatchMemoized as any)?.install()){ 
+
+app?.use?.(WatchMemoized); }
+		},
 };

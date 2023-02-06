@@ -1,5 +1,16 @@
 import { CSSProperties } from 'vue';
 import { IData } from './types';
+export declare const subMenuProps: {
+    data: import("vue-types").VueTypeValidableDef<IData[]> & {
+        default: () => IData[];
+    };
+    className: import("vue-types").VueTypeValidableDef<string> & {
+        default: string;
+    };
+    style: import("vue-types").VueTypeValidableDef<CSSProperties> & {
+        default: () => CSSProperties;
+    };
+};
 declare const _default: import("vue").DefineComponent<{
     data: import("vue-types").VueTypeValidableDef<IData[]> & {
         default: () => IData[];

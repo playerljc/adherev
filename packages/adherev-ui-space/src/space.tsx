@@ -8,8 +8,8 @@ enum directionType {
   horizontal = 'horizontal',
 }
 
-const spaceProps = {
-  direction: string<directionType>().def(directionType.vertical),
+export const spaceProps = {
+  direction: string().def(directionType.vertical),
   size: number().def(20),
 };
 
@@ -40,8 +40,8 @@ const Space = defineComponent({
   },
 });
 
-const spaceGroupProps = {
-  direction: string<directionType>().def(directionType.vertical),
+export const spaceGroupProps = {
+  direction: string().def(directionType.vertical),
   size: number().def(20),
   className: string().def(''),
   style: object<CSSProperties>().def({}),

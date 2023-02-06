@@ -6,7 +6,7 @@ import { slider } from './slidelayout';
 
 const selectorPrefix = 'adherev-ui-slidelayout-overlay';
 
-const overlayProps = {
+export const overlayProps = {
   ...slideProps,
 };
 

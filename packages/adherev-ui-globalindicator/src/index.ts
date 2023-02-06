@@ -1,3 +1,5 @@
+import { App, Plugin } from 'vue';
+
 import Util from '@baifendian/adherev-util';
 
 import GlobalIndicator from './globalindicator';
@@ -6,10 +8,10 @@ const {
   _util: { withVue },
 } = Util;
 
-GlobalIndicator.isUse = () => true;
+GlobalIndicator.install = function (app: App) {
+  withVue(app, 'GlobalIndicator', GlobalIndicator);
 
-GlobalIndicator.use = (Vue: any) => {
-  withVue(Vue, 'GlobalIndicator', GlobalIndicator);
+  return app;
 };
 
-export default GlobalIndicator;
+export default GlobalIndicator as typeof GlobalIndicator & Plugin;

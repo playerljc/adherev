@@ -1,4 +1,5 @@
-import { CSSProperties, VNode } from 'vue';
+import { CSSProperties, ExtractPropTypes, VNode } from 'vue';
+import { cascadeComparedProps } from './cascadecompared';
 export interface IColumnConfig {
     dataIndex: string;
     isFixed: boolean;
@@ -25,31 +26,4 @@ export interface IMasterItem extends ITableConfig {
     autoInnerClassName: string;
     autoInnerStyle: CSSProperties;
 }
-/**
- * ICascadeComparedProps
- * @interface ICascadeComparedProps
- */
-export interface ICascadeComparedProps {
-    className?: string;
-    indicatorClassName?: string;
-    indicatorStyle?: string;
-    indicatorFixedWrapClassName?: string;
-    indicatorFixedWrapStyle?: string;
-    indicatorAutoWrapClassName?: string;
-    indicatorAutoWrapStyle?: string;
-    masterClassName?: string;
-    masterStyle?: string;
-    masterInnerClassName?: string;
-    masterInnerStyle?: string;
-    masterStickFixedClassName?: string;
-    masterStickFixedStyle?: string;
-    masterStickInnerClassName?: string;
-    masterStickInnerStyle?: string;
-    indicator: IIndicatorTableConfig;
-    master: IMasterItem[];
-    defaultCellWidth: number | string;
-}
-export interface IComponent {
-    isUse(): boolean;
-    use(Vue: any): void;
-}
+export declare type CascadeComparedProps = Partial<ExtractPropTypes<typeof cascadeComparedProps>>;

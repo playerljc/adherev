@@ -1,35 +1,53 @@
 import { CSSProperties } from 'vue';
-declare enum directionType {
-    vertical = "vertical",
-    horizontal = "horizontal"
-}
+export declare const splitProps: {
+    direction: import("vue-types").VueTypeValidableDef<string> & {
+        default: string;
+    };
+    size: import("vue-types").VueTypeValidableDef<number> & {
+        default: number;
+    };
+};
 /**
  * Split
  */
 declare const Split: import("vue").DefineComponent<{
-    direction: import("vue-types").VueTypeValidableDef<directionType> & {
-        default: directionType;
+    direction: import("vue-types").VueTypeValidableDef<string> & {
+        default: string;
     };
     size: import("vue-types").VueTypeValidableDef<number> & {
         default: number;
     };
 }, () => JSX.Element, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {}, string, import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<import("vue").ExtractPropTypes<{
-    direction: import("vue-types").VueTypeValidableDef<directionType> & {
-        default: directionType;
+    direction: import("vue-types").VueTypeValidableDef<string> & {
+        default: string;
     };
     size: import("vue-types").VueTypeValidableDef<number> & {
         default: number;
     };
 }>>, {
-    direction: directionType;
+    direction: string;
     size: number;
 }>;
+export declare const splitGroupProps: {
+    direction: import("vue-types").VueTypeValidableDef<string> & {
+        default: string;
+    };
+    size: import("vue-types").VueTypeValidableDef<number> & {
+        default: number;
+    };
+    className: import("vue-types").VueTypeValidableDef<string> & {
+        default: string;
+    };
+    style: import("vue-types").VueTypeValidableDef<CSSProperties> & {
+        default: () => CSSProperties;
+    };
+};
 /**
  * SplitGroup
  */
 export declare const SplitGroup: import("vue").DefineComponent<{
-    direction: import("vue-types").VueTypeValidableDef<directionType> & {
-        default: directionType;
+    direction: import("vue-types").VueTypeValidableDef<string> & {
+        default: string;
     };
     size: import("vue-types").VueTypeValidableDef<number> & {
         default: number;
@@ -41,8 +59,8 @@ export declare const SplitGroup: import("vue").DefineComponent<{
         default: () => CSSProperties;
     };
 }, () => JSX.Element | undefined, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {}, string, import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<import("vue").ExtractPropTypes<{
-    direction: import("vue-types").VueTypeValidableDef<directionType> & {
-        default: directionType;
+    direction: import("vue-types").VueTypeValidableDef<string> & {
+        default: string;
     };
     size: import("vue-types").VueTypeValidableDef<number> & {
         default: number;
@@ -54,7 +72,7 @@ export declare const SplitGroup: import("vue").DefineComponent<{
         default: () => CSSProperties;
     };
 }>>, {
-    direction: directionType;
+    direction: string;
     size: number;
     className: string;
     style: CSSProperties;

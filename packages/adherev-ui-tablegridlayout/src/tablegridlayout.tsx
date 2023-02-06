@@ -495,4 +495,11 @@ const getRenderDetail = (
   return result;
 };
 
-export { TableGridLayout, renderGridSearchFormGroup, getRenderDetail, Label, Value };
+export {
+  TableGridLayout,
+  TableGridLayoutProps,
+  renderGridSearchFormGroup,
+  getRenderDetail,
+  Label,
+  Value,
+};

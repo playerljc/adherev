@@ -4,13 +4,13 @@ import { string } from 'vue-types';
 
 const selectorPrefix = 'adherev-ui-jdcategorytab';
 
-const props = {
+export const jdCategoryTabItemProps = {
   id: string().def(''),
 };
 
 export default defineComponent({
   name: 'adv-jdcategorytab-item',
-  props,
+  props: jdCategoryTabItemProps,
   setup(props, { slots }) {
     const activeKey = inject('activeKey');
 

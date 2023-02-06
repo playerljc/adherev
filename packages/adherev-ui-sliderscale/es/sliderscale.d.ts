@@ -1,3 +1,20 @@
+export declare const sliderScaleProps: {
+    min: import("vue-types").VueTypeValidableDef<number> & {
+        default: number;
+    };
+    max: import("vue-types").VueTypeValidableDef<number> & {
+        default: number;
+    };
+    step: import("vue-types").VueTypeValidableDef<number> & {
+        default: number;
+    };
+    value: import("vue-types").VueTypeValidableDef<number> & {
+        default: number;
+    };
+    interval: import("vue-types").VueTypeValidableDef<number> & {
+        default: number;
+    };
+};
 declare const _default: import("vue").DefineComponent<{
     min: import("vue-types").VueTypeValidableDef<number> & {
         default: number;

@@ -11,7 +11,7 @@ export type ContextReturnType = {
   el: HTMLElement;
 };
 
-const props = {
+export const contextMenuProps = {
   data: array<IData>().def([]),
   config: object<IConfig>().def(),
   el: object<HTMLElement>().def(),
@@ -23,7 +23,7 @@ const props = {
  * @classdesc ContextMenuComponent
  */
 const ContextMenuComponent = defineComponent({
-  props,
+  props: contextMenuProps,
   setup(props, { expose }) {
     const menuIns = ref<any>(null);
 

@@ -3,7 +3,7 @@ import { bool } from 'vue-types';
 
 import { deal } from './util';
 
-const props = {
+export const visibilityProps = {
   conditional: bool().def(true),
 };
 
@@ -12,7 +12,7 @@ const props = {
  */
 export default defineComponent({
   name: 'adv-conditionalrender-visibility',
-  props,
+  props: visibilityProps,
   slots: ['default', 'noMatch'],
   setup(props, { slots }) {
     return () => {

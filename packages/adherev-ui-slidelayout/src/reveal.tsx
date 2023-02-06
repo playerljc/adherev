@@ -7,7 +7,7 @@ import { slider } from './slidelayout';
 
 const selectorPrefix = 'adherev-ui-slidelayout-reveal';
 
-const revealProps = {
+export const revealProps = {
   ...slideProps,
   masterClassName: string().def(''),
   masterStyle: object<CSSProperties>().def({}),

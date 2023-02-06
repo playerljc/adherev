@@ -1,12 +1,5 @@
-export interface IProps {
-  spinning: boolean;
-  text: string;
-  zIndex: number;
-}
+import { ExtractPropTypes } from 'vue';
 
-export interface ISelf extends IProps {}
+import { spinProps } from './spin';
 
-export interface IComponent {
-  isUse(): boolean;
-  use(Vue: any): void;
-}
+export type SpinProps = Partial<ExtractPropTypes<typeof spinProps>>;
