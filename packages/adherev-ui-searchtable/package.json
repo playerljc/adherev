@@ -1,6 +1,6 @@
 {
   "name": "@baifendian/adherev-ui-searchtable",
-  "version": "1.0.15",
+  "version": "1.0.16",
   "description": "一种查询表格的通用模式(如果 UI 没有明确给出查询表格的 UI，就可以用这个默认模式)",
   "homepage": "https://gitee.com/playerljc/adherev",
   "bugs": {
@@ -30,7 +30,7 @@
   },
   "resolutions": {},
   "dependencies": {
-    "@baifendian/adherev-ui-antdvformitem": "^1.0.15",
+    "@baifendian/adherev-ui-antdvformitem": "^1.0.16",
     "@baifendian/adherev-ui-conditionalrender": "^1.0.14",
     "@baifendian/adherev-ui-css": "^1.0.14",
     "@baifendian/adherev-ui-flexlayout": "^1.0.15",
