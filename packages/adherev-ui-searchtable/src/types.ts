@@ -332,6 +332,7 @@ export interface ColumnEditableConfig {
   formItemProps?: any;
   // 组件的props定义
   props?: any;
+  listeners?: any;
   // 是否使用句柄来切换状态 view的时候有一个句柄点击后变成编辑状态，编辑的时候有2个句柄，save和cancel，如果设置为false，则关于句柄的事件将不会触发
   useTrigger?: boolean;
   // 渲染查看的句柄

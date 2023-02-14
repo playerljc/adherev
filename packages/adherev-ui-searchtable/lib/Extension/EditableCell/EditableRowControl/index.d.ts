@@ -8,6 +8,9 @@ declare const _default: {
         editorRowId: {
             type: StringConstructor;
         };
+        rowIndex: {
+            type: NumberConstructor;
+        };
         record: {
             type: PropType<{
                 [prop: string]: any;

@@ -591,7 +591,7 @@ const SearchTable: any = extend({
             let _res: ColumnTypeExt = _column;
 
             if ('$resizable' in _column && !!_column?.$resizable) {
-              _res = this.$data.$columnResizable.searchTableResizableColumnItem(
+              _res = this?.$data?.$columnResizable?.searchTableResizableColumnItem?.(
                 this,
                 index,
                 _column,
@@ -825,7 +825,7 @@ const SearchTable: any = extend({
                 sort: index,
               }));
             }}
-            onDisplayColumn={({column, checked}) => {
+            onDisplayColumn={({ column, checked }) => {
               this.columnSetting = (this.columnSetting || [])?.map((_column) => ({
                 ..._column,
                 display: _column.key === column.key ? checked : _column.display,

@@ -29,13 +29,16 @@ export default extend({
 
       return {
         ...superScopedSlots,
-        options: (val, record) => (
-          <EditableRowControl
-            record={record}
-            rowKey={this.getRowKey()}
-            editorRowId={this.editorRowId}
-          />
-        ),
+        options: (val, record, index) => {
+          return (
+            <EditableRowControl
+              record={record}
+              rowKey={this.getRowKey()}
+              editorRowId={this.editorRowId}
+              rowIndex={index}
+            />
+          );
+        },
       };
     },
     getColumns() {

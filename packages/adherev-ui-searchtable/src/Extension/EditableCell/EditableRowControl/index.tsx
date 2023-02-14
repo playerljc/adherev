@@ -13,6 +13,9 @@ export default {
     editorRowId: {
       type: String,
     },
+    rowIndex: {
+      type: Number,
+    },
     record: {
       type: Object as PropType<{ [prop: string]: any }>,
       default: () => ({}),
@@ -37,16 +40,16 @@ export default {
   inject: ['getFormIns', 'getContext'],
   methods: {
     renderDefaultEditorRow(h) {
-      return <a>{Intl.tv('编辑行')}</a>;
-      // return <a>编辑行</a>;
+      // return <a>{Intl.tv('编辑行')}</a>;
+      return <a>编辑行</a>;
     },
     renderDefaultCancel(h) {
-      return <a>{Intl.tv('取消')}</a>;
-      // return <a>取消</a>;
+      // return <a>{Intl.tv('取消')}</a>;
+      return <a>取消</a>;
     },
     renderDefaultSave(h) {
-      return <a>{Intl.tv('保存')}</a>;
-      // return <a>保存</a>;
+      // return <a>{Intl.tv('保存')}</a>;
+      return <a>保存</a>;
     },
     validateFieldsSuccess(values) {
       if (this.onSave) {
@@ -59,7 +62,9 @@ export default {
     updateEditorCellRowData(values) {
       const context = this.getContext?.()?.context;
 
-      context?.updateEditorCellRowData({ values, record: this.record })?.then(() => this.reset());
+      context
+        ?.updateEditorCellRowData({ values, record: this.record, rowIndex: this.rowIndex })
+        ?.then(() => this.reset());
     },
     updateRowEdit() {
       const context = this.getContext?.()?.context;

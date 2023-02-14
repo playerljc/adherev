@@ -89,6 +89,7 @@ export default extend({
           key: 'homeTown',
           align: 'center',
           width: 200,
+          $resizable: true,
           $search: {
             type: 'input',
             visible: true,

@@ -215,6 +215,7 @@ export interface ColumnEditableConfig {
     onBeforeCancel?: (params: ColumnParams) => Promise<void>;
     formItemProps?: any;
     props?: any;
+    listeners?: any;
     useTrigger?: boolean;
     renderToEditTrigger?: (params: ColumnParams) => VNode | string;
     renderSaveTrigger?: (params: ColumnParams) => VNode | string;

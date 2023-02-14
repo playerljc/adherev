@@ -2,8 +2,8 @@ import moment from 'moment';
 
 import Util from '@baifendian/adherev-util';
 
-import SearchEditableCellTable from './SearchEditableCellTable';
 import { ColumnTypeExt, RowConfig, RowEditableConfig } from '../types';
+import SearchEditableCellTable from './SearchEditableCellTable';
 
 const {
   _util: { extend },
@@ -95,23 +95,31 @@ export default (serviceName) =>
       updateEditorCellRowData({
         values,
         record,
+        rowIndex,
       }: {
         values: { [props: string]: any };
         record: { [props: string]: any };
+        rowIndex: number;
       }): Promise<void> {
         return new Promise((resolve) => {
+          debugger;
+
           const dataSource = this.getData() || [];
           const rowKey = this.getRowKey();
           const keys = Object.keys(values);
 
-          keys.forEach((dataIndex) => {
-            let value = values[dataIndex];
+          keys.forEach((valueDataIndex) => {
+            let value = values[valueDataIndex];
             if (value instanceof moment) {
               value = value.valueOf();
             }
 
             const recordItem = dataSource.find((t) => t[rowKey] === record[rowKey]);
             if (recordItem) {
+              const dataIndex = valueDataIndex.substring(
+                0,
+                valueDataIndex.lastIndexOf(`_${rowIndex}`),
+              );
               recordItem[dataIndex] = value;
             }
           });
