@@ -9,7 +9,10 @@ declare const _default: {
             intl: import("vue-types").VueTypeValidableDef<import("./types").IntlProps> & {
                 default: () => import("./types").IntlProps;
             };
-        }>> & import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, "intl">;
+        }>> & {
+            onIntlInit?: ((...args: any[]) => any) | undefined;
+            onPropsChange?: ((...args: any[]) => any) | undefined;
+        } & import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, "intl">;
         $attrs: {
             [x: string]: unknown;
         };
@@ -21,19 +24,22 @@ declare const _default: {
         }>;
         $root: import("vue").ComponentPublicInstance<{}, {}, {}, {}, {}, {}, {}, {}, false, import("vue").ComponentOptionsBase<any, any, any, any, any, any, any, any, any, {}, {}, string>, {}> | null;
         $parent: import("vue").ComponentPublicInstance<{}, {}, {}, {}, {}, {}, {}, {}, false, import("vue").ComponentOptionsBase<any, any, any, any, any, any, any, any, any, {}, {}, string>, {}> | null;
-        $emit: (event: string, ...args: any[]) => void;
+        $emit: (event: "intlInit" | "propsChange", ...args: any[]) => void;
         $el: any;
         $options: import("vue").ComponentOptionsBase<Readonly<import("vue").ExtractPropTypes<{
             intl: import("vue-types").VueTypeValidableDef<import("./types").IntlProps> & {
                 default: () => import("./types").IntlProps;
             };
-        }>>, () => import("vue").VNode<import("vue").RendererNode, import("vue").RendererElement, {
+        }>> & {
+            onIntlInit?: ((...args: any[]) => any) | undefined;
+            onPropsChange?: ((...args: any[]) => any) | undefined;
+        }, () => import("vue").VNode<import("vue").RendererNode, import("vue").RendererElement, {
             [key: string]: any;
         }>[] | null | undefined, unknown, {}, {}, {
             methods: {
                 _$forceUpdate(): void;
             };
-        }, import("vue").ComponentOptionsMixin, {}, string, {
+        }, import("vue").ComponentOptionsMixin, ("intlInit" | "propsChange")[], string, {
             intl: import("./types").IntlProps;
         }, {}, string> & {
             beforeCreate?: ((() => void) | (() => void)[]) | undefined;
@@ -59,7 +65,10 @@ declare const _default: {
         intl: import("vue-types").VueTypeValidableDef<import("./types").IntlProps> & {
             default: () => import("./types").IntlProps;
         };
-    }>> & import("vue").ShallowUnwrapRef<() => import("vue").VNode<import("vue").RendererNode, import("vue").RendererElement, {
+    }>> & {
+        onIntlInit?: ((...args: any[]) => any) | undefined;
+        onPropsChange?: ((...args: any[]) => any) | undefined;
+    } & import("vue").ShallowUnwrapRef<() => import("vue").VNode<import("vue").RendererNode, import("vue").RendererElement, {
         [key: string]: any;
     }>[] | null | undefined> & {
         [x: string]: never;
@@ -73,13 +82,16 @@ declare const _default: {
     intl: import("vue-types").VueTypeValidableDef<import("./types").IntlProps> & {
         default: () => import("./types").IntlProps;
     };
-}>>, () => import("vue").VNode<import("vue").RendererNode, import("vue").RendererElement, {
+}>> & {
+    onIntlInit?: ((...args: any[]) => any) | undefined;
+    onPropsChange?: ((...args: any[]) => any) | undefined;
+}, () => import("vue").VNode<import("vue").RendererNode, import("vue").RendererElement, {
     [key: string]: any;
 }>[] | null | undefined, unknown, {}, {}, {
     methods: {
         _$forceUpdate(): void;
     };
-}, import("vue").ComponentOptionsMixin, {}, string, {
+}, import("vue").ComponentOptionsMixin, ("intlInit" | "propsChange")[], "intlInit" | "propsChange", {
     intl: import("./types").IntlProps;
 }, {}, string> & import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps & Plugin;
 export default _default;

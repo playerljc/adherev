@@ -110,16 +110,15 @@ export default defineComponent({
     /**
      * renderSuspense
      * @description - renderSuspense
-     * @param h
      */
-    $renderSuspense(): JSX.Element {
+    $renderSuspense() {
       return <div class={selectorPrefix}>{this.$renderDispatch()}</div>;
     },
   },
   /**
    * render
    */
-  render(): JSX.Element {
+  render() {
     return this.$renderSuspense();
   },
 });

@@ -15,5 +15,15 @@ module.exports = {
       },
       'ant-design-vue',
     ]);
+    defaultBabelConfig.plugins.push([
+      'import',
+      {
+        libraryName: '@ant-design/icons-vue',
+        libraryDirectory: 'es/icons',
+        camel2DashComponentName: false,
+        style: false,
+      },
+      '@ant-design/icons-vue',
+    ]);
   },
 };

@@ -58,7 +58,6 @@ export default defineComponent({
                 <>
                   <tr key={`${index}`} class={`${selectorPrefix}-item`}>
                     <td valign="top" class={`${selectorPrefix}-item-name`}>
-                      {/*@ts-ignore*/}
                       <ConditionalRender conditional={!!modifier}>
                         <span class={`${selectorPrefix}-modifier`}>{modifier || 'public'} - </span>
                       </ConditionalRender>
@@ -75,7 +74,6 @@ export default defineComponent({
                       <dl>
                         <dt class={`${selectorPrefix}-`}>{Intl.tv('参数说明')}：</dt>
                         <dd>
-                          {/*@ts-ignore*/}
                           <ConditionalRender conditional={!!params && params.length !== 0}>
                             <ul class={`${selectorPrefix}-level1`}>
                               {params.map((param, index) => (
@@ -135,7 +133,7 @@ export default defineComponent({
                       </dl>
                     </td>
                   </tr>
-                  {/*@ts-ignore*/}
+
                   <ConditionalRender conditional={index !== props.data.length - 1}>
                     <div class={`${selectorPrefix}-dividing`} />
                   </ConditionalRender>

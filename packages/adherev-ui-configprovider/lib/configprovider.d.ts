@@ -14,11 +14,14 @@ declare const ConfigProvider: import("vue").DefineComponent<{
     methods: {
         _$forceUpdate(): void;
     };
-}, import("vue").ComponentOptionsMixin, {}, string, import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<import("vue").ExtractPropTypes<{
+}, import("vue").ComponentOptionsMixin, ("intlInit" | "propsChange")[], "intlInit" | "propsChange", import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<import("vue").ExtractPropTypes<{
     intl: import("vue-types").VueTypeValidableDef<IntlProps> & {
         default: () => IntlProps;
     };
-}>>, {
+}>> & {
+    onIntlInit?: ((...args: any[]) => any) | undefined;
+    onPropsChange?: ((...args: any[]) => any) | undefined;
+}, {
     intl: IntlProps;
 }>;
 export default ConfigProvider;

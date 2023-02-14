@@ -2,7 +2,7 @@ import { Button, Table } from 'ant-design-vue';
 import { TableProps } from 'ant-design-vue/es/table';
 import classNames from 'classnames';
 import cloneDeep from 'lodash.clonedeep';
-import { CSSProperties, VNode, h } from 'vue';
+import { CSSProperties, VNode } from 'vue';
 import { bool, object, string } from 'vue-types';
 
 import ConditionalRender from '@baifendian/adherev-ui-conditionalrender';
@@ -12,10 +12,6 @@ import Util from '@baifendian/adherev-util';
 import Intl from '@baifendian/adherev-util-intl';
 import Mixins from '@baifendian/adherev-util-mixins';
 
-import ColumnResizable, {
-  SearchTableResizableObserver,
-  SearchTableResizableTitle,
-} from './Extension/ColumnResizable';
 import ColumnSetting from './Extension/ColumnSetting';
 import TableBody from './Extension/TableComponents/TableBody';
 import TableCell from './Extension/TableComponents/TableCell';
@@ -101,7 +97,7 @@ const SearchTable: any = extend({
     scrollY: number;
     columnSetting: any[];
     tableDensity: TableDensity;
-    $columnResizable: ColumnResizable;
+    // $columnResizable: ColumnResizable;
     $columnObserver: any;
     $bodyConfigReducers: BodyConfigReducer[];
     $rowConfigReducers: RowConfigReducer[];
@@ -121,7 +117,7 @@ const SearchTable: any = extend({
       // 表格密度设置
       tableDensity: TableDensity.DEFAULT,
       // 列拖动对象
-      $columnResizable: new ColumnResizable(),
+      // $columnResizable: new ColumnResizable(),
       // 列属性监控对象
       $columnObserver: null,
       // bodyConfigReducers
@@ -147,12 +143,7 @@ const SearchTable: any = extend({
   computed: {
     // 自定义表格部分
     components() {
-      const columns = this.getTableColumns();
-
       return {
-        header: {
-          cell: SearchTableResizableTitle(columns),
-        },
         body: {
           wrapper: TableBody,
           row: TableRow,
@@ -183,7 +174,7 @@ const SearchTable: any = extend({
   updatedEx(prevState) {
     if (!this.$refs.tableWrapRef) return;
 
-    this.searchTableResizableEffectLayout();
+    // this.searchTableResizableEffectLayout();
     this.fixedHeaderAutoTableEffectLayout(prevState);
   },
   watchEffect() {
@@ -205,16 +196,16 @@ const SearchTable: any = extend({
         context: this,
       };
     },
-    /**
-     * searchTableResizableEffectLayout
-     * @protected
-     */
-    searchTableResizableEffectLayout() {
-      // 监控header的属性变化(colgroup)
-      if (!this.$data.$columnObserver) {
-        this.$data.$columnObserver = SearchTableResizableObserver(this);
-      }
-    },
+    // /**
+    //  * searchTableResizableEffectLayout
+    //  * @protected
+    //  */
+    // searchTableResizableEffectLayout() {
+    //   // 监控header的属性变化(colgroup)
+    //   if (!this.$data.$columnObserver) {
+    //     this.$data.$columnObserver = SearchTableResizableObserver(this);
+    //   }
+    // },
     /**
      * fixedHeaderAutoTableEffectLayout
      * @param prevState
@@ -320,6 +311,36 @@ const SearchTable: any = extend({
       });
     },
     /**
+     * onResizeColumn
+     * @description 列拖动的时候触发
+     * @param w
+     * @param col
+     */
+    onResizeColumn(w, col) {
+      this.columnSetting = [...this.columnSetting].map((t) => {
+        if (col.dataIndex === t.dataIndex) {
+          t.width = w;
+        } else {
+          if ('children' in t && Array.isArray(t.children) && t.children.length) {
+            const loop = (children) => {
+              for (let i = 0; i < children.length; i++) {
+                if (children[i].dataIndex === col.dataIndex) {
+                  children[i].width = w;
+                  break;
+                }
+
+                loop(children[i].children || []);
+              }
+            };
+
+            loop(t.children);
+          }
+        }
+
+        return t;
+      });
+    },
+    /**
      * onClear - 清除操作
      */
     onClear(): Promise<void> {
@@ -373,7 +394,6 @@ const SearchTable: any = extend({
         { value: column },
       ).value;
     },
-
     /**
      * onRowConfigReducers
      * @description 所有row的处理
@@ -394,7 +414,6 @@ const SearchTable: any = extend({
         { value: {} },
       ).value;
     },
-
     /**
      * onBodyConfigReducers
      * @description 所有body的处理
@@ -408,7 +427,6 @@ const SearchTable: any = extend({
         { value: {} },
       ).value;
     },
-
     /**
      * onBody
      */
@@ -418,7 +436,6 @@ const SearchTable: any = extend({
         bodyConfig: this.onBodyConfigReducers(),
       };
     },
-
     /**
      * onRow
      * @description 自定义bodyRow传递props参数
@@ -466,7 +483,6 @@ const SearchTable: any = extend({
         }),
       };
     },
-
     /**
      * getLimit
      * @description limit参数
@@ -533,46 +549,6 @@ const SearchTable: any = extend({
 
           return true;
         })
-        // $resizable 设置
-        .map((column: ColumnTypeExt, index) => {
-          const res = { value: column };
-
-          const loop = (_column) => {
-            let _res: ColumnTypeExt = _column;
-
-            if ('$resizable' in _column && !!_column?.$resizable) {
-              _res = this.$data.$columnResizable.searchTableResizableColumnItem(
-                this,
-                index,
-                _column,
-              );
-            }
-
-            // @ts-ignore
-            if (_res?.children && Array.isArray(_res.children)) {
-              // @ts-ignore
-              _res.children.forEach((_t, _index) => {
-                // @ts-ignore
-                _res.children[_index] = loop(_t);
-              });
-            }
-
-            return _res;
-          };
-
-          // @ts-ignore
-          res.value = loop(column);
-
-          // console.log('res.value', res.value);
-
-          return res.value;
-
-          // if ('resizable' in column && !!column.resizable) {
-          //   return this.$data.$columnResizable.searchTableResizableColumnItem(this, index, column);
-          // }
-
-          // return column;
-        })
         .map((column: ColumnTypeExt) => {
           return {
             ...column,
@@ -582,31 +558,29 @@ const SearchTable: any = extend({
               const _column = cloneDeep(column);
 
               return {
-                props: {
-                  // 行的索引
+                // 行的索引
+                rowIndex,
+                // 行的数据
+                record,
+                // 列的配置
+                column: this.onCellConfigReducers({
                   rowIndex,
-                  // 行的数据
+                  column: _column,
                   record,
-                  // 列的配置
-                  column: this.onCellConfigReducers({
-                    rowIndex,
-                    column: _column,
-                    record,
-                    columns,
-                  }),
-                  // 所有列的配置
                   columns,
-                },
+                }),
+                // 所有列的配置
+                columns,
               };
             },
           };
         });
 
       if (isShowNumber) {
-        const numberGeneratorRule =
-          this.getNumberGeneratorRule() || SearchTable.NUMBER_GENERATOR_RULE_ALONE;
+        // const numberGeneratorRule =
+        //   this.getNumberGeneratorRule() || SearchTable.NUMBER_GENERATOR_RULE_ALONE;
 
-        const { page = 0, limit = 10 } = this;
+        // const { page = 0, limit = 10 } = this;
 
         return [
           {
@@ -617,62 +591,82 @@ const SearchTable: any = extend({
               dataIndex: '_number',
               align: 'center',
               width: getTableNumberColumnWidth || 80,
-              customRender: (text, row, index) => {
-                // const numberGeneratorRule =
-                //   this.getNumberGeneratorRule() || NUMBER_GENERATOR_RULE_ALONE;
-                //
-                // const { page = 0, limit = 10 } = this;
-                return (
-                  // @ts-ignore
-                  <ConditionalRender
-                    conditional={numberGeneratorRule === NUMBER_GENERATOR_RULE_ALONE}
-                  >
-                    {{
-                      default: () =>
-                        this.renderTableNumberColumn(h, index + 1, {
-                          value: text,
-                          record: row,
-                          index,
-                        }),
-                      noMatch: () =>
-                        this.renderTableNumberColumn(h, (page - 1) * limit + (index + 1), {
-                          value: text,
-                          record: row,
-                          index,
-                        }),
-                    }}
-                  </ConditionalRender>
-                );
-              },
+              // customRender: (text, row, index) => {
+              //   return (
+              //     <ConditionalRender
+              //       conditional={numberGeneratorRule === NUMBER_GENERATOR_RULE_ALONE}
+              //     >
+              //       {{
+              //         default: () =>
+              //           this.renderTableNumberColumn(h, index + 1, {
+              //             value: text,
+              //             record: row,
+              //             index,
+              //           }),
+              //         noMatch: () =>
+              //           this.renderTableNumberColumn(h, (page - 1) * limit + (index + 1), {
+              //             value: text,
+              //             record: row,
+              //             index,
+              //           }),
+              //       }}
+              //     </ConditionalRender>
+              //   );
+              // },
             },
           },
-        ].concat(columns);
+          ...columns,
+        ];
       }
 
       return columns;
     },
-
     /**
      * getTableBodyComponentReducers
      */
     getTableBodyComponentReducers() {
       return this.$data.$tableBodyComponentReducers;
     },
-
     /**
      * getTableRowComponentReducers
      */
     getTableRowComponentReducers() {
       return this.$data.$tableRowComponentReducers;
     },
+    /**
+     * getColumnByDataIndex
+     * @description 通过dataIndex寻找column
+     * @param dataIndex
+     */
+    getColumnByDataIndex(dataIndex) {
+      const columns = this.getTableColumns();
 
+      function loop(_columns) {
+        let column;
+
+        for (let i = 0; i < _columns.length; i++) {
+          const item = _columns[i];
+
+          if (item.dataIndex === dataIndex) {
+            column = item;
+            break;
+          }
+
+          column = loop(item.children || []);
+          if (column) break;
+        }
+
+        return column;
+      }
+
+      return loop(columns);
+    },
     /**
      * getTableCellComponentReducers
      */
     getTableCellComponentReducers() {
       return this.$data.$tableCellComponentReducers;
     },
-
     /**
      * getSortColumnSetting
      */
@@ -694,7 +688,7 @@ const SearchTable: any = extend({
       const tableWrapRef: HTMLElement = this.$refs.tableWrapRef as HTMLElement;
 
       return tableWrapRef?.querySelector(
-        '.ant-table-wrapper > .ant-spin-nested-loading > .ant-spin-container > .ant-table > .ant-table-content > .ant-table-scroll > .ant-table-header',
+        '.ant-table-wrapper > .ant-spin-nested-loading > .ant-spin-container > .ant-table > .ant-table-container > .ant-table-header',
       );
     },
     /**
@@ -704,10 +698,44 @@ const SearchTable: any = extend({
       const tableWrapRef: HTMLElement = this.$refs.tableWrapRef as HTMLElement;
 
       return tableWrapRef?.querySelector(
-        '.ant-table-wrapper > .ant-spin-nested-loading > .ant-spin-container > .ant-table > .ant-table-content > .ant-table-scroll > .ant-table-body',
+        '.ant-table-wrapper > .ant-spin-nested-loading > .ant-spin-container > .ant-table > .ant-table-container > .ant-table-body',
       );
     },
+    /**
+     * getBodyCellScopedSlotsInner
+     * @param row
+     */
+    getBodyCellScopedSlotsInner(row) {
+      const { record, index, column } = row;
 
+      if (column.dataIndex === '_number') {
+        const { getNumberGeneratorRule } = this;
+
+        const numberGeneratorRule = getNumberGeneratorRule() || NUMBER_GENERATOR_RULE_ALONE;
+
+        const { page, limit } = this;
+
+        return (
+          <ConditionalRender conditional={numberGeneratorRule === NUMBER_GENERATOR_RULE_ALONE}>
+            {{
+              default: () => (
+                <span>{this.renderTableNumberColumn(index + 1, { record: row, index })}</span>
+              ),
+              noMatch: () => (
+                <span>
+                  {this.renderTableNumberColumn((page - 1) * limit + (index + 1), {
+                    record,
+                    index,
+                  })}
+                </span>
+              ),
+            }}
+          </ConditionalRender>
+        );
+      }
+
+      return this?.getBodyCellScopedSlots?.(row);
+    },
     /**
      * receiveDataMutation
      * @description 使用新的dataSource更新数据流
@@ -719,7 +747,8 @@ const SearchTable: any = extend({
       const data = this[`${serviceName}${this.getFetchListPropNameToFirstUpper()}`];
 
       this[`${serviceName}ReceiveMutation`]({
-        [fetchListPropName]: {
+        key: fetchListPropName,
+        value: {
           ...data,
           [this.getDataKey()]: dataSource,
         },
@@ -754,7 +783,6 @@ const SearchTable: any = extend({
 
       return (
         this.$slots?.columnSetting?.({ context: this.getContext?.()?.context, columns }) || (
-          // @ts-ignore
           <ColumnSetting
             columns={columns}
             onShowColumns={(checked) => {
@@ -793,7 +821,6 @@ const SearchTable: any = extend({
     renderTableDensitySetting(): VNode {
       return (
         this.$slots?.tableDensitySetting?.(this) || (
-          // @ts-ignore
           <TableDensitySetting
             density={this.tableDensity}
             onChange={(density) => {
@@ -840,7 +867,6 @@ const SearchTable: any = extend({
 
       if (isShowExpandSearch) {
         defaultItems.push(
-          // @ts-ignore
           <ConditionalRender conditional={this.expand}>
             {{
               default: () => (
@@ -885,7 +911,7 @@ const SearchTable: any = extend({
       }
 
       // 返回的是VNodes数组
-      const items = this.renderSearchFooterItems(h, defaultItems) || [...defaultItems];
+      const items = this.renderSearchFooterItems(defaultItems) || [...defaultItems];
 
       return (
         <div class={`${selectorPrefix}-searchfooterwrapper`}>
@@ -911,12 +937,12 @@ const SearchTable: any = extend({
       const { antdTableProps, fixedHeaderAutoTable } = this;
 
       // 作用域插槽
-      const scopedSlots = {
-        ...(this?.getScopedSlots?.() || {}),
-      };
+      // const scopedSlots = {
+      //   ...(this?.getScopedSlots?.() || {}),
+      // };
 
-      const tablePropsAttr = {};
-      const tableOnAttr = {};
+      const tablePropsAttr: TableProps = {};
+      const tableOnAttr: TableProps = {};
 
       const mergeProps = antdTableProps || {};
 
@@ -932,8 +958,8 @@ const SearchTable: any = extend({
 
       const columns = this.getTableColumns()
         .map((column, index) => ({
-          ...columnSetting[index],
           ...column,
+          ...columnSetting[index],
         }))
         .filter((column) => column.display);
 
@@ -944,9 +970,8 @@ const SearchTable: any = extend({
       });
 
       // Table的antdProps配置
-      const tableProps = {
-        // scopedSlots,
-        ['v-slots']: scopedSlots,
+      const tableProps: TableProps = {
+        // @ts-ignore
         ref: 'antdTableRef',
         rowKey: this.getRowKey(),
         dataSource: this.getData(),
@@ -955,8 +980,15 @@ const SearchTable: any = extend({
         pagination: this.getPagination(),
         rowSelection: this.getRowSelection(),
         components: this.components,
-        ...(tablePropsAttr || {}),
         change: this.onTableChange,
+        onResizeColumn: this.onResizeColumn,
+        // @ts-ignore
+        customRow: (record, rowIndex, column) => ({
+          record,
+          rowIndex,
+          column,
+        }),
+        ...(tablePropsAttr || {}),
         ...(tableOnAttr || {}),
       };
 
@@ -965,25 +997,33 @@ const SearchTable: any = extend({
         const { scrollY } = this;
 
         if (tablePropsAttr) {
-          // @ts-ignore
           if (tablePropsAttr.scroll) {
-            // @ts-ignore
-            tableProps.props.scroll.y = scrollY;
+            tableProps!.scroll!.y = scrollY;
           } else {
-            // @ts-ignore
-            tableProps.props.scroll = { y: scrollY };
+            if (scrollY !== 0) {
+              tableProps.scroll = { y: scrollY };
+            }
           }
         } else {
-          // @ts-ignore
-          tableProps.props.scroll = { y: scrollY };
+          if (scrollY !== 0) {
+            tableProps.scroll = { y: scrollY };
+          }
         }
       }
 
-      return <Table {...tableProps} />;
+      return (
+        <Table
+          v-slots={{
+            bodyCell: (row) => this.getBodyCellScopedSlotsInner(row),
+            customFilterDropdown: (...params) => this?.getCustomFilterDropdown?.(...params),
+            customFilterIcon: (...params) => this?.getCustomFilterIcon?.(...params),
+          }}
+          {...tableProps}
+        />
+      );
     },
     /**
      * renderInner
-     * @param h
      */
     renderInner() {
       if (this.$slots?.inner) {

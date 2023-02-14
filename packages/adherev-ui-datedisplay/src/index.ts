@@ -24,4 +24,6 @@ const Component = {
   },
 };
 
-export default Component as typeof Component & Plugin;
+export default Component as typeof Component & Plugin & {
+  [props: string]: any;
+}

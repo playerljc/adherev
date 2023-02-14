@@ -1,14 +1,3 @@
-import { CreateElement, VNode } from 'vue';
+import { VNode } from 'vue';
 
-export default {
-  methods: {
-    /**
-     * useRowDragSortCell
-     * @param h
-     * @param tdVNode
-     */
-    useRowDragSortCell(h: CreateElement, tdVNode: VNode): VNode | null {
-      return tdVNode;
-    },
-  },
-};
+export const useRowDragSortCell = (props?: any, _context?: any) => (tdVNode: VNode) => tdVNode;

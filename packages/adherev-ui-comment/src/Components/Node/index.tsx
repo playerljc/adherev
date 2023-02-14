@@ -152,7 +152,6 @@ export default defineComponent({
               key={record[props.keyProp]}
               id={record[props.keyProp]}
             >
-              {/*@ts-ignore*/}
               <ConditionalRender conditional={!slots?.default}>
                 {{
                   default: () => (
@@ -179,7 +178,6 @@ export default defineComponent({
             </li>
           ))}
 
-          {/*@ts-ignore*/}
           <ConditionalRender conditional={!loading.value && hasMore.value}>
             {{
               default: () => (
@@ -307,7 +305,6 @@ export default defineComponent({
         </FlexLayout.Fixed>
 
         <FlexLayout.Auto autoFixed fit>
-          {/*@ts-ignore*/}
           <FlexLayout direction="vertical">
             <FlexLayout.Fixed class={`${selectorPrefix}-title-row`} fit={false}>
               <div class={`${selectorPrefix}-title-row-author`}>
@@ -326,7 +323,6 @@ export default defineComponent({
               <ul class={`${selectorPrefix}-actions`}>{renderActions()}</ul>
             </FlexLayout.Fixed>
 
-            {/*@ts-ignore*/}
             <ConditionalRender conditional={showReply.value}>
               {{
                 default: () => (
@@ -353,12 +349,10 @@ export default defineComponent({
               }}
             </ConditionalRender>
 
-            {/*@ts-ignore*/}
             <ConditionalRender conditional={data.value?.[props.isMoreProp]}>
               {{
                 default: () => (
                   <>
-                    {/*@ts-ignore*/}
                     <ConditionalRender conditional={!loading.value}>
                       {renderMore()}
                     </ConditionalRender>
@@ -367,7 +361,6 @@ export default defineComponent({
                       {renderChildren()}
                     </ConditionalRender.Show>
 
-                    {/*@ts-ignore*/}
                     <ConditionalRender conditional={loading.value}>
                       {slots.renderLoading?.() || props.renderLoading}
                     </ConditionalRender>

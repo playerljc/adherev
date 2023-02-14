@@ -1,3 +1,4 @@
+import { Plugin } from 'vue';
 import Auto from './auto';
 import BackLayout from './backLayout';
 import Fixed from './fixed';

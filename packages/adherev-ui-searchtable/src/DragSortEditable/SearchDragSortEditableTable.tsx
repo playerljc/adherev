@@ -31,6 +31,18 @@ export default (serviceName) =>
       };
     },
     methods: {
+      /**
+       * fetchData
+       */
+      fetchData() {
+        return this.$fetchDataSearchEditableCellTable();
+      },
+      /**
+       * renderSearchTable
+       */
+      renderSearchTable() {
+        return this.$renderSearchTableSearchEditableCellTable();
+      },
       onTableRowComponentReducers(columns: ColumnTypeExt[]): string[] {
         const set = Array.from(
           new Set([...this.$data.$tableRowComponentReducers, 'useRowDragSortRow']),

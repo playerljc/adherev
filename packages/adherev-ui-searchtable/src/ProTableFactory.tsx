@@ -3,9 +3,10 @@ import merge from 'lodash.merge';
 import moment from 'moment/moment';
 import omit from 'omit.js';
 import qs from 'qs';
-import { VNode } from 'vue';
+import { VNode, isVNode } from 'vue';
 import { bool } from 'vue-types';
 
+import { FilterOutlined, SearchOutlined } from '@ant-design/icons-vue';
 import AntdvFormItem from '@baifendian/adherev-ui-antdvformitem';
 import ConditionalRender from '@baifendian/adherev-ui-conditionalrender';
 import TableGridLayout from '@baifendian/adherev-ui-tablegridlayout';
@@ -81,9 +82,9 @@ export default ({ className, superClass }, searchAndPaginParamsMemo) =>
           // 高级搜索
           advancedSearch: {
             // 外围样式
-            className: '',
+            // className: '',
             // 外围style
-            style: {},
+            // style: {},
             // 宽度
             width: '60%',
             // 是否有遮罩
@@ -311,19 +312,19 @@ export default ({ className, superClass }, searchAndPaginParamsMemo) =>
         return window.location.search;
       },
 
-      /**
-       * getFilterDropdown
-       */
-      getFilterDropdownSlot() {
-        return 'filterDropdown';
-      },
-
-      /**
-       * getFilterIcon
-       */
-      getFilterIconSlot() {
-        return 'filterIcon';
-      },
+      // /**
+      //  * getFilterDropdown
+      //  */
+      // getFilterDropdownSlot() {
+      //   return 'filterDropdown';
+      // },
+      //
+      // /**
+      //  * getFilterIcon
+      //  */
+      // getFilterIconSlot() {
+      //   return 'filterIcon';
+      // },
 
       /**
        * getParams
@@ -545,11 +546,12 @@ export default ({ className, superClass }, searchAndPaginParamsMemo) =>
                 ) {
                   column = {
                     ...column,
-                    scopedSlots: {
-                      ...(column.scopedSlots || {}),
-                      filterDropdown: this.getFilterDropdownSlot(),
-                      filterIcon: this.getFilterIconSlot(),
-                    },
+                    customFilterDropdown: true,
+                    // scopedSlots: {
+                    //   ...(column.scopedSlots || {}),
+                    //   filterDropdown: this.getFilterDropdownSlot(),
+                    //   filterIcon: this.getFilterIconSlot(),
+                    // },
                   };
                 }
 
@@ -608,14 +610,14 @@ export default ({ className, superClass }, searchAndPaginParamsMemo) =>
       /**
        * getGridSearchFormGroupParams
        */
-      getGridSearchFormGroupParams(h) {
+      getGridSearchFormGroupParams() {
         return [
           [
             {
               name: 'g1',
               columnCount: 3,
               colgroup: [, 'auto', , 'auto', , 'auto'],
-              data: this.getGridSearchFormGroupDataByColumnConfig(h),
+              data: this.getGridSearchFormGroupDataByColumnConfig(),
             },
           ],
           {},
@@ -702,61 +704,127 @@ export default ({ className, superClass }, searchAndPaginParamsMemo) =>
         return noContainSort;
       },
 
+      // /**
+      //  * getScopedSlots
+      //  * @description 获取ProSearchTable的ScopedSlots
+      //  */
+      // getScopedSlots({ record, index, column }) {
+      //   return {
+      //     // header查询
+      //     [this.getFilterDropdownSlot()]: ({ confirm, column }) => {
+      //       const searchConfig = column.$search;
+      //       const dataIndex = column.dataIndex;
+      //       const type = searchConfig.type;
+      //
+      //       return (
+      //         <div class={`${_selectorPrefix}-headersearchwrap`}>
+      //           <div class={`${_selectorPrefix}-headersearchwrap-main`}>
+      //             {this.renderGridSearchFormGroupDataItem(type, {
+      //               searchConfig,
+      //               column,
+      //               dataIndex,
+      //             })}
+      //           </div>
+      //
+      //           <div class={`${_selectorPrefix}-headersearchwrap-footer`}>
+      //             <Button
+      //               size="small"
+      //               onClick={() => {
+      //                 if (type === 'rangePicker') {
+      //                   if (searchConfig.startName) this[searchConfig.startName] = null;
+      //                   if (searchConfig.endName) this[searchConfig.endName] = null;
+      //                 } else {
+      //                   this[dataIndex] = undefined;
+      //                 }
+      //
+      //                 this.$nextTick(() => this.onSearch().then(() => confirm()));
+      //               }}
+      //             >
+      //               {Intl.tv('重置')}
+      //             </Button>
+      //
+      //             <Button
+      //               size="small"
+      //               type="primary"
+      //               onClick={() => this.onSearch().then(() => confirm())}
+      //             >
+      //               {Intl.tv('确定')}
+      //             </Button>
+      //           </div>
+      //         </div>
+      //       );
+      //     },
+      //     // header查询的图标
+      //     [this.getFilterIconSlot()]: () => {
+      //       return <SearchOutlined />;
+      //     },
+      //   };
+      // },
+
       /**
-       * getScopedSlots
-       * @description 获取ProSearchTable的ScopedSlots
+       * getCustomFilterDropdown
+       * @param params
        */
-      getScopedSlots() {
-        return {
-          // header查询
-          [this.getFilterDropdownSlot()]: ({ confirm, column }) => {
-            const searchConfig = column.$search;
-            const dataIndex = column.dataIndex;
-            const type = searchConfig.type;
+      getCustomFilterDropdown({ column, confirm }) {
+        const { $search, ...columnConfig } = column;
+        const searchConfig = this.assignSearchConfig($search, columnConfig);
+        const showColumnHeader = searchConfig.showColumnHeader;
 
-            return (
-              <div class={`${_selectorPrefix}-headersearchwrap`}>
-                <div class={`${_selectorPrefix}-headersearchwrap-main`}>
-                  {this.renderGridSearchFormGroupDataItem(type, {
-                    searchConfig,
-                    column,
-                    dataIndex,
-                  })}
-                </div>
+        if (!showColumnHeader) return;
 
-                <div class={`${_selectorPrefix}-headersearchwrap-footer`}>
-                  <Button
-                    size="small"
-                    onClick={() => {
-                      if (type === 'rangePicker') {
-                        if (searchConfig.startName) this[searchConfig.startName] = null;
-                        if (searchConfig.endName) this[searchConfig.endName] = null;
-                      } else {
-                        this[dataIndex] = undefined;
-                      }
+        const dataIndex = column.dataIndex;
+        const type = searchConfig.type;
 
-                      this.$nextTick(() => this.onSearch().then(() => confirm()));
-                    }}
-                  >
-                    {Intl.tv('重置')}
-                  </Button>
+        return (
+          <div class={`${_selectorPrefix}-headersearchwrap`}>
+            <div class={`${_selectorPrefix}-headersearchwrap-main`}>
+              {this.renderGridSearchFormGroupDataItem(type, {
+                searchConfig,
+                column,
+                dataIndex,
+              })}
+            </div>
 
-                  <Button
-                    size="small"
-                    type="primary"
-                    onClick={() => this.onSearch().then(() => confirm())}
-                  >
-                    {Intl.tv('确定')}
-                  </Button>
-                </div>
-              </div>
-            );
-          },
-          // header查询的图标
-          [this.getFilterIconSlot()]: () => {
-            return <Icon type="search" />;
-          },
-        };
+            <div class={`${_selectorPrefix}-headersearchwrap-footer`}>
+              <Button
+                size="small"
+                onClick={() => {
+                  if (type === 'rangePicker') {
+                    if (searchConfig.startName) this[searchConfig.startName] = null;
+                    if (searchConfig.endName) this[searchConfig.endName] = null;
+                  } else {
+                    this[dataIndex] = undefined;
+                  }
+
+                  this.$nextTick(() => this.onSearch().then(() => confirm()));
+                }}
+              >
+                {Intl.tv('重置')}
+              </Button>
+
+              <Button
+                size="small"
+                type="primary"
+                onClick={() => this.onSearch().then(() => confirm())}
+              >
+                {Intl.tv('确定')}
+              </Button>
+            </div>
+          </div>
+        );
+      },
+      /**
+       * getCustomFilterIcon
+       * @param params
+       */
+      getCustomFilterIcon({ column }) {
+        const { $search, ...columnConfig } = column;
+        const searchConfig = this.assignSearchConfig($search, columnConfig);
+        const showColumnHeader = searchConfig.showColumnHeader;
+
+        if (!showColumnHeader) return;
+
+        return <SearchOutlined />;
       },
 
       /**
@@ -825,14 +893,15 @@ export default ({ className, superClass }, searchAndPaginParamsMemo) =>
         if (this.hasAdvancedSearch() && this.$data.$hasAdvancedSearchPanel && this.expand) {
           const SearchButtonComponent = (
             <Button
-              slot="default"
-              icon="filter"
               type="primary"
               onClick={() => {
                 this.advancedSearchPanelCollapse = true;
               }}
             >
-              {Intl.tv('高级搜索')}
+              {{
+                default: () => Intl.tv('高级搜索'),
+                icon: () => <FilterOutlined />,
+              }}
             </Button>
           );
 
@@ -843,12 +912,7 @@ export default ({ className, superClass }, searchAndPaginParamsMemo) =>
             );
           } else {
             const resetIndex = defaultItems.findIndex(
-              (t) =>
-                'tag' in t &&
-                t.tag &&
-                t.tag.startsWith('vue-component-') &&
-                'key' in t &&
-                t.key === 'reset',
+              (t) => isVNode(t) && 'key' in t && t.key === 'reset',
             );
 
             if (resetIndex !== -1) defaultItems.splice(resetIndex + 1, 0, SearchButtonComponent);
@@ -856,7 +920,7 @@ export default ({ className, superClass }, searchAndPaginParamsMemo) =>
         }
 
         return this.renderSearchFooterItemsImpl(defaultItems).map((t) =>
-          'tag' in t && t.tag && t.tag.startsWith('vue-component-') ? t : t.value,
+          isVNode(t) ? t : t.value,
         );
       },
 
@@ -1523,10 +1587,16 @@ export default ({ className, superClass }, searchAndPaginParamsMemo) =>
         );
 
         // 标准的查询面板
-        const StandardSearchPanel = renderGridSearchFormGroup(this, group, defaultProps);
+        // @ts-ignore
+        const StandardSearchPanel = renderGridSearchFormGroup(this.$slots, group, defaultProps);
 
         if (this.$data.$advancedSearchConfig.rowCount !== 'auto') {
-          const { rowCount, detail } = TableGridLayout.getRenderDetail(this, group, defaultProps);
+          // @ts-ignore
+          const { rowCount, detail } = TableGridLayout.getRenderDetail(
+            this.$slots,
+            group,
+            defaultProps,
+          );
 
           if (rowCount > this.$data.$advancedSearchConfig.rowCount) {
             // 显示的组数据
@@ -1583,8 +1653,10 @@ export default ({ className, superClass }, searchAndPaginParamsMemo) =>
 
             return (
               <div class={`${_selectorPrefix}-gridsearchformgroupwrap`}>
-                {renderGridSearchFormGroup(this, gData, defaultProps)}
-                {/*@ts-ignore*/}
+                {
+                  // @ts-ignore
+                  renderGridSearchFormGroup(this.$slots, gData, defaultProps)
+                }
                 <AdvancedSearchPanel
                   groupData={group}
                   tableGridLayoutConfig={defaultProps}

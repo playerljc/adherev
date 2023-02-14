@@ -57,7 +57,6 @@ export default defineComponent({
       };
 
       return (
-        // @ts-ignore
         <ConditionalRender conditional={props.hasMore}>
           {{
             default: () => (
@@ -65,7 +64,6 @@ export default defineComponent({
                 {/*@ts-ignore*/}
                 <ScrollLoad
                   onScrollBottom={(callback) => {
-                    console.log('onScrollBottom');
                     emit('loadMore', callback);
                   }}
                   {...{
@@ -77,7 +75,6 @@ export default defineComponent({
                   {slots.default?.()}
                 </ScrollLoad>
 
-                {/*@ts-ignore*/}
                 <ConditionalRender
                   conditional={
                     !!(props.getScrollWrapContainer ? props.getScrollWrapContainer() : null)
@@ -86,7 +83,6 @@ export default defineComponent({
                   {{
                     default: () => (
                       <Teleport to={props.getScrollWrapContainer?.()}>
-                        {/*@ts-ignore*/}
                         <BackTopAnimation
                           onTarget={(callback) =>
                             callback(props.getScrollWrapContainer?.()?.firstElementChild)
@@ -96,7 +92,6 @@ export default defineComponent({
                       </Teleport>
                     ),
                     noMatch: () => (
-                      // @ts-ignore
                       <BackTopAnimation
                         onTarget={(callback) =>
                           callback(wrapRef.value?.querySelector?.('.adherev-ui-scrollload'))

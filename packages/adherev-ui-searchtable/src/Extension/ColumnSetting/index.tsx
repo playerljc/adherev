@@ -1,5 +1,6 @@
 import { Popover } from 'ant-design-vue';
-import { PropType, defineComponent } from 'vue';
+import { defineComponent,inject } from 'vue';
+import { array } from 'vue-types';
 
 import { IColumnSetting } from '../../types';
 import Setting from './setting';
@@ -7,31 +8,29 @@ import Setting from './setting';
 export default defineComponent({
   name: 'adv-searchtable-column-setting',
   props: {
-    columns: {
-      type: Array as PropType<IColumnSetting[]>,
-      default: () => [],
-    },
+    columns: array<IColumnSetting>().def([]),
   },
   emits: ['showColumns', 'reset', 'sortEnd', 'displayColumn'],
-  inject: ['getContext'],
-  render() {
-    return (
-      // @ts-ignore
+  setup(props, {}) {
+    const getContext = inject<any>('getContext');
+
+    const context = getContext?.()?.context;
+
+    return () => (
       <Popover
         content={
-          // @ts-ignore
           <Setting
-            columns={this.getContext?.()?.getSortColumnSetting?.() || []}
+            columns={props.columns || []}
             onShowColumns={(checked) => {
-              const { columnSetting } = this.getContext?.();
+              const { columnSetting } = context;
 
-              this.getContext().columnSetting = columnSetting.map((column) => ({
+              context.columnSetting = columnSetting.map((column) => ({
                 ...column,
                 display: checked,
               }));
             }}
             onReset={() => {
-              this.getContext().columnSetting = this.getContext()
+              context.columnSetting = context
                 .getTableColumns()
                 .map((column, index) => ({
                   ...column,
@@ -40,17 +39,17 @@ export default defineComponent({
                 }));
             }}
             onDisplayColumn={({ column, checked }) => {
-              const { columnSetting } = this.getContext?.();
+              const { columnSetting } = context;
 
-              this.getContext().columnSetting = columnSetting.map((_column) => ({
+              context.columnSetting = columnSetting.map((_column) => ({
                 ..._column,
                 display: _column.key === column.key ? checked : _column.display,
               }));
             }}
             onSortEnd={(map) => {
-              const { columnSetting } = this.getContext?.();
+              const { columnSetting } = context;
 
-              this.getContext().columnSetting = columnSetting.map((column) => ({
+              context.columnSetting = columnSetting.map((column) => ({
                 ...column,
                 sort: map.get(column.key),
               }));

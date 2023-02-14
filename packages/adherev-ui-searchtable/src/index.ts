@@ -11,10 +11,10 @@ import {
   Switch,
   Table,
 } from 'ant-design-vue';
-import VueDraggableResizable from 'vue-draggable-resizable';
+import { App } from 'vue';
 
 import AntdvFormItem from '@baifendian/adherev-ui-antdvformitem';
-import Conditionalrender from '@baifendian/adherev-ui-conditionalrender';
+import ConditionalRender from '@baifendian/adherev-ui-conditionalrender';
 import FlexLayout from '@baifendian/adherev-ui-flexlayout';
 import SlideLayout from '@baifendian/adherev-ui-slidelayout';
 import Space from '@baifendian/adherev-ui-space';
@@ -59,57 +59,16 @@ import SearchTableImplement from './SearchTableImplement';
 import SearchTableImplementFactory from './SearchTableImplementFactory';
 
 const {
-  _util: { withInstall, withVue },
+  _util: { withVue },
 } = BfdUtil;
 
-SearchTable.isUse = () => true;
-
-SearchTable.use = (Vue) => {
-  FlexLayout.isUse() && FlexLayout.use(Vue);
-  Suspense.isUse() && Suspense.use(Vue);
-  Intl.isUse() && Intl.use(Vue);
-  AntdvFormItem.isUse() && AntdvFormItem.use(Vue);
-  Conditionalrender.isUse() && Conditionalrender.use(Vue);
-  SlideLayout.isUse() && SlideLayout.use(Vue);
-  Space.isUse() && Space.use(Vue);
-  Split.isUse() && Split.use(Vue);
-  Resource?.isUse?.() && Resource?.use?.(Vue);
-  Validator.isUse() && Validator.use(Vue);
-
-  Vue.use(SearchTable.ColumnSetting);
-  Vue.use(SearchTable.TableDensitySetting);
-  Vue.use(SearchTable.DisabledOption);
-  Vue.use(SearchTable.LinkColumn);
-  Vue.use(SearchTable.OptionsWrap);
-  Vue.use(SearchTable.EditableRowControl);
-  Vue.use(SearchTable.EditableTableControl);
-
-  Vue.use(Table);
-  Vue.use(Button);
-  Vue.use(Popover);
-  Vue.use(Checkbox);
-  Vue.use(Input);
-  Vue.use(InputNumber);
-  Vue.use(Popover);
-  Vue.use(Rate);
-  Vue.use(Slider);
-  Vue.use(Switch);
-  Vue.use(Form);
-  Vue.use(ConfigProvider);
-
-  Vue.component('vue-draggable-resizable', VueDraggableResizable);
-
-  withVue(Vue, 'SearchTable', SearchTable);
-};
-
-SearchTable.ColumnSetting = withInstall(ColumnSetting);
-SearchTable.TableDensitySetting = withInstall(TableDensitySetting);
-SearchTable.DisabledOption = withInstall(DisabledOption);
-SearchTable.LinkColumn = withInstall(LinkColumn);
-SearchTable.OptionsWrap = withInstall(OptionsWrap);
-SearchTable.EditableRowControl = withInstall(EditableRowControl);
-SearchTable.EditableTableControl = withInstall(EditableTableControl);
-
+SearchTable.ColumnSetting = ColumnSetting;
+SearchTable.TableDensitySetting = TableDensitySetting;
+SearchTable.DisabledOption = DisabledOption;
+SearchTable.LinkColumn = LinkColumn;
+SearchTable.OptionsWrap = OptionsWrap;
+SearchTable.EditableRowControl = EditableRowControl;
+SearchTable.EditableTableControl = EditableTableControl;
 SearchTable.SearchAndPaginParams = SearchAndPaginParams;
 SearchTable.SearchTableImplement = SearchTableImplement;
 SearchTable.ProSearchTable = ProSearchTable;
@@ -134,5 +93,43 @@ SearchTable.NUMBER_GENERATOR_RULE_ALONE = NUMBER_GENERATOR_RULE_ALONE;
 SearchTable.NUMBER_GENERATOR_RULE_CONTINUITY = NUMBER_GENERATOR_RULE_CONTINUITY;
 SearchTable.ROW_SELECTION_NORMAL_MODE = ROW_SELECTION_NORMAL_MODE;
 SearchTable.ROW_SELECTION_CONTINUOUS_MODE = ROW_SELECTION_CONTINUOUS_MODE;
+
+SearchTable.install = (app: App) => {
+  app.use(FlexLayout);
+  app.use(Suspense);
+  app.use(Intl);
+  app.use(AntdvFormItem);
+  app.use(ConditionalRender);
+  app.use(SlideLayout);
+  app.use(Space);
+  app.use(Split);
+  app.use(Resource);
+  app.use(Validator);
+
+  app.component(ColumnSetting.name, ColumnSetting);
+  app.component(TableDensitySetting.name, TableDensitySetting);
+  app.component(DisabledOption.name, DisabledOption);
+  app.component(LinkColumn.name, LinkColumn);
+  app.component(OptionsWrap.name, OptionsWrap);
+  app.component(EditableRowControl.name, EditableRowControl);
+  app.component(EditableTableControl.name, EditableTableControl);
+
+  app.use(Table);
+  app.use(Button);
+  app.use(Popover);
+  app.use(Checkbox);
+  app.use(Input);
+  app.use(InputNumber);
+  app.use(Popover);
+  app.use(Rate);
+  app.use(Slider);
+  app.use(Switch);
+  app.use(Form);
+  app.use(ConfigProvider);
+
+  withVue(app, 'SearchTable', SearchTable);
+
+  return app;
+};
 
 export default SearchTable;

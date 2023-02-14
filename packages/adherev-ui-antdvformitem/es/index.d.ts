@@ -1,4 +1,4 @@
-import { App, Plugin } from 'vue';
+import type { App, Plugin } from 'vue';
 import * as AntdvFormItemNormalizeDefault from './AntdvFormItemNormalize';
 import { DictFormItem, FunctionComponents } from './FormItemGeneratorToDict';
 declare const _default: {

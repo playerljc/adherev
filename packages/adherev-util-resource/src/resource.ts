@@ -31,8 +31,6 @@ initBasicDict();
 
 const Resource: {
   install?: (app: App) => void;
-  isUse?: () => boolean;
-  use?: (Vue) => void;
   Dict: any;
 } = {
   Dict,

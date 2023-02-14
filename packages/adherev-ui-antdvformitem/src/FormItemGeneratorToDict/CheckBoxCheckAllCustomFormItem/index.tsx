@@ -41,7 +41,6 @@ export default defineComponent({
           </Checkbox>
         </div>
         <div>
-          {/*@ts-ignore*/}
           <Children
             {...{
               ...this.$props,

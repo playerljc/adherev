@@ -35,6 +35,7 @@
     "@baifendian/adherev-util-intl": "^2.0.0-fix.1",
     "@baifendian/adherev-util-mixins": "^2.0.0",
     "@baifendian/adherev-util-resource": "^2.0.0-fix.1",
+    "lodash.debounce": "^4.0.8",
     "vue": "^3.2.45",
     "vue-types": "^3.0.2"
   },

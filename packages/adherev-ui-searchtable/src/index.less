@@ -1,15 +1,15 @@
-@import '~ant-design-vue/es/table/style/index.less';
-@import '~ant-design-vue/es/pagination/style/index.less';
-@import '~ant-design-vue/es/button/style/index.less';
-@import '~ant-design-vue/es/popover/style/index.less';
-@import '~ant-design-vue/es/checkbox/style/index.less';
-@import '~ant-design-vue/es/icon/style/index.less';
-@import '~ant-design-vue/es/input/style/index.less';
-@import '~ant-design-vue/es/input-number/style/index.less';
-@import '~ant-design-vue/es/slider/style/index.less';
-@import '~ant-design-vue/es/switch/style/index.less';
-@import '~ant-design-vue/es/rate/style/index.less';
-@import '~ant-design-vue/es/form/style/index.less';
+//@import '~ant-design-vue/es/table/style/index.less';
+//@import '~ant-design-vue/es/pagination/style/index.less';
+//@import '~ant-design-vue/es/button/style/index.less';
+//@import '~ant-design-vue/es/popover/style/index.less';
+//@import '~ant-design-vue/es/checkbox/style/index.less';
+//@import '~ant-design-vue/es/icon/style/index.less';
+//@import '~ant-design-vue/es/input/style/index.less';
+//@import '~ant-design-vue/es/input-number/style/index.less';
+//@import '~ant-design-vue/es/slider/style/index.less';
+//@import '~ant-design-vue/es/switch/style/index.less';
+//@import '~ant-design-vue/es/rate/style/index.less';
+//@import '~ant-design-vue/es/form/style/index.less';
 
 @import '~@baifendian/adherev-ui-suspense/lib/index.less';
 @import '~@baifendian/adherev-ui-flexlayout/lib/index.less';
@@ -19,7 +19,6 @@
 @import '~@baifendian/adherev-ui-slidelayout/lib/index';
 @import '~@baifendian/adherev-ui-space/lib/index';
 @import '~@baifendian/adherev-ui-split/lib/index';
-@import '~@baifendian/adherev-ui-teleport/lib/index';
 @import '~@baifendian/adherev-ui-tablegridlayout/lib/index';
 
 @import '~vue-draggable-resizable/dist/VueDraggableResizable.css';
@@ -165,44 +164,45 @@
                     width: 100%;
                     min-height: 0;
 
-                    > .ant-table-content {
+                    //> .ant-table-content {
+                    //  width: 100%;
+                    // 没有滚动
+                    //> .ant-table-body {
+                    //  > table {
+                    //    display: flex;
+                    //    flex-direction: column;
+                    //    height: 100%;
+                    //
+                    //    > .ant-table-header {
+                    //      flex-shrink: 0;
+                    //    }
+                    //
+                    //    > .ant-table-body {
+                    //      flex-grow: 1;
+                    //      min-height: 0;
+                    //      overflow-y: auto ;
+                    //    }
+                    //  }
+                    //}
+
+                    // 滚动
+                    > .ant-table-container {
+                      display: flex;
+                      flex-direction: column;
                       width: 100%;
-                      // 没有滚动
-                      //> .ant-table-body {
-                      //  > table {
-                      //    display: flex;
-                      //    flex-direction: column;
-                      //    height: 100%;
-                      //
-                      //    > .ant-table-header {
-                      //      flex-shrink: 0;
-                      //    }
-                      //
-                      //    > .ant-table-body {
-                      //      flex-grow: 1;
-                      //      min-height: 0;
-                      //      overflow-y: auto ;
-                      //    }
-                      //  }
-                      //}
+                      height: 100%;
 
-                      // 滚动
-                      > .ant-table-scroll {
-                        display: flex;
-                        flex-direction: column;
-                        height: 100%;
+                      > .ant-table-header {
+                        flex-shrink: 0;
+                      }
 
-                        > .ant-table-header {
-                          flex-shrink: 0;
-                        }
-
-                        > .ant-table-body {
-                          flex-grow: 1;
-                          min-height: 0;
-                          overflow-y: auto;
-                        }
+                      > .ant-table-body {
+                        flex-grow: 1;
+                        min-height: 0;
+                        overflow-y: auto;
                       }
                     }
+                    //}
 
                     //> .ant-table-container {
                     //  display: flex;
@@ -299,6 +299,15 @@
       transition: background-color 0.3s;
       content: '';
       pointer-events: none;
+    }
+
+    > .ant-table-filter-column {
+      > .ant-table-filter-trigger {
+        position: absolute;
+        right: 20px;
+        top: calc(50% + 4px);
+        transform: translateY(-50%);
+      }
     }
   }
 

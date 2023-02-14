@@ -1,14 +1,12 @@
 import { Input, InputNumber, Rate, Slider, Switch } from 'ant-design-vue';
-import { CreateElement, VNode } from 'vue';
+import { VNode } from 'vue';
 
 import AntdvFormItem from '@baifendian/adherev-ui-antdvformitem';
 
 import { FormItemGeneratorConfig } from '../../../types';
 
 const {
-  FormItemGeneratorToDict: {
-    getComponents
-  },
+  FormItemGeneratorToDict: { getComponents },
   AntdvFormItemNormalize: {
     DatePicker,
     InputNumberDecimal1,
@@ -35,37 +33,41 @@ export default {
    * @param dataIndex
    * @param rowIndex
    */
-  render(
-    h: CreateElement,
-    {
-      type,
-      renderChildren,
-      props,
-      listeners,
-      dictName,
-      form,
-      dataIndex,
-      rowIndex,
-    }: FormItemGeneratorConfig,
-  ) {
+  render({
+    type,
+    renderChildren,
+    props,
+    listeners,
+    dictName,
+    form,
+    dataIndex,
+    rowIndex,
+    initialValue,
+    name,
+    context,
+  }: FormItemGeneratorConfig) {
     const defaultProps = {
       autoFocus: true,
+      defaultValue: initialValue,
+      value: context?.formData?.[name as string],
+      onChange: (val) => {
+        if (typeof val === 'number') {
+          context.formData[name as string] = val;
+        } else if ('target' in val) {
+          context.formData[name as string] = val.target.value.trim();
+        } else {
+          context.formData[name as string] = val;
+        }
+      },
     };
 
     const renderInput = () => {
       return (
         <Input
           {...{
-            props: {
-              ...defaultProps,
-              ...(props || {}),
-            },
-            on: {
-              ...(listeners || {}),
-              // blur: () => {
-              //   console.log('blur');
-              // }
-            },
+            ...defaultProps,
+            ...(props || {}),
+            ...(listeners || {}),
           }}
         />
       );
@@ -75,13 +77,9 @@ export default {
       return (
         <Input.TextArea
           {...{
-            props: {
-              ...defaultProps,
-              ...(props || {}),
-            },
-            on: {
-              ...(listeners || {}),
-            },
+            ...defaultProps,
+            ...(props || {}),
+            ...(listeners || {}),
           }}
         />
       );
@@ -90,13 +88,9 @@ export default {
       return (
         <InputNumber
           {...{
-            props: {
-              ...defaultProps,
-              ...(props || {}),
-            },
-            on: {
-              ...(listeners || {}),
-            },
+            ...defaultProps,
+            ...(props || {}),
+            ...(listeners || {}),
           }}
         />
       );
@@ -105,13 +99,9 @@ export default {
       return (
         <InputNumberDecimal1
           {...{
-            props: {
-              ...defaultProps,
-              ...(props || {}),
-            },
-            on: {
-              ...(listeners || {}),
-            },
+            ...defaultProps,
+            ...(props || {}),
+            ...(listeners || {}),
           }}
         />
       );
@@ -120,13 +110,9 @@ export default {
       return (
         <InputNumberDecimal2
           {...{
-            props: {
-              ...defaultProps,
-              ...(props || {}),
-            },
-            on: {
-              ...(listeners || {}),
-            },
+            ...defaultProps,
+            ...(props || {}),
+            ...(listeners || {}),
           }}
         />
       );
@@ -135,13 +121,9 @@ export default {
       return (
         <InputNumberInteger
           {...{
-            props: {
-              ...defaultProps,
-              ...(props || {}),
-            },
-            on: {
-              ...(listeners || {}),
-            },
+            ...defaultProps,
+            ...(props || {}),
+            ...(listeners || {}),
           }}
         />
       );
@@ -153,13 +135,9 @@ export default {
       return (
         <Component
           {...{
-            props: {
-              ...defaultProps,
-              ...(props || {}),
-            },
-            on: {
-              ...(listeners || {}),
-            },
+            ...defaultProps,
+            ...(props || {}),
+            ...(listeners || {}),
           }}
         />
       );
@@ -170,13 +148,9 @@ export default {
       return (
         <Component
           {...{
-            props: {
-              ...defaultProps,
-              ...(props || {}),
-            },
-            on: {
-              ...(listeners || {}),
-            },
+            ...defaultProps,
+            ...(props || {}),
+            ...(listeners || {}),
           }}
         />
       );
@@ -187,13 +161,9 @@ export default {
       return (
         <Component
           {...{
-            props: {
-              ...defaultProps,
-              ...(props || {}),
-            },
-            on: {
-              ...(listeners || {}),
-            },
+            ...defaultProps,
+            ...(props || {}),
+            ...(listeners || {}),
           }}
         />
       );
@@ -205,13 +175,9 @@ export default {
       return (
         <Component
           {...{
-            props: {
-              ...defaultProps,
-              ...(props || {}),
-            },
-            on: {
-              ...(listeners || {}),
-            },
+            ...defaultProps,
+            ...(props || {}),
+            ...(listeners || {}),
           }}
         />
       );
@@ -222,13 +188,9 @@ export default {
       return (
         <Component
           {...{
-            props: {
-              ...defaultProps,
-              ...(props || {}),
-            },
-            on: {
-              ...(listeners || {}),
-            },
+            ...defaultProps,
+            ...(props || {}),
+            ...(listeners || {}),
           }}
         />
       );
@@ -239,13 +201,9 @@ export default {
       return (
         <Component
           {...{
-            props: {
-              ...defaultProps,
-              ...(props || {}),
-            },
-            on: {
-              ...(listeners || {}),
-            },
+            ...defaultProps,
+            ...(props || {}),
+            ...(listeners || {}),
           }}
         />
       );
@@ -257,13 +215,9 @@ export default {
       return (
         <Component
           {...{
-            props: {
-              ...defaultProps,
-              ...(props || {}),
-            },
-            on: {
-              ...(listeners || {}),
-            },
+            ...defaultProps,
+            ...(props || {}),
+            ...(listeners || {}),
           }}
         />
       );
@@ -274,13 +228,9 @@ export default {
       return (
         <Component
           {...{
-            props: {
-              ...defaultProps,
-              ...(props || {}),
-            },
-            on: {
-              ...(listeners || {}),
-            },
+            ...defaultProps,
+            ...(props || {}),
+            ...(listeners || {}),
           }}
         />
       );
@@ -291,13 +241,9 @@ export default {
       return (
         <Component
           {...{
-            props: {
-              ...defaultProps,
-              ...(props || {}),
-            },
-            on: {
-              ...(listeners || {}),
-            },
+            ...defaultProps,
+            ...(props || {}),
+            ...(listeners || {}),
           }}
         />
       );
@@ -308,13 +254,9 @@ export default {
       return (
         <Component
           {...{
-            props: {
-              ...defaultProps,
-              ...(props || {}),
-            },
-            on: {
-              ...(listeners || {}),
-            },
+            ...defaultProps,
+            ...(props || {}),
+            ...(listeners || {}),
           }}
         >
           {(data) => renderChildren?.(data)}
@@ -328,13 +270,9 @@ export default {
       return (
         <Component
           {...{
-            props: {
-              ...defaultProps,
-              ...(props || {}),
-            },
-            on: {
-              ...(listeners || {}),
-            },
+            ...defaultProps,
+            ...(props || {}),
+            ...(listeners || {}),
           }}
         />
       );
@@ -345,13 +283,9 @@ export default {
       return (
         <Component
           {...{
-            props: {
-              ...defaultProps,
-              ...(props || {}),
-            },
-            on: {
-              ...(listeners || {}),
-            },
+            ...defaultProps,
+            ...(props || {}),
+            ...(listeners || {}),
           }}
         />
       );
@@ -362,13 +296,9 @@ export default {
       return (
         <Component
           {...{
-            props: {
-              ...defaultProps,
-              ...(props || {}),
-            },
-            on: {
-              ...(listeners || {}),
-            },
+            ...defaultProps,
+            ...(props || {}),
+            ...(listeners || {}),
           }}
         />
       );
@@ -379,13 +309,9 @@ export default {
       return (
         <Component
           {...{
-            props: {
-              ...defaultProps,
-              ...(props || {}),
-            },
-            on: {
-              ...(listeners || {}),
-            },
+            ...defaultProps,
+            ...(props || {}),
+            ...(listeners || {}),
           }}
         />
       );
@@ -396,13 +322,9 @@ export default {
       return (
         <Component
           {...{
-            props: {
-              ...defaultProps,
-              ...(props || {}),
-            },
-            on: {
-              ...(listeners || {}),
-            },
+            ...defaultProps,
+            ...(props || {}),
+            ...(listeners || {}),
           }}
         >
           {(dataSource) => renderChildren?.(dataSource)}
@@ -415,13 +337,9 @@ export default {
       return (
         <Component
           {...{
-            props: {
-              ...defaultProps,
-              ...(props || {}),
-            },
-            on: {
-              ...(listeners || {}),
-            },
+            ...defaultProps,
+            ...(props || {}),
+            ...(listeners || {}),
           }}
         >
           {(dataSource) => renderChildren?.(dataSource)}
@@ -435,13 +353,9 @@ export default {
       return (
         <Component
           {...{
-            props: {
-              ...defaultProps,
-              ...(props || {}),
-            },
-            on: {
-              ...(listeners || {}),
-            },
+            ...defaultProps,
+            ...(props || {}),
+            ...(listeners || {}),
           }}
         />
       );
@@ -453,13 +367,9 @@ export default {
       return (
         <Component
           {...{
-            props: {
-              ...defaultProps,
-              ...(props || {}),
-            },
-            on: {
-              ...(listeners || {}),
-            },
+            ...defaultProps,
+            ...(props || {}),
+            ...(listeners || {}),
           }}
         />
       );
@@ -470,13 +380,9 @@ export default {
       return (
         <Component
           {...{
-            props: {
-              ...defaultProps,
-              ...(props || {}),
-            },
-            on: {
-              ...(listeners || {}),
-            },
+            ...defaultProps,
+            ...(props || {}),
+            ...(listeners || {}),
           }}
         />
       );
@@ -487,13 +393,9 @@ export default {
       return (
         <Component
           {...{
-            props: {
-              ...defaultProps,
-              ...(props || {}),
-            },
-            on: {
-              ...(listeners || {}),
-            },
+            ...defaultProps,
+            ...(props || {}),
+            ...(listeners || {}),
           }}
         />
       );
@@ -504,13 +406,9 @@ export default {
       return (
         <Component
           {...{
-            props: {
-              ...defaultProps,
-              ...(props || {}),
-            },
-            on: {
-              ...(listeners || {}),
-            },
+            ...defaultProps,
+            ...(props || {}),
+            ...(listeners || {}),
           }}
         />
       );
@@ -522,13 +420,9 @@ export default {
       return (
         <Component
           {...{
-            props: {
-              ...defaultProps,
-              ...(props || {}),
-            },
-            on: {
-              ...(listeners || {}),
-            },
+            ...defaultProps,
+            ...(props || {}),
+            ...(listeners || {}),
           }}
         />
       );
@@ -539,13 +433,9 @@ export default {
       return (
         <Component
           {...{
-            props: {
-              ...defaultProps,
-              ...(props || {}),
-            },
-            on: {
-              ...(listeners || {}),
-            },
+            ...defaultProps,
+            ...(props || {}),
+            ...(listeners || {}),
           }}
         />
       );
@@ -556,13 +446,9 @@ export default {
       return (
         <Component
           {...{
-            props: {
-              ...defaultProps,
-              ...(props || {}),
-            },
-            on: {
-              ...(listeners || {}),
-            },
+            ...defaultProps,
+            ...(props || {}),
+            ...(listeners || {}),
           }}
         />
       );
@@ -573,13 +459,9 @@ export default {
       return (
         <Component
           {...{
-            props: {
-              ...defaultProps,
-              ...(props || {}),
-            },
-            on: {
-              ...(listeners || {}),
-            },
+            ...defaultProps,
+            ...(props || {}),
+            ...(listeners || {}),
           }}
         />
       );
@@ -591,13 +473,9 @@ export default {
       return (
         <Component
           {...{
-            props: {
-              ...defaultProps,
-              ...(props || {}),
-            },
-            on: {
-              ...(listeners || {}),
-            },
+            ...defaultProps,
+            ...(props || {}),
+            ...(listeners || {}),
           }}
         />
       );
@@ -608,13 +486,9 @@ export default {
       return (
         <Component
           {...{
-            props: {
-              ...defaultProps,
-              ...(props || {}),
-            },
-            on: {
-              ...(listeners || {}),
-            },
+            ...defaultProps,
+            ...(props || {}),
+            ...(listeners || {}),
           }}
         />
       );
@@ -625,13 +499,9 @@ export default {
       return (
         <Component
           {...{
-            props: {
-              ...defaultProps,
-              ...(props || {}),
-            },
-            on: {
-              ...(listeners || {}),
-            },
+            ...defaultProps,
+            ...(props || {}),
+            ...(listeners || {}),
           }}
         />
       );
@@ -642,13 +512,9 @@ export default {
       return (
         <Component
           {...{
-            props: {
-              ...defaultProps,
-              ...(props || {}),
-            },
-            on: {
-              ...(listeners || {}),
-            },
+            ...defaultProps,
+            ...(props || {}),
+            ...(listeners || {}),
           }}
         />
       );
@@ -660,13 +526,9 @@ export default {
       return (
         <Component
           {...{
-            props: {
-              ...defaultProps,
-              ...(props || {}),
-            },
-            on: {
-              ...(listeners || {}),
-            },
+            ...defaultProps,
+            ...(props || {}),
+            ...(listeners || {}),
           }}
         />
       );
@@ -677,13 +539,9 @@ export default {
       return (
         <Component
           {...{
-            props: {
-              ...defaultProps,
-              ...(props || {}),
-            },
-            on: {
-              ...(listeners || {}),
-            },
+            ...defaultProps,
+            ...(props || {}),
+            ...(listeners || {}),
           }}
         />
       );
@@ -694,13 +552,9 @@ export default {
       return (
         <Component
           {...{
-            props: {
-              ...defaultProps,
-              ...(props || {}),
-            },
-            on: {
-              ...(listeners || {}),
-            },
+            ...defaultProps,
+            ...(props || {}),
+            ...(listeners || {}),
           }}
         />
       );
@@ -711,13 +565,9 @@ export default {
       return (
         <Component
           {...{
-            props: {
-              ...defaultProps,
-              ...(props || {}),
-            },
-            on: {
-              ...(listeners || {}),
-            },
+            ...defaultProps,
+            ...(props || {}),
+            ...(listeners || {}),
           }}
         />
       );
@@ -727,13 +577,9 @@ export default {
       return (
         <DatePicker
           {...{
-            props: {
-              ...defaultProps,
-              ...(props || {}),
-            },
-            on: {
-              ...(listeners || {}),
-            },
+            ...defaultProps,
+            ...(props || {}),
+            ...(listeners || {}),
           }}
         />
       );
@@ -742,13 +588,9 @@ export default {
       return (
         <TimePicker
           {...{
-            props: {
-              ...defaultProps,
-              ...(props || {}),
-            },
-            on: {
-              ...(listeners || {}),
-            },
+            ...defaultProps,
+            ...(props || {}),
+            ...(listeners || {}),
           }}
         />
       );
@@ -757,13 +599,9 @@ export default {
       return (
         <RangePicker
           {...{
-            props: {
-              ...defaultProps,
-              ...(props || {}),
-            },
-            on: {
-              ...(listeners || {}),
-            },
+            ...defaultProps,
+            ...(props || {}),
+            ...(listeners || {}),
           }}
         />
       );
@@ -773,13 +611,9 @@ export default {
       return (
         <Slider
           {...{
-            props: {
-              ...defaultProps,
-              ...(props || {}),
-            },
-            on: {
-              ...(listeners || {}),
-            },
+            ...defaultProps,
+            ...(props || {}),
+            ...(listeners || {}),
           }}
         />
       );
@@ -789,13 +623,9 @@ export default {
         <Slider
           range
           {...{
-            props: {
-              ...defaultProps,
-              ...(props || {}),
-            },
-            on: {
-              ...(listeners || {}),
-            },
+            ...defaultProps,
+            ...(props || {}),
+            ...(listeners || {}),
           }}
         />
       );
@@ -805,13 +635,9 @@ export default {
       return (
         <Rate
           {...{
-            props: {
-              ...defaultProps,
-              ...(props || {}),
-            },
-            on: {
-              ...(listeners || {}),
-            },
+            ...defaultProps,
+            ...(props || {}),
+            ...(listeners || {}),
           }}
         />
       );
@@ -820,13 +646,9 @@ export default {
       return (
         <Switch
           {...{
-            props: {
-              ...defaultProps,
-              ...(props || {}),
-            },
-            on: {
-              ...(listeners || {}),
-            },
+            ...defaultProps,
+            ...(props || {}),
+            ...(listeners || {}),
           }}
         />
       );

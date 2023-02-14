@@ -1,4 +1,4 @@
-import { VNode } from 'vue';
+import { Plugin, VNode } from 'vue';
 import ConditionalRender from './conditionalrender';
 import ConditionalRenderShow from './show';
 import ConditionalRenderVisibility from './visibility';

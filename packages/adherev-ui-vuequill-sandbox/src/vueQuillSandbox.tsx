@@ -110,6 +110,7 @@ const VueQuillSandbox = defineComponent({
     return () => (
       <div
         class={classNames(selectorPrefix, props.wrapClassName || '')}
+        // @ts-ignore
         ref={rootRef}
         style={props.wrapStyle || {}}
       />

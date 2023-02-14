@@ -38,7 +38,6 @@ export default defineComponent({
   setup(props, { slots }) {
     return () => (
       <FlexLayout direction="horizontal">
-        {/*@ts-ignore*/}
         <ConditionalRender conditional={!!slots.renderLeft}>
           <Fixed
             class={props.leftClassName || ''}
@@ -50,7 +49,6 @@ export default defineComponent({
           </Fixed>
         </ConditionalRender>
 
-        {/*@ts-ignore*/}
         <ConditionalRender conditional={!!slots.renderMain}>
           <Auto
             class={props.mainAutoWrapClassName || ''}
@@ -64,7 +62,6 @@ export default defineComponent({
               class={props.mainWrapClassName || ''}
               style={props.mainWrapStyle}
             >
-              {/*@ts-ignore*/}
               <ConditionalRender conditional={!!slots.renderTop}>
                 <Fixed
                   class={props.topClassName || ''}
@@ -86,7 +83,6 @@ export default defineComponent({
                 {slots.renderMain?.()}
               </Auto>
 
-              {/*@ts-ignore*/}
               <ConditionalRender conditional={!!slots.renderBottom}>
                 <Fixed
                   class={props.bottomClassName || ''}
@@ -101,7 +97,6 @@ export default defineComponent({
           </Auto>
         </ConditionalRender>
 
-        {/*@ts-ignore*/}
         <ConditionalRender conditional={!!slots.renderRight}>
           <Fixed
             class={props.rightClassName || ''}

@@ -107,7 +107,7 @@ export interface IOverview {
   /**
    * 获取列的ScopeSlots
    */
-  getScopedSlots: () => object;
+  getScopedSlots: (row) => object;
 }
 
 /**
@@ -287,10 +287,10 @@ export interface AdvancedSearchPanelProps {
 }
 
 export interface ColumnParams {
-  value: string;
-  record: { [prop: string]: any };
-  dataIndex?: number;
-  rowIndex: number;
+  value?: string;
+  record?: { [prop: string]: any };
+  dataIndex?: string;
+  rowIndex?: number;
 }
 
 /**
@@ -311,11 +311,11 @@ export interface ColumnEditableConfig {
   type?: FormItemType | string;
   // 自定义的渲染(type是custom的时候)
   render?: (params: {
-    form: FormInstance | null;
-    dataIndex: string | number | readonly (string | number)[] | undefined;
-    record: { [prop: string]: any };
-    rowIndex: number;
-    value: any;
+    form?: FormInstance | null;
+    dataIndex?: string | number | readonly (string | number)[] | undefined;
+    record?: { [prop: string]: any };
+    rowIndex?: number;
+    value?: any;
     // 已经生成好的孩子节点
     children?: VNode;
     // 更新单元格数据的方法
@@ -331,6 +331,7 @@ export interface ColumnEditableConfig {
   formItemProps?: any;
   // 组件的props定义
   props?: any;
+  listeners?: any;
   // 是否使用句柄来切换状态 view的时候有一个句柄点击后变成编辑状态，编辑的时候有2个句柄，save和cancel，如果设置为false，则关于句柄的事件将不会触发
   useTrigger?: boolean;
   // 渲染查看的句柄
@@ -342,11 +343,11 @@ export interface ColumnEditableConfig {
   // FormItem的rules
   rules?: Rule[];
   // 如果有此属性，则不用column的dataIndex
-  dataIndex?: number;
+  dataIndex?: string;
   // dist渲染的组件的字典名称(适用于FormItemGeneratorToDict)
   dictName?: string;
   // children自定义的渲染，适用于FormItemGeneratorToDict的自定义children时候使用
-  renderChildren?: ((params?: any) => VNode | null) | string;
+  renderChildren?: (params?: any) => VNode | null | string;
   // 是否一直保持编辑状态，也就是说view和edit都显示的是控件，如果设置为true则相当于设置了useTrigger是false，useTrigger的设置将失效
   // 最好不使用这种模式
   useKeepEdit?: boolean;
@@ -361,13 +362,19 @@ export interface FormItemGeneratorConfig {
   // dist渲染的组件的字典名称(适用于FormItemGeneratorToDict)
   dictName?: string;
   // children自定义的渲染，适用于FormItemGeneratorToDict的自定义children时候使用
-  renderChildren?: (params?: any) => VNode | null;
+  renderChildren?: (params?: any) => VNode | null | string;
   // 表单的实例
   form?: FormInstance | null;
   // 行的索引值
-  dataIndex?: number;
+  dataIndex?: string;
   // 列的索引值
   rowIndex?: number;
+  // 初始化
+  initialValue?: any;
+  // name
+  name?: string;
+  // context
+  context?: any;
 }
 
 /**

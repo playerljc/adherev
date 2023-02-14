@@ -1,9 +1,8 @@
 import Util from '@baifendian/adherev-util';
 
-import { ColumnTypeExt, RowDragSortBodyConfig, RowDragSortRowConfig } from '../types';
-
 import SearchRowDragSortTable from '../DragSort/RowDragSort/SearchRowDragSortTable';
 import SearchEditableCellTable from '../Editable/SearchEditableCellTable';
+import { ColumnTypeExt, RowDragSortBodyConfig, RowDragSortRowConfig } from '../types';
 
 const {
   _util: { extend },
@@ -27,6 +26,18 @@ export default (serviceName) =>
       };
     },
     methods: {
+      /**
+       * fetchData
+       */
+      fetchData() {
+        return this.$fetchDataSearchEditableCellTable();
+      },
+      /**
+       * renderSearchTable
+       */
+      renderSearchTable() {
+        return this.$renderSearchTableSearchEditableCellTable();
+      },
       /**
        * onTableRowComponentReducers
        * @param columns

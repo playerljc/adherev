@@ -148,7 +148,6 @@ export default defineComponent({
           <div class={`${selectPrefix}-inner`}>{slots?.default?.()}</div>
         </div>
 
-        {/*@ts-ignore*/}
         <ConditionalRender conditional={!!props.anchors.length}>
           <div class={`${selectPrefix}-fixed`} style={{ width: `${props.anchorPosition.width}px` }}>
             <ul class={`${selectPrefix}-anchor`} ref={anchorRef}>

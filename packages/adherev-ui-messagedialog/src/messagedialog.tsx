@@ -423,7 +423,6 @@ const MessageDialogFactory: IMessageDialogFactory = {
 
           return (
             <ConfigProvider locale={LOCAL[local || DEFAULT_LOCAL]}>
-              {/*@ts-ignore*/}
               <ModalDialog
                 config={modalConfig}
                 closeBtn={defaultCloneBtn}

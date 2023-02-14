@@ -1,6 +1,8 @@
-import { Icon } from 'ant-design-vue';
 import classNames from 'classnames';
-import { PropType } from 'vue';
+import { defineComponent, inject } from 'vue';
+import { array, number, object } from 'vue-types';
+
+import { EditOutlined } from '@ant-design/icons-vue';
 
 import { selectorPrefix } from '../../../SearchTable';
 import { ColumnEditableConfig, ColumnTypeExt } from '../../../types';
@@ -9,104 +11,81 @@ import { ColumnEditableConfig, ColumnTypeExt } from '../../../types';
  * EditableCellView
  * @description 可编辑单元格的查看状态
  */
-export default {
+export default defineComponent({
   props: {
-    rowIndex: {
-      type: Number,
-    },
-    record: {
-      type: Object as PropType<{
-        [propName: string]: any;
-      }>,
-    },
-    column: {
-      type: Object as PropType<ColumnTypeExt>,
-    },
-    columns: {
-      type: Array as PropType<ColumnTypeExt[]>,
-    },
-    editableConfig: {
-      type: Object as PropType<ColumnEditableConfig>,
-    },
+    rowIndex: number(),
+    record: object().def({}),
+    column: object<ColumnTypeExt>().def({}),
+    columns: array<ColumnTypeExt[]>().def([]),
+    editableConfig: object<ColumnEditableConfig>(),
   },
-  inject: ['getContext'],
   emits: ['triggerChange'],
-  methods: {
+  setup(props, { emit, slots }) {
+    const renderToEditTriggerArgv = {
+      value: props.record?.[props?.editableConfig?.dataIndex as string],
+      record: props.record,
+      dataIndex: props?.editableConfig?.dataIndex,
+      rowIndex: props.rowIndex,
+    };
+
     /**
      * onTrigger
      */
-    onTrigger() {
-      const { onBeforeToEdit, dataIndex } = this.editableConfig;
-      const { rowIndex, record } = this;
-
-      if (onBeforeToEdit) {
-        this.editableConfig
-          .onBeforeToEdit({
-            value: record[dataIndex as string],
-            record,
-            dataIndex,
-            rowIndex,
+    const onTrigger = () => {
+      if (props?.editableConfig?.onBeforeToEdit) {
+        props?.editableConfig
+          ?.onBeforeToEdit({
+            value: props.record[props?.editableConfig?.dataIndex as string],
+            record: props.record,
+            dataIndex: props?.editableConfig?.dataIndex,
+            rowIndex: props.rowIndex as number,
           })
           ?.then(() => {
-            this.$emit('triggerChange');
+            emit('triggerChange');
           });
         return;
       }
 
-      this.$emit('triggerChange');
-    },
+      emit('triggerChange');
+    };
+
     /**
      * renderTrigger
      * @description 渲染句柄
      */
-    renderTrigger(h) {
-      return <Icon type="edit" />;
-    },
-  },
-  render(h) {
-    const {
-      editableConfig: { renderToEditTrigger, useTrigger, dataIndex },
-      record,
-      rowIndex,
-      column,
-    } = this;
+    const renderTrigger = () => <EditOutlined />;
 
-    // 不使用句柄则返回原始组件
-    if (!useTrigger) {
-      return this?.$slots.default;
-    }
+    return () => {
+      // 不使用句柄则返回原始组件
+      if (!props?.editableConfig?.useTrigger) {
+        return slots?.default?.();
+      }
 
-    const renderToEditTriggerArgv = {
-      value: record?.[dataIndex as string],
-      record,
-      dataIndex,
-      rowIndex,
-    };
-
-    const context = this.getContext?.()?.context;
-
-    const $scopedSlots = context?.$scopedSlots;
-
-    return (
-      <div class={`${selectorPrefix}-editablecell-view`}>
-        <div
-          class={classNames(
-            `${selectorPrefix}-editablecell-view-inner`,
-            'ellipsis' in column && column.ellipsis
-              ? `${selectorPrefix}-editablecell-view-inner-ellipsis`
-              : '',
-          )}
-        >
-          {this?.$slots.default}
-        </div>
-        <div class={`${selectorPrefix}-editablecell-view-trigger`}>
-          <div class={`${selectorPrefix}-editablecell-view-trigger-inner`} onClick={this.onTrigger}>
-            {$scopedSlots?.[renderToEditTrigger]?.(renderToEditTriggerArgv) ||
-              renderToEditTrigger?.(renderToEditTriggerArgv)}
-            {!$scopedSlots[renderToEditTrigger] && !renderToEditTrigger && this.renderTrigger(h)}
+      return (
+        <div class={`${selectorPrefix}-editablecell-view`}>
+          <div
+            class={classNames(
+              `${selectorPrefix}-editablecell-view-inner`,
+              'ellipsis' in props.column && props.column.ellipsis
+                ? `${selectorPrefix}-editablecell-view-inner-ellipsis`
+                : '',
+            )}
+          >
+            {slots?.default?.()}
+          </div>
+          <div class={`${selectorPrefix}-editablecell-view-trigger`}>
+            <div class={`${selectorPrefix}-editablecell-view-trigger-inner`} onClick={onTrigger}>
+              {slots?.[props?.editableConfig?.renderToEditTrigger as any]?.(
+                  renderToEditTriggerArgv,
+                ) ||
+                props?.editableConfig?.renderToEditTrigger?.(renderToEditTriggerArgv)}
+              {!slots[props?.editableConfig?.renderToEditTrigger as any] &&
+                !props?.editableConfig?.renderToEditTrigger &&
+                renderTrigger()}
+            </div>
           </div>
         </div>
-      </div>
-    );
+      )
+    }
   },
-};
+});

@@ -329,7 +329,7 @@ const renderGridSearchForm: RenderGridSearchForm = (slots, params): VNode => {
       style={{ width: _width ? _width : '100%', ...(style || {}) }}
     >
       <colgroup>{colgroupJSX}</colgroup>
-      {/*@ts-ignore*/}
+
       <ConditionalRender conditional={layout === 'horizontal'}>
         {{
           default: () => renderHorizontal(slots, params).element,

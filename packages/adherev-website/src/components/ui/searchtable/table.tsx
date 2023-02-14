@@ -148,7 +148,6 @@ export default {
           <SearchFormRow>
             <SearchFormLabel style="width: 120px;">姓名：</SearchFormLabel>
             <SearchFormValue>
-              {/*@ts-ignore*/}
               <Input
                 style="width: 90%"
                 placeholder="姓名"
@@ -161,7 +160,6 @@ export default {
 
             <SearchFormLabel style="width: 120px;">性别：</SearchFormLabel>
             <SearchFormValue>
-              {/*@ts-ignore*/}
               <Select
                 style="width: 90%"
                 value={this.sex}
@@ -181,7 +179,6 @@ export default {
 
             <SearchFormLabel style="width: 120px;">出生年月：</SearchFormLabel>
             <SearchFormValue>
-              {/*@ts-ignore*/}
               <RangePicker
                 style="width: 90%"
                 value={[this.startTime, this.endTime]}
@@ -199,7 +196,6 @@ export default {
           <SearchFormRow>
             <SearchFormLabel style="width: 120px;">籍贯：</SearchFormLabel>
             <SearchFormValue>
-              {/*@ts-ignore*/}
               <Input
                 style="width: 90%"
                 placeholder="籍贯"
@@ -212,7 +208,6 @@ export default {
 
             <SearchFormLabel style="width: 120px;">身高：</SearchFormLabel>
             <SearchFormValue>
-              {/*@ts-ignore*/}
               <InputNumber
                 style="width: 90%"
                 placeholder="身高"
@@ -225,7 +220,6 @@ export default {
 
             <SearchFormLabel style="width: 120px;">体重：</SearchFormLabel>
             <SearchFormValue>
-              {/*@ts-ignore*/}
               <InputNumber
                 style="width: 90%"
                 placeholder="体重"
@@ -240,7 +234,6 @@ export default {
           <SearchFormRow>
             <SearchFormLabel style="width: 120px;">所在部门：</SearchFormLabel>
             <SearchFormValue>
-              {/*@ts-ignore*/}
               <Select
                 style="width: 90%"
                 value={this.deptCode}
@@ -249,16 +242,12 @@ export default {
                 }}
                 getPopupContainer={Resource.Dict.value.FormPopupContainer.value}
               >
-                {/*@ts-ignore*/}
                 <Option value="">全部</Option>
 
-                {/*@ts-ignore*/}
                 <Option value="0">产品部</Option>
 
-                {/*@ts-ignore*/}
                 <Option value="1">开发部</Option>
 
-                {/*@ts-ignore*/}
                 <Option value="2">工程部</Option>
               </Select>
             </SearchFormValue>

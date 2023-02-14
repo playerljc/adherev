@@ -1,5 +1,6 @@
 import { Popover } from 'ant-design-vue';
-import { defineComponent } from 'vue';
+import { defineComponent, inject } from 'vue';
+import { string } from 'vue-types';
 
 import { TableDensity } from '../../types';
 import Setting from './setting';
@@ -7,31 +8,17 @@ import Setting from './setting';
 export default defineComponent({
   name: 'adv-searchtable-tabledensity',
   props: {
-    density: {
-      type: String,
-      default: TableDensity.DEFAULT,
-    },
+    density: string().def(TableDensity.DEFAULT),
   },
   emits: ['reset', 'change'],
-  inject: ['getContext'],
-  methods: {
-    onReset() {
-      this.getContext().tableDensity = TableDensity.DEFAULT;
-    },
-    onChange(density) {
-      this.getContext().tableDensity = density;
-    },
-  },
-  render() {
-    return (
-      // @ts-ignore
+  setup(props, {emit}) {
+    return () => (
       <Popover
         content={
-          // @ts-ignore
           <Setting
-            density={this.getContext?.()?.tableDensity || TableDensity.DEFAULT}
-            onReset={this.onReset}
-            onChange={this.onChange}
+            density={props?.density || TableDensity.DEFAULT}
+            onReset={() => emit('reset')}
+            onChange={(...params) => emit('change', ...params)}
           />
         }
         placement="bottomRight"

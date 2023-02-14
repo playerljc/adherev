@@ -35,7 +35,6 @@ export default defineComponent({
 
     return () => (
       <div class={selectPrefix}>
-        {/*@ts-ignore*/}
         <SimpleTabs
           defaultActiveKey={active.value}
           onChange={(key: string) => {
@@ -46,7 +45,6 @@ export default defineComponent({
           {props.config.map(({ key, title, ...codePanelConfig }) => (
             // @ts-ignore
             <TabPanel title={title} key={key} index={key}>
-              {/*@ts-ignore*/}
               <ConditionalRender conditional={active.value === key}>
                 <CodePanel {...codePanelConfig} />
               </ConditionalRender>

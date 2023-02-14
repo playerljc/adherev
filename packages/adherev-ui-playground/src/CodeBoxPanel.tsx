@@ -61,7 +61,6 @@ export default defineComponent({
           isActive={activeAnchor.value === id}
           defaultExpand={expandAll.value}
         >
-          {/*@ts-ignore*/}
           <ConditionalRender conditional={!!slots[childrenSlot]}>
             {slots[childrenSlot]?.({
               columnIndex,
@@ -95,7 +94,6 @@ export default defineComponent({
           isActive={activeAnchor.value === id}
           defaultExpand={expandAll.value}
         >
-          {/*@ts-ignore*/}
           <ConditionalRender conditional={!!slots[childrenSlot]}>
             {slots[childrenSlot]?.({
               columnIndex,
@@ -129,7 +127,6 @@ export default defineComponent({
           isActive={activeAnchor.value === id}
           defaultExpand={expandAll.value}
         >
-          {/*@ts-ignore*/}
           <ConditionalRender conditional={!!slots[childrenSlot]}>
             {slots[childrenSlot]?.({
               columnIndex,
@@ -185,13 +182,11 @@ export default defineComponent({
     return () => (
       <div class={selectPrefix}>
         <div class={`${selectPrefix}-header`}>
-          {/*@ts-ignore*/}
           <ConditionalRender conditional={!!props.title}>
             <div class={`${selectPrefix}-header-title`}>{props.title}</div>
           </ConditionalRender>
 
           <div class={`${selectPrefix}-header-extra`}>
-            {/*@ts-ignore*/}
             <ConditionalRender conditional={props.isShowExpandAllBtn}>
               {/*@ts-ignore**/}
               <ConditionalRender conditional={expandAll.value}>
@@ -226,7 +221,6 @@ export default defineComponent({
               </ConditionalRender>
             </ConditionalRender>
 
-            {/*@ts-ignore*/}
             <ConditionalRender conditional={!!props.extra}>{props.extra}</ConditionalRender>
           </div>
         </div>

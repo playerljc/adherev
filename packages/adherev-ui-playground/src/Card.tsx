@@ -28,25 +28,21 @@ export default defineComponent({
   setup(props, { slots }) {
     return () => (
       <div class={selectorPrefix}>
-        {/*@ts-ignore*/}
         <ConditionalRender conditional={!!props.title || !!props.extra}>
           <div
             class={classNames(`${selectorPrefix}-header`, props.headerClassName || '' || '')}
             style={props.headerStyle}
           >
-            {/*@ts-ignore*/}
             <ConditionalRender conditional={!!props.title}>
               <div class={`${selectorPrefix}-header-title`}>{props.title}</div>
             </ConditionalRender>
 
-            {/*@ts-ignore*/}
             <ConditionalRender conditional={!!props.extra}>
               <div class={`${selectorPrefix}-header-extra`}>{props.extra}</div>
             </ConditionalRender>
           </div>
         </ConditionalRender>
 
-        {/*@ts-ignore*/}
         <ConditionalRender conditional={!!slots.default}>
           <div
             class={classNames(`${selectorPrefix}-body`, props.bodyClassName || '' || '')}
@@ -56,15 +52,12 @@ export default defineComponent({
           </div>
         </ConditionalRender>
 
-        {/*@ts-ignore*/}
         <ConditionalRender conditional={!!props.description?.title || !!props.description?.info}>
           <div class={`${selectorPrefix}-description`}>
-            {/*@ts-ignore*/}
             <ConditionalRender conditional={!!props.description?.title}>
               <div class={`${selectorPrefix}-description-title`}>{props.description?.title}</div>
             </ConditionalRender>
 
-            {/*@ts-ignore*/}
             <ConditionalRender conditional={!!props.description?.info}>
               {props.description?.info}
             </ConditionalRender>

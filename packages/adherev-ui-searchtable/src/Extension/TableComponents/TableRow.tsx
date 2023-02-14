@@ -1,48 +1,46 @@
-// export default {
-//   render(h) {
-//     // console.log('row', this.$parent.$parent.$vnode.data.props);
-//
-//     console.log('row1', this.$parent);
-//     console.log('row2', this.$parent.$parent);
-//     console.log('root', this.$root);
-//
-//     return <tr>{this.$slots.default}</tr>;
-//   },
-// };
-import { TableRowComponentProps } from '../../types';
-import RowDragSortRow from '../DragSort/RowDragSort/DragSortRow';
-import EditableRow from '../EditableCell/EditableRow';
-import EditableTableRow from '../EditableCell/EditableTableRow';
+import { VNode, defineComponent, inject } from 'vue';
+import { number, object } from 'vue-types';
 
-/**
- * TableRow
- * @description 表格行(tr)组件
- */
-export default {
-  inject: ['getContext'],
-  // 混入EditableRow,EditableTableRow,RowDragSortRow
-  mixins: [EditableRow, EditableTableRow, RowDragSortRow],
-  computed: {
-    props(): TableRowComponentProps {
-      return this.getContext?.()?.context?.onRow?.(this.$parent.rowKey);
-    },
+import { ColumnTypeExt } from '../../types';
+import useRowDragSortRow from '../DragSort/RowDragSort/DragSortRow';
+import useEditableRow from '../EditableCell/EditableRow';
+import useEditableTableRow from '../EditableCell/EditableTableRow';
+
+export default defineComponent({
+  props: {
+    record: object().def({}),
+    rowIndex: number(),
+    column: object<ColumnTypeExt>().def({}),
   },
-  render(h) {
-    // 所有的reducer都去装饰tr，最终返回装饰后的tr
-    const trVNode = <tr>{this.$slots.default}</tr>;
+  setup(props, { slots }) {
+    const getContext = inject<any>('getContext');
+    const context = getContext?.()?.context;
 
-    const context = this.getContext?.()?.context;
+    const rowDragSortRow = useRowDragSortRow(props);
+    const editableRow = useEditableRow(props);
+    const editableTableRow = useEditableTableRow(props);
 
-    return context?.getTableRowComponentReducers()?.reduce?.(
-      (pre, hookName) => {
-        // 调用混入对象的use方法
-        pre.value = this[hookName](h, pre.value);
+    const map = new Map<string, (tbodyVNode: VNode) => any>([
+      ['useRowDragSortRow', rowDragSortRow],
+      ['useEditableRow', editableRow],
+      ['useEditableTableRow', editableTableRow],
+    ]);
 
-        return pre;
-      },
-      {
-        value: trVNode,
-      },
-    ).value as any;
+    return () => {
+      // 所有的reducer都去装饰tr，最终返回装饰后的tr
+      const trVNode = <tr>{slots?.default?.()}</tr>;
+
+      return context?.getTableRowComponentReducers()?.reduce?.(
+        (pre, hookName) => {
+          // 调用混入对象的use方法
+          pre.value = map.get(hookName)?.(pre.value);
+
+          return pre;
+        },
+        {
+          value: trVNode,
+        },
+      ).value as any;
+    };
   },
-};
+});

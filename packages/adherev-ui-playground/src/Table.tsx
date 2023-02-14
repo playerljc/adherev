@@ -72,7 +72,6 @@ export default defineComponent({
                       textAlign: align || 'left',
                     }}
                   >
-                    {/*@ts-ignore*/}
                     <ConditionalRender conditional={!!slot}>
                       {{
                         default: () =>

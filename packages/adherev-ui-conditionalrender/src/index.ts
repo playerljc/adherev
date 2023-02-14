@@ -1,4 +1,4 @@
-import { App, VNode } from 'vue';
+import { App, Plugin, VNode } from 'vue';
 
 import Util from '@baifendian/adherev-util';
 

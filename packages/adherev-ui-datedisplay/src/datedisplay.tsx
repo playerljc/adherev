@@ -4,8 +4,10 @@ import 'dayjs/locale/pt';
 import 'dayjs/locale/zh-cn';
 import LocalizedFormat from 'dayjs/plugin/localizedFormat';
 import relativeTime from 'dayjs/plugin/relativeTime';
+import { defineComponent } from 'vue';
+import { bool, number, object, oneOfType, string } from "vue-types";
 
-import ConditionalRender from '@baifendian/adherev-ui-conditionalrender';
+// import ConditionalRender from '@baifendian/adherev-ui-conditionalrender';
 import Resource from '@baifendian/adherev-util-resource';
 
 dayjs.extend(LocalizedFormat);
@@ -25,39 +27,43 @@ const Components: {
 keys.forEach((key) => {
   const name = key.substring('ResourceMomentFormat'.length);
 
-  Components[`DateDisplay${name}`] = {
+  Components[`DateDisplay${name}`] = defineComponent({
     name: `adv-datedisplay-${name}`,
     props: {
-      value: {
+      value: oneOfType([object(),number(),string()])/*{
         type: [Object, Number, String, Date],
-      },
-      split1: {
+      }*/,
+      split1: string().def('-')/*{
         type: String,
         default: '-',
-      },
-      split2: {
+      }*/,
+      split2: string().def(':')/*{
         type: String,
         default: ':',
-      },
+      }*/,
     },
     setup(props, { slots }) {
       const dict = Resource.Dict.value[key].value;
 
-      return () => (
-        // @ts-ignore
+      return () =>
+        !!props.value
+          ?
+          // @ts-ignore
+          dayjs(props?.value).format(
+              dict instanceof Function ? dict(props.split1, props.split2) : dict,
+            )
+          : slots?.errorUI?.();
+        /*// @ts-ignore
         <ConditionalRender conditional={!!props.value}>
           {{
             default: () => {
-              dayjs(props.value).format(
-                dict instanceof Function ? dict(props.split1, props.split2) : dict,
-              );
+              ;
             },
-            noMatch: () => slots?.errorUI?.(),
+            noMatch: () => ,
           }}
-        </ConditionalRender>
-      );
+        </ConditionalRender>*/
     },
-  };
+  });
 });
 
 /**
@@ -65,70 +71,71 @@ keys.forEach((key) => {
  * @constructor
  * @classdesc 返回现在到当前实例的相对时间
  */
-Components[`DateDisplayFromNow`] = {
+Components[`DateDisplayFromNow`] = defineComponent({
   name: `adv-datedisplay-fromnow`,
   props: {
-    value: {
+    value: oneOfType([object(), number(), string()])/*{
       type: [Object, Number, String, Date],
-    },
-    locale: {
+    }*/,
+    locale: string().def('zh-cn')/*{
       type: String,
       default: 'zh-cn',
-    },
-    now: {
+    }*/,
+    now: bool().def(false)/*{
       type: Boolean,
       default: false,
-    },
+    }*/,
   },
   setup(props) {
-    return () => (
+    return () =>
       // @ts-ignore
-      <ConditionalRender conditional={!!props.value}>
-        {{
-          default: () => dayjs(props.value).locale(props.locale).fromNow(props.now),
-        }}
-      </ConditionalRender>
-    );
+      !!props.value ? dayjs(props.value).locale(props.locale).fromNow(props.now) : null;
+      // <ConditionalRender conditional={!!props.value}>
+      //   {{
+      //     default: () => dayjs(props.value).locale(props.locale).fromNow(props.now),
+      //   }}
+      // </ConditionalRender>
   },
-};
+});
 
 /**
  * DateDisplayToNow
  * @constructor
  * @classdesc 返回当前实例到现在的相对时间
  */
-Components[`DateDisplayToNow`] = {
+Components[`DateDisplayToNow`] = defineComponent({
   name: `adv-datedisplay-tonow`,
   props: {
-    value: {
+    value: oneOfType([object(), number(), string()])/*{
       type: [Object, Number, String, Date],
-    },
-    locale: {
+    }*/,
+    locale: string().def('zh-cn')/*{
       type: String,
       default: 'zh-cn',
-    },
-    now: {
+    }*/,
+    now: bool().def(false)/* {
       type: Boolean,
       default: false,
-    },
+    }*/,
   },
   setup(props) {
-    return () => (
+    return () =>
       // @ts-ignore
-      <ConditionalRender conditional={!!props.value}>
-        {{
-          default: () => dayjs(props.value).locale(props.locale).toNow(props.now),
-        }}
-      </ConditionalRender>
-    );
+      !!props.value ? dayjs(props.value).locale(props.locale).toNow(props.now) : null;
+      // @ts-ignore
+      // <ConditionalRender conditional={!!props.value}>
+      //   {{
+      //     default: () => dayjs(props.value).locale(props.locale).toNow(props.now),
+      //   }}
+      // </ConditionalRender>
   },
-};
+});
 
 /**
  * DateDisplay
  * @constructor
  */
-Components[`DateDisplay`] = {
+Components[`DateDisplay`] = defineComponent({
   name: `adv-datedisplay`,
   props: {
     value: {
@@ -143,16 +150,16 @@ Components[`DateDisplay`] = {
     },
   },
   setup(props) {
-    return () => (
+    return () =>
       // @ts-ignore
-      <ConditionalRender conditional={!!props.value}>
-        {{
-          default: () => dayjs(props.value).locale(props.locale).format(props.format),
-        }}
-      </ConditionalRender>
-    );
+      !!props.value ? dayjs(props.value).locale(props.locale).format(props.format) : null;
+      // <ConditionalRender conditional={!!props.value}>
+      //   {{
+      //     default: () => dayjs(props.value).locale(props.locale).format(props.format),
+      //   }}
+      // </ConditionalRender>
   },
-};
+});
 
 // 本地
 ['LT', 'LTS', 'L', 'LL', 'LLL', 'LLLL', 'l', 'll', 'lll', 'llll'].forEach((format) => {
@@ -162,13 +169,13 @@ Components[`DateDisplay`] = {
 
   const Com = Components['DateDisplay'];
 
-  Components[`DateDisplay${format}`] = {
+  Components[`DateDisplay${format}`] = defineComponent({
     ...Com,
     ...options,
     setup(props) {
       return () => <Com {...props} format={format} />;
     },
-  };
+  });
 });
 
 export default Components;

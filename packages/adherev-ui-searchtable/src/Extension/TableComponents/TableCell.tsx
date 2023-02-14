@@ -1,50 +1,59 @@
-import { PropType } from 'vue';
+import { VNode, defineComponent, inject } from 'vue';
+import { array, number, object } from 'vue-types';
 
-import { ColumnTypeExt } from '../../types';
-import RowDragSortCell from '../DragSort/RowDragSort/DragSortCell';
-import EditableCell from '../EditableCell/EditableCell';
-import EditableTableCell from '../EditableCell/EditableTableCell';
+import { ColumnTypeExt } from '@/types';
+
+import { useRowDragSortCell } from '../DragSort/RowDragSort/DragSortCell';
+import { useEditableCell } from '../EditableCell/EditableCell';
+import { useEditableTableCell } from '../EditableCell/EditableTableCell';
 
 /**
  * TableCell
  * @description 表格单元格(td)组件
  */
-export default {
+export default defineComponent({
   props: {
-    rowIndex: {
-      type: Number,
-    },
-    record: {
-      type: Object as PropType<{
-        [propName: string]: any;
-      }>,
-    },
-    column: {
-      type: Object as PropType<ColumnTypeExt>,
-    },
-    columns: {
-      type: Array as PropType<ColumnTypeExt[]>,
-    },
+    // 行的索引
+    rowIndex: number(),
+    // 行的数据
+    record: object().def({}),
+    // 列的配置
+    column: object<ColumnTypeExt>().def({}),
+    // 所有列的配置
+    columns: array<ColumnTypeExt>().def([]),
   },
-  inject: ['getContext'],
-  // 混入EditableCell, EditableTableCell, RowDragSortCell
-  mixins: [EditableCell, EditableTableCell, RowDragSortCell],
-  render(h) {
-    // 所有的reducer都去装饰tr，最终返回装饰后的tr
-    const tdVNode = <td>{this.$slots.default}</td>;
+  setup(props, _context) {
+    const { slots } = _context;
 
-    const context = this.getContext?.()?.context;
+    const getContext = inject<any>('getContext');
+    const context = getContext?.()?.context;
 
-    return context?.getTableCellComponentReducers()?.reduce?.(
-      (pre, hookName) => {
-        // 调用指定混入的use方法
-        pre.value = this[hookName](h, pre.value);
+    const editableCell = useEditableCell(props, _context);
+    const editableTableCell = useEditableTableCell(props, _context);
+    const rowDragSortCell = useRowDragSortCell(props, _context);
 
-        return pre;
-      },
-      {
-        value: tdVNode,
-      },
-    ).value as any;
+    const map = new Map<string, (tbodyVNode: VNode) => any>([
+      ['useEditableCell', editableCell],
+      ['useEditableTableCell', editableTableCell],
+      ['useRowDragSortCell', rowDragSortCell],
+    ]);
+
+    return () => {
+      // 所有的reducer都去装饰tr，最终返回装饰后的tr
+      const tdVNode = <td>{slots?.default?.()}</td>;
+
+      return context?.getTableCellComponentReducers()?.reduce?.(
+        (pre, hookName) => {
+          // 调用混入对象的use方法
+          pre.value = map.get(hookName)?.(pre.value);
+
+          return pre;
+        },
+        {
+          value: tdVNode,
+        },
+      ).value as any;
+    }
+
   },
-};
+});

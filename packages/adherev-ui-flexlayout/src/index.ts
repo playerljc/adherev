@@ -1,5 +1,5 @@
 import { Button } from 'ant-design-vue';
-import { App } from 'vue';
+import { App, Plugin } from 'vue';
 
 import Util from '@baifendian/adherev-util';
 

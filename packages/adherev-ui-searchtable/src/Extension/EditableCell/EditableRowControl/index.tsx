@@ -1,128 +1,123 @@
-import { PropType, VNode } from 'vue';
+import dayjs from 'dayjs';
+import { VNode, defineComponent, inject } from 'vue';
+import { func, number, object, oneOfType, string } from 'vue-types';
 
 import Intl from '@baifendian/adherev-util-intl';
 
 import { selectorPrefix } from '../../../SearchTable';
 
-export default {
+export default defineComponent({
   name: 'adv-searchtable-editable-row-control',
   props: {
-    rowKey: {
-      type: String,
-    },
-    editorRowId: {
-      type: String,
-    },
-    record: {
-      type: Object as PropType<{ [prop: string]: any }>,
-      default: () => ({}),
-    },
-    renderEditorRow: {
-      type: Function as PropType<() => VNode>,
-    },
-    renderSave: {
-      type: Function as PropType<() => VNode>,
-    },
-    renderCancel: {
-      type: Function as PropType<() => VNode>,
-    },
-    onSave: {
-      type: Function as PropType<(values: { [props: string]: any }) => Promise<void>>,
-    },
-    onEditor: {
-      type: Function as PropType<(id: string) => Promise<void>>,
-    },
+    rowKey: string().def(''),
+    rowIndex: number(),
+    editorRowId: string().def(''),
+    record: object().def({}),
+    renderEditorRow: oneOfType([string(), func<() => VNode>()]),
+    renderSave: oneOfType([string(), func<() => VNode>()]),
+    renderCancel: oneOfType([string(), func<() => VNode>()]),
+    onSave: func<(values: { [props: string]: any }) => Promise<void>>(),
+    onEditor: func<(id: string) => Promise<void>>(),
   },
   emits: ['renderEditorRow', 'renderSave', 'renderCancel'],
-  inject: ['getFormIns', 'getContext'],
-  methods: {
-    renderDefaultEditorRow(h) {
-      return <a>{Intl.tv('编辑行')}</a>;
-      // return <a>编辑行</a>;
-    },
-    renderDefaultCancel(h) {
-      return <a>{Intl.tv('取消')}</a>;
-      // return <a>取消</a>;
-    },
-    renderDefaultSave(h) {
-      return <a>{Intl.tv('保存')}</a>;
-      // return <a>保存</a>;
-    },
-    validateFieldsSuccess(values) {
-      if (this.onSave) {
-        this.onSave(values).then(() => this.updateEditorCellRowData(values));
+  setup(props, { slots }) {
+    const context = inject<any>('getContext')?.()?.context;
+    const form = inject<any>('getFormIns')?.();
+    const setRowFieldValue = inject<(record: any, rowIndex: number) => void>('setRowFieldValue');
+
+    const renderDefaultEditorRow = () => <a>{Intl.tv('编辑行')}</a>;
+
+    const renderDefaultCancel = () => <a>{Intl.tv('取消')}</a>;
+
+    const renderDefaultSave = () => <a>{Intl.tv('保存')}</a>;
+
+    const validateFieldsSuccess = (values) => {
+      if (props.onSave) {
+        props.onSave(values).then(() => updateEditorCellRowData(values));
         return;
       }
 
-      this.updateEditorCellRowData(values);
-    },
-    updateEditorCellRowData(values) {
-      const context = this.getContext?.()?.context;
+      updateEditorCellRowData(values);
+    };
 
-      context?.updateEditorCellRowData({ values, record: this.record })?.then(() => this.reset());
-    },
-    updateRowEdit() {
-      const context = this.getContext?.()?.context;
+    const updateEditorCellRowData = (values) => {
+      context
+        ?.updateEditorCellRowData({ values, record: props.record, rowIndex: props.rowIndex })
+        ?.then(() => onReset());
+    };
 
+    const updateRowEdit = () => {
       if (context) {
-        context.editorRowId = this.record[this.rowKey];
+        context.editorRowId = props.record[props.rowKey];
       }
-    },
-    reset() {
-      const context = this.getContext?.()?.context;
+    };
 
+    const onReset = () => {
       if (context) {
         context.editorRowId = '';
+
+        setRowFieldValue?.(props.record, props?.rowIndex as number);
+
+        // const formData = {};
+        //
+        // Object.keys(props.record).forEach((dataIndex) => {
+        //   const column = context?.getColumnByDataIndex(dataIndex);
+        //   if (!column) return;
+        //
+        //   const type = column?.$editable?.type as string;
+        //
+        //   const name = `${dataIndex}_${props?.rowIndex}`;
+        //
+        //   if (['datePicker', 'timePicker'].includes(type)) {
+        //     formData[name] = dayjs(props.record[dataIndex]);
+        //   } else {
+        //     formData[name] = props.record[dataIndex];
+        //   }
+        // });
+        //
+        // context.formData = formData;
       }
-    },
-    $onEditor() {
-      if (this.onEditor) {
-        this.onEditor?.(this.record[this.rowKey])?.then(() => this.updateRowEdit());
+    };
+
+    const onEditor = () => {
+      if (props.onEditor) {
+        props.onEditor?.(props.record[props.rowKey])?.then(() => updateRowEdit());
 
         return;
       }
 
-      this.updateRowEdit();
-    },
-  },
-  render(h) {
-    const { editorRowId, record, rowKey } = this;
-    const form = this.getFormIns();
+      updateRowEdit();
+    };
 
-    return (
+    return () => (
       <div class={`${selectorPrefix}-editor-row-control`}>
-        {editorRowId !== record[rowKey] && (
-          <div class={`${selectorPrefix}-editor-row-control-edit`} onClick={this.$onEditor}>
-            {this.$slots?.[this.renderEditorRow]?.() ||
-              this?.renderEditorRow?.(h) ||
-              this.renderDefaultEditorRow(h)}
+        {props.editorRowId !== props.record[props.rowKey] && (
+          <div class={`${selectorPrefix}-editor-row-control-edit`} onClick={onEditor}>
+            {slots?.[props?.renderEditorRow as string]?.() ||
+              (props?.renderEditorRow as Function)?.() ||
+              renderDefaultEditorRow()}
           </div>
         )}
 
-        {editorRowId === record[rowKey] && (
+        {props.editorRowId === props.record[props.rowKey] && (
           <div class={`${selectorPrefix}-editor-row-control-save-cancel`}>
             <div
               class={`${selectorPrefix}-editor-row-control-save-cancel-item`}
-              onClick={() =>
-                form?.validateFields().then((values) => this.validateFieldsSuccess(values))
-              }
+              onClick={() => form?.validateFields().then((values) => validateFieldsSuccess(values))}
             >
-              {this.$slots?.[this.renderSave]?.() ||
-                this?.renderSave?.(h) ||
-                this.renderDefaultSave(h)}
+              {slots?.[props?.renderSave as string]?.() ||
+                (props?.renderSave as Function)?.() ||
+                renderDefaultSave()}
             </div>
 
-            <div
-              class={`${selectorPrefix}-editor-row-control-save-cancel-item`}
-              onClick={this.reset}
-            >
-              {this.$slots?.[this.renderCancel]?.() ||
-                this?.renderCancel?.(h) ||
-                this.renderDefaultCancel(h)}
+            <div class={`${selectorPrefix}-editor-row-control-save-cancel-item`} onClick={onReset}>
+              {slots?.[props?.renderCancel as string]?.() ||
+                (props?.renderCancel as Function)?.() ||
+                renderDefaultCancel()}
             </div>
           </div>
         )}
       </div>
     );
   },
-};
+});

@@ -560,7 +560,6 @@ export default {
     return {
       density: 'default',
       layout: 'horizontal',
-      // form: this.$form.createForm(this, { name: 'coordinated' }),
       scrollEl: null,
       codeBoxPanelConfig: [
         {
@@ -2304,26 +2303,31 @@ export default {
               key: 'UserName',
               label: 'UserNameLabel',
               value: 'UserNameValue',
+              require: true,
             },
             {
               key: 'Telephone',
               label: 'TelephoneLabel',
               value: 'TelephoneValue',
+              require: true,
             },
             {
               key: 'Sex',
               label: 'SexLabel',
               value: 'SexValue',
+              require: true,
             },
             {
               key: 'Birthday',
               label: 'BirthdayLabel',
               value: 'BirthdayValue',
+              require: true,
             },
             {
               key: 'Address',
               label: 'AddressLabel',
               value: 'AddressValue',
+              require: true,
             },
           ],
         },

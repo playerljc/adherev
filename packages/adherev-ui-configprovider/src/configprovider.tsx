@@ -1,6 +1,6 @@
-import { defineComponent, onMounted, ref, watch } from 'vue';
+import { defineComponent, onMounted, ref, watch ,nextTick} from 'vue';
 import { object } from 'vue-types';
-
+import debounce from 'lodash.debounce';
 import Hooks from '@baifendian/adherev-ui-hooks';
 import Intl from '@baifendian/adherev-util-intl';
 import Mixins from '@baifendian/adherev-util-mixins';
@@ -25,10 +25,15 @@ const ConfigProvider = defineComponent({
   name: 'adv-configprovider',
   mixins: [forceUpdate],
   props: configProviderProps,
-  setup(props, { slots }) {
+  emits: ['intlInit', 'propsChange'],
+  setup(props, { slots,emit }) {
     const isIntlInit = ref(false);
 
     const $forceUpdate = useForceUpdate();
+
+    const propsChangeHandler = debounce(() => {
+      emit('propsChange');
+    }, 200);
 
     const init = () =>
       Intl.init(
@@ -44,8 +49,12 @@ const ConfigProvider = defineComponent({
 
         if (!isIntlInit.value) {
           isIntlInit.value = true;
+          nextTick(function () {
+            emit('intlInit');
+          });
         } else {
           $forceUpdate();
+          nextTick(propsChangeHandler);
         }
       });
 

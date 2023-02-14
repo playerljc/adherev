@@ -1,303 +1,266 @@
-import { Form, Icon } from 'ant-design-vue';
-import moment from 'moment';
-import { PropType } from 'vue';
+import { Form, FormInstance } from 'ant-design-vue';
+import dayjs from 'dayjs';
+import { defineComponent, inject } from 'vue';
+import { array, number, object } from 'vue-types';
+
+import { CheckOutlined, CloseOutlined } from '@ant-design/icons-vue';
 
 import { selectorPrefix } from '../../../SearchTable';
 import { ColumnEditableConfig, ColumnTypeExt } from '../../../types';
-import EventTypes from '../EventTypes';
 import FormItemGenerator from './FormItemGenerator';
 
 /**
  * EditableCellEditor
  * @description 可编辑单元格的编辑状态
  */
-export default {
+export default defineComponent({
   props: {
-    rowIndex: {
-      type: Number,
-    },
-    record: {
-      type: Object as PropType<{
-        [propName: string]: any;
-      }>,
-    },
-    column: {
-      type: Object as PropType<ColumnTypeExt>,
-    },
-    columns: {
-      type: Array as PropType<ColumnTypeExt[]>,
-    },
-    editableConfig: {
-      type: Object as PropType<ColumnEditableConfig>,
-    },
+    rowIndex: number(),
+    record: object().def({}),
+    column: object<ColumnTypeExt>().def({}),
+    columns: array<ColumnTypeExt[]>().def([]),
+    editableConfig: object<ColumnEditableConfig>(),
   },
   emits: ['triggerChange'],
-  inject: ['getFormIns', 'getContext'],
-  methods: {
+  setup(props, { emit, slots }) {
+    const getContext = inject<any>('getContext');
+    const context = getContext?.()?.context;
+
+    // @ts-ignore
+    const form = inject<FormInstance>('getFormIns')?.();
+
+    const renderSaveTriggerArgs = {
+      value: props?.record?.[props?.editableConfig?.dataIndex as string],
+      record: props.record,
+      dataIndex: props?.editableConfig?.dataIndex,
+      rowIndex: props?.rowIndex,
+    };
+
+    const renderCancelTriggerArgs = {
+      value: props?.record?.[props?.editableConfig?.dataIndex as string],
+      record: props?.record,
+      dataIndex: props?.editableConfig?.dataIndex,
+      rowIndex: props?.rowIndex,
+    };
+
+    const initialValue = context?.valueToFormItemValue({
+      type: props?.editableConfig?.type,
+      record: props.record,
+      dataIndex: props?.editableConfig?.dataIndex,
+    });
+
+    const renderArgs = {
+      initialValue,
+      value: props?.record?.[props?.editableConfig?.dataIndex as string],
+      record: props?.record,
+      dataIndex: props?.editableConfig?.dataIndex,
+      rowIndex: props?.rowIndex,
+      form,
+      updateEditorCellData: () => updateEditorCellData(),
+    };
+
     /**
      * updateEditorCellData
      * @description 更新单元格的值
      */
-    updateEditorCellData() {
-      const { dataIndex } = this.editableConfig;
-      const { record, rowIndex } = this;
+    const updateEditorCellData = () => {
+      const value = getValue();
 
-      const value = this.getValue();
+      const params = {
+        record: props?.record,
+        dataIndex: props?.editableConfig?.dataIndex,
+        value,
+        rowIndex: props?.rowIndex,
+      };
 
-      if (value instanceof moment) {
-        return this.getContext?.()?.context?.updateEditorCellDateData({
-          record,
-          dataIndex,
-          value,
-          rowIndex,
-        });
+      if (value instanceof dayjs) {
+        return context?.updateEditorCellDateData(params);
       }
 
-      return this.getContext?.()?.context?.updateEditorCellDate({
-        record,
-        dataIndex,
-        value,
-        rowIndex,
-      });
-    },
+      return context?.updateEditorCellDate(params);
+    };
+
     /**
      * renderFormItem
      */
-    renderFormItem(h) {
-      const { useKeepEdit, dataIndex, type, render, dictName, renderChildren } =
-        this.editableConfig;
-      const { rowIndex, record } = this;
-
-      const form = this.getFormIns();
-
+    const renderFormItem = () => {
       let formItemNodeProps = {
-        autoFocus: !useKeepEdit,
-        ...this.editableConfig.props,
+        autoFocus: !props?.editableConfig?.useKeepEdit,
+        ...(props?.editableConfig?.props || {}),
       };
 
-      // const formItemListeners = {
-      //   ...EventTypes.reduce<{ [prop: string]: Function }>((eventCombination, eventType) => {
-      //     eventCombination[eventType] = (e: any) => {
-      //       if (this.editableConfig?.listeners[eventType]) {
-      //         this.editableConfig?.listeners[eventType]?.(e, {
-      //           form,
-      //           dataIndex,
-      //           rowIndex,
-      //           updateEditorCellData: () => this.updateEditorCellData(),
-      //         });
-      //       }
-      //     };
-      //
-      //     return eventCombination;
-      //   }, {}),
-      // }
-
-      const formItemListeners = Object.keys(this.editableConfig?.listeners || {}).reduce<{
+      const formItemListeners = Object.keys(props?.editableConfig?.listeners || {}).reduce<{
         [prop: string]: Function;
       }>((eventCombination, eventType) => {
         eventCombination[eventType] = (e: any) => {
-          this.editableConfig?.listeners[eventType]?.(e, {
+          props.editableConfig?.listeners[eventType]?.(e, {
             form,
-            dataIndex,
-            rowIndex,
-            updateEditorCellData: () => this.updateEditorCellData(),
+            dataIndex: props?.editableConfig?.dataIndex,
+            rowIndex: props?.rowIndex,
+            updateEditorCellData: () => updateEditorCellData(),
           });
         };
 
         return eventCombination;
       }, {});
 
-      const formItemNode = FormItemGenerator.render(h, {
-        type,
+      const formItemNode = FormItemGenerator.render({
+        type: props?.editableConfig?.type,
         props: formItemNodeProps,
         listeners: formItemListeners,
-        dictName,
-        renderChildren,
+        dictName: props?.editableConfig?.dictName,
+        renderChildren: props?.editableConfig?.renderChildren,
+        dataIndex: props?.editableConfig?.dataIndex,
+        rowIndex: props?.rowIndex,
+        initialValue,
+        name,
         form,
-        dataIndex,
-        rowIndex,
+        context,
       });
 
-      const $scopedSlots = this.getContext?.()?.context?.$scopedSlots;
-
       const renderArgs = {
-        value: record?.[dataIndex as string],
-        record,
-        dataIndex,
-        rowIndex,
-        form,
-        updateEditorCellData: () => this.updateEditorCellData(),
+        value: props?.record?.[props?.editableConfig?.dataIndex as string],
+        record: props?.record,
+        dataIndex: props?.editableConfig?.dataIndex,
+        rowIndex: props?.rowIndex,
+        updateEditorCellData: () => updateEditorCellData(),
         children: formItemNode,
+        form,
       };
 
-      return $scopedSlots?.[render]?.(renderArgs) || render?.(renderArgs) || formItemNode;
-    },
+      return (
+        slots?.[props?.editableConfig?.render as any]?.(renderArgs) ||
+        props?.editableConfig?.render?.(renderArgs) ||
+        formItemNode
+      );
+    };
+
     /**
      * renderDefaultSaveTrigger
      * @description 渲染缺省的保存句柄
      */
-    renderDefaultSaveTrigger(h) {
-      return <Icon type="check" />;
-    },
+    const renderDefaultSaveTrigger = () => <CheckOutlined />;
+
     /**
      * renderDefaultCancelTrigger
      * @description 渲染缺省的取消句柄
      */
-    renderDefaultCancelTrigger(h) {
-      return <Icon type="close" />;
-    },
+    const renderDefaultCancelTrigger = () => <CloseOutlined />;
+
     /**
      * onSaveTrigger
      * @description 点击了保存句柄
      */
-    onSaveTrigger() {
-      const { dataIndex, onSave } = this.editableConfig;
-      const { rowIndex, record } = this;
+    const onSaveTrigger = () => {
+      const value = getValue();
 
-      const form = this.getFormIns();
-      const value = this.getValue();
-
-      if (onSave) {
+      if (props?.editableConfig?.onSave) {
         form?.validateFields().then((values) => {
-          onSave({
-            value,
-            values,
-            record,
-            dataIndex,
-            rowIndex,
-          })?.then(() => {
-            this.$emit('triggerChange');
-          });
+          props?.editableConfig
+            ?.onSave?.({
+              value,
+              values,
+              record: props?.record,
+              dataIndex: props?.editableConfig?.dataIndex,
+              rowIndex: props?.rowIndex,
+            })
+            ?.then(() => {
+              emit('triggerChange');
+            });
         });
 
         return;
       }
 
-      this.$emit('triggerChange');
-    },
+      emit('triggerChange');
+    };
+
     /**
      * onCancelTrigger
      * @description 点击了cancel句柄
      */
-    onCancelTrigger() {
-      const { dataIndex, onBeforeCancel } = this.editableConfig;
-      const { rowIndex, record } = this;
+    const onCancelTrigger = () => {
+      const value = props?.record?.[props?.editableConfig?.dataIndex as string];
 
-      const value = this.getValue();
+      // 重置当前单元格的值
+      context.formData[name] = value;
 
-      if (onBeforeCancel) {
-        onBeforeCancel({
-          value,
-          record,
-          dataIndex,
-          rowIndex,
-        })?.then(() => this.$emit('triggerChange'));
+      if (props?.editableConfig?.onBeforeCancel) {
+        props?.editableConfig
+          ?.onBeforeCancel({
+            value,
+            record: props?.record,
+            dataIndex: props?.editableConfig?.dataIndex,
+            rowIndex: props?.rowIndex,
+          })
+          ?.then(() => emit('triggerChange'));
         return;
       }
 
-      this.$emit('triggerChange');
-    },
+      emit('triggerChange');
+    };
+
     /**
      * getValue
      */
-    getValue() {
-      return this.getFormIns?.()?.getFieldValue(
-        `${this.editableConfig.dataIndex}_${this.rowIndex}`,
-      );
-    },
-  },
-  render(h) {
-    const {
-      useTrigger,
-      useKeepEdit,
-      renderSaveTrigger,
-      renderCancelTrigger,
-      dataIndex,
-      type,
-      render,
-      rules,
-      formItemProps,
-    } = this.editableConfig;
+    const getValue = () => context.formData[name as string];
 
-    const { record, rowIndex } = this;
+    const name = `${props?.editableConfig?.dataIndex}_${props?.rowIndex}`;
 
-    const context = this.getContext?.()?.context;
-
-    const $scopedSlots = context?.$scopedSlots;
-
-    const form = this.getFormIns();
-
-    const { getFieldDecorator } = form;
-
-    const renderArgs = {
-      value: record?.[dataIndex as string],
-      record,
-      dataIndex,
-      rowIndex,
-      form,
-      updateEditorCellData: () => this.updateEditorCellData(),
-    };
-
-    const renderSaveTriggerArgs = {
-      value: record?.[dataIndex as string],
-      record,
-      dataIndex,
-      rowIndex,
-    };
-
-    const renderCancelTriggerArgs = {
-      value: record?.[dataIndex as string],
-      record,
-      dataIndex,
-      rowIndex,
-    };
-
-    const initialValue = context?.valueToFormItemValue({
-      type,
-      record,
-      dataIndex,
-    });
-
-    return (
-      <div class={`${selectorPrefix}-editablecell-edit`}>
-        <div class={`${selectorPrefix}-editablecell-edit-inner`}>
-          <Form.Item>
-            {getFieldDecorator(`${dataIndex}_${rowIndex}`, {
+    return () => {
+      return (
+        <div class={`${selectorPrefix}-editablecell-edit`}>
+          <div class={`${selectorPrefix}-editablecell-edit-inner`}>
+            <Form.Item
+              name={name}
+              rules={props?.editableConfig?.rules}
+              {...(props?.editableConfig?.formItemProps || {})}
+            >
+              {/*{getFieldDecorator(`${dataIndex}_${rowIndex}`, {
               rules,
               initialValue,
               ...(formItemProps || {}),
             })(
               type !== 'custom'
-                ? this.renderFormItem(h)
-                : $scopedSlots?.[render]?.(renderArgs) || render?.(renderArgs),
-            )}
-          </Form.Item>
-        </div>
+                ? this.renderFormItem()
+                : slots?.[render]?.(renderArgs) || render?.(renderArgs),
+            )}*/}
+              {props?.editableConfig?.type !== 'custom'
+                ? renderFormItem?.()
+                : slots?.[props?.editableConfig?.render as any]?.(renderArgs) ||
+                  props?.editableConfig?.render?.(renderArgs)}
+            </Form.Item>
+          </div>
 
-        {!!useTrigger && !useKeepEdit && (
-          <div class={`${selectorPrefix}-editablecell-edit-trigger`}>
-            <div class={`${selectorPrefix}-editablecell-edit-trigger-inner`}>
-              <div
-                class={`${selectorPrefix}-editablecell-edit-trigger-save`}
-                onClick={this.onSaveTrigger}
-              >
-                {$scopedSlots?.[renderSaveTrigger]?.(renderSaveTriggerArgs) ||
-                  renderSaveTrigger?.(renderSaveTriggerArgs) ||
-                  this.renderDefaultSaveTrigger(h)}
-              </div>
+          {!!props?.editableConfig?.useTrigger && !props?.editableConfig?.useKeepEdit && (
+            <div class={`${selectorPrefix}-editablecell-edit-trigger`}>
+              <div class={`${selectorPrefix}-editablecell-edit-trigger-inner`}>
+                <div
+                  class={`${selectorPrefix}-editablecell-edit-trigger-save`}
+                  onClick={onSaveTrigger}
+                >
+                  {slots?.[props?.editableConfig?.renderSaveTrigger as any]?.(
+                    renderSaveTriggerArgs,
+                  ) ||
+                    props?.editableConfig?.renderSaveTrigger?.(renderSaveTriggerArgs) ||
+                    renderDefaultSaveTrigger()}
+                </div>
 
-              <div
-                class={`${selectorPrefix}-editablecell-edit-trigger-cancel`}
-                onClick={this.onCancelTrigger}
-              >
-                {$scopedSlots?.[renderCancelTrigger]?.(renderCancelTriggerArgs) ||
-                  renderCancelTrigger?.(renderCancelTriggerArgs) ||
-                  this.renderDefaultCancelTrigger(h)}
+                <div
+                  class={`${selectorPrefix}-editablecell-edit-trigger-cancel`}
+                  onClick={onCancelTrigger}
+                >
+                  {slots?.[props?.editableConfig?.renderCancelTrigger as any]?.(
+                    renderCancelTriggerArgs,
+                  ) ||
+                    props?.editableConfig?.renderCancelTrigger?.(renderCancelTriggerArgs) ||
+                    renderDefaultCancelTrigger()}
+                </div>
               </div>
             </div>
-          </div>
-        )}
-      </div>
-    );
+          )}
+        </div>
+      );
+    };
   },
-};
+});

@@ -1,98 +1,80 @@
-import { PropType, VNode } from 'vue';
+import { VNode, defineComponent, inject } from 'vue';
+import { func, oneOfType, string } from 'vue-types';
 
 import Intl from '@baifendian/adherev-util-intl';
 
 import { selectorPrefix } from '../../../SearchTable';
 
-export default {
+export default defineComponent({
   name: 'adv-searchtable-editable-control',
   props: {
-    rowKey: {
-      type: String,
-    },
-    renderEditorTable: {
-      type: Function as PropType<() => VNode>,
-    },
-    renderSave: {
-      type: Function as PropType<() => VNode>,
-    },
-    renderCancel: {
-      type: Function as PropType<() => VNode>,
-    },
-    onEditor: {
-      type: Function as PropType<() => Promise<void>>,
-    },
-    onSave: {
-      type: Function as PropType<(values: { [prop: string]: any }[]) => Promise<void>>,
-    },
+    rowKey: string().def(''),
+    renderEditorTable: oneOfType([string(), func<() => VNode>()]),
+    renderSave: oneOfType([string(), func<() => VNode>()]),
+    renderCancel: oneOfType([string(), func<() => VNode>()]),
+    onEditor: func<() => Promise<void>>(),
+    onSave: func<(values: { [prop: string]: any }[]) => Promise<void>>(),
   },
   emits: ['renderEditorTable', 'renderSave', 'renderCancel'],
-  inject: ['getFormIns', 'getContext'],
-  methods: {
-    renderDefaultSave(h) {
-      // return <a>{Intl.tv('保存')}</a>;
-      return <a>保存</a>;
-    },
-    renderDefaultCancel(h) {
-      // return <a>{Intl.tv('取消')}</a>;
-      return <a>取消</a>;
-    },
-    renderDefaultEditorTable(h) {
-      // return <a>{Intl.tv('编辑表格')}</a>;
-      return <a>编辑表格</a>;
-    },
-    $onEditor() {
-      if (this.onEditor) {
-        this.onEditor?.()?.then(() => this.updateTableEdit());
+  setup(props, { slots }) {
+    const context = inject<any>('getContext')?.()?.context;
+    const form = inject<any>('getFormIns')?.();
+    const setFieldValuesByDataSource = inject<() => void>('setFieldValuesByDataSource');
+
+    const renderDefaultSave = () => <a>{Intl.tv('保存')}</a>;
+
+    const renderDefaultCancel = () => <a>{Intl.tv('取消')}</a>;
+
+    const renderDefaultEditorTable = () => <a>{Intl.tv('编辑表格')}</a>;
+
+    const onEditor = () => {
+      if (props.onEditor) {
+        props.onEditor?.()?.then(() => updateTableEdit());
 
         return;
       }
 
-      this.updateTableEdit();
-    },
-    $onSave() {
-      const form = this.getFormIns?.();
+      updateTableEdit();
+    };
 
-      form?.validateFields()?.then?.((values) => this.validateFieldsSuccess(values));
-    },
-    validateFieldsSuccess(values) {
-      if (this.onSave) {
-        this.onSave(values).then(() => this.updateEditorCellTableData(values));
+    const onSave = () => {
+      form?.validateFields()?.then?.((values) => validateFieldsSuccess(values));
+    };
+
+    const validateFieldsSuccess = (values) => {
+      if (props.onSave) {
+        props.onSave(values).then(() => updateEditorCellTableData(values));
         return;
       }
 
-      this.updateEditorCellTableData(values);
-    },
-    updateEditorCellTableData(changeData) {
-      const context = this.getContext?.()?.context;
+      updateEditorCellTableData(values);
+    };
 
-      context?.updateEditorData(changeData)?.then(() => this.reset());
-    },
-    updateTableEdit() {
-      const context = this.getContext?.()?.context;
+    const updateEditorCellTableData = (changeData) => {
+      context?.updateEditorData(changeData)?.then(onReset);
+    };
 
+    const updateTableEdit = () => {
       if (context) {
         context.isTableEditor = true;
       }
-    },
-    reset() {
-      const context = this.getContext?.()?.context;
+    };
 
+    const onReset = () => {
       if (context) {
         context.isTableEditor = false;
       }
-    },
-  },
-  render(h) {
-    const context = this.getContext?.().context;
 
-    return (
+      setFieldValuesByDataSource?.();
+    };
+
+    return () => (
       <div class={`${selectorPrefix}-editor-table-control`}>
         {!context?.isTableEditor && (
-          <div class={`${selectorPrefix}-editor-table-control-edit`} onClick={this.$onEditor}>
-            {this.$slots?.[this.renderEditorTable]?.() ||
-              this.renderEditorTable?.(h) ||
-              this.renderDefaultEditorTable?.(h)}
+          <div class={`${selectorPrefix}-editor-table-control-edit`} onClick={onEditor}>
+            {slots?.[props.renderEditorTable as string]?.() ||
+              (props?.renderEditorTable as Function)?.() ||
+              renderDefaultEditorTable?.()}
           </div>
         )}
 
@@ -101,25 +83,25 @@ export default {
             {/* 保存 */}
             <div
               class={`${selectorPrefix}-editor-table-control-save-cancel-item`}
-              onClick={this.$onSave}
+              onClick={onSave}
             >
-              {this.$slots?.[this.renderSave]?.() ||
-                this.renderSave?.(h) ||
-                this.renderDefaultSave(h)}
+              {slots?.[props?.renderSave as string]?.() ||
+                (props?.renderSave as Function)?.() ||
+                renderDefaultSave()}
             </div>
 
             {/* 取消 */}
             <div
               class={`${selectorPrefix}-editor-table-control-save-cancel-item`}
-              onClick={this.reset}
+              onClick={onReset}
             >
-              {this.$slots?.[this.renderCancel]?.() ||
-                this.renderCancel?.(h) ||
-                this.renderDefaultCancel(h)}
+              {slots?.[props?.renderCancel as string]?.() ||
+                (props?.renderCancel as Function)?.() ||
+                renderDefaultCancel()}
             </div>
           </div>
         )}
       </div>
     );
   },
-};
+});

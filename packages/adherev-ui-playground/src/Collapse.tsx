@@ -69,19 +69,17 @@ export default defineComponent({
                 collapse.value ? '' : `${selectorPrefix}-header-collapse-icon-close`,
               )}
             />
-            {/*@ts-ignore*/}
+
             <ConditionalRender conditional={!!props.title}>
               <div class={`${selectorPrefix}-header-title`}>{props.title}</div>
             </ConditionalRender>
           </div>
 
-          {/*@ts-ignore*/}
           <ConditionalRender conditional={!!props.extra}>
             <div class={`${selectorPrefix}-header-extra`}>{props.extra}</div>
           </ConditionalRender>
         </div>
 
-        {/*@ts-ignore*/}
         <ConditionalRender conditional={!collapse.value}>
           <div
             class={classNames(

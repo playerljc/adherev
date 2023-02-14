@@ -1,7 +1,15 @@
 import { Button, ConfigProvider } from 'ant-design-vue';
 import classNames from 'classnames';
 import { Teleport, defineComponent } from 'vue';
+import { array, func, object } from 'vue-types';
 
+import {
+  FilterOutlined,
+  LeftCircleOutlined,
+  ReloadOutlined,
+  RightCircleOutlined,
+  SearchOutlined,
+} from '@ant-design/icons-vue';
 import ConditionalRender from '@baifendian/adherev-ui-conditionalrender';
 import FlexLayout from '@baifendian/adherev-ui-flexlayout';
 import SlideLayout from '@baifendian/adherev-ui-slidelayout';
@@ -16,67 +24,49 @@ const selectorPrefix = 'adherev-ui-searchtable-advancedsearchpanel';
 export default defineComponent({
   name: '',
   props: {
-    groupData: {
-      type: Array,
-      default: () => [],
-    },
-    tableGridLayoutConfig: {
-      type: Object,
-      default: () => ({
-        layout: 'horizontal',
-        bordered: false,
-      }),
-    },
-    remainingGroupData: {
-      type: Array,
-      default: () => [],
-    },
-    advancedSearchConfig: {
-      type: Object,
-      default: () => ({
-        // 显示少行 'auto' | number
-        // auto - 为自动
-        // number - 指定行数 超出行会在高级筛选中显示
-        rowCount: 'auto',
-        // 剩余的条件的显示方式 'all' | 'remaining'
-        // all - 全部显示
-        // remaining - 显示剩余
-        showStrategy: 'all',
-        // 高级搜索
-        advancedSearch: {
-          // 外围样式
-          className: '',
-          // 外围style
-          style: {},
-          // 宽度
-          width: '30%',
-          // 是否有遮罩
-          mask: true,
-          // 层级
-          zIndex: 19999,
-          // 过度时间
-          time: 300,
-          // 方向
-          direction: 'right',
-          // 默认不展开
-          collapse: false,
-          onBeforeShow: () => {},
-          onBeforeClose: () => {},
-          onAfterShow: () => {},
-          onAfterClose: () => {},
-          getPopupContainer: () => document.body,
-        },
-      }),
-    },
-    searchFn: {
-      type: Function,
-    },
-    resetFn: {
-      type: Function,
-    },
-    collapseFn: {
-      type: Function,
-    },
+    groupData: array().def([]),
+    tableGridLayoutConfig: object().def({
+      layout: 'horizontal',
+      bordered: false,
+    }),
+    remainingGroupData: array().def([]),
+    advancedSearchConfig: object().def({
+      // 显示少行 'auto' | number
+      // auto - 为自动
+      // number - 指定行数 超出行会在高级筛选中显示
+      rowCount: 'auto',
+      // 剩余的条件的显示方式 'all' | 'remaining'
+      // all - 全部显示
+      // remaining - 显示剩余
+      showStrategy: 'all',
+      // 高级搜索
+      advancedSearch: {
+        // 外围样式
+        // className: '',
+        // 外围style
+        // style: {},
+        // 宽度
+        width: '30%',
+        // 是否有遮罩
+        mask: true,
+        // 层级
+        zIndex: 19999,
+        // 过度时间
+        time: 300,
+        // 方向
+        direction: 'right',
+        // 默认不展开
+        collapse: false,
+        onBeforeShow: () => {},
+        onBeforeClose: () => {},
+        onAfterShow: () => {},
+        onAfterClose: () => {},
+        getPopupContainer: () => document.body,
+      },
+    }),
+    searchFn: func(),
+    resetFn: func(),
+    collapseFn: func(),
   },
   inject: ['configProvider'],
   slots: ['titleLabel', 'collapse'],
@@ -90,7 +80,7 @@ export default defineComponent({
       this.collapse = collapse;
     },
   },
-  render(h) {
+  render() {
     const {
       advancedSearch: {
         getPopupContainer,
@@ -104,15 +94,13 @@ export default defineComponent({
 
     return (
       <Teleport to={getPopupContainer?.() || document.body}>
-        <ConfigProvider {...{ props: this.configProvider }}>
+        <ConfigProvider {...this.configProvider}>
           <SlideLayout.Overlay
-            {...{
-              props: overlayProps,
-              'before-show': () => onBeforeShow(),
-              'before-close': () => onBeforeClose(),
-              'after-show': () => onAfterShow(),
-              'after-close': () => onAfterClose(),
-            }}
+            {...overlayProps}
+            onBeforeShow={onBeforeShow}
+            onBeforeClose={onBeforeClose}
+            onAfterShow={onAfterShow}
+            onAfterClose={onAfterClose}
             defaultCollapse={this.collapse}
             class={classNames(selectorPrefix, overlayProps.className || '')}
           >
@@ -121,15 +109,15 @@ export default defineComponent({
                 renderTop: () => (
                   <header class={`${selectorPrefix}-header`}>
                     <div class={`${selectorPrefix}-title`}>
-                      <ConditionalRender conditional={!this.$slots.titleLabel}>
+                      <ConditionalRender conditional={!this?.$slots?.titleLabel?.()}>
                         {{
                           default: () => (
                             <Space.Group direction="horizontal" size={2}>
-                              <Icon type="filter" />
+                              <FilterOutlined />
                               <strong>{Intl.tv('高级搜索')}</strong>
                             </Space.Group>
                           ),
-                          noMatch: () => <div>{this.$slots.titleLabel}</div>,
+                          noMatch: () => <div>{this?.$slots?.titleLabel?.()}</div>,
                         }}
                       </ConditionalRender>
                     </div>
@@ -140,21 +128,21 @@ export default defineComponent({
                         this.collapse = !this.collapse;
                       }}
                     >
-                      <ConditionalRender conditional={!this.$slots.collapse}>
+                      <ConditionalRender conditional={!this?.$slots?.collapse?.()}>
                         {{
                           default: () => (
                             <ConditionalRender conditional={this.collapse}>
                               {{
                                 default: () => (
                                   <Space.Group direction="horizontal" size={2}>
-                                    <Icon type="left-circle" />
+                                    <LeftCircleOutlined />
                                     <strong>{Intl.tv('收起')}</strong>
                                   </Space.Group>
                                 ),
                                 noMatch: () => (
                                   <div>
                                     <Space.Group direction="horizontal" size={2}>
-                                      <Icon type="right-circle" />
+                                      <RightCircleOutlined />
                                       <strong>{Intl.tv('展开')}</strong>
                                     </Space.Group>
                                   </div>
@@ -172,14 +160,16 @@ export default defineComponent({
                   <div class={`${selectorPrefix}-main`}>
                     <div class={`${selectorPrefix}-scroll`}>
                       <ScrollLayout scrollY>
-                        {renderGridSearchFormGroup(
-                          this.$createElement,
-                          this,
-                          this.advancedSearchConfig.showStrategy === 'all'
-                            ? this.groupData
-                            : this.remainingGroupData,
-                          this.tableGridLayoutConfig,
-                        )}
+                        {
+                          // @ts-ignore
+                          renderGridSearchFormGroup(
+                            this.$slots,
+                            this.advancedSearchConfig.showStrategy === 'all'
+                              ? this.groupData
+                              : this.remainingGroupData,
+                            this.tableGridLayoutConfig,
+                          )
+                        }
                       </ScrollLayout>
                     </div>
 
@@ -187,27 +177,31 @@ export default defineComponent({
                       <div class={`${selectorPrefix}-item`}>
                         <Button
                           type="primary"
-                          icon="search"
                           onClick={() => {
                             this.searchFn().then(() => {
                               this.collapse = false;
                             });
                           }}
                         >
-                          {Intl.tv('确定')}
+                          {{
+                            default: () => Intl.tv('确定'),
+                            icon: () => <SearchOutlined />,
+                          }}
                         </Button>
                       </div>
 
                       <div class={`${selectorPrefix}-item`}>
                         <Button
-                          icon="reload"
                           onClick={() => {
                             this.resetFn().then(() => {
                               this.collapse = false;
                             });
                           }}
                         >
-                          {Intl.tv('重置')}
+                          {{
+                            default: () => Intl.tv('重置'),
+                            icon: () => <ReloadOutlined />,
+                          }}
                         </Button>
                       </div>
                     </footer>

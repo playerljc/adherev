@@ -1,5 +1,6 @@
 import { Form } from 'ant-design-vue';
-import moment from 'moment';
+import dayjs from 'dayjs';
+import { string } from 'vue-types';
 
 import Util from '@baifendian/adherev-util';
 
@@ -25,6 +26,8 @@ export default (serviceName) =>
         getFormIns: this.getFormIns,
         getActiveValue: this.getActiveValue,
         setActiveValue: this.setActiveValue,
+        setRowFieldValue: this.setRowFieldValue,
+        setFieldValuesByDataSource: this.setFieldValuesByDataSource,
       };
     },
     data() {
@@ -39,28 +42,30 @@ export default (serviceName) =>
             ({ record, dataIndex }) => {
               let value = record?.[dataIndex as string];
               return Array.isArray(value) && value.length === 2
-                ? [moment(value[0]), moment(value[1])]
-                : [moment(), moment()];
+                ? [dayjs(value[0]), dayjs(value[1])]
+                : [dayjs(), dayjs()];
             },
           ],
           [
             'datePicker',
             ({ record, dataIndex }) => {
               let value = record?.[dataIndex as string];
-              return moment(value);
+              return dayjs(value);
             },
           ],
           [
             'timePicker',
             ({ record, dataIndex }) => {
               let value = record?.[dataIndex as string];
-              return moment(value);
+              return dayjs(value);
             },
           ],
         ]),
-        form: this.$form.createForm(this, { name: 'SearchEditableCellTableForm' }),
+        // form: this.$form.createForm(this, { name: 'SearchEditableCellTableForm' }),
         // 正在编辑的单元格id
         activeValue: '',
+        // 表单的数据
+        formData: {},
       };
     },
     methods: {
@@ -118,6 +123,73 @@ export default (serviceName) =>
         editorConfig: ColumnEditableConfig;
         record: any;
       }) {},
+      /**
+       * setFieldValuesByDataSource
+       * @description 设置整个表单的数据
+       */
+      setFieldValuesByDataSource() {
+        // 赋值formData
+        const formData = {};
+
+        const data = this.getData();
+
+        data.forEach((record, rowIndex) =>
+          Object.keys(record).forEach((dataIndex) => {
+            const column = this?.getColumnByDataIndex(dataIndex);
+            if (!column) return;
+
+            const type = column?.$editable?.type as string;
+
+            const name = `${dataIndex}_${rowIndex}`;
+
+            if (['datePicker', 'timePicker'].includes(type)) {
+              formData[name] = dayjs(record[dataIndex]);
+            } else {
+              formData[name] = record[dataIndex];
+            }
+          }),
+        );
+
+        console.log('formData',formData);
+
+        this.formData = formData;
+      },
+      /**
+       * setRowFieldValue
+       * @description 设置行的调单数据
+       * @param record
+       * @param rowIndex
+       */
+      setRowFieldValue(record: any, rowIndex: number) {
+        const formData = {};
+
+        Object.keys(record).forEach((dataIndex) => {
+          const column = this?.getColumnByDataIndex(dataIndex);
+          if (!column) return;
+
+          const type = column?.$editable?.type as string;
+
+          const name = `${dataIndex}_${rowIndex}`;
+
+          if (['datePicker', 'timePicker'].includes(type)) {
+            formData[name] = dayjs(record[dataIndex]);
+          } else {
+            formData[name] = record[dataIndex];
+          }
+        });
+
+        this.formData = formData;
+      },
+      /**
+       * fetchData
+       */
+      fetchData() {
+        return this.$fetchDataSearchTableImpl().then((res) => {
+          this.setFieldValuesByDataSource();
+
+          return res;
+        });
+      },
       /**
        * cellEditableReducer
        * @description 可编辑单元格的onCell处理
@@ -219,7 +291,7 @@ export default (serviceName) =>
         record: { [props: string]: any };
         dataIndex: string;
         rowIndex: number;
-        value: moment.Moment | null;
+        value: dayjs.Dayjs | null;
       }): Promise<void> {
         return new Promise((resolve) => {
           if (record[dataIndex] === value?.valueOf()) {
@@ -245,13 +317,11 @@ export default (serviceName) =>
       },
       /**
        * renderSearchTable
-       * @param h
        */
-      renderSearchTable(h) {
-        const children = this.$renderSearchTableSearchTable(h);
+      renderSearchTable() {
         return (
-          <Form class={`${selectorPrefix}-form`} form={this.form}>
-            {children}
+          <Form class={`${selectorPrefix}-form`} model={this.formData} ref="formRef">
+            {this.$renderSearchTableSearchTable()}
           </Form>
         );
       },
@@ -273,7 +343,7 @@ export default (serviceName) =>
        * @description 获取form对象实例
        */
       getFormIns() {
-        return this.form;
+        return this.$refs.formRef;
       },
     },
   });

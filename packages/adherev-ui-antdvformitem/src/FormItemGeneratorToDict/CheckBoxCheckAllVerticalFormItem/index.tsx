@@ -42,7 +42,6 @@ export default defineComponent({
         </div>
 
         <div>
-          {/*@ts-ignore*/}
           <Children
             {...{
               ...this.$props,

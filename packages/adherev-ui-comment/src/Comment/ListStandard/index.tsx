@@ -172,7 +172,6 @@ export default defineComponent({
         {{
           renderMain: () => (
             <div class={`${selectorPrefix}-auto`} ref={mainRef}>
-              {/*@ts-ignore*/}
               <CommentList
                 getScrollWrapContainer={props.getScrollWrapContainer}
                 isLoading={loading.value}
