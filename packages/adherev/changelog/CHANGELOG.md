@@ -7,6 +7,7 @@
 * **adherev-ui-searchtable**
   - $search支持排序
   - 查询面板样式修改
+  - BUG修改
 * **adherev-ui-adherev-ui-antdvformitem**
   - BUG修改
   - Table生成器的修改
