@@ -32,11 +32,12 @@ export default SearchTableImplementFactory(
 
         return {
           ...superScopedSlots,
-          options: (val, record) => (
+          options: (val, record, index) => (
             <EditableRowControl
               record={record}
               rowKey={this.getRowKey()}
               editorRowId={this.editorRowId}
+              rowIndex={index}
             />
           ),
         };
