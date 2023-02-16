@@ -1,0 +1,2 @@
+import{createApp,h}from"vue";import store from"./store";import SearchTable from"../index";import ProEditableCellUseKeepEditTable from"./ProEditableCellUseKeepEditTable";import"../index.less";import"./index.less";var SearchTableImplementFactory=SearchTable.SearchTableImplementFactory;createApp({render:function(){return h(SearchTableImplementFactory(ProEditableCellUseKeepEditTable))}}).use(store).use(SearchTable).mount("#app");
+//# sourceMappingURL=index-usekeepeditcell.js.map
