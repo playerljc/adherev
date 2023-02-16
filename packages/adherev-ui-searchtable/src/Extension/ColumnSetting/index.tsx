@@ -1,5 +1,5 @@
 import { Popover } from 'ant-design-vue';
-import { defineComponent,inject } from 'vue';
+import { defineComponent, inject } from 'vue';
 import { array } from 'vue-types';
 
 import { IColumnSetting } from '../../types';
@@ -7,41 +7,37 @@ import Setting from './setting';
 
 export default defineComponent({
   name: 'adv-searchtable-column-setting',
-  props: {
-    columns: array<IColumnSetting>().def([]),
-  },
-  emits: ['showColumns', 'reset', 'sortEnd', 'displayColumn'],
-  setup(props, {}) {
-    const getContext = inject<any>('getContext');
-
-    const context = getContext?.()?.context;
+  // props: {
+  //   columns: array<IColumnSetting>().def([]),
+  // },
+  // emits: ['showColumns', 'reset', 'sortEnd', 'displayColumn'],
+  setup() {
+    const context = inject<any>('getContext')?.()?.context;
 
     return () => (
       <Popover
         content={
           <Setting
-            columns={props.columns || []}
+            columns={context?.getSortColumnSetting?.() || []}
             onShowColumns={(checked) => {
               const { columnSetting } = context;
 
-              context.columnSetting = columnSetting.map((column) => ({
+              context.columnSetting = columnSetting?.map?.((column) => ({
                 ...column,
                 display: checked,
               }));
             }}
             onReset={() => {
-              context.columnSetting = context
-                .getTableColumns()
-                .map((column, index) => ({
-                  ...column,
-                  display: true,
-                  sort: index,
-                }));
+              context.columnSetting = context?.getTableColumns?.()?.map?.((column, index) => ({
+                ...column,
+                display: true,
+                sort: index,
+              }));
             }}
             onDisplayColumn={({ column, checked }) => {
               const { columnSetting } = context;
 
-              context.columnSetting = columnSetting.map((_column) => ({
+              context.columnSetting = columnSetting?.map?.((_column) => ({
                 ..._column,
                 display: _column.key === column.key ? checked : _column.display,
               }));
@@ -49,7 +45,7 @@ export default defineComponent({
             onSortEnd={(map) => {
               const { columnSetting } = context;
 
-              context.columnSetting = columnSetting.map((column) => ({
+              context.columnSetting = columnSetting?.map?.((column) => ({
                 ...column,
                 sort: map.get(column.key),
               }));

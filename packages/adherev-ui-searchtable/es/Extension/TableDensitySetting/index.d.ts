@@ -1,21 +1,12 @@
-import { TableDensity } from '../../types';
 declare const _default: import("vue").DefineComponent<{
-    density: {
-        type: StringConstructor;
-        default: TableDensity;
+    density: import("vue-types").VueTypeValidableDef<string> & {
+        default: string;
     };
-}, unknown, unknown, {}, {
-    onReset(): void;
-    onChange(density: any): void;
-}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, ("reset" | "change")[], "reset" | "change", import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<import("vue").ExtractPropTypes<{
-    density: {
-        type: StringConstructor;
-        default: TableDensity;
+}, () => JSX.Element, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {}, string, import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<import("vue").ExtractPropTypes<{
+    density: import("vue-types").VueTypeValidableDef<string> & {
+        default: string;
     };
-}>> & {
-    onChange?: ((...args: any[]) => any) | undefined;
-    onReset?: ((...args: any[]) => any) | undefined;
-}, {
+}>>, {
     density: string;
 }>;
 export default _default;

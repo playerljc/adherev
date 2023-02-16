@@ -1,9 +1,8 @@
 import Util from '@baifendian/adherev-util';
 
-import { ColumnTypeExt, RowDragSortBodyConfig, RowDragSortRowConfig } from '../types';
-
 import SearchRowDragSortTable from '../DragSort/RowDragSort/SearchRowDragSortTable';
 import SearchEditableRowTable from '../Editable/SearchEditableRowTable';
+import { ColumnTypeExt, RowDragSortBodyConfig, RowDragSortRowConfig } from '../types';
 
 const {
   _util: { extend },
@@ -14,7 +13,7 @@ const {
  * @description 可拖拽和编辑行的表格
  * @param serviceName
  */
-export default (serviceName) =>
+const SearchDragSortEditableRowTable: (serviceName: string) => void = (serviceName) =>
   extend({
     className: 'SearchDragSortEditableRowTable',
     mixins: [SearchEditableRowTable(serviceName), SearchRowDragSortTable(serviceName)],
@@ -99,3 +98,5 @@ export default (serviceName) =>
       },
     },
   });
+
+export default SearchDragSortEditableRowTable;

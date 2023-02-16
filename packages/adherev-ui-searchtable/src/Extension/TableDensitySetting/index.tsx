@@ -10,15 +10,27 @@ export default defineComponent({
   props: {
     density: string().def(TableDensity.DEFAULT),
   },
-  emits: ['reset', 'change'],
-  setup(props, {emit}) {
+  // emits: ['reset', 'change'],
+  setup() {
+    const context = inject<any>('getContext')?.()?.context;
+
+    const onReset = () => {
+      context.tableDensity = TableDensity.DEFAULT;
+    };
+
+    const onChange = (density) => {
+      context.tableDensity = density;
+    };
+
     return () => (
       <Popover
         content={
           <Setting
-            density={props?.density || TableDensity.DEFAULT}
-            onReset={() => emit('reset')}
-            onChange={(...params) => emit('change', ...params)}
+            density={context?.tableDensity || TableDensity.DEFAULT}
+            onReset={onReset}
+            onChange={onChange}
+            // onReset={() => emit('reset')}
+            // onChange={(...params) => emit('change', ...params)}
           />
         }
         placement="bottomRight"

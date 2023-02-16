@@ -14,8 +14,8 @@ const SlideLayout = {
   Revolving,
   install: function (app: App) {
     app.component(Push.name, Push);
-    app.component(Push.Overlay, Overlay);
-    app.component(Push.Revolving, Revolving);
+    app.component(Overlay.name, Overlay);
+    app.component(Revolving.name, Revolving);
     withVue(app, 'SlideLayout', SlideLayout);
 
     return app;

@@ -14,7 +14,8 @@ const {
  * @description 行可编辑的SearchTable
  * @param serviceName
  */
-export default (serviceName) =>
+
+const SearchEditableRowTable: (serviceName: string) => any = (serviceName) =>
   extend({
     className: 'SearchEditableRowTable',
     mixins: [SearchEditableCellTable(serviceName)],
@@ -94,10 +95,10 @@ export default (serviceName) =>
        * @return Promise<void>
        */
       updateEditorCellRowData({
-        values,
-        record,
-        rowIndex,
-      }: {
+                                values,
+                                record,
+                                rowIndex,
+                              }: {
         values: { [props: string]: any };
         record: { [props: string]: any };
         rowIndex: number;
@@ -130,3 +131,5 @@ export default (serviceName) =>
       },
     },
   });
+
+export default SearchEditableRowTable;

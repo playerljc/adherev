@@ -9,11 +9,11 @@ import SearchRowDragSortTable from './SearchRowDragSortTable';
 export const TableImplementSearchAndvPaginParamsMemo = MemoManager.create();
 
 /**
- * ProEditableCellSearchTable
+ * ProRowDragSortSearchTable
  * @param serviceName
  * @constructor
  */
-export const ProRowDragSortSearchTable = (serviceName) =>
+export const ProRowDragSortSearchTable: (serviceName: string) => any = (serviceName) =>
   ProTableFactory(
     { className: 'ProRowDragSortSearchTable', superClass: SearchRowDragSortTable(serviceName) },
     TableImplementSearchAndvPaginParamsMemo,

@@ -3,7 +3,6 @@ import { Ajax } from '@baifendian/adherev';
 import { oneFew } from './mock';
 import Table from './table';
 
-// @ts-ignore
 const request = new Ajax('');
 
 export default {
@@ -15,7 +14,6 @@ export default {
       return request
         .get({
           mock: true,
-          // @ts-ignore
           path: oneFew,
         })
         .then((result: any) => {

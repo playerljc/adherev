@@ -1,2 +1,0 @@
-import{createVNode as _createVNode}from"vue";import{defineComponent}from"vue";var selectorPrefix="adherev-ui-searchform-label";export default defineComponent({name:"adv-searchtable-searchform-label",setup:function(e,r){var o=r.slots;return function(){var e;return _createVNode("td",{class:selectorPrefix},[null==(e=null==o?void 0:o.default)?void 0:e.call(o)])}}});
-//# sourceMappingURL=searchformlabel.js.map

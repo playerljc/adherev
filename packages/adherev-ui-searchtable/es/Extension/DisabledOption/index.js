@@ -1,0 +1,2 @@
+import{createVNode as _createVNode}from"vue";import{defineComponent}from"vue";var selectorPrefix="adherev-ui-searchtable-disabledoption";export default defineComponent({name:"adv-searchtable-disabledoption",render:function(){var e,o;return _createVNode("div",{class:selectorPrefix},[null==(o=null==(e=null==this?void 0:this.$slots)?void 0:e.default)?void 0:o.call(e)])}});
+//# sourceMappingURL=index.js.map

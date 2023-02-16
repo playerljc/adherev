@@ -1,2 +1,2 @@
-import SearchTable from './searchtable';
+import SearchTable from './SearchTable';
 export default SearchTable;

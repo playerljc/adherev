@@ -1,0 +1,2 @@
+import MemoManager from"../Extension/SearchAndPaginParams/memo";import ProTableFactory from"../ProTableFactory";import SearchEditableRowTable from"./SearchEditableRowTable";var TableImplementSearchAndvPaginParamsMemo=MemoManager.create(),ProEditableRowSearchTable=function(a){return ProTableFactory({className:"ProEditableRowSearchTable",superClass:SearchEditableRowTable(a)},TableImplementSearchAndvPaginParamsMemo)};export{TableImplementSearchAndvPaginParamsMemo,ProEditableRowSearchTable};
+//# sourceMappingURL=ProEditableRowSearchTable.js.map

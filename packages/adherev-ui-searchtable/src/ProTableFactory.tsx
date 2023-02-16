@@ -49,7 +49,10 @@ const _selectorPrefix = `${selectorPrefix}-protable`;
  * @param superClass
  * @param searchAndPaginParamsMemo
  */
-export default ({ className, superClass }, searchAndPaginParamsMemo) =>
+const ProTableFactory: (
+  config: { className: string; superClass: any },
+  searchAndPaginParamsMemo: any,
+) => any = ({ className, superClass }, searchAndPaginParamsMemo) =>
   extend({
     className,
     mixins: [superClass],
@@ -1698,3 +1701,5 @@ export default ({ className, superClass }, searchAndPaginParamsMemo) =>
       },
     },
   });
+
+export default ProTableFactory;

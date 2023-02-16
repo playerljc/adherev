@@ -17,7 +17,7 @@ const {
   _util: { extend },
 } = Util;
 
-export default (serviceName) =>
+const SearchTableImplement: (serviceName: string) => any = (serviceName) =>
   extend({
     className: 'SearchTableImpl',
     mixins: serviceName ? [SearchTable, cleanMixin([serviceName])] : [SearchTable],
@@ -482,3 +482,5 @@ export default (serviceName) =>
       },
     ),
   });
+
+export default SearchTableImplement;

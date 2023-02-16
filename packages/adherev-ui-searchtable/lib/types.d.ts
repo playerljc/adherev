@@ -1,4 +1,6 @@
-import { ColumnType, FilterValue, SorterResult, TableCurrentDataSource, TablePaginationConfig, TableRowSelection } from 'ant-design-vue/lib/table/interface';
+import type { FormInstance } from 'ant-design-vue/es/form';
+import { ColumnType, FilterValue, SorterResult, TableCurrentDataSource, TablePaginationConfig, TableRowSelection } from 'ant-design-vue/es/table/interface';
+import type { Rule } from 'ant-design-vue/lib/form';
 import { VNode } from 'vue';
 /**
  * IOverview
@@ -32,7 +34,7 @@ export interface IOverview {
      * getColumns - 获取表格列的信息
      * @return Array<object>
      */
-    getColumns: () => Array<ColumnType<object>>;
+    getColumns: () => ColumnType<object>[];
     /**
      *
      * getRowSelection - 获取表格行选择对象
@@ -77,69 +79,12 @@ export interface IOverview {
     /**
      * 获取列的ScopeSlots
      */
-    getScopedSlots: () => VNode | VNode[] | number;
-}
-export interface ISearchTableProps {
-    wrapStyle?: string;
-    className?: string;
-    tableClassName?: string;
-    tableStyle?: string;
-    searchClassName?: string;
-    searchStyle?: string;
-    reset?: boolean;
-    antdTableProps?: any;
-    isShowExpandSearch?: boolean;
-    defaultExpandSearchCollapse?: boolean;
-    fitSearch?: boolean;
-    fitTable?: boolean;
-    autoFixed?: boolean;
-    fixedHeaderAutoTable?: boolean;
-    fixedTableSpaceBetween?: boolean;
-}
-export interface ISearchTableData {
-    page: number;
-    limit: number;
-    expand: boolean;
-    scrollY: number;
-    selectedRowKeys?: any[];
-    loading?: any;
-    searchParams?: any;
-}
-export interface ISearchTableMethods extends IOverview {
-    onScrollBodyScroll: () => void;
-    getScrollHeaderEl: () => HTMLElement | null;
-    getScrollBodyEl: () => HTMLElement | null;
-    renderTableNumberColumn: (number: string, params: {
-        record: object;
-        index: number;
-    }) => void;
-    renderSearchTableInner: () => void;
-    renderInner: () => void;
-    renderSearchTableSearchFooter: () => void;
-    renderSearchFooter: () => void;
-    renderSearchTableTable: () => void;
-    renderTable: () => void;
-    getSearchTableTableColumns: () => Array<any>;
-    getTableColumns: () => Array<any>;
-    onTableChange: (pagination: any, filters: any, sorter: any) => void;
-    onClear: () => void;
-    sortOrder: (columnName: string) => string;
-    getSearchTablePagination: () => void;
-    getPagination: () => void;
-    renderSearchTable: () => void;
-    fetchData: () => void;
-    renderSuspense: () => void;
-    getOrderFieldValue: () => void;
-    getOrderPropValue: () => void;
-    getParams: () => void;
-}
-export interface ISearchFormProps {
-    className?: string;
+    getScopedSlots: (row: any) => object;
 }
 /**
  * IColumnSetting
  */
-export interface IColumnSetting {
+export interface IColumnSetting extends ColumnType {
     display: boolean;
     sort: number;
 }
@@ -150,6 +95,248 @@ export declare enum columnHeaderAlign {
     center = "center",
     left = "left",
     right = "right"
+}
+export declare type FormItemType = 'input' | 'textArea' | 'inputNumber' | 'inputNumberDecimal1' | 'inputNumberDecimal2' | 'inputNumberInteger' | 'select' | 'multiSelect' | 'checkAllMultiSelect' | 'autoCompleteSelect' | 'autoCompleteSelectMulti' | 'autoCompleteSelectCheckAllMulti' | 'radioHorizontal' | 'radioButton' | 'radioSelect' | 'radioCustom' | 'checkBoxHorizontal' | 'checkBoxCheckAllHorizontal' | 'checkboxSelect' | 'checkBoxCheckAllSelect' | 'checkBoxCustom' | 'checkBoxCheckAllCustom' | 'transferSelect' | 'tableSelect' | 'tableMultiSelect' | 'tablePagingSelect' | 'tablePagingMultiSelect' | 'listSelect' | 'listMultiSelect' | 'listPagingSelect' | 'listPagingMultiSelect' | 'treeSelect' | 'treeMultiSelect' | 'treeSelectLeaf' | 'treeMultiSelectLeaf' | 'cascaderSelect' | 'cascaderMultiSelect' | 'cascaderSelectLeaf' | 'cascaderMultiSelectLeaf' | 'datePicker' | 'timePicker' | 'rangePicker' | 'slider' | 'sliderRange' | 'rate' | 'switch' | 'custom' | string;
+/**
+ * ColumnSearchConfig
+ * @description 列的查询设置
+ */
+export interface ColumnSearchConfig {
+    type: FormItemType;
+    visible?: boolean;
+    showColumnHeader?: boolean;
+    props?: any;
+    labelAttrs?: any;
+    valueAttrs?: any;
+    authority?: string[];
+    renderNoAuthority?: (params?: any) => VNode | null | string;
+    dataIndex?: string;
+    title?: VNode;
+    dictName?: string;
+    renderChildren?: (params?: any) => VNode | null | string;
+    render?: () => VNode | null | string;
+    startName?: string;
+    endName?: string;
+}
+export interface AdvancedSearchPanelGroupData {
+    className: string;
+    style: string;
+    name: string;
+    width: string | number;
+    defaultLabelWidth: number;
+    padding: number;
+    colgroup: number[];
+    columnCount: number;
+    data: {
+        key: string;
+        label: VNode;
+        value: VNode;
+    }[];
+}
+export interface AdvancedSearchPanelTableGridLayoutConfig {
+    className?: string;
+    style?: string;
+    innerClassName?: string;
+    innerStyle?: string;
+    bordered: boolean;
+    layout: 'horizontal' | 'vertical';
+    density?: string | number;
+    parity?: boolean;
+}
+export interface AdvancedSearchPanelSearchConfig {
+    rowCount: string;
+    showStrategy: string;
+    advancedSearch: {
+        className: string;
+        style: string;
+        width: number | string;
+        mask: boolean;
+        zIndex: number;
+        time: number;
+        direction: string;
+        collapse: boolean;
+        getPopupContainer: Function;
+        onBeforeShow: Function;
+        onBeforeClose: Function;
+        onAfterShow: Function;
+        onAfterClose: Function;
+    };
+    renderTitleLabel?: Function;
+    renderCollapse?: Function;
+    renderSearchButton?: Function;
+    insertSearchButton?: Function;
+}
+export interface AdvancedSearchPanelProps {
+    groupData: AdvancedSearchPanelGroupData[];
+    tableGridLayoutConfig: AdvancedSearchPanelTableGridLayoutConfig;
+    remainingGroupData: AdvancedSearchPanelGroupData[];
+    advancedSearchConfig: AdvancedSearchPanelSearchConfig;
+    onSearch: Function;
+    onReset: Function;
+    onCollapse: Function;
+}
+export interface ColumnParams {
+    value?: string;
+    record?: {
+        [prop: string]: any;
+    };
+    dataIndex?: string;
+    rowIndex?: number;
+}
+/**
+ * ColumnRowDragSortConfig
+ */
+export interface ColumnRowDragSortConfig {
+}
+/**
+ * ColumnEditableConfig
+ * @description 可编辑的单元格
+ */
+export interface ColumnEditableConfig {
+    editable: boolean;
+    defaultStatus?: 'view' | 'edit' | string;
+    type?: FormItemType | string;
+    render?: (params: {
+        form?: FormInstance | null;
+        dataIndex?: string | number | readonly (string | number)[] | undefined;
+        record?: {
+            [prop: string]: any;
+        };
+        rowIndex?: number;
+        value?: any;
+        children?: VNode;
+        updateEditorCellData?: () => Promise<void>;
+    }) => VNode | string;
+    onBeforeToEdit?: (params: ColumnParams) => Promise<void>;
+    onSave?: (params: ColumnParams & {
+        values: any;
+    }) => Promise<void>;
+    onBeforeCancel?: (params: ColumnParams) => Promise<void>;
+    formItemProps?: any;
+    props?: any;
+    listeners?: any;
+    useTrigger?: boolean;
+    renderToEditTrigger?: (params: ColumnParams) => VNode | string;
+    renderSaveTrigger?: (params: ColumnParams) => VNode | string;
+    renderCancelTrigger?: (params: ColumnParams) => VNode | string;
+    rules?: Rule[];
+    dataIndex?: string;
+    dictName?: string;
+    renderChildren?: (params?: any) => VNode | null | string;
+    useKeepEdit?: boolean;
+}
+export interface FormItemGeneratorConfig {
+    type?: FormItemType | string;
+    props?: any;
+    listeners?: any;
+    dictName?: string;
+    renderChildren?: (params?: any) => VNode | null | string;
+    form?: FormInstance | null;
+    dataIndex?: string;
+    rowIndex?: number;
+    initialValue?: any;
+    name?: string;
+    context?: any;
+}
+/**
+ * ColumnTypeExt
+ * @description Column列的扩展设置
+ */
+export interface ColumnTypeExt extends ColumnType<any> {
+    $authorized?: () => boolean;
+    $resizable?: boolean;
+    $hide?: boolean;
+    $search?: ColumnSearchConfig;
+    $editable?: ColumnEditableConfig;
+    $rowDragSort?: ColumnRowDragSortConfig;
+}
+/**
+ * RowEditableConfig
+ */
+export interface RowEditableConfig {
+    editable: boolean;
+}
+/**
+ * RowDragSortConfig
+ */
+export interface RowDragSortRowConfig {
+    [prop: string]: any;
+    canDrag?: (params?: {
+        [prop: string]: any;
+    }) => boolean;
+}
+/**
+ * RowDragSortBodyConfig
+ */
+export interface RowDragSortBodyConfig {
+    draggableProps?: {
+        [prop: string]: any;
+    };
+    canDrag?: (params?: {
+        [prop: string]: any;
+    }) => boolean;
+}
+/**
+ * RowConfig
+ */
+export interface RowConfig {
+    $editable?: RowEditableConfig;
+    $rowDragSort?: RowDragSortRowConfig;
+}
+export interface BodyConfig {
+    $bodyDragSort?: RowDragSortBodyConfig;
+}
+export interface BodyConfigReducer {
+    (params: {
+        rowIndex: number;
+        record: {
+            [prop: string]: any;
+        };
+        columns: ColumnTypeExt[];
+        bodyConfig: BodyConfig;
+    }): RowConfig;
+}
+export interface RowConfigReducer {
+    (params: {
+        rowIndex: number;
+        record: {
+            [prop: string]: any;
+        };
+        columns: ColumnTypeExt[];
+        rowConfig: RowConfig;
+    }): RowConfig;
+}
+export interface CellConfigReducer {
+    (params: {
+        rowIndex: number;
+        column: ColumnTypeExt;
+        record: {
+            [prop: string]: any;
+        };
+        columns: ColumnTypeExt[];
+    }): ColumnTypeExt;
+}
+export interface TableBodyComponentProps {
+    bodyConfig: BodyConfig;
+}
+export interface TableRowComponentProps {
+    record: {
+        [prop: string]: any;
+    };
+    rowIndex: number;
+    columns: any[];
+    rowKey: string;
+    rowConfig: RowConfig;
+    [p: string]: any;
+}
+export interface TableCellComponentProps {
+    record: {
+        [prop: string]: any;
+    };
+    column: ColumnTypeExt;
+    rowIndex: number;
+    columns: ColumnTypeExt[];
+    [p: string]: any;
 }
 /**
  * TableDensity

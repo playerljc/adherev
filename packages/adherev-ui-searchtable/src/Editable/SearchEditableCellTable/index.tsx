@@ -17,7 +17,7 @@ const {
  * @description 单元格可编辑的SearchTable
  * @param serviceName
  */
-export default (serviceName) =>
+const SearchEditableCellTable: (serviceName: string) => any = (serviceName) =>
   extend({
     className: 'SearchEditableCellTable',
     mixins: [SearchTableImplement(serviceName)],
@@ -36,7 +36,7 @@ export default (serviceName) =>
         $valueToFormItemValueMap: new Map<
           string,
           (params: { record: { [prop: string]: any }; dataIndex: string }) => any
-        >([
+          >([
           [
             'rangePicker',
             ({ record, dataIndex }) => {
@@ -150,8 +150,6 @@ export default (serviceName) =>
           }),
         );
 
-        console.log('formData',formData);
-
         this.formData = formData;
       },
       /**
@@ -221,10 +219,10 @@ export default (serviceName) =>
        * @description 值和表单值的转换
        */
       valueToFormItemValue({
-        type,
-        record,
-        dataIndex,
-      }: {
+                             type,
+                             record,
+                             dataIndex,
+                           }: {
         type: FormItemType;
         record: { [prop: string]: any };
         dataIndex: string;
@@ -243,11 +241,11 @@ export default (serviceName) =>
        * @return Promise<void>
        */
       updateEditorCellDate({
-        record,
-        dataIndex,
-        rowIndex,
-        value,
-      }: {
+                             record,
+                             dataIndex,
+                             rowIndex,
+                             value,
+                           }: {
         record: { [props: string]: any };
         dataIndex: string;
         rowIndex: number;
@@ -284,10 +282,10 @@ export default (serviceName) =>
        * @return Promise<void>
        */
       updateEditorCellDateData({
-        record,
-        dataIndex,
-        value,
-      }: {
+                                 record,
+                                 dataIndex,
+                                 value,
+                               }: {
         record: { [props: string]: any };
         dataIndex: string;
         rowIndex: number;
@@ -347,3 +345,5 @@ export default (serviceName) =>
       },
     },
   });
+
+export default SearchEditableCellTable;

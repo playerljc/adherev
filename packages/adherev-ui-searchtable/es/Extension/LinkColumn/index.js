@@ -1,0 +1,2 @@
+import{createVNode as _createVNode}from"vue";import{defineComponent}from"vue";import{RouterLink}from"vue-router";import{number,object,string}from"vue-types";export default defineComponent({props:{record:object().def({}),rowIndex:number(),dataIndex:number(),to:string()},name:"adv-searchtable-link-column",render:function(){var e=this;return _createVNode(RouterLink,{to:this.to},{default:function(){return[e.$slots.default?e.$slots.default({record:e.record,rowIndex:e.rowIndex,dataIndex:e.dataIndex}):e.record[e.dataIndex]]}})}});
+//# sourceMappingURL=index.js.map

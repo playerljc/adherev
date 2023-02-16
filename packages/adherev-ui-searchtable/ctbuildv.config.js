@@ -20,18 +20,18 @@ module.exports = {
     //
     // webpackConfig.resolve.modules.unshift(path.join(__dirname, 'node_modules'));
 
-    delete webpackConfig.module.rules[0].exclude;
-    webpackConfig.module.rules[0].include = [
-      /vue-draggable-resizable.vue/
-    ];
-
-    webpackConfig.module.rules[3].include.push(
-      /Vue3DraggableResizable.css/,
-    );
-
-    webpackConfig.module.rules[4].include.push(
-      path.join(__dirname, '../../')
-    );
+    // delete webpackConfig.module.rules[0].exclude;
+    // webpackConfig.module.rules[0].include = [
+    //   /vue-draggable-resizable.vue/
+    // ];
+    //
+    // webpackConfig.module.rules[3].include.push(
+    //   /Vue3DraggableResizable.css/,
+    // );
+    //
+    // webpackConfig.module.rules[4].include.push(
+    //   path.join(__dirname, '../../')
+    // );
 
     webpackConfig.entry = {
       // 判断入口文件是.js,.jsx,.tsx

@@ -21,7 +21,7 @@ const {
  * @description 可以进行行拖拽排序的表格
  * @param serviceName
  */
-export default (serviceName) =>
+const SearchRowDragSortTable: (serviceName: string) => any = (serviceName) =>
   extend({
     className: 'SearchRowDragSortTable',
     mixins: [SearchTableImplement(serviceName)],
@@ -157,3 +157,5 @@ export default (serviceName) =>
       },
     },
   });
+
+export default SearchRowDragSortTable;

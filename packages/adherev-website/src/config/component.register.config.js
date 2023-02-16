@@ -35,6 +35,7 @@ import {
   AdapterScreen,
   ConfigProvider as AdherevConfigProvider,
   Ajax,
+  AntdvFormItem,
   BMap,
   BackTopAnimation,
   Browsersniff,
@@ -86,6 +87,7 @@ import {
   TableGridLayout,
   Util,
   Validator,
+  VueQuillSandBox,
   WarnPrompt,
   WatchMemoized,
   WritingBoard,
@@ -182,6 +184,8 @@ const register = [
     app.use(Validator);
     app.use(WatchMemoized);
     app.use(Util);
+    app.use(AntdvFormItem);
+    app.use(VueQuillSandBox);
   },
   (app) => {
     for (const p in VueIcons) {

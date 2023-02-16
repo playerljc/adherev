@@ -18,7 +18,6 @@ export default {
           key: 'sex',
           align: 'center',
           width: 200,
-          scopedSlots: { customRender: 'sex' },
         },
         {
           title: '籍贯',
@@ -35,7 +34,6 @@ export default {
           sorter: true,
           width: 200,
           sortOrder: this.sortOrder('birthday'),
-          scopedSlots: { customRender: 'birthday' },
         },
         {
           title: '所在部门',

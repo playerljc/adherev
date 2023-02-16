@@ -679,6 +679,8 @@ const SearchTable: any = extend({
         return 0;
       });
 
+      console.log('this.columnSetting.sort', columns);
+
       return columns;
     },
     /**
@@ -784,32 +786,32 @@ const SearchTable: any = extend({
       return (
         this.$slots?.columnSetting?.({ context: this.getContext?.()?.context, columns }) || (
           <ColumnSetting
-            columns={columns}
-            onShowColumns={(checked) => {
-              this.columnSetting = (this.columnSetting || [])?.map((column) => ({
-                ...column,
-                display: checked,
-              }));
-            }}
-            onReset={() => {
-              this.columnSetting = this.getTableColumns().map((column, index) => ({
-                ...column,
-                display: true,
-                sort: index,
-              }));
-            }}
-            onDisplayColumn={({ column, checked }) => {
-              this.columnSetting = (this.columnSetting || [])?.map((_column) => ({
-                ..._column,
-                display: _column.key === column.key ? checked : _column.display,
-              }));
-            }}
-            onSortEnd={(map) => {
-              this.columnSetting = (this.columnSetting || [])?.map((column) => ({
-                ...column,
-                sort: map.get(column.key),
-              }));
-            }}
+            // columns={columns}
+            // onShowColumns={(checked) => {
+            //   this.columnSetting = (this.columnSetting || [])?.map((column) => ({
+            //     ...column,
+            //     display: checked,
+            //   }));
+            // }}
+            // onReset={() => {
+            //   this.columnSetting = this.getTableColumns().map((column, index) => ({
+            //     ...column,
+            //     display: true,
+            //     sort: index,
+            //   }));
+            // }}
+            // onDisplayColumn={({ column, checked }) => {
+            //   this.columnSetting = (this.columnSetting || [])?.map((_column) => ({
+            //     ..._column,
+            //     display: _column.key === column.key ? checked : _column.display,
+            //   }));
+            // }}
+            // onSortEnd={(map) => {
+            //   this.columnSetting = (this.columnSetting || [])?.map((column) => ({
+            //     ...column,
+            //     sort: map.get(column.key),
+            //   }));
+            // }}
           />
         )
       );
@@ -822,13 +824,13 @@ const SearchTable: any = extend({
       return (
         this.$slots?.tableDensitySetting?.(this) || (
           <TableDensitySetting
-            density={this.tableDensity}
-            onChange={(density) => {
-              this.tableDensity = density;
-            }}
-            onReset={() => {
-              this.tableDensity = this.getTableDensity();
-            }}
+            // density={this.tableDensity}
+            // onChange={(density) => {
+            //   this.tableDensity = density;
+            // }}
+            // onReset={() => {
+            //   this.tableDensity = this.getTableDensity();
+            // }}
           />
         )
       );

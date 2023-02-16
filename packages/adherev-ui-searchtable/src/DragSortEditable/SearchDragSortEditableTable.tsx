@@ -14,7 +14,7 @@ const {
  * @description 可拖拽和编辑的表格
  * @param serviceName
  */
-export default (serviceName) =>
+const SearchDragSortEditableTable: (serviceName: string) => any = (serviceName) =>
   extend({
     className: 'SearchDragSortEditableTable',
     mixins: [SearchEditableTable(serviceName), SearchRowDragSortTable(serviceName)],
@@ -99,3 +99,5 @@ export default (serviceName) =>
       },
     },
   });
+
+export default SearchDragSortEditableTable;

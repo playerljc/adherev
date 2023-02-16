@@ -1,3 +1,4 @@
+import IframeServer from '@/components/util/iframeio/server';
 import BasicLayout from '@/lib/BasicLayout';
 import { lazy } from '@/lib/Router';
 
@@ -125,13 +126,15 @@ const Browsersniff = () =>
 const Validator = () =>
   lazy(import(/* webpackChunkName: "validator" */ '@/components/util/validator'));
 const Demo = () => lazy(import(/* webpackChunkName: "demo" */ '@/components/ui/demo'));
+const AntdvFormItem = () =>
+  lazy(import(/* webpackChunkName: "antdvformitem" */ '@/components/ui/antdvformitem'));
+const VueQuillSandBox = () =>
+  lazy(import(/* webpackChunkName: "vuequillsandbox" */ '@/components/ui/vuequillsandbox'));
 const IframeIO = () =>
   lazy(import(/* webpackChunkName: "iframeio" */ '@/components/util/iframeio'));
 
 const Echarts = () =>
   lazy(import(/* webpackChunkName: "echarts" */ '@/components/gallery/echarts'));
-
-import IframeServer from '@/components/util/iframeio/server';
 
 export default () => [
   {
@@ -422,6 +425,16 @@ export default () => [
                 path: '/adherev/component/ui/writingboard',
                 name: 'WritingBoard',
                 component: WritingBoard,
+              },
+              {
+                path: '/adherev/component/ui/antdvformitem',
+                name: 'AntdvFormItem',
+                component: AntdvFormItem,
+              },
+              {
+                path: '/adherev/component/ui/vuequillsandbox',
+                name: 'VueQuillSandBox',
+                component: VueQuillSandBox,
               },
             ],
           },

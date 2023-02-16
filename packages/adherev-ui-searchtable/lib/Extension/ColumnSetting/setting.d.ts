@@ -1,9 +1,7 @@
-import { PropType } from 'vue';
 import { IColumnSetting } from '../../types';
 declare const _default: import("vue").DefineComponent<{
-    columns: {
-        type: PropType<IColumnSetting[]>;
-        default: () => never[];
+    columns: import("vue-types").VueTypeValidableDef<IColumnSetting[]> & {
+        default: () => IColumnSetting[];
     };
 }, unknown, unknown, {
     showColumns(): any;
@@ -13,9 +11,8 @@ declare const _default: import("vue").DefineComponent<{
     onEnd(): void;
     onChange(column: any, e: any): void;
 }, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, ("reset" | "showColumns" | "sortEnd" | "displayColumn")[], "reset" | "showColumns" | "sortEnd" | "displayColumn", import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<import("vue").ExtractPropTypes<{
-    columns: {
-        type: PropType<IColumnSetting[]>;
-        default: () => never[];
+    columns: import("vue-types").VueTypeValidableDef<IColumnSetting[]> & {
+        default: () => IColumnSetting[];
     };
 }>> & {
     onReset?: ((...args: any[]) => any) | undefined;

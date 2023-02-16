@@ -13,7 +13,7 @@ export const TableImplementSearchAndvPaginParamsMemo = MemoManager.create();
  * @param serviceName
  * @constructor
  */
-export const ProDragSortEditableCellSearchTable = (serviceName) =>
+export const ProDragSortEditableCellSearchTable: (serviceName: string) => any = (serviceName) =>
   ProTableFactory(
     { className: 'ProDragSortEditableCellSearchTable', superClass: SearchDragSortEditableCellTable(serviceName) },
     TableImplementSearchAndvPaginParamsMemo,

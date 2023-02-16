@@ -12,7 +12,7 @@ const {
  * @description 表格整体可编辑的SearchTable
  * @param serviceName
  */
-export default (serviceName) =>
+const SearchEditableTable: (serviceName: string) => any = (serviceName) =>
   extend({
     className: 'SearchEditableTable',
     mixins: [SearchEditableCellTable(serviceName)],
@@ -222,3 +222,5 @@ export default (serviceName) =>
       },
     },
   });
+
+export default SearchEditableTable;
