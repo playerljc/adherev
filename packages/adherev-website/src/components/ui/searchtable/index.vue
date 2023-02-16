@@ -14,98 +14,106 @@
       </template>
 
       <template #p2>
-        <a-switch
-          checked-children="分页"
-          :checked="pagination1"
-          @change="pagination1 = !pagination1"
-        />
-
-        <adv-space />
-
-        <div style="display: flex; height: 400px">
-          <Table
-            :wrapStyle="'height: 100%;'"
-            :isShowExpandSearch="true"
-            :defaultExpandSearchCollapse="false"
-            :autoFixed="true"
-            :pagination="pagination1"
+        <fragment>
+          <a-switch
+            checked-children="分页"
+            :checked="pagination1"
+            @change="pagination1 = !pagination1"
           />
-        </div>
+
+          <adv-space />
+
+          <div style="display: flex; height: 400px">
+            <Table
+              :wrapStyle="'height: 100%;'"
+              :isShowExpandSearch="true"
+              :defaultExpandSearchCollapse="false"
+              :autoFixed="true"
+              :pagination="pagination1"
+            />
+          </div>
+        </fragment>
       </template>
 
       <template #p3>
-        <a-switch
-          checked-children="分页"
-          :checked="pagination2"
-          @change="pagination2 = !pagination2"
-        />
-
-        <adv-space />
-
-        <div style="display: flex; height: 500px">
-          <Table
-            :wrapStyle="'height: 100%;'"
-            :isShowExpandSearch="true"
-            :defaultExpandSearchCollapse="false"
-            :fixedHeaderAutoTable="true"
-            :fixedTableSpaceBetween="true"
-            :pagination="pagination2"
+        <fragment>
+          <a-switch
+            checked-children="分页"
+            :checked="pagination2"
+            @change="pagination2 = !pagination2"
           />
-        </div>
+
+          <adv-space />
+
+          <div style="display: flex; height: 500px">
+            <Table
+              :wrapStyle="'height: 100%;'"
+              :isShowExpandSearch="true"
+              :defaultExpandSearchCollapse="false"
+              :fixedHeaderAutoTable="true"
+              :fixedTableSpaceBetween="true"
+              :pagination="pagination2"
+            />
+          </div>
+        </fragment>
       </template>
 
       <template #p4>
-        <a-switch
-          checked-children="分页"
-          :checked="pagination3"
-          @change="pagination3 = !pagination3"
-        />
+        <fragment>
+          <a-switch
+            checked-children="分页"
+            :checked="pagination3"
+            @change="pagination3 = !pagination3"
+          />
 
-        <adv-space />
+          <adv-space />
 
-        <div style="display: flex; height: 800px">
-          <Table
-            :wrapStyle="'height: 100%'"
-            :isShowExpandSearch="true"
-            :defaultExpandSearchCollapse="false"
-            :fixedHeaderAutoTable="true"
-            :fixedTableSpaceBetween="true"
-            :pagination="pagination3"
-          >
-            <template #tableHeader>
-              <div :class="$style.Header">
-                <h3>查询表格</h3>
-                <div>
-                  <a-button type="primary">新建</a-button>
+          <div style="display: flex; height: 800px">
+            <Table
+              :wrapStyle="'height: 100%'"
+              :isShowExpandSearch="true"
+              :defaultExpandSearchCollapse="false"
+              :fixedHeaderAutoTable="true"
+              :fixedTableSpaceBetween="true"
+              :pagination="pagination3"
+            >
+              <template v-slot:tableHeader>
+                <div :class="$style.Header">
+                  <h3>查询表格</h3>
+                  <div>
+                    <a-button type="primary">新建</a-button>
+                  </div>
                 </div>
-              </div>
-            </template>
-            <template #tableFooter>
-              <div :class="$style.Footer">renderTableFooter</div>
-            </template>
-          </Table>
-        </div>
+              </template>
+              <template v-slot:tableFooter>
+                <div :class="$style.Footer">renderTableFooter</div>
+              </template>
+            </Table>
+          </div>
+        </fragment>
       </template>
 
       <template #p5>
-        <a-switch
-          checked-children="分页"
-          :checked="pagination4"
-          @change="pagination4 = !pagination4"
-        />
-
-        <adv-space />
-
-        <div style="display: flex; height: 700px">
-          <FewTable
-            :wrapStyle="'height: 100%'"
-            :isShowExpandSearch="true"
-            :defaultExpandSearchCollapse="false"
-            :fixedHeaderAutoTable="true"
-            :fixedTableSpaceBetween="true"
-            :pagination="pagination4"
+        <fragment>
+          <a-switch
+            checked-children="分页"
+            :checked="pagination4"
+            @change="pagination4 = !pagination4"
           />
-        </div>
+
+          <adv-space />
+
+          <div style="display: flex; height: 700px">
+            <FewTable
+              :wrapStyle="'height: 100%'"
+              :isShowExpandSearch="true"
+              :defaultExpandSearchCollapse="false"
+              :fixedHeaderAutoTable="true"
+              :fixedTableSpaceBetween="true"
+              :pagination="pagination4"
+            />
+          </div>
+        </fragment>
       </template>
 
       <template #p7>
@@ -146,7 +154,7 @@
             :isShowExpandSearch="true"
             :defaultExpandSearchCollapse="false"
           >
-            <template #tableHeader>
+            <template v-slot:tableHeader>
               <div :class="$style.Header">
                 <h3>查询表格</h3>
                 <div>
@@ -165,7 +173,7 @@
             :isShowExpandSearch="true"
             :defaultExpandSearchCollapse="false"
           >
-            <template #tableHeader="context">
+            <template v-slot:tableHeader="context">
               <div :class="$style.Header">
                 <h3>查询表格</h3>
                 <div>
@@ -184,7 +192,7 @@
             :isShowExpandSearch="true"
             :defaultExpandSearchCollapse="false"
           >
-            <template #searchFormBefore="context">
+            <template v-slot:searchFormBefore="context">
               <a-row :gutter="16">
                 <a-col :span="12">
                   <a-statistic title="Active Users" :value="112893" />
@@ -199,7 +207,7 @@
               </a-row>
             </template>
 
-            <template #searchFormAfter="context">
+            <template v-slot:searchFormAfter="context">
               <a-row :gutter="16">
                 <a-col :span="12">
                   <a-statistic title="Active Users" :value="112893" />
@@ -216,6 +224,66 @@
           </TableSearchBetweenTable>
         </div>
       </template>
+
+      <template #p13>
+        <div style="display: flex; height: 700px">
+          <ProTable />
+        </div>
+      </template>
+
+      <template #p14>
+        <div style="display: flex; height: 700px">
+          <ProEditableCellTable />
+        </div>
+      </template>
+
+      <template #p15>
+        <div style="display: flex; height: 700px">
+          <ProEditableRowTable />
+        </div>
+      </template>
+
+      <template #p16>
+        <div style="display: flex; height: 700px">
+          <ProEditableTable />
+        </div>
+      </template>
+
+      <template #p17>
+        <div style="display: flex; height: 700px">
+          <ProEditableCellUseKeepEditTable />
+        </div>
+      </template>
+
+      <template #p18>
+        <div style="display: flex; height: 700px">
+          <ProEditableCellRenderTriggerTable />
+        </div>
+      </template>
+
+      <template #p19>
+        <div style="display: flex; height: 700px">
+          <ProRowDragSortTable />
+        </div>
+      </template>
+
+      <template #p20>
+        <div style="display: flex; height: 700px">
+          <ProRowDragSortEditableCellTable />
+        </div>
+      </template>
+
+      <template #p21>
+        <div style="display: flex; height: 700px">
+          <ProRowDragSortEditableRowTable />
+        </div>
+      </template>
+
+      <template #p22>
+        <div style="display: flex; height: 700px">
+          <ProRowDragSortEditableTable />
+        </div>
+      </template>
     </adv-playground-page-code-box-section>
 
     <adv-playground-page-function-props-section title="API" :config="apiConfig" />
@@ -225,6 +293,16 @@
 </template>
 
 <script>
+import ProEditableCellRenderTriggerTable from './ProEditableCellRenderTriggerTable';
+import ProEditableCellTable from './ProEditableCellTable';
+import ProEditableCellUseKeepEditTable from './ProEditableCellUseKeepEditTable';
+import ProEditableRowTable from './ProEditableRowTable';
+import ProEditableTable from './ProEditableTable';
+import ProRowDragSortEditableCellTable from './ProRowDragSortEditableCellTable';
+import ProRowDragSortEditableRowTable from './ProRowDragSortEditableRowTable';
+import ProRowDragSortEditableTable from './ProRowDragSortEditableTable';
+import ProRowDragSortTable from './ProRowDragSortTable';
+import ProTable from './ProTable';
 import ColumnResizableTable from './columnResizeTable';
 import ColumnSettingTable from './columnSettingTable';
 import FewTable from './fewTable';
@@ -235,7 +313,6 @@ import Table from './table';
 import TableDensitySetting from './tableDensitySetting';
 
 export default {
-  displayName: 'searchtable',
   components: {
     Table,
     FewTable,
@@ -245,6 +322,16 @@ export default {
     ColumnSettingTable,
     TableDensitySetting,
     TableSearchBetweenTable,
+    ProEditableCellTable,
+    ProEditableRowTable,
+    ProEditableTable,
+    ProEditableCellRenderTriggerTable,
+    ProEditableCellUseKeepEditTable,
+    ProRowDragSortEditableCellTable,
+    ProRowDragSortEditableRowTable,
+    ProRowDragSortEditableTable,
+    ProRowDragSortTable,
+    ProTable,
   },
   data() {
     return {
@@ -338,7 +425,7 @@ export default {
             :fixedHeaderAutoTable="true"
             :fixedTableSpaceBetween="true"
           >
-            <template #tableHeader>
+            <template v-slot:tableHeader>
               <div :class="$style.Header">
                 <h3>查询表格</h3>
                 <div>
@@ -346,7 +433,7 @@ export default {
                 </div>
               </div>
             </template>
-            <template #tableFooter>
+            <template v-slot:tableFooter>
               <div :class="$style.Footer">renderTableFooter</div>
             </template>
           </Table>
@@ -406,7 +493,7 @@ export default {
               key: 'index.vue',
               codeText: `
         <template>
-          <div style="display: flex; height: 700px">
+          <div style="display: flex; height: 700px;">
             <FewTable
               :wrapStyle="'height: 100%'"
               :isShowExpandSearch="true"
@@ -561,7 +648,7 @@ export default {
                 },
               };
             },
-            renderSearchForm(h) {
+            renderSearchForm() {
               return (
                 <SearchForm>
                   <SearchFormRow>
@@ -766,7 +853,7 @@ export default {
           codeText: `
   import Table from './table';
 
-  <div style="display: flex; height: 700px">
+  <div style="display: flex; height: 700px;">
     <ColumnResizableTable
       :wrapStyle="'height: 100%'"
       :isShowExpandSearch="true"
@@ -860,13 +947,13 @@ export default {
           codeText: `
   import Table from './table';
 
-  <div style="display: flex; height: 700px">
+  <div style="display: flex; height: 700px;">
     <ColumnSettingTable
       :wrapStyle="'height: 100%'"
       :isShowExpandSearch="true"
       :defaultExpandSearchCollapse="false"
     >
-      <template #tableHeader>
+      <template v-slot:tableHeader>
         <div :class="$style.Header">
           <h3>查询表格</h3>
           <div>
@@ -897,13 +984,13 @@ export default {
           codeText: `
   import Table from './table';
 
-  <div style="display: flex; height: 700px">
+  <div style="display: flex; height: 700px;">
     <TableDensitySetting
       :wrapStyle="'height: 100%'"
       :isShowExpandSearch="true"
       :defaultExpandSearchCollapse="false"
     >
-      <template #tableHeader>
+      <template v-slot:tableHeader>
         <div :class="$style.Header">
           <h3>查询表格</h3>
           <div>
@@ -938,7 +1025,7 @@ export default {
     :isShowExpandSearch="true"
     :defaultExpandSearchCollapse="false"
   >
-    <template #searchFormBefore="context">
+    <template v-slot:searchFormBefore="context">
       <a-row :gutter="16">
         <a-col :span="12">
           <a-statistic title="Active Users" :value="112893" />
@@ -953,7 +1040,7 @@ export default {
       </a-row>
     </template>
 
-    <template #searchFormAfter="context">
+    <template v-slot:searchFormAfter="context">
       <a-row :gutter="16">
         <a-col :span="12">
           <a-statistic title="Active Users" :value="112893" />
@@ -974,6 +1061,136 @@ export default {
   };
           `,
           childrenSlot: 'p12',
+        },
+        {
+          id: 'p13',
+          name: 'ProSearchTable',
+          cardProps: {
+            description: {
+              title: 'ProSearchTable',
+              info: 'ProSearchTable',
+            },
+          },
+          type: 'PlayGround',
+          codeText: ``,
+          childrenSlot: 'p13',
+        },
+        {
+          id: 'p14',
+          name: '可编辑的单元格',
+          cardProps: {
+            description: {
+              title: '可编辑的单元格',
+              info: '可编辑的单元格',
+            },
+          },
+          type: 'PlayGround',
+          codeText: ``,
+          childrenSlot: 'p14',
+        },
+        {
+          id: 'p15',
+          name: '可编辑的行',
+          cardProps: {
+            description: {
+              title: '可编辑的行',
+              info: '可编辑的行',
+            },
+          },
+          type: 'PlayGround',
+          codeText: ``,
+          childrenSlot: 'p15',
+        },
+        {
+          id: 'p16',
+          name: '可编辑的表格',
+          cardProps: {
+            description: {
+              title: '可编辑的表格',
+              info: '可编辑的表格',
+            },
+          },
+          type: 'PlayGround',
+          codeText: ``,
+          childrenSlot: 'p16',
+        },
+        {
+          id: 'p17',
+          name: '始终处于编辑状态的可编辑单元格',
+          cardProps: {
+            description: {
+              title: '始终处于编辑状态的可编辑单元格',
+              info: '始终处于编辑状态的可编辑单元格',
+            },
+          },
+          type: 'PlayGround',
+          codeText: ``,
+          childrenSlot: 'p17',
+        },
+        {
+          id: 'p18',
+          name: '可编辑的表格自定义trigger',
+          cardProps: {
+            description: {
+              title: '可编辑的表格自定义trigger',
+              info: '可编辑的表格自定义trigger',
+            },
+          },
+          type: 'PlayGround',
+          codeText: ``,
+          childrenSlot: 'p18',
+        },
+        {
+          id: 'p19',
+          name: '拖拽排序',
+          cardProps: {
+            description: {
+              title: '拖拽排序',
+              info: '拖拽排序',
+            },
+          },
+          type: 'PlayGround',
+          codeText: ``,
+          childrenSlot: 'p19',
+        },
+        {
+          id: 'p20',
+          name: '编辑单元格+拖拽',
+          cardProps: {
+            description: {
+              title: '编辑单元格+拖拽',
+              info: '编辑单元格+拖拽',
+            },
+          },
+          type: 'PlayGround',
+          codeText: ``,
+          childrenSlot: 'p20',
+        },
+        {
+          id: 'p21',
+          name: '编辑行+拖拽',
+          cardProps: {
+            description: {
+              title: '编辑行+拖拽',
+              info: '编辑行+拖拽',
+            },
+          },
+          type: 'PlayGround',
+          codeText: ``,
+          childrenSlot: 'p21',
+        },
+        {
+          id: 'p22',
+          name: '编辑表格+拖拽',
+          cardProps: {
+            description: {
+              title: '编辑表格+拖拽',
+              info: '编辑表格+拖拽',
+            },
+          },
+          type: 'PlayGround',
+          codeText: ``,
+          childrenSlot: 'p22',
         },
       ],
       apiConfig: [
