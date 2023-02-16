@@ -6,12 +6,12 @@ import Setting from './setting';
 
 export default {
   name: 'adv-searchtable-column-setting',
-  props: {
-    columns: {
-      type: Array as PropType<IColumnSetting[]>,
-      default: () => [],
-    },
-  },
+  // props: {
+  //   columns: {
+  //     type: Array as PropType<IColumnSetting[]>,
+  //     default: () => [],
+  //   },
+  // },
   emits: ['showColumns', 'reset', 'sortEnd', 'displayColumn'],
   inject: ['getContext'],
   render(h) {
@@ -22,42 +22,42 @@ export default {
           <Setting
             columns={this.getContext?.()?.context?.getSortColumnSetting?.() || []}
             onShowColumns={(checked) => {
-              // const { columnSetting } = this.getContext?.()?.context;
-              //
-              // this.getContext().context.columnSetting = columnSetting.map((column) => ({
-              //   ...column,
-              //   display: checked,
-              // }));
-              this.$emit('showColumns', checked);
+              const { columnSetting } = this.getContext?.()?.context;
+
+              this.getContext().context.columnSetting = (columnSetting || [])?.map((column) => ({
+                ...column,
+                display: checked,
+              }));
+              // this.$emit('showColumns', checked);
             }}
             onReset={() => {
-              // this.getContext().columnSetting = this.getContext().context
-              //   .getTableColumns()
-              //   .map((column, index) => ({
-              //     ...column,
-              //     display: true,
-              //     sort: index,
-              //   }));
-              this.$emit('reset');
+              this.getContext().context.columnSetting = this?.getContext()
+                ?.context?.getTableColumns?.(h)
+                ?.map?.((column, index) => ({
+                  ...column,
+                  display: true,
+                  sort: index,
+                }));
+              // this.$emit('reset');
             }}
             onDisplayColumn={({ column, checked }) => {
-              // const { columnSetting } = this.getContext?.()?.context;
-              //
-              // this.getContext().context.columnSetting = columnSetting.map((_column) => ({
-              //   ..._column,
-              //   display: _column.key === column.key ? checked : _column.display,
-              // }));
-              this.$emit('displayColumn', { column, checked });
+              const { columnSetting } = this.getContext?.()?.context;
+
+              this.getContext().context.columnSetting = (columnSetting || [])?.map?.((_column) => ({
+                ..._column,
+                display: _column.key === column.key ? checked : _column.display,
+              }));
+              // this.$emit('displayColumn', { column, checked });
             }}
             onSortEnd={(map) => {
-              // const { columnSetting } = this.getContext?.()?.context;
-              //
-              // this.getContext().context.columnSetting = columnSetting.map((column) => ({
-              //   ...column,
-              //   sort: map.get(column.key),
-              // }));
+              const { columnSetting } = this.getContext?.()?.context;
 
-              this.$emit('sortEnd', map);
+              this.getContext().context.columnSetting = (columnSetting || [])?.map?.((column) => ({
+                ...column,
+                sort: map.get(column.key),
+              }));
+
+              // this.$emit('sortEnd', map);
             }}
           />
         }
