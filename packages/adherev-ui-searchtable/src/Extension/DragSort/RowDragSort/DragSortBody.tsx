@@ -64,10 +64,19 @@ export default (props?: any) => {
     if(!tbodyRef.value) return;
 
     Sortable.create(tbodyRef.value, {
-      onEnd: onUseDragSortRowBodyEnd,
       draggable: bodyConfig?.$bodyDragSort?.canDrag?.()
         ? `.${selectorPrefix}-row-drag-sort-draggable-item`
         : false,
+        ...(bodyConfig?.$bodyDragSort?.draggableProps || {}),
+      onEnd: (e) => {
+        if (bodyConfig?.$bodyDragSort?.draggableProps?.onEnd) {
+          bodyConfig?.$bodyDragSort?.draggableProps?.onEnd?.(e)?.then?.(() => {
+            onUseDragSortRowBodyEnd(e);
+          });
+        } else {
+          onUseDragSortRowBodyEnd(e);
+        }
+      },
     });
   });
 
