@@ -11,7 +11,7 @@ export default {
       default: TableDensity.DEFAULT,
     },
   },
-  emits: ['reset', 'change'],
+  // emits: ['reset', 'change'],
   inject: ['getContext'],
   methods: {
     onReset() {

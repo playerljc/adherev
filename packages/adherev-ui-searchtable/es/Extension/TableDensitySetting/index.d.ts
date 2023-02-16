@@ -7,7 +7,6 @@ declare const _default: {
             default: TableDensity;
         };
     };
-    emits: string[];
     inject: string[];
     methods: {
         onReset(): void;

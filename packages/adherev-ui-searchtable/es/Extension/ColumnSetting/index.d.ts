@@ -1,6 +1,5 @@
 declare const _default: {
     name: string;
-    emits: string[];
     inject: string[];
     render(h: any): JSX.Element;
 };

@@ -12,7 +12,7 @@ export default {
   //     default: () => [],
   //   },
   // },
-  emits: ['showColumns', 'reset', 'sortEnd', 'displayColumn'],
+  // emits: ['showColumns', 'reset', 'sortEnd', 'displayColumn'],
   inject: ['getContext'],
   render(h) {
     return (
