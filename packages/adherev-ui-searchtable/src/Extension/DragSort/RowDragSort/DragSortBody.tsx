@@ -25,9 +25,6 @@ export default {
 
       return (
         <Draggable
-          {...{
-            props: bodyConfig?.$bodyDragSort?.draggableProps || {},
-          }}
           tag="tbody"
           class={classNames(`${selectorPrefix}-search-row-drag-sort-table`, tbodyVNode.data?.class)}
           draggable={
@@ -36,7 +33,18 @@ export default {
               : false
           }
           // handle={`.${selectorPrefix}-row-drag-sort-handle`}
-          onEnd={this.onUseDragSortRowBodyEnd}
+          {...{
+            props: bodyConfig?.$bodyDragSort?.draggableProps || {},
+          }}
+          onEnd={(e) => {
+            if (bodyConfig?.$bodyDragSort?.draggableProps?.onEnd) {
+              bodyConfig?.$bodyDragSort?.draggableProps?.onEnd?.(e)?.then?.(() => {
+                this.onUseDragSortRowBodyEnd(e);
+              });
+            } else {
+              this.onUseDragSortRowBodyEnd(e);
+            }
+          }}
         >
           {tbodyVNode.children}
         </Draggable>
