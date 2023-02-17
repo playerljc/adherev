@@ -18,6 +18,8 @@
   - 加入ProSearchTable
   - 加入editor功能
   - 加入对列表头分组的修改
+  - 列设置使用标签形式的时候不生效
+  - 密度设置使用标签形式的时候不生效
 * **adherev-ui-adherev-ui-antdvformitem**
   - BUG修改
   - Table生成器的修改
