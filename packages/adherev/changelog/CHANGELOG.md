@@ -1,4 +1,4 @@
-# 2.0.2
+# 2.0.1
 
 ***
 
@@ -56,13 +56,6 @@
   - label和value支持VNode
 * **adherev-util-watchmemoized**
   - 去掉adherev-util的依赖
-
-# 2.0.1
-
-***
-
-2022-11-22
-
 * **adhere-ui-historyback**
   - 修改为返回的判断逻辑
 * **adhere-util**
