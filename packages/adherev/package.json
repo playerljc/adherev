@@ -1,6 +1,6 @@
 {
   "name": "@baifendian/adherev",
-  "version": "1.0.16",
+  "version": "1.0.17",
   "description": "adherev",
   "homepage": "https://gitee.com/playerljc/adherev",
   "bugs": {
@@ -74,7 +74,7 @@
     "@baifendian/adherev-ui-pullrefresh": "^1.0.14",
     "@baifendian/adherev-ui-revolving": "^1.0.14",
     "@baifendian/adherev-ui-scrollload": "^1.0.14",
-    "@baifendian/adherev-ui-searchtable": "^1.0.16",
+    "@baifendian/adherev-ui-searchtable": "^1.0.17",
     "@baifendian/adherev-ui-slidelayout": "^1.0.14",
     "@baifendian/adherev-ui-sliderscale": "^1.0.14",
     "@baifendian/adherev-ui-space": "^1.0.14",
