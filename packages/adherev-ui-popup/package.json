@@ -1,6 +1,6 @@
 {
   "name": "@baifendian/adherev-ui-popup",
-  "version": "2.0.0-fix.1",
+  "version": "2.0.1",
   "description": "popup",
   "homepage": "https://gitee.com/playerljc/adherev",
   "bugs": {
@@ -49,5 +49,5 @@
   "publishConfig": {
     "access": "public"
   },
-  "gitHead": "47ed699392961f617bb50fa7767c9c9aeb98fc9f"
+  "gitHead": "6884e489b7c21cb4ef883d51eaf145101bf409ed"
 }
