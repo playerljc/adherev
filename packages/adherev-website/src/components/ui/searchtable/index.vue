@@ -1145,7 +1145,23 @@ export default {
             },
           },
           type: 'PlayGround',
-          codeText: ``,
+          codeText: `
+          <template>
+            <div style="display: flex; height: 700px">
+              <ProTable />
+            </div>
+          </template>
+
+          <script>
+            import ProTable from './ProTable';
+
+            export default {
+                components: {
+                    ProTable
+                }
+            }
+          <\/script>
+          `,
           childrenSlot: 'p13',
         },
         {
@@ -1158,7 +1174,23 @@ export default {
             },
           },
           type: 'PlayGround',
-          codeText: ``,
+          codeText: `
+          <template>
+            <div style="display: flex; height: 700px">
+              <ProEditableCellTable />
+            </div>
+          </template>
+
+          <script>
+            import ProEditableCellTable from './ProEditableCellTable';
+
+            export default {
+                components: {
+                    ProEditableCellTable
+                }
+            }
+          <\/script>
+          `,
           childrenSlot: 'p14',
         },
         {
@@ -1171,7 +1203,23 @@ export default {
             },
           },
           type: 'PlayGround',
-          codeText: ``,
+          codeText: `
+          <template>
+            <div style="display: flex; height: 700px">
+              <ProEditableRowTable />
+            </div>
+          </template>
+
+          <script>
+            import ProEditableRowTable from './ProEditableRowTable';
+
+            export default {
+                components: {
+                    ProEditableRowTable
+                }
+            }
+          <\/script>
+          `,
           childrenSlot: 'p15',
         },
         {
@@ -1184,7 +1232,23 @@ export default {
             },
           },
           type: 'PlayGround',
-          codeText: ``,
+          codeText: `
+          <template>
+            <div style="display: flex; height: 700px">
+              <ProEditableTable />
+            </div>
+          </template>
+
+          <script>
+            import ProEditableTable from './ProEditableTable';
+
+            export default {
+                components: {
+                    ProEditableTable
+                }
+            }
+          <\/script>
+          `,
           childrenSlot: 'p16',
         },
         {
@@ -1197,7 +1261,23 @@ export default {
             },
           },
           type: 'PlayGround',
-          codeText: ``,
+          codeText: `
+          <template>
+            <div style="display: flex; height: 700px">
+              <ProEditableCellUseKeepEditTable />
+            </div>
+          </template>
+
+          <script>
+            import ProEditableCellUseKeepEditTable from './ProEditableCellUseKeepEditTable';
+
+            export default {
+                components: {
+                    ProEditableCellUseKeepEditTable
+                }
+            }
+          <\/script>
+          `,
           childrenSlot: 'p17',
         },
         {
@@ -1210,7 +1290,23 @@ export default {
             },
           },
           type: 'PlayGround',
-          codeText: ``,
+          codeText: `
+          <template>
+            <div style="display: flex; height: 700px">
+              <ProEditableCellRenderTriggerTable />
+            </div>
+          </template>
+
+          <script>
+            import ProEditableCellRenderTriggerTable from './ProEditableCellRenderTriggerTable';
+
+            export default {
+                components: {
+                    ProEditableCellRenderTriggerTable
+                }
+            }
+          <\/script>
+          `,
           childrenSlot: 'p18',
         },
         {
@@ -1223,7 +1319,23 @@ export default {
             },
           },
           type: 'PlayGround',
-          codeText: ``,
+          codeText: `
+          <template>
+            <div style="display: flex; height: 700px">
+              <ProRowDragSortTable />
+            </div>
+          </template>
+
+          <script>
+            import ProRowDragSortTable from './ProRowDragSortTable';
+
+            export default {
+                components: {
+                    ProRowDragSortTable
+                }
+            }
+          <\/script>
+          `,
           childrenSlot: 'p19',
         },
         {
@@ -1236,7 +1348,23 @@ export default {
             },
           },
           type: 'PlayGround',
-          codeText: ``,
+          codeText: `
+          <template>
+            <div style="display: flex; height: 700px">
+              <ProRowDragSortEditableTable />
+            </div>
+          </template>
+
+          <script>
+            import ProRowDragSortEditableTable from './ProRowDragSortEditableTable';
+
+            export default {
+                components: {
+                    ProRowDragSortEditableTable
+                }
+            }
+          <\/script>
+          `,
           childrenSlot: 'p20',
         },
         {
@@ -1249,7 +1377,23 @@ export default {
             },
           },
           type: 'PlayGround',
-          codeText: ``,
+          codeText: `
+          <template>
+            <div style="display: flex; height: 700px">
+              <ProRowDragSortEditableRowTable />
+            </div>
+          </template>
+
+          <script>
+            import ProRowDragSortEditableRowTable from './ProRowDragSortEditableRowTable';
+
+            export default {
+                components: {
+                    ProRowDragSortEditableRowTable
+                }
+            }
+          <\/script>
+          `,
           childrenSlot: 'p21',
         },
         {
@@ -1262,7 +1406,23 @@ export default {
             },
           },
           type: 'PlayGround',
-          codeText: ``,
+          codeText: `
+          <template>
+            <div style="display: flex; height: 700px">
+              <ProRowDragSortEditableRowTable />
+            </div>
+          </template>
+
+          <script>
+            import ProRowDragSortEditableRowTable from './ProRowDragSortEditableRowTable';
+
+            export default {
+                components: {
+                    ProRowDragSortEditableRowTable
+                }
+            }
+          <\/script>
+          `,
           childrenSlot: 'p22',
         },
       ],
