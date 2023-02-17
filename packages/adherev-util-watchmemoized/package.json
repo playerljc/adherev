@@ -1,6 +1,6 @@
 {
   "name": "@baifendian/adherev-util-watchmemoized",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "对值的监控和缓存",
   "homepage": "https://gitee.com/playerljc/adherev",
   "bugs": {

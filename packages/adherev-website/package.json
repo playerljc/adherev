@@ -1,6 +1,6 @@
 {
   "name": "@baifendian/adherev-website",
-  "version": "2.0.0-fix.1",
+  "version": "2.0.1",
   "private": true,
   "description": "adherev的website",
   "scripts": {
@@ -45,10 +45,10 @@
   },
   "dependencies": {
     "@ant-design/icons": "^4.7.0",
-    "@baifendian/adherev": "^2.0.0-fix.1",
+    "@ant-design/icons-vue": "^6.1.0",
+    "@baifendian/adherev": "^2.0.1",
     "@ckpack/vue-color": "^1.2.4",
     "@types/nprogress": "^0.2.0",
-    "@ant-design/icons-vue": "^6.1.0",
     "ant-design-vue": "^3.2.15",
     "classnames": "^2.3.1",
     "copy-to-clipboard": "^3.3.1",

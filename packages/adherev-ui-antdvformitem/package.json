@@ -1,6 +1,6 @@
 {
   "name": "@baifendian/adherev-ui-antdvformitem",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Antdv的FormItem进阶",
   "homepage": "https://gitee.com/playerljc/adherev",
   "bugs": {
@@ -30,10 +30,10 @@
   },
   "resolutions": {},
   "dependencies": {
-    "@baifendian/adherev-util": "^2.0.0",
-    "@baifendian/adherev-util-dict": "^2.0.0",
-    "@baifendian/adherev-util-intl": "2.0.0-fix.1",
-    "@baifendian/adherev-util-watchmemoized": "^2.0.0",
+    "@baifendian/adherev-util": "^2.0.1",
+    "@baifendian/adherev-util-dict": "^2.0.1",
+    "@baifendian/adherev-util-intl": "^2.0.1",
+    "@baifendian/adherev-util-watchmemoized": "^2.0.1",
     "ant-design-vue": "^3.2.15",
     "classnames": "^2.3.2",
     "lodash.debounce": "^4.0.8",
@@ -41,8 +41,8 @@
     "vue-types": "^3.0.2"
   },
   "devDependencies": {
-    "@baifendian/adherev-ui-flexlayout": "^2.0.0",
     "@babel/runtime": "^7.20.13",
+    "@baifendian/adherev-ui-flexlayout": "^2.0.1",
     "@ctsj/buildv": "^5.0.4",
     "babel-plugin-import": "^1.13.6",
     "npm-run-all": "^4.1.5",
