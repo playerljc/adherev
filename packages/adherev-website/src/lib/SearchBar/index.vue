@@ -8,6 +8,7 @@
       <a-select
         style="width: 600px"
         class="dropdownClassName"
+        placeholder="请输入关键字搜索"
         :search-value="searchVal"
         :get-popup-container="(e) => e.parentElement"
         :open="open"
