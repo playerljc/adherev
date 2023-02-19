@@ -52,8 +52,6 @@ export default defineComponent({
             if (checked) {
               this.selectedRowKeys = [item[rowKey]];
               this.selectedRows = [{ ...item }];
-              console.log('item', item);
-              console.log('rowKey', rowKey);
               this.$emit('change', item[rowKey]);
             }
           }}

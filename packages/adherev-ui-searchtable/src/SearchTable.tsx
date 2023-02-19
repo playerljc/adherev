@@ -679,8 +679,6 @@ const SearchTable: any = extend({
         return 0;
       });
 
-      console.log('this.columnSetting.sort', columns);
-
       return columns;
     },
     /**
