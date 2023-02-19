@@ -1,4 +1,4 @@
-import { Plugin } from 'vue';
+import { App, Plugin } from 'vue';
 declare const _default: {
     PolygonSelection: typeof import("@baifendian/adhere-ui-polygonselection/lib/PolygonSelection").default;
     CircleDrawAction: typeof import("@baifendian/adhere-ui-polygonselection/lib/draw/CircleDrawAction").default;
@@ -52,5 +52,7 @@ declare const _default: {
         }): import("@baifendian/adhere-ui-polygonselection/lib/types").IPoint[];
     };
     Types: typeof import("@baifendian/adhere-ui-polygonselection/lib/types");
+} & {
+    install?: ((app: App<any>) => App<any>) | undefined;
 } & Plugin;
 export default _default;

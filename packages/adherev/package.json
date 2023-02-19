@@ -57,6 +57,7 @@
     "@baifendian/adherev-ui-css": "^2.0.1",
     "@baifendian/adherev-ui-datedisplay": "^2.0.1",
     "@baifendian/adherev-ui-flexlayout": "^2.0.1",
+    "@baifendian/adherev-ui-bmap": "^2.0.1",
     "@baifendian/adherev-ui-fontsizesetting": "^2.0.1",
     "@baifendian/adherev-ui-globalindicator": "^2.0.1",
     "@baifendian/adherev-ui-historyback": "^2.0.1",

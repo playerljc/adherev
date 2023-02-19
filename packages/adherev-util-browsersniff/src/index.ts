@@ -7,13 +7,14 @@ const {
   _util: { withVue },
 } = BfdUtil;
 
-const Wrap = {
-  ...Browsersniff,
-  install: (app: App) => {
-    withVue(app, 'Browsersniff', Browsersniff);
+const BrowsersniffWrap: typeof Browsersniff & {
+  install?: (app: App) => App
+} = Browsersniff;
 
-    return app;
-  },
-};
+BrowsersniffWrap.install = (app: App) => {
+  withVue(app, 'Browsersniff', Browsersniff);
 
-export default Wrap as typeof Wrap & Plugin;
+  return app;
+}
+
+export default BrowsersniffWrap as typeof BrowsersniffWrap & Plugin;

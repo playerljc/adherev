@@ -10,6 +10,7 @@ import ContextMenu from '@baifendian/adherev-ui-contextmenu';
 import ContourBlock from '@baifendian/adherev-ui-contourblock';
 import DateDisplay from '@baifendian/adherev-ui-datedisplay';
 import FlexLayout from '@baifendian/adherev-ui-flexlayout';
+import BMap from '@baifendian/adherev-ui-bmap';
 import FontSizeSetting from '@baifendian/adherev-ui-fontsizesetting';
 import GlobalIndicator from '@baifendian/adherev-ui-globalindicator';
 import HistoryBack from '@baifendian/adherev-ui-historyback';
@@ -72,6 +73,7 @@ export {
   ContourBlock,
   DateDisplay,
   FlexLayout,
+  BMap,
   FontSizeSetting,
   GlobalIndicator,
   HistoryBack,
@@ -184,6 +186,11 @@ app?.use?.(DateDisplay); }
 (FlexLayout as any)?.install()){ 
 
 app?.use?.(FlexLayout); }
+		if(
+
+(BMap as any)?.install()){ 
+
+app?.use?.(BMap); }
 		if(
 
 (FontSizeSetting as any)?.install()){ 

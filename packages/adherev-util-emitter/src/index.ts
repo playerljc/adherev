@@ -7,13 +7,14 @@ const {
   _util: { withVue },
 } = BfdUtil;
 
-const Wrap = {
-  ...Emitter,
-  install: (app: App) => {
-    withVue(app, 'Emitter', Emitter);
+const EmitterWrap: typeof Emitter & {
+  install?: (app: App) => App
+} = Emitter;
 
-    return app;
-  },
+EmitterWrap.install = (app: App) => {
+  withVue(app, 'Emitter', Emitter);
+
+  return app;
 };
 
-export default Wrap as typeof Wrap & Plugin;
+export default EmitterWrap as typeof EmitterWrap & Plugin;

@@ -1,2 +1,2 @@
-var __assign=this&&this.__assign||function(){return(__assign=Object.assign||function(i){for(var a,n=1,t=arguments.length;n<t;n++)for(var r in a=arguments[n])Object.prototype.hasOwnProperty.call(a,r)&&(i[r]=a[r]);return i}).apply(this,arguments)};import Domain from"@baifendian/adhere-util-domain";import BfdUtil from"@baifendian/adherev-util";var withVue=BfdUtil._util.withVue,Wrap=__assign(__assign({},Domain),{install:function(i){return withVue(i,"Domain",Domain),i}});export default Wrap;
+import Domain from"@baifendian/adhere-util-domain";import BfdUtil from"@baifendian/adherev-util";var withVue=BfdUtil._util.withVue,DomainWrap=Domain;DomainWrap.install=function(i){return withVue(i,"Domain",Domain),i};export default DomainWrap;
 //# sourceMappingURL=index.js.map

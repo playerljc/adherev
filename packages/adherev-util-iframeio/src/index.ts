@@ -7,13 +7,14 @@ const {
   _util: { withVue },
 } = BfdUtil;
 
-const Wrap = {
-  ...IframeIO,
-  install: (app: App) => {
-    withVue(app, 'IframeIO', IframeIO);
+const IframeIOWrap: typeof IframeIO & {
+  install?: (app: App) => App
+} = IframeIO;
 
-    return app;
-  },
-};
+IframeIOWrap.install = (app: App) => {
+  withVue(app, 'IframeIO', IframeIO);
 
-export default Wrap as typeof Wrap & Plugin;
+  return app;
+}
+
+export default IframeIOWrap as typeof IframeIOWrap & Plugin;

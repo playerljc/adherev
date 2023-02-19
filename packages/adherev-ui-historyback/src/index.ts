@@ -7,12 +7,14 @@ const {
   _util: { withVue },
 } = BfdUtil;
 
-const HistoryBackWrap = {
-  ...HistoryBack,
-  install: function (app: App) {
-    withVue(app, 'HistoryBack', HistoryBack);
+const HistoryBackWrap: typeof HistoryBack & {
+  install?: (app: App) => App;
+} = HistoryBack;
 
-    return app;
-  },
+HistoryBackWrap.install = (app: App) => {
+  withVue(app, 'HistoryBack', HistoryBack);
+
+  return app;
 };
+
 export default HistoryBackWrap as typeof HistoryBackWrap & Plugin;

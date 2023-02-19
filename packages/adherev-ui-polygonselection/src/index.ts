@@ -7,10 +7,14 @@ const {
   _util: { withVue },
 } = BfdUtil;
 
-(Polygonselection as any).install = function (app: App) {
+const PolygonSelectionWrap: typeof Polygonselection & {
+  install?: (app: App) => App;
+} = Polygonselection;
+
+PolygonSelectionWrap.install = (app: App) => {
   withVue(app, 'Polygonselection', Polygonselection);
 
   return app;
 };
 
-export default Polygonselection as typeof Polygonselection & Plugin;
+export default PolygonSelectionWrap as typeof PolygonSelectionWrap & Plugin;

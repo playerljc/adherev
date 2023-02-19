@@ -53,7 +53,7 @@ const namedMap = new Map([
   ['@baifendian/adherev-ui-jdcategorytab', 'JdCategoryTab'],
   ['@baifendian/adherev-ui-imagelazy', 'ImageLazy'],
   ['@baifendian/adherev-ui-polygonselection', 'PolygonSelection'],
-  // ['@baifendian/adherev-ui-bmap', 'BMap'],
+  ['@baifendian/adherev-ui-bmap', 'BMap'],
   ['@baifendian/adherev-ui-playground', 'PlayGround'],
   ['@baifendian/adherev-ui-comment', 'Comment'],
   ['@baifendian/adherev-ui-configprovider', 'ConfigProvider'],

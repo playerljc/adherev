@@ -7,13 +7,14 @@ const {
   _util: { withVue },
 } = BfdUtil;
 
-const Wrap = {
-  ...AdapterScreen,
-  install: (app: App) => {
-    withVue(app, 'AdapterScreen', AdapterScreen);
+const AdapterScreenWrap: typeof AdapterScreen & {
+  install?: (app: App) => App;
+} = AdapterScreen;
 
-    return app;
-  },
+AdapterScreenWrap.install = (app: App) => {
+  withVue(app, 'AdapterScreen', AdapterScreen);
+
+  return app;
 };
 
-export default Wrap as typeof Wrap & Plugin;
+export default AdapterScreenWrap as typeof AdapterScreenWrap & Plugin;

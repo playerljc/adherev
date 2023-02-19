@@ -7,13 +7,14 @@ const {
   _util: { withVue },
 } = BfdUtil;
 
-const Wrap = {
-  ...Validator,
-  install: (app: App) => {
-    withVue(app, 'Validator', Validator);
+const ValidatorWrap: typeof Validator & {
+  install?: (app: App) => App
+} = Validator;
 
-    return app;
-  },
-};
+ValidatorWrap.install = (app: App) => {
+  withVue(app, 'Validator', Validator);
 
-export default Wrap as typeof Wrap & Plugin;
+  return app;
+}
+
+export default ValidatorWrap as typeof ValidatorWrap & Plugin;

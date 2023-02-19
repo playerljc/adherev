@@ -1,6 +1,5 @@
 import { App, Plugin } from 'vue';
 declare const _default: {
-    install: (app: App<any>) => App<any>;
     putStringByLocal(key: string, value: string): void;
     getStringByLocal(key: string): string | null;
     putObjectByLocal(key: string, object: Object): void;
@@ -11,5 +10,7 @@ declare const _default: {
     putObjectBySession(key: string, object: Object): void;
     getObjectBySession(key: string): Object | null;
     removeBySession(key: string): void;
+} & {
+    install?: ((app: App<any>) => App<any>) | undefined;
 } & Plugin;
 export default _default;

@@ -10,6 +10,7 @@ const {
 
 Resource.install = (app: App) => {
   withVue(app, 'Resource', Resource);
-};
 
+  return app;
+}
 export default Resource as typeof Resource & Plugin;

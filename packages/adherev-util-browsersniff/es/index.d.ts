@@ -1,6 +1,5 @@
 import { App, Plugin } from 'vue';
 declare const _default: {
-    install: (app: App<any>) => App<any>;
     getInstance(): {
         browser: string;
         device: string;
@@ -90,5 +89,7 @@ declare const _default: {
     iSOSSymbian(): boolean;
     iSOSChromeOS(): boolean;
     iSOSWebOS(): boolean;
+} & {
+    install?: ((app: App<any>) => App<any>) | undefined;
 } & Plugin;
 export default _default;

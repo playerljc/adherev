@@ -7,13 +7,15 @@ const {
   _util: { withVue },
 } = BfdUtil;
 
-const Wrap = {
-  ...Preferences,
-  install: (app: App) => {
-    withVue(app, 'Preferences', Preferences);
+const PreferencesWrap: typeof Preferences & {
+  install?: (app: App) => App
+} = Preferences;
 
-    return app;
-  },
+PreferencesWrap.install = (app: App) => {
+  withVue(app, 'Preferences', Preferences);
+
+  return app;
 };
 
-export default Wrap as typeof Wrap & Plugin;
+export default PreferencesWrap as typeof PreferencesWrap & Plugin;
+

@@ -1,4 +1,4 @@
-import { App } from 'vue';
+import { App, Plugin } from "vue";
 
 import Domain from '@baifendian/adhere-util-domain';
 import BfdUtil from '@baifendian/adherev-util';
@@ -7,14 +7,14 @@ const {
   _util: { withVue },
 } = BfdUtil;
 
-// @ts-ignore
-const Wrap = {
-  ...Domain,
-  install: (app: App) => {
-    withVue(app, 'Domain', Domain);
+const DomainWrap: typeof Domain & {
+  install?: (app: App) => App
+} = Domain;
 
-    return app;
-  },
-};
+DomainWrap.install = (app: App) => {
+  withVue(app, 'Domain', Domain);
 
-export default Wrap;
+  return app;
+}
+
+export default DomainWrap as typeof DomainWrap & Plugin;

@@ -7,13 +7,14 @@ const {
   _util: { withVue },
 } = BfdUtil;
 
-const Wrap = {
-  ...NotNull,
-  install: (app: App) => {
-    withVue(app, 'NotNull', NotNull);
+const NotNullWrap: typeof NotNull & {
+  install?: (app: App) => App
+} = NotNull;
 
-    return app;
-  },
+NotNullWrap.install = (app: App) => {
+  withVue(app, 'NotNull', NotNull);
+
+  return app;
 };
 
-export default Wrap as typeof Wrap & Plugin;
+export default NotNullWrap as typeof NotNullWrap & Plugin;

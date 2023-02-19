@@ -7,13 +7,14 @@ const {
   _util: { withVue },
 } = BfdUtil;
 
-const Wrap = {
-  ...Dict,
-  install: (app: App) => {
-    withVue(app, 'Dict', Dict);
+const DictWrap: typeof Dict & {
+  install?: (app: App) => App
+} = Dict;
 
-    return app;
-  },
-};
+DictWrap.install = (app: App) => {
+  withVue(app, 'Dict', Dict);
 
-export default Wrap as typeof Wrap & Plugin;
+  return app;
+}
+
+export default DictWrap as typeof DictWrap & Plugin;
