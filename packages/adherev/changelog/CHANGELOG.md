@@ -7,6 +7,7 @@
 * **公共**
   - 直接引用的组件导出修改
   - BMap注释的打开
+  - adherev-ui-searchtable的unMountSearchAndPaginParamsDeal修改
 
 # 2.0.1
 
