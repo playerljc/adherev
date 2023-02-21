@@ -58,16 +58,16 @@ declare const _default: {
         children?: any[] | undefined;
         isLeaf?: boolean | undefined;
         properties?: any;
-    }[], config: import("@baifendian/adhere-util/lib/types").IFlatTreeArrNode) => (import("@baifendian/adhere-util/lib/types").IFlatTreeArrNode & Pick<import("@baifendian/adhere-util/lib/types").IAntdTreeNode, "title" | "key" | "isLeaf" | "children" | "properties">)[];
-    arrayToAntdTreeSelect: (arr: any[], config: import("@baifendian/adhere-util/lib/types").IFlatTreeArrNode) => (import("@baifendian/adhere-util/lib/types").IFlatTreeArrNode & Pick<import("@baifendian/adhere-util/lib/types").IAntdTreeNode, "title" | "key" | "isLeaf" | "children" | "properties">)[];
+    }[], config: import("@baifendian/adhere-util/lib/types").IFlatTreeArrNode) => (import("@baifendian/adhere-util/lib/types").IFlatTreeArrNode & Pick<import("@baifendian/adhere-util/lib/types").IAntdTreeNode, "children" | "key" | "title" | "isLeaf" | "properties">)[];
+    arrayToAntdTreeSelect: (arr: any[], config: import("@baifendian/adhere-util/lib/types").IFlatTreeArrNode) => (import("@baifendian/adhere-util/lib/types").IFlatTreeArrNode & Pick<import("@baifendian/adhere-util/lib/types").IAntdTreeNode, "children" | "key" | "title" | "isLeaf" | "properties">)[];
     getAncestor: (data: any[], node: any, config: Pick<import("@baifendian/adhere-util/lib/types").IFlatTreeArrNode, "keyAttr" | "parentIdAttr" | "rootParentId">) => any[];
     getDescendants: (data: any[], node: any, config: Pick<import("@baifendian/adhere-util/lib/types").IFlatTreeArrNode, "keyAttr" | "parentIdAttr" | "rootParentId">) => any[];
     filterTreeByFlatData: (treeFlatNodes: any[], kw: string, config: import("@baifendian/adhere-util/lib/types").IFlatTreeArrNode & {
         filterAttr: string;
-    }) => (import("@baifendian/adhere-util/lib/types").IFlatTreeArrNode & Pick<import("@baifendian/adhere-util/lib/types").IAntdTreeNode, "title" | "key" | "isLeaf" | "children" | "properties">)[];
+    }) => (import("@baifendian/adhere-util/lib/types").IFlatTreeArrNode & Pick<import("@baifendian/adhere-util/lib/types").IAntdTreeNode, "children" | "key" | "title" | "isLeaf" | "properties">)[];
     filterTree: (treeNodes: (import("@baifendian/adhere-util/lib/types").IAntdTreeNode | import("@baifendian/adhere-util/lib/types").IAntdTreeSelectNode)[], kw: string, config: import("@baifendian/adhere-util/lib/types").IFlatTreeArrNode & {
         filterAttr: string;
-    }) => (import("@baifendian/adhere-util/lib/types").IFlatTreeArrNode & Pick<import("@baifendian/adhere-util/lib/types").IAntdTreeNode, "title" | "key" | "isLeaf" | "children" | "properties">)[];
+    }) => (import("@baifendian/adhere-util/lib/types").IFlatTreeArrNode & Pick<import("@baifendian/adhere-util/lib/types").IAntdTreeNode, "children" | "key" | "title" | "isLeaf" | "properties">)[];
     findNodeByKey: (treeData: (import("@baifendian/adhere-util/lib/types").IAntdTreeNode | import("@baifendian/adhere-util/lib/types").IAntdTreeSelectNode)[], val: any, config: {
         keyAttr: string;
     }) => import("@baifendian/adhere-util/lib/types").IAntdTreeNode | import("@baifendian/adhere-util/lib/types").IAntdTreeSelectNode | null;
@@ -92,9 +92,9 @@ declare const _default: {
     getTreeLevelByIndex: (nodes: (import("@baifendian/adhere-util/lib/types").IAntdTreeNode | import("@baifendian/adhere-util/lib/types").IAntdTreeSelectNode)[], indexAttr?: string | undefined) => number;
     getTreeLevelToFlat: (flatArr: any[], config: import("@baifendian/adhere-util/lib/types").IFlatTreeArrNode) => number;
     getTreeLevelByIndexToFlat: (flatArr: any[], config: import("@baifendian/adhere-util/lib/types").IFlatTreeArrNode, indexAttr: string) => number;
-    completionIncompleteFlatArr: (treeFlatNodes: any[], incompleteTreeFlatNodes: any, config: import("@baifendian/adhere-util/lib/types").IFlatTreeArrNode) => (import("@baifendian/adhere-util/lib/types").IFlatTreeArrNode & Pick<import("@baifendian/adhere-util/lib/types").IAntdTreeNode | import("@baifendian/adhere-util/lib/types").IAntdTreeSelectNode, "key" | "isLeaf" | "children" | "properties">)[];
-    excludeAntdTreeNodes: (nodes: import("@baifendian/adhere-util/lib/types").IAntdTreeNode[], excludeKeys: string[]) => (import("@baifendian/adhere-util/lib/types").IFlatTreeArrNode & Pick<import("@baifendian/adhere-util/lib/types").IAntdTreeNode, "title" | "key" | "isLeaf" | "children" | "properties">)[];
-    excludeAntdSelectTreeNodes: (nodes: import("@baifendian/adhere-util/lib/types").IAntdTreeSelectNode[], excludeKeys: string[]) => (import("@baifendian/adhere-util/lib/types").IFlatTreeArrNode & Pick<import("@baifendian/adhere-util/lib/types").IAntdTreeSelectNode, "key" | "isLeaf" | "children" | "properties" | "label">)[];
+    completionIncompleteFlatArr: (treeFlatNodes: any[], incompleteTreeFlatNodes: any, config: import("@baifendian/adhere-util/lib/types").IFlatTreeArrNode) => (import("@baifendian/adhere-util/lib/types").IFlatTreeArrNode & Pick<import("@baifendian/adhere-util/lib/types").IAntdTreeNode | import("@baifendian/adhere-util/lib/types").IAntdTreeSelectNode, "children" | "key" | "isLeaf" | "properties">)[];
+    excludeAntdTreeNodes: (nodes: import("@baifendian/adhere-util/lib/types").IAntdTreeNode[], excludeKeys: string[]) => (import("@baifendian/adhere-util/lib/types").IFlatTreeArrNode & Pick<import("@baifendian/adhere-util/lib/types").IAntdTreeNode, "children" | "key" | "title" | "isLeaf" | "properties">)[];
+    excludeAntdSelectTreeNodes: (nodes: import("@baifendian/adhere-util/lib/types").IAntdTreeSelectNode[], excludeKeys: string[]) => (import("@baifendian/adhere-util/lib/types").IFlatTreeArrNode & Pick<import("@baifendian/adhere-util/lib/types").IAntdTreeSelectNode, "children" | "key" | "isLeaf" | "properties" | "label">)[];
     getLang(): string;
     setLang(lang?: string | undefined): void;
     getDatePickerFormat(): string;

@@ -1,5 +1,4 @@
 import { ComponentOptions } from 'vue';
-import { DefineComponent } from '@vue/runtime-core';
 /**
  * ExtendFunction
  */
@@ -38,7 +37,7 @@ export declare function HOC(Component: any, optionsOverwrite: any, renderOptions
     props?: (props: any) => any;
     attrs?: (attrs: any) => any;
     slots?: (slots: any) => any;
-}): DefineComponent<unknown, object, {}, import("vue").ComputedOptions, import("vue").MethodOptions, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {}, string, import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<unknown>, {}>;
+}): import("vue").DefineComponent<unknown, object, {}, import("vue").ComputedOptions, import("vue").MethodOptions, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {}, string, import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<unknown>, {}>;
 /**
  * getComponentPropsOption
  * @description 获取组件的Props定义
@@ -49,7 +48,8 @@ export declare const getComponentPropsOption: (Component: any) => any;
 /**
  * forwardRef
  * @param comp
- * @param ref
  */
-export declare function forwardRef(comp: ComponentOptions, ref: string): ComponentOptions;
+export declare function forwardRef(comp: ComponentOptions): import("vue").DefineComponent<{}, () => import("vue").VNode<import("vue").RendererNode, import("vue").RendererElement, {
+    [key: string]: any;
+}>, {}, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {}, string, import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<import("vue").ExtractPropTypes<{}>>, {}>;
 export {};

@@ -198,7 +198,7 @@ const ProTableFactory: (
         } else {
           const item = searchAndPaginParamsMemo.findByPath(pathname); // searchAndPaginParamsMemo.find((t) => t.path === pathname);
 
-          if (item) {
+          if (item && item.components && item.components[componentId]) {
             item.components[componentId].search = searchParams;
             item.components[componentId].page = this.page;
             item.components[componentId].limit = this.limit;

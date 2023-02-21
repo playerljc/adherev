@@ -278,15 +278,6 @@ const SearchTableImplement: (serviceName: string) => any = (serviceName) =>
           return null;
         },
 
-        // /**
-        //  * renderSearchTableImplement
-        //  * @description - renderSearchTableImplement
-        //  * @param h
-        //  */
-        // renderSearchTableImplement(h) {
-        //   return this.renderSearchTable(h);
-        // },
-
         /**
          * renderInner
          * @override
