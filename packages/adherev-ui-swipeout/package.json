@@ -1,6 +1,6 @@
 {
   "name": "@baifendian/adherev-ui-swipeout",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "滑动操作",
   "homepage": "https://gitee.com/playerljc/adherev",
   "bugs": {
@@ -29,7 +29,7 @@
   },
   "resolutions": {},
   "dependencies": {
-    "@baifendian/adherev-util": "^2.0.1",
+    "@baifendian/adherev-util": "^2.0.2",
     "classnames": "^2.3.1",
     "omit.js": "^2.0.2",
     "swiper": "^4.5.0",

@@ -1,6 +1,6 @@
 {
   "name": "@baifendian/adherev-ui-polygonselection",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "多边形选区",
   "homepage": "https://gitee.com/playerljc/adherev",
   "bugs": {
@@ -30,7 +30,7 @@
   "resolutions": {},
   "dependencies": {
     "@baifendian/adhere-ui-polygonselection": "^1.0.24",
-    "@baifendian/adherev-util": "^2.0.1",
+    "@baifendian/adherev-util": "^2.0.2",
     "vue-types": "^3.0.2"
   },
   "devDependencies": {

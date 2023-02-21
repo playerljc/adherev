@@ -1,6 +1,6 @@
 {
   "name": "@baifendian/adherev-ui-bmap",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "百度地图3.0的封装",
   "homepage": "https://gitee.com/playerljc/adherev",
   "bugs": {
@@ -30,8 +30,8 @@
   "resolutions": {},
   "dependencies": {
     "@baifendian/adhere-ui-bmap": "^1.0.24",
-    "@baifendian/adherev-ui-conditionalrender": "^2.0.1",
-    "@baifendian/adherev-util": "^2.0.1",
+    "@baifendian/adherev-ui-conditionalrender": "^2.0.2",
+    "@baifendian/adherev-util": "^2.0.2",
     "vue": "^3.2.45",
     "vue-types": "^3.0.2"
   },
