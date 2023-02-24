@@ -1,3 +1,12 @@
+# 2.0.3
+
+***
+
+2023-02-26
+
+* **adherev-util-resource**
+  - 去掉request.context的Api
+
 # 2.0.2
 
 ***
