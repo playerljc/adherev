@@ -139,7 +139,7 @@ export function renderChildren({ path, Component }) {
  * @return {Object} 返回一个promise对象
  **/
 export function lazy(AsyncView) {
-  return defineAsyncComponent({
+  return Promise.resolve(defineAsyncComponent({
     // 工厂函数
     loader: () => AsyncView,
     // 加载异步组件时要使用的组件
@@ -180,7 +180,7 @@ export function lazy(AsyncView) {
         fail();
       }
     },
-  });
+  }));
 }
 
 /**
