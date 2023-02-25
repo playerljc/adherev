@@ -139,6 +139,7 @@ module.exports = {
     }
 
     if (webpackConfig.mode === 'production') {
+      webpackConfig.optimization.concatenateModules = false;
       webpackConfig.optimization.splitChunks = {
         // chunks: 'all',
         // minSize: 30000,

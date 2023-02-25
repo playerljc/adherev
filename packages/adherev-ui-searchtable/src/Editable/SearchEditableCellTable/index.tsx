@@ -1,6 +1,5 @@
 import { Form } from 'ant-design-vue';
 import dayjs from 'dayjs';
-import { string } from 'vue-types';
 
 import Util from '@baifendian/adherev-util';
 
