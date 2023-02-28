@@ -6,9 +6,9 @@ const Util = {
    * @param defaultOpenKeys
    * @param defaultSelectedKeys
    * @param routes
-   * @param pathname
    */
-  loopRoutes({ defaultOpenKeys, defaultSelectedKeys, routes, pathname }) {
+  loopRoutes({ defaultOpenKeys, defaultSelectedKeys, routes }) {
+    const { pathname } = window.location;
     for (let i = 0; i < routes.length; i++) {
       const route = routes[i];
       if (pathname.indexOf(route.path) !== -1) {

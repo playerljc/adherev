@@ -44,7 +44,6 @@ export default defineComponent({
 
     return () => (
       <div class={selectPrefix}>
-        {/*@ts-ignore*/}
         <AnchorNavigation
           anchors={getAnchors.value}
           defaultActiveAnchor={props.defaultActiveAnchor}
