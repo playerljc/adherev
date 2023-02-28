@@ -7,6 +7,10 @@ export default {
       val: '',
       vals: [],
       test: 'large',
+      autoCompleteValue: {
+        inputValue: '',
+        selectValue: '',
+      },
     };
   },
   methods: {
@@ -17,13 +21,16 @@ export default {
       debugger;
       this.vals = vals;
     },
+    onAutoCompleteChange(v) {
+      this.autoCompleteValue = v;
+    },
   },
 };
 </script>
 
 <template>
   <div style="padding: 50px">
-    <fieldset>
+    <!--    <fieldset>
       <legend>
         <h1>Radio</h1>
       </legend>
@@ -763,6 +770,25 @@ export default {
 
           <dd>
             <SystemTestCascaderLeafFormItem :value="vals" @change="onChangeValues" />
+          </dd>
+        </dl>
+      </div>
+    </fieldset>-->
+
+    <fieldset>
+      <legend></legend>
+
+      <div>
+        <dl>
+          <dt>
+            <h3>普通</h3>
+          </dt>
+          <dd>
+            <SystemTestAutoCompleteFormItem
+              style="width: 200px"
+              :value="autoCompleteValue"
+              @change="onAutoCompleteChange"
+            />
           </dd>
         </dl>
       </div>

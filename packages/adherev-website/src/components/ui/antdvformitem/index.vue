@@ -281,6 +281,20 @@
               <adv-antdvformitemnormalize-textarea style="width: 200px" />
             </dd>
           </dl>
+
+          <dl>
+            <dt>
+              <p>SubmitButton</p>
+            </dt>
+            <dd>
+              <adv-antdvformitemnormalize-submitbutton
+                type="primary"
+                style="width: 200px"
+                @click="onSubmitBtnClick"
+                >提交</adv-antdvformitemnormalize-submitbutton
+              >
+            </dd>
+          </dl>
         </adv-space-group>
       </template>
 
@@ -982,29 +996,41 @@
         </SystemTestListPaginationMulitSelectFormItem>
       </template>
     </adv-playground-page-code-box-section>
+    <adv-playground-page-code-box-section
+      title="FormItemGeneratorToDict - AutoComplete"
+      :config="autoCompleteCodeBoxPanelConfig"
+    >
+      <template #p1>
+        <SystemTestAutoCompleteFormItem
+          style="width: 200px"
+          :value="autoCompleteValue"
+          @change="onAutoCompleteChange"
+        />
+      </template>
+    </adv-playground-page-code-box-section>
 
     <adv-playground-page-props-section title="Props" :config="propsConfig" />
   </adv-playground-page>
 </template>
 
 <script>
-  export default {
-    data() {
-      return {
-        scrollEl: null,
-        isModalOpen: false,
-        normalizeCodeBoxPanelConfig: [
-          {
-            id: 'p1',
-            name: 'Normalize可以查询合清除的控件',
-            type: 'PlayGround',
-            cardProps: {
-              description: {
-                title: '带有查询合清除的控件',
-                info: '默认都可以进行查询合清除',
-              },
+export default {
+  data() {
+    return {
+      scrollEl: null,
+      isModalOpen: false,
+      normalizeCodeBoxPanelConfig: [
+        {
+          id: 'p1',
+          name: 'Normalize可以查询合清除的控件',
+          type: 'PlayGround',
+          cardProps: {
+            description: {
+              title: '带有查询合清除的控件',
+              info: '默认都可以进行查询合清除',
             },
-            codeText: `
+          },
+          codeText: `
       <template>
         <adv-space-group direction="vertical">
           <dl>
@@ -1280,19 +1306,19 @@
         </adv-space-group>
       </template>
               `,
-            childrenSlot: 'p1',
-          },
-          {
-            id: 'p2',
-            name: '配合ScrollLayout使用',
-            type: 'PlayGround',
-            cardProps: {
-              description: {
-                title: '使用ScrollLayout做容器',
-                info: '自动设置组件的getPopupContainer，浮层跟随滚动',
-              },
+          childrenSlot: 'p1',
+        },
+        {
+          id: 'p2',
+          name: '配合ScrollLayout使用',
+          type: 'PlayGround',
+          cardProps: {
+            description: {
+              title: '使用ScrollLayout做容器',
+              info: '自动设置组件的getPopupContainer，浮层跟随滚动',
             },
-            codeText: `
+          },
+          codeText: `
      <div style="height: 500px">
        <adv-flexlayout-scroll :scroll-y="true">
         <adv-space-group direction="vertical">
@@ -1475,21 +1501,21 @@
       </adv-flexlayout-scroll>
      </div>
               `,
-            childrenSlot: 'p2',
-          },
-        ],
-        radioCodeBoxPanelConfig: [
-          {
-            id: 'p1',
-            name: 'Radio横向',
-            type: 'PlayGround',
-            cardProps: {
-              description: {
-                title: 'Radio横向',
-                info: 'Radio横向',
-              },
+          childrenSlot: 'p2',
+        },
+      ],
+      radioCodeBoxPanelConfig: [
+        {
+          id: 'p1',
+          name: 'Radio横向',
+          type: 'PlayGround',
+          cardProps: {
+            description: {
+              title: 'Radio横向',
+              info: 'Radio横向',
             },
-            codeText: `
+          },
+          codeText: `
      <template>
         <SystemTestRadioHorizontalFormItem :value="val" @change="onChange" />
      </template>
@@ -1512,19 +1538,19 @@
         }
       <\/script>
               `,
-            childrenSlot: 'p1',
-          },
-          {
-            id: 'p2',
-            name: 'Radio纵向',
-            type: 'PlayGround',
-            cardProps: {
-              description: {
-                title: 'Radio纵向',
-                info: 'Radio纵向',
-              },
+          childrenSlot: 'p1',
+        },
+        {
+          id: 'p2',
+          name: 'Radio纵向',
+          type: 'PlayGround',
+          cardProps: {
+            description: {
+              title: 'Radio纵向',
+              info: 'Radio纵向',
             },
-            codeText: `
+          },
+          codeText: `
      <template>
         <SystemTestRadioVerticalFormItem :value="val" @change="onChange" />
      </template>
@@ -1547,19 +1573,19 @@
         }
       <\/script>
               `,
-            childrenSlot: 'p2',
-          },
-          {
-            id: 'p3',
-            name: 'Radio的Button',
-            type: 'PlayGround',
-            cardProps: {
-              description: {
-                title: 'Radio的Button',
-                info: 'Radio的Button',
-              },
+          childrenSlot: 'p2',
+        },
+        {
+          id: 'p3',
+          name: 'Radio的Button',
+          type: 'PlayGround',
+          cardProps: {
+            description: {
+              title: 'Radio的Button',
+              info: 'Radio的Button',
             },
-            codeText: `
+          },
+          codeText: `
      <template>
         <SystemTestRadioButtonFormItem button-style="solid" :value="val" @change="onChange" />
      </template>
@@ -1582,19 +1608,19 @@
         }
       <\/script>
               `,
-            childrenSlot: 'p3',
-          },
-          {
-            id: 'p4',
-            name: 'Radio的Select',
-            type: 'PlayGround',
-            cardProps: {
-              description: {
-                title: 'Radio的Select',
-                info: 'Radio的Select',
-              },
+          childrenSlot: 'p3',
+        },
+        {
+          id: 'p4',
+          name: 'Radio的Select',
+          type: 'PlayGround',
+          cardProps: {
+            description: {
+              title: 'Radio的Select',
+              info: 'Radio的Select',
             },
-            codeText: `
+          },
+          codeText: `
      <template>
         <SystemTestRadioSelectFormItem style="width: 200px" :value="val" @change="onChange" />
      </template>
@@ -1617,19 +1643,19 @@
         }
       <\/script>
               `,
-            childrenSlot: 'p4',
-          },
-          {
-            id: 'p5',
-            name: 'Radio的自定义',
-            type: 'PlayGround',
-            cardProps: {
-              description: {
-                title: 'Radio的自定义',
-                info: 'Radio的自定义',
-              },
+          childrenSlot: 'p4',
+        },
+        {
+          id: 'p5',
+          name: 'Radio的自定义',
+          type: 'PlayGround',
+          cardProps: {
+            description: {
+              title: 'Radio的自定义',
+              info: 'Radio的自定义',
             },
-            codeText: `
+          },
+          codeText: `
      <template>
         <SystemTestRadioCustomFormItem
             option-type="button"
@@ -1669,21 +1695,21 @@
       }
     <\/script>
               `,
-            childrenSlot: 'p5',
-          },
-        ],
-        checkboxCodeBoxPanelConfig: [
-          {
-            id: 'p1',
-            name: 'Checkbox横向',
-            type: 'PlayGround',
-            cardProps: {
-              description: {
-                title: 'Checkbox横向',
-                info: 'Checkbox横向',
-              },
+          childrenSlot: 'p5',
+        },
+      ],
+      checkboxCodeBoxPanelConfig: [
+        {
+          id: 'p1',
+          name: 'Checkbox横向',
+          type: 'PlayGround',
+          cardProps: {
+            description: {
+              title: 'Checkbox横向',
+              info: 'Checkbox横向',
             },
-            codeText: `
+          },
+          codeText: `
      <template>
         <SystemTestCheckBoxHorizontalFormItem :value="vals" @change="onChangeValues" />
      </template>
@@ -1706,19 +1732,19 @@
         }
       <\/script>
               `,
-            childrenSlot: 'p1',
-          },
-          {
-            id: 'p2',
-            name: 'Checkbox纵向',
-            type: 'PlayGround',
-            cardProps: {
-              description: {
-                title: 'Checkbox纵向',
-                info: 'Checkbox纵向',
-              },
+          childrenSlot: 'p1',
+        },
+        {
+          id: 'p2',
+          name: 'Checkbox纵向',
+          type: 'PlayGround',
+          cardProps: {
+            description: {
+              title: 'Checkbox纵向',
+              info: 'Checkbox纵向',
             },
-            codeText: `
+          },
+          codeText: `
      <template>
         <SystemTestCheckBoxVerticalFormItem :value="vals" @change="onChangeValues" />
      </template>
@@ -1741,19 +1767,19 @@
         }
       <\/script>
               `,
-            childrenSlot: 'p2',
-          },
-          {
-            id: 'p3',
-            name: 'Checkbox横向全选',
-            type: 'PlayGround',
-            cardProps: {
-              description: {
-                title: 'Checkbox横向全选',
-                info: 'Checkbox横向全选',
-              },
+          childrenSlot: 'p2',
+        },
+        {
+          id: 'p3',
+          name: 'Checkbox横向全选',
+          type: 'PlayGround',
+          cardProps: {
+            description: {
+              title: 'Checkbox横向全选',
+              info: 'Checkbox横向全选',
             },
-            codeText: `
+          },
+          codeText: `
      <template>
         <SystemTestCheckBoxCheckAllVerticalFormItem :value="vals" @change="onChangeValues" />
      </template>
@@ -1776,19 +1802,19 @@
         }
       <\/script>
               `,
-            childrenSlot: 'p3',
-          },
-          {
-            id: 'p4',
-            name: 'Checkbox纵向全选',
-            type: 'PlayGround',
-            cardProps: {
-              description: {
-                title: 'Checkbox纵向全选',
-                info: 'Checkbox纵向全选',
-              },
+          childrenSlot: 'p3',
+        },
+        {
+          id: 'p4',
+          name: 'Checkbox纵向全选',
+          type: 'PlayGround',
+          cardProps: {
+            description: {
+              title: 'Checkbox纵向全选',
+              info: 'Checkbox纵向全选',
             },
-            codeText: `
+          },
+          codeText: `
      <template>
         <SystemTestCheckBoxCheckAllHorizontalFormItem :value="vals" @change="onChangeValues" />
      </template>
@@ -1811,19 +1837,19 @@
         }
       <\/script>
               `,
-            childrenSlot: 'p4',
-          },
-          {
-            id: 'p5',
-            name: 'Checkbox的Select',
-            type: 'PlayGround',
-            cardProps: {
-              description: {
-                title: 'Checkbox的Select',
-                info: 'Checkbox的Select',
-              },
+          childrenSlot: 'p4',
+        },
+        {
+          id: 'p5',
+          name: 'Checkbox的Select',
+          type: 'PlayGround',
+          cardProps: {
+            description: {
+              title: 'Checkbox的Select',
+              info: 'Checkbox的Select',
             },
-            codeText: `
+          },
+          codeText: `
      <template>
         <SystemTestCheckBoxSelectFormItem
           style="width: 200px"
@@ -1850,19 +1876,19 @@
         }
       <\/script>
               `,
-            childrenSlot: 'p5',
-          },
-          {
-            id: 'p6',
-            name: 'Checkbox的CheckAllSelect',
-            type: 'PlayGround',
-            cardProps: {
-              description: {
-                title: 'Checkbox的CheckAllSelect',
-                info: 'Checkbox的CheckAllSelect',
-              },
+          childrenSlot: 'p5',
+        },
+        {
+          id: 'p6',
+          name: 'Checkbox的CheckAllSelect',
+          type: 'PlayGround',
+          cardProps: {
+            description: {
+              title: 'Checkbox的CheckAllSelect',
+              info: 'Checkbox的CheckAllSelect',
             },
-            codeText: `
+          },
+          codeText: `
      <template>
         <SystemTestCheckBoxCheckAllSelectFormItem
           style="width: 200px"
@@ -1889,19 +1915,19 @@
         }
       <\/script>
               `,
-            childrenSlot: 'p6',
-          },
-          {
-            id: 'p7',
-            name: '自定义CheckBox',
-            type: 'PlayGround',
-            cardProps: {
-              description: {
-                title: '自定义CheckBox',
-                info: '自定义CheckBox',
-              },
+          childrenSlot: 'p6',
+        },
+        {
+          id: 'p7',
+          name: '自定义CheckBox',
+          type: 'PlayGround',
+          cardProps: {
+            description: {
+              title: '自定义CheckBox',
+              info: '自定义CheckBox',
             },
-            codeText: `
+          },
+          codeText: `
      <template>
         <SystemTestCheckBoxCustomFormItem
           style="width: 200px"
@@ -1936,21 +1962,21 @@
         }
       <\/script>
               `,
-            childrenSlot: 'p7',
-          },
-        ],
-        selectCodeBoxPanelConfig: [
-          {
-            id: 'p1',
-            name: 'Select单选',
-            type: 'PlayGround',
-            cardProps: {
-              description: {
-                title: 'Select单选',
-                info: 'Select单选',
-              },
+          childrenSlot: 'p7',
+        },
+      ],
+      selectCodeBoxPanelConfig: [
+        {
+          id: 'p1',
+          name: 'Select单选',
+          type: 'PlayGround',
+          cardProps: {
+            description: {
+              title: 'Select单选',
+              info: 'Select单选',
             },
-            codeText: `
+          },
+          codeText: `
      <template>
         <SystemTestSelectFormItem style="width: 200px" :value="val" @change="onChange" />
      </template>
@@ -1973,19 +1999,19 @@
         }
       <\/script>
               `,
-            childrenSlot: 'p1',
-          },
-          {
-            id: 'p2',
-            name: 'Select多选',
-            type: 'PlayGround',
-            cardProps: {
-              description: {
-                title: 'Select多选',
-                info: 'Select多选',
-              },
+          childrenSlot: 'p1',
+        },
+        {
+          id: 'p2',
+          name: 'Select多选',
+          type: 'PlayGround',
+          cardProps: {
+            description: {
+              title: 'Select多选',
+              info: 'Select多选',
             },
-            codeText: `
+          },
+          codeText: `
      <template>
         <SystemTestSelectMulitFormItem
             style="width: 300px"
@@ -2012,19 +2038,19 @@
         }
       <\/script>
               `,
-            childrenSlot: 'p2',
-          },
-          {
-            id: 'p3',
-            name: 'Select全选',
-            type: 'PlayGround',
-            cardProps: {
-              description: {
-                title: 'Select全选',
-                info: 'Select全选',
-              },
+          childrenSlot: 'p2',
+        },
+        {
+          id: 'p3',
+          name: 'Select全选',
+          type: 'PlayGround',
+          cardProps: {
+            description: {
+              title: 'Select全选',
+              info: 'Select全选',
             },
-            codeText: `
+          },
+          codeText: `
      <template>
         <SystemTestSelectCheckAllMulitFormItem
             style="width: 300px"
@@ -2051,19 +2077,19 @@
         }
       <\/script>
               `,
-            childrenSlot: 'p3',
-          },
-          {
-            id: 'p4',
-            name: 'AutoComplete的单选',
-            type: 'PlayGround',
-            cardProps: {
-              description: {
-                title: 'AutoComplete的单选',
-                info: 'AutoComplete的单选',
-              },
+          childrenSlot: 'p3',
+        },
+        {
+          id: 'p4',
+          name: 'AutoComplete的单选',
+          type: 'PlayGround',
+          cardProps: {
+            description: {
+              title: 'AutoComplete的单选',
+              info: 'AutoComplete的单选',
             },
-            codeText: `
+          },
+          codeText: `
      <template>
         <SystemTestAutoCompleteSelectFormItem
           style="width: 200px"
@@ -2090,19 +2116,19 @@
         }
       <\/script>
               `,
-            childrenSlot: 'p4',
-          },
-          {
-            id: 'p5',
-            name: 'AutoComplete的多选',
-            type: 'PlayGround',
-            cardProps: {
-              description: {
-                title: 'AutoComplete的多选',
-                info: 'AutoComplete的多选',
-              },
+          childrenSlot: 'p4',
+        },
+        {
+          id: 'p5',
+          name: 'AutoComplete的多选',
+          type: 'PlayGround',
+          cardProps: {
+            description: {
+              title: 'AutoComplete的多选',
+              info: 'AutoComplete的多选',
             },
-            codeText: `
+          },
+          codeText: `
      <template>
         <SystemTestAutoCompleteSelectMulitFormItem
           style="width: 200px"
@@ -2129,19 +2155,19 @@
         }
       <\/script>
               `,
-            childrenSlot: 'p5',
-          },
-          {
-            id: 'p6',
-            name: 'AutoComplete的全选',
-            type: 'PlayGround',
-            cardProps: {
-              description: {
-                title: 'AutoComplete的全选',
-                info: 'AutoComplete的全选',
-              },
+          childrenSlot: 'p5',
+        },
+        {
+          id: 'p6',
+          name: 'AutoComplete的全选',
+          type: 'PlayGround',
+          cardProps: {
+            description: {
+              title: 'AutoComplete的全选',
+              info: 'AutoComplete的全选',
             },
-            codeText: `
+          },
+          codeText: `
      <template>
         <SystemTestAutoCompleteSelectCheckAllMulitFormItem
           style="width: 200px"
@@ -2168,21 +2194,21 @@
         }
       <\/script>
               `,
-            childrenSlot: 'p6',
-          },
-        ],
-        treeSelectCodeBoxPanelConfig: [
-          {
-            id: 'p1',
-            name: 'TreeSelect单选(能选任意节点)',
-            type: 'PlayGround',
-            cardProps: {
-              description: {
-                title: 'TreeSelect单选(能选任意节点)',
-                info: 'TreeSelect单选(能选任意节点)',
-              },
+          childrenSlot: 'p6',
+        },
+      ],
+      treeSelectCodeBoxPanelConfig: [
+        {
+          id: 'p1',
+          name: 'TreeSelect单选(能选任意节点)',
+          type: 'PlayGround',
+          cardProps: {
+            description: {
+              title: 'TreeSelect单选(能选任意节点)',
+              info: 'TreeSelect单选(能选任意节点)',
             },
-            codeText: `
+          },
+          codeText: `
      <template>
         <SystemTestTreeFormItem
           style="width: 200px"
@@ -2210,19 +2236,19 @@
         }
       <\/script>
               `,
-            childrenSlot: 'p1',
-          },
-          {
-            id: 'p2',
-            name: 'TreeSelect单选(只能选叶子节点)',
-            type: 'PlayGround',
-            cardProps: {
-              description: {
-                title: 'TreeSelect单选(只能选叶子节点)',
-                info: 'TreeSelect单选(只能选叶子节点)',
-              },
+          childrenSlot: 'p1',
+        },
+        {
+          id: 'p2',
+          name: 'TreeSelect单选(只能选叶子节点)',
+          type: 'PlayGround',
+          cardProps: {
+            description: {
+              title: 'TreeSelect单选(只能选叶子节点)',
+              info: 'TreeSelect单选(只能选叶子节点)',
             },
-            codeText: `
+          },
+          codeText: `
      <template>
         <SystemTestTreeLeafFormItem style="width: 200px" :value="val" @change="onChange" />
      </template>
@@ -2245,19 +2271,19 @@
         }
       <\/script>
               `,
-            childrenSlot: 'p2',
-          },
-          {
-            id: 'p3',
-            name: 'TreeSelect多选(能选任意节点)',
-            type: 'PlayGround',
-            cardProps: {
-              description: {
-                title: 'TreeSelect多选(能选任意节点)',
-                info: 'TreeSelect多选(能选任意节点)',
-              },
+          childrenSlot: 'p2',
+        },
+        {
+          id: 'p3',
+          name: 'TreeSelect多选(能选任意节点)',
+          type: 'PlayGround',
+          cardProps: {
+            description: {
+              title: 'TreeSelect多选(能选任意节点)',
+              info: 'TreeSelect多选(能选任意节点)',
             },
-            codeText: `
+          },
+          codeText: `
      <template>
         <SystemTestTreeMulitFormItem style="width: 200px" :value="vals" @change="onChangeValues" />
      </template>
@@ -2280,19 +2306,19 @@
         }
       <\/script>
               `,
-            childrenSlot: 'p3',
-          },
-          {
-            id: 'p4',
-            name: 'TreeSelect多选(只能选叶子节点)',
-            type: 'PlayGround',
-            cardProps: {
-              description: {
-                title: 'TreeSelect多选(只能选叶子节点)',
-                info: 'TreeSelect多选(只能选叶子节点)',
-              },
+          childrenSlot: 'p3',
+        },
+        {
+          id: 'p4',
+          name: 'TreeSelect多选(只能选叶子节点)',
+          type: 'PlayGround',
+          cardProps: {
+            description: {
+              title: 'TreeSelect多选(只能选叶子节点)',
+              info: 'TreeSelect多选(只能选叶子节点)',
             },
-            codeText: `
+          },
+          codeText: `
      <template>
         <SystemTestTreeLeafMulitFormItem
           style="width: 200px"
@@ -2319,21 +2345,21 @@
         }
       <\/script>
               `,
-            childrenSlot: 'p4',
-          },
-        ],
-        transferCodeBoxPanelConfig: [
-          {
-            id: 'p1',
-            name: '基本',
-            type: 'PlayGround',
-            cardProps: {
-              description: {
-                title: '基本',
-                info: '基本',
-              },
+          childrenSlot: 'p4',
+        },
+      ],
+      transferCodeBoxPanelConfig: [
+        {
+          id: 'p1',
+          name: '基本',
+          type: 'PlayGround',
+          cardProps: {
+            description: {
+              title: '基本',
+              info: '基本',
             },
-            codeText: `
+          },
+          codeText: `
      <template>
         <SystemTestTransferFormItem :value="vals" @change="onChangeValues" />
      </template>
@@ -2356,19 +2382,19 @@
         }
       <\/script>
               `,
-            childrenSlot: 'p1',
-          },
-          {
-            id: 'p2',
-            name: 'SelectFormItem',
-            type: 'PlayGround',
-            cardProps: {
-              description: {
-                title: 'SelectFormItem',
-                info: 'SelectFormItem',
-              },
+          childrenSlot: 'p1',
+        },
+        {
+          id: 'p2',
+          name: 'SelectFormItem',
+          type: 'PlayGround',
+          cardProps: {
+            description: {
+              title: 'SelectFormItem',
+              info: 'SelectFormItem',
             },
-            codeText: `
+          },
+          codeText: `
      <template>
         <SystemTestTransferSelectFormItem
           style="width: 300px"
@@ -2395,21 +2421,21 @@
         }
       <\/script>
               `,
-            childrenSlot: 'p2',
-          },
-        ],
-        tableCodeBoxPanelConfig: [
-          {
-            id: 'p1',
-            name: '普通不带分页',
-            type: 'PlayGround',
-            cardProps: {
-              description: {
-                title: '普通不带分页',
-                info: '普通不带分页',
-              },
+          childrenSlot: 'p2',
+        },
+      ],
+      tableCodeBoxPanelConfig: [
+        {
+          id: 'p1',
+          name: '普通不带分页',
+          type: 'PlayGround',
+          cardProps: {
+            description: {
+              title: '普通不带分页',
+              info: '普通不带分页',
             },
-            codeText: `
+          },
+          codeText: `
      <template>
         <SystemTestTableFormItem
           :table-props="{
@@ -2462,19 +2488,19 @@
         }
       <\/script>
               `,
-            childrenSlot: 'p1',
-          },
-          {
-            id: 'p2',
-            name: '普通单选Select',
-            type: 'PlayGround',
-            cardProps: {
-              description: {
-                title: '普通单选Select',
-                info: '普通单选Select',
-              },
+          childrenSlot: 'p1',
+        },
+        {
+          id: 'p2',
+          name: '普通单选Select',
+          type: 'PlayGround',
+          cardProps: {
+            description: {
+              title: '普通单选Select',
+              info: '普通单选Select',
             },
-            codeText: `
+          },
+          codeText: `
      <template>
         <SystemTestTableSelectFormItem
           style="width: 1024px"
@@ -2530,19 +2556,19 @@
         }
       <\/script>
               `,
-            childrenSlot: 'p2',
-          },
-          {
-            id: 'p3',
-            name: '普通多选Select',
-            type: 'PlayGround',
-            cardProps: {
-              description: {
-                title: '普通多选Select',
-                info: '普通多选Select',
-              },
+          childrenSlot: 'p2',
+        },
+        {
+          id: 'p3',
+          name: '普通多选Select',
+          type: 'PlayGround',
+          cardProps: {
+            description: {
+              title: '普通多选Select',
+              info: '普通多选Select',
             },
-            codeText: `
+          },
+          codeText: `
      <template>
         <SystemTestTableMulitSelectFormItem
             style="width: 1024px"
@@ -2598,19 +2624,19 @@
         }
       <\/script>
               `,
-            childrenSlot: 'p3',
-          },
-          {
-            id: 'p4',
-            name: '分页的动态数据',
-            type: 'PlayGround',
-            cardProps: {
-              description: {
-                title: '分页的动态数据',
-                info: '分页的动态数据',
-              },
+          childrenSlot: 'p3',
+        },
+        {
+          id: 'p4',
+          name: '分页的动态数据',
+          type: 'PlayGround',
+          cardProps: {
+            description: {
+              title: '分页的动态数据',
+              info: '分页的动态数据',
             },
-            codeText: `
+          },
+          codeText: `
      <template>
         <SystemTestTablePaginationFormItem
             :table-props="{
@@ -2663,19 +2689,19 @@
         }
       <\/script>
               `,
-            childrenSlot: 'p4',
-          },
-          {
-            id: 'p5',
-            name: '分页的动态数据Select单选',
-            type: 'PlayGround',
-            cardProps: {
-              description: {
-                title: '分页的动态数据Select单选',
-                info: '分页的动态数据Select单选',
-              },
+          childrenSlot: 'p4',
+        },
+        {
+          id: 'p5',
+          name: '分页的动态数据Select单选',
+          type: 'PlayGround',
+          cardProps: {
+            description: {
+              title: '分页的动态数据Select单选',
+              info: '分页的动态数据Select单选',
             },
-            codeText: `
+          },
+          codeText: `
      <template>
         <SystemTestTablePaginationSelectFormItem
             style="width: 1024px"
@@ -2731,19 +2757,19 @@
         }
       <\/script>
               `,
-            childrenSlot: 'p5',
-          },
-          {
-            id: 'p6',
-            name: '分页的动态数据Select多选',
-            type: 'PlayGround',
-            cardProps: {
-              description: {
-                title: '分页的动态数据Select多选',
-                info: '分页的动态数据Select多选',
-              },
+          childrenSlot: 'p5',
+        },
+        {
+          id: 'p6',
+          name: '分页的动态数据Select多选',
+          type: 'PlayGround',
+          cardProps: {
+            description: {
+              title: '分页的动态数据Select多选',
+              info: '分页的动态数据Select多选',
             },
-            codeText: `
+          },
+          codeText: `
      <template>
         <SystemTestTablePaginationMulitSelectFormItem
             style="width: 1024px"
@@ -2799,21 +2825,21 @@
         }
       <\/script>
               `,
-            childrenSlot: 'p6',
-          },
-        ],
-        cascaderCodeBoxPanelConfig: [
-          {
-            id: 'p1',
-            name: 'Cascader(能选任意节点)',
-            type: 'PlayGround',
-            cardProps: {
-              description: {
-                title: 'Cascader(能选任意节点)',
-                info: 'Cascader(能选任意节点)',
-              },
+          childrenSlot: 'p6',
+        },
+      ],
+      cascaderCodeBoxPanelConfig: [
+        {
+          id: 'p1',
+          name: 'Cascader(能选任意节点)',
+          type: 'PlayGround',
+          cardProps: {
+            description: {
+              title: 'Cascader(能选任意节点)',
+              info: 'Cascader(能选任意节点)',
             },
-            codeText: `
+          },
+          codeText: `
      <template>
         <SystemTestCascaderFormItem :value="vals" @change="onChangeValues" />
      </template>
@@ -2836,19 +2862,19 @@
         }
       <\/script>
               `,
-            childrenSlot: 'p1',
-          },
-          {
-            id: 'p2',
-            name: 'Cascader(只能选叶子节点)',
-            type: 'PlayGround',
-            cardProps: {
-              description: {
-                title: 'Cascader(只能选叶子节点)',
-                info: 'Cascader(只能选叶子节点)',
-              },
+          childrenSlot: 'p1',
+        },
+        {
+          id: 'p2',
+          name: 'Cascader(只能选叶子节点)',
+          type: 'PlayGround',
+          cardProps: {
+            description: {
+              title: 'Cascader(只能选叶子节点)',
+              info: 'Cascader(只能选叶子节点)',
             },
-            codeText: `
+          },
+          codeText: `
      <template>
         <SystemTestCascaderLeafFormItem :value="vals" @change="onChangeValues" />
      </template>
@@ -2871,21 +2897,21 @@
         }
       <\/script>
               `,
-            childrenSlot: 'p2',
-          },
-        ],
-        listCodeBoxPanelConfig: [
-          {
-            id: 'p1',
-            name: '普通不带分页',
-            type: 'PlayGround',
-            cardProps: {
-              description: {
-                title: '普通不带分页',
-                info: '普通不带分页',
-              },
+          childrenSlot: 'p2',
+        },
+      ],
+      listCodeBoxPanelConfig: [
+        {
+          id: 'p1',
+          name: '普通不带分页',
+          type: 'PlayGround',
+          cardProps: {
+            description: {
+              title: '普通不带分页',
+              info: '普通不带分页',
             },
-            codeText: `
+          },
+          codeText: `
      <template>
         <SystemTestListFormItem>
             <a-list-item slot="renderItem" slot-scope="item, index">
@@ -2918,19 +2944,19 @@
         }
       <\/script>
               `,
-            childrenSlot: 'p1',
-          },
-          {
-            id: 'p2',
-            name: '普通单选Select',
-            type: 'PlayGround',
-            cardProps: {
-              description: {
-                title: '普通单选Select',
-                info: '普通单选Select',
-              },
+          childrenSlot: 'p1',
+        },
+        {
+          id: 'p2',
+          name: '普通单选Select',
+          type: 'PlayGround',
+          cardProps: {
+            description: {
+              title: '普通单选Select',
+              info: '普通单选Select',
             },
-            codeText: `
+          },
+          codeText: `
      <template>
         <SystemTestListSelectFormItem style="width: 1024px" :value="val" @change="onChange">
             <a-list-item slot="renderItem" slot-scope="item, index">
@@ -2963,19 +2989,19 @@
         }
       <\/script>
               `,
-            childrenSlot: 'p2',
-          },
-          {
-            id: 'p3',
-            name: '普通多选Select',
-            type: 'PlayGround',
-            cardProps: {
-              description: {
-                title: '普通多选Select',
-                info: '普通多选Select',
-              },
+          childrenSlot: 'p2',
+        },
+        {
+          id: 'p3',
+          name: '普通多选Select',
+          type: 'PlayGround',
+          cardProps: {
+            description: {
+              title: '普通多选Select',
+              info: '普通多选Select',
             },
-            codeText: `
+          },
+          codeText: `
      <template>
         <SystemTestListMulitSelectFormItem
             style="width: 1024px"
@@ -3012,19 +3038,19 @@
         }
       <\/script>
               `,
-            childrenSlot: 'p3',
-          },
-          {
-            id: 'p4',
-            name: '分页的动态数据',
-            type: 'PlayGround',
-            cardProps: {
-              description: {
-                title: '分页的动态数据',
-                info: '分页的动态数据',
-              },
+          childrenSlot: 'p3',
+        },
+        {
+          id: 'p4',
+          name: '分页的动态数据',
+          type: 'PlayGround',
+          cardProps: {
+            description: {
+              title: '分页的动态数据',
+              info: '分页的动态数据',
             },
-            codeText: `
+          },
+          codeText: `
      <template>
         <SystemTestListPaginationFormItem>
             <a-list-item slot="renderItem" slot-scope="item, index">
@@ -3057,19 +3083,19 @@
         }
       <\/script>
               `,
-            childrenSlot: 'p4',
-          },
-          {
-            id: 'p5',
-            name: '分页的动态数据Select单选',
-            type: 'PlayGround',
-            cardProps: {
-              description: {
-                title: '分页的动态数据Select单选',
-                info: '分页的动态数据Select单选',
-              },
+          childrenSlot: 'p4',
+        },
+        {
+          id: 'p5',
+          name: '分页的动态数据Select单选',
+          type: 'PlayGround',
+          cardProps: {
+            description: {
+              title: '分页的动态数据Select单选',
+              info: '分页的动态数据Select单选',
             },
-            codeText: `
+          },
+          codeText: `
      <template>
        <SystemTestListPaginationSelectFormItem
             style="width: 1024px"
@@ -3106,19 +3132,19 @@
         }
       <\/script>
               `,
-            childrenSlot: 'p5',
-          },
-          {
-            id: 'p6',
-            name: '分页的动态数据Select多选',
-            type: 'PlayGround',
-            cardProps: {
-              description: {
-                title: '分页的动态数据Select多选',
-                info: '分页的动态数据Select多选',
-              },
+          childrenSlot: 'p5',
+        },
+        {
+          id: 'p6',
+          name: '分页的动态数据Select多选',
+          type: 'PlayGround',
+          cardProps: {
+            description: {
+              title: '分页的动态数据Select多选',
+              info: '分页的动态数据Select多选',
             },
-            codeText: `
+          },
+          codeText: `
      <template>
         <SystemTestListPaginationMulitSelectFormItem
             style="width: 1024px"
@@ -3155,33 +3181,81 @@
         }
       <\/script>
               `,
-            childrenSlot: 'p6',
+          childrenSlot: 'p6',
+        },
+      ],
+      autoCompleteCodeBoxPanelConfig: [
+        {
+          id: 'p1',
+          name: '基本使用',
+          type: 'PlayGround',
+          cardProps: {
+            description: {
+              title: '基本使用',
+              info: '基本使用',
+            },
           },
-        ],
-        propsConfig: [
-          {
-            border: true,
-            title: '属性',
-            data: [],
+          codeText: `
+     <template>
+        <SystemTestAutoCompleteFormItem style="width: 200px" :value="autoCompleteValue" @change="onAutoCompleteChange" />
+     </template>
+
+     <script>
+        export default {
+           data() {
+              return {
+                autoCompleteValue: {
+                  inputValue: '',
+                  selectValue: '',
+                }
+              }
+           },
+           methods: {
+              onAutoCompleteChange(v) {
+                this.autoCompleteValue = v;
+              }
           },
-        ],
-        val: '',
-        vals: [],
-      };
-    },
-    mounted() {
-      this.scrollEl = this?.$refs?.wrapRef?.$el?.parentElement?.parentElement;
-    },
-    methods: {
-      closeModal() {
-        this.isModalOpen = false;
+        }
+      <\/script>
+              `,
+          childrenSlot: 'p1',
+        },
+      ],
+      propsConfig: [
+        {
+          border: true,
+          title: '属性',
+          data: [],
+        },
+      ],
+      val: '',
+      vals: [],
+      autoCompleteValue: {
+        inputValue: '',
+        selectValue: '',
       },
-      onChange(e) {
-        this.val = typeof e === 'object' ? e.target.value : e;
-      },
-      onChangeValues(vals) {
-        this.vals = vals;
-      },
+    };
+  },
+  mounted() {
+    this.scrollEl = this?.$refs?.wrapRef?.$el?.parentElement?.parentElement;
+  },
+  methods: {
+    closeModal() {
+      this.isModalOpen = false;
     },
-  };
+    onChange(e) {
+      this.val = typeof e === 'object' ? e.target.value : e;
+    },
+    onChangeValues(vals) {
+      this.vals = vals;
+    },
+    onSubmitBtnClick() {
+      console.log('onSubmitBtnClick');
+      return new Promise((resolve) => setTimeout(resolve, 3000));
+    },
+    onAutoCompleteChange(v) {
+      this.autoCompleteValue = v;
+    },
+  },
+};
 </script>

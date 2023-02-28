@@ -26,6 +26,7 @@ AntdFormItem.FormItemGeneratorToDict.init(Vue);
 new Vue({
   el: '#app',
   render(h) {
-    return h(/*Index*/ Test);
+    // return h(Index);
+    return h(Test);
   },
 });

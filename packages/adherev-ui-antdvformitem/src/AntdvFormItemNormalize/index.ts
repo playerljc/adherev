@@ -12,6 +12,7 @@ import AntdvComponents from './formitems/Others';
 import RangePicker from './formitems/RangePicker';
 import Select from './formitems/Select';
 import Slider from './formitems/Slider';
+import SubmitButton from './formitems/SubmitButton';
 import TextArea from './formitems/TextArea';
 import TimePicker from './formitems/TimePicker';
 import Tooltip from './formitems/Tooltip';
@@ -134,6 +135,7 @@ export {
   Statistic,
   Steps,
   Switch,
+  SubmitButton,
   Table,
   Tabs,
   Tag,
@@ -163,6 +165,7 @@ const Obj = {
   InputNumberDecimal2,
   Input,
   TextArea,
+  SubmitButton,
   ...AntdvComponents,
 };
 

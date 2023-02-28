@@ -3,6 +3,42 @@ declare const DictFormItem: {
     getComponents(): any;
 };
 declare const FunctionComponents: Pick<{
+    AutoCompleteFormItem: {
+        name: string;
+        props: {
+            autoCompleteProps: {
+                type: import("vue").PropType<AutoCompleteProps>;
+                default: () => {};
+            };
+            value: {
+                type: import("vue").PropType<{
+                    inputValue: string;
+                    selectValue: string | number;
+                }>;
+                default: () => {
+                    inputValue: string;
+                    selectValue: string;
+                };
+            };
+            dataSource: {
+                type: ArrayConstructor;
+                default: () => never[];
+            };
+        };
+        computed: {
+            options(): {
+                text: any;
+                value: string;
+            }[];
+            autoCompleteValue(): any;
+        };
+        methods: {
+            onSelect(selectValue: any): void;
+            onSearch(searchText: any): void;
+            onChange(): void;
+        };
+        render(h: any): any;
+    };
     CheckAllMulitSelectFormItem: {
         name: string;
         props: {
@@ -717,7 +753,7 @@ declare const FunctionComponents: Pick<{
         init(Vue: any): void;
         getComponents(): any;
     };
-}, "CascaderFormItem" | "CascaderLeafFormItem" | "MulitSelectFormItem" | "CheckAllMulitSelectFormItem" | "CheckBoxCustomFormItem" | "CheckBoxCheckAllCustomFormItem" | "CheckBoxHorizontalFormItem" | "CheckBoxCheckAllHorizontalFormItem" | "CheckBoxCheckAllSelectFormItem" | "CheckBoxVerticalFormItem" | "CheckBoxCheckAllVerticalFormItem" | "CheckBoxSelectFormItem" | "ListFormItem" | "ListMulitSelectFormItem" | "SelectFormItem" | "ListSelectFormItem" | "RadioButtonFormItem" | "RadioCustomFormItem" | "RadioHorizontalFormItem" | "RadioSelectFormItem" | "RadioVerticalFormItem" | "TableFormItem" | "TableMulitSelectFormItem" | "TableSelectFormItem" | "TransferFormItem" | "TransferSelectFormItem" | "TreeSelectFormItem" | "TreeMulitSelectFormItem" | "TreeSelectLeafFormItem" | "TreeSelectLeafMulitFormItem">;
+}, "AutoCompleteFormItem" | "CascaderFormItem" | "CascaderLeafFormItem" | "MulitSelectFormItem" | "CheckAllMulitSelectFormItem" | "CheckBoxCustomFormItem" | "CheckBoxCheckAllCustomFormItem" | "CheckBoxHorizontalFormItem" | "CheckBoxCheckAllHorizontalFormItem" | "CheckBoxCheckAllSelectFormItem" | "CheckBoxVerticalFormItem" | "CheckBoxCheckAllVerticalFormItem" | "CheckBoxSelectFormItem" | "ListFormItem" | "ListMulitSelectFormItem" | "SelectFormItem" | "ListSelectFormItem" | "RadioButtonFormItem" | "RadioCustomFormItem" | "RadioHorizontalFormItem" | "RadioSelectFormItem" | "RadioVerticalFormItem" | "TableFormItem" | "TableMulitSelectFormItem" | "TableSelectFormItem" | "TransferFormItem" | "TransferSelectFormItem" | "TreeSelectFormItem" | "TreeMulitSelectFormItem" | "TreeSelectLeafFormItem" | "TreeSelectLeafMulitFormItem">;
 export { DictFormItem, FunctionComponents };
 declare const _default: {
     install: (Vue: any) => void;
