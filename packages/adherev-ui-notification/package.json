@@ -1,6 +1,6 @@
 {
   "name": "@baifendian/adherev-ui-notification",
-  "version": "2.0.2",
+  "version": "2.0.3",
   "description": "通知",
   "homepage": "https://gitee.com/playerljc/adherev",
   "bugs": {
@@ -29,8 +29,8 @@
   },
   "resolutions": {},
   "dependencies": {
-    "@baifendian/adherev-ui-css": "^2.0.2",
-    "@baifendian/adherev-util": "^2.0.2",
+    "@baifendian/adherev-ui-css": "^2.0.3",
+    "@baifendian/adherev-util": "^2.0.3",
     "classnames": "^2.3.1",
     "omit.js": "^2.0.2",
     "uuid": "^8.3.2",

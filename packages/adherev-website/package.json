@@ -1,6 +1,6 @@
 {
   "name": "@baifendian/adherev-website",
-  "version": "2.0.2",
+  "version": "2.0.3",
   "private": true,
   "description": "adherev的website",
   "scripts": {
@@ -46,7 +46,7 @@
   "dependencies": {
     "@ant-design/icons": "^4.7.0",
     "@ant-design/icons-vue": "^6.1.0",
-    "@baifendian/adherev": "^2.0.2",
+    "@baifendian/adherev": "^2.0.3",
     "@ckpack/vue-color": "^1.2.4",
     "@types/nprogress": "^0.2.0",
     "ant-design-vue": "^3.2.15",

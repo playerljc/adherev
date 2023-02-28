@@ -1,6 +1,6 @@
 {
   "name": "@baifendian/adherev-ui-historyback",
-  "version": "2.0.2",
+  "version": "2.0.3",
   "description": "历史记录返回操作",
   "homepage": "https://gitee.com/playerljc/adherev",
   "bugs": {
@@ -30,7 +30,7 @@
   "resolutions": {},
   "dependencies": {
     "@baifendian/adhere-ui-historyback": "^2.0.2",
-    "@baifendian/adherev-util": "^2.0.2",
+    "@baifendian/adherev-util": "^2.0.3",
     "vue-types": "^3.0.2"
   },
   "devDependencies": {

@@ -1,6 +1,6 @@
 {
   "name": "@baifendian/adherev-ui-fontsizesetting",
-  "version": "2.0.2",
+  "version": "2.0.3",
   "description": "字体设置",
   "homepage": "https://gitee.com/playerljc/adherev",
   "bugs": {
@@ -29,8 +29,8 @@
   },
   "resolutions": {},
   "dependencies": {
-    "@baifendian/adherev-ui-css": "^2.0.2",
-    "@baifendian/adherev-util": "^2.0.2",
+    "@baifendian/adherev-ui-css": "^2.0.3",
+    "@baifendian/adherev-util": "^2.0.3",
     "ant-design-vue": "^3.2.15",
     "vue": "^3.2.45",
     "vue-types": "^3.0.2"

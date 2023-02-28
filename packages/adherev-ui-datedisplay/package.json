@@ -1,6 +1,6 @@
 {
   "name": "@baifendian/adherev-ui-datedisplay",
-  "version": "2.0.2",
+  "version": "2.0.3",
   "description": "时间显示组件",
   "homepage": "https://gitee.com/playerljc/adherev",
   "bugs": {
@@ -30,9 +30,9 @@
   },
   "resolutions": {},
   "dependencies": {
-    "@baifendian/adherev-ui-conditionalrender": "^2.0.2",
-    "@baifendian/adherev-util": "^2.0.2",
-    "@baifendian/adherev-util-resource": "^2.0.2",
+    "@baifendian/adherev-ui-conditionalrender": "^2.0.3",
+    "@baifendian/adherev-util": "^2.0.3",
+    "@baifendian/adherev-util-resource": "^2.0.3",
     "classnames": "^2.2.6",
     "dayjs": "^1.11.4",
     "vue": "^3.2.45",
