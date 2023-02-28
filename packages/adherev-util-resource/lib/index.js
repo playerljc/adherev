@@ -1,2 +1,2 @@
-"use strict";var __importDefault=this&&this.__importDefault||function(e){return e&&e.__esModule?e:{default:e}},adherev_util_1=(Object.defineProperty(exports,"__esModule",{value:!0}),__importDefault(require("@baifendian/adherev-util"))),resource_1=__importDefault(require("./resource")),withVue=adherev_util_1.default._util.withVue;resource_1.default.isUse=function(){return!0},resource_1.default.use=function(e){withVue(e,"Resource",resource_1.default)},exports.default=resource_1.default;
+import BfdUtil from"@baifendian/adherev-util";import Resource from"./resource";var withVue=BfdUtil._util.withVue;Resource.isUse=function(){return!0},Resource.use=function(e){withVue(e,"Resource",Resource)};export default Resource;
 //# sourceMappingURL=index.js.map
