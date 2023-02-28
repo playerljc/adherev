@@ -1324,6 +1324,20 @@ export default {
               <adv-antdvformitemnormalize-textarea style="width: 200px" />
             </dd>
           </dl>
+
+          <dl>
+            <dt>
+              <p>SubmitButton</p>
+            </dt>
+            <dd>
+              <adv-antdvformitemnormalize-submitbutton
+                type="primary"
+                style="width: 200px"
+                @click="onSubmitBtnClick"
+                >提交</adv-antdvformitemnormalize-submitbutton
+              >
+            </dd>
+          </dl>
         </adv-space-group>
       </template>
               `,
@@ -3218,18 +3232,23 @@ export default {
           },
           codeText: `
      <template>
-
+        <SystemTestAutoCompleteFormItem style="width: 200px" :value="autoCompleteValue" @change="onAutoCompleteChange" />
      </template>
 
      <script>
         export default {
            data() {
               return {
-
+                autoCompleteValue: {
+                  inputValue: '',
+                  selectValue: '',
+                }
               }
            },
            methods: {
-
+              onAutoCompleteChange(v) {
+                this.autoCompleteValue = v;
+              }
           },
         }
       <\/script>
