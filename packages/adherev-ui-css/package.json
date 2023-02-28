@@ -28,7 +28,7 @@
   },
   "resolutions": {},
   "dependencies": {
-    "@baifendian/adhere-ui-css": "^1.0.24",
+    "@baifendian/adhere-ui-css": "^2.0.2",
     "vue-types": "^3.0.2"
   },
   "devDependencies": {

@@ -29,7 +29,7 @@
   },
   "resolutions": {},
   "dependencies": {
-    "@baifendian/adhere-util-watchmemoized": "^1.0.24"
+    "@baifendian/adhere-util-watchmemoized": "^2.0.2"
   },
   "devDependencies": {
     "@babel/runtime": "^7.17.2",

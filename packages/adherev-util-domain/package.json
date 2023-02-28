@@ -29,7 +29,7 @@
   },
   "resolutions": {},
   "dependencies": {
-    "@baifendian/adhere-util-domain": "^1.0.24",
+    "@baifendian/adhere-util-domain": "^2.0.2",
     "@baifendian/adherev-util": "^2.0.2"
   },
   "devDependencies": {
