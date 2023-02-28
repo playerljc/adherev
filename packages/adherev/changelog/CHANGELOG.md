@@ -8,7 +8,7 @@
   - 去掉request.context的Api
 * **adherev-ui-antdvformitem**
   - 加入AutoCompleteFormItem
-  - 加入加入SubmitButton
+  - 加入SubmitButton
 
 # 2.0.2
 

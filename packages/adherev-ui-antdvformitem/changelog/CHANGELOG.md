@@ -5,7 +5,7 @@
 2023-02-27
 
 * 加入AutoCompleteFormItem
-* 加入加入SubmitButton
+* 加入SubmitButton
 
 # 1.0.1
 
