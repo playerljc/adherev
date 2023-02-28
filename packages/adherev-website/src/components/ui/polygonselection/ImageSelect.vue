@@ -51,9 +51,9 @@
 import { message } from 'ant-design-vue';
 
 import {
+  MessageDialog,
   PolygonSelection as PolygonSelectionModule,
   Preferences,
-  MessageDialog,
 } from '@baifendian/adherev';
 
 const {
@@ -229,7 +229,7 @@ export default {
         config: {
           title: '设置数据',
         },
-        defaultCloneBtn: false,
+        defaultCloseBtn: false,
         children: {
           computed: {
             localData() {

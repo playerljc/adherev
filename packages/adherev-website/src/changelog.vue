@@ -8,9 +8,11 @@
 import marked from 'marked';
 
 import ScrollFooterPanel from '@/lib/ScrollFooterPanel';
+
 import changeLog from '../../adherev/changelog/CHANGELOG.md';
 
 export default {
+  displayName: 'changelog',
   components: {
     ScrollFooterPanel,
   },

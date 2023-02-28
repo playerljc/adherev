@@ -1,17 +1,18 @@
-import Spin from './spin';
+import { App, Plugin } from 'vue';
 
 import BfdUtil from '@baifendian/adherev-util';
+
+import Spin from './spin';
+
 const {
-  _util: { withInstall, withVue },
+  _util: { withVue },
 } = BfdUtil;
 
-const Component = withInstall(Spin);
+Spin.install = function (app: App) {
+  app.component(Spin.name, Spin);
+  withVue(app, 'Spin', Spin);
 
-Component.isUse = () => true;
-
-Component.use = (Vue) => {
-  Vue.use(Component);
-  withVue(Vue, 'Spin', Component);
+  return app;
 };
 
-export default Component;
+export default Spin as typeof Spin & Plugin;

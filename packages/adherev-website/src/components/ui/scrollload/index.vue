@@ -8,17 +8,23 @@
       <template #p1>
         <adv-scrollload style="width: 400px; height: 600px" @scroll-bottom="onCode1ScrollBottom">
           <a-list item-layout="horizontal" :data-source="data">
-            <a-list-item slot="renderItem" slot-scope="item, index">
-              <a-list-item-meta
-                description="Ant Design, a design language for background applications, is refined by Ant UED Team"
-              >
-                <a slot="title" href="https://www.antdv.com/">{{ item.title }}</a>
-                <a-avatar
-                  slot="avatar"
-                  src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"
-                />
-              </a-list-item-meta>
-            </a-list-item>
+            <template #renderItem="{ item }">
+              <a-list-item>
+                <a-list-item-meta
+                  description="Ant Design, a design language for background applications, is refined by Ant UED Team"
+                >
+                  <template #title>
+                    <a href="https://www.antdv.com/">{{ item.title }}</a>
+                  </template>
+
+                  <template #avatar>
+                    <a-avatar
+                      src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"
+                    />
+                  </template>
+                </a-list-item-meta>
+              </a-list-item>
+            </template>
           </a-list>
         </adv-scrollload>
       </template>
@@ -30,17 +36,23 @@
           @empty-click="onCode2EmptyClick"
         >
           <a-list item-layout="horizontal" :data-source="code2Data">
-            <a-list-item slot="renderItem" slot-scope="item, index">
-              <a-list-item-meta
-                description="Ant Design, a design language for background applications, is refined by Ant UED Team"
-              >
-                <a slot="title" href="https://www.antdv.com/">{{ item.title }}</a>
-                <a-avatar
-                  slot="avatar"
-                  src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"
-                />
-              </a-list-item-meta>
-            </a-list-item>
+            <template #renderItem="{ item }">
+              <a-list-item>
+                <a-list-item-meta
+                  description="Ant Design, a design language for background applications, is refined by Ant UED Team"
+                >
+                  <template #title>
+                    <a href="https://www.antdv.com/">{{ item.title }}</a>
+                  </template>
+
+                  <template #avatar>
+                    <a-avatar
+                      src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"
+                    />
+                  </template>
+                </a-list-item-meta>
+              </a-list-item>
+            </template>
           </a-list>
         </adv-scrollload>
       </template>
@@ -52,17 +64,23 @@
           @error-click="onCode3ErrorClick"
         >
           <a-list item-layout="horizontal" :data-source="code2Data">
-            <a-list-item slot="renderItem" slot-scope="item, index">
-              <a-list-item-meta
-                description="Ant Design, a design language for background applications, is refined by Ant UED Team"
-              >
-                <a slot="title" href="https://www.antdv.com/">{{ item.title }}</a>
-                <a-avatar
-                  slot="avatar"
-                  src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"
-                />
-              </a-list-item-meta>
-            </a-list-item>
+            <template #renderItem="{ item }">
+              <a-list-item slot-scope="item, index">
+                <a-list-item-meta
+                  description="Ant Design, a design language for background applications, is refined by Ant UED Team"
+                >
+                  <template #title>
+                    <a href="https://www.antdv.com/">{{ item.title }}</a>
+                  </template>
+
+                  <template #avatar>
+                    <a-avatar
+                      src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"
+                    />
+                  </template>
+                </a-list-item-meta>
+              </a-list-item>
+            </template>
           </a-list>
         </adv-scrollload>
       </template>
@@ -70,17 +88,23 @@
       <template #p4>
         <adv-scrollload style="width: 400px; height: 400px" @scroll-bottom="onCode4ScrollBottom">
           <a-list item-layout="horizontal" :data-source="code2Data">
-            <a-list-item slot="renderItem" slot-scope="item, index">
-              <a-list-item-meta
-                description="Ant Design, a design language for background applications, is refined by Ant UED Team"
-              >
-                <a slot="title" href="https://www.antdv.com/">{{ item.title }}</a>
-                <a-avatar
-                  slot="avatar"
-                  src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"
-                />
-              </a-list-item-meta>
-            </a-list-item>
+            <template #renderItem="{ item }">
+              <a-list-item>
+                <a-list-item-meta
+                  description="Ant Design, a design language for background applications, is refined by Ant UED Team"
+                >
+                  <template #title>
+                    <a href="https://www.antdv.com/">{{ item.title }}</a>
+                  </template>
+
+                  <template #avatar>
+                    <a-avatar
+                      src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"
+                    />
+                  </template>
+                </a-list-item-meta>
+              </a-list-item>
+            </template>
           </a-list>
 
           <template #loading>
@@ -131,6 +155,7 @@ function getData() {
 }
 
 export default {
+  displayName: 'scrollload',
   data() {
     return {
       data: getData(),
@@ -362,11 +387,11 @@ export default {
               </a-list-item>
             </a-list>
 
-            <template v-slot:loading>
+            <template #loading>
               <a-spin tip="loading..." style="width: 100%" />
             </template>
 
-            <template v-slot:empty>
+            <template #empty>
               <a-empty />
             </template>
           </adv-scrollload>

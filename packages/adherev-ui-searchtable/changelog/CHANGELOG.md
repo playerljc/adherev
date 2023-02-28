@@ -1,4 +1,22 @@
-# 1.0.10
+# 2.0.6
+
+***
+
+2023-02-14
+
+* $search支持排序
+* 查询面板样式修改
+* routeListen修改
+* FormItemGeneratorToDict引用的修改
+* ProTableFactory的scopedSlots修改
+* 去掉SearchForm及其附属组件使用TableGridLayout实现
+* 高级搜索触发条件修改
+* 列设置修改
+* 加入ProSearchTable
+* 加入editor功能
+* 加入对列表头分组的修改
+
+# 2.0.5-alpha
 
 ***
 
@@ -9,7 +27,7 @@
 * 加入表格密度设置功能
 * 序号列命名修改
 
-# 1.0.9
+# 2.0.4
 
 ***
 

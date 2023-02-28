@@ -11,9 +11,9 @@ const contextPath = path.join(__dirname, '../', 'src');
 const excludes = ['@baifendian/adherev-ui-css'];
 
 const indexLessContent = [];
-const indexJsContent = [];
+const indexJsContent = ["import {App} from 'vue';"];
 const indexJsExportContent = ['export { \r\n'];
-const indexJsExportDefaultContent = ['export default {\r\n\tinstall:function (Vue){\r\n\t'];
+const indexJsExportDefaultContent = ['export default {\r\n\tinstall:function (app:App){\r\n\t'];
 
 const type = args.getArg('module');
 
@@ -53,9 +53,17 @@ const namedMap = new Map([
   ['@baifendian/adherev-ui-jdcategorytab', 'JdCategoryTab'],
   ['@baifendian/adherev-ui-imagelazy', 'ImageLazy'],
   ['@baifendian/adherev-ui-polygonselection', 'PolygonSelection'],
-  // ['@baifendian/adherev-ui-bmap', 'BMap'],
+  ['@baifendian/adherev-ui-bmap', 'BMap'],
   ['@baifendian/adherev-ui-playground', 'PlayGround'],
-  ['@baifendian/adherev-ui-teleport', 'Teleport'],
+  ['@baifendian/adherev-ui-comment', 'Comment'],
+  ['@baifendian/adherev-ui-configprovider', 'ConfigProvider'],
+  ['@baifendian/adherev-ui-contourblock', 'ContourBlock'],
+  ['@baifendian/adherev-ui-datedisplay', 'DateDisplay'],
+  ['@baifendian/adherev-ui-tablegridlayout', 'TableGridLayout'],
+  ['@baifendian/adherev-ui-writingboard', 'WritingBoard'],
+  ['@baifendian/adherev-ui-hooks', 'Hooks'],
+  ['@baifendian/adherev-ui-vuequill-sandbox', 'VueQuillSandBox'],
+  ['@baifendian/adherev-ui-antdvformitem', 'AntdvFormItem'],
   ['@baifendian/adherev-util', 'Util'],
   ['@baifendian/adherev-util-communication-ajax', 'Ajax'],
   ['@baifendian/adherev-util-dict', 'Dict'],
@@ -70,6 +78,7 @@ const namedMap = new Map([
   ['@baifendian/adherev-util-domain', 'Domain'],
   ['@baifendian/adherev-util-browsersniff', 'Browsersniff'],
   ['@baifendian/adherev-util-validator', 'Validator'],
+  ['@baifendian/adherev-util-iframeio', 'IframeIO'],
 ]);
 
 /**
@@ -138,7 +147,7 @@ for (const packageName in dependencies) {
     indexJsContent.push(`import ${exportName} from '${packageName}';\r\n`);
     indexJsExportContent.push(`  ${exportName},\r\n`);
     indexJsExportDefaultContent.push(
-      `if(\r\n\r\n${exportName}.isUse()){ \r\n\r\n${exportName}.use(Vue); }\r\n\t\t`,
+      `if(\r\n\r\n(${exportName} as any)?.install()){ \r\n\r\napp?.use?.(${exportName}); }\r\n\t\t`,
     );
     // 查看packages中是否存在antd.less
     // if (fs.existsSync(path.join(packagesPath, name, 'src', 'antd.less'))) {

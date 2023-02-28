@@ -1,0 +1,1 @@
+{"version":3,"file":"index.js","sources":["demo/util/request/index.js"],"sourcesContent":["import Ajax from '@baifendian/adherev-util-communication-ajax';\n/**\n * 业务系统ajax\n */\nexport default new Ajax();"],"names":["Ajax"],"mappings":"OAAOA,SAAU,6DAIF,IAAIA"}

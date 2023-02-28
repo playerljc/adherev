@@ -1,0 +1,1 @@
+{"version":3,"file":"index.js","sources":["revolving/index.js"],"sourcesContent":["import Model from '@baifendian/adherev-ui-revolving/es';\nexport default Model;"],"names":["Model"],"mappings":"OAAOA,UAAW,qDACHA"}

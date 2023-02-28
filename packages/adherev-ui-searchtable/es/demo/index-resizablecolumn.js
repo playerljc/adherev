@@ -1,0 +1,2 @@
+import{createApp,h}from"vue";import store from"./store";import SearchTable from"../index";import ColumnResizeTable from"./ColumnResizeTable";import"../index.less";import"./index.less";var SearchTableImplementFactory=SearchTable.SearchTableImplementFactory;createApp({render:function(){return h(SearchTableImplementFactory(ColumnResizeTable))}}).use(store).use(SearchTable).mount("#app");
+//# sourceMappingURL=index-resizablecolumn.js.map

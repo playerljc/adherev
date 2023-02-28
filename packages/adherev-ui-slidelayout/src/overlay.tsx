@@ -1,149 +1,137 @@
 import classNames from 'classnames';
-import SlideLayout from './slide';
+import { defineComponent, onMounted, watch } from 'vue';
+
+import useSlide, { slideProps } from './slide';
 import { slider } from './slidelayout';
 
 const selectorPrefix = 'adherev-ui-slidelayout-overlay';
 
-export default {
+export const overlayProps = {
+  ...slideProps,
+};
+
+export default defineComponent({
   name: 'adv-slidelayout-overlay',
-  mixins: [SlideLayout],
-  watch: {
-    zIndex(val) {
-      this.$refs.el.style.zIndex = val;
-    },
-  },
-  created() {
-    this.$data.$positionConfig = {
-      init: {
-        left: () => {
-          slider(this.$refs.el, '-100%', '0', '0', '0');
-        },
-        right: () => {
-          slider(this.$refs.el, `${this.$refs.el?.parentElement?.offsetWidth}px`, '0', '0', '0');
-        },
-        top: () => {
-          slider(this.$refs.el, '0', '-100%', '0', '0');
-        },
-        bottom: () => {
-          slider(this.$refs.el, '0', `${this.$refs.el?.parentElement?.offsetHeight}px`, '0', '0');
-        },
+  props: overlayProps,
+  emits: ['after-show', 'after-close'],
+  setup(props, context) {
+    const { slots, emit } = context;
+
+    const { setPositionConfig, getDuration, getElRef, initial } = useSlide(props, context);
+
+    watch(
+      () => props.zIndex,
+      (val) => {
+        (getElRef().value as HTMLElement).style.zIndex = `${val}`;
       },
-      show: {
-        left: (time) => {
-          slider(this.$refs.el, '0', '0', '0', `${this.getDuration(time)}ms`, () => {
-            this.$emit('after-show');
-          });
+    );
 
-          if (this.$data.$maskEl) this.$data.$maskEl.style.display = 'block';
+    onMounted(() => {
+      setPositionConfig(({ el, maskEl }) => ({
+        init: {
+          left: () => {
+            slider(el.value, '-100%', '0', '0', '0');
+          },
+          right: () => {
+            slider(el.value, `${el.value?.parentElement?.offsetWidth}px`, '0', '0', '0');
+          },
+          top: () => {
+            slider(el.value, '0', '-100%', '0', '0');
+          },
+          bottom: () => {
+            slider(el.value, '0', `${el.value?.parentElement?.offsetHeight}px`, '0', '0');
+          },
         },
-        right: (time) => {
-          slider(
-            this.$refs.el,
+        show: {
+          left: (time: string | number | null | undefined) => {
+            slider(el.value, '0', '0', '0', `${getDuration(time)}ms`, () => emit('after-show'));
 
-            `${this.$refs.el?.parentElement?.offsetWidth - this.$refs.el.offsetWidth}px`,
-            '0',
-            '0',
+            if (maskEl) maskEl.style.display = 'block';
+          },
+          right: (time: string | number | null | undefined) => {
+            slider(
+              el.value,
+              `${el.value?.parentElement?.offsetWidth - el.value?.offsetWidth}px`,
+              '0',
+              '0',
+              `${getDuration(time)}ms`,
+              () => {
+                emit('after-show');
+              },
+            );
 
-            `${this.getDuration(time)}ms`,
-            () => {
-              this.$emit('after-show');
-            },
-          );
+            if (maskEl) maskEl.style.display = 'block';
+          },
+          top: (time: string | number | null | undefined) => {
+            slider(el.value, '0', '0', '0', `${getDuration(time)}ms`, () => emit('after-show'));
 
-          if (this.$data.$maskEl) this.$data.$maskEl.style.display = 'block';
+            if (maskEl) maskEl.style.display = 'block';
+          },
+          bottom: (time: string | number | null | undefined) => {
+            slider(
+              el.value,
+              '0',
+              `${el.value?.parentElement?.offsetHeight - el.value.offsetHeight}px`,
+              '0',
+              `${getDuration(time)}ms`,
+              () => emit('after-show'),
+            );
+
+            if (maskEl) maskEl.style.display = 'block';
+          },
         },
-        top: (time) => {
-          slider(this.$refs.el, '0', '0', '0', `${this.getDuration(time)}ms`, () => {
-            this.$emit('after-show');
-          });
+        close: {
+          left: (time: string | number | null | undefined) => {
+            slider(el.value, '-100%', '0', '0', `${getDuration(time)}ms`, () =>
+              emit('after-close'),
+            );
 
-          if (this.$data.$maskEl) this.$data.$maskEl.style.display = 'block';
+            if (maskEl) maskEl.style.display = 'none';
+          },
+          right: (time: string | number | null | undefined) => {
+            slider(
+              el.value,
+              `${el.value?.parentElement?.offsetWidth}px`,
+              '0',
+              '0',
+              `${getDuration(time)}ms`,
+              () => emit('after-close'),
+            );
+
+            if (maskEl) maskEl.style.display = 'none';
+          },
+          top: (time: string | number | null | undefined) => {
+            slider(
+              el.value,
+              '0',
+              `-${el.value?.parentElement?.offsetHeight}px`,
+              '0',
+              `${getDuration(time)}ms`,
+              () => emit('after-close'),
+            );
+
+            if (maskEl) maskEl.style.display = 'none';
+          },
+          bottom: (time: string | number | null | undefined) => {
+            slider(
+              el.value,
+              '0',
+              `${el.value?.parentElement?.offsetHeight}px`,
+              '0',
+              `${getDuration(time)}ms`,
+              () => emit('after-close'),
+            );
+
+            if (maskEl) maskEl.style.display = 'none';
+          },
         },
-        bottom: (time) => {
-          slider(
-            this.$refs.el,
-            '0',
+      })).then(() => initial());
+    });
 
-            `${this.$refs.el?.parentElement?.offsetHeight - this.$refs.el.offsetHeight}px`,
-            '0',
-
-            `${this.getDuration(time)}ms`,
-            () => {
-              this.$emit('after-show');
-            },
-          );
-
-          if (this.$data.$maskEl) this.$data.$maskEl.style.display = 'block';
-        },
-      },
-      close: {
-        left: (time) => {
-          slider(this.$refs.el, '-100%', '0', '0', `${this.getDuration(time)}ms`, () => {
-            this.$emit('after-close');
-          });
-
-          if (this.$data.$maskEl) this.$data.$maskEl.style.display = 'none';
-        },
-        right: (time) => {
-          slider(
-            this.$refs.el,
-            `${this.$refs.el?.parentElement?.offsetWidth}px`,
-            '0',
-            '0',
-
-            `${this.getDuration(time)}ms`,
-            () => {
-              this.$emit('after-close');
-            },
-          );
-
-          if (this.$data.$maskEl) this.$data.$maskEl.style.display = 'none';
-        },
-        top: (time) => {
-          slider(
-            this.$refs.el,
-            '0',
-
-            `-${this.$refs.el?.parentElement?.offsetHeight}px`,
-            '0',
-
-            `${this.getDuration(time)}ms`,
-            () => {
-              this.$emit('after-close');
-            },
-          );
-
-          if (this.$data.$maskEl) this.$data.$maskEl.style.display = 'none';
-        },
-        bottom: (time) => {
-          slider(
-            this.$refs.el,
-            '0',
-
-            `${this.$refs.el?.parentElement?.offsetHeight}px`,
-            '0',
-
-            `${this.getDuration(time)}ms`,
-            () => {
-              this.$emit('after-close');
-            },
-          );
-
-          if (this.$data.$maskEl) this.$data.$maskEl.style.display = 'none';
-        },
-      },
-    };
-  },
-  mounted() {
-    this.$refs.el.style.zIndex = this.zIndex;
-  },
-  render(h) {
-    const { $slots, direction } = this;
-
-    return (
-      <div class={classNames(selectorPrefix, direction)} ref="el">
-        {$slots.default}
+    return () => (
+      <div class={classNames(selectorPrefix, props.direction)} ref={getElRef()}>
+        {slots?.default?.()}
       </div>
     );
   },
-};
+});

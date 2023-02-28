@@ -1,0 +1,2 @@
+import BfdUtil from"@baifendian/adherev-util";import Intl from"@baifendian/adherev-util-intl";import ScrollLoad,{EMPTY,ERROR,NORMAL}from"./scrollload";var withVue=BfdUtil._util.withVue;ScrollLoad.ERROR=ERROR,ScrollLoad.EMPTY=EMPTY,ScrollLoad.NORMAL=NORMAL,ScrollLoad.install=function(l){return l.component(Intl.name,Intl),l.component(ScrollLoad.name,ScrollLoad),withVue(l,"ScrollLoad",ScrollLoad),l};export default ScrollLoad;
+//# sourceMappingURL=index.js.map

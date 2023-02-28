@@ -1,21 +1,21 @@
-import Vue from 'vue';
 import { v1 } from 'uuid';
+import { createApp, h } from 'vue';
 
 import { IConfig } from './types';
 
 const selectorPrefix = 'adherev-ui-popup';
 
-// @ts-ignore
-let prePopup: this;
-let maskEl;
-let el = null;
+let prePopup: Popup | null = null;
+let popups: Popup[] = [];
+let maskEl: HTMLDivElement;
+let el: HTMLElement | null = null;
 
 /**
  * Popup
  * @class Popup
  * @classdesc Popup
  */
-class Popup {
+export class Popup {
   private readonly id: string = '';
   private readonly config: IConfig | null = null;
 
@@ -23,7 +23,7 @@ class Popup {
   private el: HTMLElement | null = null;
   private popupEl: HTMLDivElement | null = null;
   private popupInnerEl: HTMLDivElement | null = null;
-  private vm: Vue | undefined;
+  private vm: any | undefined;
 
   /**
    * constructor
@@ -35,7 +35,6 @@ class Popup {
     this.id = v1();
     this.config = config;
 
-    this.onMaskElTransitionend = this.onMaskElTransitionend.bind(this);
     this.onInnerElTransitionend = this.onInnerElTransitionend.bind(this);
 
     this.render();
@@ -45,8 +44,7 @@ class Popup {
    * createMask
    */
   private createMask(): void {
-    // @ts-ignore
-    const { zIndex } = this.config;
+    const { zIndex } = this.config as IConfig;
 
     maskEl = document.createElement('div');
 
@@ -55,16 +53,13 @@ class Popup {
     maskEl.style.zIndex = String((zIndex || 11000) - 1500);
 
     this?.el?.appendChild(maskEl);
-
-    maskEl.addEventListener('transitionend', this.onMaskElTransitionend);
   }
 
   /**
    * render
    */
   private render(): void {
-    // @ts-ignore
-    const { children, zIndex } = this.config;
+    const { children, zIndex } = this.config as IConfig;
 
     this.popupEl = document.createElement('div');
 
@@ -80,28 +75,32 @@ class Popup {
 
     const self = this;
 
-    this.vm = new Vue({
+    this.vm = createApp({
       mounted() {
         self?.el?.appendChild(self.popupEl as HTMLElement);
         self.trigger('onCreate');
       },
-      render(h) {
-        return h(children);
+      render() {
+        return h(children as string);
       },
     });
 
-    this.vm.$mount(this.popupInnerEl);
+    if (globalConfig) globalConfig?.beforeMount?.(this.vm);
+
+    this.vm.mount(this.popupInnerEl);
   }
 
   /**
    * trigger
    * @param hookName
    */
-  private trigger(hookName: string): void {
-    // @ts-ignore
-    if (this.config[hookName]) {
-      // @ts-ignore
-      return this.config[hookName]();
+  private trigger(hookName: string) {
+    const { config } = this;
+
+    if (!config) return;
+
+    if (config[hookName]) {
+      return config[hookName]();
     }
   }
 
@@ -114,9 +113,9 @@ class Popup {
       this.createMask();
     }
 
-    if (prePopup) {
-      prePopup.close();
-    }
+    // if (prePopup) {
+    //   prePopup.close();
+    // }
 
     maskEl.style.display = 'block';
 
@@ -136,6 +135,35 @@ class Popup {
   }
 
   /**
+   * show - 显示一个popup
+   * @return boolean
+   */
+  showClosePrePopup(): boolean {
+    if (!maskEl) {
+      this.createMask();
+    }
+
+    if (prePopup) {
+      prePopup.close();
+    }
+
+    maskEl.style.display = 'block';
+
+    (this.popupEl as HTMLElement).style.display = 'block';
+
+    this.isShow = true;
+
+    this.trigger('onBeforeShow');
+
+    setTimeout(() => {
+      maskEl.classList.add('modal-in');
+      (this.popupEl as HTMLElement).classList.add('modal-in');
+    }, 100);
+
+    return true;
+  }
+
+  /**
    * close - 关闭一个popup
    * @return boolean
    */
@@ -148,15 +176,14 @@ class Popup {
 
     const promise = this.trigger('onBeforeClose');
 
-    // @ts-ignore
     if (promise) {
       (promise as unknown as Promise<null>).then(() => {
-        this.popupEl?.classList.remove('modal-in');
+        (this.popupEl as HTMLElement).classList.remove('modal-in');
 
         maskEl.classList.remove('modal-in');
       });
     } else {
-      this.popupEl?.classList.remove('modal-in');
+      (this.popupEl as HTMLElement).classList.remove('modal-in');
 
       maskEl.classList.remove('modal-in');
     }
@@ -168,10 +195,12 @@ class Popup {
    * destroy - 销毁一个popup
    */
   destroy(): boolean {
-    // @ts-ignore
-    this.vm.$destroy();
+    try {
+      this.vm.unmount();
+    } catch (err) {
+      (this.popupEl as HTMLElement)?.parentNode?.removeChild(this.popupEl as HTMLElement);
+    }
 
-    this.popupEl?.parentNode?.removeChild(this.popupEl);
     this.popupEl = null;
 
     this.trigger('onDestroy');
@@ -203,6 +232,7 @@ class Popup {
       prePopup = null;
 
       (this.popupEl as HTMLElement).style.display = 'none';
+      maskEl.style.display = 'none';
 
       this.trigger('onAfterClose');
     } else {
@@ -211,30 +241,26 @@ class Popup {
       this.trigger('onAfterShow');
     }
   }
-
-  /**
-   * onMaskElTransitionend
-   */
-  onMaskElTransitionend(): void {
-    if (!this.isShow) {
-      maskEl.style.display = 'none';
-    }
-  }
 }
+
+let globalConfig: IConfig | null = null;
 
 /**
  * PopupFactory
  */
-const PopupFactory = {
+const PopupFactory: any = {
   /**
    * create
    * @param config
    * @return Popup
    */
   create(config: IConfig): Popup {
-    return new Popup(config);
-  },
+    const ins = new Popup(config);
 
+    popups.push(ins);
+
+    return ins;
+  },
   /**
    * show - 显示一个popup
    * @param popup
@@ -251,7 +277,27 @@ const PopupFactory = {
 
     return popup.show();
   },
+  /**
+   * showClosePrePopup
+   * @description 关闭之前的显示
+   * @param popup
+   * @return boolean
+   */
+  showClosePrePopup(popup: Popup) {
+    if (!popup) return false;
 
+    if (popup.isDestroy()) return false;
+
+    if (popup === prePopup) return false;
+
+    if (prePopup && popup.getId() === prePopup.getId()) return false;
+
+    if (prePopup) {
+      prePopup.close();
+    }
+
+    return popup.show();
+  },
   /**
    * close - 关闭一个popup
    * @param {Popup} popup
@@ -264,19 +310,20 @@ const PopupFactory = {
 
     return popup.close();
   },
-
   /**
    * closeAll - 关闭所有
    * @return boolean
    */
   closeAll() {
-    if (prePopup) {
-      return this.close(prePopup);
-    }
+    const flags: boolean[] = [];
 
-    return false;
+    popups.forEach((p) => {
+      const flag = this.close(p);
+      flags.push(flag);
+    });
+
+    return flags.every((flag) => flag);
   },
-
   /**
    * destroy - 销毁一个popup
    * @param {Popup} popup
@@ -287,22 +334,38 @@ const PopupFactory = {
 
     if (popup.isDestroy()) return false;
 
-    return popup.destroy();
-  },
+    const res = popup.destroy();
 
+    if (res) {
+      const index = popups.findIndex((p) => p === popup);
+
+      if (index !== -1) {
+        popups.splice(index, 1);
+      }
+    }
+
+    return res;
+  },
   /**
    * getEl
    * @return {HTMLElement}
    */
-  getEl() {
+  getEl(): HTMLElement {
     return el || document.body;
   },
   /**
    * setEl
    * @param tel
    */
-  setEl(tel) {
+  setEl(tel: HTMLElement) {
     el = tel;
+  },
+  /**
+   * setConfig
+   * @param config
+   */
+  setConfig(config) {
+    globalConfig = config;
   },
 };
 

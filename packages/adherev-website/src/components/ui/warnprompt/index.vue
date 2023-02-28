@@ -18,6 +18,7 @@
 import { WarnPrompt } from '@baifendian/adherev';
 
 export default {
+  displayName: 'warnprompt',
   data() {
     return {
       scrollEl: null,
@@ -83,7 +84,7 @@ export default {
   },
   methods: {
     onCode1F1() {
-      WarnPrompt('操作异常');
+      WarnPrompt.openWarnMessage('操作异常');
     },
   },
 };

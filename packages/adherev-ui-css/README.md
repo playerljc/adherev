@@ -14,15 +14,15 @@
 - ant-design(4.x)
 
 # 🖥 兼容环境
-- 现代浏览器，IE11
+- 现代浏览器
 
 # 📦 安装
 ```javascript
-npm install @baifendian/adherev-ui-css --save
-``` 
+npm install @baifendian/adherev-ui-css@next --save
+```
 
 ```javascript
-yarn add @baifendian/adherev-ui-css
+yarn add @baifendian/adherev-ui-css@next
 ```
 
 # 线上地址(临时)

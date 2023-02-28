@@ -1,0 +1,2 @@
+import{defineComponent}from"vue";import OLMap from"./olmap";import Util from"./util";export default defineComponent({name:"adv-olmap-heatmap",data:function(){return{$vectorSource:null,$layer:null}},mixins:[OLMap],methods:{addLayer:function(e){var e=Util.createHeatMapLayer((e=void 0===e?{}:e)||{}),a=e.layer,e=e.vectorSource,t=this.$data;t.$layer=a,t.$vectorSource=e,t.$map.addLayer(a)},getHeatMapLayer:function(){return this.$data.$layer}}});
+//# sourceMappingURL=heatmap.js.map

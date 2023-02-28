@@ -37,11 +37,11 @@ import { ContextMenu } from '@baifendian/adherev';
  */
 const contextMenuData = [
   {
-    // <a-icon type="folder-add" />
+    // <folder-add-outlined />
     name: 'add',
     id: 'add',
     icon: {
-      template: `<a-icon type="folder-add" />`,
+      template: `<folder-add-outlined />`,
     }, // <FolderAddOutlined />,
     separation: false,
     attribute: {},
@@ -50,7 +50,7 @@ const contextMenuData = [
         name: 'folder',
         id: 'folder',
         icon: {
-          template: `<a-icon type="folder" />`,
+          template: `<folder-outlined />`,
         }, // <FolderOutlined />,
         separation: false,
         attribute: {},
@@ -60,7 +60,7 @@ const contextMenuData = [
         name: 'Add page above',
         id: 'addpageabove',
         icon: {
-          template: `<a-icon type="folder-add" />`,
+          template: `<folder-add-outlined />`,
         }, // <FileAddOutlined />,
         separation: false,
         attribute: {},
@@ -70,7 +70,7 @@ const contextMenuData = [
         name: 'Add page below',
         id: 'addpagebelow',
         icon: {
-          template: `<a-icon type="folder-add" />`,
+          template: `<folder-add-outlined />`,
         }, // <FileAddOutlined />,
         separation: false,
         attribute: {},
@@ -80,7 +80,7 @@ const contextMenuData = [
         name: 'subpage',
         id: 'subpage',
         icon: {
-          template: '<a-icon type="folder-add" />',
+          template: '<folder-add-outlined />',
         }, // <FileAddOutlined />,
         separation: false,
         attribute: {},
@@ -92,7 +92,7 @@ const contextMenuData = [
     name: 'move',
     id: 'move',
     icon: {
-      template: `<a-icon type="arrow-alt" />`,
+      template: `<arrow-left-outlined />`,
     }, // <ArrowsAltOutlined />,
     separation: false,
     attribute: {},
@@ -109,7 +109,7 @@ const contextMenuData = [
         name: 'Move down',
         id: 'movedown',
         icon: {
-          template: `<a-icon type="arrow-up" />`,
+          template: `<arrow-up-outlined />`,
         }, // <ArrowUpOutlined />,
         separation: false,
         attribute: {},
@@ -119,7 +119,7 @@ const contextMenuData = [
         name: 'upgrade',
         id: 'upgrade',
         icon: {
-          template: `<a-icon type="arrow-down" />`,
+          template: `<arrow-down-outlined />`,
         }, // <ArrowDownOutlined />,
         separation: false,
         attribute: {},
@@ -129,7 +129,7 @@ const contextMenuData = [
         name: 'downgrade',
         id: 'downgrade',
         icon: {
-          template: `<a-icon type="download" />`,
+          template: `<download-outlined />`,
         }, // <DownloadOutlined />,
         separation: false,
         attribute: {},
@@ -141,7 +141,7 @@ const contextMenuData = [
     name: 'delete',
     id: 'delete',
     icon: {
-      template: `<a-icon type="delete" />`,
+      template: `<delete-outlined />`,
     }, // <DeleteOutlined />,
     separation: false,
     attribute: {},
@@ -151,7 +151,7 @@ const contextMenuData = [
     name: 'rename',
     id: 'rename',
     icon: {
-      template: `<a-icon type="edit" />`,
+      template: `<edit-outlined />`,
     }, // <EditOutlined />,
     separation: false,
     attribute: {},
@@ -160,6 +160,7 @@ const contextMenuData = [
 ];
 
 export default {
+  displayName: 'contextmenu',
   data() {
     return {
       scrollEl: null,
@@ -177,11 +178,11 @@ export default {
           codeText: `
         const contextMenuData = [
           {
-            // <a-icon type="folder-add" />
+            // <folder-add-outlined />
             name: 'add',
             id: 'add',
             icon: {
-              template: \`<a-icon type="folder-add" />\`,
+              template: \`<folder-add-outlined />\`,
             }, //<FolderAddOutlined />,
             separation: false,
             attribute: {},
@@ -190,7 +191,7 @@ export default {
                 name: 'folder',
                 id: 'folder',
                 icon: {
-                  template: \`<a-icon type="folder" />\`,
+                  template: \`<folder-outlined />\`,
                 }, // <FolderOutlined />,
                 separation: false,
                 attribute: {},
@@ -200,7 +201,7 @@ export default {
                 name: 'Add page above',
                 id: 'addpageabove',
                 icon: {
-                  template: \`<a-icon type="folder-add" />\`,
+                  template: \`<folder-add-outlined />\`,
                 }, //<FileAddOutlined />,
                 separation: false,
                 attribute: {},
@@ -210,7 +211,7 @@ export default {
                 name: 'Add page below',
                 id: 'addpagebelow',
                 icon: {
-                  template: \`<a-icon type="folder-add" />\`,
+                  template: \`<folder-add-outlined />\`,
                 }, //<FileAddOutlined />,
                 separation: false,
                 attribute: {},
@@ -220,7 +221,7 @@ export default {
                 name: 'subpage',
                 id: 'subpage',
                 icon: {
-                  template: '<a-icon type="folder-add" />',
+                  template: '<folder-add-outlined />',
                 }, //<FileAddOutlined />,
                 separation: false,
                 attribute: {},
@@ -232,7 +233,7 @@ export default {
             name: 'move',
             id: 'move',
             icon: {
-              template: \`<a-icon type="arrow-alt" />\`,
+              template: \`<arrow-left-outlined />\`,
             }, // <ArrowsAltOutlined />,
             separation: false,
             attribute: {},
@@ -249,7 +250,7 @@ export default {
                 name: 'Move down',
                 id: 'movedown',
                 icon: {
-                  template: \`<a-icon type="arrow-up" />\`,
+                  template: \`<arrow-up-outlined />\`,
                 }, // <ArrowUpOutlined />,
                 separation: false,
                 attribute: {},
@@ -259,7 +260,7 @@ export default {
                 name: 'upgrade',
                 id: 'upgrade',
                 icon: {
-                  template: \`<a-icon type="arrow-down" />\`,
+                  template: \`<arrow-down-outlined />\`,
                 }, // <ArrowDownOutlined />,
                 separation: false,
                 attribute: {},
@@ -269,7 +270,7 @@ export default {
                 name: 'downgrade',
                 id: 'downgrade',
                 icon: {
-                  template: \`<a-icon type="download" />\`,
+                  template: \`<download-outlined />\`,
                 }, // <DownloadOutlined />,
                 separation: false,
                 attribute: {},
@@ -281,7 +282,7 @@ export default {
             name: 'delete',
             id: 'delete',
             icon: {
-              template: \`<a-icon type="delete" />\`,
+              template: \`<delete-outlined />\`,
             }, // <DeleteOutlined />,
             separation: false,
             attribute: {},
@@ -291,7 +292,7 @@ export default {
             name: 'rename',
             id: 'rename',
             icon: {
-              template: \`<a-icon type="edit" />\`,
+              template: \`<edit-outlined />\`,
             }, // <EditOutlined />,
             separation: false,
             attribute: {},

@@ -1,14 +1,20 @@
+import { App, Plugin } from 'vue';
+
 import Polygonselection from '@baifendian/adhere-ui-polygonselection';
 import BfdUtil from '@baifendian/adherev-util';
+
 const {
   _util: { withVue },
 } = BfdUtil;
 
-// @ts-ignore
-Polygonselection.isUse = () => true;
-// @ts-ignore
-Polygonselection.use = (Vue) => {
-  withVue(Vue, 'Polygonselection', Polygonselection);
+const PolygonSelectionWrap: typeof Polygonselection & {
+  install?: (app: App) => App;
+} = Polygonselection;
+
+PolygonSelectionWrap.install = (app: App) => {
+  withVue(app, 'Polygonselection', Polygonselection);
+
+  return app;
 };
 
-export default Polygonselection;
+export default PolygonSelectionWrap as typeof PolygonSelectionWrap & Plugin;

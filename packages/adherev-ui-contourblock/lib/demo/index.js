@@ -1,0 +1,2 @@
+"use strict";require("core-js/modules/es.object.define-property.js"),Object.defineProperty(exports,"__esModule",{value:!0});var tslib_1=require("tslib"),vue_1=require("vue"),index_1=tslib_1.__importDefault(require("../index")),index_vue_1=tslib_1.__importDefault(require("./index.vue")),app=(require("../index.less"),(0,vue_1.createApp)({render:function(){return(0,vue_1.h)(index_vue_1.default)}}));index_1.default.use(app),app.mount("#app");
+//# sourceMappingURL=index.js.map

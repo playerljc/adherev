@@ -8,6 +8,7 @@
       <a-select
         style="width: 600px"
         class="dropdownClassName"
+        placeholder="请输入关键字搜索"
         :search-value="searchVal"
         :get-popup-container="(e) => e.parentElement"
         :open="open"
@@ -21,7 +22,7 @@
         @search="onSearch($event)"
         @dropdownVisibleChange="onDropdownVisibleChange($event)"
       >
-        <template v-slot:dropdownRender>
+        <template #dropdownRender>
           <adv-conditionalrender :conditional="!!filter.length">
             <div :class="$style.List">
               <ul :class="$style.Fixed">
@@ -36,7 +37,9 @@
               </ul>
             </div>
 
-            <a-empty slot="noMatch" />
+            <template #noMatch>
+              <a-empty />
+            </template>
           </adv-conditionalrender>
         </template>
       </a-select>

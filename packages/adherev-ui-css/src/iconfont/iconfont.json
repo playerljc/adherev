@@ -6,6 +6,48 @@
   "description": "adhere",
   "glyphs": [
     {
+      "icon_id": "4503683",
+      "name": "loading",
+      "font_class": "loading",
+      "unicode": "e6cd",
+      "unicode_decimal": 59085
+    },
+    {
+      "icon_id": "4767097",
+      "name": "enter",
+      "font_class": "enter",
+      "unicode": "e7fd",
+      "unicode_decimal": 59389
+    },
+    {
+      "icon_id": "6598339",
+      "name": "caret-down",
+      "font_class": "caret-down",
+      "unicode": "e8ec",
+      "unicode_decimal": 59628
+    },
+    {
+      "icon_id": "6598341",
+      "name": "caret-up",
+      "font_class": "caret-up",
+      "unicode": "e8ed",
+      "unicode_decimal": 59629
+    },
+    {
+      "icon_id": "13074968",
+      "name": "down arrow",
+      "font_class": "downarrow",
+      "unicode": "e60a",
+      "unicode_decimal": 58890
+    },
+    {
+      "icon_id": "19959153",
+      "name": "up",
+      "font_class": "up",
+      "unicode": "e748",
+      "unicode_decimal": 59208
+    },
+    {
       "icon_id": "680702",
       "name": "搜索",
       "font_class": "sousuo",

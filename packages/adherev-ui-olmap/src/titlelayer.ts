@@ -1,6 +1,5 @@
 import Tile from 'ol/layer/Tile';
-
-import { XYZ, OSM, TileWMS, WMTS } from 'ol/source.js';
+import { OSM, TileWMS, WMTS, XYZ } from 'ol/source.js';
 
 /**
  * getOSM - OSM的resource
@@ -16,7 +15,7 @@ function getOSM(options?: any) {
  * @param options
  * @return {XYZ}
  */
-function getXYZ(options) {
+function getXYZ(options?: any) {
   return new XYZ(options);
 }
 
@@ -25,7 +24,7 @@ function getXYZ(options) {
  * @param options
  * @return {TileWMS}
  */
-function getTileWMS(options) {
+function getTileWMS(options?: any) {
   return new TileWMS(options);
 }
 
@@ -34,7 +33,7 @@ function getTileWMS(options) {
  * @param options
  * @return {WMTS}
  */
-function getWMTS(options) {
+function getWMTS(options?: any) {
   return new WMTS(options);
 }
 

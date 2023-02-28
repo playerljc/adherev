@@ -1,0 +1,1 @@
+{"version":3,"file":"index.js","sources":["history-back/index.js"],"sourcesContent":["import Model from '@baifendian/adherev-ui-historyback/es';\nexport default Model;"],"names":["Model"],"mappings":"OAAOA,UAAW,uDACHA"}

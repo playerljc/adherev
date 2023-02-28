@@ -1,0 +1,2 @@
+import BfdUtil from"@baifendian/adherev-util";import StickupLayoutItem from"./item";import StickupLayout from"./stickuplayout";var withVue=BfdUtil._util.withVue;StickupLayout.Item=StickupLayoutItem,StickupLayout.install=function(t){return t.component(StickupLayoutItem.name,StickupLayoutItem),t.component(StickupLayout.name,StickupLayout),withVue(t,"StickupLayout",StickupLayout),t};export default StickupLayout;
+//# sourceMappingURL=index.js.map

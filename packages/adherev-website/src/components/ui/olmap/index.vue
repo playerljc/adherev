@@ -95,16 +95,18 @@
 </template>
 
 <script>
-import { Vector as VectorSource } from 'ol/source';
 import GeoJSON from 'ol/format/GeoJSON';
 import { fromLonLat } from 'ol/proj.js';
+import { Vector as VectorSource } from 'ol/source';
 
-import { Resource, OLMap } from '@baifendian/adherev';
+import { OLMap, Resource } from '@baifendian/adherev';
+
 import icon from './区控-图例.svg';
 
 const { TitleLayer, Util, AnimationManager } = OLMap;
 
 export default {
+  displayName: 'olmap',
   data() {
     return {
       scrollEl: null,
@@ -1507,14 +1509,14 @@ export default {
                   name: 'fillOpt',
                   desc: '颜色',
                   type: 'object',
-                  defaultVal: { color: 'rgba(23,136,243,.2)' },
+                  defaultVal: JSON.stringify({ color: 'rgba(23,136,243,.2)' }),
                   required: '',
                 },
                 {
                   name: 'strokeColor',
                   desc: '描边颜色',
                   type: 'object',
-                  defaultVal: { width: 2, color: '#1788F3' },
+                  defaultVal: JSON.stringify({ width: 2, color: '#1788F3' }),
                   required: '',
                 },
                 {
@@ -1579,14 +1581,14 @@ export default {
                   name: 'fillOpt',
                   desc: '颜色',
                   type: 'object',
-                  defaultVal: { color: 'rgba(23,136,243,.2)' },
+                  defaultVal: JSON.stringify({ color: 'rgba(23,136,243,.2)' }),
                   required: '',
                 },
                 {
                   name: 'strokeColor',
                   desc: '描边颜色',
                   type: 'object',
-                  defaultVal: { width: 2, color: '#1788F3' },
+                  defaultVal: JSON.stringify({ width: 2, color: '#1788F3' }),
                   required: '',
                 },
                 {
@@ -1872,7 +1874,7 @@ export default {
                 {
                   name: 'points',
                   desc: '数据',
-                  type: 'array<array>',
+                  type: JSON.stringify('array<array>'),
                   defaultVal: '',
                   required: '',
                 },

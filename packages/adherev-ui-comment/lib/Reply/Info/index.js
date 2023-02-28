@@ -1,0 +1,2 @@
+"use strict";require("core-js/modules/es.object.define-property.js"),Object.defineProperty(exports,"__esModule",{value:!0});var tslib_1=require("tslib"),adherev_util_1=tslib_1.__importDefault(require("@baifendian/adherev-util")),Node_1=tslib_1.__importDefault(require("../../Components/Node")),ReplyInfo=adherev_util_1.default._util.HOC(Node_1.default,{name:"adv-comment-reply-info"},{props:function(e){return tslib_1.__assign(tslib_1.__assign({},e),{isReply:!0})}});exports.default=ReplyInfo;
+//# sourceMappingURL=index.js.map

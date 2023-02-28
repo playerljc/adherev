@@ -1,9 +1,9 @@
-import Vue from 'vue';
-import { Fragment } from 'vue-fragment';
 import { v1 } from 'uuid';
+import { createApp, h } from 'vue';
+
 import Util from '@baifendian/adherev-util';
 
-import { IConfig, IShowConfig, IShowStandardConfig } from './types';
+import { Config, IConfig, INotificationFactory, IShowConfig, IShowStandardConfig } from './types';
 
 const selectorPrefix = 'adherev-ui-notification';
 
@@ -12,7 +12,7 @@ const selectorPrefix = 'adherev-ui-notification';
  * @class Notification
  * @classdesc Notification
  */
-class Notification {
+export class Notification {
   private readonly config: IConfig = {
     style: 'material',
     type: 'top',
@@ -31,7 +31,7 @@ class Notification {
   private notifications = {};
   private key: boolean = false;
 
-  constructor(container, config: IConfig) {
+  constructor(container: HTMLElement, config: IConfig) {
     this.container = container;
 
     this.config = Object.assign(this.config, config);
@@ -48,7 +48,7 @@ class Notification {
    * @private
    */
   private createInnerContainer(): void {
-    const innerContainer = this.container.querySelector(`.${selectorPrefix}`);
+    const innerContainer: HTMLElement | null = this.container.querySelector(`.${selectorPrefix}`);
 
     if (innerContainer) {
       innerContainer?.parentElement?.removeChild(innerContainer);
@@ -70,11 +70,13 @@ class Notification {
   private init(): void {
     const { config } = this;
 
-    this?.innerContainer?.classList.remove(
+    if (!this.innerContainer) return;
+
+    this.innerContainer.classList.remove(
       [selectorPrefix].concat([config.type === 'top' ? 'bottom' : 'top', config.style]).join('-'),
     );
 
-    this?.innerContainer?.classList.add(
+    this.innerContainer.classList.add(
       [selectorPrefix].concat([config.type, config.style]).join('-'),
     );
   }
@@ -86,11 +88,18 @@ class Notification {
   private initEvents(): void {
     const self = this;
 
-    this?.notificationContainer?.addEventListener('click', (e: MouseEvent) => {
-      if ((e.target as HTMLElement)?.classList?.contains?.('closeBtn')) {
-        const topDom = Util.getTopDom(e.target, `${selectorPrefix}-item`);
+    if (!this.notificationContainer) return;
 
-        self.closeNotification.call(self, (topDom as HTMLElement).dataset.id as string);
+    this.notificationContainer.addEventListener('click', (e: any) => {
+      if (e.target.classList.contains('closeBtn')) {
+        const topDom: HTMLElement | null | undefined = Util.getTopDom?.(
+          e.target,
+          `${selectorPrefix}-item`,
+        );
+
+        if (topDom) {
+          self.closeNotification.call(self, topDom?.dataset?.id as string);
+        }
       }
     });
   }
@@ -148,31 +157,29 @@ class Notification {
       n.className = `${selectorPrefix}-item`;
       n.dataset.id = id;
 
-      const div = document.createElement('div');
-      n.appendChild(div);
-
       const self = this;
 
-      new Vue({
+      const app = createApp({
         mounted() {
           resolve(self.build(id, n));
         },
-        render(h) {
+        render() {
           return (
-            // @ts-ignore
-            <Fragment>
+            <>
               <div class="info">
-                {Util.isObject(children)
-                  ? h(children)
-                  : Util.isFunction(children)
-                  ? (children as Function)(h)
+                {Util.isObject?.(children)
+                  ? h(children as any)
+                  : Util.isFunction?.(children)
+                  ? (children as Function)()
                   : children || ''}
               </div>
               {closed ? <span class="closeBtn" /> : null}
-            </Fragment>
+            </>
           );
         },
-      }).$mount(div);
+      });
+      if (globalConfig) globalConfig?.beforeMount?.(app);
+      app.mount(n);
     });
   }
 
@@ -182,8 +189,8 @@ class Notification {
    * @return Promise<string>
    * @private
    */
-  private buildStandard(config: IShowStandardConfig): Promise<any> {
-    return new Promise<void>((resolve) => {
+  private buildStandard(config: IShowStandardConfig): Promise<string> {
+    return new Promise((resolve) => {
       const {
         headerLabel = '',
         headerIcon = '',
@@ -199,30 +206,25 @@ class Notification {
       n.className = `${selectorPrefix}-item`;
       n.dataset.id = id;
 
-      const div = document.createElement('div');
-      n.appendChild(div);
-
       const self = this;
 
-      new Vue({
+      createApp({
         mounted() {
-          // @ts-ignore
           resolve(self.build(id, n));
         },
-        render(h) {
+        render() {
           return (
-            // @ts-ignore
-            <Fragment>
+            <>
               <div class="info">
                 <div class={`${selectorPrefix}-standard-header`}>
                   <div class={`${selectorPrefix}-standard-header-icon`}>
                     {headerIcon ? <img src={headerIcon} alt="" /> : null}
                   </div>
                   <div class={`${selectorPrefix}-standard-header-label`}>
-                    {Util.isObject(headerLabel)
+                    {Util.isObject?.(headerLabel)
                       ? h(headerLabel)
-                      : Util.isFunction(headerLabel)
-                      ? (headerLabel as Function)(h)
+                      : Util.isFunction?.(headerLabel)
+                      ? (headerLabel as Function)()
                       : headerLabel || ''}
                   </div>
                 </div>
@@ -232,34 +234,34 @@ class Notification {
                   </div>
                   <div class={`${selectorPrefix}-standard-content-row`}>
                     <div class={`${selectorPrefix}-standard-content-row-title`}>
-                      {Util.isObject(title)
+                      {Util.isObject?.(title)
                         ? h(title)
-                        : Util.isFunction(title)
-                        ? (title as Function)(h)
+                        : Util.isFunction?.(title)
+                        ? (title as Function)()
                         : title || ''}
                     </div>
                     <div class={`${selectorPrefix}-standard-content-row-text`}>
-                      {Util.isObject(text)
+                      {Util.isObject?.(text)
                         ? h(text)
-                        : Util.isFunction(text)
-                        ? (text as Function)(h)
+                        : Util.isFunction?.(text)
+                        ? (text as Function)()
                         : text || ''}
                     </div>
                   </div>
                   <div class={`${selectorPrefix}-standard-content-media-r`}>
-                    {Util.isObject(datetime)
+                    {Util.isObject?.(datetime)
                       ? h(datetime)
-                      : Util.isFunction(datetime)
-                      ? (datetime as Function)(h)
+                      : Util.isFunction?.(datetime)
+                      ? (datetime as Function)()
                       : datetime || ''}
                   </div>
                 </div>
               </div>
               {closed ? <span class="closeBtn" /> : null}
-            </Fragment>
+            </>
           );
         },
-      }).$mount(div);
+      }).mount(n);
     });
   }
 
@@ -270,14 +272,13 @@ class Notification {
    * @return string
    * @private
    */
-  private build(id: string, n): string {
+  private build(id: string, n: HTMLLIElement): string {
     const self = this;
 
     this.notifications[id] = n;
 
     this?.notificationContainer?.appendChild(n);
 
-    // onCreate
     self.trigger('onCreate', n);
 
     n.style.height = 'auto';
@@ -300,7 +301,7 @@ class Notification {
     setTimeout(() => {
       n.style.height = `${targetHeight}px`;
 
-      n.querySelector('.info').style.opacity = '1';
+      (n.querySelector('.info') as HTMLElement).style.opacity = '1';
 
       self.trigger('onShow', n);
     }, 100);
@@ -314,7 +315,7 @@ class Notification {
    * @param params
    * @private
    */
-  private trigger(action, params?: any): void {
+  private trigger(action: string, params?: any): void {
     if (this.config[action]) {
       this.config[action](params);
     }
@@ -342,15 +343,14 @@ class Notification {
    * close
    * @param {string} id
    */
-  close(id): void {
+  close(id: string): void {
     this.closeNotification(id);
   }
 }
 
-/**
- * NotificationFactory
- */
-export default {
+let globalConfig: Config | null = null;
+
+const NotificationFactory: INotificationFactory = {
   /**
    * build
    * @param container
@@ -360,4 +360,12 @@ export default {
   build(container: HTMLElement, config: IConfig): Notification {
     return new Notification(container, config);
   },
+  setConfig(config) {
+    globalConfig = config;
+  },
 };
+
+/**
+ * NotificationFactory
+ */
+export default NotificationFactory;

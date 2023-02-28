@@ -1,0 +1,2 @@
+import _Modal from"ant-design-vue/es/modal";import BfdUtil from"@baifendian/adherev-util";import Intl from"@baifendian/adherev-util-intl";import{openWarnDialog,openWarnMessage}from"./warnprompt";var withVue=BfdUtil._util.withVue,WarnPrompt={openWarnMessage:openWarnMessage,openWarnDialog:openWarnDialog,install:function(n){return n.component(Intl.name,Intl),n.component(_Modal.name,_Modal),withVue(n,"WarnPrompt",WarnPrompt),n}};export default WarnPrompt;
+//# sourceMappingURL=index.js.map

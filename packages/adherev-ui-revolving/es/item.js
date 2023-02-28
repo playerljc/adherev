@@ -1,0 +1,2 @@
+import{createVNode as _createVNode}from"vue";import classNames from"classnames";import{defineComponent}from"vue";var selectorPrefix="adherev-ui-revolving-item";export default defineComponent({name:"adv-revolving-item",setup:function(e,r){var o=r.slots;return function(){var e;return _createVNode("div",{class:classNames(selectorPrefix,"swiper-slide")},[null==(e=null==o?void 0:o.default)?void 0:e.call(o)])}}});
+//# sourceMappingURL=item.js.map

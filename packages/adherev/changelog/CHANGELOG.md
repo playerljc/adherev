@@ -1,17 +1,132 @@
-# 1.0.11
+# 2.0.3
 
 ***
 
-2022-5-9
+2023-02-26
 
-* **adherev-ui-teleport**
-  - 加入代码
+* **adherev-util-resource**
+  - 去掉request.context的Api
+* **adherev-ui-antdvformitem**
+  - 加入AutoCompleteFormItem
+  - 加入SubmitButton
 
-# 1.0.10
+# 2.0.2
 
 ***
 
-2022-5-9
+2023-02-19
+
+* **公共**
+  - 直接引用的组件导出修改
+  - BMap注释的打开
+  - adherev-ui-searchtable的unMountSearchAndPaginParamsDeal修改
+
+# 2.0.1
+
+***
+
+2023-02-06
+
+* **公共**
+  - 含有ant-design-vue库加入babel-plugin-import
+* **adherev-ui-searchtable**
+  - $search支持排序
+  - 查询面板样式修改
+  - routeListen修改
+  - FormItemGeneratorToDict引用的修改
+  - ProTableFactory的scopedSlots修改
+  - 去掉SearchForm及其附属组件使用TableGridLayout实现
+  - 高级搜索触发条件修改
+  - 列设置修改
+  - 加入ProSearchTable
+  - 加入editor功能
+  - 加入对列表头分组的修改
+  - 列设置使用标签形式的时候不生效
+  - 密度设置使用标签形式的时候不生效
+* **adherev-ui-adherev-ui-antdvformitem**
+  - BUG修改
+  - Table生成器的修改
+  - List生成器的修改
+  - 生成器中引入antd组件的都换成AntdvFormItemNormalize中的组件
+  - AntdvFormItemNormalize中的默认值矫正
+  - 生成器中各个组件查询的修改
+  - 加入adherev-ui-antdformitem代码
+  - 加入Input和TextArea组件
+  - 加入所有Antd组件的默认操作
+* **adherev-util**
+  - 加入forwardRef方法
+  - 加入DateUtil
+  - 加入FormatUtil
+  - 加入EncryptUtil
+  - color加入新方法
+* **adherev-ui-importantconfirm**
+  - title，text参数赋值错误
+* **adherev-ui-deleconfirm**
+  - title，text参数赋值错误
+* **adherev-util-adapterscreen**
+  - Safari浏览器适配
+* **adherev-ui-prompt-errorprompt**
+  - 分成dialog和message
+* **adherev-ui-prompt-successprompt**
+  - 分成dialog和message
+* **adherev-ui-prompt-warnprompt**
+  - 分成dialog和message
+* **adherev-util-resource**
+  - 加入resource资源目录
+* **adherev-ui-vuequill-sandbox**
+  - 加入adherev-ui-vuequill-sandbox组件
+* **adherev-ui-tablegridlayout**
+  - label和value支持VNode
+* **adherev-util-watchmemoized**
+  - 去掉adherev-util的依赖
+* **adhere-ui-historyback**
+  - 修改为返回的判断逻辑
+* **adhere-util**
+  - color加入新方法
+* **adhere-ui-writingboard**
+  - 加入导出图片设置背景色
+
+# 2.0.0
+
+***
+
+2022-10-24
+
+* **加入新组件**
+  - 加入adherev-ui-comment
+  - 加入adherev-ui-configprovider
+  - 加入adherev-ui-contourblock
+  - 加入adherev-ui-datedisplay
+  - 加入adherev-ui-tablegridlayout
+  - 加入adherev-ui-writingboard
+  - 加入adherev-ui-hooks
+  - 加入adherev-util-iframeio
+* **@baifendian/adherev-ui-flexlayout修改**
+  - 加入HorizontalFlexLayout布局
+  - 加入VerticalFlexLayout布局
+  - 加入ToolBarLayout布局
+  - 加入BackLayout布局
+  - 加入ScrollLayout布局
+* **@baifendian/adherev-ui-imagelazy重构**
+  - 使用lazysizes进行重构
+* **@baifendian/adherev-ui-popup重构**
+  - close的BUG修改
+  - 添加showClosePrePopup
+  - bug修改
+* **@baifendian/adherev-util-intl重构**
+  - 去掉i18n
+* **@baifendian/adherev-util-mixins修改**
+  - 加入watchEffect配置
+  - 加入forceUpdate配置
+* **@baifendian/adherev-util**
+  - 加入extend方法
+* **已知问题的修改*
+
+# 2.0.5-alpha
+
+***
+
+2022-5-3
 
 * **adherev-ui-confirm-delconfirm**
   - 加入title，text和icon参数
@@ -25,25 +140,7 @@
 * **adherev-util-intl**
   - 加入新词条
 
-# 1.0.10
-
-***
-
-2022-5-2
-
-* **adherev-ui-confirm-delconfirm**
-  - 加入title，text和icon参数
-* **adherev-ui-confirm-importantconfirm**
-  - 加入title，text和icon参数
-* **adherev-ui-searchtable**
-  - 加入列拖动功能
-  - 加入列设置功能
-  - 加入表格密度设置功能
-  - 序号列命名修改
-* **adherev-util-intl**
-  - 加入新词条
-
-# 1.0.9
+# 2.0.4
 
 ***
 
@@ -59,15 +156,20 @@
   - 细节的调整
   - Content-Type修改
 
+# 2.0.0
+
+***
+
+2022-3-9
+
+* vue3的支持
+
 # 1.0.8
 
 ***
 
 2022-2-9
 
-* **adherev-ui-messagedialog**
-  - 加入store
-  - close方法修改
 * **adherev-ui-conditionalrender**
   - 加入ConditionalRender.Show组件进行display切换
   - 加入ConditionalRender.Visibility组件进行visibility切换

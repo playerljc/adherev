@@ -14,20 +14,20 @@ export const selectorPrefix = 'adherev-ui-slidelayout';
  * @param callback
  */
 export function slider(
-  el: HTMLElement,
+  el: HTMLElement | null | undefined,
   x: string,
   y: string,
   z: string,
-  time?: number | string,
+  time = '0',
   callback?: Function,
 ) {
   if (callback) {
     callback(el);
   }
 
-  el.style.transform = el.style.webkitTransform = `translate3d(${x},${y},${z})`;
+  (el as HTMLElement).style.transform = `translate3d(${x},${y},${z})`;
 
-  el.style.transition = el.style.webkitTransition = `all ${time} ease`;
+  (el as HTMLElement).style.transition = `all ${time} ease`;
 }
 
 /**
@@ -42,8 +42,7 @@ export function createMask(zIndex: number | string, closeCallback: Function): HT
 
   const maskEl = el.firstElementChild;
 
-  // @ts-ignore
-  (maskEl as HTMLElement).style.zIndex = `${parseInt(zIndex) - 1}`;
+  (maskEl as HTMLElement).style.zIndex = `${Number.parseInt(zIndex as string) - 1}`;
 
   (maskEl as HTMLElement).addEventListener('click', () => {
     closeCallback();

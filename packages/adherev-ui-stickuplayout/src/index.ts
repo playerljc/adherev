@@ -1,23 +1,25 @@
-import StickupLayout from './stickuplayout';
-import StickupLayoutItem from './item';
+import { App, Plugin } from 'vue';
+
 import BfdUtil from '@baifendian/adherev-util';
+
+import StickupLayoutItem from './item';
+import StickupLayout from './stickuplayout';
+
 const {
-  _util: { withInstall, withVue },
+  _util: { withVue },
 } = BfdUtil;
 
-withInstall(StickupLayout);
-withInstall(StickupLayoutItem);
-
-// @ts-ignore
-StickupLayout.isUse = () => true;
-// @ts-ignore
-StickupLayout.use = (Vue) => {
-  Vue.use(StickupLayout);
-  Vue.use(StickupLayoutItem);
-  withVue(Vue, 'StickupLayout', StickupLayout);
-};
-
-// @ts-ignore
 StickupLayout.Item = StickupLayoutItem;
 
-export default StickupLayout;
+StickupLayout.install = function (app: App) {
+  app.component(StickupLayoutItem.name, StickupLayoutItem);
+  app.component(StickupLayout.name, StickupLayout);
+  withVue(app, 'StickupLayout', StickupLayout);
+
+  return app;
+};
+
+export default StickupLayout as typeof StickupLayout &
+  Plugin & {
+    readonly Item: typeof StickupLayoutItem;
+  };

@@ -11,7 +11,7 @@
         @select="onSelect"
       >
         <template v-for="r in routes">
-          <sub-menu v-if="isSubMenu(r)" :key="r.path" :router="r" :$style="$style" />
+          <sub-menu v-if="isSubMenu(r)" :key="r.path" :router="r" :styles="$style" />
 
           <a-menu-item v-else :key="r.path">
             <router-link :to="r.path">
@@ -29,16 +29,14 @@
       <div :class="$style.BreadcrumbWrap">
         <a-breadcrumb separator="/">
           <a-breadcrumb-item>{{ name }}</a-breadcrumb-item>
-          <a-breadcrumb-item v-for="t in breadcrumbPaths()" :key="t.path">
+          <a-breadcrumb-item v-for="t in breadcrumbPaths" :key="t.path">
             <router-link :key="t.path" :to="t.path">{{ t.name }}</router-link>
           </a-breadcrumb-item>
         </a-breadcrumb>
       </div>
 
       <div>
-        <keep-alive>
-          <router-view></router-view>
-        </keep-alive>
+        <router-view />
       </div>
 
       <div :class="$style.FooterWrap">
@@ -50,8 +48,10 @@
 
 <script>
 import classNames from 'classnames';
-import SubMenu from './SubMenu';
+
 import Footer from '@/lib/Footer';
+
+import SubMenu from './SubMenu';
 import Util from './Util';
 
 export default {
@@ -73,14 +73,13 @@ export default {
     return {
       authorized: [],
       isMenuCollapse: false,
-
+      pathname: window.location.pathname,
       selectedKeys: [],
       openKeys: [],
       routes: Util.sortRouters(this.defaultRoutes),
     };
   },
   watch: {
-    // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
     '$route.path'(pathname) {
       const { defaultSelectedKeys, defaultOpenKeys } = this.getDefaultKeys(pathname);
 
@@ -90,9 +89,9 @@ export default {
       ) {
         this.selectedKeys = defaultSelectedKeys;
         this.openKeys = defaultOpenKeys;
+        this.pathname = pathname;
       }
     },
-    // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
     defaultRoutes(newVal, oldVal) {
       if (JSON.stringify(newVal) !== JSON.stringify(oldVal)) {
         this.routes = Util.sortRouters(newVal);
@@ -105,6 +104,18 @@ export default {
     },
     defaultOpenKeys() {
       return this.getKeys().openKeys;
+    },
+    breadcrumbPaths() {
+      const { routes } = this;
+
+      const path = [];
+      Util.getPathBySelectKey({
+        path,
+        routes,
+        selectKey: this.pathname,
+      });
+
+      return path.filter((t) => !t.redirect);
     },
     menuClassName() {
       const { isMenuCollapse, $style } = this;
@@ -124,9 +135,6 @@ export default {
         openKeys: this.openKeys.length ? this.openKeys : defaultOpenKeys,
       };
     },
-    /**
-     * getDefaultKeys
-     */
     getDefaultKeys(pathname = window.location.pathname) {
       const { defaultRoutes: routes = [] } = this;
       const defaultSelectedKeys = [];
@@ -167,20 +175,6 @@ export default {
      */
     isSubMenu(r) {
       return Util.isSubMenu(r);
-    },
-    breadcrumbPaths() {
-      const { routes } = this;
-
-      const selectKey = window.location.pathname;
-
-      const path = [];
-      Util.getPathBySelectKey({
-        path,
-        routes,
-        selectKey,
-      });
-
-      return path.filter((t) => !t.redirect);
     },
   },
 };

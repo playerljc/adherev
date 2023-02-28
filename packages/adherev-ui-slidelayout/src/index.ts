@@ -1,23 +1,30 @@
-import { Push, Overlay, Revolving } from './slidelayout';
+import { App, Plugin } from 'vue';
+
 import BfdUtil from '@baifendian/adherev-util';
+
+import { Overlay, Push, Revolving } from './slidelayout';
+
 const {
-  _util: { withInstall, withVue },
+  _util: { withVue },
 } = BfdUtil;
 
-withInstall(Push);
-withInstall(Overlay);
-withInstall(Revolving);
+const SlideLayout = {
+  Push,
+  Overlay,
+  Revolving,
+  install: function (app: App) {
+    app.component(Push.name, Push);
+    app.component(Overlay.name, Overlay);
+    app.component(Revolving.name, Revolving);
+    withVue(app, 'SlideLayout', SlideLayout);
 
-export default {
-  isUse: () => true,
-  use: (Vue) => {
-    Vue.use(Push);
-    Vue.use(Overlay);
-    Vue.use(Revolving);
-    withVue(Vue, 'SlideLayout', {
-      Push,
-      Overlay,
-      Revolving,
-    });
+    return app;
   },
 };
+
+export default SlideLayout as typeof SlideLayout &
+  Plugin & {
+    readonly Push: typeof Push;
+    readonly Overlay: typeof Overlay;
+    readonly Revolving: typeof Revolving;
+  };

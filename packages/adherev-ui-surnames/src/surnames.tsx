@@ -1,76 +1,72 @@
-import Util from '@baifendian/adherev-util';
 import classNames from 'classnames';
+import { computed, defineComponent, onBeforeUnmount, onMounted, onUpdated, ref } from 'vue';
+import { array, string } from 'vue-types';
+
+import Util from '@baifendian/adherev-util';
 
 const selectorPrefix = 'adherev-ui-surnames';
 
 const DURATION = 100;
 
-export default {
+enum positionType {
+  top = 'top',
+  right = 'right',
+  bottom = 'bottom',
+  left = 'left',
+}
+
+type IndexMapItemType = {
+  name: string;
+  top: number;
+  bottom: number;
+  left: number;
+  right: number;
+  offsetTop: number;
+  offsetLeft: number;
+  width: number;
+  height: number;
+};
+
+export const surnamesProps = {
+  position: string().def(positionType.right),
+  indexes: array<{ index: string }>().def([]),
+  dataSource: array<{ index: string; data: object[] }>().def([]),
+};
+
+export default defineComponent({
   name: 'adv-surnames',
-  props: {
-    position: {
-      type: String,
-      default: 'right',
-      validator(val) {
-        return ['top', 'right', 'bottom', 'left'].indexOf(val) !== -1;
-      },
-    },
-    indexes: {
-      type: Array,
-      default: () => [],
-    },
-    dataSource: {
-      type: Array,
-      default: () => [],
-    },
-  },
-  data() {
-    return {
-      $key: false,
-      $isMouseClicked: false,
-      $isMouseMoved: false,
-      $startY: null,
-      $startX: null,
-      $curIndexName: null,
-      $indexPositionMap: null,
-      $maskEl: null,
-    };
-  },
-  computed: {
-    getClassName() {
-      const { position } = this;
+  props: surnamesProps,
+  slots: ['index', 'title', 'content'],
+  emits: ['scroll', 'before-scroll'],
+  setup(props, { slots, emit, expose }) {
+    const root = ref<HTMLElement>();
+    const highlightedEl = ref<HTMLElement>();
+    const contentEl = ref<HTMLElement>();
+    const indexEl = ref<HTMLElement>();
+    const indexInnerEl = ref<HTMLElement>();
 
-      return classNames(selectorPrefix, `${selectorPrefix}-config-position-${position}`);
-    },
-  },
-  mounted() {
-    this.initEvent();
-    this.createMask();
-    this.adapterDimension();
-    this.createIndexPosition();
-  },
-  updated() {
-    this.adapterDimension();
-    this.createIndexPosition();
-  },
-  beforeDestroy() {
-    const {
-      $data: { $maskEl },
-    } = this;
+    let key = false;
+    let isMouseClicked = false;
+    let isMouseMoved = false;
+    let startY = -1;
+    let startX = -1;
+    let curIndexName = '';
+    let indexPositionMap: IndexMapItemType[] = [];
+    let maskEl: HTMLElement | null = null;
 
-    if ($maskEl) {
-      $maskEl.parentElement.removeChild($maskEl);
-    }
-  },
-  methods: {
-    onClick(e) {
+    const getClassName = computed(() =>
+      classNames(selectorPrefix, `${selectorPrefix}-config-position-${props.position}`),
+    );
+
+    const onClick = (e: any) => {
       e.preventDefault();
 
       e.stopPropagation();
 
-      this.clickDetail(e);
-    },
-    onTouchmove(e) {
+      clickDetail(e);
+    };
+
+    const onTouchmove = (e: any) => {
       e.preventDefault();
 
       const y = e.changedTouches[0].pageY;
@@ -79,46 +75,41 @@ export default {
 
       const target = e.target;
 
-      const indexItemEl = Util.getTopDom(target, `${selectorPrefix}-index-item`);
+      const indexItemEl = Util.getTopDom?.(target, `${selectorPrefix}-index-item`);
 
-      this.$data.$curIndexName = indexItemEl?.dataset.name;
+      curIndexName = indexItemEl?.dataset.name as string;
 
-      this.moveDetail(x, y);
-    },
-    onTouchend() {
-      const {
-        $refs: { highlightedEl },
-      } = this;
+      moveDetail(x, y);
+    };
 
-      highlightedEl.style.display = 'none';
-      highlightedEl.innerText = '';
-      highlightedEl.style.transform = 'translate3d(0,0,0)';
-    },
-    onMousedown(e) {
+    const onTouchend = () => {
+      (highlightedEl.value as HTMLElement).style.display = 'none';
+      (highlightedEl.value as HTMLElement).innerText = '';
+      (highlightedEl.value as HTMLElement).style.transform = 'translate3d(0,0,0)';
+    };
+
+    const onMousedown = (e: any) => {
       e.preventDefault();
 
-      this.$data.$startY = e.pageY;
+      startY = e.pageY;
 
-      this.$data.$startX = e.pageX;
+      startX = e.pageX;
 
       const target = e.target;
 
-      const indexItemEl = Util.getTopDom(target, `${selectorPrefix}-index-item`);
+      const indexItemEl = Util.getTopDom?.(target, `${selectorPrefix}-index-item`);
 
       // console.log('按下获取索引名称', indexItemEl.dataset.name);
 
-      this.$data.$curIndexName = indexItemEl?.dataset.name;
+      curIndexName = indexItemEl?.dataset.name as string;
 
-      this.$data.$isMouseClicked = true;
-    },
-    onMousemove(e) {
-      const {
-        $data: { $isMouseClicked },
-      } = this;
+      isMouseClicked = true;
+    };
 
-      if (!$isMouseClicked) return false;
+    const onMousemove = (e: any) => {
+      if (!isMouseClicked) return false;
 
-      this.$data.$isMouseMoved = true;
+      isMouseMoved = true;
 
       e.preventDefault();
 
@@ -126,143 +117,125 @@ export default {
 
       const x = e.pageX;
 
-      this.moveDetail(x, y);
-    },
-    onMouseleave() {
-      const {
-        $refs: { highlightedEl },
-      } = this;
+      moveDetail(x, y);
+    };
 
-      this.$data.$isMouseClicked = false;
-      this.$data.$isMouseMoved = false;
+    const onMouseleave = () => {
+      isMouseClicked = false;
+      isMouseMoved = false;
 
-      highlightedEl.style.display = 'none';
-      highlightedEl.innerText = '';
-      highlightedEl.style.transform = 'translate3d(0,0,0)';
-    },
-    onMouseup(e) {
-      const {
-        $refs: { highlightedEl },
-        $data,
-      } = this;
+      (highlightedEl.value as HTMLElement).style.display = 'none';
+      (highlightedEl.value as HTMLElement).innerText = '';
+      (highlightedEl.value as HTMLElement).style.transform = 'translate3d(0,0,0)';
+    };
 
-      if ($data.$isMouseMoved) {
-        $data.$isMouseClicked = false;
-        $data.$isMouseMoved = false;
+    const onMouseup = (e: any) => {
+      if (isMouseMoved) {
+        isMouseClicked = false;
+        isMouseMoved = false;
 
-        highlightedEl.style.display = 'none';
-        highlightedEl.innerText = '';
-        highlightedEl.style.transform = 'translate3d(0,0,0)';
+        (highlightedEl.value as HTMLElement).style.display = 'none';
+        (highlightedEl.value as HTMLElement).innerText = '';
+        (highlightedEl.value as HTMLElement).style.transform = 'translate3d(0,0,0)';
 
         return false;
       }
 
       e.preventDefault();
 
-      this.clickDetail(e);
-    },
-    onResize() {
-      this.update();
-    },
-    clickDetail(e) {
+      clickDetail(e);
+    };
+
+    const onResize = () => update();
+
+    const clickDetail = (e: any) => {
       const target = e.target;
 
       e.preventDefault();
 
-      const { $data } = this;
-
-      if ($data.$key) {
+      if (key) {
         return false;
       }
 
-      $data.$key = true;
+      key = true;
 
-      $data.$maskEl.style.display = 'block';
+      (maskEl as HTMLElement).style.display = 'block';
 
-      const targetEl = Util.getTopDom(target, `${selectorPrefix}-index-item`);
+      const targetEl = Util.getTopDom?.(target, `${selectorPrefix}-index-item`);
 
-      this.scrollToAnimation(targetEl?.dataset?.name);
-    },
-    moveDetail(x, y) {
-      const index = this.findIndex(x, y);
+      scrollToAnimation(targetEl?.dataset?.name);
+    };
+
+    const moveDetail = (x: number, y: number) => {
+      const index = findIndex(x, y);
 
       if (index) {
-        const {
-          $refs: { highlightedEl },
-        } = this;
+        (highlightedEl.value as HTMLElement).innerText = index.name;
+        (highlightedEl.value as HTMLElement).style.display = 'block';
 
-        highlightedEl.innerText = index.name;
-        highlightedEl.style.display = 'block';
-
-        const direction = this.getDirection();
+        const direction = getDirection();
 
         if (direction === 'vertical') {
           const translateY = index.offsetTop + Math.floor(index.height / 2);
-          highlightedEl.style.transform = `translate3d(0,${translateY}px,0)`;
+          (highlightedEl.value as HTMLElement).style.transform = `translate3d(0,${translateY}px,0)`;
         } else {
           const translateX = index.offsetLeft + index.width;
-          highlightedEl.style.transform = `translate3d(${translateX}px,0,0)`;
+          (highlightedEl.value as HTMLElement).style.transform = `translate3d(${translateX}px,0,0)`;
         }
 
-        this.scrollTo(index.name);
+        scrollTo(index.name);
       }
-    },
-    initEvent() {
-      const {
-        $refs: { indexInnerEl },
-      } = this;
+    };
 
-      if (Util.isTouch()) {
-        indexInnerEl.addEventListener('click', this.onClick);
+    const initEvent = () => {
+      if (Util.isTouch?.()) {
+        indexInnerEl.value?.addEventListener('click', onClick);
 
         // 索引touchmove和mousemove
-        indexInnerEl.addEventListener('touchmove', this.onTouchmove);
+        indexInnerEl.value?.addEventListener('touchmove', onTouchmove);
 
-        indexInnerEl.addEventListener('touchend', this.onTouchend);
+        indexInnerEl.value?.addEventListener('touchend', onTouchend);
       } else {
-        indexInnerEl.addEventListener('mousedown', this.onMousedown);
+        indexInnerEl.value?.addEventListener('mousedown', onMousedown);
 
-        indexInnerEl.addEventListener('mousemove', this.onMousemove);
+        indexInnerEl.value?.addEventListener('mousemove', onMousemove);
 
-        indexInnerEl.addEventListener('mouseleave', this.onMouseleave);
+        indexInnerEl.value?.addEventListener('mouseleave', onMouseleave);
 
-        indexInnerEl.addEventListener('mouseup', this.onMouseup);
+        indexInnerEl.value?.addEventListener('mouseup', onMouseup);
 
-        window.addEventListener('resize', this.onResize);
+        window.addEventListener('resize', onResize);
       }
-    },
-    adapterDimension() {
-      const {
-        $refs: { el, indexInnerEl },
-      } = this;
+    };
 
-      const direction = this.getDirection();
+    const adapterDimension = () => {
+      const direction = getDirection();
 
       if (direction === 'vertical') {
-        (el as HTMLElement).style.height = `${indexInnerEl?.offsetHeight + 50}px`;
-        (el as HTMLElement).style.width = '100%';
+        (root.value as HTMLElement).style.height = `${
+          (indexInnerEl.value?.offsetHeight as number) + 50
+        }px`;
+        (root.value as HTMLElement).style.width = '100%';
       } else {
-        (el as HTMLElement).style.height = '100%';
+        (root.value as HTMLElement).style.height = '100%';
       }
-    },
-    createIndexPosition() {
-      const {
-        $refs: { indexInnerEl },
-        $data,
-      } = this;
+    };
 
-      const indexItemEls = indexInnerEl.querySelectorAll(`.${selectorPrefix}-index-item`);
+    const createIndexPosition = () => {
+      const indexItemEls = indexInnerEl.value?.querySelectorAll(
+        `.${selectorPrefix}-index-item`,
+      ) as NodeListOf<HTMLElement>;
 
-      $data.$indexPositionMap = [];
+      indexPositionMap = [];
 
       // 计算每一项距离视口的top和bottom
       for (let i = 0; i < indexItemEls.length; i++) {
         const indexItemEl = indexItemEls[i];
-        const indexName = indexItemEl.dataset.name;
+        const indexName = indexItemEl.dataset.name as string;
 
         const rect = indexItemEl.getBoundingClientRect();
 
-        $data.$indexPositionMap.push({
+        indexPositionMap.push({
           name: indexName,
           top: rect.top,
           bottom: rect.bottom,
@@ -274,30 +247,24 @@ export default {
           height: indexItemEl.offsetHeight,
         });
       }
-    },
-    createMask() {
+    };
+
+    const createMask = () => {
       const el = document.createElement('div');
 
       el.innerHTML = `<div class='${selectorPrefix}-mask'></div>`;
 
-      this.$data.$maskEl = el.firstElementChild as HTMLElement;
+      maskEl = el.firstElementChild as HTMLElement;
 
-      // @ts-ignore
-      document.body.appendChild(this.$data.$maskEl);
-    },
-    scrollToAnimation(name: string | undefined, duration = 100) {
-      const self = this;
+      document.body.appendChild(maskEl);
+    };
 
-      const {
-        $refs: { contentEl, el },
-        $data,
-      } = this;
-
-      const targetEl = contentEl.querySelector(
+    const scrollToAnimation = (name: string | undefined, duration = 100) => {
+      const targetEl = contentEl.value?.querySelector(
         `.${selectorPrefix}-group-title[data-name='${name}']`,
-      );
+      ) as HTMLElement;
 
-      let scrollVal = contentEl.scrollTop;
+      let scrollVal = contentEl.value?.scrollTop as number;
 
       const targetTop = targetEl.offsetTop;
 
@@ -305,7 +272,7 @@ export default {
       const { updateInterval } = screen;
 
       const step =
-        el.scrollHeight /
+        (root.value?.scrollHeight as number) /
         ((DURATION | duration) / (updateInterval || 16.7) +
           ((DURATION | duration) % (updateInterval || 16.7) !== 0 ? 1 : 0));
 
@@ -313,7 +280,7 @@ export default {
        * scrollAnimation
        */
       function scrollAnimation() {
-        if (contentEl.scrollTop < targetTop) {
+        if ((contentEl.value?.scrollTop as number) < targetTop) {
           if (scrollVal + step > targetTop) {
             scrollVal = targetTop;
           } else {
@@ -325,9 +292,9 @@ export default {
           scrollVal -= step;
         }
 
-        contentEl.scrollTop = scrollVal;
+        (contentEl.value as HTMLElement).scrollTop = scrollVal;
 
-        if (contentEl.scrollTop < targetTop) {
+        if ((contentEl.value?.scrollTop as number) < targetTop) {
           if (scrollVal >= targetTop) {
             clear();
           } else {
@@ -340,71 +307,66 @@ export default {
         }
 
         function clear() {
-          $data.$key = false;
-          $data.$isMouseClicked = false;
-          $data.$maskEl.style.display = 'none';
+          key = false;
+          isMouseClicked = false;
+          (maskEl as HTMLElement).style.display = 'none';
 
-          self.$emit('scroll', name);
+          emit('scroll', name);
         }
       }
 
-      this.$emit('before-scroll', name);
+      emit('before-scroll', name);
 
       window.requestAnimationFrame(scrollAnimation);
-    },
-    scrollTo(name: any) {
-      const {
-        $refs: { contentEl },
-      } = this;
+    };
 
-      contentEl.scrollTop = contentEl.querySelector(
-        `.${selectorPrefix}-group-title[data-name='${name}']`,
+    const scrollTo = (name: string) => {
+      (contentEl.value as HTMLElement).scrollTop = (
+        contentEl?.value?.querySelector(
+          `.${selectorPrefix}-group-title[data-name='${name}']`,
+        ) as HTMLElement
       ).offsetTop;
 
-      this.$emit('scroll', name);
-    },
-    getDirection() {
-      const { position } = this;
+      emit('scroll', name);
+    };
 
-      return position === 'left' || position === 'right' ? 'vertical' : 'horizontal';
-    },
-    findIndex(x: number, y: number) {
-      const direction = this.getDirection();
+    const getDirection = () =>
+      props.position === 'left' || props.position === 'right' ? 'vertical' : 'horizontal';
 
-      const {
-        $data: { $startX, $startY, $curIndexName, $indexPositionMap },
-      } = this;
-      const val = direction === 'vertical' ? y - $startY : x - $startX;
-      const curIndex = $indexPositionMap.find((t) => t.name === $curIndexName);
+    const findIndex = (x: number, y: number) => {
+      const direction = getDirection();
+
+      const val = direction === 'vertical' ? y - startY : x - startX;
+      const curIndex = indexPositionMap.find((t) => t.name === curIndexName);
 
       // console.log('获取增量', val);
       // console.log('移动获取当前索引信息', curIndex);
 
       let low = 0;
-      let high = $indexPositionMap.length - 1;
+      let high = indexPositionMap.length - 1;
       let middle;
       let target;
 
       while (
         low <= high &&
-        low <= $indexPositionMap.length - 1 &&
-        high <= $indexPositionMap.length - 1
+        low <= indexPositionMap.length - 1 &&
+        high <= indexPositionMap.length - 1
       ) {
         middle = (high + low) >> 1;
-        const targetVal = $indexPositionMap[middle];
+        const targetVal = indexPositionMap[middle];
 
         let t1;
         let t2;
         let t3;
         let t4;
         if (direction === 'vertical') {
-          t1 = curIndex.top + val;
-          t2 = curIndex.bottom + val;
+          t1 = (curIndex?.top as number) + val;
+          t2 = (curIndex?.bottom as number) + val;
           t3 = targetVal.top;
           t4 = targetVal.bottom;
         } else {
-          t1 = curIndex.left + val;
-          t2 = curIndex.right + val;
+          t1 = (curIndex?.left as number) + val;
+          t2 = (curIndex?.right as number) + val;
           t3 = targetVal.left;
           t4 = targetVal.right;
         }
@@ -424,52 +386,74 @@ export default {
       } else {
         return null;
       }
-    },
-    update() {
-      this.adapterDimension();
-      this.createIndexPosition();
-    },
-    renderIndex(h) {
-      const { $scopedSlots, indexes } = this;
+    };
 
-      return indexes.map((index) => {
+    const update = () => {
+      adapterDimension();
+      createIndexPosition();
+    };
+
+    const renderIndex = (): JSX.Element[] =>
+      props.indexes.map((index) => {
         return (
           <a key={index.index} class={`${selectorPrefix}-index-item`} data-name={index.index}>
-            {$scopedSlots.index(index)}
+            {slots.index ? slots?.index?.(index) : index.index}
           </a>
         );
       });
-    },
-    renderContent(h) {
-      const { $scopedSlots, dataSource } = this;
 
-      return dataSource.map((record) => {
+    const renderContent = () => {
+      return props.dataSource.map((record) => {
         return (
           <div key={record.index} class={`${selectorPrefix}-group`}>
             <a class={`${selectorPrefix}-group-title`} data-name={record.index}>
-              {$scopedSlots.title(record)}
+              {slots.title ? slots?.title?.(record) : record.index}
             </a>
-            <div class={`${selectorPrefix}-group-inner`}>{$scopedSlots.content(record)}</div>
+            <div class={`${selectorPrefix}-group-inner`}>
+              {slots.content ? slots?.content?.(record) : null}
+            </div>
           </div>
         );
       });
-    },
-  },
-  render(h) {
-    return (
-      <div class={this.getClassName} ref="el">
-        <div class={`${selectorPrefix}-highlighted`} ref="highlightedEl" />
+    };
 
-        <div class={`${selectorPrefix}-content`} ref="contentEl">
-          {this.renderContent(h)}
+    onMounted(() => {
+      initEvent();
+      createMask();
+      adapterDimension();
+      createIndexPosition();
+    });
+
+    onUpdated(() => {
+      adapterDimension();
+      createIndexPosition();
+    });
+
+    onBeforeUnmount(() => {
+      if (maskEl) {
+        (maskEl as HTMLElement)?.parentElement?.removeChild(maskEl);
+      }
+    });
+
+    expose({
+      scrollToAnimation,
+      scrollTo,
+    });
+
+    return () => (
+      <div class={getClassName.value} ref={root}>
+        <div class={`${selectorPrefix}-highlighted`} ref={highlightedEl} />
+
+        <div class={`${selectorPrefix}-content`} ref={contentEl}>
+          {renderContent()}
         </div>
 
-        <div class={`${selectorPrefix}-index`} ref="indexEl">
-          <div class={`${selectorPrefix}-index-inner`} ref="indexInnerEl">
-            {this.renderIndex(h)}
+        <div class={`${selectorPrefix}-index`} ref={indexEl}>
+          <div class={`${selectorPrefix}-index-inner`} ref={indexInnerEl}>
+            {renderIndex()}
           </div>
         </div>
       </div>
     );
   },
-};
+});

@@ -1,19 +1,25 @@
-import moment from 'moment';
-import { Input, Select, InputNumber, DatePicker } from 'ant-design-vue';
-import { SearchTable, Resource, Ajax } from '@baifendian/adherev';
+import { DatePicker, Input, InputNumber, Select } from 'ant-design-vue';
+import { defineComponent } from 'vue';
 
-// @ts-ignore
+import {
+  Ajax,
+  DateDisplay,
+  Dict,
+  Resource,
+  SearchTable,
+  TableGridLayout,
+} from '@baifendian/adherev';
+
 const request = new Ajax('');
 
 const { Option } = Select;
 const { RangePicker } = DatePicker;
-// @ts-ignore
-const { SearchTableImplement, SearchForm, SearchFormRow, SearchFormLabel, SearchFormValue } =
-  SearchTable;
+const { Label, Value } = TableGridLayout;
+const { SearchTableImplement } = SearchTable;
 
 const SearchTableImplementMixins = SearchTableImplement();
 
-export default {
+export default defineComponent({
   mixins: [SearchTableImplementMixins],
   data() {
     return {
@@ -55,10 +61,10 @@ export default {
 
       return {
         startTime: startTime
-          ? startTime.format(Resource.Dict.value.ResourceMomentFormatFull.value)
+          ? startTime.format(Resource.Dict.value.ResourceMomentFormat15.value())
           : null,
         endTime: endTime
-          ? endTime.format(Resource.Dict.value.ResourceMomentFormatFull.value)
+          ? endTime.format(Resource.Dict.value.ResourceMomentFormat15.value())
           : null,
       };
     },
@@ -83,7 +89,6 @@ export default {
           key: 'sex',
           align: 'center',
           width: 200,
-          scopedSlots: { customRender: 'sex' },
         },
         {
           title: '籍贯',
@@ -100,7 +105,6 @@ export default {
           sorter: true,
           width: 200,
           sortOrder: this.sortOrder('birthday'),
-          scopedSlots: { customRender: 'birthday' },
         },
         {
           title: '所在部门',
@@ -129,138 +133,160 @@ export default {
         },
       ];
     },
-    getScopedSlots() {
-      return {
-        sex: (text) => {
-          return Resource.Dict.value.ResourceNormalSexMap.value.get(text).label;
-        },
-        birthday: (text) => {
-          return text ? moment(text).format(Resource.Dict.value.ResourceMomentFormat10.value) : '';
-        },
-      };
+    getBodyCellScopedSlots({ value, record, column }) {
+      const { dataIndex } = column;
+
+      if (dataIndex === 'sex') {
+        return Dict.value.SystemTestSexSelect.value.find((t) => t.value == record.sex).label;
+      }
+
+      if (dataIndex === 'birthday') {
+        return <DateDisplay.DateDisplay10 value={record.birthday} />;
+      }
     },
-    renderSearchForm(h) {
+    renderSearchForm() {
       return (
-        <SearchForm>
-          <SearchFormRow>
-            <SearchFormLabel style="width: 120px;">姓名：</SearchFormLabel>
-            <SearchFormValue>
-              {/*@ts-ignore*/}
-              <Input
-                style="width: 90%"
-                placeholder="姓名"
-                value={this.name}
-                onChange={(e) => {
-                  this.name = e.target.value.trim();
-                }}
-              />
-            </SearchFormValue>
+        <TableGridLayout
+          density="middle"
+          data={[
+            {
+              name: 'g1',
+              width: '100%',
+              columnCount: 3,
+              colgroup: [, 'auto', , 'auto', , 'auto'],
+              data: [
+                {
+                  key: 'UserName',
+                  label: <Label>姓名：</Label>,
+                  value: (
+                    <Value>
+                      <Input
+                        style="width: 90%"
+                        placeholder="姓名"
+                        value={this.name}
+                        onChange={(e) => {
+                          this.name = e?.target?.value?.trim?.();
+                        }}
+                      />
+                    </Value>
+                  ),
+                },
+                {
+                  key: 'sex',
+                  label: <Label>性别：</Label>,
+                  value: (
+                    <Value>
+                      <Select
+                        style="width: 90%"
+                        value={this.sex}
+                        getPopupContainer={Resource.Dict.value.FormPopupContainer.value}
+                        onChange={(v) => {
+                          this.sex = v;
+                        }}
+                      >
+                        {Resource.Dict.value.ResourceNormalSex.value.map((t) => (
+                          <Option key={t.value} value={t.value}>
+                            {t.label}
+                          </Option>
+                        ))}
+                      </Select>
+                    </Value>
+                  ),
+                },
+                {
+                  key: 'birthday',
+                  label: <Label>出生年月：</Label>,
+                  value: (
+                    <Value>
+                      <RangePicker
+                        style="width: 90%"
+                        value={[this.startTime, this.endTime]}
+                        getPopupContainer={Resource.Dict.value.FormPopupContainer.value}
+                        onChange={(moments) => {
+                          this.startTime = moments.length ? moments[0] : null;
 
-            <SearchFormLabel style="width: 120px;">性别：</SearchFormLabel>
-            <SearchFormValue>
-              {/*@ts-ignore*/}
-              <Select
-                style="width: 90%"
-                value={this.sex}
-                getPopupContainer={Resource.Dict.value.FormPopupContainer.value}
-                onChange={(v) => {
-                  this.sex = v;
-                }}
-              >
-                {Resource.Dict.value.ResourceNormalSex.value.map((t) => (
-                  // @ts-ignore*
-                  <Option key={t.value} value={t.value}>
-                    {t.label}
-                  </Option>
-                ))}
-              </Select>
-            </SearchFormValue>
+                          this.endTime = moments.length ? moments[1] : null;
+                        }}
+                      />
+                    </Value>
+                  ),
+                },
+                {
+                  key: 'homeTown',
+                  label: <Label>籍贯：</Label>,
+                  value: (
+                    <Value>
+                      <Input
+                        style="width: 90%"
+                        placeholder="籍贯"
+                        value={this.homeTown}
+                        onChange={(e) => {
+                          this.homeTown = e?.target?.value?.trim?.();
+                        }}
+                      />
+                    </Value>
+                  ),
+                },
+                {
+                  key: 'height',
+                  label: <Label>身高：</Label>,
+                  value: (
+                    <Value>
+                      <InputNumber
+                        style="width: 90%"
+                        placeholder="身高"
+                        value={this.height}
+                        onChange={(v) => {
+                          this.height = v;
+                        }}
+                      />
+                    </Value>
+                  ),
+                },
+                {
+                  key: 'width',
+                  label: <Label>体重：</Label>,
+                  value: (
+                    <Value>
+                      <InputNumber
+                        style="width: 90%"
+                        placeholder="体重"
+                        value={this.width}
+                        onChange={(v) => {
+                          this.width = v;
+                        }}
+                      />
+                    </Value>
+                  ),
+                },
+                {
+                  key: 'deptCode',
+                  label: <Label>所在部门：</Label>,
+                  value: (
+                    <Value>
+                      <Select
+                        style="width: 90%"
+                        value={this.deptCode}
+                        onChange={(v) => {
+                          this.deptCode = v;
+                        }}
+                        getPopupContainer={Resource.Dict.value.FormPopupContainer.value}
+                      >
+                        <Option value="">全部</Option>
 
-            <SearchFormLabel style="width: 120px;">出生年月：</SearchFormLabel>
-            <SearchFormValue>
-              {/*@ts-ignore*/}
-              <RangePicker
-                style="width: 90%"
-                value={[this.startTime, this.endTime]}
-                getPopupContainer={Resource.Dict.value.FormPopupContainer.value}
-                onChange={(moments) => {
-                  this.startTime = moments.length ? moments[0] : null;
+                        <Option value="0">产品部</Option>
 
-                  this.endTime = moments.length ? moments[1] : null;
-                }}
-                getCalendarContainer={(el) => el.parentElement}
-              />
-            </SearchFormValue>
-          </SearchFormRow>
+                        <Option value="1">开发部</Option>
 
-          <SearchFormRow>
-            <SearchFormLabel style="width: 120px;">籍贯：</SearchFormLabel>
-            <SearchFormValue>
-              {/*@ts-ignore*/}
-              <Input
-                style="width: 90%"
-                placeholder="籍贯"
-                value={this.homeTown}
-                onChange={(e) => {
-                  this.homeTown = e.target.value.trim();
-                }}
-              />
-            </SearchFormValue>
-
-            <SearchFormLabel style="width: 120px;">身高：</SearchFormLabel>
-            <SearchFormValue>
-              {/*@ts-ignore*/}
-              <InputNumber
-                style="width: 90%"
-                placeholder="身高"
-                value={this.height}
-                onChange={(v) => {
-                  this.height = v;
-                }}
-              />
-            </SearchFormValue>
-
-            <SearchFormLabel style="width: 120px;">体重：</SearchFormLabel>
-            <SearchFormValue>
-              {/*@ts-ignore*/}
-              <InputNumber
-                style="width: 90%"
-                placeholder="体重"
-                value={this.width}
-                onChange={(v) => {
-                  this.width = v;
-                }}
-              />
-            </SearchFormValue>
-          </SearchFormRow>
-
-          <SearchFormRow>
-            <SearchFormLabel style="width: 120px;">所在部门：</SearchFormLabel>
-            <SearchFormValue>
-              {/*@ts-ignore*/}
-              <Select
-                style="width: 90%"
-                value={this.deptCode}
-                onChange={(v) => {
-                  this.deptCode = v;
-                }}
-                getPopupContainer={Resource.Dict.value.FormPopupContainer.value}
-              >
-                {/*@ts-ignore*/}
-                <Option value="">全部</Option>
-
-                {/*@ts-ignore*/}
-                <Option value="0">产品部</Option>
-
-                {/*@ts-ignore*/}
-                <Option value="1">开发部</Option>
-
-                {/*@ts-ignore*/}
-                <Option value="2">工程部</Option>
-              </Select>
-            </SearchFormValue>
-          </SearchFormRow>
-        </SearchForm>
+                        <Option value="2">工程部</Option>
+                      </Select>
+                    </Value>
+                  ),
+                },
+              ],
+            },
+          ]}
+        />
       );
     },
     renderSearchFooterItems() {
@@ -280,6 +306,7 @@ export default {
           // @ts-ignore
           .get({
             mock: true,
+            // @ts-ignore
             path: require('./mock.js').default,
           })
           .then((result: any) => {
@@ -296,10 +323,10 @@ export default {
       const { pagination } = this;
 
       if (pagination) {
-        return this.getSearchTablePagination();
+        return this.$getPaginationSearchTable();
       }
 
       return false;
     },
   },
-};
+});

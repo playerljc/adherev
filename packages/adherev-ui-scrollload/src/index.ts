@@ -1,24 +1,28 @@
+import { App, Plugin } from 'vue';
+
 import BfdUtil from '@baifendian/adherev-util';
-import ScrollLoad, { ERROR, EMPTY, NORMAL } from './scrollload';
+import Intl from '@baifendian/adherev-util-intl';
+
+import ScrollLoad, { EMPTY, ERROR, NORMAL } from './scrollload';
 
 const {
-  _util: { withInstall, withVue },
+  _util: { withVue },
 } = BfdUtil;
 
-const Component = withInstall(ScrollLoad);
+ScrollLoad.ERROR = ERROR;
+ScrollLoad.EMPTY = EMPTY;
+ScrollLoad.NORMAL = NORMAL;
+ScrollLoad.install = function (app: App) {
+  app.component(Intl.name, Intl);
+  app.component(ScrollLoad.name, ScrollLoad);
+  withVue(app, 'ScrollLoad', ScrollLoad);
 
-Component.isUse = () => true;
-
-Component.use = (Vue) => {
-  Vue.use(Component);
-  withVue(Vue, 'ScrollLoad', Component);
+  return app;
 };
 
-// @ts-ignore
-ScrollLoad.ERROR = ERROR;
-// @ts-ignore
-ScrollLoad.EMPTY = EMPTY;
-// @ts-ignore
-ScrollLoad.NORMAL = NORMAL;
-
-export default Component;
+export default ScrollLoad as typeof ScrollLoad &
+  Plugin & {
+    readonly NORMAL: typeof NORMAL;
+    readonly EMPTY: typeof EMPTY;
+    readonly ERROR: typeof ERROR;
+  };

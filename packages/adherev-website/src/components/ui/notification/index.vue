@@ -36,6 +36,7 @@
 import { Notification } from '@baifendian/adherev';
 
 export default {
+  displayName: 'notification',
   data() {
     return {
       config: [

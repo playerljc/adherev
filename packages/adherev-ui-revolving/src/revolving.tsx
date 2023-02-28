@@ -1,143 +1,97 @@
-import { VNode } from 'vue';
 import classNames from 'classnames';
 import Swiper from 'swiper';
+import { CSSProperties, computed, defineComponent, onMounted, onUpdated, ref } from 'vue';
+import { bool, number, object, string } from 'vue-types';
 
 const selectorPrefix = 'adherev-ui-revolving';
 
-export default {
-  name: 'adv-revolving',
-  props: {
-    classNameWrapper: {
-      type: String,
-      default: '',
-    },
-    wrapperStyle: {
-      type: String,
-      default: '',
-    },
-    speed: {
-      type: Number,
-      default: 1000,
-    },
-    delay: {
-      type: Number,
-      default: 1000,
-    },
-    direction: {
-      type: String,
-      default: 'top',
-      validator(val) {
-        return ['top', 'right', 'bottom', 'left'].indexOf(val) !== -1;
-      },
-    },
-    loop: {
-      type: Boolean,
-      default: true,
-    },
-    stopOnLastSlide: {
-      type: Boolean,
-      default: false,
-    },
-    listeners: {
-      type: Object,
-      default: () => {},
-    },
-  },
-  data() {
-    return {
-      $swiper: null,
-    };
-  },
-  computed: {
-    getClass() {
-      return classNames(selectorPrefix, 'swiper-container');
-    },
-    getWrapperClass() {
-      const { classNameWrapper } = this;
+enum direction {
+  top = 'top',
+  right = 'right',
+  bottom = 'bottom',
+  left = 'left',
+}
 
-      return classNames(
+export const revolvingProps = {
+  classNameWrapper: string().def(''),
+  wrapperStyle: object<CSSProperties>().def({}),
+  speed: number().def(1000),
+  delay: number().def(1000),
+  direction: string().def(direction.top),
+  loop: bool().def(true),
+  stopOnLastSlide: bool().def(false),
+  listeners: object<object>().def({}),
+};
+
+export default defineComponent({
+  name: 'adv-revolving',
+  props: revolvingProps,
+  setup(props, { expose, slots }) {
+    const el = ref<HTMLDivElement>();
+    const wrapperEl = ref<HTMLDivElement>();
+
+    const getWrapperClass = computed(() =>
+      classNames(
         `${selectorPrefix}-wrapper`,
         'swiper-wrapper',
-        classNameWrapper.split(/\s+/),
-      );
-    },
-    getWrapperStyle() {
-      return this.styleWrapper;
-    },
-  },
-  mounted() {
-    this.initial();
-  },
-  updated() {
-    this.initial();
-  },
-  methods: {
-    initial() {
-      const {
-        $refs: { el },
-        $data,
-        speed,
-        delay,
-        loop,
-        direction,
-        stopOnLastSlide,
-        listeners,
-      } = this;
+        (props.classNameWrapper || '').split(/\s+/),
+      ),
+    );
 
-      if ($data.$swiper) {
-        // $data.$swiper.destory();
-        if ('destory' in $data.$swiper && $data.$swiper.destory instanceof Function) {
-          $data.$swiper.destory();
+    let swiper: any = null;
+
+    const initial = () => {
+      if (swiper) {
+        if ('destory' in swiper && swiper.destory instanceof Function) {
+          swiper.destory();
         }
 
-        $data.$swiper = null;
+        swiper = null;
       }
 
-      $data.$swiper = new Swiper(el, {
+      swiper = new Swiper(el.value, {
         allowTouchMove: false,
-        direction: this.getDirection(direction),
-        loop,
-        speed,
+        direction: getDirection(props.direction),
+        loop: props.loop,
+        speed: props.speed,
         autoplay: {
-          delay,
-          stopOnLastSlide,
-          reverseDirection: direction === 'right' || direction === 'bottom',
+          delay: props.delay,
+          stopOnLastSlide: props.stopOnLastSlide,
+          reverseDirection: props.direction === 'right' || props.direction === 'bottom',
         },
-        on: listeners,
+        on: props.listeners,
       });
-    },
-    getDirection(direction) {
-      return direction === 'left' || direction === 'right' ? 'horizontal' : 'vertical';
-    },
-    /**
-     * start
-     */
-    start() {
-      this.$data.$swiper.autoplay.start();
-    },
-    /**
-     * stop
-     */
-    stop() {
-      this.$data.$swiper.autoplay.stop();
-    },
-    /**
-     * isRunning
-     * @return {boolean}
-     */
-    isRunning() {
-      return this.$data.$swiper.autoplay.running;
-    },
-  },
-  render(h): VNode {
-    const { $slots } = this;
+    };
 
-    return (
-      <div class={this.getClass} ref="el">
-        <div class={this.getWrapperClass} style={this.getWrapperStyle} ref="wrapperEl">
-          {$slots.default}
+    const getDirection = (direction: string) =>
+      direction === 'left' || direction === 'right' ? 'horizontal' : 'vertical';
+
+    const start = () => swiper.autoplay.start();
+
+    const stop = () => swiper.autoplay.stop();
+
+    const isRunning = () => swiper.autoplay.running;
+
+    onMounted(() => {
+      initial();
+    });
+
+    onUpdated(() => {
+      initial();
+    });
+
+    expose({
+      start,
+      stop,
+      isRunning,
+    });
+
+    return () => (
+      <div class={classNames(selectorPrefix, 'swiper-container')} ref={el}>
+        <div class={getWrapperClass.value} style={props.wrapperStyle} ref={wrapperEl}>
+          {slots?.default?.()}
         </div>
       </div>
     );
   },
-};
+});

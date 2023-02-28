@@ -31,6 +31,7 @@ list.length = 50;
 list.fill(0);
 
 export default {
+  displayName: 'css',
   data() {
     return {
       gridData: list.map((t, index) => ({

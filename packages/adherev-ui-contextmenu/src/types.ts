@@ -1,26 +1,18 @@
+import { App, CSSProperties, ExtractPropTypes } from 'vue';
+
+import { contextMenuProps } from './ContextMenu';
+import { menuProps } from './Menu';
+import { menuItemProps } from './MenuItem';
+import { subMenuProps } from './SubMenu';
+
 export interface IMenuProps {
   data: Array<IData>;
   className: string;
-  styleName: string;
+  style: CSSProperties;
 }
 
 export interface IMenuItemProps {
   data: IData;
-}
-
-export type ISubMenuProps = IMenuProps;
-
-export type ContextMenuType = {
-  isUse?(): boolean;
-  use?(Vue: any): void;
-  open(data: IData, config: IConfig): void;
-  close(params: { vm: any; el: HTMLElement });
-};
-
-export interface IContextMenuComponentProps {
-  data: Array<IData>;
-  config: IData;
-  el: HTMLElement;
 }
 
 export interface IConfig {
@@ -30,18 +22,35 @@ export interface IConfig {
   maskClosable: boolean;
   handler: Function;
   className: string;
+  style: CSSProperties;
 }
 
 export interface IData {
-  name: string | Object | Function; // 名字
-  icon: string | Object | Function; // 图标
-  id: string; // 唯一的id
-  disabled: boolean; // 不可用
-  separation: boolean; // 分割线
-  attribute: Object; // 自定义属性
-  children: Array<IData>; // 孩子
-  className: string;
-  styleName: string;
-  subMenuClassName: string;
-  subMenuStyleName: string;
+  name?: string | Object | Function; // 名字
+  icon?: string | Object | Function; // 图标
+  id?: string; // 唯一的id
+  disabled?: boolean; // 不可用
+  separation?: boolean; // 分割线
+  attribute?: Object; // 自定义属性
+  children?: Array<IData>; // 孩子
+  className?: string;
+  style?: CSSProperties;
+  subMenuClassName?: string;
+  subMenuStyle?: CSSProperties;
 }
+
+export interface IConfig {
+  beforeMount(app: any): void;
+}
+
+export interface IComponent {
+  install?: (app: App) => App<any>;
+  open(data: IData[], defaultConfig: IConfig): void;
+  close(params: { vm: any; el: HTMLElement }): void;
+  setConfig(config: IConfig): void;
+}
+
+export type ContextMenuProps = Partial<ExtractPropTypes<typeof contextMenuProps>>;
+export type MenuProps = Partial<ExtractPropTypes<typeof menuProps>>;
+export type MenuItemProps = Partial<ExtractPropTypes<typeof menuItemProps>>;
+export type SubMenuProps = Partial<ExtractPropTypes<typeof subMenuProps>>;

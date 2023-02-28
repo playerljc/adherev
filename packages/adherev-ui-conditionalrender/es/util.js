@@ -1,0 +1,2 @@
+import"core-js/modules/es.array.map.js";function deal(l){var e,o=l.conditional,s=l.rule,p=l.ruleVisibleValue,r=l.ruleHideValue,l=l.slots,t=null;return{defaultVNodes:null==(e=null==l?void 0:l.default)?void 0:e.call(l).map(function(l){return l.props?"style"in l.props||(l.props.style={}):l.props={style:{}},l.props.style[s]=o?p:r,l}),noMatchVNodes:t=l.noMatch?l.noMatch().map(function(l){return l.props?"style"in l.props||(l.props.style={}):l.props={style:{}},l.props.style[s]=o?r:p,l}):t}}export{deal};
+//# sourceMappingURL=util.js.map

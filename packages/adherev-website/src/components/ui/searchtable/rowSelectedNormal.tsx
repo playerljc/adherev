@@ -1,5 +1,6 @@
-import Table from './table';
 import { SearchTable } from '@baifendian/adherev';
+
+import Table from './table';
 
 export default {
   mixins: [Table],

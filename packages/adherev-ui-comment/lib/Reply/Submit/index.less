@@ -1,0 +1,40 @@
+.adherev-ui-comment-reply {
+  .adherev-ui-comment-reply-textarea-wrap {
+    margin-bottom: 20px;
+
+    .adherev-ui-comment-reply-textarea {
+      height: 80px;
+    }
+  }
+
+  .adherev-ui-comment-reply-toolbar-emoji-wrap {
+    position: absolute;
+  }
+
+  .adherev-ui-comment-reply-toolbar {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 15px 0;
+
+    .adherev-ui-comment-reply-toolbar-item-emoji {
+      font-size: 25px;
+      &:hover {
+        cursor: pointer;
+      }
+    }
+
+    .adherev-ui-comment-reply-toolbar-inner {
+      display: flex;
+      align-items: center;
+
+      > .adherev-ui-comment-reply-toolbar-item {
+        &:not(:last-child) {
+          margin-right: 10px;
+        }
+      }
+    }
+  }
+}

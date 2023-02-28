@@ -7,115 +7,107 @@
 
     <adv-playground-page-code-box-section title="代码演示" :config="codeBoxPanelConfig">
       <template #p1>
-        <fragment>
-          <adv-flexlayout direction="horizontal" style="height: 200px; border: 1px solid #ccc">
-            <adv-flexlayout-fixed style="width: 30px" />
-            <adv-splitlayout />
-            <adv-flexlayout-auto />
-          </adv-flexlayout>
+        <adv-flexlayout direction="horizontal" style="height: 200px; border: 1px solid #ccc">
+          <adv-flexlayout-fixed style="width: 30px" />
+          <adv-splitlayout />
+          <adv-flexlayout-auto />
+        </adv-flexlayout>
 
-          <adv-space :size="30" />
+        <adv-space :size="30" />
 
-          <adv-flexlayout direction="horizontal" style="height: 200px; border: 1px solid #ccc">
-            <adv-flexlayout-auto />
-            <adv-splitlayout />
-            <adv-flexlayout-fixed style="width: 30px" />
-          </adv-flexlayout>
+        <adv-flexlayout direction="horizontal" style="height: 200px; border: 1px solid #ccc">
+          <adv-flexlayout-auto />
+          <adv-splitlayout />
+          <adv-flexlayout-fixed style="width: 30px" />
+        </adv-flexlayout>
 
-          <adv-space :size="30" />
+        <adv-space :size="30" />
 
-          <adv-flexlayout style="height: 200px; border: 1px solid #ccc">
-            <adv-flexlayout-fixed style="height: 30px" />
-            <adv-splitlayout style="width: auto" />
-            <adv-flexlayout-auto />
-          </adv-flexlayout>
+        <adv-flexlayout style="height: 200px; border: 1px solid #ccc">
+          <adv-flexlayout-fixed style="height: 30px" />
+          <adv-splitlayout style="width: auto" />
+          <adv-flexlayout-auto />
+        </adv-flexlayout>
 
-          <adv-space :size="30" />
+        <adv-space :size="30" />
 
-          <adv-flexlayout style="height: 200px; border: 1px solid #ccc">
-            <adv-flexlayout-auto />
-            <adv-splitlayout style="width: auto" />
-            <adv-flexlayout-fixed style="height: 30px" />
-          </adv-flexlayout>
-        </fragment>
+        <adv-flexlayout style="height: 200px; border: 1px solid #ccc">
+          <adv-flexlayout-auto />
+          <adv-splitlayout style="width: auto" />
+          <adv-flexlayout-fixed style="height: 30px" />
+        </adv-flexlayout>
       </template>
 
       <template #p2>
-        <fragment>
-          <adv-flexlayout direction="horizontal" style="height: 200px; border: 1px solid #ccc">
-            <adv-flexlayout-fixed style="width: 30px" />
-            <adv-splitlayout style="width: auto" />
-            <adv-flexlayout-auto />
-            <adv-splitlayout style="width: auto" />
-            <adv-flexlayout-fixed style="width: 30px" />
-          </adv-flexlayout>
+        <adv-flexlayout direction="horizontal" style="height: 200px; border: 1px solid #ccc">
+          <adv-flexlayout-fixed style="width: 30px" />
+          <adv-splitlayout style="width: auto" />
+          <adv-flexlayout-auto />
+          <adv-splitlayout style="width: auto" />
+          <adv-flexlayout-fixed style="width: 30px" />
+        </adv-flexlayout>
 
-          <adv-space :size="30" />
+        <adv-space :size="30" />
 
-          <adv-flexlayout style="height: 200px; border: 1px solid #ccc">
-            <adv-flexlayout-fixed style="height: 30px" />
-            <adv-splitlayout style="width: auto" />
-            <adv-flexlayout-auto />
-            <adv-splitlayout style="width: auto" />
-            <adv-flexlayout-fixed style="height: 30px" />
-          </adv-flexlayout>
-        </fragment>
+        <adv-flexlayout style="height: 200px; border: 1px solid #ccc">
+          <adv-flexlayout-fixed style="height: 30px" />
+          <adv-splitlayout style="width: auto" />
+          <adv-flexlayout-auto />
+          <adv-splitlayout style="width: auto" />
+          <adv-flexlayout-fixed style="height: 30px" />
+        </adv-flexlayout>
       </template>
 
       <template #p3>
-        <fragment>
-          <adv-flexlayout direction="horizontal" style="height: 200px; border: 1px solid #ccc">
-            <adv-flexlayout-fixed style="width: 30px" />
-            <adv-splitlayout />
-            <adv-flexlayout-auto>
-              <adv-flexlayout>
-                <adv-flexlayout-fixed style="height: 30px" />
-                <adv-splitlayout style="width: auto" />
-                <adv-flexlayout-auto />
-                <adv-splitlayout style="width: auto" />
-                <adv-flexlayout-fixed style="height: 30px" />
-              </adv-flexlayout>
-            </adv-flexlayout-auto>
-            <adv-splitlayout />
-            <adv-flexlayout-fixed style="width: 30px" />
-          </adv-flexlayout>
+        <adv-flexlayout direction="horizontal" style="height: 200px; border: 1px solid #ccc">
+          <adv-flexlayout-fixed style="width: 30px" />
+          <adv-splitlayout />
+          <adv-flexlayout-auto>
+            <adv-flexlayout>
+              <adv-flexlayout-fixed style="height: 30px" />
+              <adv-splitlayout style="width: auto" />
+              <adv-flexlayout-auto />
+              <adv-splitlayout style="width: auto" />
+              <adv-flexlayout-fixed style="height: 30px" />
+            </adv-flexlayout>
+          </adv-flexlayout-auto>
+          <adv-splitlayout />
+          <adv-flexlayout-fixed style="width: 30px" />
+        </adv-flexlayout>
 
-          <adv-space :size="30" />
+        <adv-space :size="30" />
 
-          <adv-flexlayout style="height: 200px; border: 1px solid #ccc">
-            <adv-flexlayout-fixed style="height: 30px" />
-            <adv-splitlayout style="width: auto" />
-            <adv-flexlayout-auto>
-              <adv-flexlayout direction="horizontal">
-                <adv-flexlayout-fixed style="width: 30px" />
-                <adv-splitlayout />
-                <adv-flexlayout-auto />
-                <adv-splitlayout />
-                <adv-flexlayout-fixed style="width: 30px" />
-              </adv-flexlayout>
-            </adv-flexlayout-auto>
-            <adv-splitlayout style="width: auto" />
-            <adv-flexlayout-fixed style="height: 30px" />
-          </adv-flexlayout>
-        </fragment>
+        <adv-flexlayout style="height: 200px; border: 1px solid #ccc">
+          <adv-flexlayout-fixed style="height: 30px" />
+          <adv-splitlayout style="width: auto" />
+          <adv-flexlayout-auto>
+            <adv-flexlayout direction="horizontal">
+              <adv-flexlayout-fixed style="width: 30px" />
+              <adv-splitlayout />
+              <adv-flexlayout-auto />
+              <adv-splitlayout />
+              <adv-flexlayout-fixed style="width: 30px" />
+            </adv-flexlayout>
+          </adv-flexlayout-auto>
+          <adv-splitlayout style="width: auto" />
+          <adv-flexlayout-fixed style="height: 30px" />
+        </adv-flexlayout>
       </template>
 
       <template #p4>
-        <fragment>
-          <adv-flexlayout direction="horizontal" style="height: 200px; border: 1px solid #ccc">
-            <adv-flexlayout-fixed style="width: 30px" />
-            <adv-splitlayout min-size="20%" max-size="50%" />
-            <adv-flexlayout-auto />
-          </adv-flexlayout>
+        <adv-flexlayout direction="horizontal" style="height: 200px; border: 1px solid #ccc">
+          <adv-flexlayout-fixed style="width: 30px" />
+          <adv-splitlayout min-size="20%" max-size="50%" />
+          <adv-flexlayout-auto />
+        </adv-flexlayout>
 
-          <adv-space :size="30" />
+        <adv-space :size="30" />
 
-          <adv-flexlayout style="height: 400px; border: 1px solid #ccc">
-            <adv-flexlayout-fixed style="height: 30px" />
-            <adv-splitlayout min-size="20%" max-size="50%" style="width: auto" />
-            <adv-flexlayout-auto />
-          </adv-flexlayout>
-        </fragment>
+        <adv-flexlayout style="height: 400px; border: 1px solid #ccc">
+          <adv-flexlayout-fixed style="height: 30px" />
+          <adv-splitlayout min-size="20%" max-size="50%" style="width: auto" />
+          <adv-flexlayout-auto />
+        </adv-flexlayout>
       </template>
     </adv-playground-page-code-box-section>
 
@@ -125,6 +117,7 @@
 
 <script>
 export default {
+  displayName: 'splitlayout',
   data() {
     return {
       scrollEl: null,

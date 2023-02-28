@@ -1,0 +1,2 @@
+import MessageDialog from"@baifendian/adherev-ui-messagedialog";import Util from"@baifendian/adherev-util";import Intl from"@baifendian/adherev-util-intl";import ImportantConfirm,{open}from"./importantconfirm";var withVue=Util._util.withVue;ImportantConfirm.open=open,ImportantConfirm.install=function(t){return t.use(MessageDialog),t.use(Intl),t.component(ImportantConfirm.name,ImportantConfirm),withVue(t,"ImportantConfirm",ImportantConfirm),t};export default ImportantConfirm;
+//# sourceMappingURL=index.js.map

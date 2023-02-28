@@ -1,0 +1,2 @@
+import{createApp,h}from"vue";import FlexLayout from"@baifendian/adherev-ui-flexlayout";import Dict from"@baifendian/adherev-util-dict";import AntdFormItem from"../index";import TestDist from"./dict.test.config";import Test from"./test";import"../index.less";Dict.init([TestDist],{isFunMemo:!1});var app=createApp({render:function(){return h(Test)}});AntdFormItem.FormItemGeneratorToDict.init(app),app.use(AntdFormItem),app.use(Dict),app.use(FlexLayout),app.mount("#app");
+//# sourceMappingURL=index.js.map

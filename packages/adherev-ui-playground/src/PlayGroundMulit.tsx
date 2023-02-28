@@ -1,85 +1,91 @@
+import omit from 'omit.js';
+import { defineComponent, ref, watch } from 'vue';
+import { array } from 'vue-types';
+
 import ConditionalRender from '@baifendian/adherev-ui-conditionalrender';
-// @ts-ignore
 import ContextMenu from '@baifendian/adherev-ui-contextmenu';
 
 import Card from './Card';
-
-import PlayGroundMixins, { PlaygroundMixinsProps } from './PlayGroundMixins';
 import CodePanel from './CodePanel';
 import CodeTabPanel from './CodeTabPanel';
+import PlayGroundBase, { playGroundBaseProps } from './PlayGroundBase';
+import { CodePanelProps, CodeTabPanelProps } from './types';
 
 const selectPrefix = 'adherev-ui-playground-mulit';
 
-export const PlayGroundMulitPropTypes = {
-  ...PlaygroundMixinsProps,
-  defaultConfig: {
-    type: Array,
-    default: () => [],
-  },
+enum codeType {
+  CodePanel = 'CodePanel',
+  CodeTabPanel = 'CodeTabPanel',
+}
+
+type ConfigItem = (CodePanelProps | CodeTabPanelProps) & {
+  type: codeType;
+  title: string;
 };
 
-export default {
+export const playGroundMulitProps = {
+  ...playGroundBaseProps,
+  defaultConfig: array<ConfigItem>().def([]),
+};
+
+export default defineComponent({
   name: 'adv-playground-mulit',
-  mixins: [PlayGroundMixins],
-  props: {
-    ...PlayGroundMulitPropTypes,
-  },
-  data() {
-    return {
-      $configMap: new Map<
-        string,
+  props: playGroundMulitProps,
+  setup(props, { slots }) {
+    const others = omit(playGroundBaseProps, ['getClipboardText', 'defaultExpand']);
+
+    const expand = ref<boolean>(props.defaultExpand);
+
+    const config = ref<ConfigItem[]>(props.defaultConfig);
+
+    const configMap = new Map<
+      codeType,
+      {
+        render(config: Pick<ConfigItem, never>, index?: number): JSX.Element;
+        getCodeText(config: any): string;
+      }
+    >([
+      [
+        codeType.CodePanel,
         {
-          render: (h: any, config: any, index: number) => Object;
-          getCodeText: (config: any) => string;
-        }
-      >([
-        [
-          'CodePanel',
-          {
-            render: (h, { type, codeText, title, ...config }) => (
-              // @ts-ignore
-              <CodePanel {...{ props: config }}>{codeText}</CodePanel>
-            ),
-            getCodeText: (config) => config.codeText,
-          },
-        ],
-        [
-          'CodeTabPanel',
-          {
-            render: (h, { type, ...props }, index: number) => {
-              return (
-                // @ts-ignore
-                <CodeTabPanel
-                  {...{ props }}
-                  onChange={(key) => {
-                    const config = [...this.config];
+          render: (config): JSX.Element => <CodePanel {...config} />,
+          getCodeText: (config) => config.codeText,
+        },
+      ],
+      [
+        codeType.CodeTabPanel,
+        {
+          render: (_config, index: number) => (
+            <CodeTabPanel
+              {..._config}
+              onChange={(key: any) => {
+                (config.value[index] as any).active = key;
+              }}
+            />
+          ),
+          getCodeText: (config) =>
+            config.config.find((c: { key: any }) => c.key === config.active)?.codeText,
+        },
+      ],
+    ]);
 
-                    config[index].active = key;
-
-                    this.config = config;
-                  }}
-                />
-              );
-            },
-            getCodeText: (item) => item.config.find((c) => c.key === item.active)?.codeText,
-          },
-        ],
-      ]),
-      config: this.defaultConfig,
+    const renderCodePanelView = (config: ConfigItem, index: number): JSX.Element => {
+      return (
+        <div key={`${index}`} class={`${selectPrefix}-codeviewwrap`}>
+          <div class={`${selectPrefix}-codeviewwrap-title`}>{config.title}</div>
+          <div class={`${selectPrefix}-codeviewwrap-inner`}>
+            {configMap
+              .get(config.type || codeType.CodePanel)
+              ?.render(omit(config, ['title', 'type']), index)}
+          </div>
+        </div>
+      );
     };
-  },
-  watch: {
-    defaultConfig(defaultConfig) {
-      this.config = defaultConfig;
-    },
-  },
-  methods: {
-    getClipboardText(e) {
-      const { config, $data } = this;
 
+    const getClipboardText = (e: { clientX: any; clientY: any }): Promise<string> => {
       return new Promise((resolve) => {
         ContextMenu.open(
-          config.map((c, index) => ({
+          config.value.map((c, index) => ({
             name: c.title,
             id: `${index}`,
             separation: false,
@@ -88,44 +94,66 @@ export default {
             },
             children: [],
           })),
+
           // @ts-ignore
           {
             width: 200,
             x: e.clientX,
             y: e.clientY,
             maskClosable: true,
-            handler: (id, attribute) => {
+            handler: (id: any, attribute: any) => {
               resolve(
-                $data.$configMap
-                  .get(attribute.config.type || 'CodePanel')
-                  ?.getCodeText(attribute.config),
+                configMap
+                  ?.get(attribute.config.type || codeType.CodePanel)
+                  ?.getCodeText(attribute.config) as string,
               );
             },
           },
         );
       });
-    },
-    renderCodePanelView(h, c, index) {
-      const { $data } = this;
+    };
+
+    const onExpand = (_expand: boolean) => {
+      expand.value = !_expand;
+    };
+
+    watch(
+      () => props.defaultExpand,
+      (newValue) => {
+        expand.value = newValue;
+      },
+    );
+
+    watch(
+      () => props.defaultConfig,
+      (newValue) => {
+        config.value = newValue;
+      },
+    );
+
+    return () => {
+      const _playGroundBaseProps = {};
+      for (const p in others) {
+        _playGroundBaseProps[p] = props[p];
+      }
 
       return (
-        <div key={`${index}`} class={`${selectPrefix}-codeviewwrap`}>
-          <div class={`${selectPrefix}-codeviewwrap-title`}>{c.title}</div>
-          <div class={`${selectPrefix}-codeviewwrap-inner`}>
-            {$data.$configMap.get(c.type || 'CodePanel').render(h, c, index)}
-          </div>
-        </div>
+        <PlayGroundBase
+          {..._playGroundBaseProps}
+          defaultExpand={expand.value}
+          getClipboardText={getClipboardText}
+          onExpand={onExpand}
+        >
+          {{
+            default: () => slots?.default?.(),
+            codeView: () => (
+              <ConditionalRender.Show conditional={expand.value}>
+                <Card>{(config.value || []).map((c, index) => renderCodePanelView(c, index))}</Card>
+              </ConditionalRender.Show>
+            ),
+          }}
+        </PlayGroundBase>
       );
-    },
-    renderCodeView(h) {
-      const { expand, config } = this;
-
-      return (
-        <ConditionalRender.Show conditional={expand}>
-          {/*@ts-ignore*/}
-          <Card>{(config || []).map((c, index) => this.renderCodePanelView(h, c, index))}</Card>
-        </ConditionalRender.Show>
-      );
-    },
+    };
   },
-};
+});

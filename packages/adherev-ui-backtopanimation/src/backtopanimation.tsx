@@ -1,74 +1,99 @@
-import { VNode } from 'vue';
+import { defineComponent, onBeforeUnmount, onMounted, ref } from 'vue';
+import { integer, number, oneOfType, string } from 'vue-types';
+
 import Resource from '@baifendian/adherev-util-resource';
 
 const selectorPrefix = 'adherev-ui-backtopanimation';
 
-export default {
+export const backTopAnimationProps = {
+  className: string().def(''),
+  zIndex: oneOfType([string(), number()]).def(Resource.Dict.value.ResourceNormalMaxZIndex.value),
+  duration: integer().def(300),
+};
+
+export default defineComponent({
   name: 'adv-backtopanimation',
-  props: {
-    className: {
-      type: String,
-      default: '',
-    },
-    zIndex: {
-      type: [String, Number],
-      default: Resource.Dict.value.ResourceNormalMaxZIndex.value,
-    },
-    duration: {
-      type: Number,
-      default: 300,
-    },
-  },
-  data() {
-    return {
-      $maskEl: null,
-      $scrollEl: null,
-      $key: false,
+  props: backTopAnimationProps,
+  emits: ['trigger', 'scrollTop', 'target'],
+  setup(props, { emit }) {
+    const root = ref<HTMLDivElement>();
+
+    let scrollEl: HTMLElement | null = null;
+    let maskEl: HTMLElement | null = null;
+    let key: boolean = false;
+
+    onMounted(() => {
+      renderMask();
+      initScrollEvent();
+    });
+
+    onBeforeUnmount(() => {
+      if (maskEl) {
+        try {
+          maskEl?.parentElement?.removeChild(maskEl);
+        } catch (e) {}
+      }
+    });
+
+    const initScrollEvent = () => {
+      emit('target', (target: HTMLElement | null) => {
+        scrollEl = target;
+
+        if (!maskEl || !scrollEl) return;
+
+        scrollEl.addEventListener(
+          'scroll',
+          () => {
+            if (!maskEl || !scrollEl || !root.value) return;
+
+            if (scrollEl.scrollTop !== 0) {
+              root.value && (root.value.style.display = 'block');
+            } else {
+              root.value && (root.value.style.display = 'none');
+            }
+          },
+          false,
+        );
+      });
     };
-  },
-  mounted() {
-    this.initScrollEvent();
 
-    this.renderMask();
-  },
-  beforeDestroy() {
-    const { $data } = this;
+    const renderMask = () => {
+      maskEl = document.body.querySelector(`.${selectorPrefix}-mask`);
 
-    if ($data.$maskEl) {
-      try {
-        $data.$maskEl.parentElement.removeChild($data.$maskEl);
-      } catch (e) {}
-    }
-  },
-  methods: {
-    trigger() {
-      if (this.$data.$key) return;
+      if (!maskEl) {
+        maskEl = document.createElement('div');
+        maskEl.className = `${selectorPrefix}-mask`;
+        document.body.appendChild(maskEl);
+      }
+    };
 
-      const self = this;
+    const trigger = () => {
+      if (key) return;
 
-      this.$emit('trigger', () => {
-        const { $data, duration } = self;
+      emit('trigger', () => {
+        if (!maskEl || !scrollEl) return;
 
-        $data.$key = true;
+        key = true;
 
-        $data.$maskEl.style.display = 'block';
+        maskEl.style.display = 'block';
 
-        let scrollVal = $data.$scrollEl.scrollTop;
+        let scrollVal = scrollEl.scrollTop;
+
         const targetTop = 0;
 
         // 一次滚动的步进
         const step =
-          $data.$scrollEl.scrollHeight /
-          //@ts-ignore
-          (duration / (screen.updateInterval || 16.7) +
-            //@ts-ignore
-            (duration % (screen.updateInterval || 16.7) !== 0 ? 1 : 0));
+          scrollEl.scrollHeight /
+          (props.duration / ((screen as any).updateInterval || 16.7) +
+            (props.duration % ((screen as any).updateInterval || 16.7) !== 0 ? 1 : 0));
 
         /**
          * 动画的滚动
          */
         function scrollAnimation() {
-          if ($data.$scrollEl.scrollTop < targetTop) {
+          if (!maskEl || !scrollEl) return;
+
+          if (scrollEl && scrollEl.scrollTop < targetTop) {
             if (scrollVal + step > targetTop) {
               scrollVal = targetTop;
             } else {
@@ -80,11 +105,13 @@ export default {
             scrollVal -= step;
           }
 
-          $data.$scrollEl.scrollTop = scrollVal;
+          if (scrollEl) {
+            scrollEl.scrollTop = scrollVal;
+          }
 
-          self.$emit('scrollTop', scrollVal);
+          emit('scrollTop', scrollVal);
 
-          if ($data.$scrollEl.scrollTop < targetTop) {
+          if (scrollEl.scrollTop < targetTop) {
             if (scrollVal >= targetTop) {
               clear();
             } else {
@@ -97,61 +124,26 @@ export default {
           }
 
           function clear() {
-            $data.$maskEl.style.display = 'none';
+            if (!maskEl || !scrollEl) return;
 
-            $data.$key = false;
+            maskEl.style.display = 'none';
+
+            key = false;
           }
         }
 
         window.requestAnimationFrame(scrollAnimation);
       });
-    },
-    initScrollEvent() {
-      const self = this;
+    };
 
-      this.$emit('target', (target) => {
-        const { $data, $refs } = self;
-
-        $data.$scrollEl = target;
-
-        $data.$scrollEl.addEventListener(
-          'scroll',
-          () => {
-            if ($data.$scrollEl.scrollTop !== 0) {
-              window.requestAnimationFrame(() => {
-                $refs.ref.style.display = 'block';
-              });
-            } else {
-              window.requestAnimationFrame(() => {
-                $refs.ref.style.display = 'none';
-              });
-            }
-          },
-          false,
-        );
-      });
-    },
-    renderMask() {
-      const { $data } = this;
-
-      $data.$maskEl = document.body.querySelector(`.${selectorPrefix}-mask`);
-
-      if (!$data.$maskEl) {
-        $data.$maskEl = document.createElement('div');
-        $data.$maskEl.className = `${selectorPrefix}-mask`;
-        document.body.appendChild($data.$maskEl);
-      }
-    },
-  },
-  render(h): VNode {
-    return (
+    return () => (
       <div
+        ref={root}
         class={selectorPrefix}
-        ref="ref"
         onClick={() => {
-          this.trigger();
+          trigger();
         }}
       />
     );
   },
-};
+});

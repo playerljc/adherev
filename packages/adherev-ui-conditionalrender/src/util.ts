@@ -1,3 +1,5 @@
+import { VNode } from 'vue';
+
 export function deal({
   conditional,
   rule,
@@ -10,30 +12,44 @@ export function deal({
   ruleVisibleValue: string;
   ruleHideValue: string;
   slots: any;
-}): void {
-  slots.default.forEach((vNode) => {
-    if (!vNode.data) {
-      vNode.data = {
-        staticStyle: {},
+}): {
+  defaultVNodes: VNode[] | null;
+  noMatchVNodes: VNode[] | null;
+} {
+  const defaultVNodes = slots?.default?.().map((vNode: VNode) => {
+    if (!vNode.props) {
+      vNode.props = {
+        style: {},
       };
-    } else if (!('staticStyle' in vNode.data)) {
-      vNode.data.staticStyle = {};
+    } else if (!('style' in vNode.props)) {
+      vNode.props.style = {};
     }
 
-    vNode.data.staticStyle[rule] = conditional ? ruleVisibleValue : ruleHideValue;
+    vNode.props.style[rule] = conditional ? ruleVisibleValue : ruleHideValue;
+
+    return vNode;
   });
 
+  let noMatchVNodes = null;
+
   if (slots.noMatch) {
-    slots.noMatch.forEach((vNode) => {
-      if (!vNode.data) {
-        vNode.data = {
-          staticStyle: {},
+    noMatchVNodes = slots.noMatch().map((vNode: VNode) => {
+      if (!vNode.props) {
+        vNode.props = {
+          style: {},
         };
-      } else if (!('staticStyle' in vNode.data)) {
-        vNode.data.staticStyle = {};
+      } else if (!('style' in vNode.props)) {
+        vNode.props.style = {};
       }
 
-      vNode.data.staticStyle[rule] = conditional ? ruleHideValue : ruleVisibleValue;
+      vNode.props.style[rule] = conditional ? ruleHideValue : ruleVisibleValue;
+
+      return vNode;
     });
   }
+
+  return {
+    defaultVNodes,
+    noMatchVNodes,
+  };
 }

@@ -1,41 +1,39 @@
-import { VNode } from 'vue';
 import classNames from 'classnames';
+import { defineComponent, ref } from 'vue';
+import { bool } from 'vue-types';
 
 import { selectorPrefix as parentSelectorPrefix } from './flexlayout';
 
 const selectorPrefix = `${parentSelectorPrefix}-auto`;
 
-export default {
-  name: 'adv-flexlayout-auto',
-  props: {
-    autoFixed: {
-      type: Boolean,
-      default: true,
-    },
-    fit: {
-      type: Boolean,
-      default: true,
-    },
-  },
-  methods: {
-    getEl() {
-      return this.$refs.ref;
-    },
-  },
-  render(h): VNode {
-    const { $slots, autoFixed, fit } = this;
+export const autoProps = {
+  autoFixed: bool().def(true),
+  fit: bool().def(true),
+};
 
-    return (
+export default defineComponent({
+  name: 'adv-flexlayout-auto',
+  props: autoProps,
+  setup(props, { slots, expose }) {
+    const root = ref<HTMLDivElement | null>(null);
+
+    const getEl = (): HTMLDivElement | null => root.value;
+
+    expose({
+      getEl,
+    });
+
+    return () => (
       <div
-        ref="ref"
+        ref={root}
         class={classNames(
           selectorPrefix,
-          `${autoFixed ? selectorPrefix + '-autoFixed' : ''}`,
-          `${fit ? selectorPrefix + '-fit' : ''}`,
+          `${props.autoFixed ? `${selectorPrefix}-autoFixed` : ''}`,
+          `${props.fit ? `${selectorPrefix}-fit` : ''}`,
         )}
       >
-        {$slots.default}
+        {slots.default ? slots.default() : null}
       </div>
     );
   },
-};
+});

@@ -10,6 +10,7 @@
 
 <script>
 export default {
+  displayName: 'util',
   data() {
     return {
       scrollEl: null,
@@ -1754,6 +1755,110 @@ export default {
                 },
               ],
               returnType: 'IAntdTreeNode | null',
+              returnDesc: '',
+            },
+          ],
+        },
+        {
+          border: true,
+          title: '_util',
+          data: [
+            {
+              name: 'withInstall',
+              desc: 'Vue组件的插件方法',
+              modifier: 'public',
+              params: [
+                {
+                  name: 'comp',
+                  desc: '',
+                  type: 'object',
+                  defaultVal: '',
+                  required: '',
+                },
+              ],
+              returnType: 'object',
+              returnDesc: '',
+            },
+            {
+              name: 'withVue',
+              desc: '将属性p混入到Vue实例中，在Vue实例的表达式中可以使用this.$adv[p]来进行访问',
+              modifier: 'public',
+              params: [
+                {
+                  name: 'Vue',
+                  desc: '',
+                  type: 'object',
+                  defaultVal: '',
+                  required: '',
+                },
+                {
+                  name: 'p',
+                  desc: '属性',
+                  type: 'string',
+                  defaultVal: '',
+                  required: '',
+                },
+                {
+                  name: 'val',
+                  desc: '值',
+                  type: 'any',
+                  defaultVal: '',
+                  required: '',
+                },
+              ],
+              returnType: 'void',
+              returnDesc: '',
+            },
+            {
+              name: 'extend',
+              desc: '实现Vue的继承使得可以实现调用父类的方法',
+              modifier: 'public',
+              params: [
+                {
+                  name: 'options',
+                  desc: '',
+                  type: 'ExtendFunction<any>',
+                  defaultVal: '',
+                  required: '',
+                },
+              ],
+              returnType: "Omit<ExtendFunction<any>, 'className'>",
+              returnDesc: '',
+            },
+            {
+              name: 'HOC',
+              desc: '实现高阶函数',
+              modifier: 'public',
+              params: [
+                {
+                  name: 'Component',
+                  desc: 'Vue组件配置对象',
+                  type: 'DefineComponent',
+                  defaultVal: '',
+                  required: '',
+                },
+                {
+                  name: 'optionsOverwrite',
+                  desc: 'Vue组件的options',
+                  type: 'any',
+                  defaultVal: '',
+                  required: '',
+                },
+                {
+                  name: 'renderOptions',
+                  desc: 'props,attrs和slots',
+                  type: 'any',
+                  defaultVal: `
+                    {
+                      props: (props: any) => any;
+                      attrs: (attrs: any) => any;
+                      slots: (slots: any) => any;
+                    }
+                  `,
+                  required: '',
+                },
+              ],
+              returnType: "Vue的Component",
               returnDesc: '',
             },
           ],

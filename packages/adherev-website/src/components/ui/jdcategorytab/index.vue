@@ -15,46 +15,70 @@
               :id="String(index + 1)"
             >
               <adv-conditionalrender :conditional="index % 2 === 0">
-                <template v-slot:noMatch>
-                  <a-table
-                    style="padding: 20px"
-                    :columns="columns"
-                    :data-source="tableData"
-                    :pagination="false"
-                  >
-                    <a slot="name" slot-scope="text">{{ text }}</a>
-                    <span slot="customTitle"><a-icon type="smile-o" /> Name</span>
-                    <span slot="tags" slot-scope="tags">
-                      <a-tag
-                        v-for="tag in tags"
-                        :key="tag"
-                        :color="tag === 'loser' ? 'volcano' : tag.length > 5 ? 'geekblue' : 'green'"
-                      >
-                        {{ tag.toUpperCase() }}
-                      </a-tag>
-                    </span>
-                    <span slot="action" slot-scope="text, record">
-                      <a>Invite 一 {{ record.name }}</a>
-                      <a-divider type="vertical" />
-                      <a>Delete</a>
-                      <a-divider type="vertical" />
-                      <a class="ant-dropdown-link"> More actions <a-icon type="down" /> </a>
-                    </span>
+                <template #noMatch>
+                  <a-table :columns="columns" :data-source="data">
+                    <template #headerCell="{ column }">
+                      <template v-if="column.key === 'name'">
+                        <span>
+                          <smile-outlined />
+                          Name
+                        </span>
+                      </template>
+                    </template>
+
+                    <template #bodyCell="{ column, record }">
+                      <template v-if="column.key === 'name'">
+                        <a>
+                          {{ record.name }}
+                        </a>
+                      </template>
+                      <template v-else-if="column.key === 'tags'">
+                        <span>
+                          <a-tag
+                            v-for="tag in record.tags"
+                            :key="tag"
+                            :color="
+                              tag === 'loser' ? 'volcano' : tag.length > 5 ? 'geekblue' : 'green'
+                            "
+                          >
+                            {{ tag.toUpperCase() }}
+                          </a-tag>
+                        </span>
+                      </template>
+                      <template v-else-if="column.key === 'action'">
+                        <span>
+                          <a>Invite 一 {{ record.name }}</a>
+                          <a-divider type="vertical" />
+                          <a>Delete</a>
+                          <a-divider type="vertical" />
+                          <a class="ant-dropdown-link">
+                            More actions
+                            <down-outlined />
+                          </a>
+                        </span>
+                      </template>
+                    </template>
                   </a-table>
                 </template>
 
                 <a-list item-layout="horizontal" :data-source="listData" style="padding: 20px">
-                  <a-list-item slot="renderItem" slot-scope="item, index">
-                    <a-list-item-meta
-                      description="Ant Design, a design language for background applications, is refined by Ant UED Team"
-                    >
-                      <a slot="title" href="https://www.antdv.com/">{{ item.title }}</a>
-                      <a-avatar
-                        slot="avatar"
-                        src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"
-                      />
-                    </a-list-item-meta>
-                  </a-list-item>
+                  <template #renderItem="{ item }">
+                    <a-list-item>
+                      <a-list-item-meta
+                        description="Ant Design, a design language for background applications, is refined by Ant UED Team"
+                      >
+                        <template #title>
+                          <a href="https://www.antdv.com/">{{ item.title }}</a>
+                        </template>
+
+                        <template #avatar>
+                          <a-avatar
+                            src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"
+                          />
+                        </template>
+                      </a-list-item-meta>
+                    </a-list-item>
+                  </template>
                 </a-list>
               </adv-conditionalrender>
             </adv-jdcategorytab-item>
@@ -71,46 +95,70 @@
           >
             <adv-jdcategorytab-item :id="activeKey">
               <adv-conditionalrender :conditional="parseInt(activeKey) % 2 === 0">
-                <template v-slot:noMatch>
-                  <a-table
-                    style="padding: 20px"
-                    :columns="columns"
-                    :data-source="tableData"
-                    :pagination="false"
-                  >
-                    <a slot="name" slot-scope="text">{{ text }}</a>
-                    <span slot="customTitle"><a-icon type="smile-o" /> Name</span>
-                    <span slot="tags" slot-scope="tags">
-                      <a-tag
-                        v-for="tag in tags"
-                        :key="tag"
-                        :color="tag === 'loser' ? 'volcano' : tag.length > 5 ? 'geekblue' : 'green'"
-                      >
-                        {{ tag.toUpperCase() }}
-                      </a-tag>
-                    </span>
-                    <span slot="action" slot-scope="text, record">
-                      <a>Invite 一 {{ record.name }}</a>
-                      <a-divider type="vertical" />
-                      <a>Delete</a>
-                      <a-divider type="vertical" />
-                      <a class="ant-dropdown-link"> More actions <a-icon type="down" /> </a>
-                    </span>
+                <template #noMatch>
+                  <a-table :columns="columns" :data-source="data">
+                    <template #headerCell="{ column }">
+                      <template v-if="column.key === 'name'">
+                        <span>
+                          <smile-outlined />
+                          Name
+                        </span>
+                      </template>
+                    </template>
+
+                    <template #bodyCell="{ column, record }">
+                      <template v-if="column.key === 'name'">
+                        <a>
+                          {{ record.name }}
+                        </a>
+                      </template>
+                      <template v-else-if="column.key === 'tags'">
+                        <span>
+                          <a-tag
+                            v-for="tag in record.tags"
+                            :key="tag"
+                            :color="
+                              tag === 'loser' ? 'volcano' : tag.length > 5 ? 'geekblue' : 'green'
+                            "
+                          >
+                            {{ tag.toUpperCase() }}
+                          </a-tag>
+                        </span>
+                      </template>
+                      <template v-else-if="column.key === 'action'">
+                        <span>
+                          <a>Invite 一 {{ record.name }}</a>
+                          <a-divider type="vertical" />
+                          <a>Delete</a>
+                          <a-divider type="vertical" />
+                          <a class="ant-dropdown-link">
+                            More actions
+                            <down-outlined />
+                          </a>
+                        </span>
+                      </template>
+                    </template>
                   </a-table>
                 </template>
 
                 <a-list item-layout="horizontal" :data-source="listData" style="padding: 20px">
-                  <a-list-item slot="renderItem" slot-scope="item, index">
-                    <a-list-item-meta
-                      description="Ant Design, a design language for background applications, is refined by Ant UED Team"
-                    >
-                      <a slot="title" href="https://www.antdv.com/">{{ item.title }}</a>
-                      <a-avatar
-                        slot="avatar"
-                        src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"
-                      />
-                    </a-list-item-meta>
-                  </a-list-item>
+                  <template #renderItem="item, index">
+                    <a-list-item>
+                      <a-list-item-meta
+                        description="Ant Design, a design language for background applications, is refined by Ant UED Team"
+                      >
+                        <template #title>
+                          <a href="https://www.antdv.com/">{{ item.title }}</a>
+                        </template>
+
+                        <template #avatar>
+                          <a-avatar
+                            src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"
+                          />
+                        </template>
+                      </a-list-item-meta>
+                    </a-list-item>
+                  </template>
                 </a-list>
               </adv-conditionalrender>
             </adv-jdcategorytab-item>
@@ -119,85 +167,105 @@
       </template>
 
       <template #p3>
-        <fragment>
-          <adv-space-group direction="horizontal">
-            <a-button type="primary" @click="$refs.jdRef.scrollTo('1')">置顶</a-button>
-            <a-button @click="$refs.jdRef.scrollTo(`${data.length}`)">置底</a-button>
-          </adv-space-group>
+        <adv-space-group direction="horizontal">
+          <a-button type="primary" @click="$refs.jdRef.scrollTo('1')">置顶</a-button>
+          <a-button @click="$refs.jdRef.scrollTo(`${data.length}`)">置底</a-button>
+        </adv-space-group>
 
-          <adv-space />
+        <adv-space />
 
-          <div
-            style="
-              position: relative;
-              width: 600px;
-              height: 600px;
-              border: 1px solid rgba(0, 0, 0, 0.1);
-            "
+        <div
+          style="
+            position: relative;
+            width: 600px;
+            height: 600px;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+          "
+        >
+          <adv-spin :spinning="loading" />
+
+          <adv-jdcategorytab
+            ref="jdRef"
+            :menuData="menuData"
+            :default-active-key="activeKey1"
+            :onBeforeChange="onBeforeChange"
+            @change="onChange2"
           >
-            <adv-spin :spinning="loading" />
-
-            <adv-jdcategorytab
-              ref="jdRef"
-              :menuData="menuData"
-              :default-active-key="activeKey1"
-              :onBeforeChange="onBeforeChange"
-              @change="onChange2"
+            <adv-jdcategorytab-item
+              v-for="(t, index) in data"
+              :key="String(index + 1)"
+              :id="String(index + 1)"
             >
-              <adv-jdcategorytab-item
-                v-for="(t, index) in data"
-                :key="String(index + 1)"
-                :id="String(index + 1)"
-              >
-                <adv-conditionalrender :conditional="index % 2 === 0">
-                  <template v-slot:noMatch>
-                    <a-table
-                      style="padding: 20px"
-                      :columns="columns"
-                      :data-source="tableData"
-                      :pagination="false"
-                    >
-                      <a slot="name" slot-scope="text">{{ text }}</a>
-                      <span slot="customTitle"><a-icon type="smile-o" /> Name</span>
-                      <span slot="tags" slot-scope="tags">
-                        <a-tag
-                          v-for="tag in tags"
-                          :key="tag"
-                          :color="
-                            tag === 'loser' ? 'volcano' : tag.length > 5 ? 'geekblue' : 'green'
-                          "
-                        >
-                          {{ tag.toUpperCase() }}
-                        </a-tag>
-                      </span>
-                      <span slot="action" slot-scope="text, record">
-                        <a>Invite 一 {{ record.name }}</a>
-                        <a-divider type="vertical" />
-                        <a>Delete</a>
-                        <a-divider type="vertical" />
-                        <a class="ant-dropdown-link"> More actions <a-icon type="down" /> </a>
-                      </span>
-                    </a-table>
-                  </template>
+              <adv-conditionalrender :conditional="index % 2 === 0">
+                <template #noMatch>
+                  <a-table :columns="columns" :data-source="data">
+                    <template #headerCell="{ column }">
+                      <template v-if="column.key === 'name'">
+                        <span>
+                          <smile-outlined />
+                          Name
+                        </span>
+                      </template>
+                    </template>
 
-                  <a-list item-layout="horizontal" :data-source="listData" style="padding: 20px">
-                    <a-list-item slot="renderItem" slot-scope="item, index">
+                    <template #bodyCell="{ column, record }">
+                      <template v-if="column.key === 'name'">
+                        <a>
+                          {{ record.name }}
+                        </a>
+                      </template>
+                      <template v-else-if="column.key === 'tags'">
+                        <span>
+                          <a-tag
+                            v-for="tag in record.tags"
+                            :key="tag"
+                            :color="
+                              tag === 'loser' ? 'volcano' : tag.length > 5 ? 'geekblue' : 'green'
+                            "
+                          >
+                            {{ tag.toUpperCase() }}
+                          </a-tag>
+                        </span>
+                      </template>
+                      <template v-else-if="column.key === 'action'">
+                        <span>
+                          <a>Invite 一 {{ record.name }}</a>
+                          <a-divider type="vertical" />
+                          <a>Delete</a>
+                          <a-divider type="vertical" />
+                          <a class="ant-dropdown-link">
+                            More actions
+                            <down-outlined />
+                          </a>
+                        </span>
+                      </template>
+                    </template>
+                  </a-table>
+                </template>
+
+                <a-list item-layout="horizontal" :data-source="listData" style="padding: 20px">
+                  <template #renderItem="{ item }">
+                    <a-list-item>
                       <a-list-item-meta
                         description="Ant Design, a design language for background applications, is refined by Ant UED Team"
                       >
-                        <a slot="title" href="https://www.antdv.com/">{{ item.title }}</a>
-                        <a-avatar
-                          slot="avatar"
-                          src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"
-                        />
+                        <template #title>
+                          <a href="https://www.antdv.com/">{{ item.title }}</a>
+                        </template>
+
+                        <template #avatar>
+                          <a-avatar
+                            src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"
+                          />
+                        </template>
                       </a-list-item-meta>
                     </a-list-item>
-                  </a-list>
-                </adv-conditionalrender>
-              </adv-jdcategorytab-item>
-            </adv-jdcategorytab>
-          </div>
-        </fragment>
+                  </template>
+                </a-list>
+              </adv-conditionalrender>
+            </adv-jdcategorytab-item>
+          </adv-jdcategorytab>
+        </div>
       </template>
     </adv-playground-page-code-box-section>
 
@@ -208,11 +276,14 @@
 </template>
 
 <script>
+import { DownloadOutlined, SmileOutlined } from '@ant-design/icons-vue';
+
 const data = [];
 data.length = 100;
 data.fill(0);
 
 export default {
+  displayName: 'jdcategorytab',
   data() {
     return {
       data,
@@ -245,7 +316,7 @@ export default {
                 :id="String(index + 1)"
               >
                 <adv-conditionalrender :conditional="index % 2 === 0">
-                  <template v-slot:noMatch>
+                  <template #noMatch>
                     <a-table
                       style="padding: 20px"
                       :columns="columns"
@@ -424,7 +495,7 @@ export default {
             >
               <adv-jdcategorytab-item :id="activeKey">
                 <adv-conditionalrender :conditional="parseInt(activeKey) % 2 === 0">
-                  <template v-slot:noMatch>
+                  <template #noMatch>
                     <a-table
                       style="padding: 20px"
                       :columns="columns"
@@ -625,7 +696,7 @@ export default {
                   :id="String(index + 1)"
                 >
                   <adv-conditionalrender :conditional="index % 2 === 0">
-                    <template v-slot:noMatch>
+                    <template #noMatch>
                       <a-table
                         style="padding: 20px"
                         :columns="columns"
@@ -672,7 +743,6 @@ export default {
                 </adv-jdcategorytab-item>
               </adv-jdcategorytab>
             </div>
-          </fragment>
         </template>
 
         <script>
@@ -937,14 +1007,17 @@ export default {
       ],
     };
   },
+  components: {
+    'smile-outlined': SmileOutlined,
+    'down-outlined': DownloadOutlined,
+  },
   computed: {
     columns() {
       return [
         {
+          name: 'Name',
           dataIndex: 'name',
           key: 'name',
-          slots: { title: 'customTitle' },
-          scopedSlots: { customRender: 'name' },
         },
         {
           title: 'Age',
@@ -960,13 +1033,11 @@ export default {
           title: 'Tags',
           key: 'tags',
           dataIndex: 'tags',
-          scopedSlots: { customRender: 'tags' },
         },
         {
           title: 'Action',
           key: 'action',
-          scopedSlots: { customRender: 'action' },
-        },
+        }
       ];
     },
     tableData() {

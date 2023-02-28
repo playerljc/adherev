@@ -27,6 +27,7 @@
 import { DelConfirm } from '@baifendian/adherev';
 
 export default {
+  displayName: 'delconfirm',
   data() {
     return {
       scrollEl: null,

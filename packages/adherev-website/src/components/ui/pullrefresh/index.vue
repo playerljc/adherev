@@ -9,48 +9,58 @@
 
     <adv-playground-page-code-box-section title="代码演示" :config="codeBoxPanelConfig">
       <template #p1>
-        <adv-pullrefresh :class-name="$style.Wrap" @pull-refresh="onCode1Refresh">
+        <adv-pullrefresh :class="$style.Wrap" @pull-refresh="onCode1Refresh">
           <a-list item-layout="horizontal" :data-source="data">
-            <a-list-item slot="renderItem" slot-scope="item, index">
-              <a-list-item-meta
-                description="Ant Design, a design language for background applications, is refined by Ant UED Team"
-              >
-                <a slot="title" href="https://www.antdv.com/">{{ item.title }}</a>
-                <a-avatar
-                  slot="avatar"
-                  src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"
-                />
-              </a-list-item-meta>
-            </a-list-item>
+            <template #renderItem="item, index">
+              <a-list-item>
+                <a-list-item-meta
+                  description="Ant Design, a design language for background applications, is refined by Ant UED Team"
+                >
+                  <template #title>
+                    <a href="https://www.antdv.com/">{{ item.title }}</a>
+                  </template>
+
+                  <template #avatar>
+                    <a-avatar
+                      src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"
+                    />
+                  </template>
+                </a-list-item-meta>
+              </a-list-item>
+            </template>
           </a-list>
         </adv-pullrefresh>
       </template>
 
       <template #p2>
-        <fragment>
-          <adv-pullrefresh ref="ref" :class-name="$style.Wrap" @pull-refresh="onCode2Refresh">
-            <a-list item-layout="horizontal" :data-source="data">
-              <a-list-item slot="renderItem" slot-scope="item, index">
+        <adv-pullrefresh ref="ref" :class="$style.Wrap" @pull-refresh="onCode2Refresh">
+          <a-list item-layout="horizontal" :data-source="data">
+            <template #renderItem="item, index">
+              <a-list-item>
                 <a-list-item-meta
                   description="Ant Design, a design language for background applications, is refined by Ant UED Team"
                 >
-                  <a slot="title" href="https://www.antdv.com/">{{ item.title }}</a>
-                  <a-avatar
-                    slot="avatar"
-                    src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"
-                  />
+                  <template #title>
+                    <a href="https://www.antdv.com/">{{ item.title }}</a>
+                  </template>
+
+                  <template #avatar>
+                    <a-avatar
+                      src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"
+                    />
+                  </template>
                 </a-list-item-meta>
               </a-list-item>
-            </a-list>
-          </adv-pullrefresh>
-          <adv-space />
-          <a-button type="primary" @click="onCode2Click">触发下拉刷新</a-button>
-        </fragment>
+            </template>
+          </a-list>
+        </adv-pullrefresh>
+        <adv-space />
+        <a-button type="primary" @click="onCode2Click">触发下拉刷新</a-button>
       </template>
 
       <template #p3>
         <adv-pullrefresh
-          :class-name="$style.Wrap"
+          :class="$style.Wrap"
           :is-show-update-time="false"
           :loading-animation="false"
           @pull-refresh="onCode3Refresh"
@@ -73,17 +83,23 @@
             </div>
           </template>
           <a-list item-layout="horizontal" :data-source="data">
-            <a-list-item slot="renderItem" slot-scope="item, index">
-              <a-list-item-meta
-                description="Ant Design, a design language for background applications, is refined by Ant UED Team"
-              >
-                <a slot="title" href="https://www.antdv.com/">{{ item.title }}</a>
-                <a-avatar
-                  slot="avatar"
-                  src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"
-                />
-              </a-list-item-meta>
-            </a-list-item>
+            <template #renderItem="item, index">
+              <a-list-item>
+                <a-list-item-meta
+                  description="Ant Design, a design language for background applications, is refined by Ant UED Team"
+                >
+                  <template #title>
+                    <a href="https://www.antdv.com/">{{ item.title }}</a>
+                  </template>
+
+                  <template #avatar>
+                    <a-avatar
+                      src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"
+                    />
+                  </template>
+                </a-list-item-meta>
+              </a-list-item>
+            </template>
           </a-list>
         </adv-pullrefresh>
       </template>
@@ -104,6 +120,7 @@ data.fill(0);
 data = data.map((t, index) => `Ant Design Title ${index + 1}`);
 
 export default {
+  displayName: 'pullrefresh',
   data() {
     return {
       data,
@@ -122,7 +139,7 @@ export default {
           codeText: `
         <template>
           <h2>基本使用</h2>
-          <adv-pullrefresh :className="$style.Wrap" @pull-refresh="onCode1Refresh">
+          <adv-pullrefresh :class="$style.Wrap" @pull-refresh="onCode1Refresh">
             <a-list item-layout="horizontal" :data-source="data">
               <a-list-item slot="renderItem" slot-scope="item, index">
                 <a-list-item-meta
@@ -151,9 +168,9 @@ export default {
               }
             },
             methods: {
-              onCode1Refresh(ins) {
+              onCode1Refresh(reset) {
                 setTimeout(() => {
-                  ins.reset();
+                  reset();
                 }, 1000 * 3);
               },
             }
@@ -175,7 +192,7 @@ export default {
           codeText: `
         <template>
           <h2>Api触发刷新</h2>
-          <adv-pullrefresh :className="$style.Wrap" ref="ref" @pull-refresh="onCode2Refresh">
+          <adv-pullrefresh :class="$style.Wrap" ref="ref" @pull-refresh="onCode2Refresh">
             <a-list item-layout="horizontal" :data-source="data">
               <a-list-item slot="renderItem" slot-scope="item, index">
                 <a-list-item-meta
@@ -206,9 +223,9 @@ export default {
               }
             },
             methods: {
-              onCode2Refresh(ins) {
+              onCode2Refresh(reset) {
                 setTimeout(() => {
-                  ins.reset();
+                  reset();
                 }, 1000 * 3);
               },
               onCode2Click() {
@@ -238,19 +255,19 @@ export default {
               codeText: `
             <template>
               <h2>自定义图标和文本(1)</h2>
-              <adv-pullrefresh :className="$style.Wrap" :isShowUpdateTime="false" :loadingAnimation="false" @pull-refresh="onCode3Refresh">
-                <template v-slot:icon>
+              <adv-pullrefresh :class="$style.Wrap" :isShowUpdateTime="false" :loadingAnimation="false" @pull-refresh="onCode3Refresh">
+                <template #icon>
                   <div>
                     <img :src="refreshIcon" alt="" />
                   </div>
                 </template>
-                <template v-slot:label>
+                <template #label>
                   <span>下拉可刷新</span>
                 </template>
-                <template v-slot:canLabel>
+                <template #canLabel>
                   <span>释放可刷新</span>
                 </template>
-                <template v-slot:loadingAnimation>
+                <template #loadingAnimation>
                   <div :class="$style.RefreshCustom1">
                     <img :src="refreshIcon" alt="" />
                     <div>刷新中...</div>
@@ -291,9 +308,9 @@ export default {
                   },
                 }
                 methods: {
-                  onCode3Refresh(ins) {
+                  onCode3Refresh(reset) {
                     setTimeout(() => {
-                      ins.reset();
+                      reset();
                     }, 1000 * 3);
                   }
                 }
@@ -506,22 +523,22 @@ export default {
     this.scrollEl = this?.$refs?.wrapRef?.$el?.parentElement?.parentElement;
   },
   methods: {
-    onCode1Refresh(ins) {
+    onCode1Refresh(reset) {
       setTimeout(() => {
-        ins.reset();
+        reset();
       }, 1000 * 3);
     },
-    onCode2Refresh(ins) {
+    onCode2Refresh(reset) {
       setTimeout(() => {
-        ins.reset();
+        reset();
       }, 1000 * 3);
     },
     onCode2Click() {
       this.$refs.ref.refresh();
     },
-    onCode3Refresh(ins) {
+    onCode3Refresh(reset) {
       setTimeout(() => {
-        ins.reset();
+        reset();
       }, 1000 * 3);
     },
   },

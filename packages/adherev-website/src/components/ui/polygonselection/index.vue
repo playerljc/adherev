@@ -20,14 +20,14 @@
     </adv-playground-page-code-box-section>
 
     <adv-playground-page-function-props-section title="API" :config="apiConfig" />
-
   </adv-playground-page>
 </template>
 
 <script>
-  import ImageSelect from './ImageSelect';
+import ImageSelect from './ImageSelect';
 
 export default {
+  displayName: 'polygonselection',
   components: {
     ImageSelect,
   },
@@ -277,7 +277,7 @@ export default {
         config: {
           title: '设置数据',
         },
-        defaultCloneBtn: false,
+        defaultCloseBtn: false,
         children: {
           computed: {
             localData() {

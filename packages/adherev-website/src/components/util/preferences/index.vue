@@ -10,10 +10,8 @@
 
     <adv-playground-page-code-box-section title="代码演示" :config="codeBoxPanelConfig">
       <template #p1>
-        <fragment>
-          <a-button type="primary" @click="onTrigger">放入和拿出</a-button>
-          <p id="PreferencesConsole" />
-        </fragment>
+        <a-button type="primary" @click="onTrigger">放入和拿出</a-button>
+        <p id="PreferencesConsole" />
       </template>
     </adv-playground-page-code-box-section>
 
@@ -25,6 +23,7 @@
 import { Preferences } from '@baifendian/adherev';
 
 export default {
+  displayName: 'preferences',
   data() {
     return {
       scrollEl: null,

@@ -11,8 +11,8 @@
         <h2 class="ant-typography">特性</h2>
         <div class="ant-typography">
           <ul>
-            <li>- 支持vue(2.x)</li>
-            <li>- 支持ant-design-vue(1.x)</li>
+            <li>- 支持vue(3.x)</li>
+            <li>- 支持ant-design-vue(3.x)</li>
             <li>- 支持国际化</li>
             <li>- 支持修改主题</li>
             <li>- 支持动态引入(babel-plugin-import)</li>
@@ -28,8 +28,8 @@
           </ul>
         </div>
         <h2 class="ant-typography">安装</h2>
-        <div class="ant-typography"><code>npm i @baifendian/adherev --save</code></div>
-        <div class="ant-typography"><code>yarn add @baifendian/adherev</code></div>
+        <div class="ant-typography"><code>npm i @baifendian/adherev@next --save</code></div>
+        <div class="ant-typography"><code>yarn add @baifendian/adherev@next</code></div>
       </article>
 
       <article class="ant-typography" style="margin: 20px 0">
@@ -44,7 +44,7 @@
           <code>ant-design-vue/dist/antd.less</code>
         </div>
       </article>
-      <playground :code-text="code1" :default-expand="true" lang="javascript" />
+      <adv-playground :code-text="code1" :default-expand="true" lang="javascript" />
 
       <!--<article class="ant-typography" style="margin: 20px 0">
         <h2>国际化说明</h2>
@@ -66,7 +66,7 @@
           </p>
         </div>
       </article>
-      <playground-mulit :defaultConfig="code3" :default-expand="true" lang="javascript" />
+      <adv-playground-mulit :defaultConfig="code3" :default-expand="true" lang="javascript" />
     </div>
   </ScrollFooterPanel>
 </template>
@@ -75,8 +75,9 @@
 import ScrollFooterPanel from '@/lib/ScrollFooterPanel';
 
 export default {
+  displayName: 'introduction',
   components: {
-    ScrollFooterPanel
+    ScrollFooterPanel,
   },
   data() {
     return {

@@ -11,11 +11,11 @@
 
 # 📦 安装
 ```javascript
-npm install @baifendian/adherev-util-dict --save
-``` 
+npm install @baifendian/adherev-util-dict@next --save
+```
 
 ```javascript
-yarn add @baifendian/adherev-util-dict
+yarn add @baifendian/adherev-util-dict@next
 ```
 
 # 线上地址(临时)

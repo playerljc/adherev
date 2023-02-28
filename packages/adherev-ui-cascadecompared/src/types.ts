@@ -1,55 +1,36 @@
+import { CSSProperties, ExtractPropTypes, VNode } from 'vue';
+
+import { cascadeComparedProps } from './cascadecompared';
+
 export interface IColumnConfig {
   dataIndex: string;
   isFixed: boolean;
   width: string | number;
-  render: Function | Object;
+  // render?: (config: IColumnConfig, dataSource: object) => any | Object;
   className: string;
-  style: string;
+  style: CSSProperties;
 }
 
 export interface ITableConfig {
-  columns: Array<IColumnConfig>;
-  dataSource: Array<object>;
+  columns: IColumnConfig[];
+  dataSource: object[];
 }
 
 export interface IIndicatorTableConfig {
-  columns: Array<IColumnConfig>;
+  columns: IColumnConfig[];
   dataSource: object;
 }
 
 export interface IMasterItem extends ITableConfig {
-  title: Function | Object;
+  title: string | VNode;
   className: string;
-  style: string;
+  style: CSSProperties;
   fixedWrapClassName: string;
-  fixedWrapStyle: string;
+  fixedWrapStyle: CSSProperties;
   autoWrapClassName: string;
-  autoWrapStyle: string;
+  autoWrapStyle: CSSProperties;
   autoInnerClassName: string;
-  autoInnerStyle: string;
+  autoInnerStyle: CSSProperties;
 }
 
-/**
- * ICascadeComparedProps
- * @interface ICascadeComparedProps
- */
-export interface ICascadeComparedProps {
-  className?: string;
-  indicatorClassName?: string;
-  indicatorStyle?: string;
-  indicatorFixedWrapClassName?: string;
-  indicatorFixedWrapStyle?: string;
-  indicatorAutoWrapClassName?: string;
-  indicatorAutoWrapStyle?: string;
-  masterClassName?: string;
-  masterStyle?: string;
-  masterInnerClassName?: string;
-  masterInnerStyle?: string;
-  masterStickFixedClassName?: string;
-  masterStickFixedStyle?: string;
-  masterStickInnerClassName?: string;
-  masterStickInnerStyle?: string;
-  indicator: IIndicatorTableConfig;
-  master: Array<IMasterItem>;
-  defaultCellWidth: number | string;
-}
+export type CascadeComparedProps = Partial<ExtractPropTypes<typeof cascadeComparedProps>>;

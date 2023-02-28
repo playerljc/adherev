@@ -173,7 +173,7 @@
             :isShowExpandSearch="true"
             :defaultExpandSearchCollapse="false"
           >
-            <template v-slot:tableHeader>
+            <template v-slot:tableHeader="context">
               <div :class="$style.Header">
                 <h3>查询表格</h3>
                 <div>
@@ -182,6 +182,106 @@
               </div>
             </template>
           </TableDensitySetting>
+        </div>
+      </template>
+
+      <template #p12>
+        <div style="display: flex; height: 700px">
+          <TableSearchBetweenTable
+            :wrapStyle="'height: 100%'"
+            :isShowExpandSearch="true"
+            :defaultExpandSearchCollapse="false"
+          >
+            <template v-slot:searchFormBefore="context">
+              <a-row :gutter="16">
+                <a-col :span="12">
+                  <a-statistic title="Active Users" :value="112893" />
+                </a-col>
+                <a-col :span="12">
+                  <a-statistic title="Account Balance (CNY)" :value="112893" :precision="2" />
+                  <a-button style="margin-top: 16px" type="primary">Recharge</a-button>
+                </a-col>
+                <a-col :span="12">
+                  <a-statistic title="Active Users" value="112893" :loading="true" />
+                </a-col>
+              </a-row>
+            </template>
+
+            <template v-slot:searchFormAfter="context">
+              <a-row :gutter="16">
+                <a-col :span="12">
+                  <a-statistic title="Active Users" :value="112893" />
+                </a-col>
+                <a-col :span="12">
+                  <a-statistic title="Account Balance (CNY)" :value="112893" :precision="2" />
+                  <a-button style="margin-top: 16px" type="primary">Recharge</a-button>
+                </a-col>
+                <a-col :span="12">
+                  <a-statistic title="Active Users" :value="112893" :loading="true" />
+                </a-col>
+              </a-row>
+            </template>
+          </TableSearchBetweenTable>
+        </div>
+      </template>
+
+      <template #p13>
+        <div style="display: flex; height: 700px">
+          <ProTable />
+        </div>
+      </template>
+
+      <template #p14>
+        <div style="display: flex; height: 700px">
+          <ProEditableCellTable />
+        </div>
+      </template>
+
+      <template #p15>
+        <div style="display: flex; height: 700px">
+          <ProEditableRowTable />
+        </div>
+      </template>
+
+      <template #p16>
+        <div style="display: flex; height: 700px">
+          <ProEditableTable />
+        </div>
+      </template>
+
+      <template #p17>
+        <div style="display: flex; height: 700px">
+          <ProEditableCellUseKeepEditTable />
+        </div>
+      </template>
+
+      <template #p18>
+        <div style="display: flex; height: 700px">
+          <ProEditableCellRenderTriggerTable />
+        </div>
+      </template>
+
+      <template #p19>
+        <div style="display: flex; height: 700px">
+          <ProRowDragSortTable />
+        </div>
+      </template>
+
+      <template #p20>
+        <div style="display: flex; height: 700px">
+          <ProRowDragSortEditableCellTable />
+        </div>
+      </template>
+
+      <template #p21>
+        <div style="display: flex; height: 700px">
+          <ProRowDragSortEditableRowTable />
+        </div>
+      </template>
+
+      <template #p22>
+        <div style="display: flex; height: 700px">
+          <ProRowDragSortEditableTable />
         </div>
       </template>
     </adv-playground-page-code-box-section>
@@ -193,12 +293,23 @@
 </template>
 
 <script>
-import Table from './table';
-import FewTable from './fewTable';
-import RowSelectedContinuous from './rowSelectedContinuous';
-import RowSelectedNormal from './rowSelectedNormal';
+import ProEditableCellRenderTriggerTable from './ProEditableCellRenderTriggerTable';
+import ProEditableCellTable from './ProEditableCellTable';
+import ProEditableCellUseKeepEditTable from './ProEditableCellUseKeepEditTable';
+import ProEditableRowTable from './ProEditableRowTable';
+import ProEditableTable from './ProEditableTable';
+import ProRowDragSortEditableCellTable from './ProRowDragSortEditableCellTable';
+import ProRowDragSortEditableRowTable from './ProRowDragSortEditableRowTable';
+import ProRowDragSortEditableTable from './ProRowDragSortEditableTable';
+import ProRowDragSortTable from './ProRowDragSortTable';
+import ProTable from './ProTable';
 import ColumnResizableTable from './columnResizeTable';
 import ColumnSettingTable from './columnSettingTable';
+import FewTable from './fewTable';
+import TableSearchBetweenTable from './renderSearchBetweenTable';
+import RowSelectedContinuous from './rowSelectedContinuous';
+import RowSelectedNormal from './rowSelectedNormal';
+import Table from './table';
 import TableDensitySetting from './tableDensitySetting';
 
 export default {
@@ -210,6 +321,17 @@ export default {
     ColumnResizableTable,
     ColumnSettingTable,
     TableDensitySetting,
+    TableSearchBetweenTable,
+    ProEditableCellTable,
+    ProEditableRowTable,
+    ProEditableTable,
+    ProEditableCellRenderTriggerTable,
+    ProEditableCellUseKeepEditTable,
+    ProRowDragSortEditableCellTable,
+    ProRowDragSortEditableRowTable,
+    ProRowDragSortEditableTable,
+    ProRowDragSortTable,
+    ProTable,
   },
   data() {
     return {
@@ -371,7 +493,7 @@ export default {
               key: 'index.vue',
               codeText: `
         <template>
-          <div style="display: flex; height: 700px">
+          <div style="display: flex; height: 700px;">
             <FewTable
               :wrapStyle="'height: 100%'"
               :isShowExpandSearch="true"
@@ -449,10 +571,10 @@ export default {
 
               return {
                 startTime: startTime
-                  ? startTime.format(Resource.Dict.value.ResourceMomentFormatFull.value)
+                  ? startTime.format(Resource.Dict.value.ResourceMomentFormat15.value())
                   : null,
                 endTime: endTime
-                  ? endTime.format(Resource.Dict.value.ResourceMomentFormatFull.value)
+                  ? endTime.format(Resource.Dict.value.ResourceMomentFormat15.value())
                   : null,
               };
             },
@@ -522,11 +644,11 @@ export default {
                   return Resource.Dict.value.ResourceNormalSexMap.value.get(text).label;
                 },
                 birthday: (text) => {
-                  return text ? moment(text).format(Resource.Dict.value.ResourceMomentFormat10.value) : '';
+                  return text ? moment(text).format(Resource.Dict.value.ResourceMomentFormat10.value()) : '';
                 },
               };
             },
-            renderSearchForm(h) {
+            renderSearchForm() {
               return (
                 <SearchForm>
                   <SearchFormRow>
@@ -731,7 +853,7 @@ export default {
           codeText: `
   import Table from './table';
 
-  <div style="display: flex; height: 700px">
+  <div style="display: flex; height: 700px;">
     <ColumnResizableTable
       :wrapStyle="'height: 100%'"
       :isShowExpandSearch="true"
@@ -825,7 +947,7 @@ export default {
           codeText: `
   import Table from './table';
 
-  <div style="display: flex; height: 700px">
+  <div style="display: flex; height: 700px;">
     <ColumnSettingTable
       :wrapStyle="'height: 100%'"
       :isShowExpandSearch="true"
@@ -862,7 +984,7 @@ export default {
           codeText: `
   import Table from './table';
 
-  <div style="display: flex; height: 700px">
+  <div style="display: flex; height: 700px;">
     <TableDensitySetting
       :wrapStyle="'height: 100%'"
       :isShowExpandSearch="true"
@@ -884,6 +1006,351 @@ export default {
   };
           `,
           childrenSlot: 'p11',
+        },
+        {
+          id: 'p12',
+          name: '查询面板两端的渲染',
+          cardProps: {
+            description: {
+              title: '查询面板两端的渲染',
+              info: '查询面板两端的渲染',
+            },
+          },
+          type: 'PlayGround',
+          codeText: `
+  import TableSearchBetweenTable from './renderSearchBetweenTable';
+
+  <TableSearchBetweenTable
+    :wrapStyle="'height: 100%'"
+    :isShowExpandSearch="true"
+    :defaultExpandSearchCollapse="false"
+  >
+    <template v-slot:searchFormBefore="context">
+      <a-row :gutter="16">
+        <a-col :span="12">
+          <a-statistic title="Active Users" :value="112893" />
+        </a-col>
+        <a-col :span="12">
+          <a-statistic title="Account Balance (CNY)" :value="112893" :precision="2" />
+          <a-button style="margin-top: 16px" type="primary">Recharge</a-button>
+        </a-col>
+        <a-col :span="12">
+          <a-statistic title="Active Users" value="112893" :loading="true" />
+        </a-col>
+      </a-row>
+    </template>
+
+    <template v-slot:searchFormAfter="context">
+      <a-row :gutter="16">
+        <a-col :span="12">
+          <a-statistic title="Active Users" :value="112893" />
+        </a-col>
+        <a-col span="{12}">
+          <a-statistic title="Account Balance (CNY)" :value="112893" :precision="2" />
+          <a-button style="margin-top: 16px" type="primary">Recharge</a-button>
+        </a-col>
+        <a-col :span="{12}">
+          <a-statistic title="Active Users" :value="112893" :loading="true" />
+        </a-col>
+      </a-row>
+    </template>
+  </TableSearchBetweenTable>
+
+  export default {
+    mixins: [Table],
+  };
+          `,
+          childrenSlot: 'p12',
+        },
+        {
+          id: 'p13',
+          name: 'ProSearchTable',
+          cardProps: {
+            description: {
+              title: 'ProSearchTable',
+              info: 'ProSearchTable',
+            },
+          },
+          type: 'PlayGround',
+          codeText: `
+          <template>
+            <div style="display: flex; height: 700px">
+              <ProTable />
+            </div>
+          </template>
+
+          <script>
+            import ProTable from './ProTable';
+
+            export default {
+                components: {
+                    ProTable
+                }
+            }
+          <\/script>
+          `,
+          childrenSlot: 'p13',
+        },
+        {
+          id: 'p14',
+          name: '可编辑的单元格',
+          cardProps: {
+            description: {
+              title: '可编辑的单元格',
+              info: '可编辑的单元格',
+            },
+          },
+          type: 'PlayGround',
+          codeText: `
+          <template>
+            <div style="display: flex; height: 700px">
+              <ProEditableCellTable />
+            </div>
+          </template>
+
+          <script>
+            import ProEditableCellTable from './ProEditableCellTable';
+
+            export default {
+                components: {
+                    ProEditableCellTable
+                }
+            }
+          <\/script>
+          `,
+          childrenSlot: 'p14',
+        },
+        {
+          id: 'p15',
+          name: '可编辑的行',
+          cardProps: {
+            description: {
+              title: '可编辑的行',
+              info: '可编辑的行',
+            },
+          },
+          type: 'PlayGround',
+          codeText: `
+          <template>
+            <div style="display: flex; height: 700px">
+              <ProEditableRowTable />
+            </div>
+          </template>
+
+          <script>
+            import ProEditableRowTable from './ProEditableRowTable';
+
+            export default {
+                components: {
+                    ProEditableRowTable
+                }
+            }
+          <\/script>
+          `,
+          childrenSlot: 'p15',
+        },
+        {
+          id: 'p16',
+          name: '可编辑的表格',
+          cardProps: {
+            description: {
+              title: '可编辑的表格',
+              info: '可编辑的表格',
+            },
+          },
+          type: 'PlayGround',
+          codeText: `
+          <template>
+            <div style="display: flex; height: 700px">
+              <ProEditableTable />
+            </div>
+          </template>
+
+          <script>
+            import ProEditableTable from './ProEditableTable';
+
+            export default {
+                components: {
+                    ProEditableTable
+                }
+            }
+          <\/script>
+          `,
+          childrenSlot: 'p16',
+        },
+        {
+          id: 'p17',
+          name: '始终处于编辑状态的可编辑单元格',
+          cardProps: {
+            description: {
+              title: '始终处于编辑状态的可编辑单元格',
+              info: '始终处于编辑状态的可编辑单元格',
+            },
+          },
+          type: 'PlayGround',
+          codeText: `
+          <template>
+            <div style="display: flex; height: 700px">
+              <ProEditableCellUseKeepEditTable />
+            </div>
+          </template>
+
+          <script>
+            import ProEditableCellUseKeepEditTable from './ProEditableCellUseKeepEditTable';
+
+            export default {
+                components: {
+                    ProEditableCellUseKeepEditTable
+                }
+            }
+          <\/script>
+          `,
+          childrenSlot: 'p17',
+        },
+        {
+          id: 'p18',
+          name: '可编辑的表格自定义trigger',
+          cardProps: {
+            description: {
+              title: '可编辑的表格自定义trigger',
+              info: '可编辑的表格自定义trigger',
+            },
+          },
+          type: 'PlayGround',
+          codeText: `
+          <template>
+            <div style="display: flex; height: 700px">
+              <ProEditableCellRenderTriggerTable />
+            </div>
+          </template>
+
+          <script>
+            import ProEditableCellRenderTriggerTable from './ProEditableCellRenderTriggerTable';
+
+            export default {
+                components: {
+                    ProEditableCellRenderTriggerTable
+                }
+            }
+          <\/script>
+          `,
+          childrenSlot: 'p18',
+        },
+        {
+          id: 'p19',
+          name: '拖拽排序',
+          cardProps: {
+            description: {
+              title: '拖拽排序',
+              info: '拖拽排序',
+            },
+          },
+          type: 'PlayGround',
+          codeText: `
+          <template>
+            <div style="display: flex; height: 700px">
+              <ProRowDragSortTable />
+            </div>
+          </template>
+
+          <script>
+            import ProRowDragSortTable from './ProRowDragSortTable';
+
+            export default {
+                components: {
+                    ProRowDragSortTable
+                }
+            }
+          <\/script>
+          `,
+          childrenSlot: 'p19',
+        },
+        {
+          id: 'p20',
+          name: '编辑单元格+拖拽',
+          cardProps: {
+            description: {
+              title: '编辑单元格+拖拽',
+              info: '编辑单元格+拖拽',
+            },
+          },
+          type: 'PlayGround',
+          codeText: `
+          <template>
+            <div style="display: flex; height: 700px">
+              <ProRowDragSortEditableTable />
+            </div>
+          </template>
+
+          <script>
+            import ProRowDragSortEditableTable from './ProRowDragSortEditableTable';
+
+            export default {
+                components: {
+                    ProRowDragSortEditableTable
+                }
+            }
+          <\/script>
+          `,
+          childrenSlot: 'p20',
+        },
+        {
+          id: 'p21',
+          name: '编辑行+拖拽',
+          cardProps: {
+            description: {
+              title: '编辑行+拖拽',
+              info: '编辑行+拖拽',
+            },
+          },
+          type: 'PlayGround',
+          codeText: `
+          <template>
+            <div style="display: flex; height: 700px">
+              <ProRowDragSortEditableRowTable />
+            </div>
+          </template>
+
+          <script>
+            import ProRowDragSortEditableRowTable from './ProRowDragSortEditableRowTable';
+
+            export default {
+                components: {
+                    ProRowDragSortEditableRowTable
+                }
+            }
+          <\/script>
+          `,
+          childrenSlot: 'p21',
+        },
+        {
+          id: 'p22',
+          name: '编辑表格+拖拽',
+          cardProps: {
+            description: {
+              title: '编辑表格+拖拽',
+              info: '编辑表格+拖拽',
+            },
+          },
+          type: 'PlayGround',
+          codeText: `
+          <template>
+            <div style="display: flex; height: 700px">
+              <ProRowDragSortEditableRowTable />
+            </div>
+          </template>
+
+          <script>
+            import ProRowDragSortEditableRowTable from './ProRowDragSortEditableRowTable';
+
+            export default {
+                components: {
+                    ProRowDragSortEditableRowTable
+                }
+            }
+          <\/script>
+          `,
+          childrenSlot: 'p22',
         },
       ],
       apiConfig: [

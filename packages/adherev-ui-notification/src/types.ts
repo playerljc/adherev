@@ -1,3 +1,7 @@
+import { App } from 'vue';
+
+import { Notification } from './notification';
+
 /**
  * IConfig
  * @interface IConfig
@@ -34,4 +38,14 @@ export interface IShowStandardConfig {
   text: Object | Function | string;
   icon: string;
   datetime: Object | Function | string;
+}
+
+export interface Config {
+  beforeMount(app: any): void;
+}
+
+export interface INotificationFactory {
+  install?: (app: App) => App<any>;
+  build(container: HTMLElement, config: IConfig): Notification;
+  setConfig(config: Config): void;
 }

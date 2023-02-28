@@ -6,13 +6,11 @@
 
     <adv-playground-page-code-box-section title="代码演示" :config="codeBoxPanelConfig">
       <template #p1>
-        <fragment>
-          <adv-fontsizesetting :min="12" :max="40" :step="1" @change="onChange" />
+        <adv-fontsizesetting :min="12" :max="40" :step="1" @change="onChange" />
 
-          <adv-space />
+        <adv-space />
 
-          <p :style="getFontSize">我是一个粉刷匠</p>
-        </fragment>
+        <p :style="getFontSize">我是一个粉刷匠</p>
       </template>
     </adv-playground-page-code-box-section>
 
@@ -22,6 +20,7 @@
 
 <script>
 export default {
+  displayName: 'fontsizesetting',
   data() {
     return {
       fontSize: 12,
@@ -46,12 +45,6 @@ export default {
           border: true,
           title: '属性',
           data: [
-            {
-              params: 'className',
-              desc: '附加的样式',
-              type: 'string',
-              defaultVal: '',
-            },
             {
               params: 'min',
               desc: '最小值',

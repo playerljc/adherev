@@ -63,6 +63,7 @@
 
 <script>
 export default {
+  displayName: 'split',
   data() {
     return {
       scrollEl: null,

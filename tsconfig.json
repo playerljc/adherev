@@ -1,9 +1,8 @@
 {
   "extends": "./node_modules/@ctsj/buildv/buildpackagetsconfig-base",
   "compilerOptions": {
+    "outDir": "./lib",
     "baseUrl": "./",
-    "jsx": "preserve",
-    "allowJs": true,
     "types": [
       "eslint",
       "estree",
@@ -27,7 +26,8 @@
       "vfile",
       "vfile-message",
       "webpack",
-      "webpack-sources"
+      "webpack-sources",
+      "vue"
     ]
   },
   "exclude": ["node_modules"],

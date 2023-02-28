@@ -1,51 +1,30 @@
-import { v4 } from 'uuid';
-
-import Map from 'ol/Map';
-
-import Circle from 'ol/geom/Circle';
-
-import Polygon from 'ol/geom/Polygon';
-
-import LinearRing from 'ol/geom/LinearRing';
-
-import { LineString, Point } from 'ol/geom';
-
-import View from 'ol/View';
-
 import Feature from 'ol/Feature.js';
-
-import Text from 'ol/style/Text';
-
+import Map from 'ol/Map';
 import Overlay from 'ol/Overlay.js';
-
-import { fromLonLat, transform, toLonLat, transformExtent } from 'ol/proj.js';
-
-import { getBottomLeft, getTopRight, boundingExtent } from 'ol/extent.js';
-
-import { createStringXY } from 'ol/coordinate';
-
-import { Heatmap as HeatmapLayer, Vector as VectorLayer } from 'ol/layer.js';
-
-import { Vector as VectorSource } from 'ol/source.js';
-
-import { Fill, Stroke, Style, Icon, RegularShape, Circle as CircleStyle } from 'ol/style.js';
-
-import Draw, { createBox } from 'ol/interaction/Draw.js';
-
-import Modify from 'ol/interaction/Modify';
-
+import View from 'ol/View';
 import { defaults as defaultControls } from 'ol/control.js';
-
-import Zoom from 'ol/control/Zoom.js';
-
 import MousePosition from 'ol/control/MousePosition.js';
-
 import ScaleLine from 'ol/control/ScaleLine.js';
+import Zoom from 'ol/control/Zoom.js';
+import { createStringXY } from 'ol/coordinate';
+import { boundingExtent, getBottomLeft, getTopRight } from 'ol/extent.js';
+import { Geometry, LineString, Point } from 'ol/geom';
+import Circle from 'ol/geom/Circle';
+import LinearRing from 'ol/geom/LinearRing';
+import Polygon from 'ol/geom/Polygon';
+import Draw, { createBox } from 'ol/interaction/Draw.js';
+import Modify from 'ol/interaction/Modify';
+import { Heatmap as HeatmapLayer, Vector as VectorLayer } from 'ol/layer.js';
+import { fromLonLat, toLonLat, transform, transformExtent } from 'ol/proj.js';
+import { Vector as VectorSource } from 'ol/source.js';
+import { Circle as CircleStyle, Fill, Icon, RegularShape, Stroke, Style } from 'ol/style.js';
+import Text from 'ol/style/Text';
+import { v4 } from 'uuid';
 
 import Resource from '@baifendian/adherev-util-resource';
 
-import * as TitleLayer from './titlelayer';
 import GeoLayer from './geolayer';
+import * as TitleLayer from './titlelayer';
 import WindLayer from './windlayer';
 
 const EARTH_RADIUS = Resource.Dict.value.ResourceGisEarthRadius.value; // 单位M
@@ -56,7 +35,7 @@ const DEFAULT_COLOE = '#1788F3';
  * getMinZoom
  * @param target
  */
-function getMinZoom(target) {
+function getMinZoom(target: { clientWidth: any }) {
   const width = target.clientWidth;
   return Math.ceil(Math.LOG2E * Math.log(width / 256));
 }
@@ -65,9 +44,8 @@ function getMinZoom(target) {
  * transformLonLat
  * @param point
  */
-function transformLonLat(point?: Array<number>) {
+function transformLonLat(point: Array<number>) {
   return transform(
-    // @ts-ignore
     point,
     Resource.Dict.value.ResourceGisEpsg3857.value,
     Resource.Dict.value.ResourceGisEpsg4326.value,
@@ -80,7 +58,17 @@ export default {
    * createMap - 创建地图
    * @param Config
    */
-  createMap(Config) {
+  createMap(Config: {
+    config: any;
+    type?: string;
+    maxZoom: any;
+    zoom: any;
+    minZoom: any;
+    center: any;
+    extent: any;
+    layers: any;
+    fitZoom?: any;
+  }) {
     const {
       config,
       fitZoom,
@@ -92,7 +80,13 @@ export default {
       layers = [TitleLayer.getOSMTileLayer()],
     } = Config;
 
-    const viewConfig = {
+    const viewConfig: {
+      center: number[];
+      minZoom: number;
+      maxZoom: number;
+      zoom: number;
+      extent?: number[];
+    } = {
       center: fromLonLat(center),
       minZoom,
       maxZoom,
@@ -100,7 +94,6 @@ export default {
     };
 
     if (extent && extent.length) {
-      // @ts-ignore
       viewConfig.extent = transformExtent(
         boundingExtent(extent),
         Resource.Dict.value.ResourceGisEpsg4326.value,
@@ -144,8 +137,7 @@ export default {
         if (fitZoom) {
           zoom = fitZoom;
         } else {
-          // @ts-ignore
-          const mapExtentTransform = [].concat(fromLonLat(extent[0])).concat(fromLonLat(extent[1]));
+          const mapExtentTransform = [...fromLonLat(extent[0]), ...fromLonLat(extent[1])];
           const resolution = map.getView().getResolutionForExtent(mapExtentTransform);
           zoom = map.getView().getZoomForResolution(resolution);
           // zoom = 11.5;
@@ -163,7 +155,7 @@ export default {
    * @param overlay
    * @param point
    */
-  setOverlayState: (overlay, point) => {
+  setOverlayState: (overlay: { setPosition: (arg0: any) => void }, point: any) => {
     overlay.setPosition(/* fromLonLat(point) */ point);
   },
 
@@ -178,17 +170,24 @@ export default {
    * @param {Function} setCursor 设置鼠标滑过当前图层的鼠标样式
    */
   addClickListener: (function () {
-    let onClick;
-    let onPointerMove;
+    let onClick: (evt: any) => void;
+    let onPointerMove: (evt: any) => void;
 
     return function (
-      mapInstance,
-      listeningLayer,
+      mapInstance: {
+        forEachFeatureAtPixel: (
+          arg0: any,
+          arg1: { (feature: any, layer: any): boolean; (_: any, layer: any): boolean },
+        ) => void;
+        un: (arg0: string, arg1: { (evt: any): void; (evt: any): void }) => void;
+        on: (arg0: string, arg1: { (evt: any): void; (evt: any): void }) => void;
+      },
+      listeningLayer: any,
       hitCallback = (feature: any) => {},
       unHitCallback = (feature: any) => {},
-      setCursor,
+      setCursor: (arg0: string) => void,
     ) {
-      const displayFeatureInfo = (pixel) => {
+      const displayFeatureInfo = (pixel: any) => {
         mapInstance.forEachFeatureAtPixel(pixel, (feature, layer) => {
           if (layer === listeningLayer) {
             hitCallback(feature);
@@ -234,10 +233,21 @@ export default {
    * @param {Function=} unHitCallback 可选 未选中的回调
    */
   addHoverListener: (function () {
-    let onPointermove;
+    let onPointermove: (evt: any) => void;
 
-    return function (mapInstance, listeningLayer, hitCallback, unHitCallback) {
-      const displayFeatureInfo = (pixel) => {
+    return function (
+      mapInstance: {
+        forEachFeatureAtPixel: (arg0: any, arg1: (feature: any, layer: any) => boolean) => void;
+        getTarget: () => { (): any; new (): any; style: { (): any; new (): any; cursor: string } };
+        un: (arg0: string, arg1: (evt: any) => void) => void;
+        getEventPixel: (arg0: any) => any;
+        on: (arg0: string, arg1: (evt: any) => void) => void;
+      },
+      listeningLayer: any,
+      hitCallback: (arg0: any) => void,
+      unHitCallback: (arg0?: undefined) => void,
+    ) {
+      const displayFeatureInfo = (pixel: any) => {
         // 是否在像素中
         let inPixel = false;
 
@@ -280,7 +290,12 @@ export default {
    * @param {number=} zIndex 该 Layer 的层级 可选, 默认为0
    * @returns geoLayer 此次生成的layer
    */
-  addGeoLayer: (mapInstance, geojsonData, getStyleConfig = () => {}, zIndex = 0) => {
+  addGeoLayer: (
+    mapInstance: { addLayer: (arg0: GeoLayer) => void },
+    geojsonData: any,
+    getStyleConfig = () => {},
+    zIndex = 0,
+  ) => {
     const geoLayer = new GeoLayer(geojsonData, getStyleConfig, zIndex);
     mapInstance.addLayer(geoLayer);
     return geoLayer;
@@ -294,7 +309,12 @@ export default {
    * @param zIndex
    * @return WindLayer
    */
-  addWindLayer: (mapInstance, data, config, zIndex = 0) => {
+  addWindLayer: (
+    mapInstance: { addLayer: (arg0: any) => void },
+    data: any,
+    config: any,
+    zIndex = 0,
+  ) => {
     const windLayer = new WindLayer(data, config);
     mapInstance.addLayer(windLayer);
     return windLayer;
@@ -305,7 +325,10 @@ export default {
    * @param map
    * @param zIndex
    */
-  addVectorLayer(map, zIndex) {
+  addVectorLayer(
+    map: { addLayer: (arg0: VectorLayer<VectorSource<Geometry>>) => void },
+    zIndex: any,
+  ) {
     const vectorSource = new VectorSource();
 
     const vectorLayer = new VectorLayer({
@@ -323,10 +346,9 @@ export default {
 
   /**
    * createHeatMapLayer - 添加一个热力层
-   * @param map
    * @param layoutConfig
    */
-  createHeatMapLayer(layoutConfig) {
+  createHeatMapLayer(layoutConfig: any) {
     const vectorSource = new VectorSource();
 
     const layer = new HeatmapLayer({
@@ -359,6 +381,7 @@ export default {
    */
   drawCircle({
     center,
+
     radius,
     color = 'rgba(23,136,243,.2)',
     strokeColor = DEFAULT_COLOE,
@@ -444,6 +467,7 @@ export default {
    */
   drawCirclePoint({
     id,
+
     pos,
     fillOpt = {
       color: 'rgba(23,136,243,.2)',
@@ -501,6 +525,7 @@ export default {
    */
   drawRegularShapePoint({
     id,
+
     pos,
     fillOpt = { color: 'rgba(23,136,243,.2)' },
     strokeOpt = {
@@ -588,7 +613,7 @@ export default {
     text = '',
     textOpt = {},
     propertys = {},
-  }) {
+  }: any) {
     const point = new Feature({
       zIndex: Resource.Dict.value.ResourceNormalMaxZIndex.value,
       geometry: new Point(pos),
@@ -636,7 +661,13 @@ export default {
    * @param angel 方向角(以y周围0)(可以自定义自己的x周一样)
    * @return {Polygon}
    */
-  createRegularPolygonCurve(origin, radius, sides, r, angel) {
+  createRegularPolygonCurve(
+    origin: number[],
+    radius: number,
+    sides: number,
+    r: number,
+    angel: number,
+  ) {
     const rotation = 360 - r;
     let angle = Math.PI * (1 / sides - 1 / 2);
     if (rotation) {
@@ -645,26 +676,22 @@ export default {
     let rotatedAngle;
     let x;
     let y;
-    const points = [];
+    const points: number[][] = [];
     for (let i = 0; i < sides; ++i) {
       const an = i * ((360 - rotation) / 360);
       rotatedAngle = angle + (an * 2 * Math.PI) / sides;
       x = origin[0] + radius * Math.cos(rotatedAngle);
       y = origin[1] + radius * Math.sin(rotatedAngle);
 
-      // @ts-ignore
       points.push([x, y]);
     }
     if (rotation !== 0) {
-      // @ts-ignore
       points.push(origin);
     }
-    const ring = new LinearRing(points);
+    const ring: any = new LinearRing(points);
     ring.rotate(Math.PI - ((angel - r / 2) / 180) * Math.PI, origin);
-    const poy = new Polygon([points]);
-    // @ts-ignore
+    const poy: any = new Polygon([points]);
     const a = ring.A;
-    // @ts-ignore
     poy.A = a;
 
     return poy;
@@ -675,21 +702,23 @@ export default {
    * @param vectorSource
    * @param feature
    */
-  removeFeature(vectorSource, feature) {
+  removeFeature(vectorSource: { removeFeature: (arg0: any) => void }, feature: any) {
     vectorSource.removeFeature(feature);
   },
   /**
    * removeAllFeature - 删除所有feature
    * @param vectorSource
    */
-  removeAllFeature(vectorSource) {
+  removeAllFeature(vectorSource: any) {
     vectorSource.clear();
   },
   /**
    * removeAllOverlay - 删除所有覆盖物
    * @param map
    */
-  removeAllOverlay(map) {
+  removeAllOverlay(map: {
+    getOverlays: () => { (): any; new (): any; clear: { (): void; new (): any } };
+  }) {
     map.getOverlays().clear();
   },
   /**
@@ -698,7 +727,7 @@ export default {
    * @param point
    * @param duration
    */
-  setMapCenterAnimate({ map, point, duration = 600 }) {
+  setMapCenterAnimate({ map, point, duration = 600 }: any) {
     map.getView().animate({
       center: point,
       duration,
@@ -712,7 +741,7 @@ export default {
    * @param lineCap
    * @param lineJoin
    */
-  drawLine({ points, width, color, lineCap = 'square', lineJoin = 'round' }) {
+  drawLine({ points, width, color, lineCap = 'square', lineJoin = 'round' }: any) {
     const line = new Feature({
       geometry: new LineString(points),
     });
@@ -722,9 +751,9 @@ export default {
         stroke: new Stroke({
           width,
           color,
-          // @ts-ignore
+
           lineCap,
-          // @ts-ignore
+
           lineJoin,
         }),
       }),
@@ -737,7 +766,7 @@ export default {
    * @param map
    * @param config
    */
-  createInteraction(map, config) {
+  createInteraction(map: any, config: any) {
     const { onDrawStart } = config;
     const drawPolygonInteraction = new Draw(config);
 
@@ -757,7 +786,7 @@ export default {
    * @param onDrawStart
    * @param onDrawEnd
    */
-  polygonInteraction({ map, freehand = true, vectorSource, onDrawEnd, ...other }) {
+  polygonInteraction({ map, freehand = true, vectorSource, onDrawEnd, ...other }: any) {
     const drawPolygonInteraction = this.createInteraction(map, {
       source: vectorSource,
       type: 'Polygon',
@@ -768,8 +797,8 @@ export default {
     drawPolygonInteraction.on('drawend', (e) => {
       e.feature.setId(v4());
       const geometry = e.feature.getGeometry();
-      const lonlats: any = [];
-      const coordinates = geometry.getCoordinates()[0].map((v) => {
+      const lonlats: number[][] = [];
+      const coordinates = geometry.getCoordinates()[0].map((v: number[]) => {
         lonlats.push(transformLonLat(v));
         return v;
       });
@@ -796,7 +825,7 @@ export default {
    * @param onDrawStart
    * @param onDrawEnd
    */
-  circleInteraction({ map, vectorSource, onDrawEnd, ...other }) {
+  circleInteraction({ map, vectorSource, onDrawEnd, ...other }: any) {
     const drawCircleInteraction = this.createInteraction(map, {
       source: vectorSource,
       type: 'Circle',
@@ -833,7 +862,7 @@ export default {
    * @param onDrawEnd
    * @param other
    */
-  boxInteraction({ map, vectorSource, onDrawEnd, ...other }) {
+  boxInteraction({ map, vectorSource, onDrawEnd, ...other }: any) {
     const drawBoxInteraction = this.createInteraction(map, {
       source: vectorSource,
       type: 'Circle',
@@ -845,7 +874,7 @@ export default {
     drawBoxInteraction.on('drawend', (e) => {
       e.feature.setId(v4());
       const geometry = e.feature.getGeometry();
-      const coordinates = geometry.getCoordinates()[0].map((v) => {
+      const coordinates = geometry.getCoordinates()[0].map((v: any) => {
         return v;
       });
       const centerp = map.getView().getCenter();
@@ -869,7 +898,7 @@ export default {
    * @param onDrawStart
    * @param onDrawEnd
    */
-  linStringInteraction({ map, freehand = true, vectorSource, onDrawEnd, ...other }) {
+  linStringInteraction({ map, freehand = true, vectorSource, onDrawEnd, ...other }: any) {
     const drawPolygonInteraction = this.createInteraction(map, {
       source: vectorSource,
       type: 'LineString',
@@ -880,8 +909,8 @@ export default {
     drawPolygonInteraction.on('drawend', (e) => {
       e.feature.setId(v4());
       const geometry = e.feature.getGeometry();
-      const lonlats: any = [];
-      const coordinates = geometry.getCoordinates().map((v) => {
+      const lonlats: number[][] = [];
+      const coordinates = geometry.getCoordinates().map((v: number[]) => {
         lonlats.push(transformLonLat(v));
         return v;
       });
@@ -910,7 +939,7 @@ export default {
    * @param onModifyEnd
    * @return {Modify|Modify}
    */
-  createModifyInteraction({ map, vectorSource, onModifyEnd }) {
+  createModifyInteraction({ map, vectorSource, onModifyEnd }: any) {
     const modifyInteraction = new Modify({
       source: vectorSource,
     });
@@ -933,14 +962,14 @@ export default {
    * @param map
    * @param interaction
    */
-  removeInteraction(map, interaction) {
+  removeInteraction(map: any, interaction: any) {
     map.removeInteraction(interaction);
   },
   /**
    * removeInteractionAll - 移除所有的Interaction
    * @param map
    */
-  removeInteractionAll(map) {
+  removeInteractionAll(map: any) {
     map.getInteractions().clear();
   },
   /**
@@ -949,7 +978,7 @@ export default {
    * @param option
    * @param map
    */
-  mapFit(extent = [], option = {}, map) {
+  mapFit(extent = [], option = {}, map: any) {
     // if (extent.length === 0) return;
     // const resolution = map.getView().getResolutionForExtent(extent);
     // if (resolution === 0) return;
@@ -980,8 +1009,8 @@ export default {
    * @param icon
    * @return {Array}
    */
-  addArrowsSource({ points, color, icon }) {
-    const arrows: any = [];
+  addArrowsSource({ points, color, icon }: any) {
+    const arrows: any[] = [];
     for (let i = 0; i < points.length - 1; i++) {
       const start = points[i];
       const end = points[i + 1];
@@ -1017,7 +1046,7 @@ export default {
    * @param color
    * @param points
    */
-  addArrowsOverlay(map, parentDom, color, points) {
+  addArrowsOverlay(map: any, parentDom: HTMLElement, color: any, points: any[]) {
     for (let i = 0; i < points.length - 1; i++) {
       const start = points[i];
       const end = points[i + 1];
@@ -1040,8 +1069,9 @@ export default {
    * addOverlay - 添加覆盖物
    * @param map
    * @param config
+   * @param div
    */
-  addOverlay: (map, config) => {
+  addOverlay: (map: any, config: any, div?: HTMLDivElement | null) => {
     const overlay = new Overlay(config);
     map.addOverlay(overlay);
     return overlay;
@@ -1051,7 +1081,7 @@ export default {
    * getRad
    * @param d
    */
-  getRad(d) {
+  getRad(d: number) {
     return (d * Math.PI) / 180.0;
   },
 
@@ -1060,7 +1090,7 @@ export default {
    * @param coordinates
    * @return {*}
    */
-  getExtentByCoordinates(coordinates) {
+  getExtentByCoordinates(coordinates: string | any[]) {
     if (coordinates.length === 0) {
       return [];
     }
@@ -1068,8 +1098,8 @@ export default {
       return [].concat(coordinates[0], coordinates[0]);
     }
 
-    const lons: any = [];
-    const lats: any = [];
+    const lons: number[] = [];
+    const lats: number[] = [];
     for (let i = 0; i < coordinates.length; i++) {
       const point = coordinates[i];
 
@@ -1098,7 +1128,7 @@ export default {
    * @param type
    * @return {*}
    */
-  getExtentByVectorSource(vectorSource, type = 'Point') {
+  getExtentByVectorSource(vectorSource: any, type = 'Point') {
     const coordinates = this.getCectorSourceCoordinates(vectorSource, type);
     return this.getExtentByCoordinates(coordinates);
   },
@@ -1107,15 +1137,15 @@ export default {
    * @param vectorSource
    * @param type
    */
-  getCectorSourceCoordinates(vectorSource, type = 'Point') {
-    let points: any = [];
+  getCectorSourceCoordinates(vectorSource: any, type = 'Point') {
+    let points: number[][] = [];
     vectorSource
       .getFeatures()
-      .filter((f) => {
+      .filter((f: any) => {
         const geometry = f.getGeometry();
         return geometry.getType() === type;
       })
-      .map((f) => {
+      .map((f: any) => {
         const geometry = f.getGeometry();
         if (type === 'Circle') {
           const extent = geometry.getExtent();
@@ -1140,12 +1170,12 @@ export default {
    * @param type
    * @return {{centerLon: number, centerLat: number}}
    */
-  getCenterByCoordinates(vectorSource, type = 'Point') {
+  getCenterByCoordinates(vectorSource: { getFeatures: () => any[] }, type = 'Point') {
     // 获取所有点的数据
-    let points: any = [];
+    let points: number[][] = [];
     vectorSource
       .getFeatures()
-      .filter((f) => {
+      .filter((f: { getGeometry: () => any }) => {
         const geometry = f.getGeometry();
         return geometry.getType() === type;
       })
@@ -1174,9 +1204,9 @@ export default {
    * @param points
    * @return {{centerLon: number, centerLat: number}}
    */
-  getCenterByPoints(points) {
-    const lons: any = [];
-    const lats: any = [];
+  getCenterByPoints(points: string | any[]) {
+    const lons: number[] = [];
+    const lats: number[] = [];
     for (let i = 0; i < points.length; i++) {
       const lonlat = transform(
         points[i],
@@ -1199,9 +1229,9 @@ export default {
    * @param points
    * @return {{centerLon: number, centerLat: number}}
    */
-  getPointsExtent(points) {
-    const lons: any = [];
-    const lats: any = [];
+  getPointsExtent(points: string | any[]) {
+    const lons: number[] = [];
+    const lats: number[] = [];
     for (let i = 0; i < points.length; i++) {
       const lonlat = transform(
         points[i],
@@ -1230,7 +1260,7 @@ export default {
    * @param {Object} lat2
    * @param {Object} lng2
    */
-  getFlatternDistance(lat1, lng1, lat2, lng2) {
+  getFlatternDistance(lat1: number, lng1: number, lat2: number, lng2: number) {
     const f = this.getRad((lat1 + lat2) / 2);
     const g = this.getRad((lat1 - lat2) / 2);
     const l = this.getRad((lng1 - lng2) / 2);
@@ -1255,7 +1285,7 @@ export default {
    * wrapLon
    * @param value
    */
-  wrapLon(value) {
+  wrapLon(value: number) {
     const worlds = Math.floor((value + 180) / 360);
     return value - worlds * 360;
   },
@@ -1263,7 +1293,7 @@ export default {
    * getMapExtent - 获取地图的矩形范围
    * @param map
    */
-  getMapExtent(map) {
+  getMapExtent(map: any) {
     if (!map) return false;
     const extent = map.getView().calculateExtent(map.getSize());
     const bottomLeft = toLonLat(getBottomLeft(extent));
@@ -1302,7 +1332,7 @@ export default {
    * @param map
    * @param feature
    */
-  getFeaturesInExtent(map, feature) {
+  getFeaturesInExtent(map: any, feature: any) {
     const geometry = feature.getGeometry();
     const extent = geometry.getExtent();
     return map.getLayers().getArray()[1].getSource().getFeaturesInExtent(extent);
@@ -1312,7 +1342,7 @@ export default {
    * @param map
    * @return {number}
    */
-  getLayersCount(map) {
+  getLayersCount(map: any) {
     return map.getLayers().getLength();
   },
   rgb() {
@@ -1329,7 +1359,7 @@ export default {
     const b = Math.floor(Math.random() * 256);
     return '#' + r.toString(16) + g.toString(16) + b.toString(16);
   },
-  getLineColor(index) {
+  getLineColor(index: number) {
     const palette = [
       'red',
       'green',
@@ -1349,8 +1379,8 @@ export default {
       return this.color16();
     }
   },
-  downLoadMap(map) {
-    map.once('postcompose', function (event) {
+  downLoadMap(map: any) {
+    map.once('postcompose', function (event: any) {
       const canvas = event.context.canvas;
       const dataURL = canvas.toDataURL();
       const a = document.createElement('a');

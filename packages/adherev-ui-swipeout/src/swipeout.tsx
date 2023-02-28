@@ -1,195 +1,141 @@
 import classNames from 'classnames';
 import Swiper from 'swiper';
-
-import { ISwipeOutProps } from './types';
+import { CSSProperties, VNode, computed, defineComponent, onMounted, ref, watch } from 'vue';
+import { bool, number, object, string } from 'vue-types';
 
 const selectorPrefix = 'adherev-ui-swipeout';
 
-export default {
+export const swiperOutProps = {
+  beforeClassName: string().def(''),
+  beforeStyle: object<CSSProperties>().def({}),
+  afterClassName: string().def(''),
+  afterStyle: object<CSSProperties>().def({}),
+  contentClassName: string().def(''),
+  contentStyle: object<CSSProperties>().def({}),
+  beforeShow: bool().def(false),
+  afterShow: bool().def(false),
+  direction: string().def('horizontal'),
+  duration: number().def(0),
+  renderBefore: object<VNode>(),
+  renderAfter: object<VNode>(),
+};
+
+export default defineComponent({
   name: 'adv-swipeout',
-  props: {
-    className: {
-      type: String,
-      default: '',
-    },
-    beforeClassName: {
-      type: String,
-      default: '',
-    },
-    beforeStyle: {
-      type: String,
-      default: '',
-    },
-    afterClassName: {
-      type: String,
-      default: '',
-    },
-    afterStyle: {
-      type: String,
-      default: '',
-    },
-    contentClassName: {
-      type: String,
-      default: '',
-    },
-    contentStyle: {
-      type: String,
-      default: '',
-    },
-    beforeShow: {
-      type: Boolean,
-      default: false,
-    },
-    afterShow: {
-      type: Boolean,
-      default: false,
-    },
-    direction: {
-      type: String,
-      default: 'horizontal',
-    },
-    duration: {
-      type: Number,
-      default: 0,
-    },
-    // onInit: {
-    //   type: Function,
-    //   default: () => null,
-    // },
-    // slideChangeTransitionStart: {
-    //   type: Function,
-    //   default: () => null,
-    // },
-    // slideChangeTransitionEnd: {
-    //   type: Function,
-    //   default: () => null,
-    // },
-  },
-  data() {
-    return {
-      $swiper: null,
-      $map: new Map([
-        [[true, true].toString(), 1],
-        [[false, false].toString(), 1],
-        [[true, false].toString(), 0],
-        [[false, true].toString(), 2],
-      ]),
-    };
-  },
-  watch: {
-    direction(direction, oldDirection) {
-      if (direction !== oldDirection) {
-        this.$data.$swiper.changeDirection(direction);
-      }
-    },
-    beforeShow(val, oldVal) {
-      if (val !== oldVal) {
-        this.slide({
-          beforeShow: val,
-          afterShow: this.afterShow,
-          duration: this.duration,
-        });
-      }
-    },
-    afterShow(val, oldVal) {
-      if (val !== oldVal) {
-        this.slide({
-          beforeShow: this.beforeShow,
-          afterShow: val,
-          duration: this.duration,
-        });
-      }
-    },
-  },
-  computed: {
-    getContainerClassName() {
-      const { className } = this;
+  props: swiperOutProps,
+  emits: ['init', 'slide-change-transition-start', 'slide-change-transition-end'],
+  slots: ['before', 'after'],
+  setup(props, { slots, emit }) {
+    const root = ref<HTMLElement>();
 
-      return classNames(selectorPrefix, 'swiper-container', className.split(/\s+/));
-    },
-    getWrapperClassName() {
-      return `swiper-wrapper`;
-    },
-    getBeforeClassName() {
-      const { beforeClassName } = this;
+    let swiper: any = null;
+    const map = new Map<string, number>([
+      [[true, true].toString(), 1],
+      [[false, false].toString(), 1],
+      [[true, false].toString(), 0],
+      [[false, true].toString(), 2],
+    ]);
 
-      return classNames('swiper-slide', `${selectorPrefix}-before`, beforeClassName.split(/\s+/));
-    },
-    getContentClassName() {
-      const { contentClassName } = this;
+    const getContainerClassName = computed(() => classNames(selectorPrefix, 'swiper-container'));
 
-      return classNames('swiper-slide', `${selectorPrefix}-content`, contentClassName.split(/\s+/));
-    },
-    getAfterClassName() {
-      const { afterClassName } = this;
+    const getBeforeClassName = computed(() =>
+      classNames('swiper-slide', `${selectorPrefix}-before`, props.beforeClassName.split(/\s+/)),
+    );
 
-      return classNames('swiper-slide', `${selectorPrefix}-after`, afterClassName.split(/\s+/));
-    },
-  },
-  methods: {
-    createSwiper() {
-      const { $refs, $data, direction } = this;
+    const getContentClassName = computed(() =>
+      classNames('swiper-slide', `${selectorPrefix}-content`, props.contentClassName.split(/\s+/)),
+    );
 
-      if ($data.$swiper) {
-        $data.$swiper.destroy();
+    const getAfterClassName = computed(() =>
+      classNames('swiper-slide', `${selectorPrefix}-after`, props.afterClassName.split(/\s+/)),
+    );
+
+    const createSwiper = () => {
+      if (swiper) {
+        swiper.destroy();
       }
 
-      const { beforeShow, afterShow } = this;
-
-      $data.$swiper = new Swiper($refs.ref, {
+      swiper = new Swiper(root.value, {
         init: false,
         // 初始化在第一个选项卡上
-        initialSlide: $data.$map.get([beforeShow, afterShow].toString()),
-        direction,
+        initialSlide: map.get([props.beforeShow, props.afterShow].toString()),
+        direction: props.direction,
         slidesPerView: 'auto',
         centeredSlides: false,
         spaceBetween: 0,
       });
 
-      $data.$swiper.on('init', () => {
-        this.$emit('init');
+      swiper.on('init', () => {
+        emit('init');
       });
 
-      $data.$swiper.on('slideChangeTransitionStart', () => {
-        this.$emit('slide-change-transition-start', $data.$swiper.activeIndex);
+      swiper.on('slideChangeTransitionStart', () => {
+        emit('slide-change-transition-start', swiper.activeIndex);
       });
 
-      $data.$swiper.on('slideChangeTransitionEnd', () => {
-        this.$emit('slide-change-transition-end', $data.$swiper.activeIndex);
+      swiper.on('slideChangeTransitionEnd', () => {
+        emit('slide-change-transition-end', swiper.activeIndex);
       });
 
-      $data.$swiper.init();
-    },
-    slide(props: ISwipeOutProps): void {
-      const { beforeShow, afterShow, duration } = props;
+      swiper.init();
+    };
 
-      const {
-        $data: { $swiper, $map },
-      } = this;
+    const slide = (params: any): void =>
+      swiper.slideTo(map.get([params.beforeShow, params.afterShow].toString()), params.duration);
 
-      $swiper.slideTo($map.get([beforeShow, afterShow].toString()), duration);
-    },
-  },
-  mounted() {
-    this.createSwiper();
-  },
-  render(h): any {
-    const { $slots, contentStyle, beforeStyle, afterStyle } = this;
+    watch(
+      () => props.direction,
+      (direction, oldDirection) => {
+        if (direction !== oldDirection) {
+          swiper.changeDirection(direction);
+        }
+      },
+    );
 
-    return (
-      <div class={this.getContainerClassName} ref="ref">
-        <div class={this.getWrapperClassName}>
-          <div class={this.getBeforeClassName} style={beforeStyle}>
-            {$slots.before}
+    watch(
+      () => props.beforeShow,
+      (val, oldVal) => {
+        if (val !== oldVal) {
+          slide({
+            beforeShow: val,
+            afterShow: props.afterShow,
+            duration: props.duration,
+          });
+        }
+      },
+    );
+
+    watch(
+      () => props.afterShow,
+      (val, oldVal) => {
+        if (val !== oldVal) {
+          slide({
+            beforeShow: props.beforeShow,
+            afterShow: val,
+            duration: props.duration,
+          });
+        }
+      },
+    );
+
+    onMounted(() => {
+      createSwiper();
+    });
+
+    return () => (
+      <div class={getContainerClassName.value} ref={root}>
+        <div class="swiper-wrapper">
+          <div class={getBeforeClassName.value} style={props.beforeStyle}>
+            {slots?.before?.() || props.renderBefore}
           </div>
-          <div class={this.getContentClassName} style={contentStyle}>
-            {$slots.default}
+          <div class={getContentClassName.value} style={props.contentStyle}>
+            {slots?.default?.()}
           </div>
-          <div class={this.getAfterClassName} style={afterStyle}>
-            {$slots.after}
+          <div class={getAfterClassName.value} style={props.afterStyle}>
+            {slots?.after?.() || props.renderAfter}
           </div>
         </div>
       </div>
     );
   },
-};
+});

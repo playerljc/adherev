@@ -1,40 +1,32 @@
+import { defineComponent } from 'vue';
+import { bool, number, string } from 'vue-types';
+
 import Resource from '@baifendian/adherev-util-resource';
 
 const selectorPrefix = 'adherev-ui-spin';
 
-export default {
-  name: 'adv-spin',
-  props: {
-    spinning: {
-      type: Boolean,
-      default: false,
-    },
-    text: {
-      type: String,
-      default: '',
-    },
-    zIndex: {
-      type: Number,
-      default: Resource.Dict.value.ResourceNormalMaxZIndex.value,
-    },
-  },
-  render(h) {
-    const { spinning, text, zIndex } = this;
-
-    return spinning ? (
-      <div class={selectorPrefix} style={{ zIndex }}>
-        <span class={`${selectorPrefix}-dot`}>
-          <i></i>
-
-          <i></i>
-
-          <i></i>
-
-          <i></i>
-        </span>
-
-        <div class={`${selectorPrefix}-text`}>{text}</div>
-      </div>
-    ) : null;
-  },
+export const spinProps = {
+  spinning: bool().def(false),
+  text: string().def(''),
+  zIndex: number().def(Resource.Dict.value.ResourceNormalMaxZIndex.value),
 };
+
+export default defineComponent({
+  name: 'adv-spin',
+  props: spinProps,
+  setup(props) {
+    return () =>
+      props.spinning ? (
+        <div class={selectorPrefix} style={{ zIndex: props.zIndex }}>
+          <span class={`${selectorPrefix}-dot`}>
+            <i></i>
+            <i></i>
+            <i></i>
+            <i></i>
+          </span>
+
+          <div class={`${selectorPrefix}-text`}>{props.text}</div>
+        </div>
+      ) : null;
+  },
+});

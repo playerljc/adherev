@@ -71,6 +71,7 @@ anchor.length = 3;
 anchor.fill(0);
 
 export default {
+  displayName: 'demo',
   data() {
     return {
       scrollEl: null,

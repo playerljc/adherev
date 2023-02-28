@@ -1,15 +1,16 @@
-import Resource from './resource';
+import { App, Plugin } from 'vue';
+
 import BfdUtil from '@baifendian/adherev-util';
+
+import Resource from './resource';
 
 const {
   _util: { withVue },
 } = BfdUtil;
 
-// @ts-ignore
-Resource.isUse = () => true;
-// @ts-ignore
-Resource.use = (Vue) => {
-  withVue(Vue, 'Resource', Resource);
-};
+Resource.install = (app: App) => {
+  withVue(app, 'Resource', Resource);
 
-export default Resource;
+  return app;
+}
+export default Resource as typeof Resource & Plugin;

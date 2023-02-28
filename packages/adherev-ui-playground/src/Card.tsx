@@ -1,117 +1,78 @@
-import { PropType } from 'vue';
 import classNames from 'classnames';
+import { CSSProperties, ExtractPropTypes, VNode, defineComponent } from 'vue';
+import { array, object, oneOfType, string } from 'vue-types';
+
 import ConditionalRender from '@baifendian/adherev-ui-conditionalrender';
 
 const selectorPrefix = 'adherev-ui-playground-card';
 
-export const cardPropTypes = {
-  headerClassName: {
-    type: String,
-    default: '',
-  },
-  headerStyle: {
-    type: String,
-    default: '',
-  },
-  bodyClassName: {
-    type: String,
-    default: '',
-  },
-  bodyStyle: {
-    type: String,
-    default: '',
-  },
-  actionClassName: {
-    type: String,
-    default: '',
-  },
-  actionStyle: {
-    type: String,
-    default: '',
-  },
-  title: {
-    type: [String, Object],
-    default: '',
-  },
-  extra: {
-    type: Object,
-    default: () => null,
-  },
-  actions: {
-    type: Array,
-    default: () => [],
-  },
-  description: {
-    type: Object as PropType<{ title: string; info: string }>,
-    default: () => null,
-  },
+export const cardProps = {
+  headerClassName: string().def(''),
+  headerStyle: object<CSSProperties>().def({}),
+  bodyClassName: string().def(''),
+  bodyStyle: object<CSSProperties>().def({}),
+  actionClassName: string().def(''),
+  actionStyle: object<CSSProperties>().def({}),
+  title: oneOfType([string(), object<VNode>()]),
+  extra: object<VNode>(),
+  actions: array<any>().def([]),
+  description: object<{
+    title: string;
+    info: string;
+  }>(),
 };
 
-export default {
+export default defineComponent({
   name: 'adv-playground-card',
-  props: {
-    ...cardPropTypes,
-  },
-  render(h) {
-    const {
-      headerClassName,
-      headerStyle,
-      bodyClassName,
-      bodyStyle,
-      actionClassName,
-      actionStyle,
-      title,
-      extra,
-      description,
-      actions,
-      $slots,
-    } = this;
-
-    return (
+  props: cardProps,
+  setup(props, { slots }) {
+    return () => (
       <div class={selectorPrefix}>
-        <ConditionalRender conditional={!!title || !!extra}>
+        <ConditionalRender conditional={!!props.title || !!props.extra}>
           <div
-            class={classNames(`${selectorPrefix}-header`, headerClassName.split(/\s+/))}
-            style={headerStyle}
+            class={classNames(`${selectorPrefix}-header`, props.headerClassName || '' || '')}
+            style={props.headerStyle}
           >
-            <ConditionalRender conditional={!!title}>
-              <div class={`${selectorPrefix}-header-title`}>{title}</div>
+            <ConditionalRender conditional={!!props.title}>
+              <div class={`${selectorPrefix}-header-title`}>{props.title}</div>
             </ConditionalRender>
 
-            <ConditionalRender conditional={!!extra}>
-              <div class={`${selectorPrefix}-header-extra`}>{extra}</div>
+            <ConditionalRender conditional={!!props.extra}>
+              <div class={`${selectorPrefix}-header-extra`}>{props.extra}</div>
             </ConditionalRender>
           </div>
         </ConditionalRender>
 
-        <ConditionalRender conditional={!!$slots.default}>
+        <ConditionalRender conditional={!!slots.default}>
           <div
-            class={classNames(`${selectorPrefix}-body`, bodyClassName.split(/\s+/))}
-            style={bodyStyle}
+            class={classNames(`${selectorPrefix}-body`, props.bodyClassName || '' || '')}
+            style={props.bodyStyle}
           >
-            {$slots.default}
+            {slots?.default?.()}
           </div>
         </ConditionalRender>
 
-        <ConditionalRender conditional={!!description?.title || !!description?.info}>
+        <ConditionalRender conditional={!!props.description?.title || !!props.description?.info}>
           <div class={`${selectorPrefix}-description`}>
-            <ConditionalRender conditional={!!description?.title}>
-              <div class={`${selectorPrefix}-description-title`}>{description?.title}</div>
+            <ConditionalRender conditional={!!props.description?.title}>
+              <div class={`${selectorPrefix}-description-title`}>{props.description?.title}</div>
             </ConditionalRender>
-            <ConditionalRender conditional={!!description?.info}>
-              {description?.info}
+
+            <ConditionalRender conditional={!!props.description?.info}>
+              {props.description?.info}
             </ConditionalRender>
           </div>
         </ConditionalRender>
 
-        <ConditionalRender conditional={!!(actions && actions.length)}>
+        {/*@ts-ignore**/}
+        <ConditionalRender conditional={!!(props.actions && props.actions.length)}>
           <ul
-            class={classNames(`${selectorPrefix}-action`, actionClassName.split(/\s+/))}
-            style={actionStyle}
+            class={classNames(`${selectorPrefix}-action`, props.actionClassName || '' || '')}
+            style={props.actionStyle}
           >
-            {actions.map((action, index) => (
+            {props.actions?.map((action, index) => (
               <li key={`${index + 1}`} class={`${selectorPrefix}-action-item`}>
-                {$slots[action]}
+                {slots[action]?.()}
               </li>
             ))}
           </ul>
@@ -119,4 +80,4 @@ export default {
       </div>
     );
   },
-};
+});

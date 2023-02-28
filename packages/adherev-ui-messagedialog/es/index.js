@@ -1,0 +1,2 @@
+import _Button from"ant-design-vue/es/button";import _ConfigProvider from"ant-design-vue/es/config-provider";import Util from"@baifendian/adherev-util";import Intl from"@baifendian/adherev-util-intl";import formCreate from"@form-create/ant-design-vue";import MessageDialog from"./messagedialog";var withVue=Util._util.withVue;MessageDialog.install=function(e){return e.use(Intl),e.use(_ConfigProvider),e.use(_Button),e.use(formCreate),withVue(e,"MessageDialog",MessageDialog),e};export default MessageDialog;
+//# sourceMappingURL=index.js.map

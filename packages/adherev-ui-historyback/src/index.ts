@@ -1,20 +1,20 @@
-import _HistoryBack from '@baifendian/adhere-ui-historyback';
-import Util from '@baifendian/adherev-util';
+import { App, Plugin } from 'vue';
+
+import HistoryBack from '@baifendian/adhere-ui-historyback';
+import BfdUtil from '@baifendian/adherev-util';
 
 const {
   _util: { withVue },
-} = Util;
+} = BfdUtil;
 
-const HistoryBack: {
-  isUse?(): boolean;
-  use?(Vue: any): void;
-  (history: any, routePath?: string): void;
-} = _HistoryBack;
+const HistoryBackWrap: typeof HistoryBack & {
+  install?: (app: App) => App;
+} = HistoryBack;
 
-HistoryBack.isUse = () => true;
+HistoryBackWrap.install = (app: App) => {
+  withVue(app, 'HistoryBack', HistoryBack);
 
-HistoryBack.use = (Vue) => {
-  withVue(Vue, 'HistoryBack', HistoryBack);
+  return app;
 };
 
-export default HistoryBack;
+export default HistoryBackWrap as typeof HistoryBackWrap & Plugin;

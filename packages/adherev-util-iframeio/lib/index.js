@@ -1,0 +1,2 @@
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0});var tslib_1=require("tslib"),adhere_util_iframeio_1=tslib_1.__importDefault(require("@baifendian/adhere-util-iframeio")),adherev_util_1=tslib_1.__importDefault(require("@baifendian/adherev-util")),withVue=adherev_util_1.default._util.withVue,IframeIOWrap=adhere_util_iframeio_1.default;IframeIOWrap.install=function(e){return withVue(e,"IframeIO",adhere_util_iframeio_1.default),e},exports.default=IframeIOWrap;
+//# sourceMappingURL=index.js.map

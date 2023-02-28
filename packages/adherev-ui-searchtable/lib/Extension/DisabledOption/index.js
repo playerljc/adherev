@@ -1,0 +1,2 @@
+"use strict";var _vue=require("vue"),vue_1=(require("core-js/modules/es.object.define-property.js"),Object.defineProperty(exports,"__esModule",{value:!0}),require("vue")),selectorPrefix="adherev-ui-searchtable-disabledoption";exports.default=(0,vue_1.defineComponent)({name:"adv-searchtable-disabledoption",render:function(){var e,r;return(0,_vue.createVNode)("div",{class:selectorPrefix},[null==(r=null==(e=null==this?void 0:this.$slots)?void 0:e.default)?void 0:r.call(e)])}});
+//# sourceMappingURL=index.js.map

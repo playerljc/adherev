@@ -1,0 +1,2 @@
+import Util from"@baifendian/adherev-util";import JdCategoryTabItem from"./item";import JdCategoryTab from"./jdcategorytab";var withVue=Util._util.withVue;JdCategoryTab.Item=JdCategoryTabItem,JdCategoryTab.install=function(t){return t.component(JdCategoryTabItem.name,JdCategoryTabItem),t.component(JdCategoryTab.name,JdCategoryTab),withVue(t,"JdCategoryTab",JdCategoryTab),t};export default JdCategoryTab;
+//# sourceMappingURL=index.js.map

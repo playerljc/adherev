@@ -1,3 +1,5 @@
+import { App } from 'vue';
+
 /**
  * IAlertArgv
  * @interface IAlertArgv
@@ -45,6 +47,39 @@ export interface IPromptConfig {
 }
 
 export interface IConfig {
-  messages: object;
-  getOptions(): any;
+  beforeMount(app: any): void;
+}
+
+export interface IModalArg {
+  config?: any;
+  children?: any;
+  defaultCloneBtn?: boolean;
+  local?: string | null | undefined;
+}
+
+export interface IMessageDialogFactory {
+  install?: (app: App) => App<any>;
+  Confirm(config: IConfirmArgv): void;
+  Prompt(config: IPromptConfig): void;
+  InputPrompt(config: IPromptConfig): void;
+  TextAreaPrompt(config: IPromptConfig): void;
+  PassWordPrompt(config: IPromptConfig): void;
+  NumberPrompt(config: IPromptConfig): void;
+  Alert(config: IAlertArgv): void;
+  Modal(config: IModalArg): void;
+  close({ app, el }: { app: any; el: HTMLElement }): void;
+  setConfig(gc: IConfig): void;
+}
+
+export interface IModalProps {
+  config: any;
+  closeBtn: boolean;
+}
+
+export interface IModalMethod {
+  // onEmitterClose(): void;
+  renderCloseBtn(): void;
+  renderDefault(): void;
+  renderTitle(): void;
+  renderFooter(): void;
 }

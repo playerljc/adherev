@@ -97,29 +97,27 @@
       </template>
 
       <template #p7>
-        <fragment>
-          <div style="display: flex; align-items: center">
-            <adv-space-group direction="horizontal">
-              <a-button type="primary" @click="onCodeApiStart">start</a-button>
-              <a-button @click="onCodeApiEnd">stop</a-button>
-            </adv-space-group>
-          </div>
+        <div style="display: flex; align-items: center">
+          <adv-space-group direction="horizontal">
+            <a-button type="primary" @click="onCodeApiStart">start</a-button>
+            <a-button @click="onCodeApiEnd">stop</a-button>
+          </adv-space-group>
+        </div>
 
-          <adv-space />
+        <adv-space />
 
-          <adv-revolving ref="ref" direction="bottom" :delay="1000 * 3" style="height: 50px">
-            <adv-revolving-item>Slide 1</adv-revolving-item>
-            <adv-revolving-item>Slide 2</adv-revolving-item>
-            <adv-revolving-item>Slide 3</adv-revolving-item>
-            <adv-revolving-item>Slide 4</adv-revolving-item>
-            <adv-revolving-item>Slide 5</adv-revolving-item>
-            <adv-revolving-item>Slide 6</adv-revolving-item>
-            <adv-revolving-item>Slide 7</adv-revolving-item>
-            <adv-revolving-item>Slide 8</adv-revolving-item>
-            <adv-revolving-item>Slide 9</adv-revolving-item>
-            <adv-revolving-item>Slide 10</adv-revolving-item>
-          </adv-revolving>
-        </fragment>
+        <adv-revolving ref="ref" direction="bottom" :delay="1000 * 3" style="height: 50px">
+          <adv-revolving-item>Slide 1</adv-revolving-item>
+          <adv-revolving-item>Slide 2</adv-revolving-item>
+          <adv-revolving-item>Slide 3</adv-revolving-item>
+          <adv-revolving-item>Slide 4</adv-revolving-item>
+          <adv-revolving-item>Slide 5</adv-revolving-item>
+          <adv-revolving-item>Slide 6</adv-revolving-item>
+          <adv-revolving-item>Slide 7</adv-revolving-item>
+          <adv-revolving-item>Slide 8</adv-revolving-item>
+          <adv-revolving-item>Slide 9</adv-revolving-item>
+          <adv-revolving-item>Slide 10</adv-revolving-item>
+        </adv-revolving>
       </template>
     </adv-playground-page-code-box-section>
 
@@ -131,6 +129,7 @@
 
 <script>
 export default {
+  displayName: 'revolving',
   data() {
     return {
       scrollEl: null,
@@ -397,12 +396,6 @@ export default {
           border: true,
           title: 'Revolving',
           data: [
-            {
-              params: 'className',
-              desc: '附加的样式表',
-              type: 'string',
-              defaultVal: '',
-            },
             {
               params: 'classNameWrapper',
               desc: 'wrapper附加的样式表',

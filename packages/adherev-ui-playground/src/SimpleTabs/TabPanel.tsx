@@ -1,27 +1,26 @@
 import classNames from 'classnames';
+import { defineComponent, inject } from 'vue';
+import { string } from 'vue-types';
 
 const selectorPrefix = 'adherev-ui-playground-simple-tabs-panel';
 
-export default {
-  name: 'adv-playground-simple-tabs-tab-panel',
-  props: {
-    title: {
-      type: String,
-      default: '',
-    },
-    index: {
-      type: [String, Number],
-      default: '',
-    },
-  },
-  inject: ['getActiveKey'],
-  render(h) {
-    const { index, $slots, getActiveKey } = this;
-
-    return (
-      <div class={classNames(selectorPrefix, getActiveKey() === index ? `active` : '')}>
-        {$slots.default}
-      </div>
-    );
-  },
+export const tabPanelProps = {
+  title: string().def(''),
+  index: string().def(''),
 };
+
+export default defineComponent({
+  name: 'adv-playground-simple-tabs-tab-panel',
+  props: tabPanelProps,
+  setup(props, { slots }) {
+    return () => {
+      const activeKey = (inject('getActiveKey') as () => string)();
+
+      return (
+        <div class={classNames(selectorPrefix, activeKey === props.index ? `active` : '')}>
+          {slots?.default?.()}
+        </div>
+      );
+    };
+  },
+});

@@ -1,0 +1,2 @@
+import{__assign}from"tslib";import{defineComponent,h}from"vue";import{array,object}from"vue-types";import{Cascader}from"../../AntdvFormItemNormalize";export default defineComponent({name:"CascaderFormItem",props:{cascaderProps:object().def({}),value:array().def([]),dataSource:array().def([])},emits:["change"],render:function(){var r=this;return h(Cascader,__assign(__assign(__assign({value:this.value,options:this.dataSource},this.cascaderProps),this.$attrs),{onChange:function(e){return r.$emit("change",e)}}),this.$slots)}});
+//# sourceMappingURL=index.js.map

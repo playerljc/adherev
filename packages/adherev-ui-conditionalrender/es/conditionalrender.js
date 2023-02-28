@@ -1,0 +1,2 @@
+import{defineComponent}from"vue";import{bool}from"vue-types";var conditionalRenderProps={conditional:bool().def(!0)};export default defineComponent({name:"adv-conditionalrender",props:conditionalRenderProps,slots:["default","noMatch"],setup:function(o,n){var e=n.slots;return function(){return o.conditional?e.default?e.default():null:e.noMatch?e.noMatch():null}}});export{conditionalRenderProps};
+//# sourceMappingURL=conditionalrender.js.map

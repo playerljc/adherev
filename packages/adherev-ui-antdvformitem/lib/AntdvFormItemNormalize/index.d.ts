@@ -1,0 +1,26 @@
+import AutoComplete from './formitems/AutoComplete';
+import Cascader from './formitems/Cascader';
+import DatePicker from './formitems/DatePicker';
+import Input from './formitems/Input';
+import InputNumberDecimal1 from './formitems/InputNumberDecimal1';
+import InputNumberDecimal2 from './formitems/InputNumberDecimal2';
+import InputNumberInteger from './formitems/InputNumberInteger';
+import Mentions from './formitems/Mentions';
+import Modal from './formitems/Modal';
+import MultipleSelect from './formitems/MultipleSelect';
+import RangePicker from './formitems/RangePicker';
+import Select from './formitems/Select';
+import Slider from './formitems/Slider';
+import TextArea from './formitems/TextArea';
+import TimePicker from './formitems/TimePicker';
+import Tooltip from './formitems/Tooltip';
+import Transfer from './formitems/Transfer';
+import TreeSelect from './formitems/TreeSelect';
+import Upload from './formitems/Upload';
+import SubmitButton from './formitems/SubmitButton';
+declare const Affix: any, Alert: any, Anchor: any, AnchorLink: any, AutoCompleteOptGroup: any, AutoCompleteOption: any, Avatar: any, AvatarGroup: any, BackTop: any, Badge: any, BadgeRibbon: any, Breadcrumb: any, BreadcrumbItem: any, BreadcrumbSeparator: any, Button: any, ButtonGroup: any, Calendar: any, Card: any, CardGrid: any, CardMeta: any, Carousel: any, CheckableTag: any, Checkbox: any, CheckboxGroup: any, Col: any, Collapse: any, CollapsePanel: any, Comment: any, ConfigProvider: any, Descriptions: any, DescriptionsItem: any, DirectoryTree: any, Divider: any, Drawer: any, Dropdown: any, DropdownButton: any, Empty: any, Form: any, FormItem: any, FormItemRest: any, Grid: any, Image: any, ImagePreviewGroup: any, InputGroup: any, InputNumber: any, InputPassword: any, InputSearch: any, Layout: any, LayoutContent: any, LayoutFooter: any, LayoutHeader: any, LayoutSider: any, List: any, ListItem: any, ListItemMeta: any, LocaleProvider: any, MentionsOption: any, Menu: any, MenuDivider: any, MenuItem: any, MenuItemGroup: any, MonthPicker: any, PageHeader: any, Pagination: any, Popconfirm: any, Popover: any, Progress: any, QuarterPicker: any, Radio: any, RadioButton: any, RadioGroup: any, Rate: any, Result: any, Row: any, SelectOptGroup: any, SelectOption: any, Skeleton: any, SkeletonAvatar: any, SkeletonButton: any, SkeletonImage: any, SkeletonInput: any, SkeletonTitle: any, Space: any, Spin: any, Statistic: any, StatisticCountdown: any, Step: any, Steps: any, SubMenu: any, Switch: any, TabPane: any, Table: any, TableColumn: any, TableColumnGroup: any, TableSummary: any, TableSummaryCell: any, TableSummaryRow: any, Tabs: any, Tag: any, Textarea: any, TimeRangePicker: any, Timeline: any, TimelineItem: any, Tree: any, TreeNode: any, TreeSelectNode: any, Typography: any, TypographyLink: any, TypographyParagraph: any, TypographyText: any, TypographyTitle: any, UploadDragger: any, WeekPicker: any;
+export { Select, MultipleSelect, TreeSelect, AutoComplete, DatePicker, RangePicker, TimePicker, Cascader, Modal, Mentions, Slider, Tooltip, Upload, InputNumberInteger, InputNumberDecimal1, InputNumberDecimal2, Input, TextArea, Transfer, Affix, Alert, Anchor, AnchorLink, AutoCompleteOptGroup, AutoCompleteOption, Avatar, AvatarGroup, BackTop, Badge, BadgeRibbon, Breadcrumb, BreadcrumbItem, BreadcrumbSeparator, Button, ButtonGroup, Calendar, Card, CardGrid, CardMeta, Carousel, CheckableTag, Checkbox, CheckboxGroup, Col, Collapse, CollapsePanel, Comment, ConfigProvider, Descriptions, DescriptionsItem, DirectoryTree, Divider, Drawer, Dropdown, DropdownButton, Empty, Form, FormItem, FormItemRest, Grid, Image, ImagePreviewGroup, InputGroup, InputNumber, InputPassword, InputSearch, Layout, LayoutContent, LayoutFooter, LayoutHeader, LayoutSider, List, ListItem, ListItemMeta, LocaleProvider, MentionsOption, Menu, MenuDivider, MenuItem, MenuItemGroup, MonthPicker, PageHeader, Pagination, Popconfirm, Popover, Progress, QuarterPicker, Radio, RadioButton, RadioGroup, Rate, Result, Row, SelectOptGroup, SelectOption, Skeleton, SkeletonAvatar, SkeletonButton, SkeletonImage, SkeletonInput, SkeletonTitle, Space, Spin, Statistic, StatisticCountdown, Step, Steps, SubMenu, Switch, SubmitButton, TabPane, Table, TableColumn, TableColumnGroup, TableSummary, TableSummaryCell, TableSummaryRow, Tabs, Tag, Textarea, TimeRangePicker, Timeline, TimelineItem, Tree, TreeNode, TreeSelectNode, Typography, TypographyLink, TypographyParagraph, TypographyText, TypographyTitle, UploadDragger, WeekPicker, };
+declare const _default: {
+    install: (Vue: any) => void;
+};
+export default _default;

@@ -1,0 +1,2 @@
+import _Modal from"ant-design-vue/es/modal";import Resource from"@baifendian/adherev-util-resource";import{HOC,assignAttrs}from"../util";var Wrap=HOC(_Modal,{props:function(e,r){return assignAttrs(e,Wrap.defaultProps,null==r?void 0:r())}});Wrap.defaultProps={closable:!0,centered:!0,maskClosable:!0,destroyOnClose:!0,zIndex:Resource.Dict.value.ResourceNormalMaxZIndex.value};export default Wrap;
+//# sourceMappingURL=Modal.js.map

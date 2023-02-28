@@ -1,0 +1,2 @@
+import _Modal from"ant-design-vue/es/modal";import BfdUtil from"@baifendian/adherev-util";import Intl from"@baifendian/adherev-util-intl";import{openSuccessDialog,openSuccessMessage}from"./successprompt";var withVue=BfdUtil._util.withVue,SuccessPrompt={openSuccessDialog:openSuccessDialog,openSuccessMessage:openSuccessMessage,install:function(e){return e.component(Intl.name,Intl),e.component(_Modal.name,_Modal),withVue(e,"SuccessPrompt",SuccessPrompt),e}};export default SuccessPrompt;
+//# sourceMappingURL=index.js.map

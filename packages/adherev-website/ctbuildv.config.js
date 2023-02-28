@@ -1,4 +1,4 @@
-const path = require('path');
+// const path = require('path');
 const modifyVars = require('./themes/default/vars');
 
 module.exports = {
@@ -71,14 +71,16 @@ module.exports = {
       /ol.css/,
       /swiper.css/,
       /nprogress.css/,
-      // /VueDraggableResizable.css/,
+      /agate.css/,
+      // /Vue3DraggableResizable.css/,
+      /index.css/,
     );
 
-    // 加入markdown的解析
-    webpackConfig.module.rules.push({
-      test: /\.md$/,
-      use: 'raw-loader',
-    });
+    // // 加入markdown的解析
+    // webpackConfig.module.rules.push({
+    //   test: /\.md$/,
+    //   use: 'raw-loader',
+    // });
 
     // 在使用babel-plugin-import的时候让adherev也执行
     // 但是现在adherev-util|util编译完的都是require并不是import所以没有被作用
@@ -103,7 +105,7 @@ module.exports = {
     });
 
     if (babelLoaderConfig) {
-      babelLoaderConfig.query.plugins.push(
+      babelLoaderConfig.options.plugins.push(
         [
           'import',
           {
@@ -137,6 +139,7 @@ module.exports = {
     }
 
     if (webpackConfig.mode === 'production') {
+      webpackConfig.optimization.concatenateModules = false;
       webpackConfig.optimization.splitChunks = {
         // chunks: 'all',
         // minSize: 30000,

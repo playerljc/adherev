@@ -1,14 +1,18 @@
-import SliderScale from './sliderscale';
+import { App, Plugin } from 'vue';
+
 import BfdUtil from '@baifendian/adherev-util';
+
+import SliderScale from './sliderscale';
+
 const {
-  _util: { withInstall, withVue },
+  _util: { withVue },
 } = BfdUtil;
 
-const Component = withInstall(SliderScale);
-Component.isUse = () => true;
-Component.use = (Vue) => {
-  Vue.use(Component);
-  withVue(Vue, 'SliderScale', Component);
+SliderScale.install = function (app: App) {
+  app.component(SliderScale.name, SliderScale);
+  withVue(app, 'SliderScale', SliderScale);
+
+  return app;
 };
 
-export default Component;
+export default SliderScale as typeof SliderScale & Plugin;

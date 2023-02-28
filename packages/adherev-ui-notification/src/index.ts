@@ -1,3 +1,5 @@
+import { App, Plugin } from 'vue';
+
 import Util from '@baifendian/adherev-util';
 
 import Notification from './notification';
@@ -6,11 +8,10 @@ const {
   _util: { withVue },
 } = Util;
 
-// @ts-ignore
-Notification.isUse = () => true;
-// @ts-ignore
-Notification.use = (Vue) => {
-  withVue(Vue, 'Notification', Notification);
+Notification.install = function (app: App) {
+  withVue(app, 'Notification', Notification);
+
+  return app;
 };
 
-export default Notification;
+export default Notification as typeof Notification & Plugin;

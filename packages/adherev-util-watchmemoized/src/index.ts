@@ -1,15 +1,15 @@
+import { App, Plugin } from 'vue';
+
 import WatchMemoized from '@baifendian/adhere-util-watchmemoized';
-import BfdUtil from '@baifendian/adherev-util';
 
-const {
-  _util: { withVue },
-} = BfdUtil;
+const WatchMemoizedWrap: typeof WatchMemoized & {
+  install?: (app: App) => App
+} = WatchMemoized;
 
-// @ts-ignore
-WatchMemoized.isUse = () => true;
-// @ts-ignore
-WatchMemoized.use = (Vue) => {
-  withVue(Vue, 'WatchMemoized', WatchMemoized);
-};
+WatchMemoizedWrap.install = (app: App) => {
+  app.config.globalProperties.$adv = app.config.globalProperties.$adv || {};
+  app.config.globalProperties.$adv.WatchMemoized = WatchMemoized;
+  return app;
+}
 
-export default WatchMemoized;
+export default WatchMemoizedWrap as typeof WatchMemoizedWrap & Plugin;

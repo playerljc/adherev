@@ -1,17 +1,20 @@
-// @ts-ignore
+import { App, Plugin } from 'vue';
+
 import FlexLayout from '@baifendian/adherev-ui-flexlayout';
-import SplitLayout from './splitlayout';
 import BfdUtil from '@baifendian/adherev-util';
+
+import SplitLayout from './splitlayout';
+
 const {
-  _util: { withInstall, withVue },
+  _util: { withVue },
 } = BfdUtil;
 
-const Component = withInstall(SplitLayout);
-Component.isUse = () => true;
-Component.use = (Vue) => {
-  FlexLayout.use(Vue);
-  Vue.use(Component);
-  withVue(Vue, 'SplitLayout', Component);
+SplitLayout.install = function (app: App) {
+  app.component(FlexLayout.name, FlexLayout);
+  app.component(SplitLayout.name, SplitLayout);
+  withVue(app, 'SplitLayout', SplitLayout);
+
+  return app;
 };
 
-export default Component;
+export default SplitLayout as typeof SplitLayout & Plugin;

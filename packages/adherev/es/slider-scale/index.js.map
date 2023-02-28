@@ -1,0 +1,1 @@
+{"version":3,"file":"index.js","sources":["slider-scale/index.js"],"sourcesContent":["import Model from '@baifendian/adherev-ui-sliderscale/es';\nexport default Model;"],"names":["Model"],"mappings":"OAAOA,UAAW,uDACHA"}

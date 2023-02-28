@@ -1,0 +1,2 @@
+import"core-js/modules/es.object.to-string.js";import"core-js/modules/es.promise.js";import{__assign}from"tslib";import OriginBMap from"@baifendian/adhere-ui-bmap";import Util from"@baifendian/adherev-util";import BMap from"./bmap";var withVue=Util._util.withVue;BMap.init=function(i){return new Promise(function(t){OriginBMap(i).then(function(i){return t(__assign(__assign({},i),{BMap:BMap}))})})},BMap.install=function(i){return i.component(BMap.name,BMap),withVue(i,"BMap",BMap),i};export default BMap;
+//# sourceMappingURL=index.js.map

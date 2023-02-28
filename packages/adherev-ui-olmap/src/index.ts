@@ -1,37 +1,41 @@
-import OLMap from './olmap';
-import HeatMap from './heatmap';
-import GeoLayer from './geolayer';
-import * as TitleLayer from './titlelayer';
-import Util from './util';
-import AnimationManager from './animationmanager';
+import { App, Plugin } from 'vue';
 
 import BfdUtil from '@baifendian/adherev-util';
+
+import AnimationManager from './animationmanager';
+import GeoLayer from './geolayer';
+import HeatMap from './heatmap';
+import OLMap from './olmap';
+import * as TitleLayer from './titlelayer';
+import Util from './util';
+
 const {
-  _util: { withInstall, withVue },
+  _util: { withVue },
 } = BfdUtil;
 
-const Component = {
+const OLMapWrap = {
+  OLMap,
+  HeatMap,
   AnimationManager,
   GeoLayer,
   TitleLayer,
-  OLMap,
-  HeatMap,
   Util,
+  install: function (app: App) {
+    app.component(OLMap.name, OLMap);
+    app.component(HeatMap.name, HeatMap);
+
+    withVue(app, 'OLMap', OLMapWrap);
+
+    return app;
+  },
 };
 
-// @ts-ignore
-Component.isUse = () => true;
-
-// @ts-ignore
-Component.use = (Vue) => {
-  Vue.use(Component.OLMap);
-
-  Vue.use(Component.HeatMap);
-
-  withVue(Vue, 'OLMap', Component);
-};
-
-Component.OLMap = withInstall(Component.OLMap);
-Component.HeatMap = withInstall(Component.HeatMap);
-
-export default Component;
+export default OLMapWrap as typeof OLMapWrap &
+  Plugin & {
+    readonly OLMap: typeof OLMap;
+    readonly HeatMap: typeof HeatMap;
+    readonly AnimationManager: typeof AnimationManager;
+    readonly GeoLayer: typeof GeoLayer;
+    readonly TitleLayer: typeof TitleLayer;
+    readonly Util: typeof Util;
+  };

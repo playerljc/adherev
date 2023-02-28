@@ -29,6 +29,7 @@
 
 <script>
 export default {
+  displayName: 'validator',
   data() {
     return {
       scrollEl: null,

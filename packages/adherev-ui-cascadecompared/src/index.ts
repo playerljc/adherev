@@ -1,18 +1,20 @@
+import { App, Plugin } from 'vue';
+
+import StickUpLayout from '@baifendian/adherev-ui-stickuplayout';
 import Util from '@baifendian/adherev-util';
 
 import CascadeCompared from './cascadecompared';
 
 const {
-  _util: { withInstall, withVue },
+  _util: { withVue },
 } = Util;
 
-const Component = withInstall(CascadeCompared);
+CascadeCompared.install = function (app: App) {
+  app.use(StickUpLayout);
+  app.component(CascadeCompared.name, CascadeCompared);
+  withVue(app, 'CascadeCompared', CascadeCompared);
 
-Component.isUse = () => true;
-
-Component.use = (Vue) => {
-  Vue.use(Component);
-  withVue(Vue, 'CascadeCompared', Component);
+  return app;
 };
 
-export default Component;
+export default CascadeCompared as typeof CascadeCompared & Plugin;

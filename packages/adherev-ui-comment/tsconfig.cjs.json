@@ -1,0 +1,10 @@
+{
+  "extends": "../../node_modules/@ctsj/buildv/buildpackagetsconfig-base",
+  "compilerOptions": {
+    "outDir": "./lib",
+    "baseUrl": "./",
+    "jsx": "preserve",
+    "types": ["vue"],
+    "resolveJsonModule": true
+  }
+}

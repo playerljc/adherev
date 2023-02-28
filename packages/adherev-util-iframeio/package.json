@@ -1,0 +1,45 @@
+{
+  "name": "@baifendian/adherev-util-iframeio",
+  "version": "2.0.3",
+  "description": "iframe的通信客户端和服务端",
+  "homepage": "https://gitee.com/playerljc/adherev",
+  "bugs": {
+    "url": "https://gitee.com/playerljc/adherev/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://gitee.com/playerljc/adherev"
+  },
+  "license": "ISC",
+  "author": "playerljc",
+  "main": "lib/index.js",
+  "module": "es/index.js",
+  "files": [
+    "lib",
+    "es",
+    "umd"
+  ],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "buildpackage:cjs": "ctbuild buildpackagets -p tsconfig.cjs.json -o lib",
+    "buildpackage:es": "ctbuild buildpackagets -p tsconfig.esm.json -o es",
+    "buildpackage": "npm-run-all --parallel buildpackage:cjs buildpackage:es",
+    "buildumd": "ctbuild buildumd --packagename AdherevIframeIO --define alias=@,evnVars=true",
+    "generatorchangelog": "bd changelog/CHANGELOG.html"
+  },
+  "resolutions": {},
+  "dependencies": {
+    "@baifendian/adhere-util-iframeio": "^2.0.2",
+    "@baifendian/adherev-util": "^2.0.3"
+  },
+  "devDependencies": {
+    "@babel/runtime": "^7.17.2",
+    "@ctsj/buildv": "^5.0.4",
+    "npm-run-all": "^4.1.5",
+    "typescript": "^4.9.5"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "gitHead": "47ed699392961f617bb50fa7767c9c9aeb98fc9f"
+}

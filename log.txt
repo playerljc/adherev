@@ -106,3 +106,5 @@ adherev-ui-imagelazy(demo)
  .adherev-util-watchmemoized
  .adherev-util
 
+.bmap修改
+

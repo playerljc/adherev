@@ -1,93 +1,99 @@
 import classNames from 'classnames';
+import {
+  CSSProperties,
+  VNode,
+  defineComponent,
+  ref,
+  watch,
+  /*PropType*/
+} from 'vue';
+import { bool, object, oneOfType, string } from 'vue-types';
+
 import ConditionalRender from '@baifendian/adherev-ui-conditionalrender';
-import { propTypes } from './types';
 
 const selectorPrefix = 'adherev-ui-playground-collapse';
 
-export default {
-  name: 'adv-playground-collapse',
-  props: {
-    ...propTypes,
-  },
-  data() {
-    return {
-      collapse: this.defaultCollapse,
-    };
-  },
-  watch: {
-    defaultCollapse(collapse, preCollapse) {
-      if (collapse !== preCollapse) {
-        this.collapse = collapse;
-      }
-    },
-  },
-  methods: {
-    onClickHeader() {
-      this.collapse = !this.collapse;
-    },
-  },
-  render(h) {
-    const {
-      headerClassName,
-      headerStyle,
-      bodyClassName,
-      bodyStyle,
-      title,
-      extra,
-      border,
-      scrollY,
-      fixedHeaderScrollBody,
-      collapse,
-    } = this;
+export const collapseProps = {
+  headerClassName: string().def(''),
+  headerStyle: object<CSSProperties>().def({}),
+  bodyClassName: string().def(''),
+  bodyStyle: object<CSSProperties>().def({}),
+  title: oneOfType([string(), object<VNode>()]),
+  extra: oneOfType([string(), object<VNode>()]),
+  defaultCollapse: bool().def(false),
+  border: bool().def(false),
+  scrollY: bool().def(false),
+  fixedHeaderScrollBody: bool().def(false),
+};
 
-    return (
+export default defineComponent({
+  name: 'adv-playground-collapse',
+  props: collapseProps,
+  setup(props, { slots }) {
+    const collapse = ref<boolean>(props.defaultCollapse);
+
+    watch(
+      () => props.defaultCollapse,
+      (newVal, preValue) => {
+        if (newVal !== preValue) {
+          collapse.value = newVal;
+        }
+      },
+    );
+
+    const onClickHeader = () => {
+      collapse.value = !collapse.value;
+    };
+
+    return () => (
       <div
         class={classNames(
           selectorPrefix,
-          scrollY ? `${selectorPrefix}-scroll-y` : '',
-          fixedHeaderScrollBody ? `${selectorPrefix}-fixed-header-scroll-body` : '',
+          props.scrollY ? `${selectorPrefix}-scroll-y` : '',
+          props.fixedHeaderScrollBody ? `${selectorPrefix}-fixed-header-scroll-body` : '',
         )}
       >
         <div
           class={classNames(
             `${selectorPrefix}-header`,
-            border ? `${selectorPrefix}-header-border` : '',
-            headerClassName.split(/\s+/),
+            props.border ? `${selectorPrefix}-header-border` : '',
+            props.headerClassName || '' || '',
           )}
-          style={headerStyle}
-          onClick={this.onClickHeader}
+          style={props.headerStyle}
+          onClick={onClickHeader}
         >
           <div class={`${selectorPrefix}-header-collapse`}>
             <div
               class={classNames(
                 `${selectorPrefix}-header-collapse-icon`,
-                collapse ? '' : `${selectorPrefix}-header-collapse-icon-close`,
+                collapse.value ? '' : `${selectorPrefix}-header-collapse-icon-close`,
               )}
             />
-            <ConditionalRender conditional={!!title}>
-              <div class={`${selectorPrefix}-header-title`}>{title}</div>
+
+            <ConditionalRender conditional={!!props.title}>
+              <div class={`${selectorPrefix}-header-title`}>{props.title}</div>
             </ConditionalRender>
           </div>
 
-          <ConditionalRender conditional={!!extra}>
-            <div class={`${selectorPrefix}-header-extra`}>{extra}</div>
+          <ConditionalRender conditional={!!props.extra}>
+            <div class={`${selectorPrefix}-header-extra`}>{props.extra}</div>
           </ConditionalRender>
         </div>
 
-        <ConditionalRender conditional={!collapse}>
+        <ConditionalRender conditional={!collapse.value}>
           <div
             class={classNames(
               `${selectorPrefix}-body`,
-              border ? `${selectorPrefix}-body-border` : '',
-              bodyClassName.split(/\s+/),
-              !!title || !!extra ? `${selectorPrefix}-body-exists-header` : '',
+              props.border ? `${selectorPrefix}-body-border` : '',
+              props.bodyClassName || '' || '',
+              !!props.title || !!props.extra ? `${selectorPrefix}-body-exists-header` : '',
             )}
-            style={bodyStyle}
+            style={props.bodyStyle}
           >
-            {this.$slots.default}
+            {slots.default ? slots.default() : null}
           </div>
         </ConditionalRender>
       </div>
     );
   },
-};
+});

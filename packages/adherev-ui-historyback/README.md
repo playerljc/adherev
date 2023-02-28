@@ -9,15 +9,15 @@
 - 支持动态引入(babel-plugin-import)
 
 # 🖥 兼容环境
-- 现代浏览器，IE11
+- 现代浏览器
 
 # 📦 安装
 ```javascript
-npm install adherev-ui-historyback --save
-``` 
+npm install adherev-ui-historyback@next --save
+```
 
 ```javascript
-yarn add adherev-ui-historyback
+yarn add adherev-ui-historyback@next
 ```
 
 # 线上地址(临时)

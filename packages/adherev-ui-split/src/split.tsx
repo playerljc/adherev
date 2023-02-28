@@ -1,103 +1,100 @@
-import { VNode } from 'vue';
+import { CSSProperties, VNode, computed, defineComponent } from 'vue';
+import { number, object, string } from 'vue-types';
 
 const selectorPrefix = 'adherev-ui-split';
+
+enum directionType {
+  vertical = 'vertical',
+  horizontal = 'horizontal',
+}
+
+export const splitProps = {
+  direction: string().def(directionType.vertical),
+  size: number().def(20),
+};
 
 /**
  * Split
  */
-const Split = {
+const Split = defineComponent({
   name: 'adv-split',
-  props: {
-    direction: {
-      type: String,
-      default: 'vertical',
-      validator(value) {
-        return ['vertical', 'horizontal'].indexOf(value) !== -1;
-      },
-    },
-    size: {
-      type: [String, Number],
-      default: 20,
-    },
-  },
-  methods: {
-    getStyle() {
-      const { direction, size } = this;
-
-      if (direction === 'horizontal') {
+  props: splitProps,
+  setup(props) {
+    const getStyle = computed(() => {
+      if (props.direction === directionType.horizontal) {
         return {
           display: 'inline-block',
           width: '1px',
           height: '100%',
-          margin: `0 ${size}px`,
+          margin: `0 ${props.size}px`,
         };
       }
 
       return {
         width: '100%',
         height: '1px',
-        margin: `${size}px 0`,
+        margin: `${props.size}px 0`,
       };
-    },
-  },
-  render(h) {
-    const { className } = this;
+    });
 
-    return <div class={`${selectorPrefix} ${className}`} style={this.getStyle()} />;
+    return () => <div class={selectorPrefix} style={getStyle.value} />;
   },
+});
+
+export const splitGroupProps = {
+  direction: string().def(directionType.vertical),
+  size: number().def(20),
+  className: string().def(''),
+  style: object<CSSProperties>().def({}),
 };
 
 /**
  * SplitGroup
  */
-export const SplitGroup = {
+export const SplitGroup = defineComponent({
   name: 'adv-split-group',
-  props: {
-    direction: {
-      type: String,
-      default: 'vertical',
-      validator(value) {
-        // 这个值必须匹配下列字符串中的一个
-        return ['vertical', 'horizontal'].indexOf(value) !== -1;
-      },
-    },
-    size: {
-      type: [Number, String],
-      required: false,
-      default: 20,
-    },
-    className: {
-      type: String,
-      required: false,
-      default: '',
-    },
-  },
-  render(h) {
-    const { $slots, direction, size, className } = this;
+  props: splitGroupProps,
+  setup(props, { slots }) {
+    return () => {
+      const nodes: VNode[] = [];
 
-    const JSXS: VNode[] = [];
+      if (slots.default) {
+        const children = slots.default?.();
 
-    if ($slots.default) {
-      for (let i = 0; i < $slots.default.length; i++) {
-        if (i !== 0) {
-          const props = {
-            props: {
-              direction,
-              size,
-            },
-            class: className,
-          };
+        if (!children || !Array.isArray(children) || !children.length) return;
 
-          // @ts-ignore
-          JSXS.push(<Split {...props} key={i} />);
+        const childrenFlat: VNode[] = [];
+
+        for (const child of children) {
+          if (child.type.toString() === 'Symbol(Fragment)') {
+            if ('children' in child && Array.isArray(child.children)) {
+              children.push(...((child.children || []) as []));
+            }
+          } else {
+            childrenFlat.push(child);
+          }
         }
 
-        JSXS.push($slots.default[i]);
-      }
-    }
+        for (let i = 0; i < childrenFlat.length; i++) {
+          if (i !== 0) {
+            const splitProps = {
+              key: i,
+              direction: props.direction,
+              size: props.size,
+              class: props.className,
+              style: props.style,
+            };
 
-    return <div class={`${selectorPrefix}-group ${direction}`}>{JSXS}</div>;
+            nodes.push(<Split {...splitProps} />);
+          }
+
+          nodes.push(childrenFlat[i]);
+        }
+      }
+
+      return <div class={`${selectorPrefix}-group ${props.direction}`}>{nodes}</div>;
+    };
   },
-};
+});
 
 export default Split;

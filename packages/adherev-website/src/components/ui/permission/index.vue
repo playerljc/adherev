@@ -35,7 +35,8 @@
 
 <script>
 import { Button } from 'ant-design-vue';
-import { Permission, MessageDialog } from '@baifendian/adherev';
+
+import { MessageDialog, Permission } from '@baifendian/adherev';
 
 const { setPermission, getPermission } = Permission;
 
@@ -43,6 +44,7 @@ const { setPermission, getPermission } = Permission;
 setPermission(['1']);
 
 export default {
+  displayName: 'permission',
   data() {
     return {
       // 所有权限是[1]
@@ -71,7 +73,7 @@ export default {
 
             <adv-permission :permissions="curPermission" :allPermission="allPermission">
               <Button>有权限才能看到这个按钮</Button>
-              <template v-slot:noMatch>
+              <template #noMatch>
                 <a-empty />
               </template>
             </adv-permission>
@@ -290,19 +292,19 @@ export default {
      * @return {{permission}}
      */
     onSetAllPermission() {
-      const { el, vm } = MessageDialog.Modal({
+      const { el, rootRef, close } = MessageDialog.Modal({
         config: {
           title: '设置所有权限',
           width: 200,
-          footer: (h) => [
+          footer: () => [
             <Button
               type="primary"
               onClick={() => {
-                const val = vm.$refs.rootRef.allPermission.toString().trim();
+                const val = rootRef.value.allPermission.toString().trim();
                 if (val) {
                   this.allPermission = val.split(',');
                 }
-                MessageDialog.close(el);
+                close(el);
               }}
             >
               确定
@@ -330,7 +332,7 @@ export default {
     onSetCurPermission() {
       const { curPermission } = this;
 
-      const { el, vm } = MessageDialog.Modal({
+      const { el, rootRef, close } = MessageDialog.Modal({
         config: {
           title: '设置当前权限',
           width: 200,
@@ -338,11 +340,11 @@ export default {
             <Button
               type="primary"
               onClick={() => {
-                const val = vm.$refs.rootRef.curPermission.trim();
+                const val = rootRef.value.curPermission.trim();
                 if (val) {
                   this.curPermission = val.split(',');
                 }
-                MessageDialog.close(el);
+                close(el);
               }}
             >
               确定

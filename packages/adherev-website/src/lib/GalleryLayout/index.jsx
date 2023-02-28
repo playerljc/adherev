@@ -1,4 +1,4 @@
-import { Input, Row, Col, Card } from 'ant-design-vue';
+import { Card, Col, Input, Row } from 'ant-design-vue';
 
 import styles from './index.less';
 
@@ -46,7 +46,7 @@ export default {
           <Row gutter={24}>
             {itemList.map((t, index) => (
               <Col span={24 / rowCount} key={`${index}`}>
-                <div className={styles.CardWrap}>
+                <div class={styles.CardWrap}>
                   <Card title={t.title} bordered={false}>
                     {t.component(h)}
                   </Card>

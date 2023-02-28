@@ -1,0 +1,1 @@
+{"version":3,"file":"index.js","sources":["iframe-i-o/index.js"],"sourcesContent":["import Model from '@baifendian/adherev-util-iframeio/es';\nexport default Model;"],"names":["Model"],"mappings":"OAAOA,UAAW,sDACHA"}

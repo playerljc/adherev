@@ -1,0 +1,2 @@
+import _Modal from"ant-design-vue/es/modal";import BfdUtil from"@baifendian/adherev-util";import Intl from"@baifendian/adherev-util-intl";import{openErrorDialog,openErrorMessage}from"./errorprompt";var withVue=BfdUtil._util.withVue,ErrorPrompt={openErrorDialog:openErrorDialog,openErrorMessage:openErrorMessage,install:function(r){return r.component(Intl.name,Intl),r.component(_Modal.name,_Modal),withVue(r,"ErrorPrompt",ErrorPrompt),r}};export default ErrorPrompt;
+//# sourceMappingURL=index.js.map

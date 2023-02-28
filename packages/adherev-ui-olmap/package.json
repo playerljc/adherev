@@ -1,7 +1,17 @@
 {
   "name": "@baifendian/adherev-ui-olmap",
-  "version": "1.0.11",
+  "version": "2.0.3",
   "description": "对openlayers的封装",
+  "homepage": "https://gitee.com/playerljc/adherev",
+  "bugs": {
+    "url": "https://gitee.com/playerljc/adherev/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://gitee.com/playerljc/adherev"
+  },
+  "license": "ISC",
+  "author": "playerljc",
   "main": "lib/index.js",
   "module": "es/index.js",
   "files": [
@@ -17,33 +27,29 @@
     "buildumd": "ctbuildv buildumd --config ctbuildv.config.umd.js --packagename AdherevOLMap --define alias=@,evnVars=true",
     "generatorchangelog": "bd changelog/CHANGELOG.html"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://gitee.com/playerljc/adherev"
-  },
   "resolutions": {},
-  "author": "playerljc",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://gitee.com/playerljc/adherev/issues"
-  },
-  "homepage": "https://gitee.com/playerljc/adherev",
-  "publishConfig": {
-    "access": "public"
-  },
-  "devDependencies": {
-    "@babel/runtime": "^7.7.4",
-    "@ctsj/buildv": "^2.0.9",
-    "npm-run-all": "^4.1.5",
-    "typescript": "^4.6.2"
-  },
   "dependencies": {
-    "@baifendian/adherev-util": "^1.0.11",
-    "@baifendian/adherev-util-resource": "^1.0.11",
+    "@baifendian/adherev-ui-css": "^2.0.3",
+    "@baifendian/adherev-util": "^2.0.3",
+    "@baifendian/adherev-util-resource": "^2.0.3",
     "algebra.js": "^0.2.6",
     "ol": "6.5.0",
     "ol-wind": "^1.1.1-alpha.2",
-    "uuid": "^8.3.2"
+    "uuid": "^8.3.2",
+    "vue": "^3.2.45",
+    "vue-types": "^3.0.2"
   },
-  "gitHead": "2e23d8b8d13e6a97f5326e4e5d257c9903cd108d"
+  "devDependencies": {
+    "@babel/runtime": "^7.17.2",
+    "@ctsj/buildv": "^5.0.4",
+    "npm-run-all": "^4.1.5",
+    "typescript": "^4.9.5"
+  },
+  "peerDependencies": {
+    "vue": ">=3.0.0 - <4.x"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "gitHead": "832b044e56903d79a2f50986a2fef3ed2cff16d4"
 }

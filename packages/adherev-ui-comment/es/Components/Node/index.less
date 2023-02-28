@@ -1,0 +1,127 @@
+@import '~@baifendian/adherev-ui-css/lib/vars';
+
+@adherev-ui-comment-color: #030303;
+@adherev-ui-comment-color-second: #606060;
+
+.adherev-ui-comment-node {
+  .adherev-ui-comment-node-avatar-wrap {
+    display: flex;
+    align-items: flex-start;
+    box-sizing: content-box !important;
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+    padding: 0 10px 10px 0;
+
+    > img {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+    }
+  }
+
+  .adherev-ui-comment-node-title-row {
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-start;
+
+    .adherev-ui-comment-node-title-row-author {
+      margin-right: 10px;
+      color: @adherev-ui-comment-color;
+      font-weight: 500;
+    }
+
+    .adherev-ui-comment-node-title-row-date-time {
+      color: @adherev-ui-comment-color-second;
+      font-size: @adhere-small-font-size;
+    }
+  }
+
+  .adherev-ui-comment-node-content-wrap {
+    margin: 10px 0;
+    color: @adherev-ui-comment-color;
+    font-weight: 400;
+    .adhere-word-break();
+  }
+
+  .adherev-ui-comment-node-actions {
+    display: flex;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
+    > .adherev-ui-comment-node-actions-action {
+      color: @adherev-ui-comment-color-second;
+      font-weight: 400;
+
+      &:hover {
+        cursor: pointer;
+      }
+
+      &:not(:last-child) {
+        margin-right: 15px;
+      }
+
+      &.adherev-ui-comment-node-actions-action-reply-btn {
+        &:hover {
+          cursor: pointer;
+        }
+      }
+    }
+  }
+
+  .adherev-ui-comment-node-children {
+    list-style: none;
+
+    > .adherev-ui-comment-node-children-item {
+      padding: 0 10px 0 0;
+
+      &:first-child {
+        padding-top: 10px;
+      }
+
+      &:not(:last-child) {
+        margin-bottom: 10px;
+      }
+
+      &.more {
+        margin-bottom: 20px;
+        margin-left: 20px;
+
+        > a {
+          > span {
+            vertical-align: middle;
+
+            > .reply-icon {
+              margin-right: 10px;
+              font-weight: 600;
+              font-size: 20px;
+              vertical-align: middle;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .adherev-ui-comment-node-collapse {
+    margin-top: 10px;
+    font-weight: 400;
+    vertical-align: middle;
+
+    > span {
+      vertical-align: middle;
+      &:first-child {
+        margin-right: 15px;
+      }
+    }
+  }
+
+  &.adherev-ui-comment-node-reply {
+    .adherev-ui-comment-node-avatar-wrap {
+      width: 24px;
+      height: 24px;
+    }
+  }
+}

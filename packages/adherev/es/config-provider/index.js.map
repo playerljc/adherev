@@ -1,0 +1,1 @@
+{"version":3,"file":"index.js","sources":["config-provider/index.js"],"sourcesContent":["import Model from '@baifendian/adherev-ui-configprovider/es';\nexport default Model;"],"names":["Model"],"mappings":"OAAOA,UAAW,0DACHA"}

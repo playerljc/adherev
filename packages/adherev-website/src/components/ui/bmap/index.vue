@@ -1,91 +1,96 @@
 <template>
-  <adv-playground-page class="BMap" :scrollEl="scrollEl" ref="ref">
-    <adv-playground-page-section title="BMap">
-      <h2>百度地图</h2>
-      <ul class="adherev-ui-playground-page-list">
-        <li>
-          VectorLayer
-          <ul class="adherev-ui-playground-page-list">
-            <li>VectorSource</li>
-            <li>
-              Geometry
-              <ul class="adherev-ui-playground-page-list">
-                <li>CircleGeometry</li>
-                <li>LeafGeometry</li>
-                <li>LineStringGeometry</li>
-                <li>MulitCircleGeometry</li>
-                <li>MulitLeafGeometry</li>
-                <li>MulitLineStringGeometry</li>
-                <li>MulitPointGeometry</li>
-                <li>MulitPolygonGeometry</li>
-                <li>MulitRadiusRectGeometry</li>
-                <li>MulitRectGeometry</li>
-                <li>MulitRegularPolygonGeometry</li>
-                <li>MulitSectorGeometry</li>
-                <li>MulitStartGeometry</li>
-                <li>PointGeometry</li>
-                <li>PolygonGeometry</li>
-                <li>RadiusRectGeometry</li>
-                <li>RectGeometry</li>
-                <li>RegularPolygonGeometry</li>
-                <li>SectorGeometry</li>
-                <li>StartGeometry</li>
-                <li>TextGeometry</li>
-              </ul>
-            </li>
-            <li>
-              Format
-              <ul class="adherev-ui-playground-page-list">
-                <li>GeoJSON</li>
-              </ul>
-            </li>
-          </ul>
-        </li>
-        <li>
-          interaction(交互式绘制)
-          <ul class="adherev-ui-playground-page-list">
-            <li>
-              DrawAction
-              <ul class="adherev-ui-playground-page-list">
-                <li>CircleDrawAction</li>
-                <li>DiamondDrawAction</li>
-                <li>DistanceDrawAction</li>
-                <li>FreeDrawAction</li>
-                <li>PolygonDrawAction</li>
-                <li>RectangleDrawAction</li>
-                <li>StartDrawAction</li>
-                <li>TriangleDrawAction</li>
-              </ul>
-            </li>
-            <li>
-              ModifyAction
-              <ul class="adherev-ui-playground-page-list">
-                <li>CircleModifyAction</li>
-                <li>DiamondModifyAction</li>
-                <li>PolygonModifyAction</li>
-                <li>RectangleModifyAction</li>
-                <li>StartModifyAction</li>
-                <li>TriangleModifyAction</li>
-              </ul>
-            </li>
-          </ul>
-        </li>
-        <li>WindLayer(风场)</li>
-        <li>AirPressureLayer(气压)</li>
-        <li>热力图-温度、湿度</li>
-        <li>轨迹回放</li>
-        <li>Util</li>
-      </ul>
-    </adv-playground-page-section>
+  <adv-conditionalrender :conditional="isLoad">
+    <template #noMatch>
+      <adv-spin text="处理中..." :spinning="true" />
+    </template>
 
-    <adv-playground-page-code-box-section title="代码演示" :config="codeBoxPanelConfig">
-      <template #p1>
-        <div :class="$style.BMapWrap">
-          <adv-bmap ref="baseMapRef" :zoom="6" :externalImportBMapScript="true" />
-        </div>
-      </template>
-      <template #p2>
-        <fragment>
+    <adv-playground-page class="BMap" :scrollEl="scrollEl" ref="ref">
+      <adv-playground-page-section title="BMap">
+        <h2>百度地图</h2>
+        <ul class="adherev-ui-playground-page-list">
+          <li>
+            VectorLayer
+            <ul class="adherev-ui-playground-page-list">
+              <li>VectorSource</li>
+              <li>
+                Geometry
+                <ul class="adherev-ui-playground-page-list">
+                  <li>CircleGeometry</li>
+                  <li>LeafGeometry</li>
+                  <li>LineStringGeometry</li>
+                  <li>MulitCircleGeometry</li>
+                  <li>MulitLeafGeometry</li>
+                  <li>MulitLineStringGeometry</li>
+                  <li>MulitPointGeometry</li>
+                  <li>MulitPolygonGeometry</li>
+                  <li>MulitRadiusRectGeometry</li>
+                  <li>MulitRectGeometry</li>
+                  <li>MulitRegularPolygonGeometry</li>
+                  <li>MulitSectorGeometry</li>
+                  <li>MulitStartGeometry</li>
+                  <li>PointGeometry</li>
+                  <li>PolygonGeometry</li>
+                  <li>RadiusRectGeometry</li>
+                  <li>RectGeometry</li>
+                  <li>RegularPolygonGeometry</li>
+                  <li>SectorGeometry</li>
+                  <li>StartGeometry</li>
+                  <li>TextGeometry</li>
+                </ul>
+              </li>
+              <li>
+                Format
+                <ul class="adherev-ui-playground-page-list">
+                  <li>GeoJSON</li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            interaction(交互式绘制)
+            <ul class="adherev-ui-playground-page-list">
+              <li>
+                DrawAction
+                <ul class="adherev-ui-playground-page-list">
+                  <li>CircleDrawAction</li>
+                  <li>DiamondDrawAction</li>
+                  <li>DistanceDrawAction</li>
+                  <li>FreeDrawAction</li>
+                  <li>PolygonDrawAction</li>
+                  <li>RectangleDrawAction</li>
+                  <li>StartDrawAction</li>
+                  <li>TriangleDrawAction</li>
+                </ul>
+              </li>
+              <li>
+                ModifyAction
+                <ul class="adherev-ui-playground-page-list">
+                  <li>CircleModifyAction</li>
+                  <li>DiamondModifyAction</li>
+                  <li>PolygonModifyAction</li>
+                  <li>RectangleModifyAction</li>
+                  <li>StartModifyAction</li>
+                  <li>TriangleModifyAction</li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>WindLayer(风场)</li>
+          <li>AirPressureLayer(气压)</li>
+          <li>热力图-温度、湿度</li>
+          <li>轨迹回放</li>
+          <li>Util</li>
+        </ul>
+      </adv-playground-page-section>
+
+      <adv-playground-page-code-box-section title="代码演示" :config="codeBoxPanelConfig">
+        <template #p1>
+          <div :class="$style.BMapWrap">
+            <adv-bmap ref="baseMapRef" :zoom="6" :externalImportBMapScript="true" />
+          </div>
+        </template>
+
+        <template #p2>
           <div :class="$style.ToolBar">
             <a-button type="primary" @click="onAddWindLayer">加入风场</a-button>
           </div>
@@ -94,13 +99,12 @@
               ref="winLayerRef"
               :zoom="2"
               :externalImportBMapScript="true"
-              @onBMapInitReady="onWindMapInitReady"
+              @bMapInitReady="onWindMapInitReady"
             />
           </div>
-        </fragment>
-      </template>
-      <template #p3>
-        <fragment>
+        </template>
+
+        <template #p3>
           <div :class="$style.ToolBar">
             <a-button type="primary" @click="onAddHotLayer">加入热力图</a-button>
           </div>
@@ -109,13 +113,12 @@
               ref="hotLayerRef"
               :zoom="5"
               :externalImportBMapScript="true"
-              @onBMapInitReady="onHotMapInitReady"
+              @bMapInitReady="onHotMapInitReady"
             />
           </div>
-        </fragment>
-      </template>
-      <template #p4>
-        <fragment>
+        </template>
+
+        <template #p4>
           <div :class="$style.ToolBar">
             <a-button type="primary" @click="onAddAirPressureLayer">加入气压</a-button>
           </div>
@@ -124,23 +127,23 @@
               ref="airPressureRef"
               :zoom="2"
               :externalImportBMapScript="true"
-              @onBMapInitReady="onAirPressureMapInitReady"
+              @bMapInitReady="onAirPressureMapInitReady"
             />
           </div>
-        </fragment>
-      </template>
-      <template #p5>
-        <div :class="$style.BMapWrap">
-          <adv-bmap
-            ref="geoJSONRef"
-            :zoom="5"
-            :externalImportBMapScript="true"
-            @onBMapInitReady="onGeoJSONPressureMapInitReady"
-          />
-        </div>
-      </template>
-      <template #p6>
-        <fragment>
+        </template>
+
+        <template #p5>
+          <div :class="$style.BMapWrap">
+            <adv-bmap
+              ref="geoJSONRef"
+              :zoom="5"
+              :externalImportBMapScript="true"
+              @bMapInitReady="onGeoJSONPressureMapInitReady"
+            />
+          </div>
+        </template>
+
+        <template #p6>
           <div :class="$style.ToolBar">
             <a-select
               style="width: 200px"
@@ -162,13 +165,12 @@
               ref="interactionRef"
               :zoom="5"
               :externalImportBMapScript="true"
-              @onBMapInitReady="onInteractionMapInitReady"
+              @bMapInitReady="onInteractionMapInitReady"
             />
           </div>
-        </fragment>
-      </template>
-      <template #p7>
-        <fragment>
+        </template>
+
+        <template #p7>
           <div :class="$style.ToolBar">
             <a-button type="primary" @click="onRangingStart">开始</a-button>
           </div>
@@ -177,13 +179,12 @@
               ref="rangingRef"
               :zoom="5"
               :externalImportBMapScript="true"
-              @onBMapInitReady="onRangingMapInitReady"
+              @bMapInitReady="onRangingMapInitReady"
             />
           </div>
-        </fragment>
-      </template>
-      <template #p8>
-        <fragment>
+        </template>
+
+        <template #p8>
           <div :class="$style.ToolBar">
             <a-button type="primary" @click="onTrajectoryStart">开始</a-button>
             <a-button type="primary" @click="onTrajectoryOther">
@@ -196,19 +197,17 @@
               ref="trajectoryRef"
               :zoom="5"
               :externalImportBMapScript="true"
-              @onBMapInitReady="onTrajectoryMapInitReady"
+              @bMapInitReady="onTrajectoryMapInitReady"
             />
           </div>
-        </fragment>
-      </template>
-    </adv-playground-page-code-box-section>
+        </template>
+      </adv-playground-page-code-box-section>
 
-    <adv-playground-page-code-box-section
-      title="几何图形绘制代码演示"
-      :config="geometryBoxPanelConfig"
-    >
-      <template #g1>
-        <fragment>
+      <adv-playground-page-code-box-section
+        title="几何图形绘制代码演示"
+        :config="geometryBoxPanelConfig"
+      >
+        <template #g1>
           <div :class="$style.ToolBar">
             <span>点的类型：</span>
             <a-select style="width: 200px" v-model="pointType" @change="onPointTypeChange($event)">
@@ -228,13 +227,12 @@
               ref="pointLayerRef"
               :zoom="12"
               :externalImportBMapScript="true"
-              @onBMapInitReady="onPointLayerMapInitReady"
+              @bMapInitReady="onPointLayerMapInitReady"
             />
           </div>
-        </fragment>
-      </template>
-      <template #g2>
-        <fragment>
+        </template>
+
+        <template #g2>
           <div :class="$style.ToolBar">
             <span>点的类型：</span>
             <a-select
@@ -258,43 +256,45 @@
               ref="mulitPointLayerRef"
               :zoom="5"
               :externalImportBMapScript="true"
-              @onBMapInitReady="onMulitPointLayerMapInitReady"
+              @bMapInitReady="onMulitPointLayerMapInitReady"
             />
           </div>
-        </fragment>
-      </template>
-      <template #g3>
-        <div :class="$style.BMapWrap">
-          <adv-bmap
-            ref="geometryLayerRef"
-            :zoom="5"
-            :externalImportBMapScript="true"
-            @onBMapInitReady="onGeometryMapInitReady"
-          />
-        </div>
-      </template>
-      <template #g4>
-        <div :class="$style.BMapWrap">
-          <adv-bmap
-            ref="polygonLayerRef"
-            :zoom="5"
-            :externalImportBMapScript="true"
-            @onBMapInitReady="onPolygonMapInitReady"
-          />
-        </div>
-      </template>
-      <template #g5>
-        <div :class="$style.BMapWrap">
-          <adv-bmap
-            ref="mulitPolygonLayerRef"
-            :zoom="5"
-            :externalImportBMapScript="true"
-            @onBMapInitReady="onMulitPolygonMapInitReady"
-          />
-        </div>
-      </template>
-      <template #g6>
-        <fragment>
+        </template>
+
+        <template #g3>
+          <div :class="$style.BMapWrap">
+            <adv-bmap
+              ref="geometryLayerRef"
+              :zoom="5"
+              :externalImportBMapScript="true"
+              @bMapInitReady="onGeometryMapInitReady"
+            />
+          </div>
+        </template>
+
+        <template #g4>
+          <div :class="$style.BMapWrap">
+            <adv-bmap
+              ref="polygonLayerRef"
+              :zoom="5"
+              :externalImportBMapScript="true"
+              @bMapInitReady="onPolygonMapInitReady"
+            />
+          </div>
+        </template>
+
+        <template #g5>
+          <div :class="$style.BMapWrap">
+            <adv-bmap
+              ref="mulitPolygonLayerRef"
+              :zoom="5"
+              :externalImportBMapScript="true"
+              @bMapInitReady="onMulitPolygonMapInitReady"
+            />
+          </div>
+        </template>
+
+        <template #g6>
           <div :class="$style.ToolBar">
             <a-select
               style="width: 200px"
@@ -313,13 +313,12 @@
               ref="lineStringRef"
               :zoom="5"
               :externalImportBMapScript="true"
-              @onBMapInitReady="onLineStringMapInitReady"
+              @bMapInitReady="onLineStringMapInitReady"
             />
           </div>
-        </fragment>
-      </template>
-      <template #g7>
-        <fragment>
+        </template>
+
+        <template #g7>
           <div :class="$style.ToolBar">
             <a-select
               style="width: 200px"
@@ -338,13 +337,12 @@
               ref="regularPolygonRef"
               :zoom="5"
               :externalImportBMapScript="true"
-              @onBMapInitReady="onRegularPolygonMapInitReady"
+              @bMapInitReady="onRegularPolygonMapInitReady"
             />
           </div>
-        </fragment>
-      </template>
-      <template #g8>
-        <fragment>
+        </template>
+
+        <template #g8>
           <div :class="$style.ToolBar">
             <a-select style="width: 200px" v-model="leafCount" @change="onLeafCountChange($event)">
               <a-select-option value="-1">请选择</a-select-option>
@@ -360,13 +358,12 @@
               ref="leafRef"
               :zoom="5"
               :externalImportBMapScript="true"
-              @onBMapInitReady="onLeafMapInitReady"
+              @bMapInitReady="onLeafMapInitReady"
             />
           </div>
-        </fragment>
-      </template>
-      <template #g9>
-        <fragment>
+        </template>
+
+        <template #g9>
           <div :class="$style.ToolBar">
             <a-select style="width: 200px" v-model="textCount" @change="onTextCountChange($event)">
               <a-select-option value="-1">请选择</a-select-option>
@@ -379,88 +376,83 @@
               ref="textRef"
               :zoom="5"
               :externalImportBMapScript="true"
-              @onBMapInitReady="onTextMapInitReady"
+              @bMapInitReady="onTextMapInitReady"
             />
           </div>
-        </fragment>
-      </template>
-    </adv-playground-page-code-box-section>
-  </adv-playground-page>
+        </template>
+      </adv-playground-page-code-box-section>
+    </adv-playground-page>
+  </adv-conditionalrender>
 </template>
 
 <script>
 import { v1 } from 'uuid';
+
 import { BMap, MessageDialog } from '@baifendian/adherev';
 
 import citys from './data/citys.json';
 import isoline from './data/isoline';
 import icon from './站点.svg';
 
-const {
-  BMapWindLayer,
-  BMapAirPressureLayer,
-  HeatMapLayer,
-  Vector: {
-    Feature,
-    InnerTextFeature,
-    VectorLayer,
-    VectorSource,
-    Trajectory: { Trajectory, TrajectoryPlayBackLayer },
-    Interaction: {
-      InteractionLayer,
-      CircleDrawAction,
-      DiamondDrawAction,
-      FreeDrawAction,
-      PolygonDrawAction,
-      DistanceDrawAction,
-      RectangleDrawAction,
-      StartDrawAction,
-      TriangleDrawAction,
-      CircleModifyAction,
-      DiamondModifyAction,
-      PolygonModifyAction,
-      RectangleModifyAction,
-      StartModifyAction,
-      TriangleModifyAction,
-      Types: InteractionTypes,
-    },
-    Geom: {
-      PointGeometry,
-      MulitPointGeometry,
-      PolygonGeometry,
-      MulitPolygonGeometry,
-      LineStringGeometry,
-      // 正多边形
-      RegularPolygonGeometry,
-      // 矩形
-      RectGeometry,
-      // 圆角矩形
-      RadiusRectGeometry,
-      // 圆形
-      CircleGeometry,
-      // 扇形
-      SectorGeometry,
-      // 五角星
-      StartGeometry,
-      // n叶草
-      LeafGeometry,
-      // 文字
-      TextGeometry,
-    },
-  },
-  Util,
-} = BMap;
+let BMapComponent;
+let BMapWindLayer;
+let BMapAirPressureLayer;
+let HeatMapLayer;
+let Feature;
+let InnerTextFeature;
+let VectorLayer;
+let VectorSource;
+let Trajectory;
+let TrajectoryPlayBackLayer;
+let InteractionLayer;
+let CircleDrawAction;
+let DiamondDrawAction;
+let FreeDrawAction;
+let PolygonDrawAction;
+let DistanceDrawAction;
+let RectangleDrawAction;
+let StartDrawAction;
+let TriangleDrawAction;
+let CircleModifyAction;
+let DiamondModifyAction;
+let PolygonModifyAction;
+let RectangleModifyAction;
+let StartModifyAction;
+let TriangleModifyAction;
+let InteractionTypes;
+let PointGeometry;
+let MulitPointGeometry;
+let PolygonGeometry;
+let MulitPolygonGeometry;
+let LineStringGeometry;
+// 正多边形
+let RegularPolygonGeometry;
+// 矩形
+let RectGeometry;
+// 圆角矩形
+let RadiusRectGeometry;
+// 圆形
+let CircleGeometry;
+// 扇形
+let SectorGeometry;
+// 五角星
+let StartGeometry;
+// n叶草
+let LeafGeometry;
+// 文字
+let TextGeometry;
+let Util;
 
-const interactionModifyTypeActionMap = new Map([
+let interactionModifyTypeActionMap; /* = new Map([
   ['Polygon', PolygonModifyAction],
   ['Circle', CircleModifyAction],
   ['Rectangle', RectangleModifyAction],
   ['Triangle', TriangleModifyAction],
   ['Diamond', DiamondModifyAction],
   ['Start', StartModifyAction],
-]);
+]);*/
 
-const interactionDrawTypeActionMap = new Map([
+let interactionDrawTypeActionMap; /* = new Map([
   ['Polygon', PolygonDrawAction],
   ['Circle', CircleDrawAction],
   ['Rectangle', RectangleDrawAction],
@@ -468,7 +460,7 @@ const interactionDrawTypeActionMap = new Map([
   ['Diamond', DiamondDrawAction],
   ['Free', FreeDrawAction],
   ['Start', StartDrawAction],
-]);
+]);*/
 
 const defaultStyle = {
   lineWidth: 1,
@@ -506,6 +498,7 @@ function createInteractionLayer({ context, overlay, ref, defaultData, listeners 
 }
 
 export default {
+  displayName: 'bmap',
   data() {
     return {
       interactionValue: '-1',
@@ -621,7 +614,7 @@ export default {
         ref="mulitPointLayerRef"
         :zoom="5"
         :externalImportBMapScript="true"
-        @onBMapInitReady="onMulitPointLayerMapInitReady"
+        @bMapInitReady="onMulitPointLayerMapInitReady"
       />
     </div>
   </template>
@@ -785,7 +778,7 @@ export default {
         ref="hotLayerRef"
         :zoom="5"
         :externalImportBMapScript="true"
-        @onBMapInitReady="onHotMapInitReady"
+        @bMapInitReady="onHotMapInitReady"
       />
     </div>
   </template>
@@ -877,7 +870,7 @@ export default {
         ref="airPressureRef"
         :zoom="2"
         :externalImportBMapScript="true"
-        @onBMapInitReady="onAirPressureMapInitReady"
+        @bMapInitReady="onAirPressureMapInitReady"
       />
     </div>
   </template>
@@ -979,7 +972,7 @@ export default {
         ref="geoJSONRef"
         :zoom="5"
         :externalImportBMapScript="true"
-        @onBMapInitReady="onGeoJSONPressureMapInitReady"
+        @bMapInitReady="onGeoJSONPressureMapInitReady"
       />
     </div>
   </template>
@@ -1127,7 +1120,7 @@ export default {
         ref="interactionRef"
         :zoom="5"
         :externalImportBMapScript="true"
-        @onBMapInitReady="onInteractionMapInitReady"
+        @bMapInitReady="onInteractionMapInitReady"
       />
     </div>
   </template>
@@ -1356,7 +1349,7 @@ export default {
         ref="rangingRef"
         :zoom="5"
         :externalImportBMapScript="true"
-        @onBMapInitReady="onRangingMapInitReady"
+        @bMapInitReady="onRangingMapInitReady"
       />
     </div>
   </template>
@@ -1464,7 +1457,7 @@ export default {
         ref="trajectoryRef"
         :zoom="5"
         :externalImportBMapScript="true"
-        @onBMapInitReady="onTrajectoryMapInitReady"
+        @bMapInitReady="onTrajectoryMapInitReady"
       />
     </div>
   </template>
@@ -1627,7 +1620,7 @@ export default {
         ref="pointLayerRef"
         :zoom="12"
         :externalImportBMapScript="true"
-        @onBMapInitReady="onPointLayerMapInitReady"
+        @bMapInitReady="onPointLayerMapInitReady"
       />
     </div>
   </template>
@@ -1797,7 +1790,7 @@ export default {
         ref="mulitPointLayerRef"
         :zoom="5"
         :externalImportBMapScript="true"
-        @onBMapInitReady="onMulitPointLayerMapInitReady"
+        @bMapInitReady="onMulitPointLayerMapInitReady"
       />
     </div>
   </template>
@@ -1958,7 +1951,7 @@ export default {
         ref="geometryLayerRef"
         :zoom="5"
         :externalImportBMapScript="true"
-        @onBMapInitReady="onGeometryMapInitReady"
+        @bMapInitReady="onGeometryMapInitReady"
       />
     </div>
   </template>
@@ -2171,7 +2164,7 @@ export default {
         ref="polygonLayerRef"
         :zoom="5"
         :externalImportBMapScript="true"
-        @onBMapInitReady="onPolygonMapInitReady"
+        @bMapInitReady="onPolygonMapInitReady"
       />
     </div>
   </template>
@@ -2301,7 +2294,7 @@ export default {
         ref="mulitPolygonLayerRef"
         :zoom="5"
         :externalImportBMapScript="true"
-        @onBMapInitReady="onMulitPolygonMapInitReady"
+        @bMapInitReady="onMulitPolygonMapInitReady"
       />
     </div>
   </template>
@@ -2487,7 +2480,7 @@ export default {
         ref="lineStringRef"
         :zoom="5"
         :externalImportBMapScript="true"
-        @onBMapInitReady="onLineStringMapInitReady"
+        @bMapInitReady="onLineStringMapInitReady"
       />
     </div>
   </template>
@@ -2690,7 +2683,7 @@ export default {
         ref="regularPolygonRef"
         :zoom="5"
         :externalImportBMapScript="true"
-        @onBMapInitReady="onRegularPolygonMapInitReady"
+        @bMapInitReady="onRegularPolygonMapInitReady"
       />
     </div>
   </template>
@@ -2826,7 +2819,7 @@ export default {
         ref="leafRef"
         :zoom="5"
         :externalImportBMapScript="true"
-        @onBMapInitReady="onLeafMapInitReady"
+        @bMapInitReady="onLeafMapInitReady"
       />
     </div>
   </template>
@@ -2961,7 +2954,7 @@ export default {
         ref="textRef"
         :zoom="5"
         :externalImportBMapScript="true"
-        @onBMapInitReady="onTextMapInitReady"
+        @bMapInitReady="onTextMapInitReady"
       />
     </div>
   </template>
@@ -3102,10 +3095,142 @@ export default {
           childrenSlot: 'g9',
         },
       ],
+      isLoad: false,
     };
   },
   mounted() {
     this.scrollEl = this?.$refs?.ref?.$el?.parentElement?.parentElement;
+
+    BMap.init().then((modules) => {
+      const {
+        BMap: _BMapComponent,
+        BMapWindLayer: _BMapWindLayer,
+        BMapAirPressureLayer: _BMapAirPressureLayer,
+        HeatMapLayer: _HeatMapLayer,
+        Vector: {
+          Feature: _Feature,
+          InnerTextFeature: _InnerTextFeature,
+          VectorLayer: _VectorLayer,
+          VectorSource: _VectorSource,
+          Trajectory: {
+            Trajectory: _Trajectory,
+            TrajectoryPlayBackLayer: _TrajectoryPlayBackLayer,
+          },
+          Interaction: {
+            InteractionLayer: _InteractionLayer,
+            CircleDrawAction: _CircleDrawAction,
+            DiamondDrawAction: _DiamondDrawAction,
+            FreeDrawAction: _FreeDrawAction,
+            PolygonDrawAction: _PolygonDrawAction,
+            DistanceDrawAction: _DistanceDrawAction,
+            RectangleDrawAction: _RectangleDrawAction,
+            StartDrawAction: _StartDrawAction,
+            TriangleDrawAction: _TriangleDrawAction,
+            CircleModifyAction: _CircleModifyAction,
+            DiamondModifyAction: _DiamondModifyAction,
+            PolygonModifyAction: _PolygonModifyAction,
+            RectangleModifyAction: _RectangleModifyAction,
+            StartModifyAction: _StartModifyAction,
+            TriangleModifyAction: _TriangleModifyAction,
+            Types: _InteractionTypes,
+          },
+          Geom: {
+            PointGeometry: _PointGeometry,
+            MulitPointGeometry: _MulitPointGeometry,
+            PolygonGeometry: _PolygonGeometry,
+            MulitPolygonGeometry: _MulitPolygonGeometry,
+            LineStringGeometry: _LineStringGeometry,
+            // 正多边形
+            RegularPolygonGeometry: _RegularPolygonGeometry,
+            // 矩形
+            RectGeometry: _RectGeometry,
+            // 圆角矩形
+            RadiusRectGeometry: _RadiusRectGeometry,
+            // 圆形
+            CircleGeometry: _CircleGeometry,
+            // 扇形
+            SectorGeometry: _SectorGeometry,
+            // 五角星
+            StartGeometry: _StartGeometry,
+            // n叶草
+            LeafGeometry: _LeafGeometry,
+            // 文字
+            TextGeometry: _TextGeometry,
+          },
+        },
+        Util: _Util,
+      } = modules;
+
+      BMapComponent = _BMapComponent;
+      BMapWindLayer = _BMapWindLayer;
+      BMapAirPressureLayer = _BMapAirPressureLayer;
+      HeatMapLayer = _HeatMapLayer;
+      Feature = _Feature;
+      InnerTextFeature = _InnerTextFeature;
+      VectorLayer = _VectorLayer;
+      VectorSource = _VectorSource;
+      Trajectory = _Trajectory;
+      TrajectoryPlayBackLayer = _TrajectoryPlayBackLayer;
+      InteractionLayer = _InteractionLayer;
+      CircleDrawAction = _CircleDrawAction;
+      DiamondDrawAction = _DiamondDrawAction;
+      FreeDrawAction = _FreeDrawAction;
+      PolygonDrawAction = _PolygonDrawAction;
+      DistanceDrawAction = _DistanceDrawAction;
+      RectangleDrawAction = _RectangleDrawAction;
+      StartDrawAction = _StartDrawAction;
+      TriangleDrawAction = _TriangleDrawAction;
+      CircleModifyAction = _CircleModifyAction;
+      DiamondModifyAction = _DiamondModifyAction;
+      PolygonModifyAction = _PolygonModifyAction;
+      RectangleModifyAction = _RectangleModifyAction;
+      StartModifyAction = _StartModifyAction;
+      TriangleModifyAction = _TriangleModifyAction;
+      InteractionTypes = _InteractionTypes;
+      PointGeometry = _PointGeometry;
+      MulitPointGeometry = _MulitPointGeometry;
+      PolygonGeometry = _PolygonGeometry;
+      MulitPolygonGeometry = _MulitPolygonGeometry;
+      LineStringGeometry = _LineStringGeometry;
+      // 正多边形
+      RegularPolygonGeometry = _RegularPolygonGeometry;
+      // 矩形
+      RectGeometry = _RectGeometry;
+      // 圆角矩形
+      RadiusRectGeometry = _RadiusRectGeometry;
+      // 圆形
+      CircleGeometry = _CircleGeometry;
+      // 扇形
+      SectorGeometry = _SectorGeometry;
+      // 五角星
+      StartGeometry = _StartGeometry;
+      // n叶草
+      LeafGeometry = _LeafGeometry;
+      // 文字
+      TextGeometry = _TextGeometry;
+      Util = _Util;
+
+      interactionModifyTypeActionMap = new Map([
+        ['Polygon', PolygonModifyAction],
+        ['Circle', CircleModifyAction],
+        ['Rectangle', RectangleModifyAction],
+        ['Triangle', TriangleModifyAction],
+        ['Diamond', DiamondModifyAction],
+        ['Start', StartModifyAction],
+      ]);
+
+      interactionDrawTypeActionMap = new Map([
+        ['Polygon', PolygonDrawAction],
+        ['Circle', CircleDrawAction],
+        ['Rectangle', RectangleDrawAction],
+        ['Triangle', TriangleDrawAction],
+        ['Diamond', DiamondDrawAction],
+        ['Free', FreeDrawAction],
+        ['Start', StartDrawAction],
+      ]);
+
+      this.isLoad = true;
+    });
   },
   methods: {
     onAddWindLayer() {

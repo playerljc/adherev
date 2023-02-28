@@ -2,21 +2,21 @@
 &ensp;&ensp;京东(电商)的面板
 
 # ✨ 特性
-- 支持 vue(2.x)
+- 支持 vue(3.x)
 - 支持国际化
 - 支持修改主题
 - 支持动态引入(babel-plugin-import)
 
 # 🖥 兼容环境
-- 现代浏览器，IE11
+- 现代浏览器
 
 # 📦 安装
 ```javascript
-npm install adherev-ui-jdcategorytab --save
-``` 
+npm install adherev-ui-jdcategorytab@next --save
+```
 
 ```javascript
-yarn add adherev-ui-jdcategorytab
+yarn add adherev-ui-jdcategorytab@next
 ```
 
 # 线上地址(临时)

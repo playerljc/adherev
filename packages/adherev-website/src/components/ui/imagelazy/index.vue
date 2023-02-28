@@ -7,44 +7,63 @@
     <adv-playground-page-code-box-section title="代码演示" :config="codeBoxPanelConfig">
       <template #p1>
         <a-list item-layout="vertical" size="large" :data-source="listData">
-          <a-list-item slot="renderItem" slot-scope="item, index">
-            <adv-imagelazy
-              slot="extra"
-              :img-args="{
-              width: 272,
-              alt: 'logo',
-              targetSrc:
-                'https://img2.baidu.com/it/u=1697432864,1600199787&fm=26&fmt=auto&gp=0.jpg',
-            }"
-            />
-            <a-list-item-meta :description="item.description">
-              <a slot="title" :href="item.href">{{ item.title }}</a>
-              <a-avatar slot="avatar" :src="item.avatar" />
-            </a-list-item-meta>
-            {{ item.content }}
-          </a-list-item>
+          <template #renderItem="{ item }">
+            <a-list-item>
+              <template #extra>
+                <adv-imagelazy
+                  :img-args="{
+                    width: 272,
+                    alt: 'logo',
+                    originSrc: 'https://dss2.bdstatic.com/8_V1bjqh_Q23odCf/pacific/1989213037.jpg',
+                    targetSrc: 'https://dss2.bdstatic.com/8_V1bjqh_Q23odCf/pacific/1989213037.jpg',
+                  }"
+                />
+              </template>
+
+              <a-list-item-meta :description="item.description">
+                <template #title>
+                  <a :href="item.href">{{ item.title }}</a>
+                </template>
+
+                <template #avatar>
+                  <a-avatar :src="item.avatar" />
+                </template>
+              </a-list-item-meta>
+
+              {{ item.content }}
+            </a-list-item>
+          </template>
         </a-list>
       </template>
 
       <template #p2>
         <a-list item-layout="vertical" size="large" :data-source="listData">
-          <a-list-item slot="renderItem" slot-scope="item, index">
-            <adv-imagelazy
-              slot="extra"
-              :img-args="{
-              width: 272,
-              alt: 'logo',
-              originSrc: 'https://dss2.bdstatic.com/8_V1bjqh_Q23odCf/pacific/1989213037.jpg',
-              targetSrc:
-                'https://img2.baidu.com/it/u=1697432864,1600199787&fm=26&fmt=auto&gp=0.jpg',
-            }"
-            />
-            <a-list-item-meta :description="item.description">
-              <a slot="title" :href="item.href">{{ item.title }}</a>
-              <a-avatar slot="avatar" :src="item.avatar" />
-            </a-list-item-meta>
-            {{ item.content }}
-          </a-list-item>
+          <template #renderItem="{ item }">
+            <a-list-item>
+              <template #extra>
+                <adv-imagelazy
+                  :img-args="{
+                    width: 272,
+                    alt: 'logo',
+                    originSrc: 'https://dss2.bdstatic.com/8_V1bjqh_Q23odCf/pacific/1989213037.jpg',
+                    targetSrc: 'https://dss2.bdstatic.com/8_V1bjqh_Q23odCf/pacific/1989213037.jpg',
+                  }"
+                />
+              </template>
+
+              <a-list-item-meta :description="item.description">
+                <template #title>
+                  <a :href="item.href">{{ item.title }}</a>
+                </template>
+
+                <template #avatar>
+                  <a-avatar :src="item.avatar" />
+                </template>
+              </a-list-item-meta>
+
+              {{ item.content }}
+            </a-list-item>
+          </template>
         </a-list>
       </template>
     </adv-playground-page-code-box-section>
@@ -55,6 +74,7 @@
 
 <script>
 export default {
+  displayName: 'imagelazy',
   data() {
     return {
       scrollEl: null,
@@ -70,26 +90,35 @@ export default {
           },
           type: 'PlayGround',
           codeText: `
-        <template>
-          <a-list item-layout="vertical" size="large" :data-source="listData">
-            <a-list-item slot="renderItem" slot-scope="item, index">
-              <adv-imagelazy
-                slot="extra"
-                :img-args="{
-                  width: 272,
-                  alt: 'logo',
-                  targetSrc:
-                    'https://img2.baidu.com/it/u=1697432864,1600199787&fm=26&fmt=auto&gp=0.jpg',
-                }"
-              />
+        <template #p1>
+        <a-list item-layout="vertical" size="large" :data-source="listData">
+          <template #renderItem="{ item }">
+            <a-list-item>
+              <template #extra>
+                <adv-imagelazy
+                  :img-args="{
+                    width: 272,
+                    alt: 'logo',
+                    targetSrc:
+                      'https://img2.baidu.com/it/u=1697432864,1600199787&fm=26&fmt=auto&gp=0.jpg',
+                  }"
+                />
+              </template>
+
               <a-list-item-meta :description="item.description">
-                <a slot="title" :href="item.href">{{ item.title }}</a>
-                <a-avatar slot="avatar" :src="item.avatar" />
+                <template #title>
+                  <a :href="item.href">{{ item.title }}</a>
+                </template>
+
+                <template #avatar>
+                  <a-avatar :src="item.avatar" />
+                </template>
               </a-list-item-meta>
               {{ item.content }}
             </a-list-item>
-          </a-list>
-        </template>
+          </template>
+        </a-list>
+      </template>
 
         <script>
           export default {
@@ -128,27 +157,36 @@ export default {
           },
           type: 'PlayGround',
           codeText: `
-        <template>
-          <a-list item-layout="vertical" size="large" :data-source="listData">
-            <a-list-item slot="renderItem" slot-scope="item, index">
-              <adv-imagelazy
-                slot="extra"
-                :img-args="{
-                  width: 272,
-                  alt: 'logo',
-                  originSrc: 'https://dss2.bdstatic.com/8_V1bjqh_Q23odCf/pacific/1989213037.jpg',
-                  targetSrc:
-                    'https://img2.baidu.com/it/u=1697432864,1600199787&fm=26&fmt=auto&gp=0.jpg',
-                }"
-              />
+        <template #p2>
+        <a-list item-layout="vertical" size="large" :data-source="listData">
+          <template #renderItem="{ item }">
+            <a-list-item>
+              <template #extra>
+                <adv-imagelazy
+                  :img-args="{
+                    width: 272,
+                    alt: 'logo',
+                    originSrc: 'https://dss2.bdstatic.com/8_V1bjqh_Q23odCf/pacific/1989213037.jpg',
+                    targetSrc:
+                      'https://img2.baidu.com/it/u=1697432864,1600199787&fm=26&fmt=auto&gp=0.jpg',
+                  }"
+                />
+              </template>
+
               <a-list-item-meta :description="item.description">
-                <a slot="title" :href="item.href">{{ item.title }}</a>
-                <a-avatar slot="avatar" :src="item.avatar" />
+                <template #title>
+                  <a :href="item.href">{{ item.title }}</a>
+                </template>
+
+                <template #avatar>
+                  <a-avatar :src="item.avatar" />
+                </template>
               </a-list-item-meta>
               {{ item.content }}
             </a-list-item>
-          </a-list>
-        </template>
+          </template>
+        </a-list>
+      </template>
 
         <script>
           export default {

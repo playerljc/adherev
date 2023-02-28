@@ -1,14 +1,17 @@
-import Popup from './popup';
+import { App, Plugin } from 'vue';
+
 import BfdUtil from '@baifendian/adherev-util';
+
+import Popup from './popup';
+
 const {
   _util: { withVue },
 } = BfdUtil;
 
-// @ts-ignore
-Popup.isUse = () => true;
-// @ts-ignore
-Popup.use = (Vue) => {
-  withVue(Vue, 'Popup', Popup);
+Popup.install = function (app: App) {
+  withVue(app, 'Popup', Popup);
+
+  return app;
 };
 
-export default Popup;
+export default Popup as typeof Popup & Plugin;

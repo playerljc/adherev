@@ -13,24 +13,35 @@
         <div ref="ref">
           <a-button type="primary" @click="onControlElement">控制表格元素的缩放</a-button>
           <a-table :columns="columns" :data-source="data">
-            <a slot="name" slot-scope="text">{{ text }}</a>
-            <span slot="customTitle"><a-icon type="smile-o" /> Name</span>
-            <span slot="tags" slot-scope="tags">
-              <a-tag
-                v-for="tag in tags"
-                :key="tag"
-                :color="tag === 'loser' ? 'volcano' : tag.length > 5 ? 'geekblue' : 'green'"
-              >
-                {{ tag.toUpperCase() }}
-              </a-tag>
-            </span>
-            <span slot="action" slot-scope="text, record">
-              <a>Invite 一 {{ record.name }}</a>
-              <a-divider type="vertical" />
-              <a>Delete</a>
-              <a-divider type="vertical" />
-              <a class="ant-dropdown-link"> More actions <a-icon type="down" /> </a>
-            </span>
+            <template #name="text">
+              <a>{{ text }}</a>
+            </template>
+
+            <template #customTitle="text">
+              <span><smile-outlined /> Name</span>
+            </template>
+
+            <template #tags="tags">
+              <span>
+                <a-tag
+                  v-for="tag in tags"
+                  :key="tag"
+                  :color="tag === 'loser' ? 'volcano' : tag.length > 5 ? 'geekblue' : 'green'"
+                >
+                  {{ tag.toUpperCase() }}
+                </a-tag>
+              </span>
+            </template>
+
+            <template #action="text, record">
+              <span>
+                <a>Invite 一 {{ record.name }}</a>
+                <a-divider type="vertical" />
+                <a>Delete</a>
+                <a-divider type="vertical" />
+                <a class="ant-dropdown-link"> More actions <down-outlined /> </a>
+              </span>
+            </template>
           </a-table>
         </div>
       </template>
@@ -41,6 +52,7 @@
 </template>
 
 <script>
+import { DownOutlined, SmileOutlined } from '@ant-design/icons-vue';
 import { AdapterScreen } from '@baifendian/adherev';
 
 const columns = [
@@ -98,6 +110,11 @@ const data = [
 ];
 
 export default {
+  displayName: 'adapterscreen',
+  components: {
+    'smile-outlined': SmileOutlined,
+    'down-outlined': DownOutlined,
+  },
   data() {
     return {
       data,

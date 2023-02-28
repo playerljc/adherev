@@ -12,20 +12,20 @@
 
 # ✨ 特性
 - 支持国际化
-- vue(2.x)
+- vue(3.x)
 - ant-design(4.x)
 - 支持动态引入(babel-plugin-import)
 
 # 🖥 兼容环境
-- 现代浏览器，IE11
+- 现代浏览器
 
 # 📦 安装
 ```javascript
-npm install @baifendian/adherev-util-communication-ajax --save
-``` 
+npm install @baifendian/adherev-util-communication-ajax@next --save
+```
 
 ```javascript
-yarn add @baifendian/adherev-util-communication-ajax
+yarn add @baifendian/adherev-util-communication-ajax@next
 ```
 
 # 线上地址(临时)

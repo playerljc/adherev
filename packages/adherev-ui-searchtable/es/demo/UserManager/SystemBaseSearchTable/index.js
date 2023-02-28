@@ -1,0 +1,2 @@
+import Util from"@baifendian/adherev-util";import SearchTable from"../../../index";var ProSearchTable=SearchTable.ProSearchTable,SearchAndPaginParams=SearchTable.SearchAndPaginParams,extend=Util._util.extend,TableImplementSearchAndvPaginParamsMemo=SearchAndPaginParams.MemoManager.create(),SystemBaseSearchTableImpl=function(e){return extend({className:"SystemBaseSearchTableImpl",mixins:[ProSearchTable(e)]})};export{TableImplementSearchAndvPaginParamsMemo,SystemBaseSearchTableImpl};
+//# sourceMappingURL=index.js.map

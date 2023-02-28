@@ -1,11 +1,14 @@
+@import '~@baifendian/adherev-ui-css/lib/vars';
+
 @adherev-ui-playground-functionprops-font-color: #595959;
 @adherev-ui-playground-functionprops-highlight-color: #b72f20;
 @adherev-ui-playground-functionprops-modifier-color: #006700;
+@adherev-ui-playground-functionprops-dividing-color: #eaeaea;
 
 .adherev-ui-playground-functionprops {
   position: relative;
   color: @adherev-ui-playground-functionprops-font-color;
-  font-size: 14px;
+  font-size: @adhere-base-font-size;
 
   > .adherev-ui-playground-functionprops-inner {
     margin: 0;
@@ -40,7 +43,7 @@
       display: block;
       width: 100%;
       height: 1px;
-      background-color: #eaeaea;
+      background-color: @adherev-ui-playground-functionprops-dividing-color;
     }
   }
 

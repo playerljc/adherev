@@ -1,7 +1,17 @@
 {
   "name": "@baifendian/adherev-ui-searchtable",
-  "version": "1.0.11",
+  "version": "2.0.3",
   "description": "一种查询表格的通用模式(如果 UI 没有明确给出查询表格的 UI，就可以用这个默认模式)",
+  "homepage": "https://gitee.com/playerljc/adherev",
+  "bugs": {
+    "url": "https://gitee.com/playerljc/adherev/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://gitee.com/playerljc/adherev"
+  },
+  "license": "ISC",
+  "author": "playerljc",
   "main": "lib/index.js",
   "module": "es/index.js",
   "files": [
@@ -11,47 +21,58 @@
   ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "startapp:dev": "cross-env mode=development ctbuildv startapp --define alias=@,evnVars=true",
     "buildpackage:cjs": "ctbuildv buildpackagets -c ctbuildv.package.ts.cjs.config.js -o lib",
     "buildpackage:es": "ctbuildv buildpackagets -c ctbuildv.package.ts.esm.config.js -o es",
     "buildpackage": "npm-run-all --parallel buildpackage:cjs buildpackage:es",
     "buildumd": "ctbuildv buildumd --config ctbuildv.config.umd.js --packagename AdherevSearchTable --define alias=@,evnVars=true",
     "generatorchangelog": "bd changelog/CHANGELOG.html"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://gitee.com/playerljc/adherev"
-  },
   "resolutions": {},
-  "author": "playerljc",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://gitee.com/playerljc/adherev/issues"
+  "dependencies": {
+    "@ant-design/icons-vue": "^6.1.0",
+    "@baifendian/adherev-ui-antdvformitem": "^2.0.3",
+    "@baifendian/adherev-ui-conditionalrender": "^2.0.3",
+    "@baifendian/adherev-ui-css": "^2.0.3",
+    "@baifendian/adherev-ui-flexlayout": "^2.0.3",
+    "@baifendian/adherev-ui-slidelayout": "^2.0.3",
+    "@baifendian/adherev-ui-space": "^2.0.3",
+    "@baifendian/adherev-ui-split": "^2.0.3",
+    "@baifendian/adherev-ui-suspense": "^2.0.3",
+    "@baifendian/adherev-ui-tablegridlayout": "^2.0.3",
+    "@baifendian/adherev-util": "^2.0.3",
+    "@baifendian/adherev-util-intl": "^2.0.3",
+    "@baifendian/adherev-util-mixins": "^2.0.3",
+    "@baifendian/adherev-util-resource": "^2.0.3",
+    "@baifendian/adherev-util-validator": "^2.0.3",
+    "@ctsj/vuexgenerator": "^2.0.2",
+    "ant-design-vue": "^3.2.15",
+    "array-move": "^4.0.0",
+    "classnames": "^2.3.1",
+    "lodash.clonedeep": "^4.5.0",
+    "lodash.merge": "^4.6.2",
+    "lodash.mergewith": "^4.6.2",
+    "moment": "^2.29.4",
+    "omit.js": "^2.0.2",
+    "qs": "^6.11.0",
+    "vue": "^3.2.45",
+    "vue-router": "^4.0.12",
+    "vue-types": "^3.0.2",
+    "vuedraggable": "^4.1.0"
   },
-  "homepage": "https://gitee.com/playerljc/adherev",
+  "devDependencies": {
+    "@babel/runtime": "^7.17.2",
+    "@ctsj/buildv": "^5.0.4",
+    "babel-plugin-import": "^1.13.6",
+    "npm-run-all": "^4.1.5",
+    "typescript": "^4.9.5",
+    "vuex": "^4.0.2"
+  },
+  "peerDependencies": {
+    "vue": ">=3.0.0 - <4.x"
+  },
   "publishConfig": {
     "access": "public"
   },
-  "devDependencies": {
-    "@babel/runtime": "^7.7.4",
-    "@ctsj/buildv": "^2.0.9",
-    "npm-run-all": "^4.1.5",
-    "typescript": "^4.6.2"
-  },
-  "dependencies": {
-    "@baifendian/adherev-ui-conditionalrender": "^1.0.11",
-    "@baifendian/adherev-ui-css": "^1.0.9",
-    "@baifendian/adherev-ui-flexlayout": "^1.0.11",
-    "@baifendian/adherev-ui-suspense": "^1.0.11",
-    "@baifendian/adherev-util": "^1.0.11",
-    "@baifendian/adherev-util-intl": "^1.0.11",
-    "@baifendian/adherev-util-mixins": "^1.0.11",
-    "@ctsj/vuexgenerator": "^1.0.0",
-    "ant-design-vue": "^1.7.5",
-    "classnames": "^2.2.6",
-    "omit.js": "^2.0.2",
-    "vue": "^2.6.13",
-    "vue-draggable-resizable": "^2.3.0",
-    "vuedraggable": "^2.24.3"
-  },
-  "gitHead": "2e23d8b8d13e6a97f5326e4e5d257c9903cd108d"
+  "gitHead": "832b044e56903d79a2f50986a2fef3ed2cff16d4"
 }

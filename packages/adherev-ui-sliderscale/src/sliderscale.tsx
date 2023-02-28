@@ -1,78 +1,59 @@
-import { VNode } from 'vue';
+import { defineComponent, onMounted, ref, watch } from 'vue';
+import { number } from 'vue-types';
 
 const selectorPrefix = 'adherev-ui-sliderscale';
 
-export default {
-  name: 'adv-sliderscale',
-  props: {
-    min: {
-      type: [Number, String],
-      default: 0,
-    },
-    max: {
-      type: [Number, String],
-      default: 100,
-    },
-    step: {
-      type: [Number, String],
-      default: 1,
-    },
-    value: {
-      type: [Number, String],
-      default: 0,
-    },
-    interval: {
-      type: [Number, String],
-      default: 5,
-    },
-  },
-  data() {
-    return {
-      $preValue: null,
-    };
-  },
-  methods: {
-    touchEvent(e) {
-      const {
-        $refs,
-        $data: { $preValue },
-      } = this;
+export const sliderScaleProps = {
+  min: number().def(0),
+  max: number().def(100),
+  step: number().def(1),
+  value: number().def(0),
+  interval: number().def(5),
+};
 
+export default defineComponent({
+  name: 'adv-sliderscale',
+  props: sliderScaleProps,
+  emits: ['change'],
+  setup(props, { emit }) {
+    const rangeEl = ref<HTMLInputElement>();
+
+    let preValue: any = null;
+
+    const touchEvent = (e: { target: { value: any } }) => {
       const { value } = e.target;
 
-      ($refs?.rangeEl as HTMLInputElement).value = value;
+      (rangeEl.value as HTMLInputElement).value = value;
 
-      if ($preValue !== value) {
-        this.$data.$preValue = value;
-
-        this.$emit('change', value);
+      if (preValue !== value) {
+        preValue = value;
+        emit('change', value);
       }
-    },
-    renderScale(h) {
-      const { min, max, interval } = this;
+    };
 
-      const itResult: Array<VNode | null> = [];
+    const renderScale = (): JSX.Element[] => {
+      const itResult: JSX.Element[] = [];
 
-      for (let i = min; i < max; i++) {
-        if (max - 1 === min) {
+      for (let i: number = props.min; i < props.max; i++) {
+        if (props.max - 1 === props.min) {
           break;
         }
 
-        let itemJSX = null;
+        let itemJSX: JSX.Element | null = null;
 
-        if ((i + 1) % interval === 0) {
+        if ((i + 1) % props.interval === 0) {
           itemJSX = (
             <div key={i} class={`${selectorPrefix}-scale-item ${selectorPrefix}-scale-item-point`}>
               <span class={`${selectorPrefix}-scale-item-value`}>{i + 1}</span>
             </div>
           );
-        } else if (i === min) {
+        } else if (i === props.min) {
           itemJSX = (
             <div key={i} class={`${selectorPrefix}-scale-item`}>
-              <span class={`${selectorPrefix}-scale-item-value`}>{min}</span>
+              <span class={`${selectorPrefix}-scale-item-value`}>{props.min}</span>
             </div>
           );
-        } else if ((i + 1) % interval !== 0 && i === max - 1) {
+        } else if ((i + 1) % props.interval !== 0 && i === props.max - 1) {
           itemJSX = (
             <div key={i} class={`${selectorPrefix}-scale-item`}>
               <span class={`${selectorPrefix}-scale-item-value`}>{i + 1}</span>
@@ -85,24 +66,24 @@ export default {
         itResult.push(itemJSX);
       }
 
-      const result: Array<VNode | null> = [];
+      const result: JSX.Element[] = [];
 
-      if (min === max) {
+      if (props.min === props.max) {
         result.push(
           <div key={0} class={`${selectorPrefix}-scale-item`}>
             <span class={`${selectorPrefix}-scale-item-value`}>0</span>
-            <span class={`${selectorPrefix}-scale-item-value`} style="right: 0; left: auto;">
-              ${max}
+            <span class={`${selectorPrefix}-scale-item-value`} style={{ right: 0, left: 'auto' }}>
+              {props.max}
             </span>
           </div>,
         );
       } else {
-        if (max - 1 === min) {
+        if (props.max - 1 === props.min) {
           result.push(
-            <div key={min} class={`${selectorPrefix}-scale-item`}>
-              <span class={`${selectorPrefix}-scale-item-value`}>{min}</span>
-              <span class={`${selectorPrefix}-scale-item-value`} style="right: 0; left: auto;">
-                {max}
+            <div key={props.min} class={`${selectorPrefix}-scale-item`}>
+              <span class={`${selectorPrefix}-scale-item-value`}>{props.min}</span>
+              <span class={`${selectorPrefix}-scale-item-value`} style={{ right: 0, left: 'auto' }}>
+                {props.max}
               </span>
             </div>,
           );
@@ -110,40 +91,40 @@ export default {
       }
 
       return result.concat(itResult);
-    },
-    onMousemove(e) {
-      this.touchEvent(e);
-    },
-    onTouchmove(e) {
-      this.touchEvent(e);
-    },
-  },
-  mounted() {
-    (this.$refs.rangeEl as HTMLInputElement).value = this.value;
-  },
-  watch: {
-    value(newVal) {
-      (this.$refs.rangeEl as HTMLInputElement).value = newVal;
-    },
-  },
-  render(h): VNode {
-    const { min, max, step } = this;
+    };
 
-    return (
-      <div class={selectorPrefix} ref="el">
-        <div class={`${selectorPrefix}-scale`}>{this.renderScale(h)}</div>
+    const onMousemove = (e: { target: { value: any } }) => touchEvent(e);
+
+    const onTouchmove = (e: { target: { value: any } }) => touchEvent(e);
+
+    onMounted(() => {
+      (rangeEl.value as HTMLInputElement).value = `${props.value}`;
+    });
+
+    watch(
+      () => props.value,
+      (newValue) => {
+        (rangeEl.value as HTMLInputElement).value = `${newValue}`;
+      },
+    );
+
+    return () => (
+      <div class={selectorPrefix}>
+        <div class={`${selectorPrefix}-scale`}>{renderScale()}</div>
 
         <input
-          ref="rangeEl"
+          ref={rangeEl}
           class={`${selectorPrefix}-range`}
           type="range"
-          min={min}
-          max={max}
-          step={step}
-          onMousemove={this.onMousemove}
-          onTouchmove={this.onTouchmove}
+          min={props.min}
+          max={props.max}
+          step={props.step}
+          // @ts-ignore
+          onMousemove={onMousemove}
+          // @ts-ignore
+          onTouchmove={onTouchmove}
         />
       </div>
     );
   },
-};
+});

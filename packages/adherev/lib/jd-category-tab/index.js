@@ -1,7 +1,2 @@
-"use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-var es_1 = __importDefault(require("@baifendian/adherev-ui-jdcategorytab/es"));
-exports.default = es_1.default;
+"use strict";require("core-js/modules/es.object.define-property.js");var __importDefault=function(e){return e&&e.__esModule?e:{default:e}},lib_1=(Object.defineProperty(exports,"__esModule",{value:!0}),__importDefault(require("@baifendian/adherev-ui-jdcategorytab/lib")));exports.default=lib_1.default;
+//# sourceMappingURL=index.js.map

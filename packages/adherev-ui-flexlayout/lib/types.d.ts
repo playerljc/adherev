@@ -1,0 +1,17 @@
+import { ExtractPropTypes } from 'vue';
+import { autoProps } from './auto';
+import { backLayoutProps } from './backLayout';
+import { fixedProps } from './fixed';
+import { flexLayoutProps } from './flexlayout';
+import { horizontalFlexLayoutProps } from './horizontalFlexLayout';
+import { scrollLayoutProps } from './scrollLayout';
+import { toolBarLayoutProps } from './toolBarLayout';
+import { verticalFlexLayoutProps } from './verticalFlexLayout';
+export declare type AutoProps = Partial<ExtractPropTypes<typeof autoProps>>;
+export declare type BackLayoutProps = Partial<ExtractPropTypes<typeof backLayoutProps>>;
+export declare type FixedProps = Partial<ExtractPropTypes<typeof fixedProps>>;
+export declare type FlexLayoutProps = Partial<ExtractPropTypes<typeof flexLayoutProps>>;
+export declare type HorizontalFlexLayoutProps = Partial<ExtractPropTypes<typeof horizontalFlexLayoutProps>>;
+export declare type ScrollLayoutProps = Partial<ExtractPropTypes<typeof scrollLayoutProps>>;
+export declare type ToolBarLayoutProps = Partial<ExtractPropTypes<typeof toolBarLayoutProps>>;
+export declare type VerticalFlexLayoutProps = Partial<ExtractPropTypes<typeof verticalFlexLayoutProps>>;

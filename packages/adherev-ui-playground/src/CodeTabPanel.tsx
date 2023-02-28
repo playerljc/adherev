@@ -1,51 +1,57 @@
+import { ExtractPropTypes, VNode, defineComponent, ref, watch } from 'vue';
+import { array, string } from 'vue-types';
+
 import ConditionalRender from '@baifendian/adherev-ui-conditionalrender';
+
+import CodePanel from './CodePanel';
 import SimpleTabs from './SimpleTabs';
 import TabPanel from './SimpleTabs/TabPanel';
-import CodePanel from './CodePanel';
 
 const selectPrefix = 'adherev-ui-playground-code-tab-panel';
 
-export const CodeTabPanelDefaultProps = {
-  active: {
-    type: String,
-    default: '',
-  },
-  config: {
-    type: Array,
-    default: () => [],
-  },
+export interface ICodeTabPanelItemProps {
+  key: string;
+  title: string | VNode;
+  codeText: string;
+  lang: string;
+}
+
+export const codeTabPanelProps = {
+  active: string().def(''),
+  config: array<ICodeTabPanelItemProps>().def([]),
 };
 
-export default {
+export default defineComponent({
   name: 'adv-playground-code-tab-panel',
-  props: { ...CodeTabPanelDefaultProps },
-  render(h) {
-    const { active, config } = this;
+  emits: ['change'],
+  props: codeTabPanelProps,
+  setup(props, { emit }) {
+    const active = ref<string>(props.active);
 
-    return (
+    watch(
+      () => props.active,
+      (newValue) => (active.value = newValue),
+    );
+
+    return () => (
       <div class={selectPrefix}>
-        {/*@ts-ignore*/}
         <SimpleTabs
-          defaultActiveKey={active}
-          onChange={(key) => {
-            // this.active = key;
-
-            this.$emit('change', key);
+          defaultActiveKey={active.value}
+          onChange={(key: string) => {
+            active.value = key;
+            emit('change', key);
           }}
         >
-          {config.map(({ key, title, codeText, ...codePanelConfig }) => {
-            return (
-              // @ts-ignore
-              <TabPanel title={title} key={key} index={key}>
-                <ConditionalRender conditional={active === key}>
-                  {/*@ts-ignore*/}
-                  <CodePanel {...{ props: codePanelConfig }}>{codeText}</CodePanel>
-                </ConditionalRender>
-              </TabPanel>
-            );
-          })}
+          {props.config.map(({ key, title, ...codePanelConfig }) => (
+            // @ts-ignore
+            <TabPanel title={title} key={key} index={key}>
+              <ConditionalRender conditional={active.value === key}>
+                <CodePanel {...codePanelConfig} />
+              </ConditionalRender>
+            </TabPanel>
+          ))}
         </SimpleTabs>
       </div>
     );
   },
-};
+});

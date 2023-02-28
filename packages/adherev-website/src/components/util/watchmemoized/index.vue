@@ -15,11 +15,9 @@
 
     <adv-playground-page-code-box-section title="代码演示" :config="codeBoxPanelConfig">
       <template #p1>
-        <fragment>
-          <a-button @click="onCode1F1">light比较</a-button>
-          <a-button @click="onCode1F2">deep比较</a-button>
-          <a-button @click="onCode1F3">自定义比较</a-button>
-        </fragment>
+        <a-button @click="onCode1F1">light比较</a-button>
+        <a-button @click="onCode1F2">deep比较</a-button>
+        <a-button @click="onCode1F3">自定义比较</a-button>
       </template>
 
       <template #p2>
@@ -143,6 +141,7 @@ const asyncFun = memoized.createMemoFun((...params) => {
 });
 
 export default {
+  displayName: 'watchmemoized',
   data() {
     return {
       scrollEl: null,

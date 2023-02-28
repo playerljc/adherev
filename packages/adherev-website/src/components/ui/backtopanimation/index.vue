@@ -9,17 +9,23 @@
         <div style="position: relative; height: 300px; overflow-y: hidden">
           <div ref="ref" style="height: 100%; overflow-y: auto">
             <a-list item-layout="horizontal" :data-source="data">
-              <a-list-item slot="renderItem" slot-scope="item, index">
-                <a-list-item-meta
-                  description="Ant Design, a design language for background applications, is refined by Ant UED Team"
-                >
-                  <a slot="title" href="https://www.antdv.com/">{{ item.title }}</a>
-                  <a-avatar
-                    slot="avatar"
-                    src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"
-                  />
-                </a-list-item-meta>
-              </a-list-item>
+              <template #renderItem="{ item }">
+                <a-list-item>
+                  <a-list-item-meta
+                    description="Ant Design, a design language for background applications, is refined by Ant UED Team"
+                  >
+                    <template #title>
+                      <a href="https://www.antdv.com/">{{ item.title }}</a>
+                    </template>
+
+                    <template #avatar>
+                      <a-avatar
+                        src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"
+                      />
+                    </template>
+                  </a-list-item-meta>
+                </a-list-item>
+              </template>
             </a-list>
           </div>
           <adv-backtopanimation @target="onTarget" @trigger="onTrigger" @scroll-top="onScrollTop" />
@@ -40,6 +46,7 @@ data = data.map((t, index) => ({
 }));
 
 export default {
+  displayName: 'backtopanimation',
   data() {
     return {
       data,

@@ -1,14 +1,25 @@
-import ErrorPrompt from './errorprompt';
+import { Modal } from 'ant-design-vue';
+import { App, Plugin } from 'vue';
+
 import BfdUtil from '@baifendian/adherev-util';
+import Intl from '@baifendian/adherev-util-intl';
+
+import { openErrorDialog, openErrorMessage } from './errorprompt';
+
 const {
   _util: { withVue },
 } = BfdUtil;
 
-// @ts-ignore
-ErrorPrompt.isUse = () => true;
-// @ts-ignore
-ErrorPrompt.use = (Vue) => {
-  withVue(Vue, 'ErrorPrompt', ErrorPrompt);
+const ErrorPrompt = {
+  openErrorDialog,
+  openErrorMessage,
+  install: function (app: App) {
+    app.component(Intl.name, Intl);
+    app.component(Modal.name, Modal);
+    withVue(app, 'ErrorPrompt', ErrorPrompt);
+
+    return app;
+  },
 };
 
-export default ErrorPrompt;
+export default ErrorPrompt as typeof ErrorPrompt & Plugin;

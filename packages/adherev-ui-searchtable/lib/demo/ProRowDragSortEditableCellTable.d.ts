@@ -1,0 +1,2 @@
+declare const ProRowDragSortEditableCellTable: any;
+export default ProRowDragSortEditableCellTable;

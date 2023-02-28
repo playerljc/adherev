@@ -4,7 +4,7 @@
 
 # 兼容要求
 
-- 支持 vue2.x
+- 支持 vue3.x
 - 支持 ant-design-vue
 - 支持国际化
 - 支持修改主题
@@ -14,13 +14,13 @@
 # 分支要求
 
 - develop 是不支持 IE 的分支
-  - 使用 vue2.x
+  - 使用 vue3.x
   - ant-design-vue 使用 1.x
   - tsconfig 的 target 可以给出 es6
   - 不支持 ie 的版本号应该
   - vx.x.x
 - feature 是支持 IE 的分支
-  - 使用 vue2.x
+  - 使用 vue3.x
   - ant-design-vue 使用 1.x
   - tsconfig 的 target 只能给出 es5
   - vx.x.x-polyfill

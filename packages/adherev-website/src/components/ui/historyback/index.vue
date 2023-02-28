@@ -12,6 +12,7 @@
 
 <script>
 export default {
+  displayName: 'historyback',
   data() {
     return {
       scrollEl: null,

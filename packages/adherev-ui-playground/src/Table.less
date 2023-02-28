@@ -1,6 +1,10 @@
+@import '~@baifendian/adherev-ui-css/lib/vars';
+
 @adherev-ui-playground-table-color: #f0f0f0;
 @adherev-ui-playground-table-font-color: #595959;
 @adherev-ui-playground-table-highlight-color: #f2f4f5;
+@adherev-ui-playground-table-header-column-color: #5c6b77;
+@adherev-ui-playground-table-row-hover-color: rgb(60, 90, 100);
 
 .adherev-ui-playground-table {
   > .adherev-ui-playground-table-inner {
@@ -20,11 +24,11 @@
       > .adherev-ui-playground-table-header {
         > .adherev-ui-playground-table-header-column {
           padding: 12px;
-          color: #5c6b77;
+          color: @adherev-ui-playground-table-header-column-color;
           font-weight: 500;
           white-space: nowrap;
           text-align: left;
-          background: rgba(0, 0, 0, 0.02);
+          background: rgba(@adhere-black-color, 0.02);
           border: 1px solid @adherev-ui-playground-table-color;
 
           &:first-child {
@@ -43,7 +47,7 @@
         transition: all 0.3s;
 
         &:hover {
-          background: rgba(60, 90, 100, 0.04);
+          background: rgba(@adherev-ui-playground-table-row-hover-color, 0.04);
         }
 
         > .adherev-ui-playground-table-cell {

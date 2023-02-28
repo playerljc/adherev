@@ -9,6 +9,7 @@ export interface IConfig {
   onBeforeClose: () => Promise<null>;
   onAfterClose: Function;
   onDestroy: Function;
+  beforeMount?: (vm?: any) => void;
   children: null | Object;
   zIndex: number;
 }

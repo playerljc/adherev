@@ -1,100 +1,99 @@
-import { VNode } from 'vue';
+import { CSSProperties, VNode, computed, defineComponent } from 'vue';
+import { number, object, string } from 'vue-types';
 
 const selectorPrefix = 'adherev-ui-space';
+
+enum directionType {
+  vertical = 'vertical',
+  horizontal = 'horizontal',
+}
+
+export const spaceProps = {
+  direction: string().def(directionType.vertical),
+  size: number().def(20),
+};
 
 /**
  * Space
  */
-const Space = {
+const Space = defineComponent({
   name: 'adv-space',
-  props: {
-    direction: {
-      type: String,
-      default: 'vertical',
-      validator(value) {
-        // 这个值必须匹配下列字符串中的一个
-        return ['vertical', 'horizontal'].indexOf(value) !== -1;
-      },
-    },
-    size: {
-      type: [Number, String],
-      default: 20,
-    },
-  },
-  computed: {
-    getStyle() {
-      const { direction, size } = this;
-
-      if (direction === 'horizontal') {
+  props: spaceProps,
+  setup(props, {}) {
+    const getStyle = computed(() => {
+      if (props.direction === directionType.horizontal) {
         return {
           display: 'inline-block',
           height: '100%',
-          margin: `0 ${size}px`,
+          margin: `0 ${props.size}px`,
         };
       }
 
       return {
         width: '100%',
         height: '0.1px',
-        margin: `${size}px 0`,
+        margin: `${props.size}px 0`,
       };
-    },
+    });
+
+    return () => <div class={selectorPrefix} style={getStyle.value} />;
   },
-  render(h): VNode {
-    return <div class={selectorPrefix} style={this.getStyle} />;
-  },
+});
+
+export const spaceGroupProps = {
+  direction: string().def(directionType.vertical),
+  size: number().def(20),
+  className: string().def(''),
+  style: object<CSSProperties>().def({}),
 };
 
 /**
  * SpaceGroup
  */
-export const SpaceGroup = {
+export const SpaceGroup = defineComponent({
   name: 'adv-space-group',
-  props: {
-    direction: {
-      type: String,
-      default: 'vertical',
-      validator(value) {
-        // 这个值必须匹配下列字符串中的一个
-        return ['vertical', 'horizontal'].indexOf(value) !== -1;
-      },
-    },
-    size: {
-      type: [Number, String],
-      default: 20,
-    },
-    className: {
-      type: String,
-      required: false,
-      default: '',
-    },
-  },
-  render(h): VNode {
-    const { $slots, direction, size, className } = this;
+  props: spaceGroupProps,
+  setup(props, { slots }) {
+    return () => {
+      const nodes: VNode[] = [];
 
-    const JSXS: VNode[] = [];
+      if (slots.default) {
+        const children = slots.default?.();
 
-    if ($slots.default) {
-      for (let i = 0; i < $slots.default.length; i++) {
-        if (i !== 0) {
-          const props = {
-            props: {
-              direction,
-              size,
-            },
-            class: className,
-          };
+        if (!children || !Array.isArray(children) || !children.length) return;
 
-          // @ts-ignore
-          JSXS.push(<Space {...props} key={i} />);
+        const childrenFlat: VNode[] = [];
+
+        for (const child of children) {
+          if (child.type.toString() === 'Symbol(Fragment)') {
+            if ('children' in child && Array.isArray(child.children)) {
+              children.push(...((child.children || []) as []));
+            }
+          } else {
+            childrenFlat.push(child);
+          }
         }
 
-        JSXS.push($slots.default[i]);
-      }
-    }
+        for (let i = 0; i < childrenFlat.length; i++) {
+          if (i !== 0) {
+            const spaceProps = {
+              key: i,
+              direction: props.direction,
+              size: props.size,
+              class: props.className,
+              style: props.style,
+            };
 
-    return <div class={`${selectorPrefix}-group ${direction}`}>{JSXS}</div>;
+            nodes.push(<Space {...spaceProps} />);
+          }
+
+          nodes.push(childrenFlat[i]);
+        }
+      }
+
+      return <div class={`${selectorPrefix}-group ${props.direction}`}>{nodes}</div>;
+    };
   },
-};
+});
 
 export default Space;

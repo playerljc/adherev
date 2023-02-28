@@ -1,37 +1,41 @@
-import { CreateElement } from 'vue';
 import { Popover } from 'ant-design-vue';
+import { defineComponent, inject } from 'vue';
+import { string } from 'vue-types';
 
 import { TableDensity } from '../../types';
-
-// @ts-ignore
 import Setting from './setting';
 
-export default {
+export default defineComponent({
   name: 'adv-searchtable-tabledensity',
-  inject: ['getContext'],
-  methods: {
-    onReset() {
-      this.getContext().tableDensity = TableDensity.DEFAULT;
-    },
-    onChange(density) {
-      this.getContext().tableDensity = density;
-    },
+  props: {
+    density: string().def(TableDensity.DEFAULT),
   },
-  render(h: CreateElement) {
-    return (
+  // emits: ['reset', 'change'],
+  setup() {
+    const context = inject<any>('getContext')?.()?.context;
+
+    const onReset = () => {
+      context.tableDensity = TableDensity.DEFAULT;
+    };
+
+    const onChange = (density) => {
+      context.tableDensity = density;
+    };
+
+    return () => (
       <Popover
-        // @ts-ignore
         content={
-          // @ts-ignore
           <Setting
-            density={this.getContext?.()?.tableDensity || TableDensity.DEFAULT}
-            onReset={this.onReset}
-            onChange={this.onChange}
+            density={context?.tableDensity || TableDensity.DEFAULT}
+            onReset={onReset}
+            onChange={onChange}
+            // onReset={() => emit('reset')}
+            // onChange={(...params) => emit('change', ...params)}
           />
         }
         placement="bottomRight"
         trigger="click"
-        getPopupContainer={(el) => el.parentElement}
+        getPopupContainer={(el) => el?.parentElement as HTMLElement}
       >
         <a>
           <img
@@ -42,4 +46,4 @@ export default {
       </Popover>
     );
   },
-};
+});

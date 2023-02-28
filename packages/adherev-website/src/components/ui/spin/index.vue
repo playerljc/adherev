@@ -28,6 +28,7 @@
 
 <script>
 export default {
+  displayName: 'space',
   data() {
     return {
       show: false,

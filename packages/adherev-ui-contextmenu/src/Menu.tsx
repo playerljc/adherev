@@ -1,58 +1,47 @@
-import { VNode, PropType } from 'vue';
 import classNames from 'classnames';
+import { CSSProperties, computed, defineComponent, inject, ref } from 'vue';
+import { array, object, string } from 'vue-types';
 
-import { IData } from './types';
-
+import { ContextReturnType } from './ContextMenu';
 import MenuItem from './MenuItem';
+import { IData } from './types';
 
 const selectorPrefix = 'adherev-ui-contextmenu-submenu';
 
-export default {
-  props: {
-    data: {
-      type: Array as PropType<IData[]>,
-      default: () => [],
-    },
-    className: {
-      type: String,
-      default: '',
-    },
-    styleName: {
-      type: String,
-      default: '',
-    },
-  },
-  inject: ['getContext'],
-  methods: {
-    mount() {
-      let {
-        config: { x, y },
-      } = this.getContext();
+export const menuProps = {
+  data: array<IData>().def([]),
+  className: string().def(''),
+  style: object<CSSProperties>().def({}),
+};
 
-      const {
-        $refs: { el },
-      } = this;
+export default defineComponent({
+  props: menuProps,
+  setup(props, { expose }) {
+    const el = ref<HTMLUListElement | null>(null);
 
-      const menuWidth = el?.offsetWidth;
-      const menuHeight = el?.offsetHeight;
+    const context = inject('context') as ContextReturnType;
+
+    const getStyle = computed(() => {
+      return {
+        ...props.style,
+        width: `${context.config.width}px`,
+        zIndex: 99999 * 2 + 1,
+      };
+    });
+
+    const getClass = computed(() =>
+      classNames(selectorPrefix, (props.className || '').split(/\s+/)),
+    );
+
+    const mount = () => {
+      let x = context.config.x;
+      let y = context.config.y;
+
+      const menuWidth = el.value?.offsetWidth as number;
+      const menuHeight = el.value?.offsetHeight as number;
 
       const clientWidth = document.body.clientWidth || document.documentElement.clientWidth;
       const clientHeight = document.body.clientHeight || document.documentElement.clientHeight;
-
-      // console.log(
-      //   'x',
-      //   x,
-      //   'y',
-      //   y,
-      //   'menuWidth',
-      //   menuWidth,
-      //   'menuHeight',
-      //   menuHeight,
-      //   'clientWidth',
-      //   clientWidth,
-      //   'clientHeight',
-      //   clientHeight,
-      // );
 
       if (clientWidth - x < menuWidth) {
         x = clientWidth - menuWidth;
@@ -62,36 +51,22 @@ export default {
         y = clientHeight - menuHeight;
       }
 
-      (el as HTMLElement).style.left = `${x}px`;
+      (el.value as HTMLElement).style.left = `${x}px`;
 
-      (el as HTMLElement).style.top = `${y}px`;
-    },
-    renderItems(h): VNode[] {
-      const { data = [] } = this;
+      (el.value as HTMLElement).style.top = `${y}px`;
+    };
 
-      // @ts-ignore
-      return data.map((item) => <MenuItem key={item.id} data={item} />);
-    },
-  },
-  computed: {
-    getStyle(): string {
-      const { styleName } = this;
+    const renderItems = (): JSX.Element[] =>
+      props.data.map((item) => <MenuItem key={item.id} data={item} />);
 
-      const { width } = this.getContext().config;
+    expose({
+      mount,
+    });
 
-      return `${styleName}width:${width}px;z-index:${99999 * 2 + 1}`;
-    },
-    getClass(): string {
-      const { className } = this;
-
-      return classNames(selectorPrefix, (className || '').split(/\s+/));
-    },
-  },
-  render(h): VNode {
-    return (
-      <ul class={this.getClass} style={this.getStyle} ref="el">
-        {this.renderItems(h)}
+    return () => (
+      <ul class={getClass.value} style={getStyle.value} ref={el}>
+        {renderItems()}
       </ul>
     );
   },
-};
+});

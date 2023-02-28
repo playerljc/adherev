@@ -11,52 +11,38 @@
 
     <adv-playground-page-code-box-section title="代码演示" :config="codeBoxPanelConfig">
       <template #p1>
-        <fragment>
-          <a-button style="margin-right: 20px" @click="onCase1F1"> 注册通知 </a-button>
-          <a-button @click="onCase1F2"> 发出通知 </a-button>
-        </fragment>
+        <a-button style="margin-right: 20px" @click="onCase1F1"> 注册通知 </a-button>
+        <a-button @click="onCase1F2"> 发出通知 </a-button>
       </template>
 
       <template #p2>
-        <fragment>
-          <a-button style="margin-right: 20px" @click="onCase2F1">注册通知</a-button>
-          <a-button @click="onCase2F2">发出通知</a-button>
-        </fragment>
+        <a-button style="margin-right: 20px" @click="onCase2F1">注册通知</a-button>
+        <a-button @click="onCase2F2">发出通知</a-button>
       </template>
 
       <template #p3>
-        <fragment>
-          <a-button style="margin-right: 20px" @click="onCase3F1">注册通知</a-button>
-          <a-button @click="onCase3F2">发出通知</a-button>
-        </fragment>
+        <a-button style="margin-right: 20px" @click="onCase3F1">注册通知</a-button>
+        <a-button @click="onCase3F2">发出通知</a-button>
       </template>
 
       <template #p4>
-        <fragment>
-          <a-button style="margin-right: 20px" @click="onCase4F1">注册通知</a-button>
-          <a-button @click="onCase4F2">发出通知</a-button>
-        </fragment>
+        <a-button style="margin-right: 20px" @click="onCase4F1">注册通知</a-button>
+        <a-button @click="onCase4F2">发出通知</a-button>
       </template>
 
       <template #p5>
-        <fragment>
-          <a-button style="margin-right: 20px" @click="onCase5F1">注册通知</a-button>
-          <a-button @click="onCase5F2">发出通知并监控</a-button>
-        </fragment>
+        <a-button style="margin-right: 20px" @click="onCase5F1">注册通知</a-button>
+        <a-button @click="onCase5F2">发出通知并监控</a-button>
       </template>
 
       <template #p6>
-        <fragment>
-          <a-button style="margin-right: 20px" @click="onCase6F1">注册通知</a-button>
-          <a-button @click="onCase6F2">发出通知并监控</a-button>
-        </fragment>
+        <a-button style="margin-right: 20px" @click="onCase6F1">注册通知</a-button>
+        <a-button @click="onCase6F2">发出通知并监控</a-button>
       </template>
 
       <template #p7>
-        <fragment>
-          <a-button style="margin-right: 20px" @click="onCase7F1">注册通知</a-button>
-          <a-button @click="onCase7F2">发出通知并监控</a-button>
-        </fragment>
+        <a-button style="margin-right: 20px" @click="onCase7F1">注册通知</a-button>
+        <a-button @click="onCase7F2">发出通知并监控</a-button>
       </template>
     </adv-playground-page-code-box-section>
 
@@ -70,6 +56,7 @@ import { Emitter } from '@baifendian/adherev';
 let handler1;
 
 export default {
+  displayName: 'emitter',
   data() {
     return {
       scrollEl: null,

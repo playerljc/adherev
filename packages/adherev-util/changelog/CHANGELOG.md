@@ -1,3 +1,23 @@
+# 1.0.8
+
+***
+
+2023-01-24
+
+* 加入forwardRef方法
+* 加入DateUtil
+* 加入FormatUtil
+* 加入EncryptUtil
+* color加入新方法
+
+# 1.0.7
+
+***
+
+2023-01-02
+
+* 去掉adherev-util的依赖
+
 # 1.0.6
 
 ***

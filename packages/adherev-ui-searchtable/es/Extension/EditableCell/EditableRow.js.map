@@ -1,0 +1,1 @@
+{"version":3,"file":"EditableRow.js","sources":["Extension/EditableCell/EditableRow.js"],"sourcesContent":["export default (function (props) {\n  return function (trVNode) {\n    return trVNode;\n  };\n});"],"names":["props","trVNode"],"mappings":"eAAe,SAAWA,GACxB,OAAO,SAAUC,GACf,OAAOA,CACT,CACD"}

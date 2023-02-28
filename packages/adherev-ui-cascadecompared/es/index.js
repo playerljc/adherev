@@ -1,0 +1,2 @@
+import StickUpLayout from"@baifendian/adherev-ui-stickuplayout";import Util from"@baifendian/adherev-util";import CascadeCompared from"./cascadecompared";var withVue=Util._util.withVue;CascadeCompared.install=function(a){return a.use(StickUpLayout),a.component(CascadeCompared.name,CascadeCompared),withVue(a,"CascadeCompared",CascadeCompared),a};export default CascadeCompared;
+//# sourceMappingURL=index.js.map

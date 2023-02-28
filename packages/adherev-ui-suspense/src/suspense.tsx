@@ -1,7 +1,13 @@
-import Vue, { VNode } from 'vue';
-import { Spin, Skeleton } from 'ant-design-vue';
+import { Skeleton, Spin } from 'ant-design-vue';
+import { VNode, defineComponent } from 'vue';
+import { bool, object } from 'vue-types';
 
 const selectorPrefix = 'adherev-ui-suspense';
+
+export const suspenseProps = {
+  reset: bool().def(false),
+  renderFirstLoading: object<VNode>(),
+};
 
 /**
  * Suspense
@@ -9,13 +15,9 @@ const selectorPrefix = 'adherev-ui-suspense';
  * @overview renderInner: VNode | null
  * @overview fetchData(): void
  */
-export default Vue.extend({
-  props: {
-    reset: {
-      type: Boolean,
-      default: false,
-    },
-  },
+export default defineComponent({
+  props: suspenseProps,
+  slots: ['firstLoading'],
   data() {
     return {
       // 第一次
@@ -40,14 +42,16 @@ export default Vue.extend({
     },
   },
   mounted() {
-    this.fetchData();
+    if (this.fetchData) {
+      this.fetchData();
+    }
   },
   methods: {
     /**
      * renderNormalFirstLoading
      */
-    renderNormalFirstLoading(h): VNode | null {
-      const result: VNode[] = [];
+    $renderNormalFirstLoading(): JSX.Element {
+      const result = [];
 
       for (let i = 0; i < 7; i++) {
         // @ts-ignore
@@ -60,24 +64,23 @@ export default Vue.extend({
      * renderFirstLoading
      * @param h
      */
-    renderFirstLoading(h): VNode | null {
+    $renderFirstLoading(): JSX.Element {
       const { $slots } = this;
 
-      if ($slots.firstLoading) {
-        return $slots.firstLoading;
+      if ($slots.firstLoading || this.renderFirstLoading) {
+        return $slots.firstLoading || this.renderFirstLoading;
       }
 
-      return this.renderNormalFirstLoading(h);
+      return this.$renderNormalFirstLoading();
     },
     /**
      * renderNormal
      * @param h
      */
-    renderNormal(h: VNode | null) {
+    $renderNormal(): JSX.Element {
       return (
-        // @ts-ignore
         <Spin size="large" spinning={this.showLoading()}>
-          {this.renderInner(h)}
+          {this.renderInner()}
         </Spin>
       );
     },
@@ -85,7 +88,7 @@ export default Vue.extend({
      * renderDispatch
      * @param h
      */
-    renderDispatch(h) {
+    $renderDispatch(): JSX.Element {
       const loading = this.showLoading();
 
       if (this.isFirst && !this.isFirstLoading && loading) {
@@ -99,25 +102,23 @@ export default Vue.extend({
       }
 
       if (this.isFirst) {
-        return this.renderFirstLoading(h);
+        return this.$renderFirstLoading();
       }
 
-      return this.renderNormal(h);
+      return this.$renderNormal();
     },
     /**
      * renderSuspense
      * @description - renderSuspense
-     * @param h
      */
-    renderSuspense(h) {
-      return <div class={selectorPrefix}>{this.renderDispatch(h)}</div>;
+    $renderSuspense() {
+      return <div class={selectorPrefix}>{this.$renderDispatch()}</div>;
     },
   },
   /**
    * render
-   * @param h
    */
-  render(h) {
-    return this.renderSuspense(h);
+  render() {
+    return this.$renderSuspense();
   },
 });

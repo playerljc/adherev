@@ -11,5 +11,6 @@
     "no-invalid-double-slash-comments": null,
     "no-descending-specificity": null,
     "declaration-empty-line-before": null
-  }
+  },
+  "customSyntax": "postcss-html"
 }

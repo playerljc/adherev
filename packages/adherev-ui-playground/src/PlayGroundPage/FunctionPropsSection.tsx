@@ -1,30 +1,28 @@
+import { defineComponent } from 'vue';
+import { array } from 'vue-types';
+
 import Space from '@baifendian/adherev-ui-space';
 
-import Section, { SectionPropTypes } from './Section';
-import FunctionProps from '../FunctionProps';
+import FunctionProps, { IDataItemType } from '../FunctionProps';
+import Section, { sectionProps } from './Section';
 
-export default {
+const functionPropsSectionProps = {
+  ...sectionProps,
+  config: array<IDataItemType>().def([]),
+};
+
+export default defineComponent({
   name: 'adv-playground-page-function-props-section',
-  props: {
-    ...SectionPropTypes,
-    config: {
-      type: Array,
-      default: () => [],
-    },
-  },
-  render(h) {
-    const { title, extra, config } = this;
-
-    return (
-      // @ts-ignore
-      <Section title={title} extra={extra}>
+  props: functionPropsSectionProps,
+  setup(props) {
+    return () => (
+      <Section title={props.title} extra={props.extra}>
         <Space.Group direction="vertical">
-          {(config || []).map((c, index) => (
-            // @ts-ignore
-            <FunctionProps key={index + 1} {...{ props: c }} />
+          {(props.config || []).map((c, index) => (
+            <FunctionProps key={index + 1} {...c} />
           ))}
         </Space.Group>
       </Section>
     );
   },
-};
+});

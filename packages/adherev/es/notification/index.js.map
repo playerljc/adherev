@@ -1,0 +1,1 @@
+{"version":3,"file":"index.js","sources":["notification/index.js"],"sourcesContent":["import Model from '@baifendian/adherev-ui-notification/es';\nexport default Model;"],"names":["Model"],"mappings":"OAAOA,UAAW,wDACHA"}

@@ -18,6 +18,7 @@
 import { ErrorPrompt } from '@baifendian/adherev';
 
 export default {
+  displayName: 'errorprompt',
   data() {
     return {
       scrollEl: null,
@@ -43,7 +44,7 @@ export default {
           export default {
              methods: {
                onCode1F1() {
-                 ErrorPrompt('操作失败');
+                 ErrorPrompt.openErrorMessage('操作失败');
                }
              }
           }
@@ -83,7 +84,7 @@ export default {
   },
   methods: {
     onCode1F1() {
-      ErrorPrompt('操作失败');
+      ErrorPrompt.openErrorMessage('操作失败');
     },
   },
 };

@@ -24,6 +24,7 @@
 import { Browsersniff } from '@baifendian/adherev';
 
 export default {
+  displayName: 'browsersniff',
   data() {
     return {
       scrollEl: null,

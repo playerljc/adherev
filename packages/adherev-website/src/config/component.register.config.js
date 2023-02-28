@@ -1,200 +1,197 @@
-import Vue from 'vue';
-import { Plugin } from 'vue-fragment';
 import {
+  Space as AntdSpace,
+  Avatar,
   Breadcrumb,
   Button,
   Card,
   Col,
   ConfigProvider,
   DatePicker,
+  Divider,
   Empty,
-  Form,
-  FormModel,
-  Icon,
+  Form, // FormModel,
+  // Icon,
   Input,
   InputNumber,
+  List,
   Menu,
   Modal,
+  Progress,
   Radio,
   Result,
   Row,
+  Select,
   Slider,
+  Statistic,
+  Switch,
   Table,
   Tabs,
-  Tooltip,
-  List,
-  Avatar,
   Tag,
-  Divider,
-  Select,
-  Switch,
+  Tooltip,
 } from 'ant-design-vue';
 
-import VueHighlightJS from 'vue-highlight.js';
-
+import * as VueIcons from '@ant-design/icons-vue';
 import {
-  ConditionalRender,
-  DelConfirm,
-  FlexLayout,
-  ImportantConfirm,
-  Intl,
-  MessageDialog,
-  OLMap,
-  Permission,
-  SearchTable,
-  Space,
-  Spin,
-  Split,
-  Suspense,
-  BackTopAnimation,
-  SplitLayout,
-  ScrollLoad,
-  SlideLayout,
-  SuccessPrompt,
-  ErrorPrompt,
-  WarnPrompt,
-  PullRefresh,
-  Revolving,
-  SliderScale,
-  StickupLayout,
-  Surnames,
-  CascadeCompared,
-  SwipeOut,
-  FontSizeSetting,
-  JdCategoryTab,
-  ImageLazy,
-  BMap,
-  PlayGround,
-  ContextMenu,
-  GlobalIndicator,
-  HistoryBack,
-  Notification,
-  PolygonSelection,
-  Popup,
-  Teleport,
   AdapterScreen,
-  Browsersniff,
+  ConfigProvider as AdherevConfigProvider,
   Ajax,
+  AntdvFormItem,
+  BMap,
+  BackTopAnimation,
+  Browsersniff,
+  CascadeCompared,
+  Comment,
+  ConditionalRender,
+  ContextMenu,
+  ContourBlock,
+  DateDisplay,
+  DelConfirm,
   Dict,
   Domain,
   Emitter,
+  ErrorPrompt,
+  FlexLayout,
+  FontSizeSetting,
+  GlobalIndicator,
+  HistoryBack,
+  IframeIO,
+  ImageLazy,
+  ImportantConfirm,
+  Intl,
+  JdCategoryTab,
+  MessageDialog,
   NotNull,
+  Notification,
+  OLMap,
+  Permission,
+  PlayGround,
+  PolygonSelection,
+  Popup,
   Preferences,
+  PullRefresh,
   Resource,
-  Validator,
-  WatchMemoized,
+  Revolving,
+  ScrollLoad,
+  SearchTable,
+  SlideLayout,
+  SliderScale,
+  Space,
+  Spin,
+  Split,
+  SplitLayout,
+  StickupLayout,
+  SuccessPrompt,
+  Surnames,
+  Suspense,
+  SwipeOut,
+  TableGridLayout,
   Util,
+  Validator,
+  VueQuillSandBox,
+  WarnPrompt,
+  WatchMemoized,
+  WritingBoard,
 } from '@baifendian/adherev';
 
-import Playground from '@/lib/Playground';
-import PlaygroundMulit from '@/lib/PlaygroundMulit';
-import FunctionProps from '@/lib/FunctionProps';
-import Props from '@/lib/Props';
-
-import en_US from '@/locales/en_US';
-import zh_CN from '@/locales/zh_CN';
-import pt_PT from '@/locales/pt_PT';
-
 const register = [
-  () => {
-    Vue.use(Menu);
-    Vue.use(Button);
-    Vue.use(Card);
-    Vue.use(Table);
-    Vue.use(Tabs);
-    Vue.use(Breadcrumb);
-    Vue.use(Empty);
-    Vue.use(Tooltip);
-    Vue.use(Icon);
-    Vue.use(Modal);
-    Vue.use(Result);
-    Vue.use(Form);
-    Vue.use(FormModel);
-    Vue.use(Input);
-    Vue.use(Radio);
-    Vue.use(InputNumber);
-    Vue.use(Slider);
-    Vue.use(DatePicker);
-    Vue.use(Row);
-    Vue.use(Col);
-    Vue.use(ConfigProvider);
-    Vue.use(List);
-    Vue.use(Avatar);
-    Vue.use(Tag);
-    Vue.use(Divider);
-    Vue.use(Select);
-    Vue.use(Switch);
+  (app) => {
+    app.use(Menu);
+    app.use(Button);
+    app.use(Card);
+    app.use(Table);
+    app.use(Tabs);
+    app.use(Breadcrumb);
+    app.use(Empty);
+    app.use(Tooltip);
+    // app.use(Icon);
+    app.use(Statistic);
+    app.use(Progress);
+    app.use(Modal);
+    app.use(Result);
+    app.use(Form);
+    app.use(AntdSpace);
+    // app.use(FormModel);
+    app.use(Input);
+    app.use(Radio);
+    app.use(InputNumber);
+    app.use(Slider);
+    app.use(DatePicker);
+    app.use(Row);
+    app.use(Col);
+    app.use(ConfigProvider);
+    app.use(List);
+    app.use(Avatar);
+    app.use(Tag);
+    app.use(Divider);
+    app.use(Select);
+    app.use(Switch);
   },
-  () => {
-    ConditionalRender.use(Vue);
-    DelConfirm.use(Vue);
-    ImportantConfirm.use(Vue);
-    Permission.use(Vue);
-    Intl.use(Vue);
-    MessageDialog.use(Vue, {
-      messages: {
-        en_US,
-        zh_CN,
-        pt_PT,
-      },
-    });
-    Space.use(Vue);
-    Spin.use(Vue);
-    Split.use(Vue);
-    Suspense.use(Vue);
-    FlexLayout.use(Vue);
-    SearchTable.use(Vue);
-    OLMap.use(Vue);
-    BackTopAnimation.use(Vue);
-    SplitLayout.use(Vue);
-    ScrollLoad.use(Vue);
-    SlideLayout.use(Vue);
-    PullRefresh.use(Vue);
-    Revolving.use(Vue);
-    SuccessPrompt.use(Vue);
-    ErrorPrompt.use(Vue);
-    WarnPrompt.use(Vue);
-    SliderScale.use(Vue);
-    StickupLayout.use(Vue);
-    Surnames.use(Vue);
-    CascadeCompared.use(Vue);
-    SwipeOut.use(Vue);
-    FontSizeSetting.use(Vue);
-    JdCategoryTab.use(Vue);
-    ImageLazy.use(Vue);
-    BMap.use(Vue);
-    PlayGround.use(Vue);
-    ContextMenu.use(Vue);
-    GlobalIndicator.use(Vue);
-    HistoryBack.use(Vue);
-    Notification.use(Vue);
-    PolygonSelection.use(Vue);
-    Popup.use(Vue);
-    Teleport.use(Vue);
-    AdapterScreen.use(Vue);
-    Browsersniff.use(Vue);
-    Ajax.use(Vue);
-    Dict.use(Vue);
-    Domain.use(Vue);
-    Emitter.use(Vue);
-    NotNull.use(Vue);
-    Preferences.use(Vue);
-    Resource.use(Vue);
-    Validator.use(Vue);
-    WatchMemoized.use(Vue);
-    Util.use(Vue);
+  (app) => {
+    app.use(TableGridLayout);
+    app.use(WritingBoard);
+    app.use(IframeIO);
+    app.use(ContourBlock);
+    app.use(DateDisplay);
+    app.use(Comment);
+    app.use(BMap);
+    app.use(AdherevConfigProvider);
+    app.use(ConditionalRender);
+    app.use(DelConfirm);
+    app.use(ImportantConfirm);
+    app.use(Permission);
+    app.use(Intl);
+    app.use(MessageDialog);
+    app.use(Space);
+    app.use(Spin);
+    app.use(Split);
+    app.use(Suspense);
+    app.use(FlexLayout);
+    app.use(SearchTable);
+    app.use(OLMap);
+    app.use(BackTopAnimation);
+    app.use(SplitLayout);
+    app.use(ScrollLoad);
+    app.use(SlideLayout);
+    app.use(PullRefresh);
+    app.use(Revolving);
+    app.use(SuccessPrompt);
+    app.use(ErrorPrompt);
+    app.use(WarnPrompt);
+    app.use(SliderScale);
+    app.use(StickupLayout);
+    app.use(Surnames);
+    app.use(CascadeCompared);
+    app.use(SwipeOut);
+    app.use(FontSizeSetting);
+    app.use(JdCategoryTab);
+    app.use(ImageLazy);
+    app.use(PlayGround);
+    app.use(ContextMenu);
+    app.use(GlobalIndicator);
+    app.use(HistoryBack);
+    app.use(Notification);
+    app.use(PolygonSelection);
+    app.use(Popup);
+    app.use(AdapterScreen);
+    app.use(Browsersniff);
+    app.use(Ajax);
+    app.use(Dict);
+    app.use(Domain);
+    app.use(Emitter);
+    app.use(NotNull);
+    app.use(Preferences);
+    app.use(Resource);
+    app.use(Validator);
+    app.use(WatchMemoized);
+    app.use(Util);
+    app.use(AntdvFormItem);
+    app.use(VueQuillSandBox);
   },
-  () => {
-    Vue.use(VueHighlightJS);
-
-    Vue.use(Playground);
-    Vue.use(PlaygroundMulit);
-    Vue.use(FunctionProps);
-    Vue.use(Props);
-  },
-  () => {
-    Vue.use(Plugin);
+  (app) => {
+    for (const p in VueIcons) {
+      app.component(p, VueIcons[p]);
+    }
   },
 ];
 
-register.forEach((t) => t());
+export default (app) => register.forEach((t) => t(app));

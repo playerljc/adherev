@@ -1,8 +1,6 @@
-import { Vector as VectorLayer } from 'ol/layer';
-
-import { Vector as VectorSource } from 'ol/source';
-
 import GeoJSON from 'ol/format/GeoJSON';
+import { Vector as VectorLayer } from 'ol/layer';
+import { Vector as VectorSource } from 'ol/source';
 
 import Resource from '@baifendian/adherev-util-resource';
 
@@ -20,7 +18,7 @@ class GeoLayer extends VectorLayer<any> {
    * @param onStyle - onStyle
    * @param zIndex
    */
-  constructor(geoJsonObject, onStyle, zIndex) {
+  constructor(geoJsonObject: any, onStyle: () => void, zIndex: number) {
     const geoSource = new VectorSource({
       features: new GeoJSON({
         dataProjection: Resource.Dict.value.ResourceGisEpsg4326.value,

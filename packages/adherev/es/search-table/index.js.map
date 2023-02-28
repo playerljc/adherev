@@ -1,0 +1,1 @@
+{"version":3,"file":"index.js","sources":["search-table/index.js"],"sourcesContent":["import Model from '@baifendian/adherev-ui-searchtable/es';\nexport default Model;"],"names":["Model"],"mappings":"OAAOA,UAAW,uDACHA"}

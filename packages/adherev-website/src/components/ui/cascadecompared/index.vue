@@ -7,53 +7,111 @@
     <adv-playground-page-code-box-section title="代码演示" :config="codeBoxPanelConfig">
       <template #p1>
         <div style="width: 320px; height: 548px; border: 1px solid rgba(0, 0, 0, 0.1)">
-          <adv-cascadecompared :indicator="indicator" :master="master" />
+          <adv-cascadecompared :indicator="indicator" :master="master">
+            <template #masterGroupTitle="props">
+              <h2
+                style="
+                  padding: 15px 0 15px 15px;
+                  margin: 0;
+                  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+                "
+              >
+                header{{ props.groupIndex + 1 }}
+              </h2>
+            </template>
+
+            <template #cell="props">
+              <h4>厂家指导价{{ props.columnIndex + 1 }}</h4>
+            </template>
+          </adv-cascadecompared>
         </div>
       </template>
 
       <template #p2>
-        <fragment>
-          <a-button type="primary" @click="onCode2Click">插入</a-button>
+        <a-button type="primary" @click="onCode2Click">插入</a-button>
 
-          <adv-space />
+        <adv-space />
 
-          <div style="width: 320px; height: 548px; border: 1px solid rgba(0, 0, 0, 0.1)">
-            <adv-cascadecompared ref="ref1" :indicator="indicator" :master="data1" />
-          </div>
-        </fragment>
+        <div style="width: 320px; height: 548px; border: 1px solid rgba(0, 0, 0, 0.1)">
+          <adv-cascadecompared ref="ref1" :indicator="indicator" :master="data1">
+            <template #masterGroupTitle="props">
+              <h2
+                style="
+                  padding: 15px 0 15px 15px;
+                  margin: 0;
+                  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+                "
+              >
+                header{{ props.groupIndex + 1 }}
+              </h2>
+            </template>
+
+            <template #cell="props">
+              <h4>厂家指导价{{ props.columnIndex + 1 }}</h4>
+            </template>
+          </adv-cascadecompared>
+        </div>
       </template>
 
       <template #p3>
-        <fragment>
-          <adv-space-group direction="horizontal">
-            <a-button type="primary" @click="$refs.ref2.scrollToByIndex(9, 0)"
-              >滚动到底部(无动画)</a-button
-            >
-            <a-button @click="$refs.ref2.scrollToByIndex(9)">滚动到底部(有动画)</a-button>
-            <a-button @click="$refs.ref2.scrollToByIndex(0)">回到顶部</a-button>
-          </adv-space-group>
+        <adv-space-group direction="horizontal">
+          <a-button type="primary" @click="$refs.ref2.scrollToByIndex(9, 0)"
+            >滚动到底部(无动画)</a-button
+          >
+          <a-button @click="$refs.ref2.scrollToByIndex(9)">滚动到底部(有动画)</a-button>
+          <a-button @click="$refs.ref2.scrollToByIndex(0)">回到顶部</a-button>
+        </adv-space-group>
 
-          <adv-space />
+        <adv-space />
 
-          <div style="width: 320px; height: 548px; border: 1px solid rgba(0, 0, 0, 0.1)">
-            <adv-cascadecompared ref="ref2" :indicator="indicator" :master="master" />
-          </div>
-        </fragment>
+        <div style="width: 320px; height: 548px; border: 1px solid rgba(0, 0, 0, 0.1)">
+          <adv-cascadecompared ref="ref2" :indicator="indicator" :master="master">
+            <template #masterGroupTitle="props">
+              <h2
+                style="
+                  padding: 15px 0 15px 15px;
+                  margin: 0;
+                  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+                "
+              >
+                header{{ props.groupIndex + 1 }}
+              </h2>
+            </template>
+
+            <template #cell="props">
+              <h4>厂家指导价{{ props.columnIndex + 1 }}</h4>
+            </template>
+          </adv-cascadecompared>
+        </div>
       </template>
 
       <template #p4>
-        <fragment>
-          <adv-space-group direction="horizontal">
-            <a-button type="primary" @click="$refs.ref3.scrollToByColumn(1)">滚动到第一列</a-button>
-            <a-button @click="$refs.ref3.scrollToByColumn(9)">滚动到最后一列(有动画)</a-button>
-          </adv-space-group>
+        <adv-space-group direction="horizontal">
+          <a-button type="primary" @click="$refs.ref3.scrollToByColumn(1)">滚动到第一列</a-button>
+          <a-button @click="$refs.ref3.scrollToByColumn(9)">滚动到最后一列(有动画)</a-button>
+        </adv-space-group>
 
-          <adv-space />
+        <adv-space />
 
-          <div style="width: 320px; height: 548px; border: 1px solid rgba(0, 0, 0, 0.1)">
-            <adv-cascadecompared ref="ref3" :indicator="indicator" :master="master" />
-          </div>
-        </fragment>
+        <div style="width: 320px; height: 548px; border: 1px solid rgba(0, 0, 0, 0.1)">
+          <adv-cascadecompared ref="ref3" :indicator="indicator" :master="master">
+            <template #masterGroupTitle="props">
+              <h2
+                style="
+                  padding: 15px 0 15px 15px;
+                  margin: 0;
+                  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+                "
+              >
+                header{{ props.groupIndex + 1 }}
+              </h2>
+            </template>
+
+            <template #cell="props">
+              <h4>厂家指导价{{ props.columnIndex + 1 }}</h4>
+            </template>
+          </adv-cascadecompared>
+        </div>
       </template>
     </adv-playground-page-code-box-section>
 
@@ -74,16 +132,11 @@ data.fill(0);
 
 function getMaster() {
   return data.map((t, i) => ({
-    title: (h) => (
-      <h2 style="padding: 15px 0 15px 15px; margin: 0; border-bottom: 1px solid rgba(0,0,0,.1);">{`header${
-        i + 1
-      }`}</h2>
-    ),
     columns: columns.map((c, j) => ({
-      dataIndex: `column${j + 1}`,
+      dataIndex: `columns${j + 1}`,
       isFixed: j === 0,
       width: 120,
-      render: (h) => <h4>{`厂家指导价${j + 1}`}</h4>,
+      // render: (h) => <h4>{`厂家指导价${j + 1}`}</h4>,
     })),
     dataSource: [
       {
@@ -127,11 +180,12 @@ function getMaster() {
 }
 
 export default {
+  displayName: 'cascadecompared',
   computed: {
     indicator() {
       return {
         columns: columns.map((t, i) => ({
-          dataIndex: `column${i + 1}`,
+          dataIndex: `columns${i + 1}`,
           isFixed: i === 0,
           width: 120,
           render: (h) => <h2>{`指标${i + 1}`}</h2>,
@@ -188,9 +242,6 @@ export default {
 
           function getMaster() {
             return data.map((t, i) => ({
-              title: (h) => (
-                <h2 style="padding: 15px 0 15px 15px; margin: 0; border-bottom: 1px solid rgba(0,0,0,.1);">{\`header\${i + 1}\`}</h2>
-              ),
               columns: columns.map((c, j) => ({
                 dataIndex: \`column\${j + 1}\`,
                 isFixed: j === 0,
@@ -303,9 +354,6 @@ export default {
 
           function getMaster() {
             return data.map((t, i) => ({
-              title: (h) => (
-                <h2 style="padding: 15px 0 15px 15px; margin: 0; border-bottom: 1px solid rgba(0,0,0,.1);">{\`header\${i + 1}\`}</h2>
-              ),
               columns: columns.map((c, j) => ({
                 dataIndex: \`column\${j + 1}\`,
                 isFixed: j === 0,
@@ -395,15 +443,6 @@ export default {
                 this.data1 = [
                   ...this.data1,
                   {
-                    title: (h) => (
-                      <h2
-                        style={{
-                          padding: '15px 0 15px 15px',
-                          margin: 0,
-                          borderBottom: '1px solid rgba(0,0,0,.1)',
-                        }}
-                      >{\`header\${length + 1}\`}</h2>
-                    ),
                     columns: columns.map((c, j) => ({
                       dataIndex: \`column\${j + 1}\`,
                       isFixed: j === 0,
@@ -493,9 +532,6 @@ export default {
 
           function getMaster() {
             return data.map((t, i) => ({
-              title: (h) => (
-                <h2 style="padding: 15px 0 15px 15px; margin: 0; border-bottom: 1px solid rgba(0,0,0,.1);">{\`header\${i + 1}\`}</h2>
-              ),
               columns: columns.map((c, j) => ({
                 dataIndex: \`column\${j + 1}\`,
                 isFixed: j === 0,
@@ -612,9 +648,6 @@ export default {
 
             function getMaster() {
               return data.map((t, i) => ({
-                title: (h) => (
-                  <h2 style="padding: 15px 0 15px 15px; margin: 0; border-bottom: 1px solid rgba(0,0,0,.1);">{\`header\${i + 1}\`}</h2>
-                ),
                 columns: columns.map((c, j) => ({
                   dataIndex: \`column\${j + 1}\`,
                   isFixed: j === 0,
@@ -772,18 +805,6 @@ export default {
           border: true,
           title: 'CascadeCompared',
           data: [
-            {
-              params: 'className',
-              desc: '附加的样式表',
-              type: 'string',
-              defaultVal: '',
-            },
-            {
-              params: 'style',
-              desc: '附加的样式',
-              type: 'String',
-              defaultVal: '',
-            },
             {
               params: 'indicatorClassName',
               desc: 'indicator附加的样式表',
@@ -1039,20 +1060,11 @@ export default {
       this.data1 = [
         ...this.data1,
         {
-          title: (h) => (
-            <h2
-              style={{
-                padding: '15px 0 15px 15px',
-                margin: 0,
-                borderBottom: '1px solid rgba(0,0,0,.1)',
-              }}
-            >{`header${length + 1}`}</h2>
-          ),
           columns: columns.map((c, j) => ({
-            dataIndex: `column${j + 1}`,
+            dataIndex: `columns${j + 1}`,
             isFixed: j === 0,
             width: 120,
-            render: (h) => <h4>{`厂家指导价${j + 1}`}</h4>,
+            // render: (h) => <h4>{`厂家指导价${j + 1}`}</h4>,
           })),
           dataSource: [
             {

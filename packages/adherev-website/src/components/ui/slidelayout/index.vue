@@ -6,102 +6,100 @@
 
     <adv-playground-page-code-box-section title="代码演示" :config="codeBoxPanelConfig">
       <template #p1>
-        <fragment>
-          <adv-flexlayout direction="horizontal">
-            <adv-flexlayout-auto>
+        <adv-flexlayout direction="horizontal">
+          <adv-flexlayout-auto>
+            <div>
+              <h3>left</h3>
               <div>
-                <h3>left</h3>
-                <div>
-                  <a-button type="primary" @click="collapse1 = true">打开</a-button>
-                  <adv-space :size="10" direction="horizontal" />
-                  <a-button @click="collapse1 = false">关闭</a-button>
-                </div>
-
-                <adv-space direction="vertical" />
-
-                <div :style="horizontalCSS">
-                  <adv-slidelayout-overlay
-                    :default-collapse="collapse1"
-                    @after-close="collapse1 = false"
-                  >
-                    left
-                  </adv-slidelayout-overlay>
-                </div>
+                <a-button type="primary" @click="collapse1 = true">打开</a-button>
+                <adv-space :size="10" direction="horizontal" />
+                <a-button @click="collapse1 = false">关闭</a-button>
               </div>
-            </adv-flexlayout-auto>
 
-            <adv-flexlayout-auto>
+              <adv-space direction="vertical" />
+
+              <div :style="horizontalCSS">
+                <adv-slidelayout-overlay
+                  :default-collapse="collapse1"
+                  @after-close="collapse1 = false"
+                >
+                  left
+                </adv-slidelayout-overlay>
+              </div>
+            </div>
+          </adv-flexlayout-auto>
+
+          <adv-flexlayout-auto>
+            <div>
+              <h3>right</h3>
               <div>
-                <h3>right</h3>
-                <div>
-                  <a-button type="primary" @click="collapse2 = true">打开</a-button>
-                  <adv-space :size="10" direction="horizontal" />
-                  <a-button @click="collapse2 = false">关闭</a-button>
-                </div>
-
-                <adv-space direction="vertical" />
-
-                <div :style="horizontalCSS">
-                  <adv-slidelayout-overlay
-                    direction="right"
-                    :default-collapse="collapse2"
-                    @after-close="collapse2 = false"
-                  >
-                    right
-                  </adv-slidelayout-overlay>
-                </div>
+                <a-button type="primary" @click="collapse2 = true">打开</a-button>
+                <adv-space :size="10" direction="horizontal" />
+                <a-button @click="collapse2 = false">关闭</a-button>
               </div>
-            </adv-flexlayout-auto>
-          </adv-flexlayout>
 
-          <adv-flexlayout direction="horizontal">
-            <adv-flexlayout-auto>
+              <adv-space direction="vertical" />
+
+              <div :style="horizontalCSS">
+                <adv-slidelayout-overlay
+                  direction="right"
+                  :default-collapse="collapse2"
+                  @after-close="collapse2 = false"
+                >
+                  right
+                </adv-slidelayout-overlay>
+              </div>
+            </div>
+          </adv-flexlayout-auto>
+        </adv-flexlayout>
+
+        <adv-flexlayout direction="horizontal">
+          <adv-flexlayout-auto>
+            <div>
+              <h3>top</h3>
               <div>
-                <h3>top</h3>
-                <div>
-                  <a-button type="primary" @click="collapse3 = true">打开</a-button>
-                  <adv-space :size="10" direction="horizontal" />
-                  <a-button @click="collapse3 = false">关闭</a-button>
-                </div>
-
-                <adv-space direction="vertical" />
-
-                <div :style="verticalCSS">
-                  <adv-slidelayout-overlay
-                    direction="top"
-                    :default-collapse="collapse3"
-                    @after-close="collapse3 = false"
-                  >
-                    top
-                  </adv-slidelayout-overlay>
-                </div>
+                <a-button type="primary" @click="collapse3 = true">打开</a-button>
+                <adv-space :size="10" direction="horizontal" />
+                <a-button @click="collapse3 = false">关闭</a-button>
               </div>
-            </adv-flexlayout-auto>
 
-            <adv-flexlayout-auto>
+              <adv-space direction="vertical" />
+
+              <div :style="verticalCSS">
+                <adv-slidelayout-overlay
+                  direction="top"
+                  :default-collapse="collapse3"
+                  @after-close="collapse3 = false"
+                >
+                  top
+                </adv-slidelayout-overlay>
+              </div>
+            </div>
+          </adv-flexlayout-auto>
+
+          <adv-flexlayout-auto>
+            <div>
+              <h3>bottom</h3>
               <div>
-                <h3>bottom</h3>
-                <div>
-                  <a-button type="primary" @click="collapse4 = true">打开</a-button>
-                  <adv-space :size="10" direction="horizontal" />
-                  <a-button @click="collapse4 = false">关闭</a-button>
-                </div>
-
-                <adv-space direction="vertical" />
-
-                <div :style="verticalCSS">
-                  <adv-slidelayout-overlay
-                    direction="bottom"
-                    :default-collapse="collapse4"
-                    @after-close="collapse4 = false"
-                  >
-                    bottom
-                  </adv-slidelayout-overlay>
-                </div>
+                <a-button type="primary" @click="collapse4 = true">打开</a-button>
+                <adv-space :size="10" direction="horizontal" />
+                <a-button @click="collapse4 = false">关闭</a-button>
               </div>
-            </adv-flexlayout-auto>
-          </adv-flexlayout>
-        </fragment>
+
+              <adv-space direction="vertical" />
+
+              <div :style="verticalCSS">
+                <adv-slidelayout-overlay
+                  direction="bottom"
+                  :default-collapse="collapse4"
+                  @after-close="collapse4 = false"
+                >
+                  bottom
+                </adv-slidelayout-overlay>
+              </div>
+            </div>
+          </adv-flexlayout-auto>
+        </adv-flexlayout>
       </template>
 
       <template #p2>
@@ -223,6 +221,7 @@
 
 <script>
 export default {
+  displayName: 'slidelayout',
   data() {
     return {
       horizontalCSS: `
@@ -397,10 +396,10 @@ export default {
                 <adv-space direction="vertical" />
                 <div :style="horizontalCSS">
                   <adv-slidelayout-push :defaultCollapse="collapse5" @after-close="collapse5 = false">
-                    <template v-slot:slide>
+                    <template #slide>
                       <div>left</div>
                     </template>
-                    <template v-slot:master>
+                    <template #master>
                       <div>master</div>
                     </template>
                   </adv-slidelayout-push>
@@ -423,10 +422,10 @@ export default {
                     :defaultCollapse="collapse6"
                     @after-close="collapse6 = false"
                   >
-                    <template v-slot:slide>
+                    <template #slide>
                       <div>right</div>
                     </template>
-                    <template v-slot:master>
+                    <template #master>
                       <div>Master</div>
                     </template>
                   </adv-slidelayout-push>
@@ -475,10 +474,10 @@ export default {
 
                 <div :style="horizontalCSS">
                   <adv-slidelayout-reveal :defaultCollapse="collapse7" @after-close="collapse7 = false">
-                    <template v-slot:slide>
+                    <template #slide>
                       <div>left</div>
                     </template>
-                    <template v-slot:master>
+                    <template #master>
                       <div>Master</div>
                     </template>
                   </adv-slidelayout-reveal>
@@ -501,10 +500,10 @@ export default {
                     :defaultCollapse="collapse8"
                     @after-close="collapse8 = false"
                   >
-                    <template v-slot:slide>
+                    <template #slide>
                       <div>right</div>
                     </template>
-                    <template v-slot:master>
+                    <template #master>
                       <div>Master</div>
                     </template>
                   </adv-slidelayout-reveal>
@@ -532,18 +531,6 @@ export default {
           border: true,
           title: 'Overlay',
           data: [
-            {
-              params: 'className',
-              desc: '附加的样式表',
-              type: 'string',
-              defaultVal: '',
-            },
-            {
-              params: 'style',
-              desc: '附加的样式',
-              type: 'String',
-              defaultVal: '',
-            },
             {
               params: 'width',
               desc: '宽度',

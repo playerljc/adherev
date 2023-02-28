@@ -1,7 +1,9 @@
-import Resource from '@baifendian/adherev-util-resource';
+import { defineComponent } from 'vue';
+import { func, number, string } from 'vue-types';
+
 import MessageDialog from '@baifendian/adherev-ui-messagedialog';
 import intl from '@baifendian/adherev-util-intl';
-import { VNode } from 'vue';
+import Resource from '@baifendian/adherev-util-resource';
 
 const selectorPrefix = 'adherev-ui-delconfirm';
 
@@ -34,51 +36,33 @@ export function open({ success, ...params }) {
   });
 }
 
-export default {
+export const delCConfirmProps = {
+  zIndex: number().def(Resource.Dict.value.ResourceNormalMaxZIndex.value),
+  success: func<() => Promise<void>>(),
+  title: string().def(intl.tv('提示')),
+  text: string().def(intl.tv('确定删除吗')),
+};
+
+export default defineComponent({
   name: 'adv-delconfirm',
-  props: {
-    zIndex: {
-      type: Number,
-      required: false,
-      default: Resource.Dict.value.ResourceNormalMaxZIndex.value,
-    },
-    success: {
-      type: Function,
-      required: false,
-      default: () => {},
-    },
-    title: {
-      type: String,
-      required: false,
-      default: intl.tv('提示'),
-    },
-    text: {
-      type: String,
-      required: false,
-      default: `${intl.tv('确定删除吗')}?`,
-    },
-  },
-  methods: {
-    onClick(e) {
-      e.stopPropagation();
-
-      const { success, title, text, zIndex } = this;
-
+  props: delCConfirmProps,
+  setup(props, { slots }) {
+    const onClick = () =>
       open({
-        success,
-        title,
-        text,
-        zIndex,
+        success: props.success,
+        title: props.title,
+        text: props.text,
+        zIndex: props.zIndex,
       });
-    },
-  },
-  render(h): VNode {
-    const { $slots } = this;
 
-    return (
-      <div class={selectorPrefix} onClick={this.onClick}>
-        {$slots.default}
+    return () => (
+      <div
+        class={selectorPrefix}
+        // @ts-ignore
+        onClick={onClick}
+      >
+        {slots.default ? slots.default() : null}
       </div>
     );
   },
-};
+});

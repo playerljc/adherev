@@ -37,6 +37,7 @@ import { GlobalIndicator } from '@baifendian/adherev';
 let handler;
 
 export default {
+  displayName: 'globalindicator',
   data() {
     return {
       scrollEl: null,

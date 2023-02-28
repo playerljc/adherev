@@ -157,13 +157,13 @@
           <ul :class="$style.ItemList">
             <li :class="$style.ItemListItem">
               <a :href="repositoryUrl" target="_blank" rel="noopener noreferrer">
-                <a-icon type="github" />
+                <github-outlined />
                 <span :class="$style.ItemListItemText">Gitlib</span>
               </a>
             </li>
             <li :class="$style.ItemListItem">
               <router-link to="/adherev/changelog">
-                <a-icon type="schedule" />
+                <schedule-outlined />
                 <span :class="$style.ItemListItemText">更新日志</span>
               </router-link>
             </li>
@@ -175,9 +175,15 @@
 </template>
 
 <script>
+import { GithubOutlined, ScheduleOutlined } from '@ant-design/icons-vue';
+
 import packageJSON from '../../../../../package.json';
 
 export default {
+  components: {
+    'github-outlined': GithubOutlined,
+    'schedule-outlined': ScheduleOutlined,
+  },
   computed: {
     repositoryUrl() {
       return packageJSON.repository.url;

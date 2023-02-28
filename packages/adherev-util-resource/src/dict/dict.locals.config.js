@@ -1,13 +1,12 @@
-import moment from 'moment';
-import Dict from '@baifendian/adherev-util-dict';
-
-import zhCN from 'ant-design-vue/es/locale/zh_CN';
 import enUS from 'ant-design-vue/es/locale/en_US';
 import ptPT from 'ant-design-vue/es/locale/pt_PT';
-
-import 'moment/locale/zh-cn';
+import zhCN from 'ant-design-vue/es/locale/zh_CN';
+import moment from 'moment';
 import 'moment/locale/en-ca';
 import 'moment/locale/pt';
+import 'moment/locale/zh-cn';
+
+import Dict from '@baifendian/adherev-util-dict';
 
 export default {
   initStatic() {

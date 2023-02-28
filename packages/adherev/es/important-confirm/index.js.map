@@ -1,0 +1,1 @@
+{"version":3,"file":"index.js","sources":["important-confirm/index.js"],"sourcesContent":["import Model from '@baifendian/adherev-ui-confirm-importantconfirm/es';\nexport default Model;"],"names":["Model"],"mappings":"OAAOA,UAAW,oEACHA"}

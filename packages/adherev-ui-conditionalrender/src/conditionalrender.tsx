@@ -1,17 +1,25 @@
+import { defineComponent } from 'vue';
+import { bool } from 'vue-types';
+
+export const conditionalRenderProps = {
+  conditional: bool().def(true),
+};
+
 /**
  * ConditionalRender
  */
-export default {
+export default defineComponent({
   name: 'adv-conditionalrender',
-  props: {
-    conditional: {
-      type: Boolean,
-      default: true,
-    },
+  props: conditionalRenderProps,
+  slots: ['default', 'noMatch'],
+  setup(props, { slots }) {
+    return () =>
+      props.conditional
+        ? slots.default
+          ? slots.default()
+          : null
+        : slots.noMatch
+        ? slots.noMatch()
+        : null;
   },
-  render(h) {
-    const { conditional, $slots } = this;
-
-    return conditional ? $slots.default : $slots.noMatch ? $slots.noMatch : null;
-  },
-};
+});

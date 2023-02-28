@@ -1,0 +1,2 @@
+import _Slider from"ant-design-vue/es/slider";import Util from"@baifendian/adherev-util";import FontSizeSetting from"./fontsizesetting";var withVue=Util._util.withVue;FontSizeSetting.install=function(t){return t.component(_Slider.name,_Slider),t.component(FontSizeSetting.name,FontSizeSetting),withVue(t,"FontSizeSetting",FontSizeSetting),t};export default FontSizeSetting;
+//# sourceMappingURL=index.js.map
