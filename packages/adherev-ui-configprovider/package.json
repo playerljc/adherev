@@ -1,6 +1,6 @@
 {
   "name": "@baifendian/adherev-ui-configprovider",
-  "version": "1.0.14",
+  "version": "1.0.18",
   "description": "全局配置",
   "homepage": "https://gitee.com/playerljc/adherev",
   "bugs": {
@@ -32,7 +32,7 @@
   "dependencies": {
     "@baifendian/adherev-util": "^1.0.14",
     "@baifendian/adherev-util-intl": "^1.0.14",
-    "@baifendian/adherev-util-resource": "^1.0.14",
+    "@baifendian/adherev-util-resource": "^1.0.18",
     "lodash.debounce": "^4.0.8",
     "vue": "^2.7.14"
   },
