@@ -1,3 +1,4 @@
+import AutoCompleteFormItem from './AutoCompleteFormItem';
 import CascaderFormItem from './CascaderFormItem';
 import CascaderLeafFormItem from './CascaderLeafFormItem';
 import CheckAllMulitSelectFormItem from './CheckAllMulitSelectFormItem';
@@ -34,7 +35,7 @@ export declare const validatorNormal: (message: any) => {
 export declare const validatorMulti: (message: any) => {
     validator(_: any, value: any): Promise<void>;
 };
-export { CheckAllMulitSelectFormItem, CheckBoxCheckAllSelectFormItem, CheckBoxCheckAllCustomFormItem, CheckBoxCustomFormItem, CheckBoxHorizontalFormItem, CheckBoxVerticalFormItem, CheckBoxCheckAllVerticalFormItem, CheckBoxCheckAllHorizontalFormItem, CheckBoxSelectFormItem, ListFormItem, ListSelectFormItem, ListMulitSelectFormItem, MulitSelectFormItem, RadioSelectFormItem, RadioVerticalFormItem, RadioButtonFormItem, RadioCustomFormItem, RadioHorizontalFormItem, SelectFormItem, TransferSelectFormItem, TreeSelectFormItem, TreeMulitSelectFormItem, TreeSelectLeafFormItem, TreeSelectLeafMulitFormItem, TableFormItem, TableSelectFormItem, TableMulitSelectFormItem, TransferFormItem, CascaderFormItem, CascaderLeafFormItem, };
+export { AutoCompleteFormItem, CheckAllMulitSelectFormItem, CheckBoxCheckAllSelectFormItem, CheckBoxCheckAllCustomFormItem, CheckBoxCustomFormItem, CheckBoxHorizontalFormItem, CheckBoxVerticalFormItem, CheckBoxCheckAllVerticalFormItem, CheckBoxCheckAllHorizontalFormItem, CheckBoxSelectFormItem, ListFormItem, ListSelectFormItem, ListMulitSelectFormItem, MulitSelectFormItem, RadioSelectFormItem, RadioVerticalFormItem, RadioButtonFormItem, RadioCustomFormItem, RadioHorizontalFormItem, SelectFormItem, TransferSelectFormItem, TreeSelectFormItem, TreeMulitSelectFormItem, TreeSelectLeafFormItem, TreeSelectLeafMulitFormItem, TableFormItem, TableSelectFormItem, TableMulitSelectFormItem, TransferFormItem, CascaderFormItem, CascaderLeafFormItem, };
 declare const _default: {
     init(Vue: any): void;
     getComponents(): any;

@@ -6,6 +6,10 @@ export default {
       val: '',
       vals: [],
       test: 'large',
+      autoCompleteValue: {
+        inputValue: '',
+        selectValue: '',
+      },
     };
   },
   methods: {
@@ -15,13 +19,16 @@ export default {
     onChangeValues(vals) {
       this.vals = vals;
     },
+    onAutoCompleteChange(v) {
+      this.autoCompleteValue = v;
+    },
   },
 };
 </script>
 
 <template>
   <div style="padding: 50px">
-    <fieldset>
+    <!--    <fieldset>
       <legend>
         <h1>Radio</h1>
       </legend>
@@ -158,7 +165,7 @@ export default {
           </dd>
         </dl>
 
-        <!--        <dl>
+        &lt;!&ndash;        <dl>
           <dt>
             <h3>自定义CheckBox</h3>
           </dt>
@@ -177,7 +184,7 @@ export default {
               </template>
             </SystemTestCheckBoxCustomFormItem>
           </dd>
-        </dl>-->
+        </dl>&ndash;&gt;
       </div>
     </fieldset>
 
@@ -798,6 +805,27 @@ export default {
 
           <dd>
             <SystemTestCascaderLeafFormItem :value="vals" @change="onChangeValues" />
+          </dd>
+        </dl>
+      </div>
+    </fieldset>-->
+
+    <fieldset>
+      <!--      <legend>
+        <h1>AutoComplete</h1>
+      </legend>-->
+
+      <div>
+        <dl>
+          <dt>
+            <h3>普通</h3>
+          </dt>
+          <dd>
+            <SystemTestAutoCompleteFormItem
+              style="width: 200px"
+              :value="autoCompleteValue"
+              @change="onAutoCompleteChange"
+            />
           </dd>
         </dl>
       </div>

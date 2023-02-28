@@ -34,7 +34,7 @@ declare const _default: import("vue").DefineComponent<{
         onMousedown: import("vue").PropType<(e: MouseEvent) => void>;
         onMouseenter: import("vue").PropType<(e: MouseEvent) => void>;
         onMouseleave: import("vue").PropType<(e: MouseEvent) => void>;
-        onSelect: import("vue").PropType<import("ant-design-vue/es/vc-select/Select").SelectHandler<(string | number) | import("ant-design-vue/es/select").LabeledValue, import("ant-design-vue/es/select").DefaultOptionType>>;
+        onSelect: import("vue").PropType<import("ant-design-vue/es/vc-select/Select").SelectHandler<import("ant-design-vue/es/select").LabeledValue | (string | number), import("ant-design-vue/es/select").DefaultOptionType>>;
         prefixCls: StringConstructor;
         direction: {
             type: import("vue").PropType<"ltr" | "rtl">;
@@ -132,7 +132,7 @@ declare const _default: import("vue").DefineComponent<{
             type: BooleanConstructor;
             default: any;
         };
-        onDeselect: import("vue").PropType<import("ant-design-vue/es/vc-select/Select").SelectHandler<(string | number) | import("ant-design-vue/es/select").LabeledValue, import("ant-design-vue/es/select").DefaultOptionType>>;
+        onDeselect: import("vue").PropType<import("ant-design-vue/es/vc-select/Select").SelectHandler<import("ant-design-vue/es/select").LabeledValue | (string | number), import("ant-design-vue/es/select").DefaultOptionType>>;
         filterOption: {
             type: import("vue").PropType<boolean | import("ant-design-vue/es/vc-select/Select").FilterFunc<import("ant-design-vue/es/select").DefaultOptionType>>;
             default: any;
@@ -184,7 +184,7 @@ declare const _default: import("vue").DefineComponent<{
             onMousedown: import("vue").PropType<(e: MouseEvent) => void>;
             onMouseenter: import("vue").PropType<(e: MouseEvent) => void>;
             onMouseleave: import("vue").PropType<(e: MouseEvent) => void>;
-            onSelect: import("vue").PropType<import("ant-design-vue/es/vc-select/Select").SelectHandler<(string | number) | import("ant-design-vue/es/select").LabeledValue, import("ant-design-vue/es/select").DefaultOptionType>>;
+            onSelect: import("vue").PropType<import("ant-design-vue/es/vc-select/Select").SelectHandler<import("ant-design-vue/es/select").LabeledValue | (string | number), import("ant-design-vue/es/select").DefaultOptionType>>;
             prefixCls: StringConstructor;
             direction: {
                 type: import("vue").PropType<"ltr" | "rtl">;
@@ -282,7 +282,7 @@ declare const _default: import("vue").DefineComponent<{
                 type: BooleanConstructor;
                 default: any;
             };
-            onDeselect: import("vue").PropType<import("ant-design-vue/es/vc-select/Select").SelectHandler<(string | number) | import("ant-design-vue/es/select").LabeledValue, import("ant-design-vue/es/select").DefaultOptionType>>;
+            onDeselect: import("vue").PropType<import("ant-design-vue/es/vc-select/Select").SelectHandler<import("ant-design-vue/es/select").LabeledValue | (string | number), import("ant-design-vue/es/select").DefaultOptionType>>;
             filterOption: {
                 type: import("vue").PropType<boolean | import("ant-design-vue/es/vc-select/Select").FilterFunc<import("ant-design-vue/es/select").DefaultOptionType>>;
                 default: any;
@@ -346,7 +346,7 @@ declare const _default: import("vue").DefineComponent<{
         onMousedown: import("vue").PropType<(e: MouseEvent) => void>;
         onMouseenter: import("vue").PropType<(e: MouseEvent) => void>;
         onMouseleave: import("vue").PropType<(e: MouseEvent) => void>;
-        onSelect: import("vue").PropType<import("ant-design-vue/es/vc-select/Select").SelectHandler<(string | number) | import("ant-design-vue/es/select").LabeledValue, import("ant-design-vue/es/select").DefaultOptionType>>;
+        onSelect: import("vue").PropType<import("ant-design-vue/es/vc-select/Select").SelectHandler<import("ant-design-vue/es/select").LabeledValue | (string | number), import("ant-design-vue/es/select").DefaultOptionType>>;
         prefixCls: StringConstructor;
         direction: {
             type: import("vue").PropType<"ltr" | "rtl">;
@@ -444,7 +444,7 @@ declare const _default: import("vue").DefineComponent<{
             type: BooleanConstructor;
             default: any;
         };
-        onDeselect: import("vue").PropType<import("ant-design-vue/es/vc-select/Select").SelectHandler<(string | number) | import("ant-design-vue/es/select").LabeledValue, import("ant-design-vue/es/select").DefaultOptionType>>;
+        onDeselect: import("vue").PropType<import("ant-design-vue/es/vc-select/Select").SelectHandler<import("ant-design-vue/es/select").LabeledValue | (string | number), import("ant-design-vue/es/select").DefaultOptionType>>;
         filterOption: {
             type: import("vue").PropType<boolean | import("ant-design-vue/es/vc-select/Select").FilterFunc<import("ant-design-vue/es/select").DefaultOptionType>>;
             default: any;
@@ -496,7 +496,7 @@ declare const _default: import("vue").DefineComponent<{
             onMousedown: import("vue").PropType<(e: MouseEvent) => void>;
             onMouseenter: import("vue").PropType<(e: MouseEvent) => void>;
             onMouseleave: import("vue").PropType<(e: MouseEvent) => void>;
-            onSelect: import("vue").PropType<import("ant-design-vue/es/vc-select/Select").SelectHandler<(string | number) | import("ant-design-vue/es/select").LabeledValue, import("ant-design-vue/es/select").DefaultOptionType>>;
+            onSelect: import("vue").PropType<import("ant-design-vue/es/vc-select/Select").SelectHandler<import("ant-design-vue/es/select").LabeledValue | (string | number), import("ant-design-vue/es/select").DefaultOptionType>>;
             prefixCls: StringConstructor;
             direction: {
                 type: import("vue").PropType<"ltr" | "rtl">;
@@ -594,7 +594,7 @@ declare const _default: import("vue").DefineComponent<{
                 type: BooleanConstructor;
                 default: any;
             };
-            onDeselect: import("vue").PropType<import("ant-design-vue/es/vc-select/Select").SelectHandler<(string | number) | import("ant-design-vue/es/select").LabeledValue, import("ant-design-vue/es/select").DefaultOptionType>>;
+            onDeselect: import("vue").PropType<import("ant-design-vue/es/vc-select/Select").SelectHandler<import("ant-design-vue/es/select").LabeledValue | (string | number), import("ant-design-vue/es/select").DefaultOptionType>>;
             filterOption: {
                 type: import("vue").PropType<boolean | import("ant-design-vue/es/vc-select/Select").FilterFunc<import("ant-design-vue/es/select").DefaultOptionType>>;
                 default: any;
@@ -658,7 +658,7 @@ declare const _default: import("vue").DefineComponent<{
         onMousedown: import("vue").PropType<(e: MouseEvent) => void>;
         onMouseenter: import("vue").PropType<(e: MouseEvent) => void>;
         onMouseleave: import("vue").PropType<(e: MouseEvent) => void>;
-        onSelect: import("vue").PropType<import("ant-design-vue/es/vc-select/Select").SelectHandler<(string | number) | import("ant-design-vue/es/select").LabeledValue, import("ant-design-vue/es/select").DefaultOptionType>>;
+        onSelect: import("vue").PropType<import("ant-design-vue/es/vc-select/Select").SelectHandler<import("ant-design-vue/es/select").LabeledValue | (string | number), import("ant-design-vue/es/select").DefaultOptionType>>;
         prefixCls: StringConstructor;
         direction: {
             type: import("vue").PropType<"ltr" | "rtl">;
@@ -756,7 +756,7 @@ declare const _default: import("vue").DefineComponent<{
             type: BooleanConstructor;
             default: any;
         };
-        onDeselect: import("vue").PropType<import("ant-design-vue/es/vc-select/Select").SelectHandler<(string | number) | import("ant-design-vue/es/select").LabeledValue, import("ant-design-vue/es/select").DefaultOptionType>>;
+        onDeselect: import("vue").PropType<import("ant-design-vue/es/vc-select/Select").SelectHandler<import("ant-design-vue/es/select").LabeledValue | (string | number), import("ant-design-vue/es/select").DefaultOptionType>>;
         filterOption: {
             type: import("vue").PropType<boolean | import("ant-design-vue/es/vc-select/Select").FilterFunc<import("ant-design-vue/es/select").DefaultOptionType>>;
             default: any;

@@ -18,6 +18,7 @@ import Tooltip from './formitems/Tooltip';
 import Transfer from './formitems/Transfer';
 import TreeSelect from './formitems/TreeSelect';
 import Upload from './formitems/Upload';
+import SubmitButton from './formitems/SubmitButton'
 
 const {
   Affix,
@@ -245,6 +246,7 @@ export {
   Steps,
   SubMenu,
   Switch,
+  SubmitButton,
   TabPane,
   Table,
   TableColumn,
@@ -290,6 +292,7 @@ const Obj = {
   Input,
   TextArea,
   Transfer,
+  SubmitButton,
   ...AntdvComponents,
 };
 

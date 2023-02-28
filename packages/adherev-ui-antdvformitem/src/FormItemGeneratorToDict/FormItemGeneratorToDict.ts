@@ -1,3 +1,4 @@
+import AutoCompleteFormItem from './AutoCompleteFormItem';
 import CascaderFormItem from './CascaderFormItem';
 import CascaderLeafFormItem from './CascaderLeafFormItem';
 import CheckAllMulitSelectFormItem from './CheckAllMulitSelectFormItem';
@@ -9,6 +10,7 @@ import CheckBoxCustomFormItem from './CheckBoxCustomFormItem';
 import CheckBoxHorizontalFormItem from './CheckBoxHorizontalFormItem';
 import CheckBoxSelectFormItem from './CheckBoxSelectFormItem';
 import CheckBoxVerticalFormItem from './CheckBoxVerticalFormItem';
+import AutoComplete from './Fields/AutoComplete';
 import Cascader from './Fields/Cascader';
 import CheckBox from './Fields/CheckBox';
 import List from './Fields/List';
@@ -58,6 +60,7 @@ export const validatorMulti = (message) => ({
 });
 
 export {
+  AutoCompleteFormItem,
   CheckAllMulitSelectFormItem,
   CheckBoxCheckAllSelectFormItem,
   CheckBoxCheckAllCustomFormItem,
@@ -101,6 +104,7 @@ export default {
       ...Transfer(),
       ...TreeSelect(),
       ...Cascader(),
+      ...AutoComplete(),
     };
 
     Object.keys(FormItemComponents).forEach((key) => {

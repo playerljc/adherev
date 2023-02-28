@@ -270,6 +270,20 @@
               <adv-antdvformitemnormalize-textarea style="width: 200px" />
             </dd>
           </dl>
+
+          <dl>
+            <dt>
+              <p>SubmitButton</p>
+            </dt>
+            <dd>
+              <adv-antdvformitemnormalize-submitbutton
+                type="primary"
+                style="width: 200px"
+                @click="onSubmitBtnClick"
+                >提交</adv-antdvformitemnormalize-submitbutton
+              >
+            </dd>
+          </dl>
         </adv-space-group>
       </template>
 
@@ -1005,6 +1019,14 @@
             </a-list-item>
           </template>
         </SystemTestListPaginationMulitSelectFormItem>
+      </template>
+    </adv-playground-page-code-box-section>
+    <adv-playground-page-code-box-section
+      title="FormItemGeneratorToDict - AutoComplete"
+      :config="autoCompleteCodeBoxPanelConfig"
+    >
+      <template #p1>
+        <SystemTestAutoCompleteFormItem style="width: 200px" :value="autoCompleteValue" @change="onAutoCompleteChange" />
       </template>
     </adv-playground-page-code-box-section>
 
@@ -3183,6 +3205,38 @@ export default {
           childrenSlot: 'p6',
         },
       ],
+      autoCompleteCodeBoxPanelConfig: [
+        {
+          id: 'p1',
+          name: '基本使用',
+          type: 'PlayGround',
+          cardProps: {
+            description: {
+              title: '基本使用',
+              info: '基本使用',
+            },
+          },
+          codeText: `
+     <template>
+
+     </template>
+
+     <script>
+        export default {
+           data() {
+              return {
+
+              }
+           },
+           methods: {
+
+          },
+        }
+      <\/script>
+              `,
+          childrenSlot: 'p1',
+        },
+      ],
       propsConfig: [
         {
           border: true,
@@ -3192,6 +3246,10 @@ export default {
       ],
       val: '',
       vals: [],
+      autoCompleteValue: {
+        inputValue: '',
+        selectValue: '',
+      }
     };
   },
   mounted() {
@@ -3217,6 +3275,12 @@ export default {
     onChangeValues(vals) {
       this.vals = vals;
     },
+    onSubmitBtnClick() {
+      return new Promise((resolve) => setTimeout(resolve, 3000));
+    },
+    onAutoCompleteChange(v) {
+      this.autoCompleteValue = v;
+    }
   },
 };
 </script>
